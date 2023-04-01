@@ -4,11 +4,7 @@
     "cpus": 4
   },
   "waitFor": "onCreateCommand",
-  "updateContentCommand": [
-    "pip install -r requirements.txt && python manage.py migrate",
-    "sudo apt-get update",
-    "sudo apt-get install subversion -y"
-  ],
+  "updateContentCommand": "pip install -r requirements.txt && python manage.py migrate",
   "postCreateCommand": "",
   "postAttachCommand": {
     "server": "python manage.py runserver" // inicia o servidor automaticamente 
@@ -22,8 +18,8 @@
     "vscode": {
       "extensions": [
 		"ms-python.python",
-		"johnstoncode.svn-scm",
-		"GitHub.copilot"
+		"GitHub.copilot",
+		"ms-python.pylint"
 	]
     }
   },
