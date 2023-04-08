@@ -4,6 +4,7 @@ from django.http import HttpResponse
 from django.contrib.auth.models import User
 from courses.models import Course
 from attribution.models import TeacherCourseSelection, TeacherQueuePosition
+from django.utils import timezone
 
 def index(request):
     return render(request, 'attribution/index.html')
