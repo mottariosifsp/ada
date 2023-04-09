@@ -1,4 +1,4 @@
-"""setup URL Configuration
+"""ada URL Configuration
 
 The `urlpatterns` list routes URLs to views. For more information please see:
     https://docs.djangoproject.com/en/4.1/topics/http/urls/
@@ -18,5 +18,6 @@ from django.urls import path, include
 
 urlpatterns = [
     path("admin/", admin.site.urls),
-    path('', include('attribution.urls')),
+    path("professors/", include("django.contrib.auth.urls")),
+    path("", include("layout.urls"), name='home'),
 ]

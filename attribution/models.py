@@ -1,13 +1,14 @@
 
-from django.contrib.auth.models import User
 from django.db import models
 from django.utils import timezone
 from django.core.exceptions import ValidationError
 
 from courses.models import Course
+from setup import settings
+
 
 class TeacherCourseSelection(models.Model):
-    teacher = models.ForeignKey(User, on_delete=models.CASCADE)
+    teacher = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     course = models.ForeignKey(Course, on_delete=models.CASCADE)
     timestamp = models.DateTimeField(default=timezone.now)
 
@@ -18,7 +19,7 @@ class TeacherCourseSelection(models.Model):
         return f"{self.teacher} selected {self.course}"
 
 class TeacherQueuePosition(models.Model):
-    teacher = models.ForeignKey(User, on_delete=models.CASCADE)
+    teacher = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     position = models.IntegerField()
 
     def __str__(self):
