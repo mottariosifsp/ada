@@ -6,7 +6,7 @@ from django.core.exceptions import ValidationError
 from courses.models import Course
 from setup import settings
 
-
+objects = models.Manager()
 class TeacherCourseSelection(models.Model):
     teacher = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     course = models.ForeignKey(Course, on_delete=models.CASCADE)

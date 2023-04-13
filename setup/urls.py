@@ -20,4 +20,5 @@ urlpatterns = [
     path("admin/", admin.site.urls),
     path("professors/", include("django.contrib.auth.urls")),
     path("", include("layout.urls"), name='home'),
+    path("attribution/", include("attribution.urls")),
 ]

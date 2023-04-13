@@ -30,7 +30,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
-CSRF_TRUSTED_ORIGINS=['https://henriquebaesa-studious-space-carnival-95vxv7gxq7j2px5r-8000.preview.app.github.dev'] 
+CSRF_TRUSTED_ORIGINS=['https://paulokenji-probable-fishstick-gpgx75jqjpr3w5x5-8000.preview.app.github.dev'] 
 
 # Application definition
 
@@ -129,7 +129,7 @@ USE_TZ = True
 STATIC_URL = "static/"
 
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, "setup/static")
+    os.path.join(BASE_DIR, "templates/static")
 ]
 
 STATIC_ROOT = os.path.join(BASE_DIR, "static")

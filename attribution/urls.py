@@ -1,6 +1,7 @@
 from django.urls import path
-from attribution.views import index
+from attribution.views import attribution, queueSetup
 
 urlpatterns = [
-    path('', index, name='index'),
+    path('', attribution, name='attribution'),
+    path('queueSetup', queueSetup, name='queueSetup')
 ]
