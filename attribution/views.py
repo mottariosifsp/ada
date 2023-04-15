@@ -14,22 +14,29 @@ def is_superuser(user):
 
 def attribution(request):
     if request.method == 'POST':
-        tabela_data = json.loads(request.POST['tabela_data'])
-        TeacherQueuePosition.objects.all().delete() # remove after
+        tabela_data = json.loads(request.POST['tabela_data'])       
+        
         for professorInQueue in tabela_data:
             professor_id = professorInQueue[3]
             position = professorInQueue[0]
             professor = Professors.objects.get(id=professor_id)
             if(TeacherQueuePosition.objects.filter(teacher=professor).exists()):
                 TeacherQueuePosition.objects.filter(teacher=professor).update(position=position)
-                print("professor atualizado ")
             else:
                 add_teacher_to_queue(professor,position)
-                print("Professor adicionado a fila ")
-    
+       
+    if request.method == 'GET':
 
+        is_next = False
+        nextTeacher = TeacherQueuePosition.objects.filter(position=1);
+  
+        if(request.user.is_authenticated and nextTeacher is not None and nextTeacher.get().teacher == request.user):
+            print("entrou")
+            is_next = True
+            select_course(request.user)
 
     data = {
+        'is_next': is_next,
         'user': request.user,
         'professorsInQueue': TeacherQueuePosition.objects.select_related('teacher').order_by('position').all(),
         'courses': Course.objects.all()
@@ -43,6 +50,7 @@ def queueSetup(request):
     }
     return render(request, 'attribution/queueSetup.html',data)
 
+
 @transaction.atomic
 def add_teacher_to_queue(teacher,positionInput):
     position = positionInput
@@ -51,19 +59,18 @@ def add_teacher_to_queue(teacher,positionInput):
 @transaction.atomic
 def select_course(teacher):
     # pega o 1o prof da lista
-    queue_position = TeacherQueuePosition.objects.first()
+    queue_position = TeacherQueuePosition.objects.filter(position=1);
 
-    if queue_position is None or queue_position.teacher != teacher:
+    if queue_position is None or queue_position.get().teacher != teacher:
         raise ValueError("Teacher is not in the queue")
 
     # pega os cursos disponíoveis
-    available_courses = Course.objects.filter(
-        teacherselection__isnull=True).distinct()
+    available_courses = Course.objects.filter(teachercourseselection__isnull=True).distinct()
 
     # mostra os cursos disponiveis
     selected_course = None
     for course in available_courses:
-        print(f"{course.id}: {course.name}")
+        print(f"{course.id}: {course.title}")
     while not selected_course:
         course_id = input("Select a course ID: ")
         try:
@@ -72,7 +79,8 @@ def select_course(teacher):
             print("Invalid course ID")
 
     # ve se selecionou dentro de 1 minutio
-    if (timezone.now() - queue_position.timestamp).total_seconds() > 60:
+
+    if (timezone.now()- queue_position.timestamp ).total_seconds() > 60:
         # se n selecionou vai p final da fila
         queue_position.delete()
         queue_size = TeacherQueuePosition.objects.count()
