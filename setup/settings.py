@@ -135,7 +135,7 @@ STATICFILES_DIRS = [
 
 LANGUAGES = (
     ('en', _('English')),
-    ('pt', _('Portuguese')),
+    ('pt-br', _('Brazilian Portuguese')),
 )
 
 LOCALE_PATHS = (
