@@ -132,6 +132,17 @@ STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "setup/static")
 ]
 
+
+LANGUAGES = (
+    ('en', _('English')),
+    ('pt', _('Portuguese')),
+)
+
+LOCALE_PATHS = (
+    os.path.join(BASE_DIR, 'locale/'),
+)
+
+
 STATIC_ROOT = os.path.join(BASE_DIR, "static")
 
 # Default primary key field type
