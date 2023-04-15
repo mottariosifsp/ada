@@ -12,6 +12,7 @@ def translate(language):
     cur_language = get_language()
     try:
         activate(language)
+        text = gettext('Password')
         text = gettext('login') #identifica o que mudar
     finally:
         activate(cur_language)
