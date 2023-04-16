@@ -30,9 +30,9 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
-CSRF_TRUSTED_ORIGINS=['https://paulokenji-probable-fishstick-gpgx75jqjpr3w5x5-8000.preview.app.github.dev'] 
+CSRF_TRUSTED_ORIGINS=['https://josineudo-arruda-refactored-tribble-4p7474xprxp2q7r-8000.preview.app.github.dev'] 
 
-# Application definition
+# Application definition    
 
 INSTALLED_APPS = [
     "django.contrib.admin",
@@ -131,6 +131,15 @@ STATIC_URL = "static/"
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "templates/static")
 ]
+
+LANGUAGES = (
+    ('en', _('English')),
+    ('pt-br', _('Brazilian Portuguese')),
+)
+
+LOCALE_PATHS = (
+    os.path.join(BASE_DIR, 'locale/'),
+)
 
 STATIC_ROOT = os.path.join(BASE_DIR, "static")
 

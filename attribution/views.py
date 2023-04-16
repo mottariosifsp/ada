@@ -9,6 +9,7 @@ from attribution.models import TeacherCourseSelection, TeacherQueuePosition
 from django.utils import timezone
 from django.contrib.auth.decorators import user_passes_test
 
+
 def is_superuser(user):
     return user.is_superuser
 
@@ -93,4 +94,3 @@ def select_course(teacher):
         # deleta o prof da fila
         queue_position.delete()
         print(f"{teacher} selected {selected_course.name}")
-
