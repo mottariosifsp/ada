@@ -4,16 +4,24 @@ var texto
 var table
 var tabelaData
 
-
+var urlLang
+  if(lang == 'en') {
+    urlLang = 'en-BG'
+  } else {
+    urlLang = 'pt-BR'
+  } 
+  
 $(document).ready(function() {
   table = $('#queue').DataTable(
     {
-      searching: false,
-      "paging": false,
-      "bInfo" : false,
-      rowReorder: true
+      rowReorder: true,
+      language: {
+        url: '//cdn.datatables.net/plug-ins/1.13.4/i18n/'+urlLang+'.json'
+      },
     }
   ); 
+
+  
   
   table.on('row-reorder', function(e, diff, edit) {
      var result = 'Reorder started on row: '+edit.triggerRow.data()[1]+'<br>';
