@@ -13,6 +13,8 @@ from django.http import JsonResponse
 import asyncio
 
 startTimeToSelect = timezone.now()
+from django.utils.translation import gettext as _
+from django.utils.translation import get_language, activate, gettext
 
 
 def is_superuser(user):
@@ -62,7 +64,8 @@ def attribution(request):
 @user_passes_test(is_superuser)
 def queueSetup(request):
     data = {
-        'professors': Professors.objects.all()
+        'professors': Professors.objects.all(),
+        'translate': translate(language='pt-br')
     }
     return render(request, 'attribution/queueSetup.html',data)
 
