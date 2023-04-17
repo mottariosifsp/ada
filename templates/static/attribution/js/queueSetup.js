@@ -9,6 +9,8 @@ $(document).ready(function() {
   table = $('#queue').DataTable(
     {
       searching: false,
+      "paging": false,
+      "bInfo" : false,
       rowReorder: true
     }
   ); 

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-04-17 06:39-0300\n"
+"POT-Creation-Date: 2023-04-17 20:07+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,11 +18,19 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
+#: attribution/views.py:81
+msgid "Search"
+msgstr ""
+
+#: attribution/views.py:82
+msgid "entries"
+msgstr ""
+
 #: layout/views.py:15
 msgid "Password"
 msgstr ""
 
-#: layout/views.py:16
+#: layout/views.py:16 templates/registration/login.html:17
 msgid "login"
 msgstr ""
 
@@ -56,7 +64,7 @@ msgstr ""
 
 #: professors/models.py:51
 msgid "professor"
-msgstr ""
+msgstr "teacher"
 
 #: professors/models.py:52
 msgid "professors"
@@ -83,7 +91,7 @@ msgstr "Languages"
 
 #: templates/attribution/attribution.html:46
 msgid "Escolha um curso"
-msgstr "Select a course"
+msgstr "Select one course"
 
 #: templates/attribution/attribution.html:47
 msgid "Tempo restante"
@@ -98,10 +106,8 @@ msgid "Você não é o próximo da fila, aguarde"
 msgstr "You're not the next in the row, wait"
 
 #: templates/attribution/attribution.html:57
-#, fuzzy
-#| msgid "Olá Professor"
 msgid "Fila de professores"
-msgstr "Hello Teacher"
+msgstr "Row of teachers"
 
 #: templates/attribution/attribution.html:61
 #: templates/attribution/queueSetup.html:46
@@ -109,11 +115,8 @@ msgid "Posição"
 msgstr "Position"
 
 #: templates/attribution/attribution.html:62
-#: templates/attribution/queueSetup.html:48
-#, fuzzy
-#| msgid "Login Usuário"
-msgid "Prontuário"
-msgstr "Login User"
+msgid "prontuário"
+msgstr "promptuary"
 
 #: templates/attribution/attribution.html:63
 #: templates/attribution/queueSetup.html:47
@@ -122,7 +125,7 @@ msgstr "Name"
 
 #: templates/attribution/attribution.html:80
 msgid "Cursos disponíveis"
-msgstr "Open Courses"
+msgstr "Open courses"
 
 #: templates/attribution/attribution.html:85
 msgid "Ação"
@@ -149,10 +152,12 @@ msgid "Selecionar"
 msgstr "Select"
 
 #: templates/attribution/queueSetup.html:14
-#, fuzzy
-#| msgid "crie a fila da atribuição"
 msgid "Fila da atribuição"
-msgstr "add a row with attribution"
+msgstr "Row of attribution"
+
+#: templates/attribution/queueSetup.html:48
+msgid "Prontuário"
+msgstr "Promptuary"
 
 #: templates/attribution/queueSetup.html:70
 msgid "Enviar Tabela"
@@ -170,7 +175,7 @@ msgstr "Course didn't find it or time's gone"
 
 #: templates/base.html:8
 msgid "Login Usuário"
-msgstr "Login User"
+msgstr ""
 
 #: templates/base.html:36
 msgid "Login"
@@ -182,39 +187,36 @@ msgstr ""
 
 #: templates/home.html:6
 msgid "Página inicial usuário"
-msgstr "Initial page user"
+msgstr "Initial user page"
 
 #: templates/home.html:34
 msgid "Login completo"
-msgstr "Login Completed"
+msgstr "Completed login"
 
 #: templates/home.html:39
-msgid "Olá adminstrador"
-msgstr "Hello Administrator"
+#| msgid "Olá adminstrador"
+msgid "Olá, adminstrador"
+msgstr "Hello, administrator"
 
 #: templates/home.html:40
-msgid "crie a fila da atribuição"
-msgstr "add a row with attribution"
+#| msgid "crie a fila da atribuição"
+msgid "Crie a fila da atribuição"
+msgstr "Create a row of attribution"
 
 #: templates/home.html:41
-#, fuzzy
-#| msgid "Atribuição"
 msgid "Atribuir"
-msgstr "Attribution"
+msgstr "Attribute"
 
 #: templates/home.html:47
-msgid "Olá Professor"
+#| msgid "Olá Professor"
+msgid "Olá, Professor"
 msgstr "Hello Teacher"
 
 #: templates/home.html:48
-msgid "entre no processo de atribuição"
-msgstr "enter your preferences in the attribution"
+#| msgid "entre no processo de atribuição"
+msgid "Entre no processo de atribuição"
+msgstr "Enter in the attribution process"
 
 #: templates/home.html:49
-#, fuzzy
-#| msgid "Atribuição"
 msgid "Ver atribuição"
-msgstr "Attribution"
-
-#~ msgid "Professores disponíveis"
-#~ msgstr "Open teachers"
+msgstr "Check Attribution"

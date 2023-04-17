@@ -36,16 +36,16 @@
   {% if user.is_superuser %}
   <div class="container d-flex align-items-center justify-content-center h-70" style="height: 70vh;">
     <div>
-      <h2>{% translate "Olá adminstrador"%}</h2>
-      <p>{% translate "crie a fila da atribuição" %}</p>
+      <h2>{% translate "Olá, adminstrador"%}</h2>
+      <p>{% translate "Crie a fila da atribuição" %}.</p>
       <a href="{% url 'queueSetup' %}"><button class="btn btn-outline-primary">{% translate "Atribuir"%}</button></a>
     </div>
   </div>
   {% else %}
   <div class="container d-flex align-items-center justify-content-center h-70" style="height: 70vh;">
     <div>
-      <h2>{% translate "Olá Professor" %}</h2>
-      <p>{% translate "entre no processo de atribuição" %}</p>
+      <h2>{% translate "Olá, Professor" %}</h2>
+      <p>{% translate "Entre no processo de atribuição" %}.</p>
       <a href="{% url 'attribution' %}"><button class="btn btn-outline-primary">{% translate "Ver atribuição"%}</button></a>
     </div>
   </div>

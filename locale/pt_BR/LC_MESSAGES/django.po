@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-04-17 06:39-0300\n"
+"POT-Creation-Date: 2023-04-17 20:07+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,11 +18,19 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
+#: attribution/views.py:81
+msgid "Search"
+msgstr "Pesquisar"
+
+#: attribution/views.py:82
+msgid "entries"
+msgstr "entrada"
+
 #: layout/views.py:15
 msgid "Password"
 msgstr "Senha"
 
-#: layout/views.py:16
+#: layout/views.py:16 templates/registration/login.html:17
 msgid "login"
 msgstr "entrar"
 
@@ -52,7 +60,7 @@ msgstr "ativo"
 
 #: professors/models.py:43
 msgid "staff status"
-msgstr "status ativo"
+msgstr "status de staff"
 
 #: professors/models.py:51
 msgid "professor"
@@ -98,10 +106,8 @@ msgid "Você não é o próximo da fila, aguarde"
 msgstr ""
 
 #: templates/attribution/attribution.html:57
-#, fuzzy
-#| msgid "professors"
 msgid "Fila de professores"
-msgstr "professores"
+msgstr ""
 
 #: templates/attribution/attribution.html:61
 #: templates/attribution/queueSetup.html:46
@@ -109,9 +115,8 @@ msgid "Posição"
 msgstr ""
 
 #: templates/attribution/attribution.html:62
-#: templates/attribution/queueSetup.html:48
-msgid "Prontuário"
-msgstr "Promtuary"
+msgid "prontuário"
+msgstr ""
 
 #: templates/attribution/attribution.html:63
 #: templates/attribution/queueSetup.html:47
@@ -148,7 +153,11 @@ msgstr ""
 
 #: templates/attribution/queueSetup.html:14
 msgid "Fila da atribuição"
-msgstr "Row of attribution"
+msgstr ""
+
+#: templates/attribution/queueSetup.html:48
+msgid "Prontuário"
+msgstr ""
 
 #: templates/attribution/queueSetup.html:70
 msgid "Enviar Tabela"
@@ -185,11 +194,11 @@ msgid "Login completo"
 msgstr ""
 
 #: templates/home.html:39
-msgid "Olá adminstrador"
+msgid "Olá, adminstrador"
 msgstr ""
 
 #: templates/home.html:40
-msgid "crie a fila da atribuição"
+msgid "Crie a fila da atribuição"
 msgstr ""
 
 #: templates/home.html:41
@@ -197,24 +206,15 @@ msgid "Atribuir"
 msgstr ""
 
 #: templates/home.html:47
-msgid "Olá Professor"
-msgstr ""
+#, fuzzy
+#| msgid "professors"
+msgid "Olá, Professor"
+msgstr "professores"
 
 #: templates/home.html:48
-msgid "entre no processo de atribuição"
+msgid "Entre no processo de atribuição"
 msgstr ""
 
 #: templates/home.html:49
-#, fuzzy
-#| msgid "Fila da atribuição"
 msgid "Ver atribuição"
-msgstr "Row of attribution"
-
-#~ msgid "Search"
-#~ msgstr "Pesquisar"
-
-#~ msgid "entries"
-#~ msgstr "entrada"
-
-#~ msgid "Click"
-#~ msgstr "Clique"
+msgstr ""

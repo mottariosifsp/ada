@@ -67,22 +67,22 @@ def attribution(request):
 
 @user_passes_test(is_superuser)
 def queueSetup(request):
-    #trans = translate(language='pt-br')
+    trans = translate(language='en')
     data = {
         'professors': Professors.objects.all(),
-        #'text': trans
+        'text': trans
     }
     return render(request, 'attribution/queueSetup.html', data)
 
-#def translate(language):
-#    cur_language = get_language()
-#    try:
-#        activate(language)
-#        text = gettext('Search')
-#        text = gettext('entries') #identifica o que mudar
-#    finally:
-#        activate(cur_language)
-#    return text
+def translate(language):
+    cur_language = get_language()
+    try:
+        activate(language)
+        text = gettext('Search')
+        text = gettext('entries') #identifica o que mudar
+    finally:
+        activate(cur_language)
+    return text
 
 @transaction.atomic
 def teacherToEndOfQueue(teacher, queue_position):
