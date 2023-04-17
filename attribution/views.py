@@ -10,7 +10,8 @@ from attribution.models import TeacherCourseSelection, TeacherQueuePosition
 from django.utils import timezone
 from django.contrib.auth.decorators import user_passes_test
 from django.http import JsonResponse
-import asyncio
+
+from .task import spleepy, verifyTimeToSelect
 
 startTimeToSelect = timezone.now()
 
@@ -22,7 +23,6 @@ def is_superuser(user):
 def attribution(request):
     global startTimeToSelect
     if request.method == 'POST':
-        call_async_function_after_delay()
         tabela_data = json.loads(request.POST['tabela_data'])       
         startTimeToSelect = timezone.now()
         print(startTimeToSelect.strftime("%H:%M:%S"))
@@ -37,9 +37,12 @@ def attribution(request):
 
     is_next = False
     timeLeft = 0
+    spleepy.delay(20)
     if request.method == 'GET':
+        
         print("StartTimeToSelect: ", startTimeToSelect.strftime("%H:%M:%S"))
         nextTeacher = TeacherQueuePosition.objects.filter(position=1);
+        teacher = nextTeacher.get().teacher
         if(request.user.is_authenticated and nextTeacher is not None and nextTeacher.get().teacher == request.user):
             timeLeft = ((startTimeToSelect + timezone.timedelta(seconds=40)) - timezone.now()).total_seconds()
             print(timeLeft)
@@ -47,8 +50,8 @@ def attribution(request):
             is_next = True
             if(timeLeft < 0):
                 timeLeft = 0
-
-                
+                teacherToEndOfQueue(teacher, nextTeacher)          
+                startTimeToSelect = timezone.now()     
 
     data = {
         'timeLeft': timeLeft,
@@ -66,20 +69,35 @@ def queueSetup(request):
     }
     return render(request, 'attribution/queueSetup.html',data)
 
+@transaction.atomic
+def teacherToEndOfQueue(teacher, queue_position):
+    queue_position.delete()
+    queue_size = TeacherQueuePosition.objects.count()
+    for teacherQueuePosition in TeacherQueuePosition.objects.all():
+        if teacherQueuePosition.position > 1:
+            teacherQueuePosition.position = teacherQueuePosition.position - 1
+            teacherQueuePosition.save()
+    position = queue_size + 1
+    TeacherQueuePosition.objects.create(teacher=teacher, position=position)
+    
+    print("Time's up! You have been moved to the end of the queue.")
 
-# #funcao que vai ser chamada em x tempo de forma assíncrona
-@csrf_exempt
-async def updateQueue():
-    data = {
-        'update': 'update'
-    }
-    return JsonResponse(data)
+@transaction.atomic
+def teacherSelectCourse(teacher, CourseSelected, queue_position):
+    selected_course = Course.objects.get(id=CourseSelected)
+    TeacherCourseSelection.objects.create(teacher=teacher, course=selected_course)
+    #atualiza a o curso, colocando um prof nele
+    Course.objects.filter(id=selected_course.id).update(teacher=teacher)
+    # deleta o prof da fila
 
-async def call_async_function_after_delay():
-    await asyncio.sleep(30)
-    await updateQueue()    
-
-asyncio.run(call_async_function_after_delay())
+    queue_position.delete()
+    # atualiza a posição dos outros profs
+    
+    for teacherQueuePosition in TeacherQueuePosition.objects.all():
+        if teacherQueuePosition.position > 1:
+            teacherQueuePosition.position = teacherQueuePosition.position - 1
+            teacherQueuePosition.save()
+    print(f"{teacher} selected {selected_course.title}")
 
 @transaction.atomic
 def selectCourse(request):
@@ -93,64 +111,22 @@ def selectCourse(request):
         if queue_position is None or queue_position.get().teacher != teacher:
             raise ValueError("Teacher is not in the queue")
 
-        selected_course = None
-
         data = {
             'course': CourseSelected,
         }
 
         if(CourseSelected == None):
            # se n selecionou vai p final da fila
-            queue_position.delete()
-            queue_size = TeacherQueuePosition.objects.count()
-            for teacherQueuePosition in TeacherQueuePosition.objects.all():
-                if teacherQueuePosition.position > 1:
-                    teacherQueuePosition.position = teacherQueuePosition.position - 1
-                    teacherQueuePosition.save()
-            position = queue_size + 1
-            TeacherQueuePosition.objects.create(teacher=teacher, position=position)
-            
-            print("Time's up! You have been moved to the end of the queue.")
+            teacherToEndOfQueue(teacher,queue_position)
+            startTimeToSelect = timezone.now()
             return render(request, 'attribution/selectCourse.html',data)
         else:
-            selected_course = Course.objects.get(id=CourseSelected)
-            TeacherCourseSelection.objects.create(teacher=teacher, course=selected_course)
-            #atualiza a o curso, colocando um prof nele
-            Course.objects.filter(id=selected_course.id).update(teacher=teacher)
-            # deleta o prof da fila
-
-            queue_position.delete()
-            # atualiza a posição dos outros profs
-            
-            for teacherQueuePosition in TeacherQueuePosition.objects.all():
-                if teacherQueuePosition.position > 1:
-                    teacherQueuePosition.position = teacherQueuePosition.position - 1
-                    teacherQueuePosition.save()
-            
-            print(f"{teacher} selected {selected_course.title}")
+            teacherSelectCourse(teacher, CourseSelected, queue_position)
             startTimeToSelect = timezone.now()
 
-        # # ve se selecionou dentro de 1 minutio
-        # print("Now: ", timezone.now().strftime("%H:%M:%S"))
-        # print("StartTimeToSelect: ", startTimeToSelect.strftime("%H:%M:%S"))
-        # print("Now - StartTimeToSelect (totalsecond): ", (timezone.now() - startTimeToSelect ).total_seconds())
-        # if (timezone.now() - startTimeToSelect ).total_seconds() > 40:
-        #     # se n selecionou vai p final da fila
-        #     queue_position.delete()
-        #     queue_size = TeacherQueuePosition.objects.count()
-        #     for teacherQueuePosition in TeacherQueuePosition.objects.all():
-        #         if teacherQueuePosition.position > 1:
-        #             teacherQueuePosition.position = teacherQueuePosition.position - 1
-        #             teacherQueuePosition.save()
-        #     position = queue_size + 1
-        #     TeacherQueuePosition.objects.create(teacher=teacher, position=position)
-            
-        #     print("Time's up! You have been moved to the end of the queue.")
-        # else:
-        #     # salva a seleção do curso
+        return render(request, 'attribution/selectCourse.html',data)
             
     
-    return render(request, 'attribution/selectCourse.html',data)
 
 @transaction.atomic
 def add_teacher_to_queue(teacher,positionInput):

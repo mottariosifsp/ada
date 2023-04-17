@@ -150,3 +150,9 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 LOGIN_REDIRECT_URL = "/"
 LOGIN_URL = "professors/login"
 AUTH_USER_MODEL = "professors.Professors"
+
+CELERY_BROKER_URL = 'redis://127.0.0.1:6379'
+CELERY_ACCEPT_CONTENT = {'aplicattion/json'}
+CELERY_RESULT_SERIALIZER = 'json'   
+CELERY_TASK_SERIALIZER = 'json'
+CELERY_TIMEZONE = 'America/Sao_Paulo'

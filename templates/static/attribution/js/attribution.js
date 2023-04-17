@@ -7,19 +7,21 @@ $(document).ready(function() {
   if(secondsLeft > 0){
     timerFormated.setSeconds(secondsLeft);
     var interval = setInterval(function () {
+      get_data()
       timerFormated.setSeconds(timerFormated.getSeconds() - 1);
       $('#timer').html(timerFormated.toISOString().substr(11, 8));
       if(timerFormated.getSeconds() == 0){
         clearInterval(interval);
         let csrftoken = getCookie('csrftoken');
         $("#form").submit();
+        
       }
     }, 1000);	
   } else {
 
   }
   
-  
+  get_data()
   
 });
 
