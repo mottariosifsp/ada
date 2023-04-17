@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-04-17 02:45-0300\n"
+"POT-Creation-Date: 2023-04-17 05:48-0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -75,7 +75,8 @@ msgid "Atribuição"
 msgstr "Attribution"
 
 #: templates/attribution/attribution.html:28
-#: templates/attribution/queueSetup.html:26 templates/base.html:20
+#: templates/attribution/queueSetup.html:26
+#: templates/attribution/selectCourse.html:28 templates/base.html:20
 #: templates/home.html:18
 msgid "Línguas"
 msgstr "Languages"
@@ -129,6 +130,16 @@ msgstr "Login User"
 msgid "Enviar Tabela"
 msgstr "Send Table"
 
+#: templates/attribution/selectCourse.html:15
+#: templates/attribution/selectCourse.html:46
+#: templates/attribution/selectCourse.html:48
+msgid "Curso selecionado"
+msgstr ""
+
+#: templates/attribution/selectCourse.html:45
+msgid "Curso não encontrado ou tempo esgotado"
+msgstr ""
+
 #: templates/base.html:8
 msgid "Login Usuário"
 msgstr "Login User"
@@ -157,6 +168,12 @@ msgstr "Hello Administrator"
 msgid "crie a fila da atribuição"
 msgstr "add a row with attribution"
 
+#: templates/home.html:41
+#, fuzzy
+#| msgid "Atribuição"
+msgid "Atribuir"
+msgstr "Attribution"
+
 #: templates/home.html:47
 msgid "Olá Professor"
 msgstr "Hello Teacher"
@@ -164,3 +181,9 @@ msgstr "Hello Teacher"
 #: templates/home.html:48
 msgid "entre no processo de atribuição"
 msgstr "enter your preferences in the attribution"
+
+#: templates/home.html:49
+#, fuzzy
+#| msgid "Atribuição"
+msgid "Ver atribuição"
+msgstr "Attribution"

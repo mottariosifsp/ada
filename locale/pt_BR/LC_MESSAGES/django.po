@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-04-17 03:13-0300\n"
+"POT-Creation-Date: 2023-04-17 05:48-0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,6 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
+
 #: layout/views.py:15
 msgid "Password"
 msgstr "Senha"
@@ -74,7 +75,8 @@ msgid "Atribuição"
 msgstr ""
 
 #: templates/attribution/attribution.html:28
-#: templates/attribution/queueSetup.html:26 templates/base.html:20
+#: templates/attribution/queueSetup.html:26
+#: templates/attribution/selectCourse.html:28 templates/base.html:20
 #: templates/home.html:18
 msgid "Línguas"
 msgstr ""
@@ -124,6 +126,16 @@ msgstr "Promtuary"
 msgid "Enviar Tabela"
 msgstr ""
 
+#: templates/attribution/selectCourse.html:15
+#: templates/attribution/selectCourse.html:46
+#: templates/attribution/selectCourse.html:48
+msgid "Curso selecionado"
+msgstr ""
+
+#: templates/attribution/selectCourse.html:45
+msgid "Curso não encontrado ou tempo esgotado"
+msgstr ""
+
 #: templates/base.html:8
 msgid "Login Usuário"
 msgstr ""
@@ -152,6 +164,10 @@ msgstr ""
 msgid "crie a fila da atribuição"
 msgstr ""
 
+#: templates/home.html:41
+msgid "Atribuir"
+msgstr ""
+
 #: templates/home.html:47
 msgid "Olá Professor"
 msgstr ""
@@ -159,6 +175,18 @@ msgstr ""
 #: templates/home.html:48
 msgid "entre no processo de atribuição"
 msgstr ""
+
+#: templates/home.html:49
+#, fuzzy
+#| msgid "Fila da atribuição"
+msgid "Ver atribuição"
+msgstr "Row of attribution"
+
+#~ msgid "Search"
+#~ msgstr "Pesquisar"
+
+#~ msgid "entries"
+#~ msgstr "entrada"
 
 #~ msgid "Click"
 #~ msgstr "Clique"

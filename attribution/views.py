@@ -41,7 +41,6 @@ def attribution(request):
 
     is_next = False
     timeLeft = 0
-    spleepy.delay(20)
     if request.method == 'GET':
         
         print("StartTimeToSelect: ", startTimeToSelect.strftime("%H:%M:%S"))
@@ -68,10 +67,22 @@ def attribution(request):
 
 @user_passes_test(is_superuser)
 def queueSetup(request):
+    #trans = translate(language='pt-br')
     data = {
         'professors': Professors.objects.all(),
+        #'text': trans
     }
     return render(request, 'attribution/queueSetup.html', data)
+
+#def translate(language):
+#    cur_language = get_language()
+#    try:
+#        activate(language)
+#        text = gettext('Search')
+#        text = gettext('entries') #identifica o que mudar
+#    finally:
+#        activate(cur_language)
+#    return text
 
 @transaction.atomic
 def teacherToEndOfQueue(teacher, queue_position):

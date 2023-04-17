@@ -8,6 +8,7 @@ var tabelaData
 $(document).ready(function() {
   table = $('#queue').DataTable(
     {
+      searching: false,
       rowReorder: true
     }
   ); 
