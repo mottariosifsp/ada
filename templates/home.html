@@ -5,6 +5,7 @@
   <title>Completo</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
 </head>
+
 <body style="margin: 1rem;">
   
 <h1>Login completo - HOME PAGE</h1>
@@ -20,9 +21,11 @@
 {% else %}
 <div class="container d-flex align-items-center justify-content-center h-70" style="height: 70vh;">
   <div>
-    <h2>Olá Professor</h2>
+    <h2>Olá Professor {{ user }}</h2>
     <p>entre no processo de atribuição</p>
-    <button onclick="location.href = '/attribution/'" class="btn btn-outline-primary">Click</button>
+    <button onclick="location.href = '/attribution/'" class="btn btn-outline-primary">Atribuição</button>
+    {% comment %} botão para deslogar do site {% endcomment %}
+    <button onclick="location.href = 'professors/logout/'" class="btn btn-outline-primary">Logout</button>
   </div>
 </div>
 {% endif %}
