@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-04-16 19:38-0300\n"
+"POT-Creation-Date: 2023-04-17 02:45-0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,14 +17,6 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
-
-#: attribution/views.py:106
-msgid "Prontuário"
-msgstr "Promtuary"
-
-#: attribution/views.py:107
-msgid "Fila da atribuição"
-msgstr "Row of attribution"
 
 #: layout/views.py:15
 msgid "Password"
@@ -82,44 +74,52 @@ msgstr "Português Brasileiro"
 msgid "Atribuição"
 msgstr ""
 
-#: templates/attribution/attribution.html:27
+#: templates/attribution/attribution.html:28
 #: templates/attribution/queueSetup.html:26 templates/base.html:20
 #: templates/home.html:18
 msgid "Línguas"
 msgstr ""
 
-#: templates/attribution/attribution.html:44
+#: templates/attribution/attribution.html:45
 msgid "Professores disponíveis"
 msgstr ""
 
-#: templates/attribution/attribution.html:48
+#: templates/attribution/attribution.html:49
 #: templates/attribution/queueSetup.html:46
 msgid "Posição"
 msgstr ""
 
-#: templates/attribution/attribution.html:65
+#: templates/attribution/attribution.html:66
 msgid "Cursos disponíveis"
 msgstr ""
 
-#: templates/attribution/attribution.html:69
+#: templates/attribution/attribution.html:70
 msgid "Curso"
 msgstr ""
 
-#: templates/attribution/attribution.html:70
+#: templates/attribution/attribution.html:71
 msgid "Dia"
 msgstr ""
 
-#: templates/attribution/attribution.html:71
+#: templates/attribution/attribution.html:72
 msgid "Inicio"
 msgstr ""
 
-#: templates/attribution/attribution.html:72
+#: templates/attribution/attribution.html:73
 msgid "Fim"
 msgstr ""
+
+#: templates/attribution/queueSetup.html:14
+msgid "Fila da atribuição"
+msgstr "Row of attribution"
 
 #: templates/attribution/queueSetup.html:47
 msgid "Nome"
 msgstr ""
+
+#: templates/attribution/queueSetup.html:48
+msgid "Prontuário"
+msgstr "Promtuary"
 
 #: templates/attribution/queueSetup.html:70
 msgid "Enviar Tabela"
