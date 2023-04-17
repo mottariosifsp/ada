@@ -6,7 +6,7 @@ from django.utils.translation import get_language, activate, gettext
 @login_required
 def index(request):
     trans = translate(language='pt-br')
-    return render(request, "login.html", {'trans': trans})
+    return render(request, "registration/login.html", {'trans': trans})
 
 def translate(language):
     cur_language = get_language()

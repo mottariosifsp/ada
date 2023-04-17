@@ -31,7 +31,7 @@ msgid "email address"
 msgstr ""
 
 #: professors/models.py:38
-msgid "promtuary"
+msgid "promptuary"
 msgstr ""
 
 #: professors/models.py:39
