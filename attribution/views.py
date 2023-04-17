@@ -11,10 +11,11 @@ from django.utils import timezone
 from django.contrib.auth.decorators import user_passes_test
 from django.http import JsonResponse
 import asyncio
-
 startTimeToSelect = timezone.now()
 from django.utils.translation import gettext as _
 from django.utils.translation import get_language, activate, gettext
+from django.urls import reverse
+from django.http import HttpResponseRedirect
 
 
 def is_superuser(user):
@@ -59,12 +60,12 @@ def attribution(request):
         'professorsInQueue': TeacherQueuePosition.objects.select_related('teacher').order_by('position').all(),
         'courses': Course.objects.filter(teachercourseselection__isnull=True).distinct()
     }
-    return render(request, 'attribution/attribution.html',data  )
+    return render(request, 'attribution/attribution.html', data)
 
 @user_passes_test(is_superuser)
 def queueSetup(request):
     data = {
-        'professors': Professors.objects.all()
+        'professors': Professors.objects.all(),
     }
     return render(request, 'attribution/queueSetup.html', data)
 
