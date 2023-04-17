@@ -30,8 +30,8 @@
                 {% get_available_languages as LANGUAGES %}
                 {% get_language_info_list for LANGUAGES as languages %}
 
-                {% for lang in languages %}
-                    <a class="dropdown-item" href="/{{lang.code}}/attribution/queueSetup/">{{lang.name_local}}</a>
+                {% for lang in LANGUAGES %}
+                  <a class="dropdown-item" href="/{{lang.0}}/attribution/queueSetup/">{{ lang.1 }}</a>
                 {% endfor %}
               </div>
             </li>

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-04-17 20:07+0000\n"
+"POT-Creation-Date: 2023-04-17 20:32+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -33,6 +33,14 @@ msgstr "Senha"
 #: layout/views.py:16 templates/registration/login.html:17
 msgid "login"
 msgstr "entrar"
+
+#: layout/views.py:17 setup/settings.py:136
+msgid "English"
+msgstr "Inglês"
+
+#: layout/views.py:18
+msgid "Português Brasileiro"
+msgstr ""
 
 #: professors/models.py:37
 msgid "email address"
@@ -70,10 +78,6 @@ msgstr ""
 msgid "professors"
 msgstr "professores"
 
-#: setup/settings.py:136
-msgid "English"
-msgstr "Inglês"
-
 #: setup/settings.py:137
 msgid "Brazilian Portuguese"
 msgstr "Português Brasileiro"
@@ -110,7 +114,7 @@ msgid "Fila de professores"
 msgstr ""
 
 #: templates/attribution/attribution.html:61
-#: templates/attribution/queueSetup.html:46
+#: templates/attribution/queueSetup.html:48
 msgid "Posição"
 msgstr ""
 
@@ -119,7 +123,7 @@ msgid "prontuário"
 msgstr ""
 
 #: templates/attribution/attribution.html:63
-#: templates/attribution/queueSetup.html:47
+#: templates/attribution/queueSetup.html:49
 msgid "Nome"
 msgstr ""
 
@@ -152,14 +156,15 @@ msgid "Selecionar"
 msgstr ""
 
 #: templates/attribution/queueSetup.html:14
+#: templates/attribution/queueSetup.html:42
 msgid "Fila da atribuição"
 msgstr ""
 
-#: templates/attribution/queueSetup.html:48
+#: templates/attribution/queueSetup.html:50
 msgid "Prontuário"
 msgstr ""
 
-#: templates/attribution/queueSetup.html:70
+#: templates/attribution/queueSetup.html:72
 msgid "Enviar Tabela"
 msgstr ""
 

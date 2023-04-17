@@ -17,13 +17,12 @@
           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             {% translate "Línguas" %}
           </a>
-          <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
+          <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownLanguage">
             {% get_current_language as LANGUAGE_CODE %}
             {% get_available_languages as LANGUAGES %}
             {% get_language_info_list for LANGUAGES as languages %}
-
-            {% for lang in languages %}
-                <a class="dropdown-item" href="/{{lang.code}}/">{{lang.name_local}}</a>
+            {% for lang in LANGUAGES %}
+                <a class="dropdown-item" href="/{{lang.0}}/">{{ lang.1 }}</a>
             {% endfor %}
           </div>
         </li>
