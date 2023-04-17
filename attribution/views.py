@@ -139,7 +139,7 @@ def selectCourse(request):
             teacherSelectCourse(teacher, CourseSelected, queue_position)
             startTimeToSelect = timezone.now()
 
-        return render(request, 'attribution/selectCourse.html',data)
+        return render(request, 'attribution/selectCourse.html', data)
             
     
 

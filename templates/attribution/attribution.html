@@ -43,24 +43,24 @@
     <div class="container d-flex flex-column align-items-center justify-content-center">
         {% if is_next %}
             {% if timeLeft > 0 %}
-                <h1>Escolha um curso</h1>
-                <h1>Tempo restante: <span id="timer">{{ timeLeft }}</span></h1>
+                <h1>{% translate "Escolha um curso" %}</h1>
+                <h1>{% translate "Tempo restante" %}: <span id="timer">{{ timeLeft }}</span></h1>
             {% else%}
-                <h1>Tempo esgotado <span id="timer"></span></h1>
+                <h1>{% translate "Tempo esgotado" %}<span id="timer"></span></h1>
         {% endif %}
         {% else %}
-        <h1>Você não é o próximo da fila, aguarde</h1>
+        <h1>{% translate "Você não é o próximo da fila, aguarde" %}</h1>
         {% endif %}
 
         <div class="container d-flex m-0 p-0">
             <div class="professors m-3 col-5">
-                <h1>Fila de professores</h1>
+                <h1>{% translate "Fila de professores" %}</h1>
                 <table class="table table-striped table-bordered">
                     <thead>
                         <tr>
-                            <th scope="col" width="10%">Posição</th>
-                            <th scope="col">Prontuário</th>
-                            <th scope="col">Nome</th>
+                            <th scope="col" width="10%">{% translate "Posição" %}</th>
+                            <th scope="col">{% translate "Prontuário" %}</th>
+                            <th scope="col">{% translate "Nome" %}</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -77,17 +77,17 @@
                 </table>
             </div>
             <div class="courses m-3 col-5">
-                <h1>Cursos disponíveis</h1>
+                <h1>{% translate "Cursos disponíveis" %}</h1>
                 <table class="table table-striped table-bordered" id="courses">
                     <thead>
                         <tr>
                             {% if timeLeft > 0%}
-                                <th scope="col">Ação</th>
+                                <th scope="col">{% translate "Ação" %}</th>
                             {% endif %}
-                            <th scope="col">Curso</th>
-                            <th scope="col">Dia</th>
-                            <th scope="col">Inicio</th>
-                            <th scope="col">Fim</th>
+                            <th scope="col">{% translate "Curso" %}</th>
+                            <th scope="col">{% translate "Dia" %}</th>
+                            <th scope="col">{% translate "Inicio" %}</th>
+                            <th scope="col">{% translate "Fim" %}</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -96,7 +96,7 @@
                             {% for course in courses %}
                             <tr>
                                 {% if timeLeft > 0 %}
-                                    <td><button class="btn btn-primary" name="SelectCourse" value="{{ course.id }}">Selecionar</button></td>
+                                    <td><button class="btn btn-primary" name="SelectCourse" value="{{ course.id }}">{% translate "Selecionar" %}</button></td>
                                 {% endif %}
                                 <td>{{ course.title }}</td>
                                 <td>{{ course.day_of_week }}</td>

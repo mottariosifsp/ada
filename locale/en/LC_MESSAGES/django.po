@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-04-17 05:48-0300\n"
+"POT-Creation-Date: 2023-04-17 06:39-0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -81,50 +81,78 @@ msgstr "Attribution"
 msgid "Línguas"
 msgstr "Languages"
 
-#: templates/attribution/attribution.html:45
-msgid "Professores disponíveis"
-msgstr "Open teachers"
+#: templates/attribution/attribution.html:46
+msgid "Escolha um curso"
+msgstr "Select a course"
+
+#: templates/attribution/attribution.html:47
+msgid "Tempo restante"
+msgstr "Time left"
 
 #: templates/attribution/attribution.html:49
+msgid "Tempo esgotado"
+msgstr "Time's gone"
+
+#: templates/attribution/attribution.html:52
+msgid "Você não é o próximo da fila, aguarde"
+msgstr "You're not the next in the row, wait"
+
+#: templates/attribution/attribution.html:57
+#, fuzzy
+#| msgid "Olá Professor"
+msgid "Fila de professores"
+msgstr "Hello Teacher"
+
+#: templates/attribution/attribution.html:61
 #: templates/attribution/queueSetup.html:46
 msgid "Posição"
 msgstr "Position"
 
-#: templates/attribution/attribution.html:66
+#: templates/attribution/attribution.html:62
+#: templates/attribution/queueSetup.html:48
+#, fuzzy
+#| msgid "Login Usuário"
+msgid "Prontuário"
+msgstr "Login User"
+
+#: templates/attribution/attribution.html:63
+#: templates/attribution/queueSetup.html:47
+msgid "Nome"
+msgstr "Name"
+
+#: templates/attribution/attribution.html:80
 msgid "Cursos disponíveis"
 msgstr "Open Courses"
 
-#: templates/attribution/attribution.html:70
+#: templates/attribution/attribution.html:85
+msgid "Ação"
+msgstr "Action"
+
+#: templates/attribution/attribution.html:87
 msgid "Curso"
 msgstr "Course"
 
-#: templates/attribution/attribution.html:71
+#: templates/attribution/attribution.html:88
 msgid "Dia"
 msgstr "Day"
 
-#: templates/attribution/attribution.html:72
+#: templates/attribution/attribution.html:89
 msgid "Inicio"
 msgstr "Begin"
 
-#: templates/attribution/attribution.html:73
+#: templates/attribution/attribution.html:90
 msgid "Fim"
 msgstr "End"
+
+#: templates/attribution/attribution.html:99
+msgid "Selecionar"
+msgstr "Select"
 
 #: templates/attribution/queueSetup.html:14
 #, fuzzy
 #| msgid "crie a fila da atribuição"
 msgid "Fila da atribuição"
 msgstr "add a row with attribution"
-
-#: templates/attribution/queueSetup.html:47
-msgid "Nome"
-msgstr "Name"
-
-#: templates/attribution/queueSetup.html:48
-#, fuzzy
-#| msgid "Login Usuário"
-msgid "Prontuário"
-msgstr "Login User"
 
 #: templates/attribution/queueSetup.html:70
 msgid "Enviar Tabela"
@@ -134,11 +162,11 @@ msgstr "Send Table"
 #: templates/attribution/selectCourse.html:46
 #: templates/attribution/selectCourse.html:48
 msgid "Curso selecionado"
-msgstr ""
+msgstr "Course selected"
 
 #: templates/attribution/selectCourse.html:45
 msgid "Curso não encontrado ou tempo esgotado"
-msgstr ""
+msgstr "Course didn't find it or time's gone"
 
 #: templates/base.html:8
 msgid "Login Usuário"
@@ -187,3 +215,6 @@ msgstr "enter your preferences in the attribution"
 #| msgid "Atribuição"
 msgid "Ver atribuição"
 msgstr "Attribution"
+
+#~ msgid "Professores disponíveis"
+#~ msgstr "Open teachers"
