@@ -19,7 +19,7 @@ $(document).ready(function() {
             var rowData = table.row( diff[i].node ).data();
  
             result += rowData[1]+' updated to be in position '+
-                diff[i].newData+' (was '+diff[i].oldData+')<br>';
+            diff[i].newData+' (was '+diff[i].oldData+')<br>';
         }
  
         $('#result').html( 'Event result:<br>'+result );
@@ -46,7 +46,7 @@ $('#enviar-tabela').click(function() {
         'X-CSRFToken': csrftoken
       },
       success: function(response) {
-        window.location.href = '.';
+        window.location.href = '/attribution/';
       },
       error: function(xhr, status, error) {
         alert('Erro ao enviar dados!');

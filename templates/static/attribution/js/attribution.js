@@ -7,7 +7,6 @@ $(document).ready(function() {
   if(secondsLeft > 0){
     timerFormated.setSeconds(secondsLeft);
     var interval = setInterval(function () {
-      get_data()
       timerFormated.setSeconds(timerFormated.getSeconds() - 1);
       $('#timer').html(timerFormated.toISOString().substr(11, 8));
       if(timerFormated.getSeconds() == 0){
@@ -20,18 +19,8 @@ $(document).ready(function() {
   } else {
 
   }
-  
-  get_data()
-  
+    
 });
-
-function get_data() {
-  fetch('/attribution/')
-      .then(response => response.json())
-      .then(data => {
-          alert(data.update);
-      });
-}
 
 function getCookie(name) {
   var cookieValue = null;
