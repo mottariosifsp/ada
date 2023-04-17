@@ -7,7 +7,7 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"></head>
 <body>
   <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand" href="#">ADA</a>
+    <a class="navbar-brand" href="{% url 'home' %}">ADA</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -38,7 +38,7 @@
     <div>
       <h2>{% translate "Olá adminstrador"%}</h2>
       <p>{% translate "crie a fila da atribuição" %}</p>
-      <button onclick="location.href = '/attribution/queueSetup'" class="btn btn-outline-primary">Click</button>
+      <a href="{% url 'queueSetup' %}"><button class="btn btn-outline-primary">Click</button></a>
     </div>
   </div>
   {% else %}
@@ -46,7 +46,7 @@
     <div>
       <h2>{% translate "Olá Professor" %}</h2>
       <p>{% translate "entre no processo de atribuição" %}</p>
-      <button onclick="location.href = '/attribution/'" class="btn btn-outline-primary">Click</button>
+      <a href="{% url 'attribution' %}"><button class="btn btn-outline-primary">Click</button></a>
     </div>
   </div>
   {% endif %}
