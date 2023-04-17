@@ -1,4 +1,4 @@
-console.log('queueSetup.js loaded');
+var lang = document.currentScript.getAttribute('data-lang');
 
 var texto
 var table
@@ -49,7 +49,7 @@ $('#enviar-tabela').click(function() {
         'X-CSRFToken': csrftoken
       },
       success: function(response) {
-        window.location.href = '/attribution/';
+        window.location.href = '/' + lang + '/attribution/';
       },
       error: function(xhr, status, error) {
         alert('Erro ao enviar dados!');
