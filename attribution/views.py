@@ -14,6 +14,7 @@ import asyncio
 
 startTimeToSelect = timezone.now()
 
+
 def is_superuser(user):
     return user.is_superuser
 
