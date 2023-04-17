@@ -46,9 +46,9 @@ class Migration(migrations.Migration):
                     ),
                 ),
                 (
-                    "promtuary",
+                    "promptuary",
                     models.CharField(
-                        max_length=9, unique=True, verbose_name="promtuary address"
+                        max_length=9, unique=True, verbose_name="promptuary address"
                     ),
                 ),
                 (

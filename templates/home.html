@@ -13,16 +13,16 @@
 {% if user.is_superuser %}
 <div class="container d-flex align-items-center justify-content-center h-70" style="height: 70vh;">
   <div>
-    <h2>Olá adminstrador</h2>
-    <p>crie a fila da atribuição</p>
+    <h2>Olá, adminstrador</h2>
+    <p>Crie a fila da atribuição</p>
     <button onclick="location.href = '/attribution/queueSetup'" class="btn btn-outline-primary">Click</button>
   </div>
 </div>
 {% else %}
 <div class="container d-flex align-items-center justify-content-center h-70" style="height: 70vh;">
   <div>
-    <h2>Olá Professor</h2>
-    <p>entre no processo de atribuição</p>
+    <h2>Olá, Professor</h2>
+    <p>Entre no processo de atribuição</p>
     <button onclick="location.href = '/attribution/'" class="btn btn-outline-primary">Click</button>
   </div>
 </div>
