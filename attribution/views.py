@@ -64,10 +64,9 @@ def attribution(request):
 @user_passes_test(is_superuser)
 def queueSetup(request):
     data = {
-        'professors': Professors.objects.all(),
-        'translate': translate(language='pt-br')
+        'professors': Professors.objects.all()
     }
-    return render(request, 'attribution/queueSetup.html',data)
+    return render(request, 'attribution/queueSetup.html', data)
 
 
 # #funcao que vai ser chamada em x tempo de forma assíncrona
