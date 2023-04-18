@@ -69,7 +69,7 @@
                         {% for professor in professorsInQueue %}
                         <tr>
                             <td>{{ professor.position }}</td>
-                            <td>{{ professor.promptuary }}</td>
+                            <td>{{ professor.teacher.promptuary }}</td>
                             <td>{{ professor.teacher.first_name }}</td>
                         </tr>
                         {% endfor %}
