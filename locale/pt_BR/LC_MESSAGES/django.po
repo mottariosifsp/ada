@@ -143,7 +143,7 @@ msgid "Dia"
 msgstr ""
 
 #: templates/attribution/attribution.html:89
-msgid "Inicio"
+msgid "Início"
 msgstr ""
 
 #: templates/attribution/attribution.html:90
@@ -198,7 +198,7 @@ msgid "Login completo"
 msgstr ""
 
 #: templates/home.html:38
-msgid "Olá, adminstrador"
+msgid "Olá, administrador"
 msgstr ""
 
 #: templates/home.html:39
