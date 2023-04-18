@@ -19,23 +19,23 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 #: attribution/views.py:81
 msgid "Search"
-msgstr ""
+msgstr "Pesquisa"
 
 #: attribution/views.py:82
 msgid "entries"
-msgstr ""
+msgstr "entrada"
 
 #: layout/views.py:15
 msgid "Password"
-msgstr ""
+msgstr "Senha"
 
 #: layout/views.py:16 templates/registration/login.html:17
 msgid "login"
-msgstr ""
+msgstr "entrar"
 
 #: layout/views.py:17 setup/settings.py:136
 msgid "English"
-msgstr ""
+msgstr "Inglês"
 
 #: layout/views.py:18
 msgid "Português Brasileiro"
@@ -43,31 +43,31 @@ msgstr ""
 
 #: professors/models.py:37
 msgid "email address"
-msgstr ""
+msgstr "endereço de e-mail"
 
 #: professors/models.py:38
 msgid "promptuary"
-msgstr ""
+msgstr "prontuário"
 
 #: professors/models.py:39
 msgid "first name"
-msgstr ""
+msgstr "primeiro nome"
 
 #: professors/models.py:40
 msgid "last name"
-msgstr ""
+msgstr "último nome"
 
 #: professors/models.py:41
 msgid "date joined"
-msgstr ""
+msgstr "data de entrada"
 
 #: professors/models.py:42
 msgid "active"
-msgstr ""
+msgstr "ativo"
 
 #: professors/models.py:43
 msgid "staff status"
-msgstr ""
+msgstr "status de staff"
 
 #: professors/models.py:51
 msgid "professor"
@@ -75,11 +75,11 @@ msgstr ""
 
 #: professors/models.py:52
 msgid "professors"
-msgstr ""
+msgstr "professores"
 
 #: setup/settings.py:137
 msgid "Brazilian Portuguese"
-msgstr ""
+msgstr "Português Brasileiro"
 
 #: templates/attribution/attribution.html:15
 msgid "Atribuição"
@@ -183,11 +183,11 @@ msgstr ""
 
 #: templates/base.html:37
 msgid "Login"
-msgstr ""
+msgstr "Entrar"
 
 #: templates/base.html:37 templates/home.html:33
 msgid "HOME PAGE"
-msgstr ""
+msgstr "PÁGINA INICIAL"
 
 #: templates/home.html:6
 msgid "Página inicial usuário"
