@@ -9,8 +9,14 @@ from professors.models import Professors
 from attribution.models import TeacherCourseSelection, TeacherQueuePosition
 from django.utils import timezone
 from django.contrib.auth.decorators import user_passes_test
+
 from django.utils.translation import gettext as _, get_language, activate, gettext
 from django.urls import reverse
+
+from django.http import JsonResponse
+
+#from .task import spleepy, verifyTimeToSelect
+
 
 startTimeToSelect = timezone.now()
 

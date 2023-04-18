@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-04-15 17:53-0300\n"
+"POT-Creation-Date: 2023-04-18 03:28+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -16,18 +16,34 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+#: attribution/views.py:81
+msgid "Search"
+msgstr "Pesquisa"
+
+#: attribution/views.py:82
+msgid "entries"
+msgstr "entrada"
 
 #: layout/views.py:15
 msgid "Password"
 msgstr "Senha"
 
-#: layout/views.py:16
+#: layout/views.py:16 templates/registration/login.html:17
 msgid "login"
 msgstr "entrar"
 
+#: layout/views.py:17 setup/settings.py:136
+msgid "English"
+msgstr "Inglês"
+
+#: layout/views.py:18
+msgid "Português Brasileiro"
+msgstr ""
+
 #: professors/models.py:37
 msgid "email address"
-msgstr "endereço de email"
+msgstr "endereço de e-mail"
 
 #: professors/models.py:38
 msgid "promptuary"
@@ -51,42 +67,156 @@ msgstr "ativo"
 
 #: professors/models.py:43
 msgid "staff status"
-msgstr "status de ativo"
+msgstr "status de staff"
 
 #: professors/models.py:51
 msgid "professor"
-msgstr "professor"
+msgstr ""
 
 #: professors/models.py:52
 msgid "professors"
 msgstr "professores"
 
 #: setup/settings.py:137
-msgid "English"
-msgstr "Inglês"
-
-#: setup/settings.py:138
-#, fuzzy
-#| msgid "Portuguese"
 msgid "Brazilian Portuguese"
-msgstr "Português"
+msgstr "Português Brasileiro"
+
+#: templates/attribution/attribution.html:15
+msgid "Atribuição"
+msgstr ""
+
+#: templates/attribution/attribution.html:28
+#: templates/attribution/queueSetup.html:26
+#: templates/attribution/selectCourse.html:28 templates/base.html:20
+#: templates/home.html:18
+msgid "Línguas"
+msgstr ""
+
+#: templates/attribution/attribution.html:46
+msgid "Escolha um curso"
+msgstr ""
+
+#: templates/attribution/attribution.html:47
+msgid "Tempo restante"
+msgstr ""
+
+#: templates/attribution/attribution.html:49
+msgid "Tempo esgotado"
+msgstr ""
+
+#: templates/attribution/attribution.html:52
+msgid "Você não é o próximo da fila, aguarde"
+msgstr ""
+
+#: templates/attribution/attribution.html:57
+msgid "Fila de professores"
+msgstr ""
+
+#: templates/attribution/attribution.html:61
+#: templates/attribution/queueSetup.html:50
+msgid "Posição"
+msgstr ""
+
+#: templates/attribution/attribution.html:62
+msgid "prontuário"
+msgstr ""
+
+#: templates/attribution/attribution.html:63
+#: templates/attribution/queueSetup.html:51
+msgid "Nome"
+msgstr ""
+
+#: templates/attribution/attribution.html:80
+msgid "Cursos disponíveis"
+msgstr ""
+
+#: templates/attribution/attribution.html:85
+msgid "Ação"
+msgstr ""
+
+#: templates/attribution/attribution.html:87
+msgid "Curso"
+msgstr ""
+
+#: templates/attribution/attribution.html:88
+msgid "Dia"
+msgstr ""
+
+#: templates/attribution/attribution.html:89
+msgid "Início"
+msgstr ""
+
+#: templates/attribution/attribution.html:90
+msgid "Fim"
+msgstr ""
+
+#: templates/attribution/attribution.html:99
+msgid "Selecionar"
+msgstr ""
+
+#: templates/attribution/queueSetup.html:14
+#: templates/attribution/queueSetup.html:44
+msgid "Fila da atribuição"
+msgstr ""
+
+#: templates/attribution/queueSetup.html:52
+msgid "Prontuário"
+msgstr ""
+
+#: templates/attribution/queueSetup.html:74
+msgid "Enviar Tabela"
+msgstr ""
+
+#: templates/attribution/selectCourse.html:15
+#: templates/attribution/selectCourse.html:46
+#: templates/attribution/selectCourse.html:48
+msgid "Curso selecionado"
+msgstr ""
+
+#: templates/attribution/selectCourse.html:45
+msgid "Curso não encontrado ou tempo esgotado"
+msgstr ""
 
 #: templates/base.html:8
 msgid "Login Usuário"
 msgstr ""
 
-#: templates/base.html:20
-msgid "Línguas"
-msgstr ""
-
-#: templates/base.html:36 templates/home.html:11
+#: templates/base.html:37
 msgid "Login"
 msgstr "Entrar"
 
-#: templates/base.html:36 templates/home.html:11
+#: templates/base.html:37 templates/home.html:33
 msgid "HOME PAGE"
 msgstr "PÁGINA INICIAL"
 
 #: templates/home.html:6
 msgid "Página inicial usuário"
+msgstr ""
+
+#: templates/home.html:33
+msgid "Login completo"
+msgstr ""
+
+#: templates/home.html:38
+msgid "Olá, administrador"
+msgstr ""
+
+#: templates/home.html:39
+msgid "Crie a fila da atribuição"
+msgstr ""
+
+#: templates/home.html:40
+msgid "Atribuir"
+msgstr ""
+
+#: templates/home.html:46
+msgid "Olá, Professor"
+msgstr ""
+
+#: templates/home.html:47
+msgid "Entre no processo de atribuição"
+msgstr ""
+
+#: templates/home.html:48
+msgid "Ver atribuição"
 msgstr ""
