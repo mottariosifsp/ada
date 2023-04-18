@@ -30,9 +30,9 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
-CSRF_TRUSTED_ORIGINS=['https://henriquebaesa-studious-space-carnival-95vxv7gxq7j2px5r-8000.preview.app.github.dev'] 
+CSRF_TRUSTED_ORIGINS=['https://josineudo-arruda-refactored-tribble-4p7474xprxp2q7r-8000.preview.app.github.dev'] 
 
-# Application definition
+# Application definition    
 
 INSTALLED_APPS = [
     "django.contrib.admin",
@@ -129,9 +129,8 @@ USE_TZ = True
 STATIC_URL = "static/"
 
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, "setup/static")
+    os.path.join(BASE_DIR, "templates/static")
 ]
-
 
 LANGUAGES = (
     ('en', _('English')),
@@ -142,7 +141,6 @@ LOCALE_PATHS = (
     os.path.join(BASE_DIR, 'locale/'),
 )
 
-
 STATIC_ROOT = os.path.join(BASE_DIR, "static")
 
 # Default primary key field type
@@ -152,3 +150,9 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 LOGIN_REDIRECT_URL = "/"
 LOGIN_URL = "professors/login"
 AUTH_USER_MODEL = "professors.Professors"
+
+CELERY_BROKER_URL = 'redis://127.0.0.1:6379'
+CELERY_ACCEPT_CONTENT = {'aplicattion/json'}
+CELERY_RESULT_SERIALIZER = 'json'   
+CELERY_TASK_SERIALIZER = 'json'
+CELERY_TIMEZONE = 'America/Sao_Paulo'

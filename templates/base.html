@@ -9,7 +9,7 @@
   </head>
   <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand" href="#">ADA</a>
+        <a class="navbar-brand" href="{% url 'home' %}">ADA</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
@@ -24,8 +24,9 @@
                 {% get_available_languages as LANGUAGES %}
                 {% get_language_info_list for LANGUAGES as languages %}
 
-                {% for lang in languages %}
-                    <a class="dropdown-item" href="/{{lang.code}}/">{{lang.name_local}}</a>
+
+                {% for lang in LANGUAGES %}
+                  <a class="dropdown-item" href="/{{lang.0}}/">{{ lang.1 }}</a>
                 {% endfor %}
               </div>
             </li>
@@ -35,9 +36,12 @@
       <div class="container">
         <h1>{% translate "Login" %} - {% translate "HOME PAGE" %}</h1>
         <hr>
+        <div class="container d-flex align-items-center justify-content-center h-70">
         {% block body%}
 
         {% endblock %}
+        </div>
+       
       </div>
       <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
       <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
