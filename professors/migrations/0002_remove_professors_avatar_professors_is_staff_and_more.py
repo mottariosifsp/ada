@@ -30,7 +30,7 @@ class Migration(migrations.Migration):
         ),
         migrations.AlterField(
             model_name="professors",
-            name="promtuary",
-            field=models.CharField(max_length=9, unique=True, verbose_name="promtuary"),
+            name="promptuary",
+            field=models.CharField(max_length=9, unique=True, verbose_name="promptuary"),
         ),
     ]

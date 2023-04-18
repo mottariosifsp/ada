@@ -1,0 +1,92 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-04-15 17:53-0300\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: layout/views.py:15
+msgid "Password"
+msgstr "Senha"
+
+#: layout/views.py:16
+msgid "login"
+msgstr "entrar"
+
+#: professors/models.py:37
+msgid "email address"
+msgstr "endereço de email"
+
+#: professors/models.py:38
+msgid "promptuary"
+msgstr "prontuário"
+
+#: professors/models.py:39
+msgid "first name"
+msgstr "primeiro nome"
+
+#: professors/models.py:40
+msgid "last name"
+msgstr "último nome"
+
+#: professors/models.py:41
+msgid "date joined"
+msgstr "data de entrada"
+
+#: professors/models.py:42
+msgid "active"
+msgstr "ativo"
+
+#: professors/models.py:43
+msgid "staff status"
+msgstr "status de ativo"
+
+#: professors/models.py:51
+msgid "professor"
+msgstr "professor"
+
+#: professors/models.py:52
+msgid "professors"
+msgstr "professores"
+
+#: setup/settings.py:137
+msgid "English"
+msgstr "Inglês"
+
+#: setup/settings.py:138
+#, fuzzy
+#| msgid "Portuguese"
+msgid "Brazilian Portuguese"
+msgstr "Português"
+
+#: templates/base.html:8
+msgid "Login Usuário"
+msgstr ""
+
+#: templates/base.html:20
+msgid "Línguas"
+msgstr ""
+
+#: templates/base.html:36 templates/home.html:11
+msgid "Login"
+msgstr "Entrar"
+
+#: templates/base.html:36 templates/home.html:11
+msgid "HOME PAGE"
+msgstr "PÁGINA INICIAL"
+
+#: templates/home.html:6
+msgid "Página inicial usuário"
+msgstr ""

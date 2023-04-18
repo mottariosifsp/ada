@@ -35,7 +35,7 @@ class ProfessorManager(BaseUserManager):
 
 class Professors(AbstractBaseUser, PermissionsMixin):
     email = models.EmailField(_('email address'), unique=True)
-    promtuary = models.CharField(_('promtuary'), max_length=9, unique=True)
+    promptuary = models.CharField(_('promptuary'), max_length=9, unique=True)
     first_name = models.CharField(_('first name'), max_length=30)
     last_name = models.CharField(_('last name'), max_length=30)
     date_joined = models.DateTimeField(_('date joined'), auto_now_add=True)
@@ -44,7 +44,7 @@ class Professors(AbstractBaseUser, PermissionsMixin):
     
     objects = ProfessorManager()
 
-    USERNAME_FIELD = 'promtuary'
+    USERNAME_FIELD = 'promptuary'
     REQUIRED_FIELDS = ['email']
 
     class Meta:
