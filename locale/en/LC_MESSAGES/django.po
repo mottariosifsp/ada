@@ -39,7 +39,7 @@ msgstr ""
 
 #: layout/views.py:18
 msgid "Português Brasileiro"
-msgstr ""
+msgstr "Brazilian Portuguese"
 
 #: professors/models.py:37
 msgid "email address"
@@ -83,99 +83,99 @@ msgstr ""
 
 #: templates/attribution/attribution.html:15
 msgid "Atribuição"
-msgstr ""
+msgstr "Attribution"
 
 #: templates/attribution/attribution.html:28
 #: templates/attribution/queueSetup.html:26
 #: templates/attribution/selectCourse.html:28 templates/base.html:20
 #: templates/home.html:18
 msgid "Línguas"
-msgstr ""
+msgstr "Languages"
 
 #: templates/attribution/attribution.html:46
 msgid "Escolha um curso"
-msgstr ""
+msgstr "Select one course"
 
 #: templates/attribution/attribution.html:47
 msgid "Tempo restante"
-msgstr ""
+msgstr "Time left"
 
 #: templates/attribution/attribution.html:49
 msgid "Tempo esgotado"
-msgstr ""
+msgstr "Time's gone"
 
 #: templates/attribution/attribution.html:52
 msgid "Você não é o próximo da fila, aguarde"
-msgstr ""
+msgstr "You're not the next in the row, wait"
 
 #: templates/attribution/attribution.html:57
 msgid "Fila de professores"
-msgstr ""
+msgstr "Row of professors"
 
 #: templates/attribution/attribution.html:61
 #: templates/attribution/queueSetup.html:50
 msgid "Posição"
-msgstr ""
+msgstr "Position"
 
 #: templates/attribution/attribution.html:62
 msgid "prontuário"
-msgstr ""
+msgstr "promptuary"
 
 #: templates/attribution/attribution.html:63
 #: templates/attribution/queueSetup.html:51
 msgid "Nome"
-msgstr ""
+msgstr "Name"
 
 #: templates/attribution/attribution.html:80
 msgid "Cursos disponíveis"
-msgstr ""
+msgstr "Open courses"
 
 #: templates/attribution/attribution.html:85
 msgid "Ação"
-msgstr ""
+msgstr "Action"
 
 #: templates/attribution/attribution.html:87
 msgid "Curso"
-msgstr ""
+msgstr "Course"
 
 #: templates/attribution/attribution.html:88
 msgid "Dia"
-msgstr ""
+msgstr "Day"
 
 #: templates/attribution/attribution.html:89
-msgid "Inicio"
-msgstr ""
+msgid "Início"
+msgstr "Begin"
 
 #: templates/attribution/attribution.html:90
 msgid "Fim"
-msgstr ""
+msgstr "End"
 
 #: templates/attribution/attribution.html:99
 msgid "Selecionar"
-msgstr ""
+msgstr "Select"
 
 #: templates/attribution/queueSetup.html:14
 #: templates/attribution/queueSetup.html:44
 msgid "Fila da atribuição"
-msgstr ""
+msgstr "Next in line"
 
 #: templates/attribution/queueSetup.html:52
 msgid "Prontuário"
-msgstr ""
+msgstr "Promptuary"
 
 #: templates/attribution/queueSetup.html:74
 msgid "Enviar Tabela"
-msgstr ""
+msgstr "Send Table"
 
 #: templates/attribution/selectCourse.html:15
 #: templates/attribution/selectCourse.html:46
 #: templates/attribution/selectCourse.html:48
 msgid "Curso selecionado"
-msgstr ""
+msgstr "Course selected"
 
 #: templates/attribution/selectCourse.html:45
 msgid "Curso não encontrado ou tempo esgotado"
-msgstr ""
+msgstr "Course didn't find it or time's out"
 
 #: templates/base.html:8
 msgid "Login Usuário"
@@ -191,32 +191,32 @@ msgstr ""
 
 #: templates/home.html:6
 msgid "Página inicial usuário"
-msgstr ""
+msgstr "Initial user page"
 
 #: templates/home.html:33
 msgid "Login completo"
-msgstr ""
+msgstr "Completed Login"
 
 #: templates/home.html:38
-msgid "Olá, adminstrador"
-msgstr ""
+msgid "Olá, administrador"
+msgstr "Hello, administrator"
 
 #: templates/home.html:39
 msgid "Crie a fila da atribuição"
-msgstr ""
+msgstr "Create a row of attribution"
 
 #: templates/home.html:40
 msgid "Atribuir"
-msgstr ""
+msgstr "Attribute"
 
 #: templates/home.html:46
 msgid "Olá, Professor"
-msgstr ""
+msgstr "Hello, Professor"
 
 #: templates/home.html:47
 msgid "Entre no processo de atribuição"
-msgstr ""
+msgstr "Enter the attribution process"
 
 #: templates/home.html:48
 msgid "Ver atribuição"
-msgstr ""
+msgstr "Check attribution"
