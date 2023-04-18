@@ -30,7 +30,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
-CSRF_TRUSTED_ORIGINS=['https://josineudo-arruda-refactored-tribble-4p7474xprxp2q7r-8000.preview.app.github.dev'] 
+CSRF_TRUSTED_ORIGINS=['https://josineudo-arruda-studious-enigma-p5rvrvx55p5h7gq-8000.preview.app.github.dev'] 
 
 # Application definition    
 

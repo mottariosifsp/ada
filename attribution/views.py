@@ -11,7 +11,7 @@ from django.utils import timezone
 from django.contrib.auth.decorators import user_passes_test
 from django.http import JsonResponse
 
-from .task import spleepy, verifyTimeToSelect
+#from .task import spleepy, verifyTimeToSelect
 
 startTimeToSelect = timezone.now()
 from django.utils.translation import gettext as _
