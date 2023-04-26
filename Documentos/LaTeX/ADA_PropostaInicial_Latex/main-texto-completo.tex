@@ -1,0 +1,169 @@
+%% Adaptado a partir de :
+%%    abtex2-modelo-trabalho-academico.tex, v-1.9.2 laurocesar
+%% para ser um modelo para os trabalhos no IFSP-SPO
+\documentclass[
+    % -- opções da classe memoir --
+    12pt,               % tamanho da fonte
+    openright,          % capítulos começam em pág ímpar (insere página vazia caso preciso)
+    %twoside,            % para impressão em verso e anverso. Oposto a oneside
+    oneside,
+    a4paper,            % tamanho do papel. 
+    % -- opções da classe abntex2 --schwinn
+    % Opções que não devem ser utilizadas na versão final do documento
+    %draft,              % para compilar mais rápido, remover na versão final
+    paginasA3,  % indica que vai utilizar paginas em A3 
+    BIBLATEX,           % indica para utilizar BIBLATEX em vez do abntex2cite
+    REFINDENT,          % não fica exatamente no formato da ABNT, mas melhora muito a formatação
+                        % não utilizar REFINDENT na versão final
+    MODELO,             % indica que é um documento modelo então precisa dos geradores de texto
+    TODO,               % indica que deve apresentar lista de pendencias 
+    % -- opções do pacote babel --
+    english,            % idioma adicional para hifenização
+    brazil              % o último idioma é o principal do documento
+    ]{ifsp-spo-inf-cemi} % ajustar de acordo com o modelo desejado para o curso
+
+% ---
+% Informações de dados para CAPA e FOLHA DE ROSTO
+% ---
+\titulo{ADA - Atribuição de Aulas}
+
+% Trabalho em Equipe
+% ver também https://github.com/abntex/abntex2/wiki/FAQ#como-adicionar-mais-de-um-autor-ao-meu-projeto
+\renewcommand{\imprimirautor}{
+\begin{tabular}{lr}
+ANA PAULA MOURA MESSIAS DE SOUZA & SP3044505 \\
+GUSTAVO SANTOS COSTA SOARES & SP3044491 \\
+HENRIQUE LUIS BAESA & SP3045048 \\
+ISABELLA VALERIO MAZARÁ & SP3045463 \\
+JOSINEUDO DAS CHAGAS ARRUDA & SP3045439 \\
+PAULO KENJI YOKOTA MUNEISCHI & SP3045382\\
+\end{tabular}
+}
+
+\disciplina{PDS - Prática para Desenvolvimento de Sistemas}
+
+\preambulo{Projeto apresentado no quarto ano do curso de informática integrado ao ensino médio, do Instituto Federal de Educação, Ciência e Tecnologia de São Paulo - Câmpus São Paulo, para a conclusão da disciplina de Projeto de Desenvolvimento de Sistemas.}
+
+\data{2023}
+
+\renewcommand{\orientadorname}{Professor:}
+\orientador{GUSTAVO FORTUNATO PUGA}
+\renewcommand{\coorientadorname}{Professor:}
+\coorientador{LEONARDO ANDRADE MOTTA DE LIMA}
+
+% ---
+% informações do PDF
+\makeatletter
+\hypersetup{
+        %pagebackref=true,
+        pdftitle={\@title}, 
+        pdfauthor={\@author},
+        pdfsubject={\imprimirpreambulo},
+        pdfcreator={LaTeX with abnTeX2 using IFSP model},
+        pdfkeywords={abnt}{latex}{abntex}{abntex2}{IFSP}{\ifspprefixo}{trabalho acadêmico}, 
+        colorlinks=true,            % false: boxed links; true: colored links
+        linkcolor=blue,             % color of internal links
+        citecolor=blue,             % color of links to bibliography
+        filecolor=magenta,              % color of file links
+        urlcolor=blue,
+        bookmarksdepth=4
+}
+\makeatother
+% --- 
+
+% carregando aqui referencias quando utilizando BIBLATEX
+\IfPackageLoaded{biblatex}{%
+\addbibresource{referencias.bib}
+\addbibresource{exemplos/abntex2-doc-abnt-6023.bib}
+}{}
+
+% ----
+% Início do documento
+% ----
+\begin{document}
+
+
+% Retira espaço extra obsoleto entre as frases.
+\frenchspacing 
+
+% ----------------------------------------------------------
+% ELEMENTOS PRÉ-TEXTUAIS
+% ----------------------------------------------------------
+\pretextual
+
+% ---
+% Capa
+% ---
+\imprimircapa
+
+% ---
+% Folha de rosto
+% (o * indica que haverá a ficha bibliográfica)
+% ---
+\imprimirfolhaderosto
+%\imprimirfolhaderosto*
+% ---
+
+% Quando registrado na biblioteca
+%\input{pre-fichacatalografica}
+
+%Obrigatório para trabalhos com bancas oficiais
+%\input{pre-aprovacao}
+
+
+% -- resumo obrigatório
+\input{pre-resumos}
+
+
+\pdfbookmark[0]{\listfigurename}{lof}
+\listoffigures*
+\cleardoublepage
+% ---
+
+\input{pre-siglas}
+
+% ---
+% inserir o sumario
+% ---
+\pdfbookmark[0]{\contentsname}{toc}
+\tableofcontents*
+\cleardoublepage
+% ---
+
+
+% ----------------------------------------------------------
+% ELEMENTOS TEXTUAIS
+% ----------------------------------------------------------
+\textual
+
+\input{textos-introducao}
+
+%\input{textos-revisao-literatura}
+
+\input{textos-desenvolvimento}
+
+\input{textos-conclusao}
+
+% ----------------------------------------------------------
+% Finaliza a parte no bookmark do PDF
+% para que se inicie o bookmark na raiz
+% e adiciona espaço de parte no Sumário
+% ----------------------------------------------------------
+\phantompart
+
+% ----------------------------------------------------------
+% ELEMENTOS PÓS-TEXTUAIS
+% ----------------------------------------------------------
+\postextual
+
+% ----------------------------------------------------------
+% Referências bibliográficas
+% ----------------------------------------------------------
+\printbibliography
+
+\input{pos-glossario.tex}
+
+%---------------------------------------------------------------------
+\phantompart
+
+\end{document}

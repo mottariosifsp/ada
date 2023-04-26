@@ -1,0 +1,87 @@
+
+% Definições para lista de siglas
+
+% ATENCAO o SHARELATEX GERA O GLOSSARIO/LISTAS DE SIGLAS SOMENTE UMA VEZ
+% CASO SEJA FEITA ALGUMA ALTERAÇÃO NA LISTA DE SIGLAS OU GLOSSARIO É NECESSARIO UTILIZAR A OPÇÃO :
+% "Clear Cached Files" DISPONIVEL NA VISUALIZAÇÃO DOS LOGS 
+% ---
+% https://www.sharelatex.com/learn/Glossaries
+
+%\defSiglaIngles{ascii}{ASCII}{American Standard Code for Information Interchange}{Código Americano Padrão para Troca de Informações}
+
+\defSigla{ada}{ADA}{Sistema de Atribuição de Aulas}
+
+\defSigla{ajax}{AJAX}{Asynchronous JavaScript and XML - JavaScript e XML Assíncronos}
+
+\defSigla{apeoesp}{Apeoesp}{Sindicato dos Professores do Ensino Oficial do Estado de São Paulo}
+
+\defSigla{api}{API}{Application Programming Interface - Interface de Programação de Aplicação}
+
+\defSigla{aws}{AWS}{Amazon Web Services - Serviços Web da Amazon}
+
+\defSigla{cpf}{CPF}{Cadastro de Pessoas Físicas}
+
+\defSigla{css}{CSS}{Folha de Estilos em Cascata}
+
+\defSigla{dbms}{DBMS}{Database Management System}
+
+\defSigla{dit}{DIT}{Diretoria de Informática e Turismo}
+
+\defSigla{dry}{DRY}{Don't Repeat Yourself - Não Se Repita}
+
+\defSigla{etecs}{Etecs}{Escolas Técnicas Estaduais}
+
+\defSigla{fpa}{FPA}{Formulário de Preferência de Atividades}
+
+\defSigla{html}{HTML}{HyperText Markup Language - Linguagem de Marcação de HiperTexto}
+
+\defSigla{https}{HTTPS}{Hyper Text Transfer Protocol Secure - Protocolo Seguro de Transferência de Hipertexto}
+
+\defSigla{ifsp}{IFSP}{Instituto Federal de Educação, Ciência e Tecnologia de São Paulo}
+
+\defSigla{ide}{IDE}{Ambiente de Desenvolvimento Integrado}
+
+\defSigla{js}{JS}{JavaScript}
+
+\defSigla{json}{JSON}{JavaScript Object Notation - Notação de Objetos JavaScript}
+
+\defSigla{https}{HTTPS}{Hyper Text Transfer Protocol Secure - Protocolo Seguro de Transferência de Hipertexto}
+
+\defSigla{mtv}{MTV}{Model-View-Template}
+
+\defSigla{mvc}{MVC}{Model-View-Controller}
+
+\defSigla{oo}{OO}{Orientação a Objetos}
+
+\defSigla{pit}{PIT}{Plano Individual de Trabalho Docente}
+
+\defSigla{pds}{PDS}{Projeto de Desenvolvimento de Sistemas}
+
+\defSigla{sed}{SED}{Secretaria da Educação do Estado de São Paulo}
+
+\defSigla{sig}{SIG}{Sistema Integrado de Gestão}
+
+\defSigla{sgbd}{SGBD}{Sistema de Gerenciamento de Banco de Dados}
+
+\defSigla{spa}{SPA}{Aplicações de Página Única}
+
+\defSigla{sql}{SQL}{Structured Query Language - Linguagem de Consulta Estruturada}
+
+\defSigla{ssl}{SSL}{Secure Sockets Layer - Camada de Soquete Seguro}
+
+\defSigla{suap}{SUAP}{Sistema Unificado de Administração Pública}
+
+\defSigla{svn}{SVN}{SubVersion - Subversão}
+
+\defSigla{tds}{TDS}{Teoria de Desenvolvimento de Sistema}
+
+\defSigla{tls}{TLS}{Transport Layer Security - Segurança de Camada de Transporte}
+
+\defSigla{urh}{URH}{Unidade de Recursos Humanos}
+
+\defSigla{vscode}{VSCode}{Visual Studio Code}
+
+\ifthenelse{\boolean{gerandoMODELO}}{%
+% Como o documento ainda não iniciou essa justificativa tem ser feita com AtBeginDocument
+
+

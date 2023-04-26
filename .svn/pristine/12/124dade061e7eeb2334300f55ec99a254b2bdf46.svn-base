@@ -1,0 +1,24 @@
+% ---
+% RESUMOS
+% ---
+
+% resumo em português
+\setlength{\absparsep}{18pt} % ajusta o espaçamento dos parágrafos do resumo
+\begin{resumo}
+
+Esse projeto, \ac{ada}, como o próprio nome sugere, fornece a coordenação e a execução do processo de atribuição de aulas aos docentes, no \ac{ifsp} - Câmpus São Paulo. Como objetivo, visa automatizar o processo atual, no \gls{excel}, de forma a tornar o preenchimento e a leitura dos dados do \ac{fpa} funcional e descomplicado. Destinado a cumprir a necessidade final dos docentes, o projeto igualmente será administrado por outros funcionários, cujos cargos estarão responsáveis pela atribuição naquele ano. Para executar todos os processos, no \gls{backend} será utilizado o \textit{\gls{framework}} open source \gls{springboot}, à linguagem Java, e no \gls{frontend}, o \textit{\gls{framework}} open source \gls{angular}, com base na linguagem TypeScript, e detalhes implementados através do Cascading Style Sheets $3^r^d$ version (\ac{css3}). Isso usando do \ac{sgbd} MySQL.
+
+ \textbf{Palavras-chaves}: Atribuição. Aulas. Automatização. Docentes. Processo. Implementação.
+\end{resumo}
+
+% resumo em inglês
+\begin{resumo}[Abstract]
+ \begin{otherlanguage*}{english}
+
+This project, Assignment of Classes (\ac{ada}), as its name suggests, coordinates and executes the process of assigning classes to professors at the Federal Institute of Education, Science, and Technology of São Paulo (\ac{ifsp}) - São Paulo Campus. As an objective, it aims to automate the current process, in \gls{excel}, to make filling and reading the data of the Activity Preference Form (\ac{fpa}) functional and uncomplicated. Destined to fulfill the final need of the professors, the project will also be managed by other employees, whose positions will be responsible for the attribution that year. To execute all the processes, in the \gls{backend}, the open-source \gls{springboot} \textit{\gls{framework}} will be used in the Java language, and the \gls{frontend}, the open-source \textit{\gls{framework}} \gls{angular}, based on the \gls{typescript} language, and details implemented through the Cascading Style Sheets $3^r^d$ version (\ac{css3}). This is using the MySQL Database Management System (\ac{sgbd}).
+   \vspace{\onelineskip}
+   \noindent 
+   
+   \textbf{Keywords}: Assignment. Classes. Automation. Teachers. Process. Implementation.
+ \end{otherlanguage*}
+\end{resumo}

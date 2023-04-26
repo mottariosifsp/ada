@@ -1,0 +1,38 @@
+% ----------------------------------------------------------
+% Introdução
+% ----------------------------------------------------------
+\chapter[Introdução]{Introdução}
+
+No \ac{ifsp} Câmpus São Paulo, são mais de 350 docentes, com 56 na área de \ac{dit}. Logo, é essa a quantidade que participa da atribuição de aulas semestral e/ou anual, indicando seu extenso e intrincado processo. Além da referida quantidade, o que dá essas características à atribuição são os critérios a serem seguidos, desde a ordem de prioridade dos docentes até as preferências colocadas por cada um no \ac{fpa} e os regramentos presentes na resolução vigente – em 2023, ainda rege a Resolução n°109/2015, de 4 de novembro de 2015. 
+
+Todo esse processo é realizado manualmente, através da entrega do \ac{fpa}, da ferramenta \gls{excel} e da comunicação particular constante entre o administrador daquele ano e o docente, principalmente no caso de \glspl{permuta}. Assim, procedem adversidades, conflitos interpessoais e atrasos, relatados semestralmente pelos docentes, principalmente pelos que ficam no final da fila de prioridade (os substitutos), e comentados, após contato da equipe, pelo administrador das atribuições da \ac{dit} atual, Evandro ..., e antigo, Leonardo Motta, os quais enfatizaram sobre a consequente sobrecarga em suas funções, ao tentar equilibrar a vontade de todos e, ao mesmo tempo, cumprir com a lei. 
+
+Em decorrência disso, surge a necessidade da automatização de parte dos processos, que tem como objetivo a aprimoração do andamento do fluxo de trabalho \cite{sydle_2023}, trazendo como resultado o aumento da produtividade e a redução de custos e de erros \cite{totvs_2022}.
+
+E, à vista do que foi exposto, o projeto retratado propõe a elaboração de um sistema que automatize os principais processos da atribuição - as seleções do \ac{fpa} e a \gls{permutação} - e, simultaneamente, cumpra o exigido na Resolução, e nos outros critérios estabelecidos hoje (como a prioridade da escolha do docente na atribuição) e que podem ser posteriormente adicionados. Esse sistema é o \ac{ada}.
+
+
+\section{Objetivo}
+
+O \ac{ada} visa apresentar uma solução e uma aprimoração às problemáticas da atribuição de aulas. Logo, oferecer um sistema Web responsivo de Single Application Page (\ac{spa}) aos funcionários, que automatize essa atribuição e a respectiva e consecutiva \gls{permutação} (caso habilitada), sem a necessidade de organização manual e de negociações individuais e extraoficiais. 
+
+Com processos correspondentes aos problemas centrais, terá a implementação do \gls{login}, pelo e-mail oficial do Instituto no Google, tratando do gerenciamento geral dos docentes e dos administradores; da automatização do \ac{fpa}, tratando da dificuldade de estruturação da grade horária seguindo todos os critérios e os regramentos; e da automatização das negociações à \gls{permuta}, tratando dos atritos e da dificuldade de comunicação gerados.
+
+Consequentemente, o sistema proporcionará, a princípio, um ambiente em que o administrador superior e os subadministradores consigam controlar e ordenar os critérios às suas área e subáreas, respectivamente, e habilitar funções como a \gls{permutação} e a desativação de um  em determinada matéria. Ademais, proporcionará um ambiente em que o docente consiga selecionar todas as suas preferências e solicitar suas \glspl{permuta}(caso habilitadas) em um único local, sem demasiadas complicações e processos. 
+
+Uma operação antes com responsabilidades individuais e organização manual, a qual incorre de mais erros devido a subjetividade e os problemas humanos, passará a ser uma operação tecnológica mais limpa e funcional, com menos erros.
+
+\section{Análise de concorrentes}
+
+A Análise de Concorrência é valiosa para obter conhecimento sobre como outros sistemas – com o mesmo propósito ou um próximo – desenvolvem seu projeto, implementam seus processos, atraem clientes, apresentam sua plataforma, gerenciam seus dados, fecham parcerias, entre outros; fatores importantes a serem considerados tanto para o aprimoramento do sistema que você está realizando, quanto para saber com quem está disputando o mercado. 
+
+Nessa pesquisa, a equipe achou algumas concorrências referentes ao processo de atribuição de aulas. Entre elas, vale a pena serem citadas a \ac{sed} e o \ac{sig} .
+A \ac{sed} apresenta um sistema que abrange toda a rede educacional estadual de São Paulo (SP) \cite{secretaria_sp}. Através dele, o docente pode manifestar seu interesse em aulas vagas e livres ou em substituição das escolas, pela pesquisa por uma escola específica ou uma disciplina. Quanto à prioridade de escolha, o docente pode alterar a ordem da sua seleção de acordo com as escolas em que prefere lecionar. 
+
+E o \ac{sig} \cite{sig} aparenta apresentar um sistema parecido, onde o docente preenche e envia a inscrição e o requerimento de ampliação de carga horária de forma digital. Entretanto, as informações são escassas, baseadas na página de divulgação da \ac{urh} \cite{urh}, onde está o sistema; o tutorial leva a uma página de erro. Contudo, uma diferença fundamental é o fato de ser voltado apenas às \ac{etecs}.
+
+Com o conhecimento adquirido foi possível observar pontos a serem implementados no \ac{ada}, como a disponibilidade de um tutorial no início e mensagens de ajuda ao longo da página – além do ótimo design da \ac{sed} que pode servir de inspiração. E pontos semelhantes foram justamente essa escolha de aulas pelo docente, de acordo com sua subárea, e o \textit{login} que não permite o cadastro de pessoas não autorizadas (um usa do \ac{cpf} e o outro do e-mail).
+
+Todavia, foi igualmente possível observar a necessidade do sistema apresentado neste projeto, que prevê erros retratados nos concorrentes, como o atraso considerável do primeiro devido às longas filas de seleção, a ausência de verificação de componente curricular, abrindo uma brecha para qualquer docente lecionar a disciplina sem ter o nível de escolaridade necessária, e os erros no processo de pontuação para prioridade de escolha – retratados em uma matéria \cite{g1_2020} da \gls{globo} e relatados pela Inês Paz, coordenadora da subsede da \ac{apeoesp} e vereadora de Mogi, \cite{acioli_2021}: “A classificação saiu com muitos erros e os professores não estão tendo um retorno às suas perguntas, enquanto isso, a atribuição continua acontecendo com esses profissionais correndo o risco de se prejudicarem”. Já do segundo concorrente, a falta de tutorial e dificuldade na compreensão da página de \textit{login}. 
+
+À vista do citado acima, o sistema \ac{ada} subsidia uma série de ações que permitem o cruzamento de dados e processos que diferenciam a ideia de qualquer outra anterior; e, por ser voltado ao Instituto em específico, igualmente permite uma melhor análise dos \glspl{feedback} e tratamento dos erros. Portanto, será implementado de forma a considerar boas práticas de concorrentes e aplicações parecidas, e, principalmente, dificuldades nelas encontradas, não atendo-se a um ciclo de falhas.

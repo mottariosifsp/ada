@@ -1,0 +1,12 @@
+---
+- disciplina: PDS
+  turma: 431
+  periodo: 2023
+  equipe: Mottarios
+  projeto: Atribuição de Aulas
+  repo: "/A2023-PDS-QUA/Mottarios/"
+  youtube: https://www.youtube.com/@Motta-Rios
+  tags: ['Atribuição', 'Automatização', 'Aulas']
+  GitHub: https://github.com/HenriqueBaesa/ada
+  descr: Sistema de automatização da atribuição de aulas da DTI no IFSP.
+---

@@ -1,0 +1,216 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Referencias bibliograficas utilizadas
+% Para mais informações ver documentação do abntex2 e http://www.bibtex.org/
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% https://github.com/AdrianoRuseler/abntex2-modelo-experimento/blob/master/abntex2-modelo-references.bib
+
+% É importante observar que em casos onde o nome do autor ou organização tem acentos é importante fazer na forma separada \'e \~a de forma que a versão em maiúsculas fique correta.
+% se você digitar um código errado o compilador pode reclar de caracter unicode invalido
+% uma ótima solução para esse problema é fazer uma definição que troque esse caracter por uma string diferente assim facilitando detectar a localização do problema
+% \DeclareUnicodeCharacter{0301}{*************************************}
+% https://tex.stackexchange.com/questions/443018/package-inputenc-error-unicode-char-%CC%81-u301inputenc
+
+ @misc{acioli_2021, 
+        title={Problemas no sistema de Atribuição de aulas prejudicam professores da rede estadual em mogi}, 
+        url={https://odiariodemogi.net.br/cidades/problemas-no-sistema-de-atribuic-o-de-aulas-prejudicam-professores-da-rede-estadual-em-mogi-1.30131}, journal={O Diário de Mogi}, 
+        publisher={O DIÁRIO}, 
+        author={Acioli, Mariana}, 
+        year={2021}, 
+        month={Dec}} 
+
+@misc{corbucci_2011, 
+        address={London}, 
+        title={Django}, 
+        ISBN={9781844574087}, 
+        booktitle={100 Cult Films}, 
+        publisher={British Film Institute}, 
+        author={Corbucci, Sergio}, 
+        year={2011}, 
+        pages={65–66}, 
+        language={en}}
+
+ @misc{sydle_2023, 
+        title={Automatização de Processos: Como Funciona? Quais os benefícios?}, 
+        url={https://www.sydle.com/br/blog/automatizacao-de-processos-5ef257889d8f5430788fcd45/}, 
+        journal={Blog SYDLE}, 
+        publisher={Blog SYDLE}, 
+        author={Sydle}, 
+        year={2023}, 
+        month={Mar}} 
+ 
+ @misc{totvs_2022, 
+        title={Automação de Processos: Tipos, exemplos e como fazer}, url={https://www.totvs.com/blog/gestao-para-assinatura-de-documentos/automacao-de-processos/}, 
+        journal={TOTVS}, 
+        author={TOTVS, Equipe}, 
+        year={2022}, 
+        month={Dec}} 
+
+ @misc{secretaria_sp, 
+        title={Secretaria da Educação do Estado de São Paulo}, 
+        url={https://sed.educacao.sp.gov.br/}, 
+        journal={Secretaria Escolar Digital}, 
+        author={Secretaria da Educação do Estado de São Paulo}} 
+
+@misc{sig, 
+    title={Sistema Integrado de Gestão - URH}, 
+    url={https://sigurh.cps.sp.gov.br/}, 
+    journal={SIG}} 
+
+@misc{urh, 
+    title={Unidade de Recursos Humanos}, 
+    url={https://urh.cps.sp.gov.br/wp-content/uploads/sites/10/2021/10/Inscricao-de-atribuicao-de-aulas.pdf}, 
+    journal={URH}} 
+
+@misc{g1_2020, 
+        title={Professores da Rede Estadual de SP Relatam Problemas E tumulto no processo de Atribuição de Aulas}, 
+        url={https://g1.globo.com/sp/sao-paulo/educacao/noticia/2020/01/24/professores-da-rede-estadual-de-sp-relatam-problemas-e-tumulto-no-processo-de-atribuicao-de-aulas.ghtml}, 
+        journal={G1}, 
+        year={2020}, 
+        month={Jan}} 
+
+@misc{lucas_2021, 
+        title={Django: tudo que você precisa saber sobre o framework de Python}, 
+        url={https://blog.geekhunter.com.br/django-introducao-ao-framework/}, 
+        journal={Com.br}, 
+        author={Lucas, Eduardo}, 
+        year={2021}, 
+        month={jun}, 
+        language={pt} }
+
+@misc{andrade_2019, 
+        title={O que é Django?}, 
+        url={https://www.treinaweb.com.br/blog/o-que-e-django}, journal={Treinaweb}, 
+        author={de Andrade, Ana Paula}, 
+        year={2019}, 
+        month={apr}, 
+        language={pt} }
+
+@misc{nascimento_2014, 
+        title={O que é open source?}, 
+        url={https://canaltech.com.br/produtos/O-que-e-open-source/}, 
+        journal={CanalTech}, 
+        author={Nascimento, Anderson}, 
+        year={2014}, 
+        month={ago} }
+
+@misc{silva_2020, 
+        title={Como funciona a arquitetura MTV (Django)}, 
+        url={https://diandrasilva.medium.com/como-funciona-a-arquitetura-mtv-django-86af916f1f63}, 
+        journal={Medium}, 
+        author={Silva, Diandra Andrade e.}, 
+        year={2020}, 
+        month={jan}, 
+        language={en} }
+
+@misc{amazon_2023, 
+        title={O que é Python?}, 
+        url={https://aws.amazon.com/pt/what-is/python/}, 
+        journal={Amazon AWS}, 
+        author={Amazon}, 
+        year={2023}, 
+        month={Outono} }
+
+@misc{melo_2021, 
+        title={O que é Python? [Guia para iniciantes]}, 
+        url={https://tecnoblog.net/responde/o-que-e-python-guia-para-iniciantes/}, 
+        journal={Tecnoblog}, 
+        publisher={Mobilon Mídia LTDA}, 
+        author={Melo, Diego}, 
+        year={2021}, 
+        month={jan}, 
+        language={pt} }
+
+@misc{mozilla_2023, 
+        title={O que é JavaScript?}, 
+        url={https://developer.mozilla.org/pt-BR/docs/Learn/JavaScript/First_steps/What_is_JavaScript}, 
+        journal={Mozilla}, 
+        author={Mozilla}, 
+        year={2023}, 
+        month={out}, 
+        language={pt} }
+
+@misc{melo_2021, 
+        title={O que é JavaScript? [Guia para iniciantes]}, 
+        url={https://tecnoblog.net/responde/o-que-e-javascript-guia-para-iniciantes/}, 
+        journal={Tecnoblog}, 
+        publisher={Mobilon Mídia LTDA}, 
+        author={Melo, Diego}, 
+        year={2021}, 
+        month={jan}, 
+        language={pt} }
+
+@misc{andrei_2019, 
+        title={O Que é AJAX e Como Funciona?}, 
+        url={https://www.hostinger.com.br/tutoriais/o-que-e-ajax}, 
+        journal={Hostinger Tutoriais}, 
+        publisher={Hostinger}, 
+        author={Andrei, L.}, 
+        year={2019}, 
+        month={jan}, 
+        language={pt} }
+
+@misc{carvalho_2007, 
+        title={O que é o AJAX? Estudaremos o Asynchronous JavaScript and XML}, 
+        url={https://www.devmedia.com.br/o-que-e-o-ajax/6702}, 
+        journal={DevMedia}, 
+        author={Carvalho, Rogério Moraes}, 
+        year={2007}, 
+        month={out}, 
+        language={pt} }
+
+@misc{mozilla_2023b, 
+        title={HTML: Linguagem de Marcação de Hipertexto}, 
+        url={https://developer.mozilla.org/pt-BR/docs/Web/HTML}, 
+        journal={Mozilla}, 
+        author={Mozilla}, 
+        year={2023}, 
+        month={apr}, 
+        language={pt} }
+
+@misc{totvs_2020, 
+        title={O que é CSS? Conheça benefícios e como funciona}, 
+        url={https://www.totvs.com/blog/developers/o-que-e-css/}, 
+        journal={TOTVS}, 
+        author={Totvs, Equipe}, 
+        year={2020}, 
+        month={dez}, 
+        language={pt} }
+
+@misc{andrei_2019, 
+        title={O Que é Bootstrap? Guia para Iniciantes}, 
+        url={https://www.hostinger.com.br/tutoriais/o-que-e-bootstrap}, 
+        journal={Hostinger Tutoriais},
+        publisher={Hostinger}, 
+        author={Andrei, L.}, 
+        year={2019}, 
+        month={nov}, 
+        language={pt} }
+
+@misc{lima_2021, 
+        title={Bootstrap: o que é, como usar, documentação e exemplos}, 
+        url={https://www.alura.com.br/artigos/bootstrap}, 
+        journal={Alura}, 
+        author={Lima, Guilherme}, 
+        year={2021}, 
+        month={jul}, 
+        language={pt} }
+
+@misc{silva_2007, 
+        title={SQLite - O Pequeno Notável}, 
+        url={https://www.devmedia.com.br/sqlite-o-pequeno-notavel/7249}, 
+        journal={DevMedia}, 
+        author={Silva, Rafael Felix}, 
+        year={2007}, 
+        month={nov}, 
+        language={pt} }
+
+@misc{carlos_2019, 
+        title={SQLite vs MySQL – Qual a Diferença e Qual Usar}, 
+        url={https://www.hostinger.com.br/tutoriais/sqlite-vs-mysql}, 
+        journal={Hostinger Tutoriais}, 
+        publisher={Hostinger}, 
+        author={Carlos, E.}, 
+        year={2019}, 
+        month={jul}, 
+        language={pt} }

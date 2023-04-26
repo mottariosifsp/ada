@@ -1,0 +1,44 @@
+% ----------------------------------------------------------------------
+
+\chapter{Links do projeto}
+
+\section{Fluxograma}
+
+\quad
+\qrcode[height=2in]{https://drive.google.com/file/d/1xzoMxAUX7tdHU5OjtRSQ4jP6CebgEH7I/view?usp=sharing}
+\quad
+\href{https://drive.google.com/file/d/1xzoMxAUX7tdHU5OjtRSQ4jP6CebgEH7I/view?usp=sharing}{<Fluxograma>}
+
+\section{Repositório GitHub}
+
+\quad
+\qrcode[height=2in]{https://github.com/mottariosifsp}
+\quad
+\href{https://github.com/mottariosifsp}{<https://github.com/mottariosifsp>}
+
+\section{Repositório Subversion}
+
+\quad
+\qrcode[height=2in]{https://svn.spo.ifsp.edu.br/viewvc/A6PGP/A2023-PDS-QUA/Mottarios/}
+\quad
+\href{https://svn.spo.ifsp.edu.br/viewvc/A6PGP/A2023-PDS-QUA/Mottarios/}{<Repositório Subversion (SVN)>}
+
+\section{Casos de Uso}
+
+\quad
+\qrcode[height=2in]{https://drive.google.com/file/d/1rqvJaLzmERWgdO2qMnBVHQN4HF3N7Qjs/view?usp=sharing}
+\quad
+\href{https://drive.google.com/file/d/1rqvJaLzmERWgdO2qMnBVHQN4HF3N7Qjs/view?usp=sharing}{<Casos de Uso>}
+
+\section{Protótipo de Baixa Fidelidade}
+\quad
+\qrcode[height=2in]{https://drive.google.com/file/d/1XEk7EWKSioQtgcbZUR_zJ1KhJ9tyWydZ/view?usp=sharing}
+\quad
+\href{https://drive.google.com/file/d/1XEk7EWKSioQtgcbZUR_zJ1KhJ9tyWydZ/view?usp=sharing}{<Protótipo de Baixa Fidelidade>}
+
+\chapter{Considerações Finais}
+Por meio das questões e relatos expostos ao longo da pesquisa sobre o tema do projeto, ficou cada vez mais evidenciado o grande acréscimo e consequente aprimoramento que o \ac{ada} trará à \ac{dit}, do \ac{ifsp} Câmpus São Paulo; a aplicação é factível, promissora e necessária. 
+
+Quanto às dificuldades na atribuição de aulas, são comuns e recorrentes, e o sistema é projetado visando facilitar essa operação. Porém, é um projeto que pode ser expandido tanto para outras áreas quanto para outros Câmpus ou, inclusive, outras Instituições de Ensino, o que significa um grande potencial atual e, também, futuro do sistema.
+
+Isso graças ao desenvolvimento melhor estruturado, que abriga todas as nuances dos processos e seus respectivos planos de ação, proporcionado pelas reuniões da equipe realizadas com os orientadores e demais docentes, e pela transferência das ideias para fluxogramas, protótipos e casos de uso.

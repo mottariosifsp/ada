@@ -1,0 +1,55 @@
+
+% Definições para lista de siglas
+
+% ATENCAO o SHARELATEX GERA O GLOSSARIO/LISTAS DE SIGLAS SOMENTE UMA VEZ
+% CASO SEJA FEITA ALGUMA ALTERAÇÃO NA LISTA DE SIGLAS OU GLOSSARIO É NECESSARIO UTILIZAR A OPÇÃO :
+% "Clear Cached Files" DISPONIVEL NA VISUALIZAÇÃO DOS LOGS 
+% ---
+% https://www.sharelatex.com/learn/Glossaries
+
+%\defSiglaIngles{ascii}{ASCII}{American Standard Code for Information Interchange}{Código Americano Padrão para Troca de Informações}
+
+\defSigla{ada}{ADA}{Sistema de Atribuição de Aulas}
+
+\defSigla{apeoesp}{Apeoesp}{Sindicato dos Professores do Ensino Oficial do Estado de São Paulo}
+
+\defSigla{cpf}{CPF}{Cadastro de Pessoas Físicas}
+
+\defSigla{css3}{CSS3}{Folha de Estilos em Cascata  $3^a$ versão}
+
+\defSigla{dit}{DIT}{Diretoria de Informática e Turismo}
+
+\defSigla{etecs}{Etecs}{Escolas Técnicas Estaduais}
+
+\defSigla{ifsp}{IFSP}{Instituto Federal de Educação, Ciência e Tecnologia de São Paulo}
+
+\defSigla{ide}{IDE}{Ambiente de Desenvolvimento Integrado}
+
+\defSigla{fpa}{FPA}{Formulário de Preferência de Atividades}
+
+\defSigla{jwt}{JWT}{\gls{jsonwt}}
+
+\defSigla{https}{HTTPS}{Hyper Text Transfer Protocol Secure, Protocolo Seguro de Transferência de Hipertexto}
+
+\defSigla{pit}{PIT}{Plano Individual de Trabalho Docente}
+
+\defSigla{pds}{PDS}{Projeto de Desenvolvimento de Sistemas}
+
+\defSigla{sed}{SED}{Secretaria da Educação do Estado de São Paulo}
+
+\defSigla{sig}{SIG}{Sistema Integrado de Gestão}
+
+\defSigla{sgbd}{SGBD}{Sistema de Gerenciamento de Banco de Dados}
+
+\defSigla{spa}{SPA}{Aplicações de Página Única}
+
+\defSigla{tds}{TDS}{Teoria de Desenvolvimento de Sistema}
+
+\defSigla{urh}{URH}{Unidade de Recursos Humanos}
+
+\defSigla{vscode}{VSCode}{Visual Studio Code}
+
+\ifthenelse{\boolean{gerandoMODELO}}{%
+% Como o documento ainda não iniciou essa justificativa tem ser feita com AtBeginDocument
+
+

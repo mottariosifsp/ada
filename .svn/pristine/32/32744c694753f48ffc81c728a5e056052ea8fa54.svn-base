@@ -1,0 +1,25 @@
+% ---
+% RESUMOS
+% ---
+
+% resumo em português
+\setlength{\absparsep}{18pt} % ajusta o espaçamento dos parágrafos do resumo
+\begin{resumo}
+
+Esse projeto, \ac{ada}, como o próprio nome sugere, fornece a coordenação e a execução do processo de atribuição de aulas aos docentes, no \ac{ifsp} - Câmpus São Paulo. Como objetivo, visa automatizar o processo atual, no \gls{excel}, de forma a tornar o preenchimento e a leitura dos dados do \ac{fpa} funcional e descomplicado. Destinado a cumprir a necessidade final dos docentes, o projeto igualmente será administrado por outros funcionários, cujos cargos estarão responsáveis pela atribuição naquele ano. Para executar todos os processos, será o utilizado o \textit{\gls{framework}} \textit{\gls{open source}} \gls{django}, baseado na linguagem \gls{python}, em conjunto com o \ac{sgbd} SQLite.
+
+ \textbf{Palavras-chaves}: Atribuição. Aulas. Automatização. Docentes. Processo. Implementação.
+\end{resumo}
+
+% resumo em inglês
+\begin{resumo}[Abstract]
+ \begin{otherlanguage*}{english}
+
+This project, Assignment of Classes (\ac{ada}), as its name suggests, coordinates and executes the process of assigning classes to professors at the Federal Institute of Education, Science, and Technology of São Paulo (\ac{ifsp}) - São Paulo Campus. As an objective, it aims to automate the current process, in \gls{excel}, to make filling and reading the data of the Activity Preference Form (\ac{fpa}) functional and uncomplicated. Destined to fulfill the final need of the professors, the project will also be managed by other employees, whose positions will be responsible for the attribution that year. To execute all the processes, the \textit{\gls{framework}} \gls{django} \textit{\gls{framework}}, based on the \gls{python} language, will be used together with SQLite \ac{dbms}.
+
+   \vspace{\onelineskip}
+   \noindent 
+   
+   \textbf{Keywords}: Assignment. Classes. Automation. Teachers. Process. Implementation.
+ \end{otherlanguage*}
+\end{resumo}
