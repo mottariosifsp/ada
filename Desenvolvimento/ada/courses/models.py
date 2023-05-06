@@ -1,18 +1,19 @@
 from django.db import models
-
-from setup import settings
-
+from django.conf import settings
+from django.utils.translation import gettext_lazy as _
 
 class Course(models.Model):
     DAYS_OF_WEEK = (
-        ('Mon', 'Monday'),
-        ('Tue', 'Tuesday'),
-        ('Wed', 'Wednesday'),
-        ('Thu', 'Thursday'),
-        ('Fri', 'Friday'),
-        ('Sat', 'Saturday'),
-        ('Sun', 'Sunday'),
+        (_('Mon'), _('Monday')),
+        (_('Tue'), _('Tuesday')),
+        (_('Wed'), _('Wednesday')),
+        (_('Thu'), _('Thursday')),
+        (_('Fri'), _('Friday')),
+        (_('Sat'), _('Saturday')),
+        (_('Sun'), _('Sunday')),
     )
+
+    day = models.CharField(max_length=3, choices=DAYS_OF_WEEK)
 
     title = models.CharField(max_length=255)
     description = models.TextField()

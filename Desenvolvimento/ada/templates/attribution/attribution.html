@@ -96,10 +96,10 @@
                             {% for course in courses %}
                             <tr>
                                 {% if timeLeft > 0 %}
-                                    <td><button class="btn btn-primary" name="SelectCourse" value="{{ course.id }}">{% translate "Selecionar" %}</button></td>
+                                    <td><button class="btn btn-primary" name="SelectCourse" value="{{ course.id }}">{% trans "Selecionar" %}</button></td>
                                 {% endif %}
                                 <td>{{ course.title }}</td>
-                                <td>{{ course.day_of_week }}</td>
+                                <td>{% trans course.day_of_week %}</td>
                                 <td>{{ course.start_time }}</td>
                                 <td>{{ course.end_time }}</td>
                             </tr>

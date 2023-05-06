@@ -2,13 +2,13 @@
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-#
+# 
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-04-18 03:28+0000\n"
+"POT-Creation-Date: 2023-05-06 18:43-0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,206 +17,268 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
-#: attribution/views.py:81
+
+#: .\attribution\views.py:92
 msgid "Search"
 msgstr "Pesquisa"
 
-#: attribution/views.py:82
+#: .\attribution\views.py:93
 msgid "entries"
 msgstr "entrada"
 
-#: layout/views.py:15
+#: .\courses\models.py:7
+msgid "Mon"
+msgstr "Seg"
+
+#: .\courses\models.py:7
+msgid "Monday"
+msgstr "Segunda-Feira"
+
+#: .\courses\models.py:8
+msgid "Tue"
+msgstr "Ter"
+
+#: .\courses\models.py:8
+msgid "Tuesday"
+msgstr "Terça-Feira"
+
+#: .\courses\models.py:9
+msgid "Wed"
+msgstr "Qua"
+
+#: .\courses\models.py:9
+msgid "Wednesday"
+msgstr "Quarta-Feira"
+
+#: .\courses\models.py:10
+msgid "Thu"
+msgstr "Qui"
+
+#: .\courses\models.py:10
+msgid "Thursday"
+msgstr "Quinta-Feira"
+
+#: .\courses\models.py:11
+msgid "Fri"
+msgstr "Sex"
+
+#: .\courses\models.py:11
+msgid "Friday"
+msgstr "Sexta-Feira"
+
+#: .\courses\models.py:12
+msgid "Sat"
+msgstr "Sab"
+
+#: .\courses\models.py:12
+msgid "Saturday"
+msgstr "Sábado"
+
+#: .\courses\models.py:13
+msgid "Sun"
+msgstr "Dom"
+
+#: .\courses\models.py:13
+msgid "Sunday"
+msgstr "Domingo"
+
+#: .\layout\views.py:15
 msgid "Password"
 msgstr "Senha"
 
-#: layout/views.py:16 templates/registration/login.html:17
+#: .\layout\views.py:16 .\templates\registration\login.html:17
 msgid "login"
 msgstr "entrar"
 
-#: layout/views.py:17 setup/settings.py:136
+#: .\layout\views.py:17 .\setup\settings.py:137
 msgid "English"
 msgstr "Inglês"
 
-#: layout/views.py:18
+#: .\layout\views.py:18
 msgid "Português Brasileiro"
 msgstr ""
 
-#: professors/models.py:37
+#: .\professors\models.py:37
 msgid "email address"
 msgstr "endereço de e-mail"
 
-#: professors/models.py:38
+#: .\professors\models.py:38
 msgid "promptuary"
 msgstr "prontuário"
 
-#: professors/models.py:39
+#: .\professors\models.py:39
 msgid "first name"
 msgstr "primeiro nome"
 
-#: professors/models.py:40
+#: .\professors\models.py:40
 msgid "last name"
 msgstr "último nome"
 
-#: professors/models.py:41
+#: .\professors\models.py:41
 msgid "date joined"
 msgstr "data de entrada"
 
-#: professors/models.py:42
+#: .\professors\models.py:42
 msgid "active"
 msgstr "ativo"
 
-#: professors/models.py:43
+#: .\professors\models.py:43
 msgid "staff status"
 msgstr "status de staff"
 
-#: professors/models.py:51
+#: .\professors\models.py:51
 msgid "professor"
 msgstr ""
 
-#: professors/models.py:52
+#: .\professors\models.py:52
 msgid "professors"
 msgstr "professores"
 
-#: setup/settings.py:137
+#: .\setup\settings.py:138
 msgid "Brazilian Portuguese"
 msgstr "Português Brasileiro"
 
-#: templates/attribution/attribution.html:15
+#: .\templates\attribution\attribution.html:15
 msgid "Atribuição"
 msgstr ""
 
-#: templates/attribution/attribution.html:28
-#: templates/attribution/queueSetup.html:26
-#: templates/attribution/selectCourse.html:28 templates/base.html:20
-#: templates/home.html:18
+#: .\templates\attribution\attribution.html:28
+#: .\templates\attribution\queueSetup.html:26
+#: .\templates\attribution\selectCourse.html:28 .\templates\base.html:20
+#: .\templates\home.html:18
 msgid "Línguas"
 msgstr ""
 
-#: templates/attribution/attribution.html:46
+#: .\templates\attribution\attribution.html:46
 msgid "Escolha um curso"
 msgstr ""
 
-#: templates/attribution/attribution.html:47
+#: .\templates\attribution\attribution.html:47
 msgid "Tempo restante"
 msgstr ""
 
-#: templates/attribution/attribution.html:49
+#: .\templates\attribution\attribution.html:49
 msgid "Tempo esgotado"
 msgstr ""
 
-#: templates/attribution/attribution.html:52
+#: .\templates\attribution\attribution.html:52
 msgid "Você não é o próximo da fila, aguarde"
 msgstr ""
 
-#: templates/attribution/attribution.html:57
+#: .\templates\attribution\attribution.html:57
 msgid "Fila de professores"
 msgstr ""
 
-#: templates/attribution/attribution.html:61
-#: templates/attribution/queueSetup.html:50
+#: .\templates\attribution\attribution.html:61
+#: .\templates\attribution\queueSetup.html:50
 msgid "Posição"
 msgstr ""
 
-#: templates/attribution/attribution.html:62
+#: .\templates\attribution\attribution.html:62
 msgid "prontuário"
 msgstr ""
 
-#: templates/attribution/attribution.html:63
-#: templates/attribution/queueSetup.html:51
+#: .\templates\attribution\attribution.html:63
+#: .\templates\attribution\queueSetup.html:51
 msgid "Nome"
 msgstr ""
 
-#: templates/attribution/attribution.html:80
+#: .\templates\attribution\attribution.html:80
 msgid "Cursos disponíveis"
 msgstr ""
 
-#: templates/attribution/attribution.html:85
+#: .\templates\attribution\attribution.html:85
 msgid "Ação"
 msgstr ""
 
-#: templates/attribution/attribution.html:87
+#: .\templates\attribution\attribution.html:87
 msgid "Curso"
 msgstr ""
 
-#: templates/attribution/attribution.html:88
+#: .\templates\attribution\attribution.html:88
 msgid "Dia"
 msgstr ""
 
-#: templates/attribution/attribution.html:89
+#: .\templates\attribution\attribution.html:89
 msgid "Início"
 msgstr ""
 
-#: templates/attribution/attribution.html:90
+#: .\templates\attribution\attribution.html:90
 msgid "Fim"
 msgstr ""
 
-#: templates/attribution/attribution.html:99
+#: .\templates\attribution\attribution.html:99
 msgid "Selecionar"
 msgstr ""
 
-#: templates/attribution/queueSetup.html:14
-#: templates/attribution/queueSetup.html:44
+#: .\templates\attribution\attribution.html:102
+#, python-format
+msgid "%(course.day_of_week)s"
+msgstr ""
+
+#: .\templates\attribution\queueSetup.html:14
+#: .\templates\attribution\queueSetup.html:44
 msgid "Fila da atribuição"
 msgstr ""
 
-#: templates/attribution/queueSetup.html:52
+#: .\templates\attribution\queueSetup.html:52
 msgid "Prontuário"
 msgstr ""
 
-#: templates/attribution/queueSetup.html:74
+#: .\templates\attribution\queueSetup.html:74
 msgid "Enviar Tabela"
 msgstr ""
 
-#: templates/attribution/selectCourse.html:15
-#: templates/attribution/selectCourse.html:46
-#: templates/attribution/selectCourse.html:48
+#: .\templates\attribution\selectCourse.html:15
+#: .\templates\attribution\selectCourse.html:46
+#: .\templates\attribution\selectCourse.html:48
 msgid "Curso selecionado"
 msgstr ""
 
-#: templates/attribution/selectCourse.html:45
+#: .\templates\attribution\selectCourse.html:45
 msgid "Curso não encontrado ou tempo esgotado"
 msgstr ""
 
-#: templates/base.html:8
+#: .\templates\base.html:8
 msgid "Login Usuário"
 msgstr ""
 
-#: templates/base.html:37
+#: .\templates\base.html:37
 msgid "Login"
 msgstr "Entrar"
 
-#: templates/base.html:37 templates/home.html:33
+#: .\templates\base.html:37 .\templates\home.html:33
 msgid "HOME PAGE"
 msgstr "PÁGINA INICIAL"
 
-#: templates/home.html:6
+#: .\templates\home.html:6
 msgid "Página inicial usuário"
 msgstr ""
 
-#: templates/home.html:33
+#: .\templates\home.html:33
 msgid "Login completo"
 msgstr ""
 
-#: templates/home.html:38
+#: .\templates\home.html:38
 msgid "Olá, administrador"
 msgstr ""
 
-#: templates/home.html:39
+#: .\templates\home.html:39
 msgid "Crie a fila da atribuição"
 msgstr ""
 
-#: templates/home.html:40
+#: .\templates\home.html:40
 msgid "Atribuir"
 msgstr ""
 
-#: templates/home.html:46
+#: .\templates\home.html:46
 msgid "Olá, Professor"
 msgstr ""
 
-#: templates/home.html:47
+#: .\templates\home.html:47
 msgid "Entre no processo de atribuição"
 msgstr ""
 
-#: templates/home.html:48
+#: .\templates\home.html:48
 msgid "Ver atribuição"
 msgstr ""
