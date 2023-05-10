@@ -57,9 +57,13 @@ nav, nav .nav-link{
     font-family: 'Montserrat', sans-serif;
 }
 
+.collapse.navbar-collapse.justify-content-end * {
+    font-size: 10px;
+}
+  
+
 nav .nav-link {
     letter-spacing: 3px;
-    font-size: 10px !important;
 }
 
 div#navbarToggler ul.navbar-nav > li:nth-of-type(-n+4) a.nav-link {
