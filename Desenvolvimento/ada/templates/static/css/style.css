@@ -21,20 +21,18 @@ nav.navbar ul.navbar-nav > li:nth-of-type(-n+4).nav-item:hover {
 }
 
 li.icon {
-    width: 7%;
+    width: 5%;
 }
 
 li.icon2 {
     margin-left: 15px;
-    width: 6%;
+    width: 4%;
+    margin-top: 0px;
 }
 
 #lang-icon, #user-photo{
     width: 100%;
 }
-
-
-/*video*/
 
 #navbarDropdownMenuLink {
     color: white;
@@ -55,10 +53,6 @@ nav {
 nav, nav .nav-link{
     color: white;
     font-family: 'Montserrat', sans-serif;
-}
-
-.collapse.navbar-collapse.justify-content-end * {
-    font-size: 10px;
 }
   
 
@@ -93,4 +87,44 @@ div#navbarToggler ul.navbar-nav {
 .dropdown-item:focus,
 .dropdown-item:active {
   background-color: #3F927E; 
+}
+
+@media (max-width: 1600px) {
+    li.icon {
+        width: 7%;
+    }
+    
+    li.icon2 {
+        margin-left: 15px;
+        width: 6%;
+    }
+    
+}
+
+@media (max-width: 1150px) {
+    li.icon {
+        width: 8%;
+    }
+    
+    li.icon2 {
+        margin-left: 15px;
+        width: 7%;
+    }
+
+    #navbarToggler {
+        display: none;
+    }
+    
+}
+
+@media (min-width: 992px) {
+    #sidebar-icon {
+        display: none;
+    }
+}
+
+@media (max-width: 991px) {
+    #sidebar-icon {
+        display: block;
+    }
 }
