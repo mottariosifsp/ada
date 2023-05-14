@@ -1,15 +1,30 @@
+/* Importação da fonte Montserrat do Google Fonts */
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,200;0,500;1,100;1,200&display=swap');
 
-a {
+body {
+    background-color: #f9fefd;
+}
+
+/* Definições de estilo para links */
+a:not(.title) {
     text-decoration: none;
     color: currentColor;
 }
 
-a:hover {
+a:not(.title):hover {
     color: currentColor;
+    text-decoration: none;
 }
 
-nav.navbar ul.navbar-nav > li:nth-of-type(-n+4).nav-item  {
+/* Definições de estilo para itens de navegação */
+nav.navbar {
+    background-color: #3F927E;
+    color: #f9fefd;
+    box-shadow: 0px 2px 8px #2a5a4f;
+    font-family: 'Montserrat', sans-serif;
+}
+
+nav.navbar ul.navbar-nav > li:nth-of-type(-n+4).nav-item {
     padding: 5px 0;
     transition: all .1s ease;
     cursor: pointer;
@@ -20,62 +35,15 @@ nav.navbar ul.navbar-nav > li:nth-of-type(-n+4).nav-item:hover {
     border-top: 3px solid #2a5a4f;
 }
 
-li.icon {
-    width: 5%;
-}
-
-li.icon2 {
-    margin-left: 15px;
-    width: 4%;
-    margin-top: 0px;
-}
-
-#lang-icon, #user-photo{
-    width: 100%;
-}
-
-#navbarDropdownMenuLink {
-    color: white;
-}
-
-nav.nav-color {
-    background-color: #3F927E;
-}
-
-.nav-brand a.logo {
-    text-decoration: none;
-}
-
-nav {
-    box-shadow: 0px 2px 8px #2a5a4f;
-}
-
-nav, nav .nav-link{
-    color: white;
-    font-family: 'Montserrat', sans-serif;
-}
-  
-
 nav .nav-link {
     letter-spacing: 3px;
-}
-
-div#navbarToggler ul.navbar-nav > li:nth-of-type(-n+4) a.nav-link {
-    color: white;
+    color: #f9fefd;
     transition: font-weight 0.1s ease-in-out;
 }
 
-
-ul.navbar-nav > li:nth-of-type(-n+4) a.nav-link:hover {
+nav .nav-link:hover {
     text-decoration: underline;
-}
-
-nav a.nav-link:hover {
     font-weight: bolder;
-}
-
-img#ada-logo {
-    width: 15%;
 }
 
 div#navbarToggler ul.navbar-nav {
@@ -83,30 +51,119 @@ div#navbarToggler ul.navbar-nav {
     justify-content: flex-end;
 }
 
+div#navbarToggler ul.navbar-nav > li:nth-of-type(-n+4) a.nav-link {
+    color: #f9fefd;
+}
+
+ul.navbar-nav > li:nth-of-type(-n+4) a.nav-link:hover {
+    text-decoration: underline;
+}
+
+/* Definições de estilo para ícones */
+.language-icon {
+    width: 5%;
+}
+
+.profile-icon {
+    margin-left: 15px;
+    width: 4%;
+    margin-top: 0px;
+}
+
+img.lang-icon, img.user-photo {
+    width: 100%;
+}
+
+.ada-logo {
+    width: 15%;
+}
+
+#sidebar-icon {
+    display: none;
+}
+
+/* Definições de estilo para itens de dropdown */
 
 .dropdown-item:focus,
 .dropdown-item:active {
-  background-color: #3F927E; 
+    background-color: #4eae9880;
+    
 }
 
+/* Definições de estilos para sidebar */
+
+.modal-body a:hover {
+    text-decoration: none;
+}
+
+.modal-dialog {
+    padding-right: 170px;
+    margin: 0;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+.modal-content {
+    flex-grow: 1;
+}
+.modal.fade:not(.show).left .modal-dialog {
+    transform: translateX(-100%);
+}
+.modal-content {
+    background-color: #3F927E;
+}
+.modal-header {
+    padding-bottom: 13px;
+    border-bottom: 1px solid #2a5a4f;
+}
+.modal-footer {
+    border-top: 1px solid #2a5a4f; 
+}
+.hide-sidebar {
+    color: white;
+    box-shadow: none;
+}
+.hide-sidebar:hover {
+    color: white;
+}
+.user-name {
+    margin-left: 20px;
+}
+.modal-body span {
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+button.close:focus,
+button.close:active {
+  outline: 0;
+  box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+}
+button.close:focus,
+button.close:active {
+  box-shadow: none !important;
+}
+.lang-modal {
+    width: 100%;
+}
+
+/* Definições de estilo para media queries */
 @media (max-width: 1600px) {
-    li.icon {
+    li.language-icon {
         width: 7%;
     }
     
-    li.icon2 {
+    li.profile-icon {
         margin-left: 15px;
         width: 6%;
     }
-    
 }
 
 @media (max-width: 1150px) {
-    li.icon {
+    li.language-icon {
         width: 8%;
     }
     
-    li.icon2 {
+    li.profile-icon {
         margin-left: 15px;
         width: 7%;
     }
@@ -114,10 +171,19 @@ div#navbarToggler ul.navbar-nav {
     #navbarToggler {
         display: none;
     }
-    
+
+    div.profile-icon {
+        width: 30%;
+    }
 }
 
-@media (min-width: 992px) {
+@media (max-width: 550px) {
+    .modal-dialog {
+        padding-right: 0;
+    }
+}
+
+@media (min-width: 992px){
     #sidebar-icon {
         display: none;
     }
