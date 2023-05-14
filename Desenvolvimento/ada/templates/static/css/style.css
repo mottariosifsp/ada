@@ -24,13 +24,13 @@ nav.navbar {
     font-family: 'Montserrat', sans-serif;
 }
 
-nav.navbar ul.navbar-nav > li:nth-of-type(-n+4).nav-item {
+div#navbarToggler ul.navbar-nav > li:nth-of-type(-n+4).nav-item {
     padding: 5px 0;
     transition: all .1s ease;
     cursor: pointer;
 }
 
-nav.navbar ul.navbar-nav > li:nth-of-type(-n+4).nav-item:hover {
+div#navbarToggler ul.navbar-nav > li:nth-of-type(-n+4).nav-item:hover {
     border-bottom: 3px solid #2a5a4f;
     border-top: 3px solid #2a5a4f;
 }
@@ -41,12 +41,12 @@ nav .nav-link {
     transition: font-weight 0.1s ease-in-out;
 }
 
-nav .nav-link:hover {
+div#navbarToggler nav .nav-link:hover {
     text-decoration: underline;
     font-weight: bolder;
 }
 
-div#navbarToggler ul.navbar-nav {
+div#navbarToggler ul.navbar-nav, div#navbarTogglerLogin ul.navbar-nav {
     display: flex;
     justify-content: flex-end;
 }
@@ -55,13 +55,17 @@ div#navbarToggler ul.navbar-nav > li:nth-of-type(-n+4) a.nav-link {
     color: #f9fefd;
 }
 
-ul.navbar-nav > li:nth-of-type(-n+4) a.nav-link:hover {
+div#navbarToggler ul.navbar-nav > li:nth-of-type(-n+4) a.nav-link:hover {
     text-decoration: underline;
 }
 
 /* Definições de estilo para ícones */
 .language-icon {
     width: 5%;
+}
+
+li.language-icon-notlogged {
+    width: 15%;
 }
 
 .profile-icon {
@@ -145,6 +149,11 @@ button.close:active {
 .lang-modal {
     width: 100%;
 }
+.text-footer {
+    margin-left: 15px;
+    color: white;
+    font-size: 10px
+}
 
 /* Definições de estilo para media queries */
 @media (max-width: 1600px) {
@@ -181,12 +190,22 @@ button.close:active {
     .modal-dialog {
         padding-right: 0;
     }
+    .notlogged span {
+        display: none;
+    }
+    .notlogged img {
+        width: 45%;
+    }
+    li.language-icon-notlogged {
+        width: 25%;
+    }
 }
 
 @media (min-width: 992px){
     #sidebar-icon {
         display: none;
     }
+
 }
 
 @media (max-width: 991px) {
