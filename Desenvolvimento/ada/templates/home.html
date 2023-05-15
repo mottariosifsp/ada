@@ -1,5 +1,10 @@
 {% extends "base.html" %}
 {% load i18n %}
+
+{% block head %}
+    <title>{% trans "Home" %}</title>
+{% endblock %}
+
 {% block body %}
   <h1>{% translate "Login completo" %} - {% translate "HOME PAGE" %}</h1>
   <hr>

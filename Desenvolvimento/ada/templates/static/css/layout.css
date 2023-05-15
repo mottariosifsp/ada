@@ -134,10 +134,7 @@ button.close:active {
   box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
 }
 
-button.close:focus,
-button.close:active {
-  box-shadow: none !important;
-}
+button.close:focus, button.close:active {box-shadow: none;}
 
 .lang-modal {width: 100%;}
 
