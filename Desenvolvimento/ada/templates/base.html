@@ -35,7 +35,19 @@
               {% get_language_info_list for LANGUAGES as languages %}
 
               {% for lang in LANGUAGES %}
-                <a class="dropdown-item" href="/{{lang.0}}/">{{ lang.1 }}</a>
+                {% if lang.0 == LANGUAGE_CODE %}
+                  {% if LANGUAGE_CODE == "en" %}
+                    <a class="dropdown-item active" href="/{{ lang.0 }}{{ request.path_info|slice:'3:' }}">{{ lang.1 }}</a>
+                  {% else %}
+                    <a class="dropdown-item active" href="/{{ lang.0 }}{{ request.path_info|slice:'6:' }}">{{ lang.1 }}</a>
+                  {% endif %}
+                {% else %}
+                  {% if LANGUAGE_CODE == "en" %}
+                    <a class="dropdown-item" href="/{{ lang.0 }}{{ request.path_info|slice:'3:' }}">{{ lang.1 }}</a>
+                  {% else %}
+                    <a class="dropdown-item" href="/{{ lang.0 }}{{ request.path_info|slice:'6:' }}">{{ lang.1 }}</a>
+                  {% endif %}
+                {% endif %}
               {% endfor %}
             </div>
           </li>
@@ -71,7 +83,19 @@
               {% get_language_info_list for LANGUAGES as languages %}
 
               {% for lang in LANGUAGES %}
-                <a class="dropdown-item" href="/{{lang.0}}/">{{ lang.1 }}</a>
+                {% if lang.0 == LANGUAGE_CODE %}
+                  {% if LANGUAGE_CODE == "en" %}
+                    <a class="dropdown-item active" href="/{{ lang.0 }}{{ request.path_info|slice:'3:' }}">{{ lang.1 }}</a>
+                  {% else %}
+                    <a class="dropdown-item active" href="/{{ lang.0 }}{{ request.path_info|slice:'6:' }}">{{ lang.1 }}</a>
+                  {% endif %}
+                {% else %}
+                  {% if LANGUAGE_CODE == "en" %}
+                    <a class="dropdown-item" href="/{{ lang.0 }}{{ request.path_info|slice:'3:' }}">{{ lang.1 }}</a>
+                  {% else %}
+                    <a class="dropdown-item" href="/{{ lang.0 }}{{ request.path_info|slice:'6:' }}">{{ lang.1 }}</a>
+                  {% endif %}
+                {% endif %}
               {% endfor %}
             </div>
           </li>
@@ -122,7 +146,19 @@
                     {% get_language_info_list for LANGUAGES as languages %}
       
                     {% for lang in LANGUAGES %}
-                      <a class="dropdown-item" href="/{{lang.0}}/">{{ lang.1 }}</a>
+                      {% if lang.0 == LANGUAGE_CODE %}
+                        {% if LANGUAGE_CODE == "en" %}
+                          <a class="dropdown-item active" href="/{{ lang.0 }}{{ request.path_info|slice:'3:' }}">{{ lang.1 }}</a>
+                        {% else %}
+                          <a class="dropdown-item active" href="/{{ lang.0 }}{{ request.path_info|slice:'6:' }}">{{ lang.1 }}</a>
+                        {% endif %}
+                      {% else %}
+                        {% if LANGUAGE_CODE == "en" %}
+                          <a class="dropdown-item" href="/{{ lang.0 }}{{ request.path_info|slice:'3:' }}">{{ lang.1 }}</a>
+                        {% else %}
+                          <a class="dropdown-item" href="/{{ lang.0 }}{{ request.path_info|slice:'6:' }}">{{ lang.1 }}</a>
+                        {% endif %}
+                      {% endif %}
                     {% endfor %}
                 </div>
               </div>
@@ -146,5 +182,8 @@
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js" integrity="sha384-7og8luCpGnZn/Ms71Ycm3q8rW2t+jGvRJ9XtT7ieAM8WwhzODZvmmwyQEd/bYUTd" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    {% block endbody %}
+
+    {% endblock %}
   </body>
 </html>
