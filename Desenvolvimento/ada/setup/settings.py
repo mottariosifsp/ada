@@ -42,7 +42,7 @@ INSTALLED_APPS = [
     "user",
     "attribution_preference",
     "attribution",
-    "exchange"
+    "exchange",
     "area",
     "timetable",
     "course",
