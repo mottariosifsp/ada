@@ -20,14 +20,8 @@ from django.utils.translation import gettext_lazy as _
 
 urlpatterns = [
     path("admin/", admin.site.urls),
-    path("professors/", include("django.contrib.auth.urls")),
-    path("", include("layout.urls"), name='home'),
-    path("attribution/", include("attribution.urls")),
 ]
 
 urlpatterns += i18n_patterns ( # quais sessões serão internacionalizadas
     path("admin/", admin.site.urls),
-    path("professors/", include("django.contrib.auth.urls")),
-    path("", include("layout.urls"), name='home'),
-    path("attribution/", include("attribution.urls")),
 )
