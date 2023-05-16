@@ -1,6 +1,6 @@
 from django.apps import AppConfig
 
 
-class AttributionConfig(AppConfig):
+class TimetableConfig(AppConfig):
     default_auto_field = 'django.db.models.BigAutoField'
-    name = 'attribution'
+    name = 'timetable'

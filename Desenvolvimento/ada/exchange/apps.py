@@ -1,6 +1,6 @@
 from django.apps import AppConfig
 
 
-class AttributionConfig(AppConfig):
+class ExchangeConfig(AppConfig):
     default_auto_field = 'django.db.models.BigAutoField'
-    name = 'attribution'
+    name = 'exchange'

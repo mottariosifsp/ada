@@ -30,8 +30,6 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
-CSRF_TRUSTED_ORIGINS=['https://josineudo-arruda-studious-enigma-p5rvrvx55p5h7gq-8000.preview.app.github.dev'] 
-
 # Application definition    
 
 INSTALLED_APPS = [
@@ -41,10 +39,14 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
-    "professors",
+    "user",
+    "attribution_preference",
     "attribution",
-    "courses",
-    "layout",
+    "exchange"
+    "area",
+    "timetable",
+    "course",
+    "class",
 ]
 
 MIDDLEWARE = [
@@ -148,9 +150,6 @@ STATIC_ROOT = os.path.join(BASE_DIR, "static")
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
-LOGIN_REDIRECT_URL = "/"
-LOGIN_URL = "professors/login"
-AUTH_USER_MODEL = "professors.Professors"
 
 CELERY_BROKER_URL = 'redis://127.0.0.1:6379'
 CELERY_ACCEPT_CONTENT = {'aplicattion/json'}
