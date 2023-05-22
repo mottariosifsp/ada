@@ -7,7 +7,7 @@ class Class(models.Model):
     period = models.CharField(_('period'), choices=[(s.name, s.value) for s in enum.Period], max_length=45)
     semester = models.IntegerField(_('semester'))
     is_high_school = models.BooleanField(_('is high school'), default=True)
-    area = models.ForeignKey('area.Area', on_delete=models.CASCADE, related_name='classes')
+    area = models.ForeignKey('area.Area', on_delete=models.CASCADE, null=True)
 
     def __str__(self):
         return self.registration_class_id

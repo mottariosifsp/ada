@@ -46,8 +46,8 @@ class User(AbstractBaseUser, PermissionsMixin):
     is_superuser = models.BooleanField(_('superuser status'), default=False)
     is_active = models.BooleanField(_('active'), default=True) #mudar depois
     is_staff = models.BooleanField(_('staff status'), default=False)
-    history = models.ForeignKey('History',_('history'), on_delete=models.CASCADE, null=True, blank=True)
-    job = models.ForeignKey('Job',_('job'), on_delete=models.CASCADE, null=True, blank=True)
+    history = models.ForeignKey('History', on_delete=models.CASCADE, null=True, blank=True)
+    job = models.ForeignKey('Job', on_delete=models.CASCADE, null=True, blank=True)
     
     objects = UserManager()
 
@@ -69,6 +69,7 @@ class User(AbstractBaseUser, PermissionsMixin):
         send_mail(subject, message, from_email, [self.email], **kwargs)
 
 class History(models.Model):
+    id_history = models.AutoField(primary_key=True) 
     birth = models.DateField(_('birth'))
     date_career = models.DateField(_('date career'))
     date_campus = models.DateField(_('date campus'))
@@ -80,12 +81,14 @@ class History(models.Model):
         return str(self.id_history)
 
 class Job(models.Model):
+    id_job = models.AutoField(primary_key=True)
     name_job = models.CharField(_('name job'), max_length=255)
 
     def __str__(self):
         return self.name_job
     
 class Proficiency(models.Model):
+    id_proficiency = models.AutoField(primary_key=True)
     is_competent = models.BooleanField(_('is competent'), default=True)
     course = models.CharField(_('course'), max_length=255) #mudar depois
     user = models.ForeignKey('user', on_delete=models.CASCADE)
