@@ -16,6 +16,6 @@ class Timeslot(models.Model):
     def __str__(self):
         return self.name
     
-class timetable_user(models.Model):
+class Timetable_user(models.Model):
     timetable = models.ForeignKey('Timetable', on_delete=models.CASCADE, related_name='timetable_user')
     user = models.ForeignKey('user.User', on_delete=models.CASCADE, related_name='timetable_user')
