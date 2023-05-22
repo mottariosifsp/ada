@@ -18,18 +18,18 @@ class Teaching_support_activity(models.Model):
     duration = models.TimeField(_('duration'))
 
 class Attribution_workload_supplementation(models.Model):
-    Attribution_preference = models.ForeignKey('Attribution_preference', on_delete=models.CASCADE)
-    Workload_supplementation = models.ForeignKey('Workload_supplementation', on_delete=models.CASCADE)
+    attribution_preference = models.ForeignKey('Attribution_preference', on_delete=models.CASCADE)
+    workload_supplementation = models.ForeignKey('Workload_supplementation', on_delete=models.CASCADE)
 
 class Workload_supplementation(models.Model):
     name = models.CharField(_('name'), max_length=45)
     duration = models.TimeField(_('duration'))
 
 class Attribution_preference_course_preference(models.Model):
-    Attribution_preference = models.ForeignKey('Attribution_preference', on_delete=models.CASCADE)
-    course_preference = models.ForeignKey('course_preference', on_delete=models.CASCADE)
+    attribution_preference = models.ForeignKey('Attribution_preference', on_delete=models.CASCADE)
+    course_preference = models.ForeignKey('Course_preference', on_delete=models.CASCADE)
 
-class course_preference(models.Model):
+class Course_preference(models.Model):
     course = models.ForeignKey('course.Course', on_delete=models.CASCADE)
     count_course = models.IntegerField(_('count course'))
     priority = models.CharField(_('day'), choices=[(s.name, s.value) for s in enum.Priority], max_length=45)
