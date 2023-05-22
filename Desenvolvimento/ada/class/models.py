@@ -1,3 +1,13 @@
 from django.db import models
+from django.utils.translation import gettext_lazy as _
+from enums import enum
 
-# Create your models here.
+class Class(models.Model):
+    registration_class_id = models.CharField(_('registration class id'), max_length=20)
+    period = models.CharField(_('period'), choices=[(s.name, s.value) for s in enum.Period], max_length=45)
+    semester = models.IntegerField(_('semester'))
+    is_high_school = models.BooleanField(_('is high school'), default=True)
+    area = models.ForeignKey('area.Area', on_delete=models.CASCADE, related_name='classes')
+
+    def __str__(self):
+        return self.registration_class_id
