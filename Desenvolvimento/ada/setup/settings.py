@@ -155,3 +155,5 @@ CELERY_ACCEPT_CONTENT = {'aplicattion/json'}
 CELERY_RESULT_SERIALIZER = 'json'   
 CELERY_TASK_SERIALIZER = 'json'
 CELERY_TIMEZONE = 'America/Sao_Paulo'
+
+AUTH_USER_MODEL = "user.User"

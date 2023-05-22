@@ -15,6 +15,8 @@ class UserManager(BaseUserManager):
             raise ValueError('The given email must be set')
         email = self.normalize_email(email)
         user = self.model(email=email, **extra_fields)
+        user.history = None
+        user.job = None
         user.set_password(password)
         user.save(using=self._db)
         return user
@@ -25,6 +27,7 @@ class UserManager(BaseUserManager):
 
     def create_superuser(self, email, password, **extra_fields):
         extra_fields.setdefault('is_superuser', True)
+        
 
         if extra_fields.get('is_superuser') is not True:
             raise ValueError('Superuser must have is_superuser=True.')
@@ -40,12 +43,12 @@ class User(AbstractBaseUser, PermissionsMixin):
     telephone = models.CharField(_('telephone'), max_length=10)
     cell_phone = models.CharField(_('cell phone'), max_length=14)
     date_joined = models.DateTimeField(_('date joined'), auto_now_add=True)
-    password = models.CharField(_('password'), max_length=160)
+    # password = models.CharField(_('password'), max_length=160)
     is_superuser = models.BooleanField(_('superuser status'), default=False)
     is_active = models.BooleanField(_('active'), default=True) #mudar depois
-    is_staff = models.BooleanField(_('staff status'), default=False)
-    history = models.ForeignKey('history', on_delete=models.CASCADE)
-    job = models.ForeignKey('job', on_delete=models.CASCADE)
+    is_staff = models.BooleanField(_('staff status'), default=True)
+    history = models.ForeignKey('History', on_delete=models.CASCADE, null=True)
+    job = models.ForeignKey('Job', on_delete=models.CASCADE, null=True)
     
     objects = UserManager()
 
@@ -67,7 +70,7 @@ class User(AbstractBaseUser, PermissionsMixin):
         send_mail(subject, message, from_email, [self.email], **kwargs)
 
 class History(models.Model):
-    id_history = models.IntegerField(_('id history'), primary_key=True)
+    id_history = models.IntegerField(_('id history'), primary_key=True, unique=True)
     birth = models.DateField(_('birth'))
     date_career = models.DateField(_('date career'))
     date_campus = models.DateField(_('date campus'))
@@ -79,14 +82,14 @@ class History(models.Model):
         return str(self.id_history)
 
 class Job(models.Model):
-    id_job = models.IntegerField(_('id job'), primary_key=True)
+    id_job = models.IntegerField(_('id job'), primary_key=True, unique=True)
     name_job = models.CharField(_('name job'), max_length=255)
 
     def __str__(self):
         return self.name_job
     
 class Proficiency(models.Model):
-    id_proficiency = models.IntegerField(_('id proficiency'), primary_key=True)
+    id_proficiency = models.IntegerField(_('id proficiency'), primary_key=True, unique=True)
     is_competent = models.BooleanField(_('is competent'), default=True)
     course = models.CharField(_('course'), max_length=255) #mudar depois
     user = models.ForeignKey('user', on_delete=models.CASCADE)
