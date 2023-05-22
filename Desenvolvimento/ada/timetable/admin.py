@@ -14,4 +14,6 @@ class Timeslot_admin(admin.ModelAdmin):
 class Timetable_user_admin(admin.ModelAdmin):
     list_display = ('timetable', 'user')
 
-admin.site.register(Timetable, Timetable_admin, Timeslot_admin, Timetable_user_admin)
+admin.site.register(Timetable, Timetable_admin)
+admin.site.register(Timeslot, Timeslot_admin)
+admin.site.register(Timetable_user, Timetable_user_admin)
