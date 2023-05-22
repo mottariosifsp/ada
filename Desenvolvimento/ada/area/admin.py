@@ -6,5 +6,3 @@ class Area_admin(admin.ModelAdmin):
     search_fields = ('name_area', 'registration_area_id')
 
 admin.site.register(Area, Area_admin)
-
-# Register your models here.
