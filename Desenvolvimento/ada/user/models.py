@@ -32,8 +32,8 @@ class UserManager(BaseUserManager):
         return self._create_user(email, password, **extra_fields)
     
 
-class Professors(AbstractBaseUser, PermissionsMixin):
-    email = models.EmailField(_('email address'), unique=True)
+class User(AbstractBaseUser, PermissionsMixin):
+    email = models.EmailField(_('email address'), max_length=100, unique=True)
     registration_id = models.CharField(_('registration id'), max_length=9, unique=True)
     first_name = models.CharField(_('first name'), max_length=30)
     last_name = models.CharField(_('last name'), max_length=30)
@@ -43,16 +43,18 @@ class Professors(AbstractBaseUser, PermissionsMixin):
     password = models.CharField(_('password'), max_length=160)
     is_superuser = models.BooleanField(_('superuser status'), default=False)
     is_active = models.BooleanField(_('active'), default=True) #mudar depois
-    is_staff = models.BooleanField(_('staff status'), default=True)
+    is_staff = models.BooleanField(_('staff status'), default=False)
+    history = models.ForeignKey('history', on_delete=models.CASCADE)
+    job = models.ForeignKey('job', on_delete=models.CASCADE)
     
-    objects = ProfessorManager()
+    objects = UserManager()
 
-    USERNAME_FIELD = 'promptuary'
+    USERNAME_FIELD = 'registration_id'
     REQUIRED_FIELDS = ['email']
 
     class Meta:
-        verbose_name = _('professor')
-        verbose_name_plural = _('professors')
+        verbose_name = _('user')
+        verbose_name_plural = _('users')
 
     def get_full_name(self):
         full_name = '%s %s' % (self.first_name, self.last_name)
@@ -63,3 +65,32 @@ class Professors(AbstractBaseUser, PermissionsMixin):
 
     def email_user(self, subject, message, from_email=None, **kwargs):
         send_mail(subject, message, from_email, [self.email], **kwargs)
+
+class History(models.Model):
+    id_history = models.IntegerField(_('id history'), primary_key=True)
+    birth = models.DateField(_('birth'))
+    date_career = models.DateField(_('date career'))
+    date_campus = models.DateField(_('date campus'))
+    date_professor = models.DateField(_('date professor'))
+    date_area = models.DateField(_('date area'))
+    date_institute = models.DateField(_('date institute'))
+
+    def __str__(self):
+        return str(self.id_history)
+
+class Job(models.Model):
+    id_job = models.IntegerField(_('id job'), primary_key=True)
+    name_job = models.CharField(_('name job'), max_length=255)
+
+    def __str__(self):
+        return self.name_job
+    
+class Proficiency(models.Model):
+    id_proficiency = models.IntegerField(_('id proficiency'), primary_key=True)
+    is_competent = models.BooleanField(_('is competent'), default=True)
+    course = models.CharField(_('course'), max_length=255) #mudar depois
+    user = models.ForeignKey('user', on_delete=models.CASCADE)
+
+
+    def __str__(self):
+        return self.name_proficiency
