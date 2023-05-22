@@ -5,7 +5,7 @@ from .models import Timetable_user
 
 class Timetable_admin(admin.ModelAdmin):
     list_display = ('day', 'timeslot', 'course', '_class')
-    search_fields = ('day')
+    search_fields = ('day',)
 
 class Timeslot_admin(admin.ModelAdmin):
     list_display = ('name', 'hour_start', 'hour_end')
