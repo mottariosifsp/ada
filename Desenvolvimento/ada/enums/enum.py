@@ -12,3 +12,7 @@ class Day(Enum):
     thursday = 'thursday'
     friday = 'friday'
     saturday = 'saturday'
+
+class Priority(Enum):
+    primary = 'primary'
+    secondary = 'secondary'
