@@ -18,6 +18,8 @@ O projeto oferece as seguintes funcionalidades principais:
 
 O projeto foi desenvolvido utilizando as seguintes tecnologias:
 
+- Hospedagem: Aws
+
 - Linguagem de programação: Python
 
 - Framework web: Django
