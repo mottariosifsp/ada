@@ -1,6 +1,4 @@
 from django.db import models
-
-from django.db import models
 from django.core.mail import send_mail
 from django.contrib.auth.models import PermissionsMixin
 from django.contrib.auth.base_user import AbstractBaseUser, BaseUserManager
@@ -46,7 +44,7 @@ class User(AbstractBaseUser, PermissionsMixin):
     is_staff = models.BooleanField(_('staff status'), default=True)
     history = models.ForeignKey('History', on_delete=models.CASCADE, null=True, blank=True)
     job = models.ForeignKey('Job', on_delete=models.CASCADE, null=True, blank=True)
-    block = models.ForeignKey('area.Block', on_delete=models.CASCADE, null=True, blank=True)
+    blocks = models.ManyToManyField('area.Block', blank=True)
     objects = UserManager()
 
     USERNAME_FIELD = 'registration_id'
