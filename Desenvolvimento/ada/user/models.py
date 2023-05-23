@@ -38,15 +38,15 @@ class User(AbstractBaseUser, PermissionsMixin):
     registration_id = models.CharField(_('registration id'), max_length=9, unique=True)
     first_name = models.CharField(_('first name'), max_length=30)
     last_name = models.CharField(_('last name'), max_length=30)
-    telephone = models.CharField(_('telephone'), max_length=10)
+    telephone = models.CharField(_('telephone'), max_length=10, null=True, blank=True)
     cell_phone = models.CharField(_('cell phone'), max_length=14)
     date_joined = models.DateTimeField(_('date joined'), auto_now_add=True)
     is_superuser = models.BooleanField(_('superuser status'), default=False)
     is_active = models.BooleanField(_('active'), default=True) #mudar depois
     is_staff = models.BooleanField(_('staff status'), default=True)
-    history = models.ForeignKey('History', on_delete=models.CASCADE, null=True)
-    job = models.ForeignKey('Job', on_delete=models.CASCADE, null=True)
-    block = models.ForeignKey('area.Block', on_delete=models.CASCADE, null=True)
+    history = models.ForeignKey('History', on_delete=models.CASCADE, null=True, blank=True)
+    job = models.ForeignKey('Job', on_delete=models.CASCADE, null=True, blank=True)
+    block = models.ForeignKey('area.Block', on_delete=models.CASCADE, null=True, blank=True)
     objects = UserManager()
 
     USERNAME_FIELD = 'registration_id'
