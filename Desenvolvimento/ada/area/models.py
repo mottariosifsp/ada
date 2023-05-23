@@ -6,7 +6,7 @@ class Area(models.Model):
     name_area = models.CharField(_('name area'), max_length=45)
     registration_area_id = models.CharField(_('registration area id'), max_length=20)
     exchange_area = models.BooleanField(_('exchange area'), default=True)
-    block = models.ForeignKey('Block', on_delete=models.CASCADE, null=True)
+    blocks = models.ManyToManyField('Block', blank=True)
 
     def __str__(self):
         return self.name_area
