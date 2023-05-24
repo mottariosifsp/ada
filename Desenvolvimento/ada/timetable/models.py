@@ -12,7 +12,7 @@ class Timetable(models.Model):
 class Timeslot(models.Model):
     hour_start = models.TimeField(_('hour start'))
     hour_end = models.TimeField(_('hour end'))
-    name = models.CharField(_('name'), max_length=10)
+    area = models.ForeignKey('area.Area', on_delete=models.CASCADE, related_name='timeslot', null=True)
 
     def clean(self):
         super().clean()
