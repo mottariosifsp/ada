@@ -1,7 +1,7 @@
 from django.db import models
 from enums import enum
 from django.utils.translation import gettext_lazy as _
-from common.validator.validator import validate_start_greater_end, validate_interrupted_time
+from common.validator.validator import validate_incongruity_time, validate_interrupted_time
 
 class Timetable(models.Model):
     day = models.CharField(_('day'), choices=[(s.name, s.value) for s in enum.Day], max_length=45)
@@ -16,7 +16,7 @@ class Timeslot(models.Model):
 
     def clean(self):
         super().clean()
-        validate_start_greater_end(self) # validação hora início maior que a hora fim
+        validate_incongruity_time(self) # validação hora início maior que a hora fim, validação hora início igual hora fim
         validate_interrupted_time(Timeslot, self) # validação uma hora em cima da outra
 
     def __str__(self):
