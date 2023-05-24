@@ -17,7 +17,7 @@ class Timeslot(models.Model):
     def clean(self):
         super().clean()
         validate_incongruity_time(self) # validação hora início maior que a hora fim, validação hora início igual hora fim
-        validate_interrupted_time(Timeslot, self) # validação uma hora em cima da outra
+        validate_interrupted_time(Timeslot, self) # validação uma hora em cima da outra, validação mesma hora
 
     def __str__(self):
         return self.name
