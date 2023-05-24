@@ -18,9 +18,6 @@ class Timeslot(models.Model):
         super().clean()
         validate_incongruity_time(self) # validação hora início maior que a hora fim, validação hora início igual hora fim
         validate_interrupted_time(Timeslot, self) # validação uma hora em cima da outra, validação mesma hora
-
-    def __str__(self):
-        return self.name
     
 class Timetable_user(models.Model):
     timetable = models.ForeignKey('Timetable', on_delete=models.CASCADE, related_name='timetable_user')
