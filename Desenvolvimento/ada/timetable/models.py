@@ -10,13 +10,14 @@ class Timetable(models.Model):
     _class = models.ForeignKey('class.Class', on_delete=models.CASCADE, related_name='timetable')
     
 class Timeslot(models.Model):
-    hour_start = models.TimeField(_('start time'))
-    hour_end = models.TimeField(_('end time'))
+    hour_start = models.TimeField(_('hour start'))
+    hour_end = models.TimeField(_('hour end'))
     name = models.CharField(_('name'), max_length=10)
 
     def clean(self):
         super().clean()
-        validate_interrupted_time(Timeslot, 'hour_start', 'hour_end')
+        print("oier")
+        validate_interrupted_time(Timeslot, hour_start, hour_end) # validação uma hora em cima da outra
 
     def __str__(self):
         return self.name
