@@ -20,4 +20,4 @@ def validate_interrupted_time(model, value):
         if obj.hour_start < value.hour_start < obj.hour_end or obj.hour_start < value.hour_end < obj.hour_end:
             raise ValidationError("O horário se sobrepõe a outro horário existente.")
         if obj.hour_start == value.hour_start and obj.hour_end == value.hour_end:
-            raise ValidationError('O horário é o mesmo a outro horário existente.')
+            raise ValidationError("O horário é o mesmo a outro horário existente.")
