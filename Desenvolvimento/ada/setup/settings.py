@@ -117,13 +117,17 @@ AUTH_PASSWORD_VALIDATORS = [
 
 from django.utils.translation import gettext_lazy as _
 
-LANGUAGE_CODE = "pt-br"
+DATE_FORMAT = 'YYYY-MM-DD'
 
-TIME_ZONE = "America/Sao_Paulo"
+USE_L10N = False
 
-USE_I18N = True
+#LANGUAGE_CODE = "pt-br"
 
-USE_TZ = True
+#TIME_ZONE = "America/Sao_Paulo"
+
+#USE_I18N = True
+
+#USE_TZ = True
 
 
 # Static files (CSS, JavaScript, Images)
