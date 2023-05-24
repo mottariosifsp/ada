@@ -1,3 +1,4 @@
+from django.db.models import Q
 from django.utils import timezone
 from configuration.models import Criteria
 from user.models import User, History
@@ -26,11 +27,14 @@ def queue_based_on_criterion(request):
             # mostrando os resultados em ordem crescente
             # flat=True permite gerar um resultado em valores, retirando a estrutura de tupla dos dados (conceito de linha em
             # banco de dados), já que values_list retorna os valores em tupla
-            resultados = History.objects.values_list(campo, flat=True).order_by(f'{campo}')
+            user = User.objects.all();
+            #f'{campo}')
+            resultados = user.values_list('history__' + campo, flat=True).order_by(f'history__{campo}')
+            #resultados = user.values_list('history__' + campo, flat=True).order_by('history__' + f'{campo}')
             valores = [valor.strftime('%Y-%m-%d') for valor in resultados]
             valores_formatados = ', '.join(valores) # join concatena os valores
 
-            return render(request, 'attribution/fila.html', {'resultados': valores_formatados, 'avaliado': campo})
+            return render(request, 'attribution/fila.html', {'resultados': resultados, 'avaliado': campo})
         else:
             resultados = History.objects.none()  # retorna uma query vazia se o campo não for válido
             return render(request, 'attribution/fila.html', {'resultados': resultados})
