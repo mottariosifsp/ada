@@ -42,7 +42,7 @@ class User(AbstractBaseUser, PermissionsMixin):
     is_superuser = models.BooleanField(_('superuser status'), default=False)
     is_active = models.BooleanField(_('active'), default=True) #mudar depois
     is_staff = models.BooleanField(_('staff status'), default=True)
-    history = models.ForeignKey('History', on_delete=models.CASCADE, null=True, blank=True)
+    history = models.ForeignKey('user.History', on_delete=models.CASCADE, blank=True, unique=True)
     job = models.ForeignKey('Job', on_delete=models.CASCADE, null=True, blank=True)
     blocks = models.ManyToManyField('area.Block', blank=True)
     objects = UserManager()

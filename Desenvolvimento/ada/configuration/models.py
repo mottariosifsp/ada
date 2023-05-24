@@ -8,6 +8,7 @@ class Deadline(models.Model):
 
 class Criteria(models.Model):
     name_criteria = models.CharField(('name criteria'), max_length=45)
+    number_criteria = models.IntegerField('number criteria', unique=True, null=True, blank=False)
     is_select = models.BooleanField(('is selected'), default=False)
 
     def clean(self):
