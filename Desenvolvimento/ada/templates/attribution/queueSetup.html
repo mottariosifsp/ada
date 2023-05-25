@@ -11,53 +11,72 @@
 {% endblock %}
 
 {% block body %}
+
+    <h4 class="mt-4">Tabela criada com o {{ data.campo }}</h4>
 <div class="container">
-<h4 class="mt-4">Tabela criada com o {{ data.campo }}</h4>
-               <h1> Fila de professores</h1>
-                  <div class="tabela">
-                     <table class="table table-striped table-bordered" id="queue">
-                    <thead>
-                        <tr>
-                            <th scope="col">Posição</th>
-                            <th scope="col">Registro</th>
-                            <th scope="col">Nome</th>
-                            <th scope="col">Birth</th>
-                            <th scope="col">date_career</th>
-                            <th scope="col">date_campus</th>
-                            <th scope="col">date_professor</th>
-                            <th scope="col">date_area</th>
-                            <th scope="col">date_institute</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                    {% csrf_token %}
-
-                    {% for user in data.resultados %}
-                        <tr>
-                            <td></td>
-                            <td>{{ user.registration_id }}</td>
-                            <td>{{ user.first_name }}</td>
-                            <td>{{ user.history.birth|date:"Y-m-d" }}</td>
-                            <td>{{ user.history.date_career|date:"Y-m-d" }}</td>
-                            <td>{{ user.history.date_campus|date:"Y-m-d" }}</td>
-                            <td>{{ user.history.date_professor|date:"Y-m-d" }}</td>
-                            <td>{{ user.history.date_area|date:"Y-m-d" }}</td>
-                            <td>{{ user.history.date_institute|date:"Y-m-d" }}</td>
-                        </tr>
-
-                        {% endfor %}
-                    </tbody>
-                </table>
-  <button style="margin-top: 10px;" class="btn btn-success" id="enviar-tabela">Enviar Tabela</button>
-            </div>
+    <div class="table">
+         <h1>Critérios</h1>
+        <table class="table table-striped table-bordered editable">
+        <thead>
+        <tr>
+            <th scope="col">Nome do critério</th>
+            <th scope="col">Está selecionado</th>
+        </tr>
+    </thead>
+        <tbody>
+        {% for criterio in data.criterios %}
+            <tr>
+             <td>{{ criterio.name_criteria }}</td>
+             <td>{{ criterio.is_select }}</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+        </table>
     </div>
+</div>
+    <h1> Fila de professores</h1>
+    <div class="tabela">
+        <table class="table table-striped table-bordered editable" id="queue">
+            <thead>
+                <tr>
+                    <th scope="col">Posição</th>
+                    <th scope="col">Registro</th>
+                    <th scope="col">Nome</th>
+                    <th scope="col">Birth</th>
+                    <th scope="col">Date Career</th>
+                    <th scope="col">Date Campus</th>
+                    <th scope="col">Date Professor</th>
+                    <th scope="col">Date Area</th>
+                    <th scope="col">Date Institute</th>
+                    <th scope="col">Bloco</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% csrf_token %}
 
-{#    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>#}
-{#    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>#}
+            {% for user in data.resultados %}
+            {% if not user.is_superuser%}
+            {% with counter=forloop.counter0 %}
+                <tr>
+                    <td class="editable" data-column="position">{{ counter }}</td>
+                    <td>{{ user.registration_id }}</td>
+                    <td>{{ user.first_name }}</td>
+                    <td>{{ user.history.birth|date:"Y-m-d" }}</td>
+                    <td>{{ user.history.date_career|date:"Y-m-d" }}</td>
+                    <td>{{ user.history.date_campus|date:"Y-m-d" }}</td>
+                    <td>{{ user.history.date_professor|date:"Y-m-d" }}</td>
+                    <td>{{ user.history.date_area|date:"Y-m-d" }}</td>
+                    <td>{{ user.history.date_institute|date:"Y-m-d" }}</td>
+                    <td>error</td>
+                </tr>
+            {% endwith %}
+            {% endif %}
+            {% endfor %}
+            </tbody>
+        </table>
+        <button style="margin-top: 10px;" class="btn btn-success" id="enviar-tabela">Enviar Tabela</button>
+    </div>
+</div>
+
 <script src="{% static 'attribution/js/queueSetup.js' %}" data-lang={{LANGUAGE_CODE}}></script>
 {% endblock %}
-
-{#{% block endbody %}#}
-
-
-

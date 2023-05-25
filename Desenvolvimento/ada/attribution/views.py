@@ -30,6 +30,7 @@ def queueSetup(request):
             resultados = User.objects.all().order_by(f'history__{campo}')
 
             data = {
+                'criterios': Criteria.objects.all(),
                 'resultados': resultados,
                 'campo': campo
             }
@@ -40,6 +41,7 @@ def queueSetup(request):
             resultados = User.objects.all()
 
             data = {
+                'criterios': Criteria.objects.all(),
                 'resultados': resultados,
                 'campo': "Esse critério não corresponde a nenhum atributo do histórico do usuário"
             }
@@ -48,6 +50,7 @@ def queueSetup(request):
     resultados = User.objects.all()
 
     data = {
+        'criterios': Criteria.objects.all(),
         'resultados': resultados,
         'campo': "Nenhum critério foi selecionado"
     }

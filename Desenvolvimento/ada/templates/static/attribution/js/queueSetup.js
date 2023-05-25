@@ -42,3 +42,4 @@ $(document).on('click', '#getData', function() {
   tabelaData =  table.data().toArray();
   console.log(tabelaData);
 });
+
