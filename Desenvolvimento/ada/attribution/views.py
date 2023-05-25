@@ -27,14 +27,15 @@ def queue_based_on_criterion(request):
             # mostrando os resultados em ordem crescente
             # flat=True permite gerar um resultado em valores, retirando a estrutura de tupla dos dados (conceito de linha em
             # banco de dados), já que values_list retorna os valores em tupla
-            user = User.objects.all();
-            #f'{campo}')
-            resultados = user.values_list('history__' + campo, flat=True).order_by(f'history__{campo}')
-            #resultados = user.values_list('history__' + campo, flat=True).order_by('history__' + f'{campo}')
-            valores = [valor.strftime('%Y-%m-%d') for valor in resultados]
-            valores_formatados = ', '.join(valores) # join concatena os valores
+      
+            resultados = User.objects.all().order_by(f'history__{campo}')
 
-            return render(request, 'attribution/fila.html', {'resultados': resultados, 'avaliado': campo})
+            data = {
+                'resultados': resultados,
+                'campo': campo
+            }
+
+            return render(request, 'attribution/fila.html', {'data': data})
         else:
             resultados = History.objects.none()  # retorna uma query vazia se o campo não for válido
             return render(request, 'attribution/fila.html', {'resultados': resultados})
