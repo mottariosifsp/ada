@@ -20,6 +20,11 @@ section.register .card {
     transform: translate(-50%, -50%);
 }
 
+.btn-outline-danger:focus, .btn-outline-danger:active {
+    background-color: #76DEC6;
+    border: 1px solid #76DEC6;
+    color: white;
+}
 
 button[type="submit"] {
     margin-top: 20px;
