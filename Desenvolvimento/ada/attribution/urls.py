@@ -1,6 +1,6 @@
 from django.urls import path
-from attribution.views import queue_based_on_criterion
+from attribution.views import queueSetup
 
 urlpatterns = [
-    path('', queue_based_on_criterion, name='queue_based_on_criterion'),
+    path('queueSetup/', queueSetup, name='queueSetup'),
 ]

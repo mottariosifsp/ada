@@ -1,4 +1,3 @@
-from django.db.models import Q
 from django.utils import timezone
 from configuration.models import Criteria
 from user.models import User, History
@@ -6,7 +5,7 @@ from django.shortcuts import render
 
 timetoday = timezone.now()
 
-def queue_based_on_criterion(request):
+def queueSetup(request):
     if (Criteria.objects.filter(is_select=True).exists()):
         criterion_selected = Criteria.objects.filter(is_select=True).values('number_criteria')
         valor_numero = criterion_selected[0]['number_criteria'] #juntar
@@ -35,12 +34,12 @@ def queue_based_on_criterion(request):
                 'campo': campo
             }
 
-            return render(request, 'attribution/fila.html', {'data': data})
+            return render(request, 'attribution/queueSetup.html', {'data': data})
         else:
             resultados = History.objects.none()  # retorna uma query vazia se o campo não for válido
-            return render(request, 'attribution/fila.html', {'resultados': resultados})
+            return render(request, 'attribution/queueSetup.html', {'resultados': resultados})
 
     else:
         criterion_selected = 'Nenhum critério foi selecionado para formar a fila'
-        return render(request, 'attribution/fila.html', {'resultados': criterion_selected})
+        return render(request, 'attribution/queueSetup.html', {'resultados': criterion_selected})
 
