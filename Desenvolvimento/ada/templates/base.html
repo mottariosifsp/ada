@@ -55,10 +55,10 @@
       </div>
       <div class="collapse navbar-collapse justify-content-end" id="navbarToggler">
         <ul class="navbar-nav mx-auto ">
-          <li class="nav-item"><a class="nav-link title" href="">Professores</a></li>
-          <li class="nav-item"><a class="nav-link title" href="#">Subárea</a></li>
-          <li class="nav-item"><a class="nav-link title" href="#">Administradores</a></li>
-          <li class="nav-item"><a class="nav-link title" href="#">Critérios</a></li>
+          <li class="nav-item"><a class="nav-link title" href="">{% translate "Professores" %}</a></li>
+          <li class="nav-item"><a class="nav-link title" href="#">{% translate "Subárea" %}</a></li>
+          <li class="nav-item"><a class="nav-link title" href="#">{% translate "Administradores" %}</a></li>
+          <li class="nav-item"><a class="nav-link title" href="#">{% translate "Critérios" %}</a></li>
           <li class="nav-item dropdown language-icon">
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownLang" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               <img class="lang-icon" src="{% static 'images/language_icon.png' %}" alt="change of language icon">
@@ -90,10 +90,10 @@
               <img class="user-photo rounded-circle"  src="{% static 'images/profile_photo.png' %}" alt="user's photo">
             </a>
             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownPerfil">
-              <a class="dropdown-item disabled" href="#">Nome</a>
-              <a class="dropdown-item" href="">Perfil</a>
+              <a class="dropdown-item disabled" href="#">{{ request.user.username }}</a>
+              <a class="dropdown-item" href="">{% translate "Perfil" %}</a>
               <div class="dropdown-divider"></div>
-              <a class="dropdown-item" href="#">Sair</a>
+              <a class="dropdown-item" href="#">{% translate "Sair" %}</a>
             </div>
           </li>
         </ul>
@@ -118,10 +118,10 @@
                 </a>
               </div>
               <hr>
-              <div class="modal-line"><a class="nav-link title" href="#">Professores</a></div>
-              <div class="modal-line"><a class="nav-link title" href="#">Subárea</a></div>
-              <div class="modal-line"><a class="nav-link title" href="#">Administradores</a></div>
-              <div class="modal-line"><a class="nav-link title" href="#">Critérios</a></div>
+              <div class="modal-line"><a class="nav-link title" href="#">{% translate "Professores" %}</a></div>
+              <div class="modal-line"><a class="nav-link title" href="#">{% translate "Subárea" %}</a></div>
+              <div class="modal-line"><a class="nav-link title" href="#">{% translate "Administradores" %}</a></div>
+              <div class="modal-line"><a class="nav-link title" href="#">{% translate "Critérios" %}</a></div>
               <div class="modal-line dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownLangSidebar" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                   Línguas
@@ -151,7 +151,7 @@
             </div>
             <div class="modal-footer">
               <div class="container">
-                <span class="text-footer">© 2023 Mottarios. Todos os direitos reservados.</span>
+                <span class="text-footer">© 2023 Mottarios. {% translate "Todos os direitos reservados." %}</span>
               </div>
             </div>
           </div>
