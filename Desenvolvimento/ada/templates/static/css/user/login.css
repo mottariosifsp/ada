@@ -4,3 +4,37 @@
 body {background-color: #3F927E;}
 
 section.register {border-radius: 20px;}
+
+.logo-notlogged img {
+    width: 150px;
+}
+
+section.register .card{
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+@media (max-width: 1500px) {
+    .logo-notlogged img {width: 200px;}
+}
+
+@media (max-width: 600px) {
+    .logo-notlogged img {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100px;
+        padding: 10px;
+        margin-top: -15px;
+    }
+
+    section.register .card {
+        width: 100%;
+        position: relative;
+        top: 80%;
+        padding-top: 30px;
+        padding-bottom: 30px;
+    }
+}
