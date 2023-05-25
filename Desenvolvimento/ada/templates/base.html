@@ -114,7 +114,7 @@
               <div class="modal-line profile-icon">
                 <a class="d-flex align-items-center justify-content-start" href="#">
                   <img class="user-photo rounded-circle" src="{% static 'images/profile_photo.png' %}" alt="user's photo">
-                  <span class="user-name">Nome Sobrenome</span>
+                  <span class="user-name">{{ request.user.username }}</span>
                 </a>
               </div>
               <hr>

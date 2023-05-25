@@ -23,33 +23,28 @@
                             <h5 class="card-title text-center pb-0 fs-4">Entre com sua conta</h5>
                             <p class="text-center small">Insira seu prontuário e senha</p>
                         </div>
-                        <form class="row g-3 was-validated"  method="post" action="{% url 'login' %}" novalidate>
+                        <form class="row g-3 needs-validation" id="form-login" method="post" action="{% url 'login' %}">
                             {% csrf_token %}
 
+                            <div id="loginError" class="col-12 alert alert-danger alert-dismissible fade show" style="display: none;">Usuário ou senha incorretos.</div>
+
                             <div class="col-12">
-                                <label for="yourUsername" class="form-label">Prontuário</label>
+                                <label for="yourUsername" class="form-label">Prontuário:</label>
                                 <div class="input-group has-validation">
                                     <span class="input-group-text" id="inputGroupPrepend">CJ</span>
-                                    <input type="text" name="username" class="form-control" id="yourUsername" required>
-                                    <div class="invalid-feedback">Por favor, insira seu prontuário.</div>
+                                    <input type="text" name="username" class="form-control" maxlength='7' id="yourUsername" required>
+                                    <div id="usernameError" class="invalid-feedback">Por favor, insira seu prontuário.</div>
                                 </div>
                             </div>
                         
                             <div class="col-12">
-                                <label for="yourPassword" class="form-label">Senha</label>
+                                <label for="yourPassword" class="form-label">Senha:</label>
                                 <input type="password" name="password" class="form-control" id="yourPassword" required>
-                                <div class="invalid-feedback">Por favor, insira sua senha.</div>
+                                <div id="passwordError" class="invalid-feedback">Por favor, insira sua senha.</div>
                             </div>
 
                             <div class="col-12">
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" name="remember" value="true" id="rememberMe">
-                                    <label class="form-check-label" for="rememberMe">Remember me</label>
-                                </div>
-                            </div>
-
-                            <div class="col-12">
-                                <button class="btn btn-primary w-100" type="submit">{% translate "login" %}</button>
+                                <button id="submitBtn" class="btn btn-primary w-100" type="submit">{% translate "Entrar" %}</button>
                                 <input type="hidden" name="next" value="{{ next }}">
                             </div>
 
@@ -63,4 +58,8 @@
         </div>
     </div>
 </section>
+{% endblock %}
+
+{% block endbody %}
+    <script src="{% static 'js/user/login.js' %}"></script>
 {% endblock %}

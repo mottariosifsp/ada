@@ -1,23 +1,34 @@
 /* Importação da fonte Montserrat do Google Fonts */
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,200;0,500;1,100;1,200&display=swap');
 
-body {background-color: #3F927E;}
+body {
+    background-color: #3F927E;
+}
 
-section.register {border-radius: 20px;}
+section.register {
+    border-radius: 20px;
+}
 
 .logo-notlogged img {
     width: 150px;
 }
 
-section.register .card{
+section.register .card {
     position: fixed;
-    top: 50%;
+    top: 55%;
     left: 50%;
     transform: translate(-50%, -50%);
 }
 
+
+button[type="submit"] {
+    margin-top: 20px;
+}
+
 @media (max-width: 1500px) {
-    .logo-notlogged img {width: 200px;}
+    .logo-notlogged img {
+        width: 150px;
+    }
 }
 
 @media (max-width: 600px) {
