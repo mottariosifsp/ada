@@ -2,7 +2,11 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,200;0,500;1,100;1,200&display=swap');
 
 body {
-    background-color: #3F927E;
+    background: linear-gradient(to right, #76DEC6 10%, #3F927E 60%);
+}
+
+.lang-icon {
+    color: white;
 }
 
 section.register {
@@ -49,7 +53,7 @@ button[type="submit"] {
     section.register .card {
         width: 100%;
         position: relative;
-        top: 80%;
+        top: 60%;
         padding-top: 30px;
         padding-bottom: 30px;
     }
