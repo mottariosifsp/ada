@@ -36,10 +36,21 @@ def queueSetup(request):
 
             return render(request, 'attribution/queueSetup.html', {'data': data})
         else:
-            resultados = History.objects.none()  # retorna uma query vazia se o campo não for válido
-            return render(request, 'attribution/queueSetup.html', {'resultados': resultados})
 
-    else:
-        criterion_selected = 'Nenhum critério foi selecionado para formar a fila'
-        return render(request, 'attribution/queueSetup.html', {'resultados': criterion_selected})
+            resultados = User.objects.all()
+
+            data = {
+                'resultados': resultados,
+                'campo': "Esse critério não corresponde a nenhum atributo do histórico do usuário"
+            }
+            return render(request, 'attribution/queueSetup.html', {'data': data})
+
+    resultados = User.objects.all()
+
+    data = {
+        'resultados': resultados,
+        'campo': "Nenhum critério foi selecionado"
+    }
+
+    return render(request, 'attribution/queueSetup.html', {'data': data})
 
