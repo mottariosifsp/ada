@@ -45,11 +45,8 @@ $(document).on('click', '#getData', function() {
 
 $('#enviar-tabela').click(function() {
   var tabelaData =  $('#queue').DataTable().data().toArray();
-  console.log(tabelaData);
-  let csrftoken = getCookie('csrftoken');
-
-  // Codificar o JSON do tabelaData para incluí-lo na URL
-  var encodedData = encodeURIComponent(JSON.stringify(tabelaData));
+  // console.log(tabelaData);
+  var csrftoken = getCookie('csrftoken');
 
   $.ajax({
     url: '/attribution/queueSetup/',
@@ -61,14 +58,14 @@ $('#enviar-tabela').click(function() {
       'X-CSRFToken': csrftoken
     },
     success: function(response) {
-      // Redirecionar para a página attribution/queueSetup com o parâmetro tabelaData
-      window.location.href = '/attribution/queueSetup/?tabela_data=' + encodedData;
+      location.reload();
     },
     error: function(xhr, status, error) {
-      alert('Erro ao enviar dados!');
+      console.error(error);
     }
   });
 });
+
 
 
 function getCookie(name) {

@@ -1,42 +1,38 @@
 from configuration.models import Criteria
 from user.models import User, History
 from django.shortcuts import render
-from urllib import parse
 import json
-
+marcador = 0
+tabela_data = ""
 def queueSetup(request):
+    global marcador
     global tabela_data
-    # print("Value of tabela_data:", tabela_data)
-    print("Contents of request.POST:", request.POST)
 
-    params = request.GET  # Get the GET attribute
-
-    for key, value in params.items():
-        decoded_value = parse.unquote(value)  # Decode
-        print(f"{key}: {decoded_value}")
-    # os dados da nova lista estão sendo passado, precisa a lógica para implementar o resultado
-    # está indo como GET
-
-    if isinstance(request.POST, dict):
-        tabela_data = json.loads(request.POST.get('tabela_data', '{}'))
-    else:
+    if request.method == 'POST':
+        marcador = 1;
         tabela_data = json.loads(request.POST['tabela_data'])
 
-    if tabela_data:
-        tabela_data = json.loads(request.POST['tabela_data'])
-
-        print("Value of tabela_data:", tabela_data)
+        # print("Value of tabela_data:", tabela_data)
         print("Contents of request.POST:", request.POST)
 
         data = {
-            'criterios': "foi?",
-            'resultados': "foi?",
-            'campo': "foi?"
+            'criterios': Criteria.objects.all(),
+            'resultados': tabela_data, #nao vai ser mais o user, ver como arrumar
+            'campo': "mudado manualmente"
         }
 
         return render(request, 'attribution/queueSetup.html', {'data': data})
 
     else:
+        if marcador == 1:
+            data = {
+                'criterios': Criteria.objects.all(),
+                'resultados': tabela_data, #nao vai ser mais o user, ver como arrumar
+                'campo': "mudado manualmente"
+            }
+
+            return render(request, 'attribution/queueSetup.html', {'data': data})
+
         if Criteria.objects.filter(is_select=True).exists():
             criterion_selected = Criteria.objects.filter(is_select=True).values('number_criteria')
             valor_numero = criterion_selected[0]['number_criteria'] #juntar
