@@ -37,11 +37,13 @@ $(document).ready(function() {
   });
 });
 
-$(document).on('click', '#getData', function() {
-  table.order( [ 1, 'asc' ]).draw();
-  tabelaData =  table.data().toArray();
-  console.log(tabelaData);
-});
+// $(document).on('click', '#getData', function() {
+//   table.order( [ 1, 'asc' ]).draw();
+//   tabelaData =  table.data().toArray();
+//   console.log("caindo aqui?")
+//   console.log(tabelaData);
+//   alert(JSON.stringify(tabelaData));
+// });
 
 $('#enviar-tabela').click(function() {
   var tabelaData =  $('#queue').DataTable().data().toArray();

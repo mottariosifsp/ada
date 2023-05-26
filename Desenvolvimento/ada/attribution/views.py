@@ -1,9 +1,17 @@
 from configuration.models import Criteria
 from user.models import User, History
+from attribution.models import TeacherQueuePosition
 from django.shortcuts import render
 import json
 marcador = 0
 tabela_data = ""
+
+
+def add_teacher_to_queue(teacher, position_input):
+    position = position_input
+    TeacherQueuePosition.objects.create(teacher=teacher, position=position)
+
+
 def queueSetup(request):
     global marcador
     global tabela_data
@@ -12,12 +20,26 @@ def queueSetup(request):
         marcador = 1;
         tabela_data = json.loads(request.POST['tabela_data'])
 
-        # print("Value of tabela_data:", tabela_data)
-        print("Contents of request.POST:", request.POST)
+        print("Value of tabela_data:", tabela_data)
+        # print("Contents of request.POST:", request.POST)
+
+        tabela_data = json.loads(request.POST['tabela_data'])
+
+        for professorInQueue in tabela_data:
+            registration_id = professorInQueue[0]
+            position = professorInQueue[0]
+            # professor = User.objects.get(id=registration_id)
+            professor = User.objects.get(registration_id="SP1")
+            print("Professor: ", professor)
+
+            if TeacherQueuePosition.objects.filter(teacher=professor).exists():
+                TeacherQueuePosition.objects.filter(teacher=professor).update(position=position)
+            else:
+                add_teacher_to_queue(professor, position)
 
         data = {
             'criterios': Criteria.objects.all(),
-            'resultados': tabela_data, #nao vai ser mais o user, ver como arrumar
+            'resultados': TeacherQueuePosition.objects.select_related('teacher').order_by('position').all(), #nao vai ser mais o user, ver como arrumar
             'campo': "mudado manualmente"
         }
 
@@ -54,15 +76,20 @@ def queueSetup(request):
                 # flat=True permite gerar um resultado em valores, retirando a estrutura de tupla dos dados (conceito de linha em
                 # banco de dados), já que values_list retorna os valores em tupla
 
-                resultados = User.objects.all().order_by(f'history__{campo}')
+                # resultados = User.objects.all().order_by(f'history__{campo}')
+                # campo = 'birth'
+
+
+                resultados = TeacherQueuePosition.objects.all().order_by(f'teacher__history__{campo}')
+                print("Contents of resultados:", resultados)
+
+                # resultados = TeacherQueuePosition.objects.all().order_by(f'history__{campo}')
 
                 data = {
                     'criterios': Criteria.objects.all(),
                     'resultados': resultados,
                     'campo': campo
                 }
-
-
 
                 return render(request, 'attribution/queueSetup.html', {'data': data})
             else:
