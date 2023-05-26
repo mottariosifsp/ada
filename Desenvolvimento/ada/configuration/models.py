@@ -16,5 +16,5 @@ class Criteria(models.Model):
             raise ValidationError('Only one Criteria can be selected at a time.')
 
     def save(self, *args, **kwargs):
-        self.full_clean()  # Run validation before saving
+        self.full_clean()
         super().save(*args, **kwargs)

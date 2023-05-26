@@ -20,25 +20,10 @@ def queueSetup(request):
         marcador = 1;
         tabela_data = json.loads(request.POST['tabela_data'])
 
-        print("Value of tabela_data:", tabela_data)
-        # print("Contents of request.POST:", request.POST)
-
-        tabela_data = json.loads(request.POST['tabela_data'])
-
         for professorInQueue in tabela_data:
             professor_registration_id = professorInQueue[1]
             position = professorInQueue[0]
             professor = User.objects.get(registration_id=professor_registration_id)
-            # professor = User.objects.get(id=registration_id)
-            # professor = User.objects.get(registration_id=registration_id)
-
-            # try:
-            #     professor = User.objects.get(id=registration_id)
-            # except User.DoesNotExist:
-            #     print("Professor not found:", registration_id)
-            #     continue
-
-            print("Professor: ", professor)
 
             if TeacherQueuePosition.objects.filter(teacher=professor).exists():
                 TeacherQueuePosition.objects.filter(teacher=professor).update(position=position)
@@ -47,7 +32,7 @@ def queueSetup(request):
 
         data = {
             'criterios': Criteria.objects.all(),
-            'resultados': TeacherQueuePosition.objects.select_related('teacher').order_by('position').all(), #nao vai ser mais o user, ver como arrumar
+            'resultados': TeacherQueuePosition.objects.select_related('teacher').order_by('position').all(),
             'campo': "mudado manualmente"
         }
 
@@ -91,7 +76,6 @@ def queueSetup(request):
                 resultados = TeacherQueuePosition.objects.all().order_by(f'teacher__history__{campo}')
                 print("Contents of resultados:", resultados)
 
-                # resultados = TeacherQueuePosition.objects.all().order_by(f'history__{campo}')
 
                 data = {
                     'criterios': Criteria.objects.all(),

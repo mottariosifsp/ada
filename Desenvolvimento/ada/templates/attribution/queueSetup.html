@@ -55,7 +55,7 @@
             {% csrf_token %}
 
             {% for user in data.resultados %}
-{#            {% if not user.is_superuser%}#}
+{#            {% if not user.teacher.is_superuser%}#}
             {% with counter=forloop.counter0 %}
                 <tr>
                     <td class="editable" data-column="position">{{ counter }}</td>
