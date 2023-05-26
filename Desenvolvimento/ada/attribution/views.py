@@ -1,59 +1,92 @@
-from django.utils import timezone
 from configuration.models import Criteria
 from user.models import User, History
 from django.shortcuts import render
-
-timetoday = timezone.now()
+from urllib import parse
+import json
 
 def queueSetup(request):
-    if (Criteria.objects.filter(is_select=True).exists()):
-        criterion_selected = Criteria.objects.filter(is_select=True).values('number_criteria')
-        valor_numero = criterion_selected[0]['number_criteria'] #juntar
+    global tabela_data
+    # print("Value of tabela_data:", tabela_data)
+    print("Contents of request.POST:", request.POST)
 
-        campos = {
-            1: 'birth',
-            2: 'date_career',
-            3: 'date_campus',
-            4: 'date_professor',
-            5: 'date_area',
-            6: 'date_institute',
+    params = request.GET  # Get the GET attribute
+
+    for key, value in params.items():
+        decoded_value = parse.unquote(value)  # Decode
+        print(f"{key}: {decoded_value}")
+    # os dados da nova lista estão sendo passado, precisa a lógica para implementar o resultado
+    # está indo como GET
+
+    if isinstance(request.POST, dict):
+        tabela_data = json.loads(request.POST.get('tabela_data', '{}'))
+    else:
+        tabela_data = json.loads(request.POST['tabela_data'])
+
+    if tabela_data:
+        tabela_data = json.loads(request.POST['tabela_data'])
+
+        print("Value of tabela_data:", tabela_data)
+        print("Contents of request.POST:", request.POST)
+
+        data = {
+            'criterios': "foi?",
+            'resultados': "foi?",
+            'campo': "foi?"
         }
 
-        campo = campos.get(valor_numero)
+        return render(request, 'attribution/queueSetup.html', {'data': data})
 
-        if campo:
-            # na variável resultados será feito uma query, filtrando com o campo escolhido anteriormente, na variável campo
-            # mostrando os resultados em ordem crescente
-            # flat=True permite gerar um resultado em valores, retirando a estrutura de tupla dos dados (conceito de linha em
-            # banco de dados), já que values_list retorna os valores em tupla
-      
-            resultados = User.objects.all().order_by(f'history__{campo}')
+    else:
+        if Criteria.objects.filter(is_select=True).exists():
+            criterion_selected = Criteria.objects.filter(is_select=True).values('number_criteria')
+            valor_numero = criterion_selected[0]['number_criteria'] #juntar
 
-            data = {
-                'criterios': Criteria.objects.all(),
-                'resultados': resultados,
-                'campo': campo
+            campos = {
+                1: 'birth',
+                2: 'date_career',
+                3: 'date_campus',
+                4: 'date_professor',
+                5: 'date_area',
+                6: 'date_institute',
             }
 
-            return render(request, 'attribution/queueSetup.html', {'data': data})
-        else:
+            campo = campos.get(valor_numero)
 
-            resultados = User.objects.all()
+            if campo:
+                # na variável resultados será feito uma query, filtrando com o campo escolhido anteriormente, na variável campo
+                # mostrando os resultados em ordem crescente
+                # flat=True permite gerar um resultado em valores, retirando a estrutura de tupla dos dados (conceito de linha em
+                # banco de dados), já que values_list retorna os valores em tupla
 
-            data = {
-                'criterios': Criteria.objects.all(),
-                'resultados': resultados,
-                'campo': "Esse critério não corresponde a nenhum atributo do histórico do usuário"
-            }
-            return render(request, 'attribution/queueSetup.html', {'data': data})
+                resultados = User.objects.all().order_by(f'history__{campo}')
 
-    resultados = User.objects.all()
+                data = {
+                    'criterios': Criteria.objects.all(),
+                    'resultados': resultados,
+                    'campo': campo
+                }
 
-    data = {
-        'criterios': Criteria.objects.all(),
-        'resultados': resultados,
-        'campo': "Nenhum critério foi selecionado"
-    }
 
-    return render(request, 'attribution/queueSetup.html', {'data': data})
+
+                return render(request, 'attribution/queueSetup.html', {'data': data})
+            else:
+
+                resultados = User.objects.all()
+
+                data = {
+                    'criterios': Criteria.objects.all(),
+                    'resultados': resultados,
+                    'campo': "Esse critério não corresponde a nenhum atributo do histórico do usuário"
+                }
+                return render(request, 'attribution/queueSetup.html', {'data': data})
+
+        resultados = User.objects.all()
+
+        data = {
+            'criterios': Criteria.objects.all(),
+            'resultados': resultados,
+            'campo': "Nenhum critério foi selecionado"
+        }
+
+        return render(request, 'attribution/queueSetup.html', {'data': data})
 

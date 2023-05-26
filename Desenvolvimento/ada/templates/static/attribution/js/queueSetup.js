@@ -43,3 +43,46 @@ $(document).on('click', '#getData', function() {
   console.log(tabelaData);
 });
 
+$('#enviar-tabela').click(function() {
+  var tabelaData =  $('#queue').DataTable().data().toArray();
+  console.log(tabelaData);
+  let csrftoken = getCookie('csrftoken');
+
+  // Codificar o JSON do tabelaData para incluí-lo na URL
+  var encodedData = encodeURIComponent(JSON.stringify(tabelaData));
+
+  $.ajax({
+    url: '/attribution/queueSetup/',
+    method: 'POST',
+    data: {
+      'tabela_data': JSON.stringify(tabelaData)
+    },
+    headers: {
+      'X-CSRFToken': csrftoken
+    },
+    success: function(response) {
+      // Redirecionar para a página attribution/queueSetup com o parâmetro tabelaData
+      window.location.href = '/attribution/queueSetup/?tabela_data=' + encodedData;
+    },
+    error: function(xhr, status, error) {
+      alert('Erro ao enviar dados!');
+    }
+  });
+});
+
+
+function getCookie(name) {
+  var cookieValue = null;
+  if (document.cookie && document.cookie !== '') {
+    var cookies = document.cookie.split(';');
+    for (var i = 0; i < cookies.length; i++) {
+      var cookie = jQuery.trim(cookies[i]);
+      if (cookie.substring(0, name.length + 1) === (name + '=')) {
+        cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+        break;
+      }
+    }
+  }
+  return cookieValue;
+}
+
