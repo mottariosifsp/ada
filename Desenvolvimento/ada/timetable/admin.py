@@ -8,8 +8,8 @@ class Timetable_admin(admin.ModelAdmin):
     search_fields = ('day',)
 
 class Timeslot_admin(admin.ModelAdmin):
-    list_display = ('name', 'hour_start', 'hour_end')
-    search_fields = ('name', 'hour_start', 'hour_end')
+    list_display = ('hour_start', 'hour_end', 'area')
+    search_fields = ('hour_start', 'hour_end')
 
 class Timetable_user_admin(admin.ModelAdmin):
     list_display = ('timetable', 'user')
