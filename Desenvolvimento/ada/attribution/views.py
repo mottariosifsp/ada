@@ -26,10 +26,18 @@ def queueSetup(request):
         tabela_data = json.loads(request.POST['tabela_data'])
 
         for professorInQueue in tabela_data:
-            registration_id = professorInQueue[0]
+            professor_registration_id = professorInQueue[1]
             position = professorInQueue[0]
+            professor = User.objects.get(registration_id=professor_registration_id)
             # professor = User.objects.get(id=registration_id)
-            professor = User.objects.get(registration_id="SP1")
+            # professor = User.objects.get(registration_id=registration_id)
+
+            # try:
+            #     professor = User.objects.get(id=registration_id)
+            # except User.DoesNotExist:
+            #     print("Professor not found:", registration_id)
+            #     continue
+
             print("Professor: ", professor)
 
             if TeacherQueuePosition.objects.filter(teacher=professor).exists():
@@ -49,7 +57,7 @@ def queueSetup(request):
         if marcador == 1:
             data = {
                 'criterios': Criteria.objects.all(),
-                'resultados': tabela_data, #nao vai ser mais o user, ver como arrumar
+                'resultados': TeacherQueuePosition.objects.select_related('teacher').order_by('position').all(),#nao vai ser mais o user, ver como arrumar
                 'campo': "mudado manualmente"
             }
 
@@ -95,7 +103,7 @@ def queueSetup(request):
             else:
 
                 resultados = User.objects.all()
-
+                #validar
                 data = {
                     'criterios': Criteria.objects.all(),
                     'resultados': resultados,

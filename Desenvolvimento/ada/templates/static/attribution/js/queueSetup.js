@@ -43,7 +43,7 @@ $(document).ready(function() {
 //   console.log("caindo aqui?")
 //   console.log(tabelaData);
 //   alert(JSON.stringify(tabelaData));
-// });
+// }); - Não está sendo usado, filtro feito na linha 49
 
 $('#enviar-tabela').click(function() {
   var tabelaData =  $('#queue').DataTable().data().toArray();
