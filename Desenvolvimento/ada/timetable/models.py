@@ -16,8 +16,7 @@ class Timeslot(models.Model):
 
     def clean(self):
         super().clean()
-        print("oier")
-        validate_interrupted_time(Timeslot, hour_start, hour_end) # validação uma hora em cima da outra
+        validate_interrupted_time(Timeslot, self.hour_start, self.hour_end) # validação uma hora em cima da outra
 
     def __str__(self):
         return self.name
