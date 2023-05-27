@@ -65,24 +65,18 @@ $('#enviar-tabela').click(function() {
 });
 
 
-$(document).ready(function() {
-  $('.area-select').change(function() {
-    var selectedArea = $(this).val();
-    console.log("caiu")
+$('.submit-btn').click(function() {
+  var selectedArea = $('.area-select').val();
+  console.log("caiu");
 
-    $.ajax({
-      url: '/attribution/queueSetup/',
-      type: 'GET',
-      data: { area: selectedArea },
-      success: function(response) {
-        // Atualize a tabela com os dados filtrados
-        $('#queue tbody').html(response);
-      },
-      error: function(xhr, textStatus, errorThrown) {
-      }
-    });
-  });
+  var redirectURL = '/attribution/queueSetup/?area=' + selectedArea;
+
+  window.location.href = redirectURL;
 });
+
+
+
+
 
 
 

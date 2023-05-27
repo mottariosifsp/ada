@@ -18,13 +18,13 @@ def get_areas(request):
         for block in blocks:
             areas += block.areas.all()
         print(areas)
+        # areas = [area for block in blocks for area in block.areas.all()] - colocar
         return areas
 
 # Seleciona o campo marcado pelo administrador e verifica qual é o atributo correspondente no histórico dos usuários
 def get_selected_campo():
     if Criteria.objects.filter(is_select=True).exists():
-        criterion_selected = Criteria.objects.filter(is_select=True).values('number_criteria')
-        valor_numero = criterion_selected[0]['number_criteria']
+        valor_numero = Criteria.objects.filter(is_select=True).values('number_criteria').first().get('number_criteria')
 
         campos = {
             1: 'birth',
@@ -34,14 +34,10 @@ def get_selected_campo():
             5: 'date_area',
             6: 'date_institute',
         }
-
-        campo = campos.get(valor_numero)
-        return campo
-
+        return campos.get(valor_numero, "campo")
 # se nenhum critério foi selecionado para o adm retorna um campo em branco
     else:
-        campo = ""
-        return campo
+        return "campo"
 
 # metódo que adiciona os usuários na na fila (TeacherQueuePosition)
 # vai ter algum problema quando tiver mais de uma fila para diferentes áreas ao memso tempo (como vai filtrar? 2 positions?)
@@ -51,7 +47,6 @@ def add_teacher_to_queue(teacher, position_input):
 
 # View que leva para a(s) fila(s) já definida pelo admin
 def queue(request):
-
         campo = get_selected_campo()
         areas = get_areas(request)
 
@@ -75,23 +70,21 @@ def queueSetup(request):
     global tabela_data # variável utilizada caso a fila já tenha sido definida pelo menos uma vez pelo admin
 
     if request.method == 'GET' and 'area' in request.GET:
-            selected_area = request.GET.get('area')
-            resultados = User.objects.filter(blocks__areas__name_area=selected_area)
+        selected_area = request.GET.get('area')
+        resultados = User.objects.filter(blocks__areas__name_area=selected_area)
+        areas = get_areas(request)
 
-            areas = get_areas(request)
+        data = {
+            'resultados': resultados,
+            'marcadorDiff': 0,
+            'areas': areas
+        }
 
-            data = {
-                'resultados': resultados,
-                'marcadorDiff': 0,
-                'areas': areas
-            }
-
-            print("aqui22")
-            return render(request, 'attribution/queueSetup.html', {'data': data})
-
+        print("aqui22")
+        return render(request, 'attribution/queueSetup.html', {'data': data})
 
     if request.method == 'POST': # adiciona os professores no model TeacherQueuePosition
-        marcador = 1; # marcador fica como 1 para conseguir mostrar na página de queueSetup a fila ordenada conforme foi definida aqui + novos professores no final da fila
+        marcador = 1; # marcador fica como 1 para ter o controle que já foi criado uma tabela
         tabela_data = json.loads(request.POST['tabela_data'])
 
         campo = get_selected_campo()
@@ -108,7 +101,7 @@ def queueSetup(request):
 
         data = {
             'resultados': TeacherQueuePosition.objects.select_related('teacher').order_by('position').all(),
-            'marcadorDiff': 1,
+            'marcadorDiff': 1, # serve para diferenciar se vai ser user (antes de enviar a tabela) ou teacher no html
             'campo': campo,
             'area': get_areas(request)
         }
@@ -150,7 +143,6 @@ def queueSetup(request):
             if campo != "":
 
                 resultados = User.objects.all().order_by(f'history__{campo}')
-
                 areas = get_areas(request)
 
                 print(areas)
