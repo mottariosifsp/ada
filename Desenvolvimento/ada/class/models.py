@@ -9,5 +9,9 @@ class Class(models.Model):
     is_high_school = models.BooleanField(_('is high school'), default=True)
     area = models.ForeignKey('area.Area', on_delete=models.CASCADE, null=True)
 
+    class Meta:
+        verbose_name = _('class')
+        verbose_name_plural = _('classes')
+
     def __str__(self):
         return self.registration_class_id
