@@ -1,22 +1,19 @@
 /* Importação da fonte Montserrat do Google Fonts */
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,200;0,500;1,100;1,200&display=swap');
 
-body {
-    background: linear-gradient(to right, #76DEC6 10%, #3F927E 60%);
-}
+/* Configurações gerais do body */
+body { background: linear-gradient(to right, #76DEC6 10%, #3F927E 60%); }
 
-.lang-icon {
-    color: white;
-}
+/* Ícone de linguagem */
+.lang-icon { color: white; }
 
-section.register {
-    border-radius: 30px;
-}
+/* Estilos para a seção de registro */
+section.register { border-radius: 30px; }
 
-.logo-notlogged img {
-    width: 150px;
-}
+/* Logo não logado */
+.logo-notlogged img { width: 150px; }
 
+/* Estilos para a classe "card" dentro da seção de registro */
 section.register .card {
     position: fixed;
     top: 55%;
@@ -24,7 +21,9 @@ section.register .card {
     transform: translate(-50%, -50%);
 }
 
-.custom-btn {
+/* Estilos para os botões personalizados */
+.custom-btn,
+.google-btn {
     background-color: #3F927E;
     color: #ffffff;
     border-radius: 4px;
@@ -34,44 +33,38 @@ section.register .card {
     transition: background-color 0.3s ease;
 }
 
-.custom-btn:hover {
-    background-color: #2a5a4f;
-}
+/* Efeito de hover para os botões personalizados */
+.custom-btn:hover,
+.google-btn:hover { background-color: #2a5a4f; }
 
-.custom-btn:active {
+/* Efeito quando o botão personalizado é clicado */
+.custom-btn:active,
+.google-btn:active {
     background-color: #3F927E;
     box-shadow: 0 0 10px #3F927E;
 }
 
-.google-btn {
-    background-color: #1590ff;
-    color: #ffffff;
-    border-radius: 4px;
-    padding: 10px 20px;
-    border: none;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-}
+/* Estilos específicos para o botão do Google */
+.google-btn { background-color: #1590ff; }
 
-.google-btn:hover {
-    background-color: #1f67a5;
-}
+/* Efeito de hover específico para o botão do Google */
+.google-btn:hover { background-color: #1f67a5; }
 
+/* Efeito quando o botão do Google é clicado */
 .google-btn:active {
     background-color: #1590ff;
     box-shadow: 0 0 10px #1590ff;
 }
 
-button[type="submit"] {
-    margin-top: 20px;
-}
+/* Estilos para botões do tipo submit */
+button[type="submit"] { margin-top: 20px; }
 
+/* Media query para telas com largura máxima de 1500px */
 @media (max-width: 1500px) {
-    .logo-notlogged img {
-        width: 150px;
-    }
+    .logo-notlogged img { width: 150px; }
 }
 
+/* Media query para telas com largura máxima de 600px */
 @media (max-width: 600px) {
     .logo-notlogged img {
         position: absolute;
