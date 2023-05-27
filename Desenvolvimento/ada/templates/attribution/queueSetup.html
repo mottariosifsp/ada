@@ -14,7 +14,11 @@
 {% block body %}
 
     <h1> Fila de professores</h1>
+
+    {% if data.campo != "" %}
     <h3> Critério escolhido pelo super admin: {{ data.campo }}</h3>
+    {% endif %}
+
     <p>Usuários da área:</p>
         <select class="area-select">
           {% for area in data.areas %}

@@ -17,7 +17,6 @@ def get_areas(request):
         areas = []
         for block in blocks:
             areas += block.areas.all()
-        print(areas)
         # areas = [area for block in blocks for area in block.areas.all()] - colocar
         return areas
 
@@ -25,7 +24,7 @@ def get_areas(request):
 def get_selected_campo():
     if Criteria.objects.filter(is_select=True).exists():
         valor_numero = Criteria.objects.filter(is_select=True).values('number_criteria').first().get('number_criteria')
-
+        print("Criterio escolhido pelo adm", valor_numero)
         campos = {
             1: 'birth',
             2: 'date_career',
@@ -34,10 +33,12 @@ def get_selected_campo():
             5: 'date_area',
             6: 'date_institute',
         }
+
         return campos.get(valor_numero, "campo")
+
 # se nenhum critério foi selecionado para o adm retorna um campo em branco
     else:
-        return "campo"
+        return ""
 
 # metódo que adiciona os usuários na na fila (TeacherQueuePosition)
 # vai ter algum problema quando tiver mais de uma fila para diferentes áreas ao memso tempo (como vai filtrar? 2 positions?)
@@ -74,9 +75,12 @@ def queueSetup(request):
         resultados = User.objects.filter(blocks__areas__name_area=selected_area)
         areas = get_areas(request)
 
+        campo = get_selected_campo()
+
         data = {
             'resultados': resultados,
             'marcadorDiff': 0,
+            'campo': campo,
             'areas': areas
         }
 
@@ -168,11 +172,14 @@ def queueSetup(request):
                 return render(request, 'attribution/queueSetup.html', {'data': data})
 
         resultados = User.objects.all() # se nenhum critério foi selecionado pelo adm e não tiver feito nenhuma lista manual vai cair aqui
+        campo = get_selected_campo()
+        areas = get_areas(request)
 
         data = {
             'resultados': resultados,
             'marcadorDiff': 0,
-            'campo': "" # validação - se campo for nulo, não aparecer qual foi escolhido pelo superadm
+            'campo': campo,
+            'areas': areas
         }
 
         print(5)
