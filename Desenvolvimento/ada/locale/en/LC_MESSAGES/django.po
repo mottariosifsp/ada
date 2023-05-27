@@ -94,35 +94,35 @@ msgstr ""
 
 #: .\templates\base.html:59 .\templates\base.html:122
 msgid "Professores"
-msgstr ""
+msgstr "Professors"
 
 #: .\templates\base.html:60 .\templates\base.html:123
 msgid "Subárea"
-msgstr ""
+msgstr "Subarea"
 
 #: .\templates\base.html:61 .\templates\base.html:124
 msgid "Administradores"
-msgstr ""
+msgstr "Administrators"
 
 #: .\templates\base.html:62 .\templates\base.html:125
 msgid "Critérios"
-msgstr ""
+msgstr "Criterias"
 
 #: .\templates\base.html:95
 msgid "Perfil"
-msgstr ""
+msgstr "Profile"
 
 #: .\templates\base.html:97
 msgid "Sair"
-msgstr ""
+msgstr "Log out"
 
 #: .\templates\base.html:128
 msgid "Línguas"
-msgstr ""
+msgstr "Languages"
 
 #: .\templates\base.html:155
-msgid "Todos os direitos reservados."
-msgstr ""
+msgid "Todos os direitos reservados"
+msgstr "All rights reserved"
 
 #: .\templates\home.html:5
 msgid "Home"
@@ -130,7 +130,7 @@ msgstr ""
 
 #: .\templates\home.html:9
 msgid "Login completo"
-msgstr ""
+msgstr "Login succesfull"
 
 #: .\templates\home.html:9
 msgid "HOME PAGE"
@@ -138,23 +138,23 @@ msgstr ""
 
 #: .\templates\home.html:14
 msgid "Olá, administrador"
-msgstr ""
+msgstr "Hello, administrator"
 
 #: .\templates\home.html:15
 msgid "Crie a fila da atribuição"
-msgstr ""
+msgstr "Create the attribution queue"
 
 #: .\templates\home.html:21
 msgid "Olá, Professor"
-msgstr ""
+msgstr "Hello, Professor"
 
 #: .\templates\home.html:22
 msgid "Entre no processo de atribuição"
-msgstr ""
+msgstr "Enter the attribution process"
 
 #: .\templates\home.html:23
 msgid "Ver atribuição"
-msgstr ""
+msgstr "See attribution"
 
 #: .\templates\registration\login.html:8
 msgid "Login"
@@ -162,39 +162,39 @@ msgstr ""
 
 #: .\templates\registration\login.html:24
 msgid "Entre com sua conta"
-msgstr ""
+msgstr "Enter with your account"
 
 #: .\templates\registration\login.html:25
 msgid "Insira seu prontuário e senha"
-msgstr ""
+msgstr "Enter your registration id and password"
 
 #: .\templates\registration\login.html:31
 msgid "Usuário ou senha incorretos"
-msgstr ""
+msgstr "Incorrect username or password"
 
 #: .\templates\registration\login.html:35
 msgid "Prontuário"
-msgstr ""
+msgstr "Registration id"
 
 #: .\templates\registration\login.html:39
 msgid "Por favor, insira seu prontuário"
-msgstr ""
+msgstr "Please, enter your registration id"
 
 #: .\templates\registration\login.html:44
 msgid "Senha"
-msgstr ""
+msgstr "Password"
 
 #: .\templates\registration\login.html:46
 msgid "Por favor, insira sua senha"
-msgstr ""
+msgstr "Please, enter your password"
 
 #: .\templates\registration\login.html:50
 msgid "Entrar"
-msgstr ""
+msgstr "Login"
 
 #: .\templates\registration\login.html:54
 msgid "Entre com"
-msgstr ""
+msgstr "Enter with"
 
 #: .\user\models.py:35
 msgid "email address"
