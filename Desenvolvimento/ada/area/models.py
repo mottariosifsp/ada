@@ -8,6 +8,10 @@ class Area(models.Model):
     exchange_area = models.BooleanField(_('exchange area'), default=True)
     blocks = models.ManyToManyField('Block', blank=True)
 
+    class Meta:
+        verbose_name = _('area')
+        verbose_name_plural = _('areas')
+
     def __str__(self):
         return self.name_area
 
@@ -15,6 +19,10 @@ class Area(models.Model):
 class Block(models.Model):
     registration_block_id = models.AutoField(primary_key=True)
     name_block = models.CharField(_('name block'), max_length=45)
+
+    class Meta:
+        verbose_name = _('block')
+        verbose_name_plural = _('blocks')
 
     def __str__(self):
         return self.name_block
