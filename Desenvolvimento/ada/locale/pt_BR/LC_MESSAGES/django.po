@@ -19,78 +19,78 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 #: .\area\models.py:6
 msgid "name area"
-msgstr ""
+msgstr "nome área"
 
 #: .\area\models.py:7
 msgid "registration area id"
-msgstr ""
+msgstr "prontuário área"
 
 #: .\area\models.py:8
 msgid "exchange area"
-msgstr ""
+msgstr "permutação área"
 
 #: .\area\models.py:17
 msgid "name block"
-msgstr ""
+msgstr "nome bloco"
 
 #: .\attribution_preference\models.py:11 .\attribution_preference\models.py:35
 #: .\timetable\models.py:6
 msgid "day"
-msgstr ""
+msgstr "dia"
 
 #: .\attribution_preference\models.py:17 .\attribution_preference\models.py:25
 #: .\timetable\models.py:14
 msgid "name"
-msgstr ""
+msgstr "nome"
 
 #: .\attribution_preference\models.py:18 .\attribution_preference\models.py:26
 msgid "duration"
-msgstr ""
+msgstr "duração"
 
 #: .\attribution_preference\models.py:34
 msgid "count course"
-msgstr ""
+msgstr "contador disciplina"
 
 #: .\attribution_preference\models.py:36 .\class\models.py:7
 #: .\course\models.py:9
 msgid "period"
-msgstr ""
+msgstr "período"
 
 #: .\class\models.py:6
 msgid "registration class id"
-msgstr ""
+msgstr "prontuário turma"
 
 #: .\class\models.py:8
 msgid "semester"
-msgstr ""
+msgstr "semestre"
 
 #: .\class\models.py:9
 msgid "is high school"
-msgstr ""
+msgstr "é ensino médio"
 
 #: .\course\models.py:7
 msgid "registration course id"
-msgstr ""
+msgstr "prontuário disciplina"
 
 #: .\course\models.py:8
 msgid "course name"
-msgstr ""
+msgstr "nome disciplina"
 
 #: .\course\models.py:10 .\timetable\models.py:12
 msgid "start time"
-msgstr ""
+msgstr "hora início"
 
 #: .\course\models.py:11 .\timetable\models.py:13
 msgid "end time"
-msgstr ""
+msgstr "hora fim"
 
 #: .\setup\settings.py:138
 msgid "English"
-msgstr ""
+msgstr "Inglês"
 
 #: .\setup\settings.py:139
 msgid "Brazilian Portuguese"
-msgstr ""
+msgstr "Português Brasileiro"
 
 #: .\templates\base.html:59 .\templates\base.html:122
 msgid "Professores"
@@ -134,7 +134,7 @@ msgstr ""
 
 #: .\templates\home.html:9
 msgid "HOME PAGE"
-msgstr ""
+msgstr "PÁGINA HOME"
 
 #: .\templates\home.html:14
 msgid "Olá, administrador"
@@ -198,80 +198,80 @@ msgstr ""
 
 #: .\user\models.py:35
 msgid "email address"
-msgstr ""
+msgstr "endereço email"
 
 #: .\user\models.py:36
 msgid "registration id"
-msgstr ""
+msgstr "prontuário"
 
 #: .\user\models.py:37
 msgid "first name"
-msgstr ""
+msgstr "primeiro nome"
 
 #: .\user\models.py:38
 msgid "last name"
-msgstr ""
+msgstr "sobrenome"
 
 #: .\user\models.py:39
 msgid "telephone"
-msgstr ""
+msgstr "telefone"
 
 #: .\user\models.py:40
 msgid "cell phone"
-msgstr ""
+msgstr "celular"
 
 #: .\user\models.py:41
 msgid "date joined"
-msgstr ""
+msgstr "data entrada"
 
 #: .\user\models.py:42
 msgid "superuser status"
-msgstr ""
+msgstr "status superuser"
 
 #: .\user\models.py:43
 msgid "active"
-msgstr ""
+msgstr "ativo"
 
 #: .\user\models.py:44
 msgid "staff status"
-msgstr ""
+msgstr "status admin"
 
 #: .\user\models.py:54
 msgid "user"
-msgstr ""
+msgstr "usuário"
 
 #: .\user\models.py:55
 msgid "users"
-msgstr ""
+msgstr "usuários"
 
 #: .\user\models.py:69
 msgid "birth"
-msgstr ""
+msgstr "data nascimento"
 
 #: .\user\models.py:70
 msgid "date career"
-msgstr ""
+msgstr "data carreira"
 
 #: .\user\models.py:71
 msgid "date campus"
-msgstr ""
+msgstr "data campus"
 
 #: .\user\models.py:72
 msgid "date professor"
-msgstr ""
+msgstr "data professor"
 
 #: .\user\models.py:73
 msgid "date area"
-msgstr ""
+msgstr "data área"
 
 #: .\user\models.py:74
 msgid "date institute"
-msgstr ""
+msgstr "data instituto"
 
 #: .\user\models.py:81
 msgid "name job"
-msgstr ""
+msgstr "nome função"
 
 #: .\user\models.py:88
 msgid "is competent"
-msgstr ""
+msgstr "é competente"
