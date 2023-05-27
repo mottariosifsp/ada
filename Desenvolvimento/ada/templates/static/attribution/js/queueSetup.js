@@ -64,6 +64,28 @@ $('#enviar-tabela').click(function() {
   }
 });
 
+
+$(document).ready(function() {
+  $('.area-select').change(function() {
+    var selectedArea = $(this).val();
+    console.log("caiu")
+
+    $.ajax({
+      url: '/attribution/queueSetup/',
+      type: 'GET',
+      data: { area: selectedArea },
+      success: function(response) {
+        // Atualize a tabela com os dados filtrados
+        $('#queue tbody').html(response);
+      },
+      error: function(xhr, textStatus, errorThrown) {
+      }
+    });
+  });
+});
+
+
+
 function getCookie(name) {
   var cookieValue = null;
   if (document.cookie && document.cookie !== '') {

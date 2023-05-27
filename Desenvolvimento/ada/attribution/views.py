@@ -2,6 +2,9 @@ from configuration.models import Criteria
 from user.models import User
 from attribution.models import TeacherQueuePosition
 from django.shortcuts import render, redirect
+# from django.http import JsonResponse
+# from django.template.loader import render_to_string
+# from django.template import RequestContext
 import json
 marcador = 0
 tabela_data = ""
@@ -9,7 +12,14 @@ tabela_data = ""
 # Lógica para separar em áreas
 # fazer filtro somente com os professores de uma determinada área
 
+def get_areas(request):
+    user = request.user  # precisa ser somente do admin - ok
+    blocks = user.blocks.all()  # Obtém os blocos do usuário
+    areas = []
+    for block in blocks:
+        areas += block.areas.all()
 
+        return areas
 def get_selected_campo():
     if Criteria.objects.filter(is_select=True).exists():
         criterion_selected = Criteria.objects.filter(is_select=True).values('number_criteria')
@@ -36,22 +46,49 @@ def add_teacher_to_queue(teacher, position_input):
     TeacherQueuePosition.objects.create(teacher=teacher, position=position)
 
 def queue(request):
-    campo = get_selected_campo()
+            # rendered_table = render_to_string('attribution/queueSetup.html', {'data': data}, request=request)
+            # print("rendered_table-AREA", rendered_table)
+            # print("resultados-AREA", resultados)
+                # rendered_table = render(request, 'attribution/queueSetup.html', {'data': data})
+                # return JsonResponse({'rendered_table': rendered_table.content.decode('utf-8')})
+            # return JsonResponse({'rendered_table': rendered_table})
 
-    data = {
-        'criterios': Criteria.objects.all(),
-        'resultados': TeacherQueuePosition.objects.select_related('teacher').order_by('position').all(),
-        'marcadorDiff': 0,
-        'campo': campo
-    }
+        campo = get_selected_campo()
+        areas = get_areas(request)
 
-    print(1)
+        data = {
+            'criterios': Criteria.objects.all(),
+            'resultados': TeacherQueuePosition.objects.select_related('teacher').order_by('position').all(),
+            'marcadorDiff': 0,
+            'campo': campo,
+            'areas': areas
+        }
 
-    return render(request, 'attribution/queue.html', {'data': data})
+        print(1)
+
+        return render(request, 'attribution/queue.html', {'data': data})
 
 def queueSetup(request):
     global marcador
     global tabela_data
+
+    if request.method == 'GET':
+        if 'area' in request.GET:
+            selected_area = request.GET.get('area')
+            # print("SELECTED-AREA", selected_area)
+            resultados = User.objects.filter(blocks__areas__name_area=selected_area)
+            # print("resultados-AREA-user-user", resultados)
+
+            areas = get_areas(request)
+
+            data = {
+                'resultados': resultados,
+                'marcadorDiff': 0,
+                'areas': areas
+            }
+
+            # print("aqui")
+            return render(request, 'attribution/queueSetup.html', {'data': data})
 
     if request.method == 'POST':
         marcador = 1;
@@ -91,11 +128,16 @@ def queueSetup(request):
             teacher_queue_users.extend([user.id for user in users_ausentes])
             users_in_teacher_queue = User.objects.all()
 
+            areas = get_areas(request)
+
+            print(areas)
+
             data = {
                 'criterios': Criteria.objects.all(),
                 'resultados': users_in_teacher_queue,
                 'marcadorDiff': 0,
-                'campo': campo
+                'campo': campo,
+                'areas': areas
             }
 
             print(3)
@@ -118,10 +160,15 @@ def queueSetup(request):
 
                 resultados = User.objects.all().order_by(f'history__{campo}')
 
-                for user in resultados:
-                    blocks = user.blocks.all()
-                    for block in blocks:
-                        print(block.name_block)
+                areas = get_areas(request)
+
+                print(areas)
+                    # Resto da lógica da view...
+
+                # for user in resultados:
+                #     blocks = user.blocks.all()
+                #     for block in blocks:
+                #         print(block.area)
                 # for user in resultados:
                 #     print(user.blocks)
                 # resultados = TeacherQueuePosition.objects.all().order_by(f'teacher__history__{campo}')
@@ -131,7 +178,8 @@ def queueSetup(request):
                     'criterios': Criteria.objects.all(),
                     'resultados': resultados,
                     'marcadorDiff': 0,
-                    'campo': campo
+                    'campo': campo,
+                    'areas': areas
                 }
 
                 print(4)
