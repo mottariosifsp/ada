@@ -2,16 +2,15 @@ from configuration.models import Criteria
 from user.models import User
 from attribution.models import TeacherQueuePosition
 from django.shortcuts import render, redirect
-# from django.http import JsonResponse
-# from django.template.loader import render_to_string
-# from django.template import RequestContext
 import json
+
 marcador = 0
 tabela_data = ""
 
 # Lógica para separar em áreas
 # fazer filtro somente com os professores de uma determinada área
 
+# Seleciona as áreas que o admin pertence
 def get_areas(request):
         user = request.user
         blocks = user.blocks.all()
@@ -21,6 +20,7 @@ def get_areas(request):
         print(areas)
         return areas
 
+# Seleciona o campo marcado pelo administrador e verifica qual é o atributo correspondente no histórico dos usuários
 def get_selected_campo():
     if Criteria.objects.filter(is_select=True).exists():
         criterion_selected = Criteria.objects.filter(is_select=True).values('number_criteria')
@@ -38,21 +38,19 @@ def get_selected_campo():
         campo = campos.get(valor_numero)
         return campo
 
+# se nenhum critério foi selecionado para o adm retorna um campo em branco
     else:
         campo = ""
         return campo
 
+# metódo que adiciona os usuários na na fila (TeacherQueuePosition)
+# vai ter algum problema quando tiver mais de uma fila para diferentes áreas ao memso tempo (como vai filtrar? 2 positions?)
 def add_teacher_to_queue(teacher, position_input):
     position = position_input
     TeacherQueuePosition.objects.create(teacher=teacher, position=position)
 
+# View que leva para a(s) fila(s) já definida pelo admin
 def queue(request):
-            # rendered_table = render_to_string('attribution/queueSetup.html', {'data': data}, request=request)
-            # print("rendered_table-AREA", rendered_table)
-            # print("resultados-AREA", resultados)
-                # rendered_table = render(request, 'attribution/queueSetup.html', {'data': data})
-                # return JsonResponse({'rendered_table': rendered_table.content.decode('utf-8')})
-            # return JsonResponse({'rendered_table': rendered_table})
 
         campo = get_selected_campo()
         areas = get_areas(request)
@@ -65,16 +63,18 @@ def queue(request):
             'areas': areas
         }
 
+        # precisa fazer a lógica para ver filas diferentes
+
         print(1)
 
         return render(request, 'attribution/queue.html', {'data': data})
 
+# View que leva para a página de definir a fila
 def queueSetup(request):
     global marcador
-    global tabela_data
+    global tabela_data # variável utilizada caso a fila já tenha sido definida pelo menos uma vez pelo admin
 
-    if request.method == 'GET':
-        if 'area' in request.GET:
+    if request.method == 'GET' and 'area' in request.GET:
             selected_area = request.GET.get('area')
             resultados = User.objects.filter(blocks__areas__name_area=selected_area)
 
@@ -89,8 +89,9 @@ def queueSetup(request):
             print("aqui22")
             return render(request, 'attribution/queueSetup.html', {'data': data})
 
-    if request.method == 'POST':
-        marcador = 1;
+
+    if request.method == 'POST': # adiciona os professores no model TeacherQueuePosition
+        marcador = 1; # marcador fica como 1 para conseguir mostrar na página de queueSetup a fila ordenada conforme foi definida aqui + novos professores no final da fila
         tabela_data = json.loads(request.POST['tabela_data'])
 
         campo = get_selected_campo()
@@ -116,7 +117,7 @@ def queueSetup(request):
 
         return render(request, 'attribution/queueSetup.html', {'data': data})
 
-    else:
+    else: # se a requisição não for POST e for GET sem ter passado a área, ou seja, sem ter atualização no filtro da área, vai cair aqui
         if marcador == 1:
             campo = get_selected_campo()
 
@@ -133,7 +134,6 @@ def queueSetup(request):
             print(areas)
 
             data = {
-                'criterios': Criteria.objects.all(),
                 'resultados': users_in_teacher_queue,
                 'marcadorDiff': 0,
                 'campo': campo,
@@ -148,15 +148,6 @@ def queueSetup(request):
             campo = get_selected_campo()
 
             if campo != "":
-                # na variável resultados será feito uma query, filtrando com o campo escolhido anteriormente, na variável campo
-                # mostrando os resultados em ordem crescente
-                # flat=True permite gerar um resultado em valores, retirando a estrutura de tupla dos dados (conceito de linha em
-                # banco de dados), já que values_list retorna os valores em tupla
-                # user = User.objects.get(id=1)
-                # user_blocks = user.blocks.all()
-                #
-                # for block in user_blocks:
-                #     print(block.name_block)
 
                 resultados = User.objects.all().order_by(f'history__{campo}')
 
@@ -164,17 +155,7 @@ def queueSetup(request):
 
                 print(areas)
 
-                # for user in resultados:
-                #     blocks = user.blocks.all()
-                #     for block in blocks:
-                #         print(block.area)
-                # for user in resultados:
-                #     print(user.blocks)
-                # resultados = TeacherQueuePosition.objects.all().order_by(f'teacher__history__{campo}')
-                # print("Contents of resultados:", resultados)
-
                 data = {
-                    'criterios': Criteria.objects.all(),
                     'resultados': resultados,
                     'marcadorDiff': 0,
                     'campo': campo,
@@ -183,25 +164,23 @@ def queueSetup(request):
 
                 print(4)
                 return render(request, 'attribution/queueSetup.html', {'data': data})
-            else:
+            else: # se o superadmin selecionou um critério que não tenha relação com nenhum atributo do histórico vai cair aqui
 
                 resultados = User.objects.all()
                 #validar por area
                 data = {
-                    'criterios': Criteria.objects.all(),
                     'resultados': resultados,
                     'marcadorDiff': 0,
-                    'campo': "Esse critério não corresponde a nenhum atributo do histórico do usuário"
+                    # 'campo': "Esse critério não corresponde a nenhum atributo do histórico do usuário"
                 }
                 return render(request, 'attribution/queueSetup.html', {'data': data})
 
-        resultados = User.objects.all()
+        resultados = User.objects.all() # se nenhum critério foi selecionado pelo adm e não tiver feito nenhuma lista manual vai cair aqui
 
         data = {
-            'criterios': Criteria.objects.all(),
             'resultados': resultados,
             'marcadorDiff': 0,
-            'campo': "Nenhum critério foi selecionado"
+            'campo': "" # validação - se campo for nulo, não aparecer qual foi escolhido pelo superadm
         }
 
         print(5)
