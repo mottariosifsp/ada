@@ -94,9 +94,20 @@ def queueSetup(request):
                 # mostrando os resultados em ordem crescente
                 # flat=True permite gerar um resultado em valores, retirando a estrutura de tupla dos dados (conceito de linha em
                 # banco de dados), já que values_list retorna os valores em tupla
+                # user = User.objects.get(id=1)
+                # user_blocks = user.blocks.all()
+                #
+                # for block in user_blocks:
+                #     print(block.name_block)
 
                 resultados = User.objects.all().order_by(f'history__{campo}')
 
+                for user in resultados:
+                    blocks = user.blocks.all()
+                    for block in blocks:
+                        print(block.name_block)
+                # for user in resultados:
+                #     print(user.blocks)
                 # resultados = TeacherQueuePosition.objects.all().order_by(f'teacher__history__{campo}')
                 # print("Contents of resultados:", resultados)
 
@@ -106,6 +117,8 @@ def queueSetup(request):
                     'marcadorDiff': 0,
                     'campo': campo
                 }
+
+                # print(resultados)
 
                 print(4)
                 return render(request, 'attribution/queueSetup.html', {'data': data})

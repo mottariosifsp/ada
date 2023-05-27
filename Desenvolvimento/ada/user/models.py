@@ -3,6 +3,9 @@ from django.core.mail import send_mail
 from django.contrib.auth.models import PermissionsMixin
 from django.contrib.auth.base_user import AbstractBaseUser, BaseUserManager
 from django.utils.translation import gettext_lazy as _
+from area.models import Block, Area
+
+
 
 # Métodos de gerenciamento de usuário
 class UserManager(BaseUserManager):
@@ -44,7 +47,11 @@ class User(AbstractBaseUser, PermissionsMixin):
     is_staff = models.BooleanField(_('staff status'), default=True)
     history = models.ForeignKey('user.History', on_delete=models.CASCADE, blank=True, unique=True, null=True)
     job = models.ForeignKey('Job', on_delete=models.CASCADE, null=True, blank=True)
-    blocks = models.ManyToManyField('area.Block', blank=True)
+    blocks = models.ManyToManyField('area.Block', blank=True, related_name='users')
+
+
+
+
     objects = UserManager()
 
     USERNAME_FIELD = 'registration_id'
