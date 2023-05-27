@@ -1,16 +1,27 @@
 from configuration.models import Criteria
-from user.models import User, History
+from user.models import User
 from attribution.models import TeacherQueuePosition
 from django.shortcuts import render
 import json
 marcador = 0
 tabela_data = ""
 
-
 def add_teacher_to_queue(teacher, position_input):
     position = position_input
     TeacherQueuePosition.objects.create(teacher=teacher, position=position)
 
+def queue(request):
+
+    data = {
+        'criterios': Criteria.objects.all(),
+        'resultados': TeacherQueuePosition.objects.select_related('teacher').order_by('position').all(),
+        'marcadorDiff': 0,
+        'campo': ""
+    }
+
+    print(1)
+
+    return render(request, 'attribution/queue.html', {'data': data})
 
 def queueSetup(request):
     global marcador
@@ -33,18 +44,33 @@ def queueSetup(request):
         data = {
             'criterios': Criteria.objects.all(),
             'resultados': TeacherQueuePosition.objects.select_related('teacher').order_by('position').all(),
-            'campo': "mudado manualmente"
+            'marcadorDiff': 1,
+            'campo': ""
         }
+
+        print(2)
 
         return render(request, 'attribution/queueSetup.html', {'data': data})
 
     else:
         if marcador == 1:
+
+            users = User.objects.all()
+            teacher_queue_users = TeacherQueuePosition.objects.values_list('teacher', flat=True)
+
+            users_ausentes = [user for user in users if user.id not in teacher_queue_users]
+            teacher_queue_users = list(teacher_queue_users)
+            teacher_queue_users.extend([user.id for user in users_ausentes])
+            users_in_teacher_queue = User.objects.all()
+
             data = {
                 'criterios': Criteria.objects.all(),
-                'resultados': TeacherQueuePosition.objects.select_related('teacher').order_by('position').all(),#nao vai ser mais o user, ver como arrumar
+                'resultados': users_in_teacher_queue,
+                'marcadorDiff': 0,
                 'campo': "mudado manualmente"
             }
+
+            print(3)
 
             return render(request, 'attribution/queueSetup.html', {'data': data})
 
@@ -69,28 +95,28 @@ def queueSetup(request):
                 # flat=True permite gerar um resultado em valores, retirando a estrutura de tupla dos dados (conceito de linha em
                 # banco de dados), já que values_list retorna os valores em tupla
 
-                # resultados = User.objects.all().order_by(f'history__{campo}')
-                # campo = 'birth'
+                resultados = User.objects.all().order_by(f'history__{campo}')
 
-
-                resultados = TeacherQueuePosition.objects.all().order_by(f'teacher__history__{campo}')
-                print("Contents of resultados:", resultados)
-
+                # resultados = TeacherQueuePosition.objects.all().order_by(f'teacher__history__{campo}')
+                # print("Contents of resultados:", resultados)
 
                 data = {
                     'criterios': Criteria.objects.all(),
                     'resultados': resultados,
+                    'marcadorDiff': 0,
                     'campo': campo
                 }
 
+                print(4)
                 return render(request, 'attribution/queueSetup.html', {'data': data})
             else:
 
                 resultados = User.objects.all()
-                #validar
+                #validar por area
                 data = {
                     'criterios': Criteria.objects.all(),
                     'resultados': resultados,
+                    'marcadorDiff': 0,
                     'campo': "Esse critério não corresponde a nenhum atributo do histórico do usuário"
                 }
                 return render(request, 'attribution/queueSetup.html', {'data': data})
@@ -100,8 +126,10 @@ def queueSetup(request):
         data = {
             'criterios': Criteria.objects.all(),
             'resultados': resultados,
+            'marcadorDiff': 0,
             'campo': "Nenhum critério foi selecionado"
         }
 
-        return render(request, 'attribution/queueSetup.html', {'data': data})
+        print(5)
 
+        return render(request, 'attribution/queueSetup.html', {'data': data})
