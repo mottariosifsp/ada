@@ -16,6 +16,7 @@ a:not(.title):hover {
 
 /* Definições de estilo para itens de navegação */
 nav.navbar {
+    position: fixed;
     background-color: #3F927E;
     color: #f9fefd;
     box-shadow: 0px 2px 8px #2a5a4f;
@@ -65,7 +66,11 @@ div#navbarToggler ul.navbar-nav > li:nth-of-type(-n+4) a.nav-link:hover {
 
 .language-icon {width: 5%;}
 
-li.language-icon-notlogged {width: 15%;}
+li.language-icon-notlogged, div.language-icon-notlogged {width: 8%;}
+
+div.language-icon-notlogged {
+    padding: 10px;
+}
 
 .profile-icon {
     margin-left: 15px;
@@ -81,6 +86,12 @@ img.lang-icon, img.user-photo {width: 100%;}
 
 /* Definições de estilo para itens de dropdown */
 
+.top-right {
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+
 .dropdown-item:focus, .dropdown-item:active {background-color: #4eae9880;}
 
 /* Definições de estilos para sidebar */
@@ -88,9 +99,6 @@ img.lang-icon, img.user-photo {width: 100%;}
 .modal-body a:hover {
     text-decoration: none;
     font-weight: bolder;
-    /*border-radius: 5px;
-    border: 0.1px solid #2a5a4f;
-    background-color: #2a5a4f;*/
 }
 
 .modal-dialog {
@@ -152,6 +160,8 @@ button.close:focus, button.close:active {box-shadow: none;}
         margin-left: 15px;
         width: 6%;
     }
+
+    div.language-icon-notlogged {width: 100px;}
 }
 
 @media (max-width: 1150px) {
@@ -174,7 +184,7 @@ button.close:focus, button.close:active {box-shadow: none;}
 
     .notlogged img {width: 45%;}
 
-    li.language-icon-notlogged {width: 25%;}
+    li.language-icon-notlogged{width: 25%;}
 }
 
 @media (min-width: 992px){
