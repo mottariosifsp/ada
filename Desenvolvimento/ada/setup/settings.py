@@ -29,9 +29,7 @@ SECRET_KEY = str(os.getenv("SECRET_KEY"))
 DEBUG = True
 
 ALLOWED_HOSTS = []
-
-CSRF_TRUSTED_ORIGINS=['https://josineudo-arruda-studious-enigma-p5rvrvx55p5h7gq-8000.preview.app.github.dev'] 
-
+CSRF_TRUSTED_ORIGINS=['https://ana004-reimagined-waffle-qxw5p9wqqwvh45g5-8000.preview.app.github.dev']
 # Application definition    
 
 INSTALLED_APPS = [
@@ -41,10 +39,14 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
-    "professors",
+    "user",
+    "attribution_preference",
     "attribution",
-    "courses",
-    "layout",
+    "exchange",
+    "area",
+    "timetable",
+    "course",
+    "class",
 ]
 
 MIDDLEWARE = [
@@ -123,7 +125,6 @@ USE_I18N = True
 USE_TZ = True
 
 
-
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
 
@@ -148,12 +149,13 @@ STATIC_ROOT = os.path.join(BASE_DIR, "static")
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
-LOGIN_REDIRECT_URL = "/"
-LOGIN_URL = "professors/login"
-AUTH_USER_MODEL = "professors.Professors"
 
 CELERY_BROKER_URL = 'redis://127.0.0.1:6379'
 CELERY_ACCEPT_CONTENT = {'aplicattion/json'}
 CELERY_RESULT_SERIALIZER = 'json'   
 CELERY_TASK_SERIALIZER = 'json'
 CELERY_TIMEZONE = 'America/Sao_Paulo'
+
+AUTH_USER_MODEL = "user.User"
+LOGIN_REDIRECT_URL = "/"
+LOGIN_URL = "user/login"
