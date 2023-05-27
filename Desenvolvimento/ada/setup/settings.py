@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     "timetable",
     "course",
     "class",
+    "configuration",
 ]
 
 MIDDLEWARE = [
