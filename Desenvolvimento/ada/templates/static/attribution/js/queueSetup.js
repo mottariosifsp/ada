@@ -14,6 +14,8 @@ var urlLang = 'pt-BR'
 $(document).ready(function() {
   table = $('#queue').DataTable(
     {
+        columnDefs: [
+            { targets: [1], orderable: false}],
       rowReorder: true,
       language: {
         url: '//cdn.datatables.net/plug-ins/1.13.4/i18n/pt-BR.json'
@@ -37,8 +39,9 @@ $(document).ready(function() {
 });
 
 $('#enviar-tabela').click(function() {
+    if (confirm('Deseja realmente enviar a tabela?')) {
   var tabelaData =  $('#queue').DataTable().data().toArray();
-  // console.log(tabelaData);
+  console.log(tabelaData);
   var csrftoken = getCookie('csrftoken');
 
   $.ajax({
@@ -57,6 +60,8 @@ $('#enviar-tabela').click(function() {
       console.error(error);
     }
   });
+    } else {
+  }
 });
 
 function getCookie(name) {

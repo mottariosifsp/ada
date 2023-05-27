@@ -1,22 +1,48 @@
 from configuration.models import Criteria
 from user.models import User
 from attribution.models import TeacherQueuePosition
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 import json
 marcador = 0
 tabela_data = ""
+
+# Lógica para separar em áreas
+# fazer filtro somente com os professores de uma determinada área
+
+
+def get_selected_campo():
+    if Criteria.objects.filter(is_select=True).exists():
+        criterion_selected = Criteria.objects.filter(is_select=True).values('number_criteria')
+        valor_numero = criterion_selected[0]['number_criteria']
+
+        campos = {
+            1: 'birth',
+            2: 'date_career',
+            3: 'date_campus',
+            4: 'date_professor',
+            5: 'date_area',
+            6: 'date_institute',
+        }
+
+        campo = campos.get(valor_numero)
+        return campo
+
+    else:
+        campo = ""
+        return campo
 
 def add_teacher_to_queue(teacher, position_input):
     position = position_input
     TeacherQueuePosition.objects.create(teacher=teacher, position=position)
 
 def queue(request):
+    campo = get_selected_campo()
 
     data = {
         'criterios': Criteria.objects.all(),
         'resultados': TeacherQueuePosition.objects.select_related('teacher').order_by('position').all(),
         'marcadorDiff': 0,
-        'campo': ""
+        'campo': campo
     }
 
     print(1)
@@ -31,6 +57,8 @@ def queueSetup(request):
         marcador = 1;
         tabela_data = json.loads(request.POST['tabela_data'])
 
+        campo = get_selected_campo()
+
         for professorInQueue in tabela_data:
             professor_registration_id = professorInQueue[1]
             position = professorInQueue[0]
@@ -42,10 +70,9 @@ def queueSetup(request):
                 add_teacher_to_queue(professor, position)
 
         data = {
-            'criterios': Criteria.objects.all(),
             'resultados': TeacherQueuePosition.objects.select_related('teacher').order_by('position').all(),
             'marcadorDiff': 1,
-            'campo': ""
+            'campo': campo
         }
 
         print(2)
@@ -54,6 +81,7 @@ def queueSetup(request):
 
     else:
         if marcador == 1:
+            campo = get_selected_campo()
 
             users = User.objects.all()
             teacher_queue_users = TeacherQueuePosition.objects.values_list('teacher', flat=True)
@@ -67,7 +95,7 @@ def queueSetup(request):
                 'criterios': Criteria.objects.all(),
                 'resultados': users_in_teacher_queue,
                 'marcadorDiff': 0,
-                'campo': "mudado manualmente"
+                'campo': campo
             }
 
             print(3)
@@ -75,21 +103,9 @@ def queueSetup(request):
             return render(request, 'attribution/queueSetup.html', {'data': data})
 
         if Criteria.objects.filter(is_select=True).exists():
-            criterion_selected = Criteria.objects.filter(is_select=True).values('number_criteria')
-            valor_numero = criterion_selected[0]['number_criteria'] #juntar
+            campo = get_selected_campo()
 
-            campos = {
-                1: 'birth',
-                2: 'date_career',
-                3: 'date_campus',
-                4: 'date_professor',
-                5: 'date_area',
-                6: 'date_institute',
-            }
-
-            campo = campos.get(valor_numero)
-
-            if campo:
+            if campo != "":
                 # na variável resultados será feito uma query, filtrando com o campo escolhido anteriormente, na variável campo
                 # mostrando os resultados em ordem crescente
                 # flat=True permite gerar um resultado em valores, retirando a estrutura de tupla dos dados (conceito de linha em
