@@ -6,4 +6,3 @@ class Class_admin(admin.ModelAdmin):
     search_fields = ('registration_class_id', 'semester')
 
 admin.site.register(Class, Class_admin)
-# Register your models here

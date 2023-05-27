@@ -89,6 +89,5 @@ class Proficiency(models.Model):
     course = models.ForeignKey('course.Course', max_length=255, on_delete=models.CASCADE, null=True)
     user = models.ForeignKey('user', on_delete=models.CASCADE, null=True)
 
-
     def __str__(self):
         return self.name_proficiency
