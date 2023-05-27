@@ -29,7 +29,7 @@ SECRET_KEY = str(os.getenv("SECRET_KEY"))
 DEBUG = True
 
 ALLOWED_HOSTS = []
-
+CSRF_TRUSTED_ORIGINS=['https://ana004-reimagined-waffle-qxw5p9wqqwvh45g5-8000.preview.app.github.dev']
 # Application definition    
 
 INSTALLED_APPS = [
@@ -159,3 +159,5 @@ CELERY_TASK_TRACK_STARTED = True
 CELERY_TIMEZONE = 'America/Sao_Paulo'
 
 AUTH_USER_MODEL = "user.User"
+LOGIN_REDIRECT_URL = "/"
+LOGIN_URL = "user/login"

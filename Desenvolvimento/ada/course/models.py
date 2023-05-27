@@ -12,6 +12,7 @@ class Course(models.Model):
     hour_start = models.TimeField(_('start time'))
     hour_end = models.TimeField(_('end time'))
     area = models.ForeignKey('area.Area', on_delete=models.CASCADE, null=True)
+    block = models.ForeignKey('area.Block', on_delete=models.CASCADE, null=True)
 
     def __str__(self):
         return self.name_course
