@@ -78,7 +78,7 @@ class History(models.Model):
 
 class Job(models.Model):
     id_job = models.AutoField(primary_key=True)
-    name_job = models.CharField(_('name job'), max_length=255)
+    name_job = models.CharField(_('name job'), max_length=160)
 
     def __str__(self):
         return self.name_job
