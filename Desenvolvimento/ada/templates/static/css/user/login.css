@@ -10,7 +10,7 @@ body {
 }
 
 section.register {
-    border-radius: 20px;
+    border-radius: 30px;
 }
 
 .logo-notlogged img {
@@ -24,10 +24,42 @@ section.register .card {
     transform: translate(-50%, -50%);
 }
 
-.btn-outline-danger:focus, .btn-outline-danger:active {
-    background-color: #76DEC6;
-    border: 1px solid #76DEC6;
-    color: white;
+.custom-btn {
+    background-color: #3F927E;
+    color: #ffffff;
+    border-radius: 4px;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.custom-btn:hover {
+    background-color: #2a5a4f;
+}
+
+.custom-btn:active {
+    background-color: #3F927E;
+    box-shadow: 0 0 10px #3F927E;
+}
+
+.google-btn {
+    background-color: #1590ff;
+    color: #ffffff;
+    border-radius: 4px;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.google-btn:hover {
+    background-color: #1f67a5;
+}
+
+.google-btn:active {
+    background-color: #1590ff;
+    box-shadow: 0 0 10px #1590ff;
 }
 
 button[type="submit"] {
