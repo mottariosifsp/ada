@@ -13,13 +13,14 @@ tabela_data = ""
 # fazer filtro somente com os professores de uma determinada área
 
 def get_areas(request):
-    user = request.user  # precisa ser somente do admin - ok
-    blocks = user.blocks.all()  # Obtém os blocos do usuário
-    areas = []
-    for block in blocks:
-        areas += block.areas.all()
-
+        user = request.user
+        blocks = user.blocks.all()
+        areas = []
+        for block in blocks:
+            areas += block.areas.all()
+        print(areas)
         return areas
+
 def get_selected_campo():
     if Criteria.objects.filter(is_select=True).exists():
         criterion_selected = Criteria.objects.filter(is_select=True).values('number_criteria')
@@ -75,9 +76,7 @@ def queueSetup(request):
     if request.method == 'GET':
         if 'area' in request.GET:
             selected_area = request.GET.get('area')
-            # print("SELECTED-AREA", selected_area)
             resultados = User.objects.filter(blocks__areas__name_area=selected_area)
-            # print("resultados-AREA-user-user", resultados)
 
             areas = get_areas(request)
 
@@ -87,7 +86,7 @@ def queueSetup(request):
                 'areas': areas
             }
 
-            # print("aqui")
+            print("aqui22")
             return render(request, 'attribution/queueSetup.html', {'data': data})
 
     if request.method == 'POST':
@@ -109,7 +108,8 @@ def queueSetup(request):
         data = {
             'resultados': TeacherQueuePosition.objects.select_related('teacher').order_by('position').all(),
             'marcadorDiff': 1,
-            'campo': campo
+            'campo': campo,
+            'area': get_areas(request)
         }
 
         print(2)
@@ -163,7 +163,6 @@ def queueSetup(request):
                 areas = get_areas(request)
 
                 print(areas)
-                    # Resto da lógica da view...
 
                 # for user in resultados:
                 #     blocks = user.blocks.all()
