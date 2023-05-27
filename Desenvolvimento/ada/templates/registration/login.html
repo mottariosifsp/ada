@@ -5,7 +5,7 @@
 {% block head %}
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.0/font/bootstrap-icons.css">
     <link rel="stylesheet" href="{% static 'css/user/login.css' %}">
-    <title>{% trans "Login" %}</title>
+    <title>{% translate "Login" %}</title>
 {% endblock %}
 
 {% block body %}
@@ -51,7 +51,7 @@
                                 <input type="hidden" name="next" value="{{ next }}">
                             </div>
                             <div class="col-12">
-                                <button class="google-btn w-100" type="submit"><i class="bi bi-google"></i> {% trans "Entre com"%}<b> Google</b></button>
+                                <button class="google-btn w-100" type="submit"><i class="bi bi-google"></i> {% translate "Entre com"%}<b> Google</b></button>
                             </div>
                         </form>
                     </div>
