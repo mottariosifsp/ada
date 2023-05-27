@@ -3,6 +3,7 @@ from django.db import transaction
 from django.shortcuts import render
 from django.contrib.auth.decorators import user_passes_test
 from .models import Deadline
+from django.utils import timezone
 
 def is_staff(user):
     return user.is_staff
@@ -37,6 +38,25 @@ def confirmConfiguration(request):
         saveDeadlines(data)
 
     return render(request, 'configuration/confirmConfiguration.html', data)
+
+def showActualDeadline(request):
+    deadlines = Deadline.objects.all()
+    now = timezone.now() 
+
+    if(deadlines.get(name="startFPADeadline").deadline_start <= now and deadlines.get(name="startFPADeadline").deadline_end >= now):
+        actualDeadline = "FPA"
+    elif(deadlines.get(name="startAssignmentDeadline").deadline_start <= now and deadlines.get(name="startAssignmentDeadline").deadline_end >= now):
+        actualDeadline = "Assignment"
+    elif(deadlines.get(name="startExchangeDeadline").deadline_start <= now and deadlines.get(name="startExchangeDeadline").deadline_end >= now):
+        actualDeadline = "Exchange"
+    else:
+        actualDeadline = "none"
+
+    data = {
+        'actualDeadline': actualDeadline
+    }
+
+    return render(request, 'configuration/showActualDeadline.html', data)
 
 @transaction.atomic
 def saveDeadlines(data):
