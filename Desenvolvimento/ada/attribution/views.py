@@ -118,8 +118,6 @@ def queueSetup(request):
                     'campo': campo
                 }
 
-                # print(resultados)
-
                 print(4)
                 return render(request, 'attribution/queueSetup.html', {'data': data})
             else:

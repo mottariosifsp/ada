@@ -49,9 +49,6 @@ class User(AbstractBaseUser, PermissionsMixin):
     job = models.ForeignKey('Job', on_delete=models.CASCADE, null=True, blank=True)
     blocks = models.ManyToManyField('area.Block', blank=True, related_name='users')
 
-
-
-
     objects = UserManager()
 
     USERNAME_FIELD = 'registration_id'

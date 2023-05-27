@@ -47,7 +47,12 @@
                     <td>{{ user.teacher.history.date_professor|date:"Y-m-d" }}</td>
                     <td>{{ user.teacher.history.date_area|date:"Y-m-d" }}</td>
                     <td>{{ user.teacher.history.date_institute|date:"Y-m-d" }}</td>
-                    <td>{{ user.teacher.name_block }}</td>
+                     <td>
+                        {% for block in user.blocks.all %}
+                            {{ block.name_block }}
+                            {% if not forloop.last %}, {% endif %}
+                        {% endfor %}
+                    </td>
                 </tr>
             {% endwith %}
 {#            {% endif %}#}
