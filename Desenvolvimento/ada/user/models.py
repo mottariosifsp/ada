@@ -1,6 +1,4 @@
 from django.db import models
-
-from django.db import models
 from django.core.mail import send_mail
 from django.contrib.auth.models import PermissionsMixin
 from django.contrib.auth.base_user import AbstractBaseUser, BaseUserManager
@@ -38,16 +36,15 @@ class User(AbstractBaseUser, PermissionsMixin):
     registration_id = models.CharField(_('registration id'), max_length=9, unique=True)
     first_name = models.CharField(_('first name'), max_length=30)
     last_name = models.CharField(_('last name'), max_length=30)
-    telephone = models.CharField(_('telephone'), max_length=10)
+    telephone = models.CharField(_('telephone'), max_length=10, null=True, blank=True)
     cell_phone = models.CharField(_('cell phone'), max_length=14)
     date_joined = models.DateTimeField(_('date joined'), auto_now_add=True)
-    # password = models.CharField(_('password'), max_length=160)
     is_superuser = models.BooleanField(_('superuser status'), default=False)
     is_active = models.BooleanField(_('active'), default=True) #mudar depois
     is_staff = models.BooleanField(_('staff status'), default=True)
-    history = models.ForeignKey('History', on_delete=models.CASCADE, null=True)
-    job = models.ForeignKey('Job', on_delete=models.CASCADE, null=True)
-    
+    history = models.ForeignKey('History', on_delete=models.CASCADE, null=True, blank=True)
+    job = models.ForeignKey('Job', on_delete=models.CASCADE, null=True, blank=True)
+    blocks = models.ManyToManyField('area.Block', blank=True)
     objects = UserManager()
 
     USERNAME_FIELD = 'registration_id'
@@ -89,8 +86,8 @@ class Job(models.Model):
 class Proficiency(models.Model):
     id_proficiency = models.AutoField(primary_key=True)
     is_competent = models.BooleanField(_('is competent'), default=True)
-    course = models.CharField(_('course'), max_length=255) #mudar depois
-    user = models.ForeignKey('user', on_delete=models.CASCADE)
+    course = models.ForeignKey('course.Course', max_length=255, on_delete=models.CASCADE, null=True)
+    user = models.ForeignKey('user', on_delete=models.CASCADE, null=True)
 
 
     def __str__(self):
