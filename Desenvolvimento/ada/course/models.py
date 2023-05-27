@@ -12,6 +12,9 @@ class Course(models.Model):
     area = models.ForeignKey('area.Area', on_delete=models.CASCADE, null=True)
     block = models.ForeignKey('area.Block', on_delete=models.CASCADE, null=True)
 
+    class Meta:
+        verbose_name = _('course')
+        verbose_name_plural = _('courses')
+
     def __str__(self):
         return self.name_course
-    
