@@ -8,5 +8,13 @@ class Class(models.Model):
     semester = models.IntegerField(_('semester'))
     area = models.ForeignKey('area.Area', on_delete=models.CASCADE, null=True)
 
+    def get_semester_high_school(self):
+        year = 0
+        if self.area.is_high_school:
+            year = (self.semester + 1) // 2
+        else:
+            year = self.semester
+        return year
+
     def __str__(self):
         return self.registration_class_id
