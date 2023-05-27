@@ -14,8 +14,10 @@ a:not(.title):hover {
     text-decoration: none;
 }
 
+.dropdown-login { margin-right: 10px; }
+
 /* Definições de estilo para itens de navegação */
-nav.navbar {
+nav.navbar-nav {
     position: fixed;
     background-color: #3F927E;
     color: #f9fefd;
