@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     "timetable",
     "course",
     "class",
+    "configuration",
 ]
 
 MIDDLEWARE = [
@@ -150,10 +151,11 @@ STATIC_ROOT = os.path.join(BASE_DIR, "static")
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
-CELERY_BROKER_URL = 'redis://127.0.0.1:6379'
-CELERY_ACCEPT_CONTENT = {'aplicattion/json'}
-CELERY_RESULT_SERIALIZER = 'json'   
-CELERY_TASK_SERIALIZER = 'json'
+CELERY_BROKER_URL = "redis://localhost:6379"
+CELERY_RESULT_BACKEND = CELERY_BROKER_URL
+CELERY_ACCEPT_CONTENT = ["json"]
+CELERY_TASK_SERIALIZER = "json"
+CELERY_TASK_TRACK_STARTED = True
 CELERY_TIMEZONE = 'America/Sao_Paulo'
 
 AUTH_USER_MODEL = "user.User"

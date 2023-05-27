@@ -1,6 +1,7 @@
 from django.db import models
 from enums import enum
 from django.utils.translation import gettext_lazy as _
+from common.validator.validator import validate_incongruity_time, validate_interrupted_time
 
 class Timetable(models.Model):
     day = models.CharField(_('day'), choices=[(s.name, s.value) for s in enum.Day], max_length=45)
@@ -13,9 +14,9 @@ class Timetable(models.Model):
         verbose_name_plural = _('timetables')
     
 class Timeslot(models.Model):
-    hour_start = models.TimeField(_('start time'))
-    hour_end = models.TimeField(_('end time'))
-    name = models.CharField(_('name'), max_length=10)
+    hour_start = models.TimeField(_('hour start'))
+    hour_end = models.TimeField(_('hour end'))
+    area = models.ForeignKey('area.Area', on_delete=models.CASCADE, related_name='timeslot', null=True)
 
     class Meta:
         verbose_name = _('timeslot')
@@ -23,6 +24,11 @@ class Timeslot(models.Model):
 
     def __str__(self):
         return self.name
+        
+    def clean(self):
+        super().clean()
+        validate_incongruity_time(self) # validação hora início maior que a hora fim, validação hora início igual hora fim
+        validate_interrupted_time(Timeslot, self) # validação uma hora em cima da outra, validação mesma hora
     
 class Timetable_user(models.Model):
     timetable = models.ForeignKey('Timetable', on_delete=models.CASCADE, related_name='timetable_user')
