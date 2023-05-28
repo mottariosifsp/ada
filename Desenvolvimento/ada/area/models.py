@@ -2,8 +2,8 @@ from django.db import models
 from django.utils.translation import gettext_lazy as _
 
 class Area(models.Model):
-    name_area = models.CharField(_('name area'), max_length=45)
-    registration_area_id = models.CharField(_('registration area id'), max_length=20)
+    name_area = models.CharField(_('name area'), max_length=45, unique=True)
+    registration_area_id = models.CharField(_('registration area id'), max_length=20, unique=True)
     exchange_area = models.BooleanField(_('exchange area'), default=True)
     is_high_school = models.BooleanField(_('is high school'), default=True)
     blocks = models.ManyToManyField('Block', blank=True)

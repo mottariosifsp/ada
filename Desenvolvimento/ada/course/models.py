@@ -1,12 +1,13 @@
 from django.db import models
 from enums import enum
 from django.utils.translation import gettext_lazy as _
-from common.validator.validator import validate_uppercase
+from common.validator.validator import validate_uppercase, validate_acronym_length
     
 class Course(models.Model):
     id_course = models.AutoField(primary_key=True, unique=True)
     registration_course_id = models.CharField(_('registration course id'), max_length=20, unique=True)
     name_course = models.CharField(_('course name'), max_length=45, validators=[validate_uppercase])
+    acronym = models.CharField(_('acronym'), max_length=3, null=True, validators=[validate_uppercase, validate_acronym_length])
     period = models.CharField(_('period'), choices=[(s.name, s.value) for s in enum.Period], max_length=45)
     hour_start = models.TimeField(_('start time'))
     hour_end = models.TimeField(_('end time'))
