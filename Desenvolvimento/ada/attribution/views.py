@@ -33,7 +33,7 @@ def get_selected_campo():
             4: 'date_professor',
             5: 'date_area',
             6: 'date_institute',
-            # 7: 'falta o 7
+            7: 'academic_degrees'
         }
 
         return campos.get(valor_numero, "campo")
@@ -127,20 +127,13 @@ def queueSetup(request):
 
             users_ausentes = [user for user in users if user.id not in teacher_queue_users]
             teacher_queue_users = teacher_queue_users
-            teacher_queue_users.extend([user.id for user in users_ausentes])
+            teacher_queue_users([user.id for user in users_ausentes])
             users_in_teacher_queue = User.objects.all()
-
-
-
-            #areas = get_areas(request)
-
-            #print(areas)
 
             data = {
                 'resultados': users_in_teacher_queue,
                 'marcadorDiff': 0,
-                'campo': campo,
-                #'areas': areas
+                'campo': campo
             }
 
             print(3)
@@ -164,11 +157,20 @@ def queueSetup(request):
                     #'areas': areas
                 }
 
-                users = User.objects.annotate(total_score=Sum('history__academic_degrees__punctuation'))
+                # users = User.objects.annotate(total_score=Sum('history__academic_degrees__punctuation'))
+                # filtered_users = users.filter(total_score__gt=0).order_by('-total_score')
+                #
+                # # # Cálculo da soma do score
+                # total_score_sum = filtered_users.aggregate(sum=Sum('total_score'))['sum']
+                # users = User.objects.annotate(total_score=Sum('history__academic_degrees__punctuation')).order_by('-total_score')
+                # print(users)
 
-                usuarios_filtrados = users.filter(total_score__gt=0).order_by('-total_score')
-
-                print("pontuação", usuarios_filtrados)
+                data = {
+                    'resultados': resultados,
+                    'marcadorDiff': 0,
+                    'campo': campo,
+                    # 'total_score_sum': total_score_sum,
+                }
 
                 print(4)
                 return render(request, 'attribution/queueSetup.html', {'data': data})

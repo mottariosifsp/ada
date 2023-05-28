@@ -40,6 +40,7 @@
                     <th scope="col">Date Professor</th>
                     <th scope="col">Date Area</th>
                     <th scope="col">Date Institute</th>
+{#                    <th scope="col">Academic Degree Scores</th>#}
                 </tr>
             </thead>
             <tbody>
@@ -60,6 +61,7 @@
                     <td>{{ user.teacher.history.date_professor|date:"Y-m-d" }}</td>
                     <td>{{ user.teacher.history.date_area|date:"Y-m-d" }}</td>
                     <td>{{ user.teacher.history.date_institute|date:"Y-m-d" }}</td>
+{#                    <td> {{ user.total_score }}</td>#}
                 </tr>
             {% endwith %}
 {#            {% endif %}#}
@@ -78,6 +80,7 @@
                     <td>{{ user.history.date_professor|date:"Y-m-d" }}</td>
                     <td>{{ user.history.date_area|date:"Y-m-d" }}</td>
                     <td>{{ user.history.date_institute|date:"Y-m-d" }}</td>
+{#                    <td> {{ user.total_score }}</td>#}
                 </tr>
             {% endwith %}
 {#            {% endif %}#}
