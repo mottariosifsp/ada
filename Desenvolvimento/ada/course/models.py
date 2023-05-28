@@ -1,5 +1,7 @@
 from django.db import models
 from django.utils.translation import gettext_lazy as _
+from django.db.models.signals import pre_save
+from common.processors import convert_to_uppercase
 from common.validator.validator import validate_uppercase, validate_acronym_length
     
 class Course(models.Model):
