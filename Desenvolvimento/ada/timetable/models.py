@@ -21,9 +21,6 @@ class Timeslot(models.Model):
     class Meta:
         verbose_name = _('timeslot')
         verbose_name_plural = _('timeslots')
-
-    def __str__(self):
-        return self.name
         
     def clean(self):
         super().clean()
