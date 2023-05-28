@@ -145,8 +145,6 @@ def queueSetup(request):
 
             final_list = list(teacher_positions) + missing_users
 
-            # ids = [item.teacher.id for item in final_list] # as vezes vai ter um usuário que não vai ser teacher, como faz?
-
             usuarios_somados = []
 
             for item in final_list:
@@ -160,6 +158,7 @@ def queueSetup(request):
                 else:
                     user = item
                     if user is not None and user.history is not None:
+                        # teacher_positions_count = TeacherQueuePosition.objects.count()
                         total_score = user.history.academic_degrees.aggregate(total_score=Sum('punctuation'))[
                             'total_score'] # Ok, está funcionando - só precisa add logica no template
                     else:
@@ -190,8 +189,9 @@ def queueSetup(request):
                 'marcadorDiff': '1',
                 'campo': campo,
                 'total_score': usuarios_somados,
-                'temNovoUser': 1
-                # 'areas': areas
+                'tem_novo_user': 1,
+                # 'areas': areas,
+                # 'posicao_do_ultimo_usuario': teacher_positions_count
             }
 
             print(3)

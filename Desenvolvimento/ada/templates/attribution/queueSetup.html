@@ -48,56 +48,41 @@
             <tbody>
             {% csrf_token %}
 
-            {%  if data.marcadorDiff == '1' %}
-                <p>oi</p>
-            {% for user in data.resultados %}
-
-{#            {% if not user.teacher.is_superuser%}#}
-            {% with counter=forloop.counter0 %}
-                <tr>
-                    <td class="editable" data-column="position">{{ counter }}</td>
-                    <td>{{ user.teacher.registration_id }}</td>
-                    <td>{{ user.teacher.first_name }}</td>
-                    <td>{{ user.teacher.history.birth|date:"Y-m-d" }}</td>
-                    <td>{{ user.teacher.history.date_career|date:"Y-m-d" }}</td>
-                    <td>{{ user.teacher.history.date_campus|date:"Y-m-d" }}</td>
-                    <td>{{ user.teacher.history.date_professor|date:"Y-m-d" }}</td>
-                    <td>{{ user.teacher.history.date_area|date:"Y-m-d" }}</td>
-                    <td>{{ user.teacher.history.date_institute|date:"Y-m-d" }}</td>
-                    {% for userx in data.total_score %}
-                    {% if forloop.parentloop.counter0 == forloop.counter0 %}
-                    <td>{{ userx.total_score }}</td>
-                {% endif %}
-                {% endfor %}
-                </tr>
-            {% endwith %}
-{#            {% endif %}#}
-            {% endfor %}
+{% for user in data.resultados %}
+    {% with counter=forloop.counter0 %}
+        <tr>
+            <td class="editable" data-column="position">{{ counter }}</td>
+            {% if user.teacher %}
+                <td>{{ user.teacher.registration_id }}</td>
+                <td>{{ user.teacher.first_name }}</td>
+                <td>{{ user.teacher.history.birth|date:"Y-m-d" }}</td>
+                <td>{{ user.teacher.history.date_career|date:"Y-m-d" }}</td>
+                <td>{{ user.teacher.history.date_campus|date:"Y-m-d" }}</td>
+                <td>{{ user.teacher.history.date_professor|date:"Y-m-d" }}</td>
+                <td>{{ user.teacher.history.date_area|date:"Y-m-d" }}</td>
+                <td>{{ user.teacher.history.date_institute|date:"Y-m-d" }}</td>
             {% else %}
-                 {% for user in data.resultados %}
-{#            {% if not user.teacher.is_superuser%}#}
-            {% with counter=forloop.counter0 %}
-                <tr>
-                    <td class="editable" data-column="position">{{ counter }}</td>
-                    <td>{{ user.registration_id }}</td>
-                    <td>{{ user.first_name }}</td>
-                    <td>{{ user.history.birth|date:"Y-m-d" }}</td>
-                    <td>{{ user.history.date_campus|date:"Y-m-d" }}</td>
-                    <td>{{ user.history.date_career|date:"Y-m-d" }}</td>
-                    <td>{{ user.history.date_professor|date:"Y-m-d" }}</td>
-                    <td>{{ user.history.date_area|date:"Y-m-d" }}</td>
-                    <td>{{ user.history.date_institute|date:"Y-m-d" }}</td>
-                    {% for userx in data.total_score %}
-                    {% if forloop.parentloop.counter0 == forloop.counter0 %}
+                <td>{{ user.registration_id }}</td>
+                <td>{{ user.first_name }}</td>
+                <td>{{ user.history.birth|date:"Y-m-d" }}</td>
+                <td>{{ user.history.date_career|date:"Y-m-d" }}</td>
+                <td>{{ user.history.date_campus|date:"Y-m-d" }}</td>
+                <td>{{ user.history.date_professor|date:"Y-m-d" }}</td>
+                <td>{{ user.history.date_area|date:"Y-m-d" }}</td>
+                <td>{{ user.history.date_institute|date:"Y-m-d" }}</td>
+            {% endif %}
+
+            {% for userx in data.total_score %}
+                {% if forloop.parentloop.counter0 == forloop.counter0 %}
                     <td>{{ userx.total_score }}</td>
                 {% endif %}
-                {% endfor %}
-
-                </tr>
-            {% endwith %}
-{#            {% endif %}#}
             {% endfor %}
-            {% endif %}
+        </tr>
+    {% endwith %}
+{% endfor %}
+
+
+{#            {% endif %}#}
             </tbody>
         </table>
         <button style="margin-top: 10px;" class="btn btn-success" id="enviar-tabela">Enviar Tabela</button>
