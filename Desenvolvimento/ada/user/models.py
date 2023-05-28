@@ -76,7 +76,7 @@ class History(models.Model):
     date_professor = models.DateField(_('date professor'))
     date_area = models.DateField(_('date area'))
     date_institute = models.DateField(_('date institute'))
-
+    # campo = chaveestrangeira(tabeladeTitulacoes)
     def __str__(self):
         return str(self.id_history)
 

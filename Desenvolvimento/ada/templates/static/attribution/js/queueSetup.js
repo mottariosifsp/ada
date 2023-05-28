@@ -65,14 +65,14 @@ $('#enviar-tabela').click(function() {
 });
 
 
-$('.submit-btn').click(function() {
-  var selectedArea = $('.area-select').val();
-  console.log("caiu");
-
-  var redirectURL = '/attribution/queueSetup/?area=' + selectedArea;
-
-  window.location.href = redirectURL;
-});
+// $('.submit-btn').click(function() {
+//   var selectedArea = $('.area-select').val();
+//   console.log("caiu");
+//
+//   var redirectURL = '/attribution/queueSetup/?area=' + selectedArea;
+//
+//   window.location.href = redirectURL;
+// });
 
 
 

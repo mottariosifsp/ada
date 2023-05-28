@@ -11,14 +11,14 @@ tabela_data = ""
 # fazer filtro somente com os professores de uma determinada área
 
 # Seleciona as áreas que o admin pertence
-def get_areas(request):
-        user = request.user
-        blocks = user.blocks.all()
-        areas = []
-        for block in blocks:
-            areas += block.areas.all()
-        # areas = [area for block in blocks for area in block.areas.all()] - colocar
-        return areas
+# def get_areas(request):
+#         user = request.user
+#         blocks = user.blocks.all()
+#         areas = []
+#         for block in blocks:
+#             areas += block.areas.all()
+#         # areas = [area for block in blocks for area in block.areas.all()] - colocar
+#         return areas
 
 # Seleciona o campo marcado pelo administrador e verifica qual é o atributo correspondente no histórico dos usuários
 def get_selected_campo():
@@ -32,6 +32,7 @@ def get_selected_campo():
             4: 'date_professor',
             5: 'date_area',
             6: 'date_institute',
+            # falta o 7
         }
 
         return campos.get(valor_numero, "campo")
@@ -46,17 +47,19 @@ def add_teacher_to_queue(teacher, position_input):
     position = position_input
     TeacherQueuePosition.objects.create(teacher=teacher, position=position)
 
+# precisa remover professor também, caso ele saia da escola
+
 # View que leva para a(s) fila(s) já definida pelo admin
 def queue(request):
         campo = get_selected_campo()
-        areas = get_areas(request)
+        # #areas = get_areas(request)
 
         data = {
             'criterios': Criteria.objects.all(),
             'resultados': TeacherQueuePosition.objects.select_related('teacher').order_by('position').all(),
             'marcadorDiff': 0,
             'campo': campo,
-            'areas': areas
+            # #'areas': areas
         }
 
         # precisa fazer a lógica para ver filas diferentes
@@ -70,22 +73,22 @@ def queueSetup(request):
     global marcador
     global tabela_data # variável utilizada caso a fila já tenha sido definida pelo menos uma vez pelo admin
 
-    if request.method == 'GET' and 'area' in request.GET:
-        selected_area = request.GET.get('area')
-        resultados = User.objects.filter(blocks__areas__name_area=selected_area)
-        areas = get_areas(request)
-
-        campo = get_selected_campo()
-
-        data = {
-            'resultados': resultados,
-            'marcadorDiff': 0,
-            'campo': campo,
-            'areas': areas
-        }
-
-        print("aqui22")
-        return render(request, 'attribution/queueSetup.html', {'data': data})
+    # if request.method == 'GET' and 'area' in request.GET:
+    #     selected_area = request.GET.get('area')
+    #     resultados = User.objects.filter(blocks__areas__name_area=selected_area)
+    #     #areas = get_areas(request)
+    #
+    #     campo = get_selected_campo()
+    #
+    #     data = {
+    #         'resultados': resultados,
+    #         'marcadorDiff': 0,
+    #         'campo': campo,
+    #         #'areas': areas
+    #     }
+    #
+    #     print("aqui22")
+    #     return render(request, 'attribution/queueSetup.html', {'data': data})
 
     if request.method == 'POST': # adiciona os professores no model TeacherQueuePosition
         marcador = 1; # marcador fica como 1 para ter o controle que já foi criado uma tabela
@@ -107,7 +110,7 @@ def queueSetup(request):
             'resultados': TeacherQueuePosition.objects.select_related('teacher').order_by('position').all(),
             'marcadorDiff': 1, # serve para diferenciar se vai ser user (antes de enviar a tabela) ou teacher no html
             'campo': campo,
-            'area': get_areas(request)
+            # 'area': get_areas(request)
         }
 
         print(2)
@@ -122,19 +125,19 @@ def queueSetup(request):
             teacher_queue_users = TeacherQueuePosition.objects.values_list('teacher', flat=True)
 
             users_ausentes = [user for user in users if user.id not in teacher_queue_users]
-            teacher_queue_users = list(teacher_queue_users)
+            teacher_queue_users = teacher_queue_users
             teacher_queue_users.extend([user.id for user in users_ausentes])
             users_in_teacher_queue = User.objects.all()
 
-            areas = get_areas(request)
+            #areas = get_areas(request)
 
-            print(areas)
+            #print(areas)
 
             data = {
                 'resultados': users_in_teacher_queue,
                 'marcadorDiff': 0,
                 'campo': campo,
-                'areas': areas
+                #'areas': areas
             }
 
             print(3)
@@ -147,15 +150,15 @@ def queueSetup(request):
             if campo != "":
 
                 resultados = User.objects.all().order_by(f'history__{campo}')
-                areas = get_areas(request)
+                #areas = get_areas(request)
 
-                print(areas)
+                #print(areas)
 
                 data = {
                     'resultados': resultados,
                     'marcadorDiff': 0,
                     'campo': campo,
-                    'areas': areas
+                    #'areas': areas
                 }
 
                 print(4)
@@ -173,13 +176,13 @@ def queueSetup(request):
 
         resultados = User.objects.all() # se nenhum critério foi selecionado pelo adm e não tiver feito nenhuma lista manual vai cair aqui
         campo = get_selected_campo()
-        areas = get_areas(request)
+        #areas = get_areas(request)
 
         data = {
             'resultados': resultados,
             'marcadorDiff': 0,
             'campo': campo,
-            'areas': areas
+            #'areas': areas
         }
 
         print(5)
