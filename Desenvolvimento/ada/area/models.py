@@ -6,7 +6,7 @@ class Area(models.Model):
     registration_area_id = models.CharField(_('registration area id'), max_length=20, unique=True)
     exchange_area = models.BooleanField(_('exchange area'), default=True)
     is_high_school = models.BooleanField(_('is high school'), default=True)
-    blocks = models.ManyToManyField('Block', blank=True)
+    blocks = models.ManyToManyField('Block', blank=False)
 
     class Meta:
         verbose_name = _('area')
