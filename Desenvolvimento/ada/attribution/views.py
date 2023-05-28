@@ -3,7 +3,6 @@ from user.models import User
 from attribution.models import TeacherQueuePosition
 from django.shortcuts import render, redirect
 import json
-from django.db.models import Sum
 
 marcador = 0
 tabela_data = ""
@@ -48,19 +47,16 @@ def add_teacher_to_queue(teacher, position_input):
     position = position_input
     TeacherQueuePosition.objects.create(teacher=teacher, position=position)
 
-# precisa remover professor também, caso ele saia da escola
-
 # View que leva para a(s) fila(s) já definida pelo admin
 def queue(request):
         campo = get_selected_campo()
-        # #areas = get_areas(request)
+        # areas = get_areas(request)
 
         data = {
             'criterios': Criteria.objects.all(),
             'resultados': TeacherQueuePosition.objects.select_related('teacher').order_by('position').all(),
             'marcadorDiff': 0,
             'campo': campo,
-            # #'areas': areas
         }
 
         # precisa fazer a lógica para ver filas diferentes
@@ -74,22 +70,22 @@ def queueSetup(request):
     global marcador
     global tabela_data # variável utilizada caso a fila já tenha sido definida pelo menos uma vez pelo admin
 
-    # if request.method == 'GET' and 'area' in request.GET:
-    #     selected_area = request.GET.get('area')
-    #     resultados = User.objects.filter(blocks__areas__name_area=selected_area)
-    #     #areas = get_areas(request)
-    #
-    #     campo = get_selected_campo()
-    #
-    #     data = {
-    #         'resultados': resultados,
-    #         'marcadorDiff': 0,
-    #         'campo': campo,
-    #         #'areas': areas
-    #     }
-    #
-    #     print("aqui22")
-    #     return render(request, 'attribution/queueSetup.html', {'data': data})
+    if request.method == 'GET' and 'area' in request.GET:
+        selected_area = request.GET.get('area')
+        resultados = User.objects.filter(blocks__areas__name_area=selected_area)
+        # areas = get_areas(request)
+
+        campo = get_selected_campo()
+
+        data = {
+            'resultados': resultados,
+            'marcadorDiff': 0,
+            'campo': campo,
+            # 'areas': areas
+        }
+
+        print("aqui22")
+        return render(request, 'attribution/queueSetup.html', {'data': data})
 
     if request.method == 'POST': # adiciona os professores no model TeacherQueuePosition
         marcador = 1; # marcador fica como 1 para ter o controle que já foi criado uma tabela
@@ -109,7 +105,7 @@ def queueSetup(request):
 
         data = {
             'resultados': TeacherQueuePosition.objects.select_related('teacher').order_by('position').all(),
-            'marcadorDiff': 1, # serve para diferenciar se vai ser user (antes de enviar a tabela) ou teacher no html
+            'marcadorDiff': '1', # serve para diferenciar se vai ser user (antes de enviar a tabela) ou teacher no html
             'campo': campo,
             # 'area': get_areas(request)
         }
@@ -122,18 +118,30 @@ def queueSetup(request):
         if marcador == 1:
             campo = get_selected_campo()
 
-            users = User.objects.all()
-            teacher_queue_users = TeacherQueuePosition.objects.values_list('teacher', flat=True)
+            teacher_positions = TeacherQueuePosition.objects.order_by('position')
 
-            users_ausentes = [user for user in users if user.id not in teacher_queue_users]
-            teacher_queue_users = teacher_queue_users
-            teacher_queue_users([user.id for user in users_ausentes])
-            users_in_teacher_queue = User.objects.all()
+            all_users = User.objects.all()
+            missing_users = []
+
+            for user in all_users:
+                if not teacher_positions.filter(teacher=user).exists():
+                    missing_users.append(user)
+
+            final_list = list(teacher_positions) + missing_users
+
+            # areas = get_areas(request)
+
+            print(final_list)
+
+            print("oiii777")
+
+            print(final_list)
 
             data = {
-                'resultados': users_in_teacher_queue,
-                'marcadorDiff': 0,
-                'campo': campo
+                'resultados': final_list,
+                'marcadorDiff': '1',
+                'campo': campo,
+                # 'areas': areas
             }
 
             print(3)
@@ -146,30 +154,15 @@ def queueSetup(request):
             if campo != "":
 
                 resultados = User.objects.all().order_by(f'history__{campo}')
-                #areas = get_areas(request)
+                # areas = get_areas(request)
 
-                #print(areas)
-
-                data = {
-                    'resultados': resultados,
-                    'marcadorDiff': 0,
-                    'campo': campo,
-                    #'areas': areas
-                }
-
-                # users = User.objects.annotate(total_score=Sum('history__academic_degrees__punctuation'))
-                # filtered_users = users.filter(total_score__gt=0).order_by('-total_score')
-                #
-                # # # Cálculo da soma do score
-                # total_score_sum = filtered_users.aggregate(sum=Sum('total_score'))['sum']
-                # users = User.objects.annotate(total_score=Sum('history__academic_degrees__punctuation')).order_by('-total_score')
-                # print(users)
+                # print(areas)
 
                 data = {
                     'resultados': resultados,
                     'marcadorDiff': 0,
                     'campo': campo,
-                    # 'total_score_sum': total_score_sum,
+                    # 'areas': areas
                 }
 
                 print(4)
@@ -187,13 +180,13 @@ def queueSetup(request):
 
         resultados = User.objects.all() # se nenhum critério foi selecionado pelo adm e não tiver feito nenhuma lista manual vai cair aqui
         campo = get_selected_campo()
-        #areas = get_areas(request)
+        # areas = get_areas(request)
 
         data = {
             'resultados': resultados,
             'marcadorDiff': 0,
             'campo': campo,
-            #'areas': areas
+            # 'areas': areas
         }
 
         print(5)
