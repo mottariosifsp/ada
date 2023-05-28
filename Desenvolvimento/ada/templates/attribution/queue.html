@@ -32,7 +32,7 @@
                     <th scope="col">Date Professor</th>
                     <th scope="col">Date Area</th>
                     <th scope="col">Date Institute</th>
-{#                    <th scope="col">Academic Degree Scores</th>#}
+                    <th scope="col">Academic Degree Scores</th>
                 </tr>
             </thead>
             <tbody>
@@ -51,7 +51,11 @@
                     <td>{{ user.teacher.history.date_professor|date:"Y-m-d" }}</td>
                     <td>{{ user.teacher.history.date_area|date:"Y-m-d" }}</td>
                     <td>{{ user.teacher.history.date_institute|date:"Y-m-d" }}</td>
-{#                    <td> {{ user.total_score }}</td>#}
+                    {% for userx in data.total_score %}
+                    {% if forloop.parentloop.counter0 == forloop.counter0 %}
+                    <td>{{ userx.total_score }}</td>
+                {% endif %}
+                {% endfor %}
                 </tr>
             {% endwith %}
 {#            {% endif %}#}

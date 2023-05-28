@@ -3,6 +3,10 @@ from user.models import User
 from attribution.models import TeacherQueuePosition
 from django.shortcuts import render, redirect
 import json
+from django.db.models import Sum
+from django.db.models import Subquery, Sum, OuterRef
+from django.db.models.query import QuerySet
+from django.db.models import F, Sum, Value
 
 marcador = 0
 tabela_data = ""
@@ -52,9 +56,21 @@ def queue(request):
         campo = get_selected_campo()
         # areas = get_areas(request)
 
+        resultados = TeacherQueuePosition.objects.select_related('teacher').order_by('position').all()
+
+        usuarios_somados = User.objects.annotate(
+            total_score=Subquery(
+                TeacherQueuePosition.objects.filter(teacher__id=OuterRef('id')).values('teacher__id').annotate(
+                    total=Sum('teacher__history__academic_degrees__punctuation')
+                ).values('total')
+            )
+        ).values('registration_id', 'total_score')
+
+
         data = {
             'criterios': Criteria.objects.all(),
-            'resultados': TeacherQueuePosition.objects.select_related('teacher').order_by('position').all(),
+            'resultados': resultados,
+            'total_score': usuarios_somados,
             'marcadorDiff': 0,
             'campo': campo,
         }
@@ -70,22 +86,22 @@ def queueSetup(request):
     global marcador
     global tabela_data # variável utilizada caso a fila já tenha sido definida pelo menos uma vez pelo admin
 
-    if request.method == 'GET' and 'area' in request.GET:
-        selected_area = request.GET.get('area')
-        resultados = User.objects.filter(blocks__areas__name_area=selected_area)
-        # areas = get_areas(request)
+    # if request.method == 'GET' and 'area' in request.GET:
+    #     selected_area = request.GET.get('area')
+    #     resultados = User.objects.filter(blocks__areas__name_area=selected_area)
+    #     # areas = get_areas(request)
+    #
+    #     campo = get_selected_campo()
+    #
+    #     data = {
+    #         'resultados': resultados,
+    #         'marcadorDiff': 0,
+    #         'campo': campo,
+    #         # 'areas': areas
+    #     }
 
-        campo = get_selected_campo()
-
-        data = {
-            'resultados': resultados,
-            'marcadorDiff': 0,
-            'campo': campo,
-            # 'areas': areas
-        }
-
-        print("aqui22")
-        return render(request, 'attribution/queueSetup.html', {'data': data})
+        # print("aqui22")
+        # return render(request, 'attribution/queueSetup.html', {'data': data})
 
     if request.method == 'POST': # adiciona os professores no model TeacherQueuePosition
         marcador = 1; # marcador fica como 1 para ter o controle que já foi criado uma tabela
@@ -129,9 +145,41 @@ def queueSetup(request):
 
             final_list = list(teacher_positions) + missing_users
 
+            # ids = [item.teacher.id for item in final_list] # as vezes vai ter um usuário que não vai ser teacher, como faz?
+
+            usuarios_somados = []
+
+            for item in final_list:
+                if isinstance(item, TeacherQueuePosition):
+                    user = item.teacher
+                    if user is not None and user.history is not None:
+                        total_score = user.history.academic_degrees.aggregate(total_score=Sum('punctuation'))[
+                            'total_score']
+                    else:
+                        total_score = 0
+                else:
+                    user = item
+                    if user is not None and user.history is not None:
+                        total_score = user.history.academic_degrees.aggregate(total_score=Sum('punctuation'))[
+                            'total_score'] # Ok, está funcionando - só precisa add logica no template
+                    else:
+                        total_score = 0
+                user.total_score = total_score
+                usuarios_somados.append(user)
+
+
+            usuarios_somados = list(usuarios_somados)
+
+            print("USUARIOS SOMADOAS", usuarios_somados)
+
+            if isinstance(final_list[0], TeacherQueuePosition):
+                # Se o primeiro item for um TeacherQueuePosition
+                item = final_list[0]
+                print("Atributo do TeacherQueuePosition:", item.teacher.first_name)
+
             # areas = get_areas(request)
 
-            print(final_list)
+            print("Posição 0", usuarios_somados)
 
             print("oiii777")
 
@@ -141,6 +189,8 @@ def queueSetup(request):
                 'resultados': final_list,
                 'marcadorDiff': '1',
                 'campo': campo,
+                'total_score': usuarios_somados,
+                'temNovoUser': 1
                 # 'areas': areas
             }
 
@@ -153,15 +203,21 @@ def queueSetup(request):
 
             if campo != "":
 
-                resultados = User.objects.all().order_by(f'history__{campo}')
-                # areas = get_areas(request)
+                usuarios_ordenados = User.objects.all().order_by(f'history__{campo}')
 
-                # print(areas)
+                # Anotar a soma das pontuações para cada usuário
+                usuarios_somados = usuarios_ordenados.annotate(total_score=Sum('history__academic_degrees__punctuation'))
+
+                for usuario in usuarios_somados:
+                    print("Usuário:", usuario.get_full_name())
+                    print("Pontuação total:", usuario.total_score)
+                    print("------------------------------")
 
                 data = {
-                    'resultados': resultados,
+                    'resultados': usuarios_ordenados,
                     'marcadorDiff': 0,
                     'campo': campo,
+                    'total_score': usuarios_somados,
                     # 'areas': areas
                 }
 
