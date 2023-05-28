@@ -1,6 +1,6 @@
 from django.db import models
 from django.dispatch import receiver
-from common.processors import sortByTime
+from common.processors import sort_by_time
 from enums import enum
 from django.utils.translation import gettext_lazy as _
 from common.validator.validator import validate_incongruity_time, validate_interrupted_time
@@ -33,7 +33,7 @@ class Timeslot(models.Model):
 @receiver(models.signals.post_save, sender=Timeslot)
 def execute_after_save(sender, instance, created, *args, **kwargs):
     if created:
-        sortByTime(Timeslot) # ordenação de horários
+        sort_by_time(Timeslot) # ordenação de horários
         
 class Timetable_user(models.Model):
     timetable = models.ForeignKey('Timetable', on_delete=models.CASCADE, related_name='timetable_user')

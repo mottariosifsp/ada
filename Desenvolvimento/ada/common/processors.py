@@ -1,9 +1,12 @@
-def convert_to_uppercase(sender, instance, value):
-    field_value = getattr(instance, sender.value)
-    uppercase_value = field_value.upper()
-    setattr(instance, sender.uppercase_field, uppercase_value)
+def convert_to_uppercase(model, *fields):
+    print("babyshark")
+    for field in fields:
+        field_value = getattr(model, field)
+        print(field)
+        if field_value:
+            setattr(model, field, str(field_value).upper())
 
-def sortByTime(model):
+def sort_by_time(model):
     count = 1
     for object in model.objects.all().order_by('hour_start'):
         object.position = count
