@@ -1,5 +1,4 @@
 from django.db import models
-from enums import enum
 from django.utils.translation import gettext_lazy as _
 from common.validator.validator import validate_uppercase, validate_acronym_length
     
