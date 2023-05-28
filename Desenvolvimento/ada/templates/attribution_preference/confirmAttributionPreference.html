@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% load static %}
+
+{% block head %}
+    <title>{% translate "Confirmação Formulário de Preferência de Atividades" %}</title>
+{% endblock %}
+
+
+{% block head %}
+    <h1>Envio de FPA</h1>
+    <p>Insira suas preferências de horário e aula.</p>
+    <form method="post" action="{% url 'confirmConfiguration' %}">
+
+    </form>
+    <div id="work-regime">
+        <h3>Regime de Trabalho</h3>
+        {% for regime in  %}
+    </div>
+
+    <div id="work-availability">
+
+    </div>
+
+    <div id="preferred-discipline">
+
+    </div>
+{% endblock %}

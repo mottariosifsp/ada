@@ -1,0 +1,122 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% load static %}
+
+{% block head %}
+    <title>{% translate "Envio Formulário de Preferência de Atividades" %}</title>
+{% endblock %}
+
+
+{% block body %}
+    <h1>Envio de FPA</h1>
+    <p>Insira suas preferências de horário e aula.</p>
+    <form method="post" action="{% url 'confirmAttributionPreference' %}">
+
+    </form>
+    <div id="work-regime">
+        <h3>Regime de Trabalho</h3>
+        <hr>
+    </div>
+
+    <div id="work-availability">
+        <h3>Disponibilidade de horários</h3>
+        <hr>
+        <table>
+            <thead>
+                <tr>
+                    <th>Horários</th>
+                    <th>Segunda-Feira</th>
+                    <th>Terça-Feira</th>
+                    <th>Quarta-Feira</th>
+                    <th>Quinta-Feira</th>
+                    <th>Sexta-Feira</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div id="preferred-discipline">
+        <h3>Disponibilidade de horários</h3>
+        <hr>
+        <div id="course-preference-list"></div>
+        <div class="modal center-modal fade" id="addCourseModal" tabindex="-1" role="dialog" aria-labelledby="addCourseModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="addCourseModalLabel">Adicionar Curso</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                  <form id="addCourseForm">
+                    <div class="form-group">
+                      <label for="courseName">Nome do Curso</label>
+                      <input type="text" class="form-control" id="courseName" placeholder="Nome do curso">
+                    </div>
+                    <div class="form-group">
+                      <label for="numClasses">Número de Aulas</label>
+                      <input type="number" class="form-control" id="numClasses" placeholder="Número de aulas">
+                    </div>
+                    <div class="form-group">
+                      <label>Prioridade</label>
+                      <div class="form-check">
+                        <input class="form-check-input" type="radio" name="priority" id="priorityHigh" value="high">
+                        <label class="form-check-label" for="priorityHigh">
+                          Alta
+                        </label>
+                      </div>
+                      <div class="form-check">
+                        <input class="form-check-input" type="radio" name="priority" id="priorityMedium" value="medium">
+                        <label class="form-check-label" for="priorityMedium">
+                          Média
+                        </label>
+                      </div>
+                      <div class="form-check">
+                        <input class="form-check-input" type="radio" name="priority" id="priorityLow" value="low">
+                        <label class="form-check-label" for="priorityLow">
+                          Baixa
+                        </label>
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label for="period">Período</label>
+                      <select class="form-control" id="period">
+                        <option value="morning">Manhã</option>
+                        <option value="afternoon">Tarde</option>
+                        <option value="evening">Noite</option>
+                      </select>
+                    </div>
+                  </form>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+                  <button type="button" class="btn btn-primary" id="addCourseButton">Adicionar</button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addCourseModal">
+            Adicionar Curso
+          </button>
+          {% for course in courses %}
+                {{ course.name_course }}
+          {% endfor %}
+    </div>
+{% endblock %}
+
+
+{% block endbody %}
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="{% static 'js/attribution_preference/preferred-discipline.js' %}"></script>
+{% endblock %}
