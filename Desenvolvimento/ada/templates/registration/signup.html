@@ -1,1 +1,29 @@
-<h1>Sign up page</h1>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Signup Page</title>
+</head>
+<body>
+    <form action="{% url 'signup' %}" method="post">
+        {% csrf_token %}
+        <h3>Signup Here</h3>
+
+        <label for="email">Email institucional</label>
+        <input type="email" placeholder="Email" name="email" id="email" required>
+
+        <label for="registration_id">registration_id</label>
+        <input type="text" placeholder="registration_id" name="registration_id" id="registration_id" required>
+
+        <label for="password">Password</label>
+        <input type="password" placeholder="Password" id="password" name="password" required>
+
+        <button type="submit">Signup</button>
+
+        <a href="{% url 'login' %}" >i have already account</a>
+
+        {% if error_message %}
+            <p>{{ error_message }}</p>
+        {% endif %}
+    </form>
+</body>
+</html>
