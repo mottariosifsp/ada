@@ -47,7 +47,8 @@ class User(AbstractBaseUser, PermissionsMixin):
     is_staff = models.BooleanField(_('staff status'), default=True)
     history = models.ForeignKey('user.History', on_delete=models.CASCADE, blank=True, unique=True, null=True)
     job = models.ForeignKey('Job', on_delete=models.CASCADE, null=True, blank=True)
-    blocks = models.ManyToManyField('area.Block', blank=True, related_name='users')
+    academic_degrees = models.ManyToManyField('AcademicDegree', blank=True)
+    blocks = models.ManyToManyField('area.Block', blank=True, related_name='user_blocks')
 
     objects = UserManager()
 
@@ -76,9 +77,15 @@ class History(models.Model):
     date_professor = models.DateField(_('date professor'))
     date_area = models.DateField(_('date area'))
     date_institute = models.DateField(_('date institute'))
-    # campo = chaveestrangeira(tabeladeTitulacoes)
+    blocks = models.ManyToManyField('area.Block', blank=True, related_name='history_blocks')
+
     def __str__(self):
         return str(self.id_history)
+
+class AcademicDegree(models.Model):
+    id_academic_degree = models.AutoField(primary_key=True)
+    name = models.CharField(_('name'), max_length=30)
+    punctuation = models.IntegerField()
 
 class Job(models.Model):
     id_job = models.AutoField(primary_key=True)
