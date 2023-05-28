@@ -3,6 +3,7 @@ from user.models import User
 from attribution.models import TeacherQueuePosition
 from django.shortcuts import render, redirect
 import json
+from django.db.models import Sum
 
 marcador = 0
 tabela_data = ""
@@ -32,7 +33,7 @@ def get_selected_campo():
             4: 'date_professor',
             5: 'date_area',
             6: 'date_institute',
-            # falta o 7
+            # 7: 'falta o 7
         }
 
         return campos.get(valor_numero, "campo")
@@ -129,6 +130,8 @@ def queueSetup(request):
             teacher_queue_users.extend([user.id for user in users_ausentes])
             users_in_teacher_queue = User.objects.all()
 
+
+
             #areas = get_areas(request)
 
             #print(areas)
@@ -160,6 +163,12 @@ def queueSetup(request):
                     'campo': campo,
                     #'areas': areas
                 }
+
+                users = User.objects.annotate(total_score=Sum('history__academic_degrees__punctuation'))
+
+                usuarios_filtrados = users.filter(total_score__gt=0).order_by('-total_score')
+
+                print("pontuação", usuarios_filtrados)
 
                 print(4)
                 return render(request, 'attribution/queueSetup.html', {'data': data})
