@@ -15,7 +15,10 @@ class Area(models.Model):
 
     def __str__(self):
         return self.name_area
-
+    
+    def get_blocks(self):
+        return self.blocks.all()
+    
 
 class Block(models.Model):
     id = models.AutoField(primary_key=True, unique=True)
