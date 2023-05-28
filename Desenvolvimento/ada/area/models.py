@@ -17,7 +17,7 @@ class Area(models.Model):
 
 
 class Block(models.Model):
-    registration_block_id = models.AutoField(primary_key=True)
+    registration_block_id =  models.CharField(_('registration block id'), primary_key=True, max_length=20)
     name_block = models.CharField(_('name block'), max_length=45)
 
     class Meta:
