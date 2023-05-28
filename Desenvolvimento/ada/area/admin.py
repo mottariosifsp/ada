@@ -10,5 +10,9 @@ class Area_admin(admin.ModelAdmin):
 
     block_names.short_description = 'Block Names'
 
+class Block_admin(admin.ModelAdmin):
+    list_display = ('registration_block_id', 'name_block', 'acronym')
+    search_fields = ('registration_block_id', 'name_block', 'acronym')
+
 admin.site.register(Area, Area_admin)
-admin.site.register(Block)
+admin.site.register(Block, Block_admin)

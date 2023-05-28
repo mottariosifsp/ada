@@ -1,5 +1,6 @@
 from django.db import models
 from django.utils.translation import gettext_lazy as _
+from common.validator.validator import validate_uppercase, validate_acronym_length
 
 class Area(models.Model):
     name_area = models.CharField(_('name area'), max_length=45, unique=True)
@@ -17,8 +18,10 @@ class Area(models.Model):
 
 
 class Block(models.Model):
-    registration_block_id = models.AutoField(primary_key=True)
+    id = models.AutoField(primary_key=True, unique=True)
+    registration_block_id = models.CharField(_('registration block id'), max_length=20, unique=True)
     name_block = models.CharField(_('name block'), max_length=90)
+    acronym = models.CharField(_('acronym'), max_length=3, null=True, validators=[validate_uppercase, validate_acronym_length])
 
     class Meta:
         verbose_name = _('block')
