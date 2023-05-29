@@ -3,6 +3,7 @@ from django.db import transaction
 from django.shortcuts import render
 from django.contrib.auth.decorators import user_passes_test
 from .models import Deadline
+from area.models import Block
 from user.models import User
 from django.utils import timezone
 
@@ -37,6 +38,7 @@ def confirm_deadline_configuration(request):
         endAssignmentDeadline = datetime.strptime(request.POST.get('endAssignmentDeadline'), '%Y-%m-%dT%H:%M')
         startExchangeDeadline = datetime.strptime(request.POST.get('startExchangeDeadline'), '%Y-%m-%dT%H:%M')
         endExchangeDeadline = datetime.strptime(request.POST.get('endExchangeDeadline'), '%Y-%m-%dT%H:%M')
+        block = request.POST.get('block')
 
         print(startFPADeadline)
 
@@ -47,7 +49,7 @@ def confirm_deadline_configuration(request):
             'endAssignmentDeadline': endAssignmentDeadline,
             'startExchangeDeadline': startExchangeDeadline,
             'endExchangeDeadline': endExchangeDeadline,
-            'user_block': request.user.blocks.all()
+            'user_block': Block.objects.get(id=block)
         }
 
         save_deadline(data)
@@ -80,19 +82,19 @@ def save_deadline(data):
         name="startFPADeadline", 
         deadline_start=data['startFPADeadline'], 
         deadline_end=data['endFPADeadline'],
-        blocks=data['userBlock'],
+        block=data['user_block'],
         )
     Deadline.objects.create(
         name="startAssignmentDeadline",
         deadline_start=data['startAssignmentDeadline'],
         deadline_end=data['endAssignmentDeadline'],
-        blocks=data['userBlock'],
+        block=data['user_block'],
         )
     Deadline.objects.create(
         name="startExchangeDeadline",
         deadline_start=data['startExchangeDeadline'],
         deadline_end=data['endExchangeDeadline'],
-        blocks=data['userBlock'],
+        block=data['user_block'],
         )
 
 #professor views
