@@ -22,17 +22,11 @@ class Area(models.Model):
 
 
 class Block(models.Model):
-<<<<<<< HEAD
     id = models.AutoField(primary_key=True, unique=True)
     registration_block_id = models.CharField(_('registration block id'), max_length=20, unique=True)
     name_block = models.CharField(_('name block'), max_length=90, unique=True)
     acronym = models.CharField(_('acronym'), max_length=3, validators=[validate_uppercase, validate_acronym_length])
 
-=======
-    registration_block_id = models.CharField(_('registration block id'), primary_key=True, max_length=20)
-    name_block = models.CharField(_('name block'), max_length=45)
-    
->>>>>>> feature/staff-page
     class Meta:
         verbose_name = _('block')
         verbose_name_plural = _('blocks')

@@ -1,4 +1,4 @@
-from configuration.models import Criteria
+from staff.models import Criteria
 from user.models import User
 from attribution.models import TeacherQueuePosition
 from django.shortcuts import render, redirect
