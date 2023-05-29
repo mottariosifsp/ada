@@ -3,6 +3,7 @@ from django.db import transaction
 from django.shortcuts import render
 from django.contrib.auth.decorators import user_passes_test
 from .models import Deadline
+from user.models import User
 from django.utils import timezone
 
 def is_staff(user):
@@ -91,4 +92,5 @@ def save_deadline(data):
 
 @user_passes_test(is_staff)
 def professors_list(request):
-    return render(request, 'professors_list.html')
+    professors = User.objects.filter(is_superuser=False)
+    return render(request, 'staff/professors_list.html', {'professors': professors})
