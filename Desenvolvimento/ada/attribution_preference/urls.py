@@ -3,5 +3,5 @@ from attribution_preference.views import attributionPreference, confirmAttributi
 
 urlpatterns = [
     path('', attributionPreference, name='attributionPreference'),
-    path('confirmar-preferencia-atribuicao/', confirmAttributionPreference, name='confirmAttributionPreference'),
+    path('confirmar/', confirmAttributionPreference, name='confirmAttributionPreference'),
 ]
