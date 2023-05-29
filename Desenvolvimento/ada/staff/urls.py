@@ -6,5 +6,5 @@ urlpatterns = [
     path("cadastrar-prazos/", deadline_configuration, name="deadline_configuration"),
     path("prazo-cadastrado/", confirm_deadline_configuration, name="confirm_deadline_configuration"),
     path("prazo-atual/", show_current_deadline, name="show_current_deadline"),
-    path("professors-list/", professors_list, name="professors_list"),
+    path("listar-professores/", professors_list, name="professors_list"),
 ]
