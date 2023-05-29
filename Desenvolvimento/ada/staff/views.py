@@ -1,19 +1,34 @@
-from datetime import date, datetime
+from datetime import datetime
 from django.db import transaction
 from django.shortcuts import render
 from django.contrib.auth.decorators import user_passes_test
 from .models import Deadline
+from user.models import User
 from django.utils import timezone
 
 def is_staff(user):
     return user.is_staff
 
+# prazos
+
 @user_passes_test(is_staff)
-def attributionConfiguration(request):
-    return render(request, 'configuration/attributionConfiguration.html') # apagar depois
+def home(request):
+    return render(request, 'staff/home.html')
+
+
+@user_passes_test(is_staff)
+def deadline_configuration(request):
+
+    user_blocks = request.user.blocks.all()
+    
+    data = {
+        'user_blocks': user_blocks
+    }
+
+    return render(request, 'staff/deadline/deadline_configuration.html', data)
     
 
-def confirmConfiguration(request):
+def confirm_deadline_configuration(request):
     if request.method == 'POST':
         
         startFPADeadline = datetime.strptime(request.POST.get('startFPADeadline'), '%Y-%m-%dT%H:%M')
@@ -23,7 +38,6 @@ def confirmConfiguration(request):
         startExchangeDeadline = datetime.strptime(request.POST.get('startExchangeDeadline'), '%Y-%m-%dT%H:%M')
         endExchangeDeadline = datetime.strptime(request.POST.get('endExchangeDeadline'), '%Y-%m-%dT%H:%M')
 
-        # print(startFPADeadline)
         print(startFPADeadline)
 
         data = {
@@ -32,14 +46,15 @@ def confirmConfiguration(request):
             'startAssignmentDeadline': startAssignmentDeadline,
             'endAssignmentDeadline': endAssignmentDeadline,
             'startExchangeDeadline': startExchangeDeadline,
-            'endExchangeDeadline': endExchangeDeadline
+            'endExchangeDeadline': endExchangeDeadline,
+            'user_block': request.user.blocks.all()
         }
 
-        saveDeadlines(data)
+        save_deadline(data)
 
-    return render(request, 'configuration/confirmConfiguration.html', data)
+    return render(request, 'staff/deadline/confirm_deadline_configuration.html', data)
 
-def showActualDeadline(request):
+def show_current_deadline(request):
     deadlines = Deadline.objects.all()
     now = timezone.now() 
 
@@ -56,23 +71,33 @@ def showActualDeadline(request):
         'actualDeadline': actualDeadline
     }
 
-    return render(request, 'configuration/showActualDeadline.html', data)
+    return render(request, 'staff/deadline/show_current_deadline.html', data)
 
 @transaction.atomic
-def saveDeadlines(data):
+def save_deadline(data):
     Deadline.objects.all().delete()
     Deadline.objects.create(
         name="startFPADeadline", 
         deadline_start=data['startFPADeadline'], 
         deadline_end=data['endFPADeadline'],
+        blocks=data['userBlock'],
         )
     Deadline.objects.create(
         name="startAssignmentDeadline",
         deadline_start=data['startAssignmentDeadline'],
         deadline_end=data['endAssignmentDeadline'],
+        blocks=data['userBlock'],
         )
     Deadline.objects.create(
         name="startExchangeDeadline",
         deadline_start=data['startExchangeDeadline'],
         deadline_end=data['endExchangeDeadline'],
+        blocks=data['userBlock'],
         )
+
+#professor views
+
+@user_passes_test(is_staff)
+def professors_list(request):
+    professors = User.objects.filter(is_superuser=False)
+    return render(request, 'staff/professors_list.html', {'professors': professors})
