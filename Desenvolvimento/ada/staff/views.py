@@ -1,8 +1,9 @@
-from datetime import date, datetime
+from datetime import datetime
 from django.db import transaction
 from django.shortcuts import render
 from django.contrib.auth.decorators import user_passes_test
 from .models import Deadline
+from user.models import User
 from django.utils import timezone
 
 def is_staff(user):
@@ -79,22 +80,24 @@ def save_deadline(data):
         name="startFPADeadline", 
         deadline_start=data['startFPADeadline'], 
         deadline_end=data['endFPADeadline'],
+        blocks=data['userBlock'],
         )
     Deadline.objects.create(
         name="startAssignmentDeadline",
         deadline_start=data['startAssignmentDeadline'],
         deadline_end=data['endAssignmentDeadline'],
+        blocks=data['userBlock'],
         )
     Deadline.objects.create(
         name="startExchangeDeadline",
         deadline_start=data['startExchangeDeadline'],
         deadline_end=data['endExchangeDeadline'],
+        blocks=data['userBlock'],
         )
 
 #professor views
 
 @user_passes_test(is_staff)
 def professors_list(request):
-    return render(request, 'professors_list.html')
-
-
+    professors = User.objects.filter(is_superuser=False)
+    return render(request, 'staff/professors_list.html', {'professors': professors})
