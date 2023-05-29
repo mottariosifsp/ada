@@ -1,4 +1,5 @@
 var courses = [];
+var lang = document.currentScript.getAttribute('data-lang');
 
 $(document).ready(function() {
   function addCourseToTable(course) { // adiciona na parte do html uma linha com cada course
@@ -130,7 +131,28 @@ $(document).ready(function() {
 });
 
 $(document).ready(function() {
-  $('#addCourseButton').click(function() {
+  $('#sendFPA').click(function() {
+    var work_regime =  $('input[name="regime"]:checked').val();
+    // ainda não feita
+    var work_courses = courses;
 
-  })
+    if (work_regime && work_courses) {
+      $.ajax({
+        type: 'POST',
+        url: '/preferencia-atribuicao/confirmar/',
+        data: course,
+        beforeSend: function(xhr) {
+          xhr.setRequestHeader("X-CSRFToken", csrftoken);
+        },
+        success: function(response) {
+          window.location.href = '/' + lang + '/preferencia-atribuicao/confirmar/';
+        },
+        error: function(xhr, status, error) {
+          alert("deu erro");
+        }
+      });
+    } else {
+      alert("insira os dados");
+    }
+  });
 });

@@ -20,23 +20,23 @@
           <hr>
           <div class="form-group">
             <div class="form-check form-check-inline">
-              <input class="form-check-input" type="radio" name="typeHours" id="radio20" value="20horas" required>
+              <input class="form-check-input" type="radio" name="regime" id="radio20" value="20horas" required>
               <label class="form-check-label" for="radio20Horas">20 horas</label>
             </div>
             <div class="form-check form-check-inline">
-              <input class="form-check-input" type="radio" name="typeHours" id="radio40" value="40horas" required>
+              <input class="form-check-input" type="radio" name="regime" id="radio40" value="40horas" required>
               <label class="form-check-label" for="radio40Horas">40 horas</label>
             </div>
             <div class="form-check form-check-inline">
-              <input class="form-check-input" type="radio" name="typeHours" id="radioRDE" value="rde" required>
+              <input class="form-check-input" type="radio" name="regime" id="radioRDE" value="rde" required>
               <label class="form-check-label" for="radioRDE">RDE</label>
             </div>
             <div class="form-check form-check-inline">
-              <input class="form-check-input" type="radio" name="typeHours" id="radioSubstitute" value="substitute" required>
+              <input class="form-check-input" type="radio" name="regime" id="radioSubstitute" value="substitute" required>
               <label class="form-check-label" for="radioSubstitute">Substituto</label>
             </div>
             <div class="form-check form-check-inline">
-              <input class="form-check-input" type="radio" name="typeHours" id="radioTemporaly" value="temporaly" required>
+              <input class="form-check-input" type="radio" name="regime" id="radioTemporaly" value="temporaly" required>
               <label class="form-check-label" for="radioTemporaly">Temporário</label>
             </div>
           </div>      
@@ -153,6 +153,7 @@
                     <div class="form-group">
                       <label for="period">Período</label>
                       <select class="form-control" id="period">
+                        <option selected disabled>Selecione</option>
                         <option value="morning">Manhã</option>
                         <option value="afternoon">Tarde</option>
                         <option value="evening">Noite</option>
@@ -169,12 +170,13 @@
           </div>
         </div>
       </div>
-      <button type="button" class="btn btn-primary float-right" name="sendFPA" id="sendFPA">Enviar FPA</button>
+      <hr>
+      <button type="button" class="btn btn-primary float-right mt-5" name="sendFPA" id="sendFPA">Enviar FPA</button>
     </form>
   </div>
 {% endblock %}
 
 {% block endbody %}
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-  <script src="{% static 'js/attribution_preference/preferred-discipline.js' %}"></script>
+  <script src="{% static 'js/attribution_preference/preferred-discipline.js' %}" data-lang={{LANGUAGE_CODE}}></script>
 {% endblock %}
