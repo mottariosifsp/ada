@@ -1,0 +1,93 @@
+{#{% extends "base.html" %}#}
+{% load i18n %}
+{% load static %}
+
+{% block head %}
+<link href="https://cdn.datatables.net/v/dt/jq-3.6.0/dt-1.13.4/rr-1.3.3/datatables.min.css" rel="stylesheet"/>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.datatables.net/v/dt/jq-3.6.0/dt-1.13.4/rr-1.3.3/datatables.min.js"></script>
+{#<script src="{% static 'attribution/js/queueSetup.js' %}" data-lang={{LANGUAGE_CODE}}></script>#}
+
+<title>{% translate "Fila da atribuição" %}</title>
+{% endblock %}
+
+{% block body %}
+
+    <h1> Fila de professores</h1>
+
+    {% if data.campo != "" %}
+    <h3> Critério escolhido pelo super admin: {{ data.campo }}</h3>
+    {% endif %}
+
+{#    <p>Usuários da área:</p>#}
+{#        <select class="area-select">#}
+{#          {% for area in data.areas %}#}
+{#            <option>{{ area.name_area }}</option>#}
+{#          {% endfor %}#}
+{#        </select>#}
+{#    <button class="submit-btn">Selecionar</button>#}
+
+
+
+    <div class="tabela">
+        <table class="table table-striped table-bordered editable" id="queue">
+            <thead>
+                <tr>
+                    <th scope="col">Posição</th>
+                    <th scope="col">Registro</th>
+                    <th scope="col">Nome</th>
+                    <th scope="col">Birth</th>
+                    <th scope="col">Date Career</th>
+                    <th scope="col">Date Campus</th>
+                    <th scope="col">Date Professor</th>
+                    <th scope="col">Date Area</th>
+                    <th scope="col">Date Institute</th>
+                    <th scope="col">Academic Degree Scores</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% csrf_token %}
+
+{% for user in data.resultados %}
+    {% with counter=forloop.counter0 %}
+        <tr>
+            <td class="editable" data-column="position">{{ counter }}</td>
+            {% if user.teacher %}
+                <td>{{ user.teacher.registration_id }}</td>
+                <td>{{ user.teacher.first_name }}</td>
+                <td>{{ user.teacher.history.birth|date:"Y-m-d" }}</td>
+                <td>{{ user.teacher.history.date_career|date:"Y-m-d" }}</td>
+                <td>{{ user.teacher.history.date_campus|date:"Y-m-d" }}</td>
+                <td>{{ user.teacher.history.date_professor|date:"Y-m-d" }}</td>
+                <td>{{ user.teacher.history.date_area|date:"Y-m-d" }}</td>
+                <td>{{ user.teacher.history.date_institute|date:"Y-m-d" }}</td>
+            {% else %}
+                <td>{{ user.registration_id }}</td>
+                <td>{{ user.first_name }}</td>
+                <td>{{ user.history.birth|date:"Y-m-d" }}</td>
+                <td>{{ user.history.date_career|date:"Y-m-d" }}</td>
+                <td>{{ user.history.date_campus|date:"Y-m-d" }}</td>
+                <td>{{ user.history.date_professor|date:"Y-m-d" }}</td>
+                <td>{{ user.history.date_area|date:"Y-m-d" }}</td>
+                <td>{{ user.history.date_institute|date:"Y-m-d" }}</td>
+            {% endif %}
+
+            {% for userx in data.total_score %}
+                {% if forloop.parentloop.counter0 == forloop.counter0 %}
+                    <td>{{ userx.total_score }}</td>
+                {% endif %}
+            {% endfor %}
+        </tr>
+    {% endwith %}
+{% endfor %}
+
+
+{#            {% endif %}#}
+            </tbody>
+        </table>
+        <button style="margin-top: 10px;" class="btn btn-success" id="enviar-tabela">Enviar Tabela</button>
+    </div>
+</div>
+
+<script src="{% static 'attribution/js/queueSetup.js' %}" data-lang={{LANGUAGE_CODE}}></script>
+{% endblock %}

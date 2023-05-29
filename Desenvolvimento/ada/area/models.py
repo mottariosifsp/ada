@@ -12,13 +12,14 @@ class Area(models.Model):
     class Meta:
         verbose_name = _('area')
         verbose_name_plural = _('areas')
+    blocks = models.ManyToManyField('Block', blank=True, related_name='areas')
 
     def __str__(self):
         return self.name_area
-    
+
     def get_blocks(self):
         return self.blocks.all()
-    
+
 
 class Block(models.Model):
     id = models.AutoField(primary_key=True, unique=True)

@@ -12,6 +12,14 @@ class Migration(migrations.Migration):
 
     operations = [
         migrations.CreateModel(
+            name='Criteria',
+            fields=[
+                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
+                ('name_criteria', models.CharField(max_length=45, verbose_name='name criteria')),
+                ('is_select', models.BooleanField(default=False, verbose_name='is selected')),
+            ],
+        ),
+        migrations.CreateModel(
             name='Deadline',
             fields=[
                 ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
