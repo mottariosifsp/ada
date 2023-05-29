@@ -17,13 +17,12 @@ a:not(.title):hover {
 .dropdown-login { margin-right: 10px; }
 
 /* Definições de estilo para itens de navegação */
-.container {
+.container.base {
     margin-top: 80px;
 }
 
 nav.navbar-nav {
     z-index: 1000;
-    
     background-color: #3F927E;
     color: #f9fefd;
     box-shadow: 0px 2px 8px #2a5a4f;
