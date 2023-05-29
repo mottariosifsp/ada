@@ -41,13 +41,11 @@ $(document).ready(function() {
       });
 
       var isCoursePropertiesExists = courses.some(function(existingCourse) {
-        return existingCourse.numAulas !== course.numAulas ||
-        existingCourse.turno !== course.turno ||
-        existingCourse.prioridade !== course.prioridade;
+        return existingCourse.turno === course.turno;
       });
 
       if (isCourseExists) {
-        if (isCoursePropertiesExists) {
+        if (!isCoursePropertiesExists) {
           var csrftoken = $('[name=csrfmiddlewaretoken]').val();
 
           $.ajax({
@@ -73,7 +71,7 @@ $(document).ready(function() {
             }
           });
         } else {
-          $('#error-message').text('O curso já existe na com mesmas propriedades.');
+          $('#error-message').text('O curso já existe no mesmo turno.');
         $('#error-alert').show();
         }
       } else {
@@ -129,4 +127,10 @@ $(document).ready(function() {
     $('#period').val('');
     $('#error-alert').hide();
   });
+});
+
+$(document).ready(function() {
+  $('#addCourseButton').click(function() {
+
+  })
 });

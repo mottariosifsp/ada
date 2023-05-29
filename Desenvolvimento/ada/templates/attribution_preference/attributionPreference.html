@@ -12,156 +12,166 @@
   <h1>a</h1>
   <h1 class="title-page">Envio de FPA</h1>
   <p>Querido docente, insira suas preferências de horário e aula.</p>
-  <form method="post" action="{% url 'confirmAttributionPreference' %}">
-
-    <div id="work-regime">
-      <h3>Regime de Trabalho</h3>
-      <hr>
-      <div class="form-group">
-        <div class="form-check form-check-inline">
-          <input class="form-check-input" type="radio" name="typeHours" id="radio20" value="20horas" required>
-          <label class="form-check-label" for="radio20Horas">20 horas</label>
+  <div class="container">
+    <form method="post" action="{% url 'confirmAttributionPreference' %}">
+      <div class="container">
+        <div id="work-regime">
+          <h3>Regime de Trabalho</h3>
+          <hr>
+          <div class="form-group">
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="radio" name="typeHours" id="radio20" value="20horas" required>
+              <label class="form-check-label" for="radio20Horas">20 horas</label>
+            </div>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="radio" name="typeHours" id="radio40" value="40horas" required>
+              <label class="form-check-label" for="radio40Horas">40 horas</label>
+            </div>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="radio" name="typeHours" id="radioRDE" value="rde" required>
+              <label class="form-check-label" for="radioRDE">RDE</label>
+            </div>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="radio" name="typeHours" id="radioSubstitute" value="substitute" required>
+              <label class="form-check-label" for="radioSubstitute">Substituto</label>
+            </div>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="radio" name="typeHours" id="radioTemporaly" value="temporaly" required>
+              <label class="form-check-label" for="radioTemporaly">Temporário</label>
+            </div>
+          </div>      
         </div>
-        <div class="form-check form-check-inline">
-          <input class="form-check-input" type="radio" name="typeHours" id="radio40" value="40horas" required>
-          <label class="form-check-label" for="radio40Horas">40 horas</label>
+      
+        <div id="work-availability">
+          <h3>Disponibilidade de horários</h3>
+          <hr>
+          <div class="table-responsive">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th class="text-center">Horários</th>
+                        <th class="text-center">Segunda-Feira</th>
+                        <th class="text-center">Terça-Feira</th>
+                        <th class="text-center">Quarta-Feira</th>
+                        <th class="text-center">Quinta-Feira</th>
+                        <th class="text-center">Sexta-Feira</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="text-center"></td>
+                        <td class="text-center"></td>
+                        <td class="text-center"></td>
+                        <td class="text-center"></td>
+                        <td class="text-center"></td>
+                        <td class="text-center"></td>
+                    </tr>
+                </tbody>
+            </table>
+          </div>
         </div>
-        <div class="form-check form-check-inline">
-          <input class="form-check-input" type="radio" name="typeHours" id="radioRDE" value="rde" required>
-          <label class="form-check-label" for="radioRDE">RDE</label>
-        </div>
-        <div class="form-check form-check-inline">
-          <input class="form-check-input" type="radio" name="typeHours" id="radioSubstitute" value="substitute" required>
-          <label class="form-check-label" for="radioSubstitute">Substituto</label>
-        </div>
-        <div class="form-check form-check-inline">
-          <input class="form-check-input" type="radio" name="typeHours" id="radioTemporaly" value="temporaly" required>
-          <label class="form-check-label" for="radioTemporaly">Temporário</label>
-        </div>
-      </div>      
-    </div>
-  
-    <div id="work-availability">
-      <h3>Disponibilidade de horários</h3>
-      <hr>
-      <div class="table-responsive">
-        <table class="table">
-            <thead>
-                <tr>
-                    <th class="text-center">Horários</th>
-                    <th class="text-center">Segunda-Feira</th>
-                    <th class="text-center">Terça-Feira</th>
-                    <th class="text-center">Quarta-Feira</th>
-                    <th class="text-center">Quinta-Feira</th>
-                    <th class="text-center">Sexta-Feira</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td class="text-center"></td>
-                    <td class="text-center"></td>
-                    <td class="text-center"></td>
-                    <td class="text-center"></td>
-                    <td class="text-center"></td>
-                    <td class="text-center"></td>
-                </tr>
-            </tbody>
-        </table>
-      </div>
-    </div>
-  
-    <div id="preferred-discipline">
-      <h3>Disciplinas Ministradas</h3>
-      <hr>
-      <div id="course-preference-list">
-        <button type="button" class="btn btn-primary w-100 mb-3" data-toggle="modal" data-target="#addCourseModal">
-          Adicionar Curso
-        </button>
-        <table class="table table-borderless" id="course-table">
-          <thead>
-            <tr class="bg-success text-light">
-              <th class="text-center">Sigla</th>
-              <th class="text-center">Nome Aula</th>
-              <th class="text-center">Número de Aulas</th>
-              <th class="text-center">Turno</th>
-              <th class="text-center">Prioridade</th>
-              <th class="text-center">Ações</th>
-            </tr>
-          </thead>
-          <tbody id="course-table-body">
-          
-          </tbody>
-        </table>
-      </div>
-      <div class="modal center-modal fade" id="addCourseModal" tabindex="-1" role="dialog" aria-labelledby="addCourseModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title" id="addCourseModalLabel">Adicionar Curso</h5>
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
+      
+        <div id="preferred-discipline">
+          <div class="row">
+            <div class="col">
+              <h3 class="d-inline">Disciplinas Ministradas</h3>
+            </div>
+            <div class="col text-right center">
+              <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addCourseModal">
+                Adicionar Curso
               </button>
             </div>
-            <div class="modal-body">
-              <div id="error-alert" class="alert alert-danger" style="display: none;">
-                <p id="error-message"></p>
+          </div>
+          <hr>
+          <div id="course-preference-list">
+            
+            <table class="table table-borderless" id="course-table">
+              <thead>
+                <tr class="bg-success text-light">
+                  <th class="text-center">Sigla</th>
+                  <th class="text-center">Nome Aula</th>
+                  <th class="text-center">Número de Aulas</th>
+                  <th class="text-center">Turno</th>
+                  <th class="text-center">Prioridade</th>
+                  <th class="text-center">Ações</th>
+                </tr>
+              </thead>
+              <tbody id="course-table-body">
+              
+              </tbody>
+            </table>
+          </div>
+          <div class="modal center-modal fade" id="addCourseModal" tabindex="-1" role="dialog" aria-labelledby="addCourseModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="addCourseModalLabel">Adicionar Curso</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                  <div id="error-alert" class="alert alert-danger" style="display: none;">
+                    <p id="error-message"></p>
+                  </div>
+                  <form id="addCourseForm" method="post">
+                    {% csrf_token %}
+                    <div class="form-group">
+                      <label for="courseName">Nome do Curso</label>
+                      <select class="form-control" id="courseName">
+                        <option selected disabled>Selecione</option>
+                        {% for course in courses %}
+                        <option value="{{ course.name_course }}">{{ course.name_course }}</option>
+                        {% endfor %}
+                      </select>
+                    </div>
+                    <div class="form-group">
+                      <label for="numClasses">Número de Aulas</label>
+                      <input type="number" class="form-control" id="numClasses" placeholder="Número de aulas">
+                    </div>
+                    <div class="form-group">
+                      <label>Prioridade</label>
+                      <div class="form-check">
+                        <input class="form-check-input" type="radio" name="priority" id="priorityHigh" value="high">
+                        <label class="form-check-label" for="priorityHigh">
+                          Alta
+                        </label>
+                      </div>
+                      <div class="form-check">
+                        <input class="form-check-input" type="radio" name="priority" id="priorityMedium" value="medium">
+                        <label class="form-check-label" for="priorityMedium">
+                          Média
+                        </label>
+                      </div>
+                      <div class="form-check">
+                        <input class="form-check-input" type="radio" name="priority" id="priorityLow" value="low">
+                        <label class="form-check-label" for="priorityLow">
+                          Baixa
+                        </label>
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label for="period">Período</label>
+                      <select class="form-control" id="period">
+                        <option value="morning">Manhã</option>
+                        <option value="afternoon">Tarde</option>
+                        <option value="evening">Noite</option>
+                      </select>
+                    </div>
+                  </form>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+                  <button type="button" class="btn btn-primary" name="addCourse" id="addCourseButton">Adicionar</button>
+                </div>
               </div>
-              <form id="addCourseForm" method="post">
-                {% csrf_token %}
-                <div class="form-group">
-                  <label for="courseName">Nome do Curso</label>
-                  <select class="form-control" id="courseName">
-                    <option selected disabled>Selecione</option>
-                    {% for course in courses %}
-                    <option value="{{ course.name_course }}">{{ course.name_course }}</option>
-                    {% endfor %}
-                  </select>
-                </div>
-                <div class="form-group">
-                  <label for="numClasses">Número de Aulas</label>
-                  <input type="number" class="form-control" id="numClasses" placeholder="Número de aulas">
-                </div>
-                <div class="form-group">
-                  <label>Prioridade</label>
-                  <div class="form-check">
-                    <input class="form-check-input" type="radio" name="priority" id="priorityHigh" value="high">
-                    <label class="form-check-label" for="priorityHigh">
-                      Alta
-                    </label>
-                  </div>
-                  <div class="form-check">
-                    <input class="form-check-input" type="radio" name="priority" id="priorityMedium" value="medium">
-                    <label class="form-check-label" for="priorityMedium">
-                      Média
-                    </label>
-                  </div>
-                  <div class="form-check">
-                    <input class="form-check-input" type="radio" name="priority" id="priorityLow" value="low">
-                    <label class="form-check-label" for="priorityLow">
-                      Baixa
-                    </label>
-                  </div>
-                </div>
-                <div class="form-group">
-                  <label for="period">Período</label>
-                  <select class="form-control" id="period">
-                    <option value="morning">Manhã</option>
-                    <option value="afternoon">Tarde</option>
-                    <option value="evening">Noite</option>
-                  </select>
-                </div>
-              </form>
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
-              <button type="button" class="btn btn-primary" name="addCourse" id="addCourseButton">Adicionar</button>
             </div>
           </div>
         </div>
       </div>
-    </div>
-    <button type="button" class="btn btn-primary" name="addCourse" id="addCourseButton">Adicionar</button>
-  </form>
+      <button type="button" class="btn btn-primary float-right" name="sendFPA" id="sendFPA">Enviar FPA</button>
+    </form>
+  </div>
 {% endblock %}
 
 {% block endbody %}
