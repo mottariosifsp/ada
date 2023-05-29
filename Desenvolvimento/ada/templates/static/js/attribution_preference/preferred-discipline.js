@@ -40,7 +40,43 @@ $(document).ready(function() {
         return existingCourse.sigla === course.sigla && existingCourse.nome === course.nome;
       });
 
-      if (!isCourseExists) {
+      var isCoursePropertiesExists = courses.some(function(existingCourse) {
+        return existingCourse.numAulas !== course.numAulas ||
+        existingCourse.turno !== course.turno ||
+        existingCourse.prioridade !== course.prioridade;
+      });
+
+      if (isCourseExists) {
+        if (isCoursePropertiesExists) {
+          var csrftoken = $('[name=csrfmiddlewaretoken]').val();
+
+          $.ajax({
+            type: 'POST',
+            url: '/preferencia-atribuicao/',
+            data: course,
+            beforeSend: function(xhr) {
+              xhr.setRequestHeader("X-CSRFToken", csrftoken);
+            },
+            success: function(response) {
+              courses.push(course);
+              addCourseToTable(course);
+              updateDataAttribute();
+              $('#courseName').val('');
+              $('#numClasses').val('');
+              $('input[name="priority"]').prop('checked', false);
+              $('#period').val('');
+              $('#error-alert').hide();
+            },
+            error: function(xhr, status, error) {
+              $('#error-message').text('Ocorreu um erro ao adicionar o curso.');
+              $('#error-alert').show();
+            }
+          });
+        } else {
+          $('#error-message').text('O curso já existe na com mesmas propriedades.');
+        $('#error-alert').show();
+        }
+      } else {
         var csrftoken = $('[name=csrfmiddlewaretoken]').val();
 
         $.ajax({
@@ -54,17 +90,17 @@ $(document).ready(function() {
             courses.push(course);
             addCourseToTable(course);
             updateDataAttribute();
-            $('#addCourseForm')[0].reset();
-            $('#addCourseModal').modal('hide');
+            $('#courseName').val('');
+            $('#numClasses').val('');
+            $('input[name="priority"]').prop('checked', false);
+            $('#period').val('');
+            $('#error-alert').hide();
           },
           error: function(xhr, status, error) {
             $('#error-message').text('Ocorreu um erro ao adicionar o curso.');
             $('#error-alert').show();
           }
         });
-      } else {
-        $('#error-message').text('O curso já existe na lista.');
-        $('#error-alert').show();
       }
     } else {
       $('#error-message').text('Por favor, preencha todos os campos.');
@@ -84,5 +120,13 @@ $(document).ready(function() {
   $(document).on('click', '.btn-delete', function() {
     var courseIndex = $(this).data('course-index');
     deleteCourseFromTable(courseIndex);
+  });
+
+  $(document).on('click', '[data-dismiss="modal"]', function() {
+    $('#courseName').val('');
+    $('#numClasses').val('');
+    $('input[name="priority"]').prop('checked', false);
+    $('#period').val('');
+    $('#error-alert').hide();
   });
 });
