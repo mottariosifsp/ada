@@ -6,7 +6,7 @@
 <body>
     <h1>Painel de configuração da atribuição de aulas</h1>
     <hr>
-    <form method="post" action="{% url 'confirmConfiguration' %}">
+    <form method="post" action="{% url 'confirm_deadline_configuration' %}">
         {% csrf_token %}    
         <h2>Prazo para o envio da FPA</h2>
         <p>Início: <input type="datetime-local" name="startFPADeadline"></p>

@@ -1,8 +1,9 @@
 from django.urls import path
-from .views import attributionConfiguration, confirmConfiguration, showActualDeadline
+from .views import home, confirm_deadline_configuration, show_current_deadline, deadline_configuration
 
 urlpatterns = [
-    path("", attributionConfiguration, name="attributionConfiguration"),
-    path("prazo-cadastrado/", confirmConfiguration, name="confirmConfiguration"),
-    path("prazo-atual/", showActualDeadline, name="showActualDeadline")
+    path("", home, name="home"),
+    path("cadastrar-prazos/", deadline_configuration, name="deadline_configuration"),
+    path("prazo-cadastrado/", confirm_deadline_configuration, name="confirm_deadline_configuration"),
+    path("prazo-atual/", show_current_deadline, name="show_current_deadline")
 ]

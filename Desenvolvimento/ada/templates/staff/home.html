@@ -8,6 +8,8 @@
 {% block body %}
   <h1>{% translate "Login completo" %} - {% translate "HOME PAGE" %}</h1>
   <hr>
+  {% comment %} botão para acessar a página de cadastro de prazos {% endcomment %}
+  <a href="{% url 'deadline_configuration' %}" class="btn btn-primary">{% translate "Cadastrar prazo" %}</a>
   <div class="container d-flex align-items-center justify-content-center h-70" style="height: 70vh;">
     <div>
       <h2>{% translate "Olá, administrador"%}</h2>
