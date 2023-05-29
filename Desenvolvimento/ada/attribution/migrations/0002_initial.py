@@ -10,14 +10,14 @@ class Migration(migrations.Migration):
     initial = True
 
     dependencies = [
-        ('attribution_preference', '0002_initial'),
         migrations.swappable_dependency(settings.AUTH_USER_MODEL),
+        ('attribution', '0001_initial'),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='attribution_preference',
-            name='user',
+            model_name='teacherqueueposition',
+            name='teacher',
             field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to=settings.AUTH_USER_MODEL),
         ),
     ]

@@ -4,6 +4,7 @@ from common.validator.validator import validate_uppercase, validate_acronym_leng
 
 class Area(models.Model):
     name_area = models.CharField(_('name area'), max_length=45, unique=True)
+    acronym = models.CharField(_('acronym'), max_length=3, validators=[validate_uppercase, validate_acronym_length])
     registration_area_id = models.CharField(_('registration area id'), max_length=20, unique=True)
     exchange_area = models.BooleanField(_('exchange area'), default=True)
     is_high_school = models.BooleanField(_('is high school'), default=True)
