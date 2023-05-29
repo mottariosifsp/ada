@@ -4,8 +4,6 @@ from course.models import Course
 
 # 
 def attributionPreference(request):
-    
-
     courses = Course.objects.all()
     data = {
         'courses': courses,

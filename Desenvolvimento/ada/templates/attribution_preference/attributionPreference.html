@@ -9,12 +9,14 @@
 
 
 {% block body %}
-  <h1>a</h1>
   <h1 class="title-page">Envio de FPA</h1>
   <p>Querido docente, insira suas preferências de horário e aula.</p>
   <div class="container">
     <form method="post" action="{% url 'confirmAttributionPreference' %}">
       <div class="container">
+        <div id="error-alert-form" class="alert alert-danger" style="display: none;">
+          <span id="error-message-form"></span>
+        </div>
         <div id="work-regime">
           <h3>Regime de Trabalho</h3>
           <hr>
@@ -26,18 +28,6 @@
             <div class="form-check form-check-inline">
               <input class="form-check-input" type="radio" name="regime" id="radio40" value="40horas" required>
               <label class="form-check-label" for="radio40Horas">40 horas</label>
-            </div>
-            <div class="form-check form-check-inline">
-              <input class="form-check-input" type="radio" name="regime" id="radioRDE" value="rde" required>
-              <label class="form-check-label" for="radioRDE">RDE</label>
-            </div>
-            <div class="form-check form-check-inline">
-              <input class="form-check-input" type="radio" name="regime" id="radioSubstitute" value="substitute" required>
-              <label class="form-check-label" for="radioSubstitute">Substituto</label>
-            </div>
-            <div class="form-check form-check-inline">
-              <input class="form-check-input" type="radio" name="regime" id="radioTemporaly" value="temporaly" required>
-              <label class="form-check-label" for="radioTemporaly">Temporário</label>
             </div>
           </div>      
         </div>
@@ -97,7 +87,7 @@
                 </tr>
               </thead>
               <tbody id="course-table-body">
-              
+                <tr id="course-nonlist"><td colspan="6" class="text-center"><b>Nenhuma disciplina criada.</b></td></tr>
               </tbody>
             </table>
           </div>
@@ -112,7 +102,7 @@
                 </div>
                 <div class="modal-body">
                   <div id="error-alert" class="alert alert-danger" style="display: none;">
-                    <p id="error-message"></p>
+                    <span id="error-message"></span>
                   </div>
                   <form id="addCourseForm" method="post">
                     {% csrf_token %}
@@ -130,26 +120,22 @@
                       <input type="number" class="form-control" id="numClasses" placeholder="Número de aulas">
                     </div>
                     <div class="form-group">
-                      <label>Prioridade</label>
-                      <div class="form-check">
+                      <div class="d-block">
+                        <label>Prioridade</label>
+                      </div>
+                      <div class="form-check form-check-inline">
                         <input class="form-check-input" type="radio" name="priority" id="priorityHigh" value="high">
                         <label class="form-check-label" for="priorityHigh">
-                          Alta
+                          Prioritária
                         </label>
                       </div>
-                      <div class="form-check">
+                      <div class="form-check form-check-inline">
                         <input class="form-check-input" type="radio" name="priority" id="priorityMedium" value="medium">
                         <label class="form-check-label" for="priorityMedium">
-                          Média
+                          Secundária
                         </label>
                       </div>
-                      <div class="form-check">
-                        <input class="form-check-input" type="radio" name="priority" id="priorityLow" value="low">
-                        <label class="form-check-label" for="priorityLow">
-                          Baixa
-                        </label>
-                      </div>
-                    </div>
+                    </div>                    
                     <div class="form-group">
                       <label for="period">Período</label>
                       <select class="form-control" id="period">

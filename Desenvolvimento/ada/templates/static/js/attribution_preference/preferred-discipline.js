@@ -64,7 +64,8 @@ $(document).ready(function() {
               $('#numClasses').val('');
               $('input[name="priority"]').prop('checked', false);
               $('#period').val('');
-              $('#error-alert').hide();
+              $('#error-alert').hide(); 
+              $('#course-nonlist').hide();
             },
             error: function(xhr, status, error) {
               $('#error-message').text('Ocorreu um erro ao adicionar o curso.');
@@ -94,6 +95,7 @@ $(document).ready(function() {
             $('input[name="priority"]').prop('checked', false);
             $('#period').val('');
             $('#error-alert').hide();
+            $('#course-nonlist').hide();
           },
           error: function(xhr, status, error) {
             $('#error-message').text('Ocorreu um erro ao adicionar o curso.');
@@ -114,6 +116,10 @@ $(document).ready(function() {
     courses.forEach(function(course) {
       addCourseToTable(course);
     });
+
+    if (courses.length === 0) {
+      $('#course-nonlist').show();
+    }
   }
 
   $(document).on('click', '.btn-delete', function() {
@@ -136,7 +142,7 @@ $(document).ready(function() {
     // ainda não feita
     var work_courses = courses;
 
-    if (work_regime && work_courses) {
+    if (work_regime && work_courses.length !== 0) {
       $.ajax({
         type: 'POST',
         url: '/preferencia-atribuicao/confirmar/',
@@ -146,13 +152,16 @@ $(document).ready(function() {
         },
         success: function(response) {
           window.location.href = '/' + lang + '/preferencia-atribuicao/confirmar/';
+          $('#error-alert-form').hide();
         },
         error: function(xhr, status, error) {
-          alert("deu erro");
+          $('#error-message-form').text('ocorreu um erro no envio de FPA.');
+          $('#error-alert-form').show();
         }
       });
     } else {
-      alert("insira os dados");
+      $('#error-message-form').text('Insira as informações pedidas em cada seção.');
+      $('#error-alert-form').show();
     }
   });
 });
