@@ -6,13 +6,14 @@ class Deadline(models.Model):
     name = models.CharField(_('name'), max_length=90)
     deadline_start = models.DateTimeField(_('deadline start'))
     deadline_end = models.DateTimeField(_('deadline end'))
+    block = models.ForeignKey('area.Block', on_delete=models.CASCADE, null=True)
 
     class Meta:
         verbose_name = _('deadline')
         verbose_name_plural = _('deadlines')
 
 class Criteria(models.Model):
-    name_criteria = models.CharField(('name criteria'), max_length=45)
+    name_criteria = models.CharField(('name criteria'), max_length=90)
     number_criteria = models.IntegerField('number criteria', unique=True, null=True, blank=False)
     is_select = models.BooleanField(('is selected'), default=False)
 
@@ -23,4 +24,3 @@ class Criteria(models.Model):
     def save(self, *args, **kwargs):
         self.full_clean()
         super().save(*args, **kwargs)
-
