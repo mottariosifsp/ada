@@ -1,0 +1,4 @@
+tr:hover>td {
+    background-color: #ececec;
+    {% comment %} text-decoration: underline; {% endcomment %}
+}
