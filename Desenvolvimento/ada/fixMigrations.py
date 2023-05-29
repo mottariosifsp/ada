@@ -1,8 +1,15 @@
 import os
+import sys
+
+print(sys.argv[1])
+
+if(sys.argv[1] == 'deleteDB'):
+    os.remove(os.getcwd() + '\\db.sqlite3')
+    print("DB removido")
 
 active = True
 
-listApps = ["area","attribution","attribution_preference", "class","configuration", "course", "exchange", "staff", "timetable", "user"]
+listApps = ["area","attribution","attribution_preference", "class", "course", "exchange", "staff", "timetable", "user"]
 
 if(active):
     for app in listApps:

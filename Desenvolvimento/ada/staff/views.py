@@ -17,7 +17,14 @@ def home(request):
 
 @user_passes_test(is_staff)
 def deadline_configuration(request):
-    return render(request, 'staff/deadline/deadline_configuration.html') # apagar depois
+
+    user_blocks = request.user.blocks.all()
+    
+    data = {
+        'user_blocks': user_blocks
+    }
+
+    return render(request, 'staff/deadline/deadline_configuration.html', data)
     
 
 def confirm_deadline_configuration(request):
@@ -38,7 +45,8 @@ def confirm_deadline_configuration(request):
             'startAssignmentDeadline': startAssignmentDeadline,
             'endAssignmentDeadline': endAssignmentDeadline,
             'startExchangeDeadline': startExchangeDeadline,
-            'endExchangeDeadline': endExchangeDeadline
+            'endExchangeDeadline': endExchangeDeadline,
+            'user_block': request.user.blocks.all()
         }
 
         save_deadline(data)
