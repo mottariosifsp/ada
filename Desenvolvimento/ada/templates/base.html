@@ -1,5 +1,6 @@
 {% load i18n %}
 {% load static %}
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -60,10 +61,10 @@
       </div>
       <div class="collapse navbar-collapse justify-content-end" id="navbarToggler">
         <ul class="navbar-nav mx-auto ">
-          <li class="nav-item"><a class="nav-link title" href="">{% translate "Professores" %}</a></li>
-          <li class="nav-item"><a class="nav-link title" href="#">{% translate "Subárea" %}</a></li>
-          <li class="nav-item"><a class="nav-link title" href="#">{% translate "Administradores" %}</a></li>
-          <li class="nav-item"><a class="nav-link title" href="#">{% translate "Critérios" %}</a></li>
+          <li class="nav-item"><a class="nav-link title" href="{% url 'professors_list' %}">{% translate "Professores" %}</a></li>
+          <li class="nav-item"><a class="nav-link title" href="#">{% translate "Turma" %}</a></li>
+          <li class="nav-item"><a class="nav-link title" href="#">{% translate "Bloco" %}</a></li>
+          <li class="nav-item"><a class="nav-link title" href="#">{% translate "Grade" %}</a></li>
           <li class="nav-item dropdown language-icon">
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownLang" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               <img class="lang-icon" src="{% static 'images/language_icon.png' %}" alt="change of language icon">
@@ -122,10 +123,10 @@
                 </a>
               </div>
               <hr>
-              <div class="modal-line"><a class="nav-link title" href="#"><i class="bi bi-people lang-icon"></i> {% translate "Professores" %}</a></div>
-              <div class="modal-line"><a class="nav-link title" href="#"><i class="bi bi-layers lang-icon"></i> {% translate "Subárea" %}</a></div>
-              <div class="modal-line"><a class="nav-link title" href="#"><i class="bi bi-people-fill lang-icon"></i> {% translate "Administradores" %}</a></div>
-              <div class="modal-line"><a class="nav-link title" href="#"><i class="bi bi-bar-chart-line lang-icon"></i> {% translate "Critérios" %}</a></div>
+              <div class="modal-line"><a class="nav-link title" href="{% url 'professors_list' %}"><i class="bi bi-people lang-icon"></i> {% translate "Professores" %}</a></div>
+              <div class="modal-line"><a class="nav-link title" href="#"><i class="bi bi-layers lang-icon"></i> {% translate "Turma" %}</a></div>
+              <div class="modal-line"><a class="nav-link title" href="#"><i class="bi bi-people-fill lang-icon"></i> {% translate "Bloco" %}</a></div>
+              <div class="modal-line"><a class="nav-link title" href="#"><i class="bi bi-bar-chart-line lang-icon"></i> {% translate "Grade" %}</a></div>
               <div class="modal-line dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownLangSidebar" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                   <i class="bi bi-globe lang-icon"></i> {% translate "Línguas" %}

@@ -7,52 +7,49 @@
 {% endblock %}
 
 {% block body %}
-    <h1>sacrifício</h1>
-    <div class="mt-5">
-        <h1>Professores</h1>
-        <div class="tabela">
-            <table class="table table-striped table-bordered editable" id="professors_list">
-                <thead>
-                    <tr>
-                        <th scope="col">Position</th>
-                        <th scope="col">Registration id</th>
-                        <th scope="col">Name</th>
-                        <th scope="col">Birth</th>
-                        <th scope="col">Date Career</th>
-                        <th scope="col">Date Campus</th>
-                        <th scope="col">Date Professor</th>
-                        <th scope="col">Date Area</th>
-                        <th scope="col">Date Institute</th>
-                        <th scope="col">Academic Degree Scores</th>
-                        <th scope="col">Actions</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {% csrf_token %}
-                    {% for professor in professors %}
-                        {% with counter=forloop.counter0 %}
-                            <tr>
-                                <td class="editable" data-column="position">{{ counter }}</td>
-                                <td>{{ user.registration_id }}</td>
-                                <td>{{ professor.first_name }}</td>
-                                <td>{{ professor.history.birth|date:"Y-m-d" }}</td>
-                                <td>{{ professor.history.date_career|date:"Y-m-d" }}</td>
-                                <td>{{ professor.history.date_campus|date:"Y-m-d" }}</td>
-                                <td>{{ professor.history.date_professor|date:"Y-m-d" }}</td>
-                                <td>{{ professor.history.date_area|date:"Y-m-d" }}</td>
-                                <td>{{ professor.history.date_institute|date:"Y-m-d" }}</td>
-                                <td>
-                                    {% for academic_degree in professor.history.academic_degrees.all %}
-                                        {{ academic_degree.name }}
-                                    {% endfor %}
-                                </td>
-                                <td><button type="button" data-toggle="modal" data-target="#editProfessorModal" class="btn btn-warning"><i class="bi bi-pencil"></i></button></td> <!-- remover e colocar link no nome -->
-                            </tr>
-                        {% endwith %}
-                    {% endfor %}
-                </tbody>
-            </table>
-        </div>
+    <h1>Professores</h1>
+    <div class="tabela">
+        <table class="table table-striped table-bordered editable" id="professors_list">
+            <thead>
+                <tr>
+                    <th scope="col">Position</th>
+                    <th scope="col">Registration id</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Birth</th>
+                    <th scope="col">Date Career</th>
+                    <th scope="col">Date Campus</th>
+                    <th scope="col">Date Professor</th>
+                    <th scope="col">Date Area</th>
+                    <th scope="col">Date Institute</th>
+                    <th scope="col">Academic Degree Scores</th>
+                    <th scope="col">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% csrf_token %}
+                {% for professor in professors %}
+                    {% with counter=forloop.counter0 %}
+                        <tr>
+                            <td class="editable" data-column="position">{{ counter }}</td>
+                            <td>{{ user.registration_id }}</td>
+                            <td>{{ professor.first_name }}</td>
+                            <td>{{ professor.history.birth|date:"Y-m-d" }}</td>
+                            <td>{{ professor.history.date_career|date:"Y-m-d" }}</td>
+                            <td>{{ professor.history.date_campus|date:"Y-m-d" }}</td>
+                            <td>{{ professor.history.date_professor|date:"Y-m-d" }}</td>
+                            <td>{{ professor.history.date_area|date:"Y-m-d" }}</td>
+                            <td>{{ professor.history.date_institute|date:"Y-m-d" }}</td>
+                            <td>
+                                {% for academic_degree in professor.history.academic_degrees.all %}
+                                    {{ academic_degree.name }}
+                                {% endfor %}
+                            </td>
+                            <td><button type="button" data-toggle="modal" data-target="#editProfessorModal" class="btn btn-warning"><i class="bi bi-pencil"></i></button></td> <!-- remover e colocar link no nome -->
+                        </tr>
+                    {% endwith %}
+                {% endfor %}
+            </tbody>
+        </table>
     </div>
 
     <div class="modal fade" id="editProfessorModal" tabindex="-1" role="dialog" aria-labelledby="editProfessorModalLabel" aria-hidden="true">
