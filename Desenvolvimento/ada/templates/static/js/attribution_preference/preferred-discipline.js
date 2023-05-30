@@ -51,7 +51,7 @@ $(document).ready(function() {
 
           $.ajax({
             type: 'POST',
-            url: '/preferencia-atribuicao/',
+            url: '/preferencia-atribuicao/criar-fpa/',
             data: course,
             beforeSend: function(xhr) {
               xhr.setRequestHeader("X-CSRFToken", csrftoken);
@@ -81,7 +81,7 @@ $(document).ready(function() {
 
         $.ajax({
           type: 'POST',
-          url: '/preferencia-atribuicao/',
+          url: '/preferencia-atribuicao/criar-fpa/',
           data: course,
           beforeSend: function(xhr) {
             xhr.setRequestHeader("X-CSRFToken", csrftoken);
@@ -142,20 +142,26 @@ $(document).ready(function() {
     // ainda não feita
     var work_courses = courses;
 
+    let csrftoken = getCookie('csrftoken');
+
     if (work_regime && work_courses.length !== 0) {
       $.ajax({
-        type: 'POST',
-        url: '/preferencia-atribuicao/confirmar/',
-        data: course,
-        beforeSend: function(xhr) {
-          xhr.setRequestHeader("X-CSRFToken", csrftoken);
+        method: 'POST',
+        url: '/preferencia-atribuicao/ver-fpa/',
+        data: {
+          work_regime: work_regime,
+          work_courses: work_courses,
+        },
+        headers: {
+          'X-CSRFToken': csrftoken
         },
         success: function(response) {
-          window.location.href = '/' + lang + '/preferencia-atribuicao/confirmar/';
+          $('input[name="regime"]:checked').prop('checked', false);
           $('#error-alert-form').hide();
+          window.location.href = '/' + lang + '/preferencia-atribuicao/ver-fpa/';
         },
         error: function(xhr, status, error) {
-          $('#error-message-form').text('ocorreu um erro no envio de FPA.');
+          $('#error-message-form').text('Ocorreu um erro no envio de FPA.');
           $('#error-alert-form').show();
         }
       });
@@ -164,4 +170,19 @@ $(document).ready(function() {
       $('#error-alert-form').show();
     }
   });
+
+  function getCookie(name) {
+    var cookieValue = null;
+    if (document.cookie && document.cookie !== '') {
+      var cookies = document.cookie.split(';');
+      for (var i = 0; i < cookies.length; i++) {
+        var cookie = jQuery.trim(cookies[i]);
+        if (cookie.substring(0, name.length + 1) === (name + '=')) {
+          cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+          break;
+        }
+      }
+    }
+    return cookieValue;
+  }
 });

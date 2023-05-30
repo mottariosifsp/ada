@@ -12,7 +12,8 @@
   <h1 class="title-page">Envio de FPA</h1>
   <p>Querido docente, insira suas preferências de horário e aula.</p>
   <div class="container">
-    <form method="post" action="{% url 'confirmAttributionPreference' %}">
+    <form id="sendFPAForm" method="post">
+      {% csrf_token %}
       <div class="container">
         <div id="error-alert-form" class="alert alert-danger" style="display: none;">
           <span id="error-message-form"></span>
@@ -28,6 +29,10 @@
             <div class="form-check form-check-inline">
               <input class="form-check-input" type="radio" name="regime" id="radio40" value="40horas" required>
               <label class="form-check-label" for="radio40Horas">40 horas</label>
+            </div>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="radio" name="regime" id="rde" value="rde" required>
+              <label class="form-check-label" for="radio40Horas">RDE</label>
             </div>
           </div>      
         </div>
