@@ -6,7 +6,7 @@ from django.contrib.auth.decorators import user_passes_test
 from django.contrib.auth import get_user_model
 from .models import Deadline
 from area.models import Block
-from user.models import User
+from user.models import User, History
 from django.utils import timezone
 
 def is_staff(user):
@@ -126,7 +126,9 @@ def update_save(request):
             history.update_history(birth=birth, date_career=date_career, date_campus=date_campus, date_professor=date_professor, date_area=date_area, date_institute=date_institute)
             history.save()
             print("funcionou o history")
-        else:
+        else:            
+            user.history = History.objects.create(birth=birth, date_career=date_career, date_campus=date_campus, date_professor=date_professor, date_area=date_area, date_institute=date_institute)
+            user.save()
             return JsonResponse({'message': 'Dados não preenchidos.'})
 
         return JsonResponse({'message': 'Alterações salvas com sucesso.'})
