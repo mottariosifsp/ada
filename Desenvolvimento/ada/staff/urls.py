@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import home, confirm_deadline_configuration, show_current_deadline, deadline_configuration, professors_list
+from .views import home, confirm_deadline_configuration, show_current_deadline, deadline_configuration, professors_list, update_save
 
 urlpatterns = [
     path("", home, name="home"),
@@ -7,4 +7,5 @@ urlpatterns = [
     path("prazo-cadastrado/", confirm_deadline_configuration, name="confirm_deadline_configuration"),
     path("prazo-atual/", show_current_deadline, name="show_current_deadline"),
     path("listar-professores/", professors_list, name="professors_list"),
+    path("alteracoes-salvas/", update_save, name="update_save"),
 ]

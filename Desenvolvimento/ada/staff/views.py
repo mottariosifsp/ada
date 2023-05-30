@@ -1,7 +1,9 @@
 from datetime import datetime
 from django.db import transaction
+from django.http import JsonResponse
 from django.shortcuts import render
 from django.contrib.auth.decorators import user_passes_test
+from django.contrib.auth import get_user_model
 from .models import Deadline
 from area.models import Block
 from user.models import User
@@ -103,3 +105,28 @@ def save_deadline(data):
 def professors_list(request):
     professors = User.objects.filter(is_superuser=False)
     return render(request, 'staff/professors_list.html', {'professors': professors})
+
+def update_save(request):
+    if request.method == 'POST':
+        print("funcionou o if")
+        registration_id = request.POST.get('registration_id')
+        birth = request.POST.get('birth')
+        date_career = request.POST.get('date_career')
+        date_campus = request.POST.get('date_campus')
+        date_professor = request.POST.get('date_professor')
+        date_area = request.POST.get('date_area')
+        date_institute = request.POST.get('date_institute')
+        print(birth)
+
+        User = get_user_model()
+        user = User.objects.get(registration_id=registration_id)  
+        history = user.history
+        print("funcionou o get user")
+        if history is not None:
+            history.update_history(birth=birth, date_career=date_career, date_campus=date_campus, date_professor=date_professor, date_area=date_area, date_institute=date_institute)
+            history.save()
+            print("funcionou o history")
+        else:
+            return JsonResponse({'message': 'Dados não preenchidos.'})
+
+        return JsonResponse({'message': 'Alterações salvas com sucesso.'})
