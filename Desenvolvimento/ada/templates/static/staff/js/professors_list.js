@@ -1,25 +1,36 @@
-// Carregar DataTable
-
-$(document).ready( function () {
-    $('#professors_list').DataTable();
-} );
-let table = new DataTable('#professors_list', {
-    responsive: true
-});
-
-// Modal
-
-$(document).on('click', '[data-dismiss="modal"]', function() {
-    $('#courseName').val('');
-    $('#numClasses').val('');
-    $('input[name="priority"]').prop('checked', false);
-    $('#period').val('');
-    $('#error-alert').hide();
-});
-
-// Salvar alterações
 
 $(document).ready(function() {
+    let table = new DataTable('#professors_list', {
+        responsive: true
+    });
+    $('.btn-warning').click(function() {
+        var row = $(this).closest('tr');
+        var professorData = {
+            registration_id: row.find('td:eq(0)').text(),
+            first_name: row.find('td:eq(1)').text(),
+            birth: row.find('td:eq(2)').text(),
+            date_career: row.find('td:eq(3)').text(),
+            date_campus: row.find('td:eq(4)').text(),
+            date_professor: row.find('td:eq(5)').text(),
+            date_area: row.find('td:eq(6)').text(),
+            date_institute: row.find('td:eq(7)').text()
+        };
+    
+        populateModal(professorData);
+        $('#editProfessorModal').modal('show');
+    });
+
+    function populateModal(professorData) {
+        $('#editProfessorModal').find('#registration_id').val(professorData.registration_id);
+        $('#editProfessorModal').find('#first_name').val(professorData.first_name);
+        $('#editProfessorModal').find('#birth').val(professorData.birth);
+        $('#editProfessorModal').find('#date_career').val(professorData.date_career);
+        $('#editProfessorModal').find('#date_campus').val(professorData.date_campus);
+        $('#editProfessorModal').find('#date_professor').val(professorData.date_professor);
+        $('#editProfessorModal').find('#date_area').val(professorData.date_area);
+        $('#editProfessorModal').find('#date_institute').val(professorData.date_institute);
+    }
+
     $('#saveUpdateBtn').click(function() {
         var registration_id = $('#registration_id').val();
         var birth = $('#birth').val();
@@ -67,13 +78,13 @@ $(document).ready(function() {
 function getCookie(name) {
     var cookieValue = null;
     if (document.cookie && document.cookie !== '') {
-      var cookies = document.cookie.split(';');
-      for (var i = 0; i < cookies.length; i++) {
-        var cookie = jQuery.trim(cookies[i]);
-        if (cookie.substring(0, name.length + 1) === (name + '=')) {
-          cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
-          break;
-        }
+        var cookies = document.cookie.split(';');
+        for (var i = 0; i < cookies.length; i++) {
+            var cookie = jQuery.trim(cookies[i]);
+            if (cookie.substring(0, name.length + 1) === (name + '=')) {
+            cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+            break;
+            }
       }
     }
     return cookieValue;

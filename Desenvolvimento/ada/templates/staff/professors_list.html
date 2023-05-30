@@ -6,7 +6,6 @@
     {{ block.super }}
     <link rel="stylesheet" href="{% static 'css/staff/professors_list.css' %}">
     <script src="{% static 'staff/js/professors_list.js' %}" data-lang={{LANGUAGE_CODE}}></script>
-    
 {% endblock %}
 
 {% block body %}
@@ -16,7 +15,6 @@
         <table class="table table-bordered editable" id="professors_list">
             <thead>
                 <tr>
-                    <th scope="col">Position</th>
                     <th scope="col">Registration id</th>
                     <th scope="col">Name</th>
                     <th scope="col">Birth</th>
@@ -32,11 +30,8 @@
             <tbody>
                 {% csrf_token %}
                 {% for professor in professors %}
-
                     <!-- Lista -->
-                    {% with counter=forloop.counter0 %}
                         <tr>
-                            <td class="editable" data-column="position">{{ counter }}</td>
                             <td>{{ professor.registration_id }}</td>
                             <td>{{ professor.first_name }}</td>
                             <td>{{ professor.history.birth|date:"Y-m-d" }}</td>
@@ -50,69 +45,64 @@
                                     {{ academic_degree.name }}
                                 {% endfor %}
                             </td>
-                            <td><button type="button" data-toggle="modal" data-target="#editProfessorModal" class="btn btn-warning"><i class="bi bi-pencil"></i></button></td> <!-- remover e colocar link no nome -->
+                            <td><button type="button" data-toggle="modal" data-target="#editProfessorModal" data-counter="{{ counter }}" class="btn btn-warning editProfessorBtn"><i class="bi bi-pencil"></i></button></td> <!-- remover e colocar link no nome -->
                         </tr>
-                    {% endwith %}
-
-                    <!-- Modal -->
-                    <div class="modal fade" id="editProfessorModal" tabindex="-1" role="dialog" aria-labelledby="addEditProfessorModal" aria-hidden="true">
-                        <div class="modal-dialog" role="document">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h5 class="modal-title" id="addEditProfessorModal">Editar Professor</h5>
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
-                                    </button>
-                                </div>
-                                <div class="modal-body">
-                                    <form>
-                                        <div class="form-group">
-                                        <label for="registration_id">ID</label>
-                                        <input type="text" class="form-control" id="registration_id" value="{{ professor.registration_id }}">
-                                        </div>
-                                        <div class="form-group">
-                                        <label for="first_name">Nome</label>
-                                        <input type="text" class="form-control" id="first_name" value="{{ professor.first_name }}">
-                                        </div>
-                                        <div class="form-group">
-                                        <label for="birth">Data de Nascimento</label>
-                                        <input type="date" class="form-control" id="birth" value="{{ professor.history.birth|date:'Y-m-d' }}">
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="date_career">Data de Carreira</label>
-                                            <input type="date" class="form-control" id="date_career" value="{{ professor.history.date_career|date:'Y-m-d' }}">
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="date_campus">Data de Ingresso no Campus</label>
-                                            <input type="date" class="form-control" id="date_campus" value="{{ professor.history.date_campus|date:'Y-m-d' }}">
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="date_professor">Data de Ingresso como Professor</label>
-                                            <input type="date" class="form-control" id="date_professor" value="{{ professor.history.date_professor|date:'Y-m-d' }}">
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="date_area">Data da Área</label>
-                                            <input type="date" class="form-control" id="date_area" value="{{ professor.history.date_area|date:'Y-m-d' }}">
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="date_institute">Data do Instituto</label>
-                                            <input type="date" class="form-control" id="date_institute" value="{{ professor.history.date_institute|date:'Y-m-d' }}">
-                                        </div>
-                                    </form>
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
-                                    <button type="button" class="btn btn-primary" id="saveUpdateBtn">Salvar Alterações</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
                 {% endfor %}
             </tbody>
         </table>
     </div>
-{% endblock %}
 
-{% block endbody %}
-    
+    <!-- Modal para edição de professor -->
+    <div class="modal fade" id="editProfessorModal" tabindex="-1" role="dialog" aria-labelledby="editProfessorModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="addEditProfessorModal">Editar Professor</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="form-group">
+                            <label for="registration_id">ID</label>
+                            <input type="text" class="form-control" id="registration_id" readonly>
+                        </div>
+                        <div class="form-group">
+                            <label for="first_name">Nome</label>
+                            <input type="text" class="form-control" id="first_name" readonly>
+                        </div>
+                        <div class="form-group">
+                            <label for="birth">Data de Nascimento</label>
+                            <input type="date" class="form-control" id="birth">
+                        </div>
+                        <div class="form-group">
+                            <label for="date_career">Data de Carreira</label>
+                            <input type="date" class="form-control" id="date_career">
+                        </div>
+                        <div class="form-group">
+                            <label for="date_campus">Data de Ingresso no Campus</label>
+                            <input type="date" class="form-control" id="date_campus">
+                        </div>
+                        <div class="form-group">
+                            <label for="date_professor">Data de Ingresso como Professor</label>
+                            <input type="date" class="form-control" id="date_professor">
+                        </div>
+                        <div class="form-group">
+                            <label for="date_area">Data da Área</label>
+                            <input type="date" class="form-control" id="date_area">
+                        </div>
+                        <div class="form-group">
+                            <label for="date_institute">Data do Instituto</label>
+                            <input type="date" class="form-control" id="date_institute">
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+                    <button type="button" class="btn btn-primary" id="saveUpdateBtn">Salvar Alterações</button>
+                </div>
+            </div>
+        </div>
+    </div>
 {% endblock %}
