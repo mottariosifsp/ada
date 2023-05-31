@@ -16,6 +16,12 @@ class Course(models.Model):
         verbose_name = _('course')
         verbose_name_plural = _('courses')
 
+    def update_course(self, registration_course_id, name_course, acronym):
+        self.registration_course_id = registration_course_id
+        self.name_course = name_course
+        self.acronym = acronym
+        self.save()
+
     def __str__(self):
         return self.name_course
     
