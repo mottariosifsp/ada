@@ -1,5 +1,6 @@
 from django.urls import path
-from .views import classes_list, classes_list_saved, home, confirm_deadline_configuration, show_current_deadline, deadline_configuration, professors_list, update_save
+from .views import classes_list, classes_list_saved, home, confirm_deadline_configuration, show_current_deadline, deadline_configuration, professors_list, update_save, blocks_list, block_detail
+
 
 urlpatterns = [
     path("", home, name="home"),
@@ -10,4 +11,6 @@ urlpatterns = [
     path("alteracoes-salvas/", update_save, name="update_save"),
     path("turmas/", classes_list, name="classes_list"),
     path("turmas/salvas/", classes_list_saved, name="classes_list_saved"),
+    path("blocos/", blocks_list, name="blocks_list"),
+    path("detalhes-bloco/<str:registration_block_id>/", block_detail, name="block_detail")
 ]
