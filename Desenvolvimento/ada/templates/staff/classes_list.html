@@ -4,5 +4,36 @@
 
 {% block head %}
     {{ block.super }}
-    
+
+{% endblock %}
+
+{% block body %}
+    {{ block.super }}
+    <h1>Turmas</h1>
+    <div class="tabela">
+        <table class="table table-bordered editable" id="classes_list">
+            <thead>
+                <tr>
+                    <th scope="col">Registration class id</th>
+                    <th scope="col">Period</th>
+                    <th scope="col">Semester</th>
+                    <th scope="col">Area</th>
+                    <th scope="col">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% csrf_token %}
+                {% for class in classes %}
+                    <!-- Lista -->
+                        <tr>
+                            <td>{{ class.registration_class_id }}</td>
+                            <td>{{ class.period }}</td>
+                            <td>{{ class.semester }}</td>
+                            <td>{{ class.area }}</td>
+                            <td><button type="button" data-toggle="modal" data-target="" data-counter="" class="btn btn-warning"><i class="bi bi-pencil"></i></button></td>
+                        </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
 {% endblock %}
