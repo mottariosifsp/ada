@@ -1,0 +1,13 @@
+.btn span.glyphicon {    			
+	opacity: 0;				
+}
+.btn.active span.glyphicon {				
+	opacity: 1;				
+}
+#work-availability .btn-group-toggle .btn-success:not(.active) {
+    background-color: #2a5a4f5f;
+    border-color: #2a5a4f66;
+}
+#work-availability .btn-group-toggle .btn-success {
+    background-color: #3F927E;
+}

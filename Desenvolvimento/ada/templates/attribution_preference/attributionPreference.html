@@ -1,0 +1,222 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% load static %}
+
+{% block head %}
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/5.0.0/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.9.2/umd/popper.min.js" integrity="sha384-b5Pq7eLwA0xEeYefZ0zjBuhk8LxwXnVzEuhMv3sBTElJ/k63HmkIdUFEe8H02qPZ" crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/5.0.0/js/bootstrap.min.js" integrity="sha384-6L+9FRrVL2TTR7+ixqqTpwG5V3yTXxjCfUhIySGmi6zJcQbR2xNjiPqyB+xN4n8C" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="{% static 'css/attribution_preference/attribution_preference.css' %}">
+  <title>{% translate "Envio Formulário de Preferência de Atividades" %}</title>
+{% endblock %}
+
+
+{% block body %}
+  <h1 class="title-page">Envio de FPA</h1>
+  <p>Querido docente, insira suas preferências de horário e aula.</p>
+  <div class="container">
+    <form id="sendFPAForm" method="post">
+      {% csrf_token %}
+      <div class="container">
+        <div id="error-alert-form" class="alert alert-danger" style="display: none;">
+          <span id="error-message-form"></span>
+        </div>
+        <div id="work-regime">
+          <h3>Regime de Trabalho</h3>
+          <hr>
+          <div class="form-group">
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="radio" name="regime" id="radio20" value="20horas" required>
+              <label class="form-check-label" for="radio20Horas">20 horas</label>
+            </div>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="radio" name="regime" id="radio40" value="40horas" required>
+              <label class="form-check-label" for="radio40Horas">40 horas</label>
+            </div>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="radio" name="regime" id="rde" value="rde" required>
+              <label class="form-check-label" for="radio40Horas">RDE</label>
+            </div>
+          </div>      
+        </div>
+      
+        <div id="work-availability">
+          <h3>Disponibilidade de horários</h3>
+          <hr>
+          
+            <div class="table-responsive">
+              <table class="table table-bordered table-sm text-center">
+                <thead>
+                  <tr>
+                    <th class="text-center">Turno</th>
+                    <th class="text-center">Horários</th>
+                    <th class="text-center">Segunda-Feira</th>
+                    <th class="text-center">Terça-Feira</th>
+                    <th class="text-center">Quarta-Feira</th>
+                    <th class="text-center">Quinta-Feira</th>
+                    <th class="text-center">Sexta-Feira</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <td class="text-center align-middle" rowspan="6">Matutino</td>
+                  {% for i in "xxxxx" %}
+                    <tr>
+                      
+                      <td class="text-center align-middle"></td>
+                      
+                      <td class="text-center">
+                        <div class="btn-group-toggle" data-toggle="buttons">
+                          <label class="btn btn-success w-100">
+                            <input type="checkbox" autocomplete="off">
+                            <i class="fas fa-times"></i>
+                          </label>
+                        </div>
+                      </td>
+                      <td class="text-center">
+                        <div class="btn-group-toggle" data-toggle="buttons">
+                          <label class="btn btn-success w-100">
+                            <input type="checkbox" autocomplete="off">
+                            <i class="fas fa-times"></i>
+                          </label>
+                        </div>
+                      </td>
+                      <td class="text-center">
+                        <div class="btn-group-toggle" data-toggle="buttons">
+                          <label class="btn btn-success w-100">
+                            <input type="checkbox" autocomplete="off">
+                            <i class="fas fa-times"></i>
+                          </label>
+                        </div>
+                      </td>
+                      <td class="text-center">
+                        <div class="btn-group-toggle" data-toggle="buttons">
+                          <label class="btn btn-success w-100">
+                            <input type="checkbox" autocomplete="off">
+                            <i class="fas fa-times"></i>
+                          </label>
+                        </div>
+                      </td>
+                      <td class="text-center">
+                        <div class="btn-group-toggle " data-toggle="buttons">
+                          <label class="btn btn-success w-100">
+                            <input type="checkbox" autocomplete="off">
+                            <i class="fas fa-times"></i>
+                          </label>
+                        </div>
+                      </td>
+                    </tr>
+                  {% endfor %}
+                </tbody>
+              </table>
+              
+            </div>
+        
+        </div>
+      
+        <div id="preferred-discipline">
+          <div class="row">
+            <div class="col">
+              <h3 class="d-inline">Disciplinas Ministradas</h3>
+            </div>
+            <div class="col text-right center">
+              <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addCourseModal">
+                Adicionar Curso
+              </button>
+            </div>
+          </div>
+          <hr>
+          <div id="course-preference-list">
+            
+            <table class="table table-borderless" id="course-table">
+              <thead>
+                <tr class="bg-success text-light">
+                  <th class="text-center">Sigla</th>
+                  <th class="text-center">Nome Aula</th>
+                  <th class="text-center">Número de Aulas</th>
+                  <th class="text-center">Turno</th>
+                  <th class="text-center">Prioridade</th>
+                  <th class="text-center">Ações</th>
+                </tr>
+              </thead>
+              <tbody id="course-table-body">
+                <tr id="course-nonlist"><td colspan="6" class="text-center"><b>Nenhuma disciplina criada.</b></td></tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="modal center-modal fade" id="addCourseModal" tabindex="-1" role="dialog" aria-labelledby="addCourseModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="addCourseModalLabel">Adicionar Curso</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                  <div id="error-alert" class="alert alert-danger" style="display: none;">
+                    <span id="error-message"></span>
+                  </div>
+                  <form id="addCourseForm" method="post">
+                    {% csrf_token %}
+                    <div class="form-group">
+                      <label for="courseName">Nome do Curso</label>
+                      <select class="form-control" id="courseName">
+                        <option selected disabled>Selecione</option>
+                        {% for course in courses %}
+                        <option value="{{ course.name_course }}">{{ course.name_course }}</option>
+                        {% endfor %}
+                      </select>
+                    </div>
+                    <div class="form-group">
+                      <label for="numClasses">Número de Aulas</label>
+                      <input type="number" class="form-control" id="numClasses" placeholder="Número de aulas">
+                    </div>
+                    <div class="form-group">
+                      <div class="d-block">
+                        <label>Prioridade</label>
+                      </div>
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="priority" id="priorityHigh" value="high">
+                        <label class="form-check-label" for="priorityHigh">
+                          Prioritária
+                        </label>
+                      </div>
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="priority" id="priorityMedium" value="medium">
+                        <label class="form-check-label" for="priorityMedium">
+                          Secundária
+                        </label>
+                      </div>
+                    </div>                    
+                    <div class="form-group">
+                      <label for="period">Período</label>
+                      <select class="form-control" id="period">
+                        <option selected disabled>Selecione</option>
+                        <option value="morning">Manhã</option>
+                        <option value="afternoon">Tarde</option>
+                        <option value="evening">Noite</option>
+                      </select>
+                    </div>
+                  </form>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+                  <button type="button" class="btn btn-primary" name="addCourse" id="addCourseButton">Adicionar</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <hr>
+      <button type="button" class="btn btn-primary float-right mt-5" name="sendFPA" id="sendFPA">Enviar FPA</button>
+    </form>
+  </div>
+{% endblock %}
+
+{% block endbody %}
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="{% static 'js/attribution_preference/preferred-discipline.js' %}" data-lang={{LANGUAGE_CODE}}></script>
+{% endblock %}

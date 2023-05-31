@@ -17,8 +17,12 @@ a:not(.title):hover {
 .dropdown-login { margin-right: 10px; }
 
 /* Definições de estilo para itens de navegação */
+.container.base {
+    margin-top: 80px;
+}
+
 nav.navbar-nav {
-    position: fixed;
+    z-index: 1000;
     background-color: #3F927E;
     color: #f9fefd;
     box-shadow: 0px 2px 8px #2a5a4f;
@@ -98,12 +102,12 @@ img.lang-icon, img.user-photo {width: 100%;}
 
 /* Definições de estilos para sidebar */
 
-.modal-body a:hover {
+.navbar-modal.modal-body a:hover {
     text-decoration: none;
     font-weight: bolder;
 }
 
-.modal-dialog {
+.navbar-modal .modal-dialog {
     padding-right: 170px;
     margin: 0;
     height: 100%;
@@ -111,29 +115,29 @@ img.lang-icon, img.user-photo {width: 100%;}
     flex-direction: column;
 }
 
-.modal-content {flex-grow: 1;}
+.navbar-modal .modal-content {flex-grow: 1;}
 
-.modal.fade:not(.show).left .modal-dialog {transform: translateX(-100%);}
+.navbar-modal.modal.fade:not(.show).left .modal-dialog {transform: translateX(-100%);}
 
-.modal-content {background-color: #3F927E;}
+.navbar-modal .modal-content {background-color: #3F927E;}
 
-.modal-header {
+.navbar-modal .modal-header {
     padding-bottom: 13px;
     border-bottom: 1px solid #2a5a4f;
 }
 
-.modal-footer {border-top: 1px solid #2a5a4f;}
+.navbar-modal .modal-footer {border-top: 1px solid #2a5a4f;}
 
-.hide-sidebar {
+.navbar-modal .hide-sidebar {
     color: white;
     box-shadow: none;
 }
 
-.hide-sidebar:hover {color: white;}
+.navbar-modal .hide-sidebar:hover {color: white;}
 
 .user-name {margin-left: 20px;}
 
-.modal-body span {
+.navbar-modal .modal-body span {
     white-space: nowrap;
     text-overflow: ellipsis;
 }
