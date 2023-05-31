@@ -1,12 +1,15 @@
 from django.shortcuts import render
 from .models import Attribution_preference, Preference_schedule, Course_preference,  Attribution_preference_course_preference
 from course.models import Course
+from timetable.models import Timetable, Timeslot
 import json
 from django.db import transaction
 
 
 def attributionPreference(request):
     course = Course.objects.all()
+    timeslot = Timeslot.objects.all()
+    # timeslot.
     data = {
         'courses': course
     }

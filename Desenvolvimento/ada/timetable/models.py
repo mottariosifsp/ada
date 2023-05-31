@@ -9,12 +9,12 @@ class Timetable(models.Model):
     course = models.ForeignKey('course.Course', on_delete=models.CASCADE, related_name='timetable')
     _class = models.ForeignKey('class.Class', on_delete=models.CASCADE, related_name='timetable')
 
-    def __str__(self):
-        return self.day
-
     class Meta:
         verbose_name = _('timetable')
         verbose_name_plural = _('timetables')
+        
+    def __str__(self):
+        return self.day
     
 class Timeslot(models.Model):
     hour_start = models.TimeField(_('hour start'))
