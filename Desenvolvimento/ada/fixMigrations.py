@@ -9,7 +9,7 @@ if(sys.argv[1] == 'deleteDB'):
 
 active = True
 
-listApps = ["area","attribution","attribution_preference", "class", "course", "exchange", "staff", "timetable", "user"]
+listApps = ["area","attribution","attribution_preference", "_class", "course", "exchange", "staff", "timetable", "user"]
 
 if(active):
     for app in listApps:

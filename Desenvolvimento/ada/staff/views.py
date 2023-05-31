@@ -5,6 +5,7 @@ from django.shortcuts import render
 from django.contrib.auth.decorators import user_passes_test
 from django.contrib.auth import get_user_model
 from .models import Deadline
+from _class.models import Class
 from area.models import Block
 from user.models import User, History
 from django.utils import timezone
@@ -133,3 +134,11 @@ def update_save(request):
             return JsonResponse({'message': 'Dados não preenchidos.'})
 
         return JsonResponse({'message': 'Alterações salvas com sucesso.'})
+
+
+# class views
+
+@user_passes_test(is_staff)
+def classes_list(request):
+    classes = Class.objects.all()
+    return render(request, 'staff/classes_list.html', {'classes': classes})

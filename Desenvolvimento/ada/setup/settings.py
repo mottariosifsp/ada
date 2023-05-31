@@ -46,7 +46,7 @@ INSTALLED_APPS = [
     "area",
     "timetable",
     "course",
-    "class",
+    "_class",
     "staff",
 ]
 
