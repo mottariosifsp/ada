@@ -10,6 +10,9 @@ class Attribution_preference(models.Model): #fpa
         verbose_name = _('attribution_preference')
         verbose_name_plural = _('attribution_preferences')
 
+    def __str__(self):
+        return self.user.registration_id
+
 class Preference_schedule(models.Model): # preferencia de horário
     attribution_preference = models.ForeignKey('Attribution_preference', on_delete=models.CASCADE)
     timeslot = models.ForeignKey('timetable.Timeslot', on_delete=models.CASCADE)
@@ -18,6 +21,9 @@ class Preference_schedule(models.Model): # preferencia de horário
     class Meta:
         verbose_name = _('preference_schedule')
         verbose_name_plural = _('preference_schedules')
+
+    def __str__(self):
+        return self.day
 
 class Attribution_preference_course_preference(models.Model): 
     attribution_preference = models.ForeignKey('Attribution_preference', on_delete=models.CASCADE)
@@ -36,3 +42,6 @@ class Course_preference(models.Model): #disciplinas
     class Meta:
         verbose_name = _('course_preference')
         verbose_name_plural = _('course_preferences')
+
+    def __str__(self):
+        return self.course.name_course

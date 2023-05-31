@@ -9,6 +9,9 @@ class Timetable(models.Model):
     course = models.ForeignKey('course.Course', on_delete=models.CASCADE, related_name='timetable')
     _class = models.ForeignKey('class.Class', on_delete=models.CASCADE, related_name='timetable')
 
+    def __str__(self):
+        return self.day
+
     class Meta:
         verbose_name = _('timetable')
         verbose_name_plural = _('timetables')
@@ -21,6 +24,9 @@ class Timeslot(models.Model):
     class Meta:
         verbose_name = _('timeslot')
         verbose_name_plural = _('timeslots')
+
+    def __str__(self):
+        return str(self.hour_start)
         
     def clean(self):
         super().clean()
@@ -34,3 +40,6 @@ class Timetable_user(models.Model):
     class Meta:
         verbose_name = _('timetable_user')
         verbose_name_plural = _('timetable_users')
+
+    def __str__(self):
+        return str(self.timetable.hour_start)

@@ -9,3 +9,6 @@ class Deadline(models.Model):
     class Meta:
         verbose_name = _('deadline')
         verbose_name_plural = _('deadlines')
+
+    def __str__(self):
+        return self.name
