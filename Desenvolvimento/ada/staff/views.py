@@ -1,7 +1,8 @@
 from datetime import datetime
 from enums import enum
 from django.db import transaction
-from django.http import JsonResponse
+from django.http import JsonResponse, HttpResponse
+from django.views.decorators.http import require_http_methods
 from django.shortcuts import render
 from django.contrib.auth.decorators import user_passes_test
 from django.contrib.auth import get_user_model
@@ -212,14 +213,17 @@ def block_detail(request, registration_block_id):
 def course_update_save(request):
     if request.method == 'POST':
         course_id = request.POST.get('id')
-        print("idd", course_id)
         registration_course_id = request.POST.get('registration_course_id')
         name_course = request.POST.get('name_course')
         acronym = request.POST.get('acronym')
 
         course = Course.objects.get(id=course_id)
-        print("cursos", course)
         course.update_course(registration_course_id=registration_course_id, name_course=name_course, acronym=acronym)
-        print("cursos", course)
 
         return JsonResponse({'message': 'Matéria atualizada com sucesso.'})
+
+def course_delete(request, course_id):
+    course = Course.objects.get(id=course_id)
+    course.delete()
+
+    return JsonResponse({'message': 'Curso deletado com sucesso.'})
