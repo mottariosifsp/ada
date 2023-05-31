@@ -11,6 +11,14 @@ class Class(models.Model):
     class Meta:
         verbose_name = _('class')
         verbose_name_plural = _('classes')
+        
+    def get_semester_high_school(self):
+        year = 0
+        if self.area.is_high_school:
+            year = (self.semester + 1) // 2
+        else:
+            year = self.semester
+        return year
 
     def __str__(self):
         return self.registration_class_id
