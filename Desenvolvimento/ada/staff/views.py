@@ -188,8 +188,6 @@ def classes_list_saved(request):
         #     return JsonResponse({'message': 'Turma salva com sucesso.'})
 
         return JsonResponse({'message': 'Alterações salvas com sucesso.'})
-    
-    return JsonResponse({'error': 'Método inválido'}, status=400)
 
 # block views
 @user_passes_test(is_staff)

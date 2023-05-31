@@ -10,7 +10,7 @@ urlpatterns = [
     path("professores/", professors_list, name="professors_list"),
     path("alteracoes-salvas/", update_save, name="update_save"),
     path("turmas/", classes_list, name="classes_list"),
-    path("turmas/salvas/", classes_list_saved, name="classes_list_saved"),
+    path("turmas/alteracoes-salvas/", classes_list_saved, name="classes_list_saved"),
     path("blocos/", blocks_list, name="blocks_list"),
     path("detalhes-bloco/<str:registration_block_id>/", block_detail, name="block_detail")
 ]

@@ -43,7 +43,7 @@ $(document).ready(function() {
         // Enviar dados para o servidor via requisição AJAX
         $.ajax({
             method: 'POST',
-            url: '/staff/turmas/salvas', 
+            url: '/staff/turmas/alteracoes-salvas/', 
             data: data,
             headers: {
                 'X-CSRFToken': csrftoken

@@ -29,7 +29,7 @@
                             <td>{{ class.registration_class_id }}</td>
                             <td>{{ class.period }}</td>
                             <td>{{ class.semester }}</td>
-                            <td>{{ class.area }}</td>
+                            <td>{{ class.area.name_area }} ({{ class.area.acronym }})</td>
                             <td><button type="button" data-toggle="modal" data-target="#editClassModal" data-counter="{{ counter }}" class="btn btn-warning"><i class="bi bi-pencil"></i></button></td>
                         </tr>
                 {% endfor %}
