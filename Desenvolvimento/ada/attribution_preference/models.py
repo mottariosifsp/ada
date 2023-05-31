@@ -30,7 +30,7 @@ class Attribution_preference_course_preference(models.Model):
 class Course_preference(models.Model): #disciplinas
     course = models.ForeignKey('course.Course', on_delete=models.CASCADE)
     count_course = models.IntegerField(_('count course'))
-    priority = models.CharField(_('day'), choices=[(s.name, s.value) for s in enum.Priority], max_length=45)
+    priority = models.CharField(_('priority'), choices=[(s.name, s.value) for s in enum.Priority], max_length=45)
     period = models.CharField(_('period'), choices=[(s.name, s.value) for s in enum.Period], max_length=45)
 
     class Meta:

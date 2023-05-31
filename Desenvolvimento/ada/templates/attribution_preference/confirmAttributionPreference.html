@@ -15,7 +15,9 @@
     </form>
     <div id="work-regime">
         <h3>Regime de Trabalho</h3>
-        {{ work_regime }}
+        {% for course in preferred_courses %}
+            {{ course.name_course }}
+        {% endfor %}
     </div>
 
     <div id="work-availability">

@@ -150,7 +150,7 @@ $(document).ready(function() {
         url: '/preferencia-atribuicao/ver-fpa/',
         data: {
           work_regime: work_regime,
-          work_courses: work_courses,
+          work_courses: courses
         },
         headers: {
           'X-CSRFToken': csrftoken
