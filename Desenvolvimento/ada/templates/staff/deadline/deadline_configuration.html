@@ -11,19 +11,20 @@
         <h2>Prazo para o envio da FPA</h2>
         <p>Início: <input type="datetime-local" name="startFPADeadline"></p>
         <p>Fim: <input type="datetime-local" name="endFPADeadline"></p>
-        <p>Bloco: 
-            <select name="block" id="block">
-                {% for block in user_blocks %}
-                    {{ block. }}
-                    <option value="{{ block.id }}">{{ block.name_block }}</option>
-                {% endfor %}
-            </select> 
         <h2>Prazo para a atribuição de aulas</h2>
         <p>Início: <input type="datetime-local" name="startAssignmentDeadline"></p>
         <p>Fim: <input type="datetime-local" name="endAssignmentDeadline"></p>
         <h2>Prazo para o período de permuta</h2>
         <p>Início: <input type="datetime-local" name="startExchangeDeadline"></p>
         <p>Fim: <input type="datetime-local" name="endExchangeDeadline"></p>
+        <h2>Bloco</h2>
+        <p>Bloco: 
+            <select name="block" id="block">
+                {% for block in user_blocks %}
+                    <option value="{{ block.id }}">{{ block.name_block }}</option>
+                {% endfor %}
+            </select> 
+        </p>
         <button type="submit">Salvar</button>
     </form>
 </body>

@@ -1,0 +1,87 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% load static %}
+
+{% block head %}
+    {{ block.super }}
+    <script src="{% static 'staff/classes_list.js' %}" data-lang={{LANGUAGE_CODE}}></script>
+{% endblock %}
+
+{% block body %}
+    {{ block.super }}
+    <h1>Turmas</h1>
+    <div class="tabela">
+        <table class="table table-bordered editable" id="classes_list">
+            <thead>
+                <tr>
+                    <th scope="col">Registration class id</th>
+                    <th scope="col">Period</th>
+                    <th scope="col">Semester</th>
+                    <th scope="col">Area</th>
+                    <th scope="col">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% csrf_token %}
+                {% for class in classes %}
+                    <!-- Lista -->
+                        <tr>
+                            <td>{{ class.registration_class_id }}</td>
+                            <td>{{ class.period }}</td>
+                            <td>{{ class.semester }}</td>
+                            <td>{{ class.area.name_area }} ({{ class.area.acronym }})</td>
+                            <td><button type="button" data-toggle="modal" data-target="#editClassModal" data-counter="{{ counter }}" class="btn btn-warning"><i class="bi bi-pencil"></i></button></td>
+                        </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Modal para edição de professor -->
+    <div class="modal fade" id="editClassModal" tabindex="-1" role="dialog" aria-labelledby="editClassModal" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="editClassModal">Editar Professor</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="form-group">
+                            <label for="registration_class_id">ID</label>
+                            <input type="text" class="form-control" id="registration_class_id">
+                        </div>
+                        <div class="form-group">
+                            <label for="period">Período</label>
+                            <select class="form-control" id="period">
+                                <option value="">Selecione uma opção</option>
+                                {% for period in periods %}
+                                    <option value="{{ period.value }}">{{ period.label }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="semester">Semestre</label>
+                            <input type="number" class="form-control" id="semester">
+                        </div>
+                        <div class="form-group">
+                            <label for="area">Área</label>
+                            <select class="form-control" id="area">
+                                {% for area in areas %}
+                                    <option value="">Selecione uma opção</option>
+                                    <option value="{{ area.id }}">{{ area.name_area }} ({{ area.acronym }})</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+                    <button type="button" class="btn btn-primary" id="saveUpdateClassBtn">Salvar Alterações</button>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

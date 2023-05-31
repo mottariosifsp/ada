@@ -12,3 +12,10 @@ class Criteria_admin(admin.ModelAdmin):
     search_fields = ('name_criteria',)
 
 admin.site.register(Criteria, Criteria_admin)
+
+# class Classes_admin(admin.ModelAdmin):
+#     list_display = ('registration_class_id', 'period', 'semester', 'area')
+#     search_fields = ('registration_class_id', 'period', 'semester')
+
+# Class = apps.get_model('class', 'Class')
+# admin.site.register(Class, Classes_admin)

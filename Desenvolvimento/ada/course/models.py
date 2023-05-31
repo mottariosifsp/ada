@@ -1,9 +1,9 @@
 from django.db import models
-from django.dispatch import receiver
+# from django.dispatch import receiver
 from django.utils.translation import gettext_lazy as _
 from django.db.models.signals import pre_save
-from common.processors import convert_to_uppercase
-from common.validator.validator import validate_uppercase, validate_acronym_length
+# from common.processors import convert_to_uppercase
+from common.validator.validator import validate_acronym_length
     
 class Course(models.Model):
     registration_course_id = models.CharField(_('registration course id'), max_length=20, unique=True)
@@ -15,6 +15,12 @@ class Course(models.Model):
     class Meta:
         verbose_name = _('course')
         verbose_name_plural = _('courses')
+
+    def update_course(self, registration_course_id, name_course, acronym):
+        self.registration_course_id = registration_course_id
+        self.name_course = name_course
+        self.acronym = acronym
+        self.save()
 
     def __str__(self):
         return self.name_course

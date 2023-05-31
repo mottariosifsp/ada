@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% load static %}
+
+{% block head %}
+    {{ block.super }}
+    <link rel="stylesheet" href="{% static 'css/staff/blocks_list.css' %}">
+    <script src="{% static 'staff/js/blocks_list.js' %}" data-lang={{LANGUAGE_CODE}}></script>
+{% endblock %}
+
+{% block body %}
+    {{ block.super }}
+    <h1>Blocos</h1>
+    <div class="tabela">
+        <table class="table table-bordered editable" id="blocks_list">
+            <thead>
+                <tr>
+                    <th scope="col">Registration Block Id</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Acronym</th>
+                    <th scope="col">Action</th>
+
+                </tr>
+            </thead>
+            <tbody>
+                {% csrf_token %}
+                {% for block in blocks %}
+                    <!-- Lista -->
+                        <tr>
+                            <td>{{ block.registration_block_id }}</td>
+                            <td>{{ block.name_block }}</td>
+                            <td>{{ block.acronym }}</td>
+                            <td><a href="{% url 'block_detail' block.registration_block_id %}"><button type="button" class="btn btn-warning editProfessorBtn">Ver</button></a></td>
+                        </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}

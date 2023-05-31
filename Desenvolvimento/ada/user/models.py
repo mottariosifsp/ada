@@ -79,6 +79,15 @@ class History(models.Model):
 
     def __str__(self):
         return str(self.id_history)
+    
+    def update_history(self, birth, date_career, date_campus, date_professor, date_area, date_institute):
+        self.birth = birth
+        self.date_career = date_career
+        self.date_campus = date_campus
+        self.date_professor = date_professor
+        self.date_area = date_area
+        self.date_institute = date_institute
+        self.save()
 
 class AcademicDegree(models.Model):
     id_academic_degree = models.AutoField(primary_key=True)

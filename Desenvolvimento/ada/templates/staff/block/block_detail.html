@@ -1,0 +1,92 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% load static %}
+
+{% block head %}
+    {{ block.super }}
+    <link rel="stylesheet" href="{% static 'css/staff/block/block_detail.css' %}">
+    <script src="{% static 'staff/block_detail.js' %}" data-lang={{LANGUAGE_CODE}}></script>
+{% endblock %}
+
+{% block body %}
+    {{ block.super }}
+
+<h1>Registration area id: {{ area.registration_area_id }}</h1>
+<h1>Nome: {{ area.name_area }}</h1>
+<h1>Acrônimo: {{ area.acronym }}</h1>
+<h1>Exchange area: {{ area.exchange_area }}</h1>
+<h1>Is high school: {{ area.is_high_school }}</h1>
+
+            {% for course in courses %}
+             <h1>nome do curso: {{ course.name_course }}</h1>
+            {% endfor %}
+
+
+<div class="tabela">
+        <table class="table table-bordered editable" id="blocks_list">
+            <thead>
+                <tr>
+                    <th scope="col" id="hideId">Id</th>
+
+                    <th scope="col">Registration Course Id</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Acronym</th>
+                    <th scope="col">Action</th>
+
+                </tr>
+            </thead>
+            <tbody>
+                {% csrf_token %}
+                {% for course in courses %}
+                    <!-- Lista -->
+                        <tr>
+                            <td id="hideId">{{ course.id }}</td>
+                            <td>{{ course.registration_course_id }}</td>
+                            <td>{{ course.name_course }}</td>
+                            <td>{{ course.acronym }}</td>
+                            <td>
+                                <button type="button" data-toggle="modal" data-target="#editCourseModal" data-counter="{{ counter }}" class="btn btn-warning editCourseBtn"><i class="bi bi-pencil"></i></button>
+                                <button type="button" class="btn btn-warning deleteCourseBtn" data-url="{% url 'course_delete' course.id %}">Deletar</button>
+
+                            </td>
+                        </tr>
+                {% endfor %}
+            </tbody>
+{#        <td><a href="{% url 'course_create' %}"><button type="button" class="btn btn-sucess editProfessorBtn">Criar curso</button></a></td>#}
+        </table>
+</div>
+
+    <div class="modal fade" id="editCourseModal" tabindex="-1" role="dialog" aria-labelledby="edtCourseModelLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="addEditCourseModal">Editar</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <input type="hidden" class="form-control" id="id">
+                        <div class="form-group">
+                            <label for="registration_course_id">ID</label>
+                            <input type="text" class="form-control" id="registration_course_id">
+                        </div>
+                        <div class="form-group">
+                            <label for="name_course">Nome</label>
+                            <input type="text" class="form-control" id="name_course">
+                        </div>
+                        <div class="form-group">
+                            <label for="acronym">Acrônimo</label>
+                            <input type="text" class="form-control" id="acronym">
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+                    <button type="button" class="btn btn-primary" id="saveUpdateBtn">Salvar Alterações</button>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
