@@ -6,16 +6,16 @@ from django.db import transaction
 
 
 def attributionPreference(request):
-    courses = Course.objects.all()
+    course = Course.objects.all()
     data = {
-        'courses': courses,
+        'courses': course
     }
 
     return render(request, 'attribution_preference/attributionPreference.html', data)
 
 def confirmAttributionPreference(request):
     work_regime = request.POST.get('work_regime')
-    preferred_courses = request.POST.getlist('work_courses')
+    preferred_courses = request.POST.getlist('work_courses[]')
 
     if request.method == 'POST':
         data = {
@@ -38,20 +38,21 @@ def confirmAttributionPreference(request):
 
 @transaction.atomic
 def saveCoursePreference(preferred_courses, request):
-    if Course_preference.objects.filter(attribution_preference_course_preference__attribution_preference__user=request.user).exists():
-        Course_preference.objects.filter(attribution_preference_course_preference__attribution_preference__user=request.user).delete()
-        for course in preferred_courses:
+    for course in preferred_courses:
+        if Course_preference.objects.filter(attribution_preference_course_preference_attribution_preference_user=request.user).exists():
+            Course_preference.objects.filter(attribution_preference_course_preference_attribution_preference_user=request.user).delete() 
             Course_preference.objects.create(
-                course=course,
-                count_course=course.numAulas,
-                priority=course.turno,
-                period=course.prioridade
+            course=Course.objects.filter(name_course=course.nome), 
+            course_name=course.nome,
+            count_course=data[course.numAulas], 
+            priority=course.prioridade,
+            period=course.turno
             )
-    else:
-        for course in preferred_courses:
+        else:
             Course_preference.objects.create(
-                course=course,
-                count_course=course.numAulas,
-                priority=course.turno,
-                period=course.prioridade
+            course=Course.objects.filter(name_course=course.nome), 
+            course_name=course.nome,
+            count_course=data[course.numAulas], 
+            priority=course.prioridade,
+            period=course.turno
             )

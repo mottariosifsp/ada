@@ -139,18 +139,17 @@ $(document).ready(function() {
 $(document).ready(function() {
   $('#sendFPA').click(function() {
     var work_regime =  $('input[name="regime"]:checked').val();
+    var work_courses = [...courses]
     // ainda não feita
-    var work_courses = courses;
-
     let csrftoken = getCookie('csrftoken');
 
     if (work_regime && work_courses.length !== 0) {
       $.ajax({
-        method: 'POST',
+        type: 'POST',
         url: '/preferencia-atribuicao/ver-fpa/',
         data: {
           work_regime: work_regime,
-          work_courses: courses
+          work_courses: [...courses]
         },
         headers: {
           'X-CSRFToken': csrftoken
@@ -158,6 +157,7 @@ $(document).ready(function() {
         success: function(response) {
           $('input[name="regime"]:checked').prop('checked', false);
           $('#error-alert-form').hide();
+          alert(work_courses[0].nome);
           window.location.href = '/' + lang + '/preferencia-atribuicao/ver-fpa/';
         },
         error: function(xhr, status, error) {
