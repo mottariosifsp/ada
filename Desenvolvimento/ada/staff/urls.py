@@ -1,6 +1,10 @@
 from django.urls import path
 from .views import classes_list, home, confirm_deadline_configuration, show_current_deadline, deadline_configuration, \
+<<<<<<< HEAD
     professors_list, update_save, blocks_list, block_detail
+=======
+    professors_list, update_save, blocks_list
+>>>>>>> 97801877d64ef728ceba724335b1765808a891b5
 
 urlpatterns = [
     path("", home, name="home"),
@@ -11,5 +15,8 @@ urlpatterns = [
     path("alteracoes-salvas/", update_save, name="update_save"),
     path("turmas/", classes_list, name="classes_list"),
     path("blocos/", blocks_list, name="blocks_list"),
+<<<<<<< HEAD
     path("detalhes-bloco/<str:registration_block_id>/", block_detail, name="block_detail"),
+=======
+>>>>>>> 97801877d64ef728ceba724335b1765808a891b5
 ]
