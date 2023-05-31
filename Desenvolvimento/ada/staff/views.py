@@ -142,3 +142,9 @@ def update_save(request):
 def classes_list(request):
     classes = Class.objects.all()
     return render(request, 'staff/classes_list.html', {'classes': classes})
+
+# block views
+@user_passes_test(is_staff)
+def blocks_list(request):
+    blocks = request.user.blocks.all()
+    return render(request, 'staff/block/blocks_list.html', {'blocks': blocks})
