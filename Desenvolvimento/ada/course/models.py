@@ -7,15 +7,8 @@ from common.validator.validator import validate_uppercase, validate_acronym_leng
     
 class Course(models.Model):
     registration_course_id = models.CharField(_('registration course id'), max_length=20, unique=True)
-<<<<<<< HEAD
-    name_course = models.CharField(_('course name'), unique=True, max_length=45, validators=[validate_uppercase])
-    period = models.CharField(_('period'), choices=[(s.name, s.value) for s in enum.Period], max_length=45)
-    hour_start = models.TimeField(_('start time'))
-    hour_end = models.TimeField(_('end time'))
-=======
     name_course = models.CharField(_('course name'), max_length=45, unique=True)
     acronym = models.CharField(_('acronym'), max_length=3, null=True, unique=True, validators=[validate_acronym_length])
->>>>>>> develop
     area = models.ForeignKey('area.Area', on_delete=models.CASCADE, null=True)
     block = models.ForeignKey('area.Block', on_delete=models.CASCADE, null=True) 
 
