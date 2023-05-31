@@ -33,11 +33,11 @@ class UserManager(BaseUserManager):
         return self._create_user(email, password, **extra_fields)
 
 class User(AbstractBaseUser, PermissionsMixin):
-    email = models.EmailField(_('email address'), max_length=100, unique=True)
+    email = models.EmailField(_('email address'), max_length=160, unique=True)
     registration_id = models.CharField(_('registration id'), max_length=9, unique=True)
-    first_name = models.CharField(_('first name'), max_length=30)
-    last_name = models.CharField(_('last name'), max_length=30)
-    telephone = models.CharField(_('telephone'), max_length=10, null=True, blank=True)
+    first_name = models.CharField(_('first name'), max_length=60)
+    last_name = models.CharField(_('last name'), max_length=160)
+    telephone = models.CharField(_('telephone'), max_length=11, null=True, blank=True)
     cell_phone = models.CharField(_('cell phone'), max_length=14)
     date_joined = models.DateTimeField(_('date joined'), auto_now_add=True)
     is_superuser = models.BooleanField(_('superuser status'), default=False)
@@ -96,7 +96,7 @@ class AcademicDegree(models.Model):
 
 class Job(models.Model):
     id_job = models.AutoField(primary_key=True)
-    name_job = models.CharField(_('name job'), max_length=255)
+    name_job = models.CharField(_('name job'), max_length=160)
 
     def __str__(self):
         return self.name_job

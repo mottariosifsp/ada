@@ -1,5 +1,6 @@
 from user.models import User
 from django.db import models
+<<<<<<< HEAD
 from django.core.exceptions import ValidationError
 
 class TeacherQueuePosition(models.Model):
@@ -12,3 +13,5 @@ class TeacherQueuePosition(models.Model):
     def clean(self):
         if self.position <= 0:
             raise ValidationError("Deve ser maior que 0")
+=======
+>>>>>>> style/superadmin-change
