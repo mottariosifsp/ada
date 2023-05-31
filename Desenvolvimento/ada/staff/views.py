@@ -165,13 +165,12 @@ def classes_list_saved(request):
         semester = request.POST.get('semester')
         area = request.POST.get('area')
         print(area)
+        print(registration_class_id)
 
-        Class = get_user_model()
-        _class = Class.objects.all()
-        print("funcionou o get user")
+        _class = Class.objects.filter(registration_class_id=registration_class_id).all()
+        print(_class)
         if _class is not None:
-            _class.update_class(registration_class_id=registration_class_id, period=period, semester=semester, area=area)
-            _class.save()
+            _class.update(registration_class_id=registration_class_id, period=period, semester=semester, area=area)
             print("funcionou o history")
         else:            
             _class = Class.objects.create(registration_class_id=registration_class_id, period=period, semester=semester, area=area)
