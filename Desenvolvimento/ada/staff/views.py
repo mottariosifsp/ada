@@ -99,6 +99,7 @@ def save_deadline(data):
         block=data['user_block'],
         )
 
+
 #professor views
 
 @user_passes_test(is_staff)

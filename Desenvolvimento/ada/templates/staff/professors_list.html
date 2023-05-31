@@ -33,7 +33,7 @@
                     <!-- Lista -->
                         <tr>
                             <td>{{ professor.registration_id }}</td>
-                            <td>{{ professor.first_name }}</td>
+                            <td>{{ professor.get_full_name }}</td>
                             <td>{{ professor.history.birth|date:"Y-m-d" }}</td>
                             <td>{{ professor.history.date_career|date:"Y-m-d" }}</td>
                             <td>{{ professor.history.date_campus|date:"Y-m-d" }}</td>
@@ -69,8 +69,8 @@
                             <input type="text" class="form-control" id="registration_id" readonly>
                         </div>
                         <div class="form-group">
-                            <label for="first_name">Nome</label>
-                            <input type="text" class="form-control" id="first_name" readonly>
+                            <label for="get_full_name">Nome</label>
+                            <input type="text" class="form-control" id="get_full_name" readonly>
                         </div>
                         <div class="form-group">
                             <label for="birth">Data de Nascimento</label>
