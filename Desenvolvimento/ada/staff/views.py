@@ -1,4 +1,5 @@
 from datetime import datetime
+from enums import enum
 from django.db import transaction
 from django.http import JsonResponse
 from django.shortcuts import render
@@ -6,7 +7,7 @@ from django.contrib.auth.decorators import user_passes_test
 from django.contrib.auth import get_user_model
 from .models import Deadline
 from _class.models import Class
-from area.models import Block
+from area.models import Block, Area
 from user.models import User, History
 from django.utils import timezone
 
@@ -131,7 +132,7 @@ def update_save(request):
         else:            
             user.history = History.objects.create(birth=birth, date_career=date_career, date_campus=date_campus, date_professor=date_professor, date_area=date_area, date_institute=date_institute)
             user.save()
-            return JsonResponse({'message': 'Dados não preenchidos.'})
+            return JsonResponse({'message': 'Histórico criado com sucesso.'})
 
         return JsonResponse({'message': 'Alterações salvas com sucesso.'})
 
@@ -141,4 +142,42 @@ def update_save(request):
 @user_passes_test(is_staff)
 def classes_list(request):
     classes = Class.objects.all()
-    return render(request, 'staff/classes_list.html', {'classes': classes})
+    areas = Area.objects.all()
+    periods = [
+        {'value': period.name, 'label': period.value}
+        for period in enum.Period
+    ]
+    return render(request, 'staff/classes_list.html', {'classes': classes, 'periods': periods, 'areas': areas})
+
+def classes_list_saved(request):
+    if request.method == 'POST':
+        print("funcionou o if")
+        registration_class_id = request.POST.get('registration_class_id')
+        period = request.POST.get('period')
+        semester = request.POST.get('semester')
+        area = request.POST.get('area')
+        print(area)
+
+        Class = get_user_model()
+        _class = Class.objects.all()
+        print("funcionou o get user")
+        if _class is not None:
+            _class.update_class(registration_class_id=registration_class_id, period=period, semester=semester, area=area)
+            _class.save()
+            print("funcionou o history")
+        else:            
+            _class = Class.objects.create(registration_class_id=registration_class_id, period=period, semester=semester, area=area)
+            _class.save()
+            return JsonResponse({'message': 'Turma salva com sucesso.'})
+        
+        # _class = Class.objects.all()
+        # print("funcionou o get user")
+        # if _class.exists():
+        #     _class.update_class(registration_class_id=registration_class_id, period=period, semester=semester, area=area)
+        #     print("funcionou o history")
+        # else:            
+        #     _class = Class.objects.create(registration_class_id=registration_class_id, period=period, semester=semester, area=area)
+        #     return JsonResponse({'message': 'Turma salva com sucesso.'})
+
+        return JsonResponse({'message': 'Alterações salvas com sucesso.'})
+    return JsonResponse({'error': 'Método inválido'}, status=400)
