@@ -1,9 +1,15 @@
+from django import forms
 from django.core.exceptions import ValidationError
 
 # validação campo
 def validate_uppercase(value):
     if value != value.upper():
         raise ValidationError("Este campo deve conter apenas letras maiúsculas.")
+    
+# validação tamanho da sigla
+def validate_acronym_length(value):
+    if len(value) != 3:
+        raise forms.ValidationError('O acrônimo deve ter exatamente 3 caracteres.')
 
 # validações sobre mesmo horário
 def validate_incongruity_time(value):

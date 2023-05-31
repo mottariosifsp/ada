@@ -1,6 +1,6 @@
 {% load i18n %}
 {% load static %}
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="utf-8">
@@ -24,7 +24,7 @@
           {% get_current_language as LANGUAGE_CODE %}
           {% get_available_languages as LANGUAGES %}
           {% get_language_info_list for LANGUAGES as languages %}
-  
+
           {% for lang in LANGUAGES %}
             {% if lang.0 == LANGUAGE_CODE %}
               {% if LANGUAGE_CODE == "en" %}
@@ -96,7 +96,10 @@
               <a class="dropdown-item disabled" href="#">{{ request.user.get_full_name }}</a>
               <a class="dropdown-item" href="">{% translate "Perfil" %}</a>
               <div class="dropdown-divider"></div>
-              <a class="dropdown-item" href="#">{% translate "Sair" %}</a>
+<<<<<<< HEAD
+              <a class="dropdown-item" href=''>{% translate "Sair" %}</a>
+=======
+>>>>>>> cf602827cd5e8194068e2cfedf5e09630281c249
             </div>
           </li>
         </ul>
@@ -133,7 +136,7 @@
                   {% get_current_language as LANGUAGE_CODE %}
                   {% get_available_languages as LANGUAGES %}
                   {% get_language_info_list for LANGUAGES as languages %}
-    
+
                   {% for lang in LANGUAGES %}
                     {% if lang.0 == LANGUAGE_CODE %}
                       {% if LANGUAGE_CODE == "en" %}

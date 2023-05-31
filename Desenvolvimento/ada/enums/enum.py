@@ -1,18 +1,18 @@
 from enum import Enum
 
 class Period(Enum):
-    morning = 'morning'
-    afternoon = 'afternoon'
-    night = 'night'
+    morning = 'MORNING'
+    afternoon = 'AFTERNOON'
+    night = 'NIGHT'
 
 class Day(Enum):
-    monday = 'monday'
-    tuesday = 'tuesday'
-    wednesday = 'wednesday'
-    thursday = 'thursday'
-    friday = 'friday'
-    saturday = 'saturday'
+    monday = 'MONDAY'
+    tuesday = 'TUESDAY'
+    wednesday = 'WEDNESDAY'
+    thursday = 'THURSDAY'
+    friday = 'FRIDAY'
+    saturday = 'SATURDAY'
 
 class Priority(Enum):
-    primary = 'primary'
-    secondary = 'secondary'
+    primary = 'PRIMARY'
+    secondary = 'SECONDARY'
