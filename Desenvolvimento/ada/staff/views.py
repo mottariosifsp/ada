@@ -1,13 +1,15 @@
 from datetime import datetime
 from enums import enum
 from django.db import transaction
-from django.http import JsonResponse
+from django.http import JsonResponse, HttpResponse
+from django.views.decorators.http import require_http_methods
 from django.shortcuts import render
 from django.contrib.auth.decorators import user_passes_test
 from django.contrib.auth import get_user_model
 from .models import Deadline
 from _class.models import Class
 from area.models import Block, Area
+from course.models import Course
 from user.models import User, History
 from django.utils import timezone
 
@@ -195,8 +197,30 @@ def blocks_list(request):
     return render(request, 'staff/block/blocks_list.html', {'blocks': blocks})
 
 
+@user_passes_test(is_staff)
 def block_detail(request, registration_block_id):
     block = Block.objects.get(registration_block_id=registration_block_id)
     area = block.areas.first()
-    data = {'block': block, 'area': area}
+    courses = Course.objects.filter(block=block)
+    print("Materia", courses)
+    data = {'block': block, 'area': area, 'courses': courses}
     return render(request, 'staff/block/block_detail.html', data)
+
+
+def course_update_save(request):
+    if request.method == 'POST':
+        course_id = request.POST.get('id')
+        registration_course_id = request.POST.get('registration_course_id')
+        name_course = request.POST.get('name_course')
+        acronym = request.POST.get('acronym')
+
+        course = Course.objects.get(id=course_id)
+        course.update_course(registration_course_id=registration_course_id, name_course=name_course, acronym=acronym)
+
+        return JsonResponse({'message': 'Matéria atualizada com sucesso.'})
+
+def course_delete(request, course_id):
+    course = Course.objects.get(id=course_id)
+    course.delete()
+
+    return JsonResponse({'message': 'Curso deletado com sucesso.'})
