@@ -14,6 +14,9 @@ class Timetable(models.Model):
     class Meta:
         verbose_name = _('timetable')
         verbose_name_plural = _('timetables')
+        
+    def __str__(self):
+        return self.day
     
 class Timeslot(models.Model):
     position = models.IntegerField(_('position'), null=True, blank=True)
@@ -24,6 +27,12 @@ class Timeslot(models.Model):
     class Meta:
         verbose_name = _('timeslot')
         verbose_name_plural = _('timeslots')
+<<<<<<< HEAD
+
+    def __str__(self):
+        return str(self.hour_start)
+=======
+>>>>>>> develop
         
     def clean(self):
         super().clean()
@@ -42,3 +51,6 @@ class Timetable_user(models.Model):
     class Meta:
         verbose_name = _('timetable_user')
         verbose_name_plural = _('timetable_users')
+
+    def __str__(self):
+        return str(self.timetable.hour_start)
