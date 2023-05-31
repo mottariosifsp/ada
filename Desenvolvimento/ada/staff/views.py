@@ -146,22 +146,17 @@ def update_save(request):
 
 
 # class views
-
 @user_passes_test(is_staff)
 def classes_list(request):
     classes = Class.objects.all()
     return render(request, 'staff/classes_list.html', {'classes': classes})
 
-<<<<<<< HEAD
 
-=======
->>>>>>> 97801877d64ef728ceba724335b1765808a891b5
 # block views
 @user_passes_test(is_staff)
 def blocks_list(request):
     blocks = request.user.blocks.all()
     return render(request, 'staff/block/blocks_list.html', {'blocks': blocks})
-<<<<<<< HEAD
 
 
 def block_detail(request, registration_block_id):
@@ -169,5 +164,3 @@ def block_detail(request, registration_block_id):
     area = block.areas.first()
     data = {'block': block, 'area': area}
     return render(request, 'staff/block/block_detail.html', data)
-=======
->>>>>>> 97801877d64ef728ceba724335b1765808a891b5
