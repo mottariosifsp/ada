@@ -6,12 +6,14 @@ from django.contrib.auth.decorators import user_passes_test
 from django.contrib.auth import get_user_model
 from .models import Deadline
 from _class.models import Class
-from area.models import Block
+from area.models import Block, Area
 from user.models import User, History
 from django.utils import timezone
 
+
 def is_staff(user):
     return user.is_staff
+
 
 # prazos
 
@@ -22,19 +24,17 @@ def home(request):
 
 @user_passes_test(is_staff)
 def deadline_configuration(request):
-
     user_blocks = request.user.blocks.all()
-    
+
     data = {
         'user_blocks': user_blocks
     }
 
     return render(request, 'staff/deadline/deadline_configuration.html', data)
-    
+
 
 def confirm_deadline_configuration(request):
     if request.method == 'POST':
-        
         startFPADeadline = datetime.strptime(request.POST.get('startFPADeadline'), '%Y-%m-%dT%H:%M')
         endFPADeadline = datetime.strptime(request.POST.get('endFPADeadline'), '%Y-%m-%dT%H:%M')
         startAssignmentDeadline = datetime.strptime(request.POST.get('startAssignmentDeadline'), '%Y-%m-%dT%H:%M')
@@ -59,15 +59,19 @@ def confirm_deadline_configuration(request):
 
     return render(request, 'staff/deadline/confirm_deadline_configuration.html', data)
 
+
 def show_current_deadline(request):
     deadlines = Deadline.objects.all()
-    now = timezone.now() 
+    now = timezone.now()
 
-    if(deadlines.get(name="startFPADeadline").deadline_start <= now and deadlines.get(name="startFPADeadline").deadline_end >= now):
+    if (deadlines.get(name="startFPADeadline").deadline_start <= now and deadlines.get(
+            name="startFPADeadline").deadline_end >= now):
         actualDeadline = "FPA"
-    elif(deadlines.get(name="startAssignmentDeadline").deadline_start <= now and deadlines.get(name="startAssignmentDeadline").deadline_end >= now):
+    elif (deadlines.get(name="startAssignmentDeadline").deadline_start <= now and deadlines.get(
+            name="startAssignmentDeadline").deadline_end >= now):
         actualDeadline = "Assignment"
-    elif(deadlines.get(name="startExchangeDeadline").deadline_start <= now and deadlines.get(name="startExchangeDeadline").deadline_end >= now):
+    elif (deadlines.get(name="startExchangeDeadline").deadline_start <= now and deadlines.get(
+            name="startExchangeDeadline").deadline_end >= now):
         actualDeadline = "Exchange"
     else:
         actualDeadline = "none"
@@ -78,35 +82,37 @@ def show_current_deadline(request):
 
     return render(request, 'staff/deadline/show_current_deadline.html', data)
 
+
 @transaction.atomic
 def save_deadline(data):
     Deadline.objects.all().delete()
     Deadline.objects.create(
-        name="startFPADeadline", 
-        deadline_start=data['startFPADeadline'], 
+        name="startFPADeadline",
+        deadline_start=data['startFPADeadline'],
         deadline_end=data['endFPADeadline'],
         block=data['user_block'],
-        )
+    )
     Deadline.objects.create(
         name="startAssignmentDeadline",
         deadline_start=data['startAssignmentDeadline'],
         deadline_end=data['endAssignmentDeadline'],
         block=data['user_block'],
-        )
+    )
     Deadline.objects.create(
         name="startExchangeDeadline",
         deadline_start=data['startExchangeDeadline'],
         deadline_end=data['endExchangeDeadline'],
         block=data['user_block'],
-        )
+    )
 
 
-#professor views
+# professor views
 
 @user_passes_test(is_staff)
 def professors_list(request):
     professors = User.objects.filter(is_superuser=False)
     return render(request, 'staff/professors_list.html', {'professors': professors})
+
 
 def update_save(request):
     if request.method == 'POST':
@@ -121,15 +127,18 @@ def update_save(request):
         print(birth)
 
         User = get_user_model()
-        user = User.objects.get(registration_id=registration_id)  
+        user = User.objects.get(registration_id=registration_id)
         history = user.history
         print("funcionou o get user")
         if history is not None:
-            history.update_history(birth=birth, date_career=date_career, date_campus=date_campus, date_professor=date_professor, date_area=date_area, date_institute=date_institute)
+            history.update_history(birth=birth, date_career=date_career, date_campus=date_campus,
+                                   date_professor=date_professor, date_area=date_area, date_institute=date_institute)
             history.save()
             print("funcionou o history")
-        else:            
-            user.history = History.objects.create(birth=birth, date_career=date_career, date_campus=date_campus, date_professor=date_professor, date_area=date_area, date_institute=date_institute)
+        else:
+            user.history = History.objects.create(birth=birth, date_career=date_career, date_campus=date_campus,
+                                                  date_professor=date_professor, date_area=date_area,
+                                                  date_institute=date_institute)
             user.save()
             return JsonResponse({'message': 'Dados não preenchidos.'})
 
@@ -142,3 +151,17 @@ def update_save(request):
 def classes_list(request):
     classes = Class.objects.all()
     return render(request, 'staff/classes_list.html', {'classes': classes})
+
+
+# block views
+@user_passes_test(is_staff)
+def blocks_list(request):
+    blocks = request.user.blocks.all()
+    return render(request, 'staff/block/blocks_list.html', {'blocks': blocks})
+
+
+def block_detail(request, registration_block_id):
+    block = Block.objects.get(registration_block_id=registration_block_id)
+    area = block.areas.first()
+    data = {'block': block, 'area': area}
+    return render(request, 'staff/block/block_detail.html', data)
