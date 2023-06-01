@@ -101,6 +101,7 @@
               <a class="dropdown-item disabled" href="#">{{ request.user.get_full_name }}</a>
               <a class="dropdown-item" href="">{% translate "Perfil" %}</a>
               <div class="dropdown-divider"></div>
+              <a class="dropdown-item" data-toggle="modal" data-target="#logoutModal"><i class="bi bi-box-arrow-right"></i> {% translate "Sair" %}</a>
             </div>
           </li>
         </ul>
@@ -171,6 +172,27 @@
         {% block body %}
 
         {% endblock %}
+      </div>
+
+      <!-- Logout modal -->
+      <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="confirmLogoutModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="confirmLogoutModalLabel">{% translate "Confirmar Saída" %}</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <p>{% translate "Tem certeza que quer sair?" %}</p>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">{% translate "Cancelar" %}</button>
+              <a class="btn btn-danger" href="{% url 'logout' %}">{% translate "Sair" %}</a>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js" integrity="sha384-7og8luCpGnZn/Ms71Ycm3q8rW2t+jGvRJ9XtT7ieAM8WwhzODZvmmwyQEd/bYUTd" crossorigin="anonymous"></script>
