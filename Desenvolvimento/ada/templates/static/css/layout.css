@@ -29,13 +29,13 @@ nav.navbar-nav {
     font-family: 'Montserrat', sans-serif;
 }
 
-div#navbarToggler ul.navbar-nav > li:nth-of-type(-n+4).nav-item {
+div#navbarToggler ul.navbar-nav > li.nav-item {
     padding: 5px 0;
     transition: all .1s ease;
     cursor: pointer;
 }
 
-div#navbarToggler ul.navbar-nav > li:nth-of-type(-n+4).nav-item:hover {
+div#navbarToggler ul.navbar-nav > li.nav-item:hover {
     border-radius: 5px;
     border: 0.1px solid #2a5a4f;
     background-color: #2a5a4f;
