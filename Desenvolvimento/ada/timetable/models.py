@@ -27,12 +27,9 @@ class Timeslot(models.Model):
     class Meta:
         verbose_name = _('timeslot')
         verbose_name_plural = _('timeslots')
-<<<<<<< HEAD
 
     def __str__(self):
         return str(self.hour_start)
-=======
->>>>>>> develop
         
     def clean(self):
         super().clean()
