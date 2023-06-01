@@ -222,3 +222,10 @@ def course_delete(request, course_id):
     course.delete()
 
     return JsonResponse({'message': 'Curso deletado com sucesso.'})
+
+# timetable views
+
+@user_passes_test(is_staff)
+def create_timetable(request):
+
+    return render(request, 'staff/timetable/criar.html')

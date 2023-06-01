@@ -1,0 +1,153 @@
+{% extends "staff/base.html" %}
+{% load i18n %}
+{% load static %}
+
+{% block head %}
+    <title>{% translate "create timetable" %}</title>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="{% static 'staff/js/create_datatable.js' %}" data-lang={{LANGUAGE_CODE}}></script>
+{% endblock %}
+
+{% block body %}
+    <h1>{% translate "Login completo" %} - {% translate "HOME PAGE" %}</h1>
+    <hr>
+    <div class="container d-flex justify-content-center h-70">
+        <div>
+            <h2>{% translate "Crie uma grade horária!"%}</h2>
+        </div>
+    </div>
+    <div class="container">
+        <form method="GET">
+            <div class="form-group">
+                <div class="row">
+                        <label for="area">Turma</label>
+                        <select class="form-control" id="area">
+                                <option value="">Selecione uma opção</option>
+                                <option value="">LPL</option>
+                        </select>
+                    </div>
+                </div>            
+            </div>
+        </form>
+
+    <div class="container">
+        <table class="table">
+            <thead class="thead-dark">
+              <tr>
+                <th scope="col">Horário</th>
+                <th scope="col">Segunda-feira</th>
+                <th scope="col">Terça-feira</th>
+                <th scope="col">Quarta-feira</th>
+                <th scope="col">Quinta-feira</th>
+                <th scope="col">Sexta-feira</th>
+                <th scope="col">Sábado</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row">13:00 - 14:00</th>
+                <td>
+                  <div class="dropdown">
+                    <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      Curso1
+                    </button>
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                      <input class="form-control dropdown-search" type="text" placeholder="Search" id="searchInput">
+                      <div class="dropdown-divider"></div>
+                        <a class="dropdown-item course-option" href="#">Option 1</a>
+                        <a class="dropdown-item course-option" href="#">Option 2</a>
+                        <a class="dropdown-item course-option" href="#">Option 3</a>
+                    </div>
+                  </div>
+                </td>
+                <td>
+                  <div class="dropdown">
+                    <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      Curso
+                    </button>
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                      <input class="form-control dropdown-search" type="text" placeholder="Search" id="searchInput">
+                      <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="#">Option 1</a>
+                        <a class="dropdown-item" href="#">Option 2</a>
+                        <a class="dropdown-item" href="#">Option 3</a>
+                    </div>
+                  </div>
+                </td> 
+                <td>
+                  <div class="dropdown">
+                    <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      Curso
+                    </button>
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                      <input class="form-control dropdown-search" type="text" placeholder="Search" id="searchInput">
+                      <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="#">Option 1</a>
+                        <a class="dropdown-item" href="#">Option 2</a>
+                        <a class="dropdown-item" href="#">Option 3</a>
+                    </div>
+                  </div>
+                </td>
+                <td>
+                  <div class="dropdown">
+                    <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      Curso
+                    </button>
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                      <input class="form-control dropdown-search" type="text" placeholder="Search" id="searchInput">
+                      <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="#">Option 1</a>
+                        <a class="dropdown-item" href="#">Option 2</a>
+                        <a class="dropdown-item" href="#">Option 3</a>
+                    </div>
+                  </div>
+                </td>
+                <td>
+                  <div class="dropdown">
+                    <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      Curso
+                    </button>
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                      <input class="form-control dropdown-search" type="text" placeholder="Search" id="searchInput">
+                      <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="#">Option 1</a>
+                        <a class="dropdown-item" href="#">Option 2</a>
+                        <a class="dropdown-item" href="#">Option 3</a>
+                    </div>
+                  </div>
+                </td>
+                <td>
+                  <div class="dropdown">
+                    <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      Curso
+                    </button>
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                      <input class="form-control dropdown-search" type="text" placeholder="Search" id="searchInput">
+                      <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="#">Option 1</a>
+                        <a class="dropdown-item" href="#">Option 2</a>
+                        <a class="dropdown-item" href="#">Option 3</a>
+                    </div>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <th scope="row">2</th>
+                <td>Jacob</td>
+                <td>Thornton</td>
+                <td>@fat</td>
+              </tr>
+              <tr>
+                <th scope="row">3</th>
+                <td>Larry</td>
+                <td>the Bird</td>
+                <td>@twitter</td>
+              </tr>
+            </tbody>
+          </table>         
+          
+    </div>
+
+
+
+{% endblock %}
