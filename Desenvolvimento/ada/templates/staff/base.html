@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
-    <link rel="stylesheet" href="{% static 'css/layout.css' %}">
+    <link rel="stylesheet" href="{% static 'layout.css' %}">
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
     <link href="https://cdn.datatables.net/v/dt/jq-3.6.0/dt-1.13.4/rr-1.3.3/datatables.min.css" rel="stylesheet"/>
     <script src="https://cdn.datatables.net/v/dt/jq-3.6.0/dt-1.13.4/rr-1.3.3/datatables.min.js"></script>
@@ -62,9 +62,10 @@
       </div>
       <div class="collapse navbar-collapse justify-content-end" id="navbarToggler">
         <ul class="navbar-nav mx-auto ">
+          <!-- <li class="nav-item"><a class="nav-link title" href="{% url 'deadline_configuration' %}">{% translate "Prazos" %}</a></li> -->
           <li class="nav-item"><a class="nav-link title" href="{% url 'professors_list' %}">{% translate "Professores" %}</a></li>
           <li class="nav-item"><a class="nav-link title" href="{% url 'classes_list' %}">{% translate "Turma" %}</a></li>
-          <li class="nav-item"><a class="nav-link title" href="#">{% translate "Bloco" %}</a></li>
+          <li class="nav-item"><a class="nav-link title" href="{% url 'blocks_list' %}">{% translate "Bloco" %}</a></li>
           <li class="nav-item"><a class="nav-link title" href="{% url 'create_timetable' %}">{% translate "Grade" %}</a></li>
           <li class="nav-item dropdown language-icon">
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownLang" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -100,6 +101,7 @@
               <a class="dropdown-item disabled" href="#">{{ request.user.get_full_name }}</a>
               <a class="dropdown-item" href="">{% translate "Perfil" %}</a>
               <div class="dropdown-divider"></div>
+              <a class="dropdown-item" data-toggle="modal" data-target="#logoutModal"><i class="bi bi-box-arrow-right"></i> {% translate "Sair" %}</a>
             </div>
           </li>
         </ul>
@@ -124,10 +126,11 @@
                 </a>
               </div>
               <hr>
+              <div class="modal-line"><a class="nav-link title" href="{% url 'deadline_configuration' %}"><i class="bi bi-people lang-icon"></i> {% translate "Prazos" %}</a></div>
               <div class="modal-line"><a class="nav-link title" href="{% url 'professors_list' %}"><i class="bi bi-people lang-icon"></i> {% translate "Professores" %}</a></div>
               <div class="modal-line"><a class="nav-link title" href="{% url 'classes_list' %}"><i class="bi bi-layers lang-icon"></i> {% translate "Turma" %}</a></div>
-              <div class="modal-line"><a class="nav-link title" href="#"><i class="bi bi-people-fill lang-icon"></i> {% translate "Bloco" %}</a></div>
-              <div class="modal-line"><a class="nav-link title" href="#"><i class="bi bi-bar-chart-line lang-icon"></i> {% translate "Grade" %}</a></div>
+              <div class="modal-line"><a class="nav-link title" href="{% url 'blocks_list' %}"><i class="bi bi-people-fill lang-icon"></i> {% translate "Bloco" %}</a></div>
+              <div class="modal-line"><a class="nav-link title" href="{% url 'create_timetable' %}"><i class="bi bi-bar-chart-line lang-icon"></i> {% translate "Grade" %}</a></div>
               <div class="modal-line dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownLangSidebar" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                   <i class="bi bi-globe lang-icon"></i> {% translate "Línguas" %}
@@ -169,6 +172,27 @@
         {% block body %}
 
         {% endblock %}
+      </div>
+
+      <!-- Logout modal -->
+      <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="confirmLogoutModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="confirmLogoutModalLabel">{% translate "Confirmar Saída" %}</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <p>{% translate "Tem certeza que quer sair?" %}</p>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">{% translate "Cancelar" %}</button>
+              <a class="btn btn-danger" href="{% url 'logout' %}">{% translate "Sair" %}</a>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js" integrity="sha384-7og8luCpGnZn/Ms71Ycm3q8rW2t+jGvRJ9XtT7ieAM8WwhzODZvmmwyQEd/bYUTd" crossorigin="anonymous"></script>

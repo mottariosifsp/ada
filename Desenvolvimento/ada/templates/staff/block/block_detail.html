@@ -4,8 +4,8 @@
 
 {% block head %}
     {{ block.super }}
-    <link rel="stylesheet" href="{% static 'css/staff/block/block_detail.css' %}">
-    <script src="{% static 'staff/block_detail.js' %}" data-lang={{LANGUAGE_CODE}}></script>
+    <link rel="stylesheet" href="{% static 'staff/block/css/block_detail.css' %}">
+    <script src="{% static 'staff/block/js/block_detail.js' %}" data-lang={{LANGUAGE_CODE}}></script>
 {% endblock %}
 
 {% block body %}
@@ -17,9 +17,9 @@
 <h1>Exchange area: {{ area.exchange_area }}</h1>
 <h1>Is high school: {{ area.is_high_school }}</h1>
 
-            {% for course in courses %}
-             <h1>nome do curso: {{ course.name_course }}</h1>
-            {% endfor %}
+    {% for course in courses %}
+        <h1>nome do curso: {{ course.name_course }}</h1>
+    {% endfor %}
 
 
 <div class="tabela">
@@ -46,7 +46,7 @@
                             <td>{{ course.acronym }}</td>
                             <td>
                                 <button type="button" data-toggle="modal" data-target="#editCourseModal" data-counter="{{ counter }}" class="btn btn-warning editCourseBtn"><i class="bi bi-pencil"></i></button>
-                                <button type="button" class="btn btn-warning deleteCourseBtn" data-url="{% url 'course_delete' course.id %}">Deletar</button>
+                                <button type="button" class="btn btn-danger deleteCourseBtn" data-url="{% url 'course_delete' course.id %}">Deletar</button>
 
                             </td>
                         </tr>

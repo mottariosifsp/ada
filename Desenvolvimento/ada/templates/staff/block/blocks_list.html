@@ -4,8 +4,8 @@
 
 {% block head %}
     {{ block.super }}
-    <link rel="stylesheet" href="{% static 'css/staff/blocks_list.css' %}">
-    <script src="{% static 'staff/js/blocks_list.js' %}" data-lang={{LANGUAGE_CODE}}></script>
+    <link rel="stylesheet" href="{% static 'staff/block/css/block_list.css' %}">
+    <script src="{% static 'staff/block/js/blocks_list.js' %}" data-lang={{LANGUAGE_CODE}}></script>
 {% endblock %}
 
 {% block body %}
@@ -19,7 +19,6 @@
                     <th scope="col">Name</th>
                     <th scope="col">Acronym</th>
                     <th scope="col">Action</th>
-
                 </tr>
             </thead>
             <tbody>
@@ -30,7 +29,7 @@
                             <td>{{ block.registration_block_id }}</td>
                             <td>{{ block.name_block }}</td>
                             <td>{{ block.acronym }}</td>
-                            <td><a href="{% url 'block_detail' block.registration_block_id %}"><button type="button" class="btn btn-warning editProfessorBtn">Ver</button></a></td>
+                            <td><a href="{% url 'block_detail' block.registration_block_id %}"><button type="button" class="btn btn-warning editProfessorBtn"><i class="bi bi-eye"></i></button></a></td>
                         </tr>
                 {% endfor %}
             </tbody>

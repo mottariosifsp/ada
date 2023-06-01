@@ -1,8 +1,5 @@
 from django.db import models
-# from django.dispatch import receiver
 from django.utils.translation import gettext_lazy as _
-from django.db.models.signals import pre_save
-# from common.processors import convert_to_uppercase
 from common.validator.validator import validate_acronym_length
     
 class Course(models.Model):
@@ -24,27 +21,3 @@ class Course(models.Model):
 
     def __str__(self):
         return self.name_course
-    
-    # def save(self, *args, **kwargs):
-    #     print("babababananananbabaNANA")
-    #     super().save(*args, **kwargs)
-    #     if self.area:
-    #         blocks = self.area.get_blocks()
-    #         if blocks:
-    #             self.block = blocks.first()
-    #     else:
-    #         self.block = None
-    #     super().save(*args, **kwargs)
-    
-# @receiver(pre_save, sender=Course)
-# def convert_fields_to_uppercase(sender, instance, **kwargs):
-#     convert_to_uppercase(instance, 'registration_course_id', 'name_course', 'acronym')
-
-# @receiver(pre_save, sender=Course)
-# def course_pre_save(sender, instance, **kwargs):
-#     if instance.area:
-#         blocks = instance.area.get_blocks()
-#         if blocks:
-#             instance.block = blocks.first()
-#     else:
-#         instance.block = None

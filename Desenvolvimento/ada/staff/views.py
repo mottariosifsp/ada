@@ -112,7 +112,7 @@ def save_deadline(data):
 @user_passes_test(is_staff)
 def professors_list(request):
     professors = User.objects.filter(is_superuser=False)
-    return render(request, 'staff/professors_list.html', {'professors': professors})
+    return render(request, 'staff/professor/professors_list.html', {'professors': professors})
 
 
 def update_save(request):
@@ -155,7 +155,7 @@ def classes_list(request):
         {'value': period.name, 'label': period.value}
         for period in enum.Period
     ]
-    return render(request, 'staff/classes_list.html', {'classes': classes, 'periods': periods, 'areas': areas})
+    return render(request, 'staff/class/classes_list.html', {'classes': classes, 'periods': periods, 'areas': areas})
 
 def classes_list_saved(request):
     if request.method == 'POST':
@@ -176,15 +176,6 @@ def classes_list_saved(request):
             _class = Class.objects.create(registration_class_id=registration_class_id, period=period, semester=semester, area=area)
             _class.save()
             return JsonResponse({'message': 'Turma salva com sucesso.'})
-        
-        # _class = Class.objects.all()
-        # print("funcionou o get user")
-        # if _class.exists():
-        #     _class.update_class(registration_class_id=registration_class_id, period=period, semester=semester, area=area)
-        #     print("funcionou o history")
-        # else:            
-        #     _class = Class.objects.create(registration_class_id=registration_class_id, period=period, semester=semester, area=area)
-        #     return JsonResponse({'message': 'Turma salva com sucesso.'})
 
         return JsonResponse({'message': 'Alterações salvas com sucesso.'})
 

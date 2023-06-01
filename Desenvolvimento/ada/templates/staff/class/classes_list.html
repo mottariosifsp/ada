@@ -4,7 +4,8 @@
 
 {% block head %}
     {{ block.super }}
-    <script src="{% static 'staff/classes_list.js' %}" data-lang={{LANGUAGE_CODE}}></script>
+    <link rel="stylesheet" href="{% static 'staff/class/css/classes_list.css' %}">
+    <script src="{% static 'staff/class/js/classes_list.js' %}" data-lang={{LANGUAGE_CODE}}></script>
 {% endblock %}
 
 {% block body %}
