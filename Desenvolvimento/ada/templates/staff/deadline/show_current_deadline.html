@@ -1,13 +1,13 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Prazo atual</title>
-</head>
-<body>
+{% extends "staff/base.html" %}
+{% load i18n %}
+{% load static %}
+
+{% block head %}
+    {{ block.super }}
+{% endblock %}
+
+{% block body %}
+    {{ block.super }}
     <h1>Prazo atual</h1>
     <p> {{ actualDeadline }} </p>
-</body>
-</html>
+{% endblock %}

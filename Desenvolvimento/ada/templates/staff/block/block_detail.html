@@ -46,7 +46,7 @@
                             <td>{{ course.acronym }}</td>
                             <td>
                                 <button type="button" data-toggle="modal" data-target="#editCourseModal" data-counter="{{ counter }}" class="btn btn-warning editCourseBtn"><i class="bi bi-pencil"></i></button>
-                                <button type="button" class="btn btn-warning deleteCourseBtn" data-url="{% url 'course_delete' course.id %}">Deletar</button>
+                                <button type="button" class="btn btn-danger deleteCourseBtn" data-url="{% url 'course_delete' course.id %}">Deletar</button>
 
                             </td>
                         </tr>

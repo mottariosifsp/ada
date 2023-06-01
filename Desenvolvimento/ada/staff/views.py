@@ -176,15 +176,6 @@ def classes_list_saved(request):
             _class = Class.objects.create(registration_class_id=registration_class_id, period=period, semester=semester, area=area)
             _class.save()
             return JsonResponse({'message': 'Turma salva com sucesso.'})
-        
-        # _class = Class.objects.all()
-        # print("funcionou o get user")
-        # if _class.exists():
-        #     _class.update_class(registration_class_id=registration_class_id, period=period, semester=semester, area=area)
-        #     print("funcionou o history")
-        # else:            
-        #     _class = Class.objects.create(registration_class_id=registration_class_id, period=period, semester=semester, area=area)
-        #     return JsonResponse({'message': 'Turma salva com sucesso.'})
 
         return JsonResponse({'message': 'Alterações salvas com sucesso.'})
 
