@@ -3,7 +3,7 @@ from .views import classes_list, classes_list_saved, home, confirm_deadline_conf
 
 
 urlpatterns = [
-    path("", home, name="home"),
+    path("", home, name="home_staff"),
     path("cadastrar-prazos/", deadline_configuration, name="deadline_configuration"),
     path("prazo-cadastrado/", confirm_deadline_configuration, name="confirm_deadline_configuration"),
     path("prazo-atual/", show_current_deadline, name="show_current_deadline"),

@@ -1,12 +1,12 @@
 from django.shortcuts import render
-from .models import Attribution_preference, Preference_schedule, Course_preference,  Attribution_preference_course_preference
+from .models import Attribution_preference, Preference_schedule, Course_preference, Attribution_preference_course_preference
 from course.models import Course
 from timetable.models import Timetable, Timeslot
 import json
 from django.db import transaction
 
 
-def attributionPreference(request):
+def attribution_preference(request):
     course = Course.objects.all()
     timeslot = Timeslot.objects.all()
     # timeslot.
@@ -14,9 +14,9 @@ def attributionPreference(request):
         'courses': course
     }
 
-    return render(request, 'attribution_preference/attributionPreference.html', data)
+    return render(request, 'attribution_preference/attribution_preference.html', data)
 
-def confirmAttributionPreference(request):
+def confirm_attribution_preference(request):
     work_regime = request.POST.get('work_regime')
     preferred_courses = request.POST.getlist('work_courses[]')
 
@@ -26,10 +26,10 @@ def confirmAttributionPreference(request):
             'preferred_courses': preferred_courses
         }
         print(data)
-        saveCoursePreference(preferred_courses, request)
+        save_course_preference(preferred_courses, request)
         print("sim")
 
-        return render(request, 'attribution_preference/confirmAttributionPreference.html')
+        return render(request, 'attribution_preference/confirm_attribution_preference.html')
     elif request.method == 'GET':
         courses = Course_preference.objects.all()
         data = {
@@ -37,10 +37,10 @@ def confirmAttributionPreference(request):
         }
         print(data)
 
-        return render(request, 'attribution_preference/confirmAttributionPreference.html', data)
+        return render(request, 'attribution_preference/confirm_attribution_preference.html', data)
 
 @transaction.atomic
-def saveCoursePreference(preferred_courses, request):
+def save_course_preference(preferred_courses, request):
     for course in preferred_courses:
         if Course_preference.objects.filter(attribution_preference_course_preference_attribution_preference_user=request.user).exists():
             Course_preference.objects.filter(attribution_preference_course_preference_attribution_preference_user=request.user).delete() 

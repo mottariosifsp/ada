@@ -1,7 +1,7 @@
 from django.urls import path
-from attribution_preference.views import attributionPreference, confirmAttributionPreference
+from .views import attribution_preference, confirm_attribution_preference
 
 urlpatterns = [
-    path('criar-fpa/', attributionPreference, name='attributionPreference'),
-    path('ver-fpa/', confirmAttributionPreference, name='confirmAttributionPreference'),
+    path('criar-fpa/', attribution_preference, name='attribution_preference'),
+    path('ver-fpa/', confirm_attribution_preference, name='confirm_attribution_preference'),
 ]

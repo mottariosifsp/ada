@@ -17,6 +17,7 @@ from django.contrib import admin
 from django.urls import path, include
 from django.conf.urls.i18n import i18n_patterns
 from django.utils.translation import gettext_lazy as _
+from user.views import home
 
 urlpatterns = [
     path("admin/", admin.site.urls),
@@ -24,6 +25,7 @@ urlpatterns = [
     path('professor/', include("professor.urls")),
     path('user/', include('django.contrib.auth.urls')),
     path('atribuicao/', include("attribution.urls")),
+    path("", home, name="home"),
 ]
 
 urlpatterns += i18n_patterns ( # quais sessões serão internacionalizadas
@@ -32,4 +34,5 @@ urlpatterns += i18n_patterns ( # quais sessões serão internacionalizadas
     path('professor/', include("professor.urls")),
     path('user/', include('django.contrib.auth.urls')),
     path('atribuicao/', include("attribution.urls")),
+    path("", home, name="home"),
 )

@@ -4,6 +4,7 @@ from django.db import transaction
 from django.http import JsonResponse, HttpResponse
 from django.views.decorators.http import require_http_methods
 from django.shortcuts import render
+from django.contrib.auth.decorators import login_required
 from django.contrib.auth.decorators import user_passes_test
 from django.contrib.auth import get_user_model
 from .models import Deadline
@@ -19,12 +20,12 @@ def is_staff(user):
 
 
 # prazos
-
+@login_required
 @user_passes_test(is_staff)
 def home(request):
-    return render(request, 'staff/home.html')
+    return render(request, 'staff/home_staff.html')
 
-
+@login_required
 @user_passes_test(is_staff)
 def deadline_configuration(request):
     user_blocks = request.user.blocks.all()
@@ -34,7 +35,6 @@ def deadline_configuration(request):
     }
 
     return render(request, 'staff/deadline/deadline_configuration.html', data)
-
 
 def confirm_deadline_configuration(request):
     if request.method == 'POST':
@@ -62,7 +62,6 @@ def confirm_deadline_configuration(request):
 
     return render(request, 'staff/deadline/confirm_deadline_configuration.html', data)
 
-
 def show_current_deadline(request):
     deadlines = Deadline.objects.all()
     now = timezone.now()
@@ -84,7 +83,6 @@ def show_current_deadline(request):
     }
 
     return render(request, 'staff/deadline/show_current_deadline.html', data)
-
 
 @transaction.atomic
 def save_deadline(data):
