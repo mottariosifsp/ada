@@ -33,16 +33,16 @@ class UserManager(BaseUserManager):
         return self._create_user(email, password, **extra_fields)
 
 class User(AbstractBaseUser, PermissionsMixin):
-    email = models.EmailField(_('email address'), max_length=160, unique=True)
     registration_id = models.CharField(_('registration id'), max_length=9, unique=True)
     first_name = models.CharField(_('first name'), max_length=60)
     last_name = models.CharField(_('last name'), max_length=160)
+    email = models.EmailField(_('email address'), max_length=160, unique=True)
     telephone = models.CharField(_('telephone'), max_length=11, null=True, blank=True)
-    cell_phone = models.CharField(_('cell phone'), max_length=14)
+    cell_phone = models.CharField(_('cell phone'), max_length=14, unique=True)
     date_joined = models.DateTimeField(_('date joined'), auto_now_add=True)
     is_superuser = models.BooleanField(_('superuser status'), default=False)
-    is_active = models.BooleanField(_('active'), default=True) #mudar depois
     is_staff = models.BooleanField(_('staff status'), default=True)
+    is_active = models.BooleanField(_('active'), default=True) #mudar depois
     history = models.ForeignKey('user.History', on_delete=models.CASCADE, blank=True, unique=True, null=True)
     job = models.ForeignKey('Job', on_delete=models.CASCADE, null=True, blank=True)
     blocks = models.ManyToManyField('area.Block', blank=True, related_name='user_blocks')
