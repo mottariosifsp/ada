@@ -8,7 +8,7 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.9.2/umd/popper.min.js" integrity="sha384-b5Pq7eLwA0xEeYefZ0zjBuhk8LxwXnVzEuhMv3sBTElJ/k63HmkIdUFEe8H02qPZ" crossorigin="anonymous"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/5.0.0/js/bootstrap.min.js" integrity="sha384-6L+9FRrVL2TTR7+ixqqTpwG5V3yTXxjCfUhIySGmi6zJcQbR2xNjiPqyB+xN4n8C" crossorigin="anonymous"></script>
-  <link rel="stylesheet" href="{% static 'css/attribution_preference/attribution_preference.css' %}">
+  <link rel="stylesheet" href="{% static 'attribution_preference/css/attribution_preference.css' %}">
   <title>{% translate "Envio Formulário de Preferência de Atividades" %}</title>
 {% endblock %}
 
@@ -218,5 +218,5 @@
 
 {% block endbody %}
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-  <script src="{% static 'js/attribution_preference/preferred-discipline.js' %}" data-lang={{LANGUAGE_CODE}}></script>
+  <script src="{% static 'attribution_preference/js/preferred-discipline.js' %}" data-lang={{LANGUAGE_CODE}}></script>
 {% endblock %}

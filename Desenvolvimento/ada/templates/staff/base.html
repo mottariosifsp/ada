@@ -64,7 +64,7 @@
         <ul class="navbar-nav mx-auto ">
           <li class="nav-item"><a class="nav-link title" href="{% url 'professors_list' %}">{% translate "Professores" %}</a></li>
           <li class="nav-item"><a class="nav-link title" href="{% url 'classes_list' %}">{% translate "Turma" %}</a></li>
-          <li class="nav-item"><a class="nav-link title" href="#">{% translate "Bloco" %}</a></li>
+          <li class="nav-item"><a class="nav-link title" href="{% url 'blocks_list' %}">{% translate "Bloco" %}</a></li>
           <li class="nav-item"><a class="nav-link title" href="#">{% translate "Grade" %}</a></li>
           <li class="nav-item dropdown language-icon">
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownLang" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -126,7 +126,7 @@
               <hr>
               <div class="modal-line"><a class="nav-link title" href="{% url 'professors_list' %}"><i class="bi bi-people lang-icon"></i> {% translate "Professores" %}</a></div>
               <div class="modal-line"><a class="nav-link title" href="{% url 'classes_list' %}"><i class="bi bi-layers lang-icon"></i> {% translate "Turma" %}</a></div>
-              <div class="modal-line"><a class="nav-link title" href="#"><i class="bi bi-people-fill lang-icon"></i> {% translate "Bloco" %}</a></div>
+              <div class="modal-line"><a class="nav-link title" href="{% url 'blocks_list' %}"><i class="bi bi-people-fill lang-icon"></i> {% translate "Bloco" %}</a></div>
               <div class="modal-line"><a class="nav-link title" href="#"><i class="bi bi-bar-chart-line lang-icon"></i> {% translate "Grade" %}</a></div>
               <div class="modal-line dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownLangSidebar" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
