@@ -19,23 +19,17 @@ from django.conf.urls.i18n import i18n_patterns
 from django.utils.translation import gettext_lazy as _
 
 urlpatterns = [
-<<<<<<< HEAD
     path("admin/", admin.site.urls),
-    path("configuracao/", include("configuration.urls")),
-    path("preferencia-atribuicao/", include("attribution_preference.urls")),
-=======
-    path('admin/', admin.site.urls),
     path('staff/', include("staff.urls")),
->>>>>>> develop
+    path('professor/', include("professor.urls")),
     path('user/', include('django.contrib.auth.urls')),
-    path('', include('user.urls'), name='home'),
-    path('attribution/', include("attribution.urls")),
+    path('atribuicao/', include("attribution.urls")),
 ]
 
 urlpatterns += i18n_patterns ( # quais sessões serão internacionalizadas
-    path('admin/', admin.site.urls),
-    path("configuracao/", include("configuration.urls")),
-    path("preferencia-atribuicao/", include("attribution_preference.urls")),
+    path("admin/", admin.site.urls),
+    path('staff/', include("staff.urls")),
+    path('professor/', include("professor.urls")),
     path('user/', include('django.contrib.auth.urls')),
-    path('', include('user.urls'), name='home'),
+    path('atribuicao/', include("attribution.urls")),
 )

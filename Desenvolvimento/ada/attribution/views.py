@@ -1,7 +1,3 @@
-<<<<<<< HEAD
-from django.shortcuts import render
-
-=======
 from staff.models import Criteria
 from user.models import User
 from attribution.models import TeacherQueuePosition
@@ -180,4 +176,3 @@ def queueSetup(request):
         }
 
         return render(request, 'attribution/queueSetup.html', {'data': data})
->>>>>>> develop
