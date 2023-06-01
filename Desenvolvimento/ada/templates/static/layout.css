@@ -29,13 +29,13 @@ nav.navbar-nav {
     font-family: 'Montserrat', sans-serif;
 }
 
-div#navbarToggler ul.navbar-nav > li.nav-item {
+div#navbarToggler ul.navbar-nav > li.nav-item, .navbar-modal ul.navbar-nav > li.nav-item {
     padding: 5px 0;
     transition: all .1s ease;
     cursor: pointer;
 }
 
-div#navbarToggler ul.navbar-nav > li.nav-item:hover {
+div#navbarToggler ul.navbar-nav > li.nav-item:hover, .navbar-modal ul.navbar-nav > li.nav-item:hover {
     border-radius: 5px;
     border: 0.1px solid #2a5a4f;
     background-color: #2a5a4f;
@@ -45,7 +45,7 @@ div#navbarToggler ul.navbar-nav > li.nav-item:hover {
     padding-bottom: 0px;
 }
 
-nav .nav-link {
+nav .nav-link{
     letter-spacing: 3px;
     color: #f9fefd;
     transition: font-weight 0.1s ease-in-out;
@@ -105,6 +105,10 @@ img.lang-icon, img.user-photo {width: 100%;}
 .navbar-modal.modal-body a:hover {
     text-decoration: none;
     font-weight: bolder;
+}
+
+.navbar-modal {
+    color: white;
 }
 
 .navbar-modal .modal-dialog {
