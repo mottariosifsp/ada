@@ -112,7 +112,7 @@ def save_deadline(data):
 @user_passes_test(is_staff)
 def professors_list(request):
     professors = User.objects.filter(is_superuser=False)
-    return render(request, 'staff/professors_list.html', {'professors': professors})
+    return render(request, 'staff/professor/professors_list.html', {'professors': professors})
 
 
 def update_save(request):
@@ -155,7 +155,7 @@ def classes_list(request):
         {'value': period.name, 'label': period.value}
         for period in enum.Period
     ]
-    return render(request, 'staff/classes_list.html', {'classes': classes, 'periods': periods, 'areas': areas})
+    return render(request, 'staff/class/classes_list.html', {'classes': classes, 'periods': periods, 'areas': areas})
 
 def classes_list_saved(request):
     if request.method == 'POST':
