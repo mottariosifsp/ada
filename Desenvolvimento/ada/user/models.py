@@ -3,7 +3,7 @@ from django.core.mail import send_mail
 from django.contrib.auth.models import PermissionsMixin
 from django.contrib.auth.base_user import AbstractBaseUser, BaseUserManager
 from django.utils.translation import gettext_lazy as _
-from area.models import Block, Area
+from area.models import Blockk, Area
 
 # Métodos de gerenciamento de usuário
 class UserManager(BaseUserManager):
@@ -45,7 +45,7 @@ class User(AbstractBaseUser, PermissionsMixin):
     is_active = models.BooleanField(_('active'), default=True) #mudar depois
     history = models.ForeignKey('user.History', on_delete=models.CASCADE, blank=True, unique=True, null=True)
     job = models.ForeignKey('Job', on_delete=models.CASCADE, null=True, blank=True)
-    blocks = models.ManyToManyField('area.Block', blank=True, related_name='user_blocks')
+    blocks = models.ManyToManyField('area.Blockk', blank=True, related_name='user_blocks')
 
     objects = UserManager()
 
@@ -75,7 +75,7 @@ class History(models.Model):
     date_area = models.DateField(_('date area'))
     date_institute = models.DateField(_('date institute'))
     academic_degrees = models.ManyToManyField('AcademicDegree', blank=True)
-    blocks = models.ManyToManyField('area.Block', blank=True, related_name='history_blocks')
+    blocks = models.ManyToManyField('area.Blockk', blank=True, related_name='history_blocks')
 
     def __str__(self):
         return str(self.id_history)

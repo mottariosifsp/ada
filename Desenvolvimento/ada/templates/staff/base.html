@@ -106,6 +106,8 @@
           </li>
         </ul>
       </div>
+    </nav>
+    <nav>
       <div class="navbar-modal modal fade left" id="myModal" tabindex="-1" aria-labelledby="myModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-md" role="document">
           <div class="modal-content">
@@ -126,7 +128,7 @@
                 </a>
               </div>
               <hr>
-              <div class="modal-line"><a class="nav-link title" href="{% url 'deadline_configuration' %}"><i class="bi bi-people lang-icon"></i> {% translate "Prazos" %}</a></div>
+              <!-- <div class="modal-line"><a class="nav-link title" href="{% url 'deadline_configuration' %}"><i class="bi bi-people lang-icon"></i> {% translate "Prazos" %}</a></div> -->
               <div class="modal-line"><a class="nav-link title" href="{% url 'professors_list' %}"><i class="bi bi-people lang-icon"></i> {% translate "Professores" %}</a></div>
               <div class="modal-line"><a class="nav-link title" href="{% url 'classes_list' %}"><i class="bi bi-layers lang-icon"></i> {% translate "Turma" %}</a></div>
               <div class="modal-line"><a class="nav-link title" href="{% url 'blocks_list' %}"><i class="bi bi-people-fill lang-icon"></i> {% translate "Bloco" %}</a></div>
@@ -159,8 +161,17 @@
               </div>
             </div>
             <div class="modal-footer">
-              <div class="container">
-                <span class="text-footer">© 2023 Mottarios. {% translate "Todos os direitos reservados" %}.</span>
+              <div class="row">
+                <div class="col">
+                  <a class="dropdown-item" data-toggle="modal" data-target="#logoutModal">
+                    <i class="bi bi-box-arrow-right"></i> {% translate "Sair" %}
+                  </a>
+                </div>
+              </div>
+              <div class="row">
+                <div class="container">
+                  <span class="text-footer">© 2023 Mottarios. {% translate "Todos os direitos reservados" %}.</span>
+                </div>
               </div>
             </div>
           </div>

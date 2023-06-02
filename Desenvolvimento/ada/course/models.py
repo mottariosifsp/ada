@@ -7,7 +7,7 @@ class Course(models.Model):
     name_course = models.CharField(_('course name'), max_length=45, unique=True)
     acronym = models.CharField(_('acronym'), max_length=3, null=True, unique=True, validators=[validate_acronym_length])
     area = models.ForeignKey('area.Area', on_delete=models.CASCADE, null=True)
-    block = models.ForeignKey('area.Block', on_delete=models.CASCADE, null=True) 
+    blockk = models.ForeignKey('area.Blockk', on_delete=models.CASCADE, null=True) 
 
     class Meta:
         verbose_name = _('course')

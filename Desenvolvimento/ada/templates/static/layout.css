@@ -2,7 +2,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,200;0,500;1,100;1,200&display=swap');
 
 body {background-color: #f9fefd;}
-
+text-footer
 /* Definições de estilo para links */
 a:not(.title) {
     text-decoration: none;
@@ -29,13 +29,13 @@ nav.navbar-nav {
     font-family: 'Montserrat', sans-serif;
 }
 
-div#navbarToggler ul.navbar-nav > li.nav-item {
+div#navbarToggler ul.navbar-nav > li.nav-item, .navbar-modal ul.navbar-nav > li.nav-item {
     padding: 5px 0;
     transition: all .1s ease;
     cursor: pointer;
 }
 
-div#navbarToggler ul.navbar-nav > li.nav-item:hover {
+div#navbarToggler ul.navbar-nav > li.nav-item:hover, .navbar-modal ul.navbar-nav > li.nav-item:hover {
     border-radius: 5px;
     border: 0.1px solid #2a5a4f;
     background-color: #2a5a4f;
@@ -45,7 +45,11 @@ div#navbarToggler ul.navbar-nav > li.nav-item:hover {
     padding-bottom: 0px;
 }
 
-nav .nav-link {
+.nav-brand {
+    margin-left: 10px;
+}
+
+nav .nav-link{
     letter-spacing: 3px;
     color: #f9fefd;
     transition: font-weight 0.1s ease-in-out;
@@ -72,7 +76,7 @@ div#navbarToggler ul.navbar-nav > li:nth-of-type(-n+4) a.nav-link:hover {
 
 .language-icon {width: 5%;}
 
-li.language-icon-notlogged, div.language-icon-notlogged {width: 8%;}
+li.language-icon-notlogged, div.language-icon-notlogged {width: 8%}
 
 div.language-icon-notlogged {
     padding: 10px;
@@ -105,6 +109,16 @@ img.lang-icon, img.user-photo {width: 100%;}
 .navbar-modal.modal-body a:hover {
     text-decoration: none;
     font-weight: bolder;
+}
+
+.navbar-modal, nav span {
+    color: white;
+}
+
+.navbar-modal .modal-line:not(:first-child):hover, .modal-footer .row .col a:hover {
+    background-color: #2a5a4f;
+    border-radius: 10px;
+    transition: all 0.5;
 }
 
 .navbar-modal .modal-dialog {
@@ -153,9 +167,9 @@ button.close:focus, button.close:active {box-shadow: none;}
 .lang-modal {width: 100%;}
 
 .text-footer {
-    margin-left: 15px;
     color: white;
-    font-size: 10px
+    font-size: 7px;
+    text-align: center;
 }
 
 /* Definições de estilo para media queries */
