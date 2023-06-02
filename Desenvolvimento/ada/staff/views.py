@@ -7,6 +7,8 @@ from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.decorators import user_passes_test
 from django.contrib.auth import get_user_model
+
+from timetable.models import Timeslot
 from .models import Deadline
 from area.models import Blockk, Area
 from classs.models import Classs
@@ -217,13 +219,18 @@ def course_delete(request, course_id):
 
 @user_passes_test(is_staff)
 def create_timetable(request):
-
     if request.method == 'GET':
         if request.GET.get('class'):
-            selected_class = Classs.objects.filter(registration_class_id__icontains=(request.GET.get('class')))
+            selected_class = Classs.objects.get(registration_class_id__icontains=(request.GET.get('class')))
         else:
             selected_class = Classs.objects.all()
-        print('classe:',selected_class) 
+
+        selected_courses = Course.objects.filter(area=selected_class.area)
+
+        data = {
+            'courses': selected_courses,
+            'timeslots': Timeslot.objects.all(),
+        }
         
-        return render(request, 'staff/timetable/cadastrar.html')
+        return render(request, 'staff/timetable/cadastrar.html', data)
     

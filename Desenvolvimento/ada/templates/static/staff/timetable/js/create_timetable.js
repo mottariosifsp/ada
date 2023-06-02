@@ -13,24 +13,7 @@ $(document).ready(function() {
     selectedOption.parent().filter(function() {
       $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1);
     });
-  });
-
-  let csrftoken = getCookie('csrftoken');
-  $.ajax({
-      url: window.location.href,
-      method: 'GET',
-      headers: {
-        'X-CSRFToken': csrftoken
-      },
-      success: function(response) {
-      },
-      error: function(xhr, status, error) {
-        alert('Erro ao enviar dados!');
-      }
-  });
-  
-
-  
+  });  
 });
 
 function getCookie(name) {

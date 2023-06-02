@@ -20,7 +20,7 @@
     <form method="GET">
       <div class="form-group">
           <div class="row">
-            <input list="classes" name="class" class="form-control">
+            <input list="classes" name="class" class="form-control" value="{{ request.GET.class }}">
             <datalist id="classes">
               {% for class in Classes %}
                 <option class="dropdown-item-class" value="{{class.registration_class_id}}">
@@ -28,7 +28,7 @@
             </div>
           </div>            
       </div>
-      <button class="form-group" type="submit">ENVIAR</button>
+      <button class="btn btn-primary btn-block form-group" type="submit">FILTRAR</button>
     </form>
 
     <div class="container">
@@ -45,105 +45,21 @@
               </tr>
             </thead>
             <tbody>
+              {% for timeslot in timeslots %}
               <tr>
-                <th scope="row">13:00 - 14:00</th>
-                <td>
-                  <div class="dropdown">
-                    <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                      Curso1
-                    </button>
-                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                      <input class="form-control dropdown-search" type="text" placeholder="Search" id="searchInput">
-                      <div class="dropdown-divider"></div>
-                        <a class="dropdown-item course-option" href="#">Option 1</a>
-                        <a class="dropdown-item course-option" href="#">Option 2</a>
-                        <a class="dropdown-item course-option" href="#">Option 3</a>
+                <th scope="row">{{ timeslot.hour_start}} - {{ timeslot.hour_end }}</th> <!-- timeslot -->
+                {% for i in '01234'|make_list %}
+                  <td>
+                    <input list="courses" name="course" class="form-control">
+                    <datalist id="courses">
+                      {% for course in courses %}
+                        <option class="dropdown-item-class" value="{{course.name_course}}">
+                      {% endfor %}              
                     </div>
-                  </div>
-                </td>
+                  </td>
+                {% endfor %}
                 <td>
-                  <div class="dropdown">
-                    <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                      Curso
-                    </button>
-                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                      <input class="form-control dropdown-search" type="text" placeholder="Search" id="searchInput">
-                      <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="#">Option 1</a>
-                        <a class="dropdown-item" href="#">Option 2</a>
-                        <a class="dropdown-item" href="#">Option 3</a>
-                    </div>
-                  </div>
-                </td> 
-                <td>
-                  <div class="dropdown">
-                    <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                      Curso
-                    </button>
-                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                      <input class="form-control dropdown-search" type="text" placeholder="Search" id="searchInput">
-                      <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="#">Option 1</a>
-                        <a class="dropdown-item" href="#">Option 2</a>
-                        <a class="dropdown-item" href="#">Option 3</a>
-                    </div>
-                  </div>
-                </td>
-                <td>
-                  <div class="dropdown">
-                    <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                      Curso
-                    </button>
-                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                      <input class="form-control dropdown-search" type="text" placeholder="Search" id="searchInput">
-                      <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="#">Option 1</a>
-                        <a class="dropdown-item" href="#">Option 2</a>
-                        <a class="dropdown-item" href="#">Option 3</a>
-                    </div>
-                  </div>
-                </td>
-                <td>
-                  <div class="dropdown">
-                    <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                      Curso
-                    </button>
-                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                      <input class="form-control dropdown-search" type="text" placeholder="Search" id="searchInput">
-                      <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="#">Option 1</a>
-                        <a class="dropdown-item" href="#">Option 2</a>
-                        <a class="dropdown-item" href="#">Option 3</a>
-                    </div>
-                  </div>
-                </td>
-                <td>
-                  <div class="dropdown">
-                    <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                      Curso
-                    </button>
-                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                      <input class="form-control dropdown-search" type="text" placeholder="Search" id="searchInput">
-                      <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="#">Option 1</a>
-                        <a class="dropdown-item" href="#">Option 2</a>
-                        <a class="dropdown-item" href="#">Option 3</a>
-                    </div>
-                  </div>
-                </td>
-              </tr>
-              <tr>
-                <th scope="row">2</th>
-                <td>Jacob</td>
-                <td>Thornton</td>
-                <td>@fat</td>
-              </tr>
-              <tr>
-                <th scope="row">3</th>
-                <td>Larry</td>
-                <td>the Bird</td>
-                <td>@twitter</td>
-              </tr>
+              {% endfor%}
             </tbody>
           </table>         
           
