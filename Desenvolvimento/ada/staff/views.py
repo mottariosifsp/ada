@@ -219,10 +219,11 @@ def course_delete(request, course_id):
 def create_timetable(request):
 
     if request.method == 'GET':
-        
-        selected_class = Class.objects.filter(registration_class_id__icontains=(request.GET.get('class')))
-        
+        if request.GET.get('class'):
+            selected_class = Classs.objects.filter(registration_class_id__icontains=(request.GET.get('class')))
+        else:
+            selected_class = Classs.objects.all()
         print('classe:',selected_class) 
         
-        return render(request, 'staff/timetable/criar.html')
+        return render(request, 'staff/timetable/cadastrar.html')
     

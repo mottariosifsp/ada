@@ -151,7 +151,7 @@
         }
     },
     {
-        "model": "_class.class",
+        "model": "classs.Classs",
         "pk": 1,
         "fields": {
             "registration_class_id": "431",
@@ -161,7 +161,7 @@
         }
     },
     {
-        "model": "_class.class",
+        "model": "classs.Classs",
         "pk": 2,
         "fields": {
             "registration_class_id": "413",
@@ -171,7 +171,7 @@
         }
     },
     {
-        "model": "_class.class",
+        "model": "classs.Classs",
         "pk": 3,
         "fields": {
             "registration_class_id": "421",
@@ -181,7 +181,7 @@
         }
     },
     {
-        "model": "_class.class",
+        "model": "classs.Classs",
         "pk": 4,
         "fields": {
             "registration_class_id": "331",
@@ -191,13 +191,26 @@
         }
     },
     {
-        "model": "_class.class",
+        "model": "classs.Classs",
         "pk": 5,
         "fields": {
             "registration_class_id": "313",
             "period": "afternoon",
             "semester": 7,
             "area": 1
+        }
+    },
+    {
+        "model": "area.Area",
+        "pk": 1,
+        "fields": {
+            "registration_area_id": "INFO",
+            "name_area": "INFORMÁTICA",
+            "acronym": "INF",
+            "exchange_area": false,
+            "is_high_school": true,
+            "blocks": []
+
         }
     }
 
