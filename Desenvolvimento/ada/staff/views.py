@@ -196,7 +196,7 @@ def block_detail(request, registration_block_id):
     return render(request, 'staff/block/block_detail.html', data)
 
 
-def course_update_save(request):
+def course_update_save(request):    
     if request.method == 'POST':
         course_id = request.POST.get('id')
         registration_course_id = request.POST.get('registration_course_id')
@@ -220,12 +220,10 @@ def course_delete(request, course_id):
 def create_timetable(request):
 
     if request.method == 'GET':
-        data = {
-            'Classes': Class.objects.all(),
-        }
-
-        request.GET.get('')
-        return request(request, 'staff/timetable/criar.html', data)
+        
+        selected_class = Class.objects.filter(registration_class_id__icontains=(request.GET.get('class')))
+        
+        print('classe:',selected_class) 
+        
+        return render(request, 'staff/timetable/criar.html')
     
-
-    return render(request, 'staff/timetable/criar.html')

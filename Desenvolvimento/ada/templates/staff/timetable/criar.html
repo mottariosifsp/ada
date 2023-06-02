@@ -20,17 +20,15 @@
     <form method="GET">
       <div class="form-group">
           <div class="row">
-              <label for="area">Turma</label>
-              <select class="form-control" id="area">
-                {% for class in classes %}
-                  <option value="{{class.id}}">{{class.name}}</option>
-                {% endfor %}
-                <option value="">Selecione uma opção</option>
-                      <option value="">LPL</option>
-              </select>
+            <input list="classes" name="class" class="form-control">
+            <datalist id="classes">
+              {% for class in Classes %}
+                <option class="dropdown-item-class" value="{{class.registration_class_id}}">
+              {% endfor %}              
             </div>
           </div>            
       </div>
+      <button class="form-group" type="submit">ENVIAR</button>
     </form>
 
     <div class="container">

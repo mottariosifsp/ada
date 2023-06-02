@@ -26,7 +26,7 @@
             "last_login": "2023-05-29T13:42:37.577",
             "email": "marcos@email.com", "registration_id": "SP1234567",
             "first_name": "marcos", "last_name": "ferreira",
-            "telephone": null, "cell_phone": "+5511912345678",
+            "telephone": "+5511123456786", "cell_phone": "+5511912345678",
             "date_joined": "2023-05-29T13:22:07.968",
             "is_superuser": false, "is_active": true,
             "is_staff": false, "history": null,
@@ -45,8 +45,8 @@
             "registration_id": "SP7654321",
             "first_name": "João",
             "last_name": "Silva",
-            "telephone": null,
-            "cell_phone": "+5511987654321",
+            "telephone": "+5511123456785",
+            "cell_phone": "+5511999999999",
             "date_joined": "2023-05-29T14:05:42.987",
             "is_superuser": false,
             "is_active": true,
@@ -68,8 +68,8 @@
             "registration_id": "SP9876543",
             "first_name": "Ana",
             "last_name": "Santos",
-            "telephone": "+5511123456789",
-            "cell_phone": "+5511987654321",
+            "telephone": "+5511123456784",
+            "cell_phone": "+5511999999991",
             "date_joined": "2023-05-29T15:20:33.789",
             "is_superuser": false,
             "is_active": true,
@@ -91,8 +91,8 @@
             "registration_id": "SP5432109",
             "first_name": "Lucas",
             "last_name": "Souza",
-            "telephone": "+5511765432109",
-            "cell_phone": "+5511987654321",
+            "telephone": "+5511765432103",
+            "cell_phone": "+5511999999992",
             "date_joined": "2023-05-29T16:35:21.987",
             "is_superuser": false,
             "is_active": true,
@@ -114,8 +114,8 @@
             "registration_id": "SP4321098",
             "first_name": "Maria",
             "last_name": "Rocha",
-            "telephone": "+5511123456789",
-            "cell_phone": "+5511912345678",
+            "telephone": "+5511123456782",
+            "cell_phone": "+5511999999993",
             "date_joined": "2023-05-29T17:45:21.234",
             "is_superuser": false,
             "is_active": true,
@@ -137,8 +137,8 @@
             "registration_id": "SP1098765",
             "first_name": "Pedro",
             "last_name": "Gomes",
-            "telephone": null,
-            "cell_phone": "+5511976543210",
+            "telephone": "+5511123456781",
+            "cell_phone": "+5511999999994",
             "date_joined": "2023-05-29T18:20:37.543",
             "is_superuser": false,
             "is_active": true,
@@ -149,7 +149,58 @@
             "user_permissions": [],
             "blocks": []
         }
+    },
+    {
+        "model": "_class.class",
+        "pk": 1,
+        "fields": {
+            "registration_class_id": "431",
+            "period": "morning",
+            "semester": 7,
+            "area": 1
+        }
+    },
+    {
+        "model": "_class.class",
+        "pk": 2,
+        "fields": {
+            "registration_class_id": "413",
+            "period": "afternoon",
+            "semester": 7,
+            "area": 1
+        }
+    },
+    {
+        "model": "_class.class",
+        "pk": 3,
+        "fields": {
+            "registration_class_id": "421",
+            "period": "afternoon",
+            "semester": 7,
+            "area": 1
+        }
+    },
+    {
+        "model": "_class.class",
+        "pk": 4,
+        "fields": {
+            "registration_class_id": "331",
+            "period": "morning",
+            "semester": 7,
+            "area": 1
+        }
+    },
+    {
+        "model": "_class.class",
+        "pk": 5,
+        "fields": {
+            "registration_class_id": "313",
+            "period": "afternoon",
+            "semester": 7,
+            "area": 1
+        }
     }
+
     
 ]
 
