@@ -1,5 +1,4 @@
 from datetime import datetime
-from enums import enum
 from django.db import transaction
 from django.http import JsonResponse, HttpResponse
 from django.views.decorators.http import require_http_methods
@@ -12,8 +11,7 @@ from area.models import Blockk, Area
 from classs.models import Classs
 from course.models import Course
 from user.models import User, History
-from django.utils import timezone
-
+from .models import Deadline
 
 def is_staff(user):
     return user.is_staff
@@ -218,5 +216,14 @@ def course_delete(request, course_id):
 
 @user_passes_test(is_staff)
 def create_timetable(request):
+
+    if request.method == 'GET':
+        data = {
+            'Classes': Class.objects.all(),
+        }
+
+        request.GET.get('')
+        return request(request, 'staff/timetable/criar.html', data)
+    
 
     return render(request, 'staff/timetable/criar.html')

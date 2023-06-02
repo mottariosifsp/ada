@@ -9,26 +9,29 @@
 {% endblock %}
 
 {% block body %}
-    <h1>{% translate "Login completo" %} - {% translate "HOME PAGE" %}</h1>
-    <hr>
-    <div class="container d-flex justify-content-center h-70">
-        <div>
-            <h2>{% translate "Crie uma grade horária!"%}</h2>
-        </div>
+  <h1>{% translate "Login completo" %} - {% translate "HOME PAGE" %}</h1>
+  <hr>
+  <div class="container d-flex justify-content-center h-70">
+    <div>
+      <h2>{% translate "Crie uma grade horária!"%}</h2>
     </div>
-    <div class="container">
-        <form method="GET">
-            <div class="form-group">
-                <div class="row">
-                        <label for="area">Turma</label>
-                        <select class="form-control" id="area">
-                                <option value="">Selecione uma opção</option>
-                                <option value="">LPL</option>
-                        </select>
-                    </div>
-                </div>            
+  </div>
+  <div class="container">
+    <form method="GET">
+      <div class="form-group">
+          <div class="row">
+              <label for="area">Turma</label>
+              <select class="form-control" id="area">
+                {% for class in classes %}
+                  <option value="{{class.id}}">{{class.name}}</option>
+                {% endfor %}
+                <option value="">Selecione uma opção</option>
+                      <option value="">LPL</option>
+              </select>
             </div>
-        </form>
+          </div>            
+      </div>
+    </form>
 
     <div class="container">
         <table class="table">
