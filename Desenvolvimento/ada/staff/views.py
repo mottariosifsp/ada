@@ -1,4 +1,5 @@
-from datetime import datetime
+from datetime import datetime, timezone
+import enum
 from django.db import transaction
 from django.http import JsonResponse, HttpResponse
 from django.views.decorators.http import require_http_methods
@@ -219,7 +220,7 @@ def create_timetable(request):
 
     if request.method == 'GET':
         data = {
-            'Classes': Class.objects.all(),
+            'Classes': Classs.objects.all(),
         }
 
         request.GET.get('')
