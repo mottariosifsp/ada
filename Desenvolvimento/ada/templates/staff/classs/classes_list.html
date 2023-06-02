@@ -4,8 +4,8 @@
 
 {% block head %}
     {{ block.super }}
-    <link rel="stylesheet" href="{% static 'staff/class/css/classes_list.css' %}">
-    <script src="{% static 'staff/class/js/classes_list.js' %}" data-lang={{LANGUAGE_CODE}}></script>
+    <link rel="stylesheet" href="{% static 'staff/classs/css/classes_list.css' %}">
+    <script src="{% static 'staff/classs/js/classes_list.js' %}" data-lang={{LANGUAGE_CODE}}></script>
 {% endblock %}
 
 {% block body %}
@@ -24,13 +24,13 @@
             </thead>
             <tbody>
                 {% csrf_token %}
-                {% for class in classes %}
+                {% for classs in classes %}
                     <!-- Lista -->
                         <tr>
-                            <td>{{ class.registration_class_id }}</td>
-                            <td>{{ class.period }}</td>
-                            <td>{{ class.semester }}</td>
-                            <td>{{ class.area.name_area }} ({{ class.area.acronym }})</td>
+                            <td>{{ classs.registration_class_id }}</td>
+                            <td>{{ classs.period }}</td>
+                            <td>{{ classs.semester }}</td>
+                            <td>{{ classs.area.name_area }} ({{ classs.area.acronym }})</td>
                             <td><button type="button" data-toggle="modal" data-target="#editClassModal" data-counter="{{ counter }}" class="btn btn-warning"><i class="bi bi-pencil"></i></button></td>
                         </tr>
                 {% endfor %}

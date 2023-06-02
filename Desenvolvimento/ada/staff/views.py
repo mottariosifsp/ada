@@ -8,8 +8,8 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.decorators import user_passes_test
 from django.contrib.auth import get_user_model
 from .models import Deadline
-from _class.models import Class
-from area.models import Block, Area
+from area.models import Blockk, Area
+from classs.models import Classs
 from course.models import Course
 from user.models import User, History
 from django.utils import timezone
@@ -44,7 +44,7 @@ def confirm_deadline_configuration(request):
         endAssignmentDeadline = datetime.strptime(request.POST.get('endAssignmentDeadline'), '%Y-%m-%dT%H:%M')
         startExchangeDeadline = datetime.strptime(request.POST.get('startExchangeDeadline'), '%Y-%m-%dT%H:%M')
         endExchangeDeadline = datetime.strptime(request.POST.get('endExchangeDeadline'), '%Y-%m-%dT%H:%M')
-        block = request.POST.get('block')
+        blockk = request.POST.get('blockk')
 
         print(startFPADeadline)
 
@@ -55,7 +55,7 @@ def confirm_deadline_configuration(request):
             'endAssignmentDeadline': endAssignmentDeadline,
             'startExchangeDeadline': startExchangeDeadline,
             'endExchangeDeadline': endExchangeDeadline,
-            'user_block': Block.objects.get(id=block)
+            'user_block': Blockk.objects.get(id=blockk)
         }
 
         save_deadline(data)
@@ -91,19 +91,19 @@ def save_deadline(data):
         name="startFPADeadline",
         deadline_start=data['startFPADeadline'],
         deadline_end=data['endFPADeadline'],
-        block=data['user_block'],
+        blockk=data['user_block'],
     )
     Deadline.objects.create(
         name="startAssignmentDeadline",
         deadline_start=data['startAssignmentDeadline'],
         deadline_end=data['endAssignmentDeadline'],
-        block=data['user_block'],
+        blockk=data['user_block'],
     )
     Deadline.objects.create(
         name="startExchangeDeadline",
         deadline_start=data['startExchangeDeadline'],
         deadline_end=data['endExchangeDeadline'],
-        block=data['user_block'],
+        blockk=data['user_block'],
     )
 
 
@@ -149,7 +149,7 @@ def update_save(request):
 # class views
 @user_passes_test(is_staff)
 def classes_list(request):
-    classes = Class.objects.all()
+    classes = Classs.objects.all()
     areas = Area.objects.all()
     periods = [
         {'value': period.name, 'label': period.value}
@@ -167,14 +167,14 @@ def classes_list_saved(request):
         print(area)
         print(registration_class_id)
 
-        _class = Class.objects.filter(registration_class_id=registration_class_id).all()
-        print(_class)
-        if _class is not None:
-            _class.update(registration_class_id=registration_class_id, period=period, semester=semester, area=area)
+        classs = Classs.objects.filter(registration_class_id=registration_class_id).all()
+        print(classs)
+        if classs is not None:
+            classs.update(registration_class_id=registration_class_id, period=period, semester=semester, area=area)
             print("funcionou o history")
         else:            
-            _class = Class.objects.create(registration_class_id=registration_class_id, period=period, semester=semester, area=area)
-            _class.save()
+            classs = Classs.objects.create(registration_class_id=registration_class_id, period=period, semester=semester, area=area)
+            classs.save()
             return JsonResponse({'message': 'Turma salva com sucesso.'})
 
         return JsonResponse({'message': 'Alterações salvas com sucesso.'})
@@ -188,11 +188,11 @@ def blocks_list(request):
 
 @user_passes_test(is_staff)
 def block_detail(request, registration_block_id):
-    block = Block.objects.get(registration_block_id=registration_block_id)
-    area = block.areas.first()
-    courses = Course.objects.filter(block=block)
+    blockk = Blockk.objects.get(registration_block_id=registration_block_id)
+    area = blockk.areas.first()
+    courses = Course.objects.filter(blockk=blockk)
     print("Materia", courses)
-    data = {'block': block, 'area': area, 'courses': courses}
+    data = {'blockk': blockk, 'area': area, 'courses': courses}
     return render(request, 'staff/block/block_detail.html', data)
 
 

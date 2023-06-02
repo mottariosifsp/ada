@@ -4,7 +4,7 @@ from .models import Timeslot
 from .models import Timetable_user
 
 class Timetable_admin(admin.ModelAdmin):
-    list_display = ('day', 'timeslot', 'course', '_class')
+    list_display = ('day', 'timeslot', 'course', 'classs')
     search_fields = ('day',)
 
 class Timeslot_admin(admin.ModelAdmin):
