@@ -17,26 +17,66 @@ $(document).ready(function() {
     });
 
     $('.deleteCourseBtn').click(function(event) {
-    event.preventDefault();
-    var deleteUrl = $(this).data('url');
+        event.preventDefault();
+        var courseId = $(this).data('course-id');
+        var deleteUrl = '/staff/detalhes-bloco/deletar-materia';
 
-    if (confirm("Tem certeza que deseja deletar o curso?")) {
+        if (confirm("Tem certeza que deseja deletar o curso?")) {
+            let csrftoken = getCookie('csrftoken');
+
+            $.ajax({
+                method: 'POST',
+                url: deleteUrl,
+                headers: {
+                    'X-CSRFToken': csrftoken
+                },
+                data: {
+                    'id': courseId
+                },
+                success: function(response) {
+                    location.reload();
+                },
+                error: function(xhr, status, error) {
+                    alert("Erro ao deletar o curso.");
+                    console.error(error);
+                }
+            });
+        }
+    });
+
+    $('#saveUpdateBtn').click(function() {
+        var id = $('#id').val();
+        var registration_course_id = $('#registration_course_id').val();
+        var name_course = $('#name_course').val();
+        var acronym = $('#acronym').val();
+
+        var data = {
+            id: id,
+            registration_course_id: registration_course_id,
+            name_course: name_course,
+            acronym: acronym,
+        };
+
+        let csrftoken = getCookie('csrftoken');
+
+        // Enviar dados para o servidor via requisição AJAX
         $.ajax({
             method: 'POST',
-            url: deleteUrl,
-            data: {
-                'id': courseId
+            url: '/staff/detalhes-bloco/atualizar-bloco',
+            data: data,
+            headers: {
+                'X-CSRFToken': csrftoken
             },
             success: function(response) {
-                // Handle success response if needed
+                location.reload();
+                console.log(response);
+                $('#editCourseModal').modal('hide');
             },
             error: function(xhr, status, error) {
-                // Handle errors if needed
+                console.log(error);
             }
         });
-    }
-});
-
+    });
 
     function populateModal(courseData) {
         $('#editCourseModal #id').val(courseData.id);
@@ -44,80 +84,19 @@ $(document).ready(function() {
         $('#editCourseModal #name_course').val(courseData.name_course);
         $('#editCourseModal #acronym').val(courseData.acronym);
     }
-        $('#saveUpdateBtn').click(function() {
-            var id = $('#id').val();
-            var registration_course_id = $('#registration_course_id').val();
-            var name_course = $('#name_course').val();
-            var acronym = $('#acronym').val();
 
-            var data = {
-                id: id,
-                registration_course_id: registration_course_id,
-                name_course: name_course,
-                acronym: acronym,
-            };
-
-            let csrftoken = getCookie('csrftoken');
-
-            // Enviar dados para o servidor via requisição AJAX
-            $.ajax({
-                method: 'POST',
-                url: '/staff/detalhes-bloco/atualizar-bloco',
-                data: data,
-                headers: {
-                    'X-CSRFToken': csrftoken
-                },
-                success: function(response) {
-                    location.reload();
-                    console.log(response);
-                    $('#editCourseModal').modal('hide');
-                },
-                error: function(xhr, status, error) {
-                    console.log(error);
+    function getCookie(name) {
+        var cookieValue = null;
+        if (document.cookie && document.cookie !== '') {
+            var cookies = document.cookie.split(';');
+            for (var i = 0; i < cookies.length; i++) {
+                var cookie = $.trim(cookies[i]);
+                if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                    cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                    break;
                 }
-            });
-        });
-
-    $('.deleteCourseBtn').click(function(event) {
-    event.preventDefault();
-    var courseId = $(this).closest('tr').data('course-id');
-    var deleteUrl = "{% url 'course_delete' course_id=0 %}".replace('0', courseId);
-
-    if (confirm("Tem certeza que deseja deletar o curso?")) {
-        $.ajax({
-            method: 'POST',
-            url: deleteUrl,
-            headers: {
-                'X-CSRFToken': '{{ csrf_token }}'
-            },
-            data: {
-                'id': courseId
-            },
-            success: function(response) {
-                // Redirecionar para uma página ou atualizar a tabela de cursos, se necessário
-                alert("Curso deletado com sucesso.");
-            },
-            error: function(xhr, status, error) {
-                alert("Erro ao deletar o curso.");
-                console.error(error);
             }
-        });
+        }
+        return cookieValue;
     }
 });
-
-
-        function getCookie(name) {
-            var cookieValue = null;
-            if (document.cookie && document.cookie !== '') {
-                var cookies = document.cookie.split(';');
-                for (var i = 0; i < cookies.length; i++) {
-                    var cookie = $.trim(cookies[i]);
-                    if (cookie.substring(0, name.length + 1) === (name + '=')) {
-                        cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
-                        break;
-                    }
-                }
-            }
-            return cookieValue;
-        }
-    });

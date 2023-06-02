@@ -16,6 +16,7 @@ from course.models import Course
 from user.models import User, History
 from .models import Deadline
 
+
 def is_staff(user):
     return user.is_staff
 
@@ -25,6 +26,7 @@ def is_staff(user):
 @user_passes_test(is_staff)
 def home(request):
     return render(request, 'staff/home_staff.html')
+
 
 @login_required
 @user_passes_test(is_staff)
@@ -36,6 +38,7 @@ def deadline_configuration(request):
     }
 
     return render(request, 'staff/deadline/deadline_configuration.html', data)
+
 
 def confirm_deadline_configuration(request):
     if request.method == 'POST':
@@ -63,6 +66,7 @@ def confirm_deadline_configuration(request):
 
     return render(request, 'staff/deadline/confirm_deadline_configuration.html', data)
 
+
 def show_current_deadline(request):
     deadlines = Deadline.objects.all()
     now = timezone.now()
@@ -84,6 +88,7 @@ def show_current_deadline(request):
     }
 
     return render(request, 'staff/deadline/show_current_deadline.html', data)
+
 
 @transaction.atomic
 def save_deadline(data):
@@ -158,6 +163,7 @@ def classes_list(request):
     ]
     return render(request, 'staff/classs/classes_list.html', {'classes': classes, 'periods': periods, 'areas': areas})
 
+
 def classes_list_saved(request):
     if request.method == 'POST':
         print("funcionou o if")
@@ -173,20 +179,23 @@ def classes_list_saved(request):
         if classs is not None:
             classs.update(registration_class_id=registration_class_id, period=period, semester=semester, area=area)
             print("funcionou o history")
-        else:            
-            classs = Classs.objects.create(registration_class_id=registration_class_id, period=period, semester=semester, area=area)
+        else:
+            classs = Classs.objects.create(registration_class_id=registration_class_id, period=period,
+                                           semester=semester, area=area)
             classs.save()
             return JsonResponse({'message': 'Turma salva com sucesso.'})
 
         return JsonResponse({'message': 'Alterações salvas com sucesso.'})
 
+
 # block views
+@login_required
 @user_passes_test(is_staff)
 def blocks_list(request):
     blocks = request.user.blocks.all()
     return render(request, 'staff/blockk/blocks_list.html', {'blocks': blocks})
 
-
+@user_passes_test(is_staff)
 @user_passes_test(is_staff)
 def block_detail(request, registration_block_id):
     blockk = Blockk.objects.get(registration_block_id=registration_block_id)
@@ -196,8 +205,9 @@ def block_detail(request, registration_block_id):
     data = {'blockk': blockk, 'area': area, 'courses': courses}
     return render(request, 'staff/blockk/block_detail.html', data)
 
-
-def course_update_save(request):    
+@login_required
+@user_passes_test(is_staff)
+def course_update_save(request):
     if request.method == 'POST':
         course_id = request.POST.get('id')
         registration_course_id = request.POST.get('registration_course_id')
@@ -209,11 +219,18 @@ def course_update_save(request):
 
         return JsonResponse({'message': 'Matéria atualizada com sucesso.'})
 
-def course_delete(request, course_id):
-    course = Course.objects.get(id=course_id)
-    course.delete()
+@login_required
+@user_passes_test(is_staff)
+def course_delete(request):
+    if request.method == 'POST':
+        course_id = request.POST.get('id')
+        try:
+            course = Course.objects.get(id=course_id)
+            course.delete()
+            return JsonResponse({'message': 'Curso deletado com sucesso.'})
+        except Course.DoesNotExist:
+            return JsonResponse({'message': 'O curso não existe.'}, status=404)
 
-    return JsonResponse({'message': 'Curso deletado com sucesso.'})
 
 # timetable views
 
@@ -231,6 +248,5 @@ def create_timetable(request):
             'courses': selected_courses,
             'timeslots': Timeslot.objects.all(),
         }
-        
+
         return render(request, 'staff/timetable/cadastrar.html', data)
-    

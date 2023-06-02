@@ -14,6 +14,6 @@ urlpatterns = [
     path("blocos/", blocks_list, name="blocks_list"),
     path("detalhes-bloco/<str:registration_block_id>/", block_detail, name="block_detail"),
     path("detalhes-bloco/atualizar-bloco", course_update_save, name="course_update_save"),
-    path("detalhes-bloco/deletar-materia/<int:course_id>/", course_delete, name="course_delete"),
+    path("detalhes-bloco/deletar-materia", course_delete, name="course_delete"),
     path("grade/cadastrar/", create_timetable, name="create_timetable"),
 ]

@@ -27,7 +27,6 @@
             <thead>
                 <tr>
                     <th scope="col" id="hideId">Id</th>
-
                     <th scope="col">Registration Course Id</th>
                     <th scope="col">Name</th>
                     <th scope="col">Acronym</th>
@@ -46,8 +45,7 @@
                             <td>{{ course.acronym }}</td>
                             <td>
                                 <button type="button" data-toggle="modal" data-target="#editCourseModal" data-counter="{{ counter }}" class="btn btn-warning editCourseBtn"><i class="bi bi-pencil"></i></button>
-                                <button type="button" class="btn btn-danger deleteCourseBtn" data-url="{% url 'course_delete' course.id %}">Deletar</button>
-
+                                <button type="button" class="btn btn-danger deleteCourseBtn" data-course-id="{{ course.id }}">Deletar</button>
                             </td>
                         </tr>
                 {% endfor %}
