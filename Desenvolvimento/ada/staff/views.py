@@ -1,7 +1,7 @@
 from datetime import datetime, timezone
-import enum
+from enums import enum
 from django.db import transaction
-from django.http import JsonResponse, HttpResponse
+from django.http import JsonResponse
 from django.views.decorators.http import require_http_methods
 from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
@@ -154,7 +154,7 @@ def classes_list(request):
         {'value': period.name, 'label': period.value}
         for period in enum.Period
     ]
-    return render(request, 'staff/class/classes_list.html', {'classes': classes, 'periods': periods, 'areas': areas})
+    return render(request, 'staff/classs/classes_list.html', {'classes': classes, 'periods': periods, 'areas': areas})
 
 def classes_list_saved(request):
     if request.method == 'POST':
@@ -182,7 +182,7 @@ def classes_list_saved(request):
 @user_passes_test(is_staff)
 def blocks_list(request):
     blocks = request.user.blocks.all()
-    return render(request, 'staff/block/blocks_list.html', {'blocks': blocks})
+    return render(request, 'staff/blockk/blocks_list.html', {'blocks': blocks})
 
 
 @user_passes_test(is_staff)
@@ -192,7 +192,7 @@ def block_detail(request, registration_block_id):
     courses = Course.objects.filter(blockk=blockk)
     print("Materia", courses)
     data = {'blockk': blockk, 'area': area, 'courses': courses}
-    return render(request, 'staff/block/block_detail.html', data)
+    return render(request, 'staff/blockk/block_detail.html', data)
 
 
 def course_update_save(request):
@@ -224,7 +224,6 @@ def create_timetable(request):
         }
 
         request.GET.get('')
-        return request(request, 'staff/timetable/criar.html', data)
-    
+        return request(request, 'staff/timetable/create_timetable.html', data)
 
-    return render(request, 'staff/timetable/criar.html')
+    return render(request, 'staff/timetable/create_timetable.html')
