@@ -3,18 +3,97 @@ $(document).ready(function() {
         responsive: true
     });
 
+    $('#saveCreateBtn').click(function() {
+        var registration_course_id = $('#registration_course_id_create').val();
+        var name_course = $('#name_course_create').val();
+        var acronym = $('#acronym_create').val();
+        var areaId = $(this).data('area-id');
+        var blockId = $(this).data('block-id');
+
+        var data = {
+            registration_course_id: registration_course_id,
+            name_course: name_course,
+            acronym: acronym,
+            areaId: areaId,
+            blockId: blockId
+        };
+
+        let csrftoken = getCookie('csrftoken');
+
+        // Enviar dados para o servidor via requisição AJAX
+        $.ajax({
+            method: 'POST',
+            url: '/staff/detalhes-bloco/criar-materia',
+            data: data,
+
+            headers: {
+                'X-CSRFToken': csrftoken
+            },
+            success: function(response) {
+                location.reload();
+                $('#createCourseModal').modal('hide');
+            },
+            error: function(xhr, status, error) {
+                console.log(error);
+            }
+        });
+    });
+
     $('.editCourseBtn').click(function() {
         var row = $(this).closest('tr');
+        var courseId = $(this).data('course-id');
+
+        $('#editCourseModal').data('course-id', courseId);
         var courseData = {
-            id: row.find('td:eq(0)').text(),
-            registration_course_id: row.find('td:eq(1)').text(),
-            name_course: row.find('td:eq(2)').text(),
-            acronym: row.find('td:eq(3)').text(),
+            registration_course_id: row.find('td:eq(0)').text(),
+            name_course: row.find('td:eq(1)').text(),
+            acronym: row.find('td:eq(2)').text(),
         };
+
 
         populateModal(courseData);
         $('#editCourseModal').modal('show');
     });
+
+    $('#saveUpdateBtn').click(function() {
+        var courseId = $('#editCourseModal').data('course-id');
+        var registration_course_id = $('#registration_course_id_update').val();
+        var name_course = $('#name_course_update').val();
+        var acronym = $('#acronym_update').val();
+
+        var data = {
+            id: courseId,
+            registration_course_id: registration_course_id,
+            name_course: name_course,
+            acronym: acronym,
+        };
+
+
+        let csrftoken = getCookie('csrftoken');
+
+        // Enviar dados para o servidor via requisição AJAX
+        $.ajax({
+            method: 'POST',
+            url: '/staff/detalhes-bloco/atualizar-bloco',
+            data: data,
+            headers: {
+                'X-CSRFToken': csrftoken
+            },
+            success: function(response) {
+                location.reload();
+                $('#editCourseModal').modal('hide');
+            },
+            error: function(xhr, status, error) {
+                console.log(error);
+            }
+        });
+    });
+
+    function populateModal(courseData) {
+        $('#editCourseModal #registration_course_id_update').val(courseData.registration_course_id);
+        $('#editCourseModal #name_course_update').val(courseData.name_course);
+        $('#editCourseModal #acronym_update').val(courseData.acronym);
+    }
 
     $('.deleteCourseBtn').click(function(event) {
         event.preventDefault();
@@ -43,47 +122,6 @@ $(document).ready(function() {
             });
         }
     });
-
-    $('#saveUpdateBtn').click(function() {
-        var id = $('#id').val();
-        var registration_course_id = $('#registration_course_id').val();
-        var name_course = $('#name_course').val();
-        var acronym = $('#acronym').val();
-
-        var data = {
-            id: id,
-            registration_course_id: registration_course_id,
-            name_course: name_course,
-            acronym: acronym,
-        };
-
-        let csrftoken = getCookie('csrftoken');
-
-        // Enviar dados para o servidor via requisição AJAX
-        $.ajax({
-            method: 'POST',
-            url: '/staff/detalhes-bloco/atualizar-bloco',
-            data: data,
-            headers: {
-                'X-CSRFToken': csrftoken
-            },
-            success: function(response) {
-                location.reload();
-                console.log(response);
-                $('#editCourseModal').modal('hide');
-            },
-            error: function(xhr, status, error) {
-                console.log(error);
-            }
-        });
-    });
-
-    function populateModal(courseData) {
-        $('#editCourseModal #id').val(courseData.id);
-        $('#editCourseModal #registration_course_id').val(courseData.registration_course_id);
-        $('#editCourseModal #name_course').val(courseData.name_course);
-        $('#editCourseModal #acronym').val(courseData.acronym);
-    }
 
     function getCookie(name) {
         var cookieValue = null;

@@ -203,7 +203,26 @@ def block_detail(request, registration_block_id):
     courses = Course.objects.filter(blockk=blockk)
     print("Materia", courses)
     data = {'blockk': blockk, 'area': area, 'courses': courses}
+
     return render(request, 'staff/blockk/block_detail.html', data)
+
+@login_required
+@user_passes_test(is_staff)
+def course_create(request):
+    if request.method == 'POST':
+        registration_course_id = request.POST.get('registration_course_id')
+        name_course = request.POST.get('name_course')
+        acronym = request.POST.get('acronym')
+        area_id = request.POST.get('areaId')
+        block_id = request.POST.get('blockId')
+
+        area = Area.objects.get(id=area_id)
+        block = Blockk.objects.get(id=block_id)
+
+        course = Course.objects.create(registration_course_id=registration_course_id, name_course=name_course, acronym=acronym, area=area, blockk=block)
+        course.save()
+
+        return JsonResponse({'message': 'Matéria criada com sucesso.'})
 
 @login_required
 @user_passes_test(is_staff)
@@ -232,7 +251,6 @@ def course_delete(request):
             return JsonResponse({'message': 'O curso não existe.'}, status=404)
 
 
-# timetable views
 
 @user_passes_test(is_staff)
 def create_timetable(request):
