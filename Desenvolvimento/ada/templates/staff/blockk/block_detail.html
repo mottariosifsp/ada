@@ -17,10 +17,6 @@
 <h1>Exchange area: {{ area.exchange_area }}</h1>
 <h1>Is high school: {{ area.is_high_school }}</h1>
 
-    {% for course in courses %}
-        <h1>nome do curso: {{ course.name_course }}</h1>
-    {% endfor %}
-
 <button type="button" class="btn btn-success createCourseBtn"
         data-toggle="modal" data-target="#createCourseModal">
     Criar matéria
