@@ -1,13 +1,15 @@
 from datetime import datetime, timezone
+
 from enums import enum
 from django.db import transaction
 from django.http import JsonResponse
 from django.views.decorators.http import require_http_methods
-from django.shortcuts import render
+from django.shortcuts import render, redirect
+from django.urls import reverse_lazy
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.decorators import user_passes_test
 from django.contrib.auth import get_user_model
-
+from attribution.views import queueSetup
 from timetable.models import Timeslot
 from .models import Deadline
 from area.models import Blockk, Area
@@ -249,6 +251,23 @@ def course_delete(request):
             return JsonResponse({'message': 'Curso deletado com sucesso.'})
         except Course.DoesNotExist:
             return JsonResponse({'message': 'O curso não existe.'}, status=404)
+
+# @login_required
+# @user_passes_test(is_staff)
+def queue_create(request):
+
+    response = queueSetup(request)
+
+    if hasattr(response, 'render') and callable(response.render):
+
+        return response.render()
+
+    return response
+
+@login_required
+@user_passes_test(is_staff)
+def queue(request):
+    return render(request, 'attribution/queue.html')
 
 
 
