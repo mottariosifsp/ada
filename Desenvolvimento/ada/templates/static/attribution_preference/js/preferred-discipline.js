@@ -29,6 +29,7 @@ $(document).ready(function() {
   function atualizar_time_left(is_checked, value) {
     if(!is_checked) {
       time_left -= value;
+      time_left = time_left.toFixed(2);
       $('#hour-regime').text(time_left);
     }
   }

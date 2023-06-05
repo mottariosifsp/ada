@@ -84,61 +84,60 @@
                   {% for i in "MVN" %}
                     {% if i == "M" %}
                       <td class="text-center align-middle" rowspan="7">Matutino</td>
-    
                       {% for horario in turno.matu %}
                         <tr>
                           <td class="text-center align-middle">{{ horario.0.hour_start }} - {{ horario.0.hour_end }}</td>
     
                           <td class="text-center">
                             <div class="btn-group-toggle" data-toggle="buttons">
-                              <label class="btn btn-success w-100 checkbox" for="mon-mat">
-                                <input type="checkbox" id="mon-mat" 
-                                value="{{ horario.0 }}, mon" 
-                                autocomplete="off">
+                              <label class="btn btn-success w-100 checkbox" for="mon-mat-{{ forloop.counter }}">
+                                <input type="checkbox" id="mon-mat-{{ forloop.counter }}" 
+                                  value="{{ horario.0 }}, mon" 
+                                  autocomplete="off">
                                 <i class="fas fa-check-circle check"></i>
                               </label>
                             </div>
                           </td>
-    
+                          
                           <td class="text-center">
                             <div class="btn-group-toggle" data-toggle="buttons">
-                              <label class="btn btn-success w-100 checkbox" for="tue-mat">
-                                <input type="checkbox" id="tue-mat" 
-                                value="{{ horario.0 }}, tue" 
-                                autocomplete="off">
+                              <label class="btn btn-success w-100 checkbox" for="tue-mat-{{ forloop.counter }}">
+                                <input type="checkbox" id="tue-mat-{{ forloop.counter }}" 
+                                  value="{{ horario.0 }}, tue" 
+                                  autocomplete="off">
                                 <i class="fas fa-check-circle check"></i>
                               </label>
                             </div>
                           </td>
-    
+                          
                           <td class="text-center">
                             <div class="btn-group-toggle" data-toggle="buttons">
-                              <label class="btn btn-success w-100 checkbox" for="wed-mat">
-                                <input type="checkbox" id="wed-mat" 
-                                value="{{ horario.0 }}, wed" 
-                                autocomplete="off">
+                              <label class="btn btn-success w-100 checkbox" for="wed-mat-{{ forloop.counter }}">
+                                <input type="checkbox" id="wed-mat-{{ forloop.counter }}" 
+                                  value="{{ horario.0 }}, wed" 
+                                  autocomplete="off">
                                 <i class="fas fa-check-circle check"></i>
                               </label>
                             </div>
                           </td>
-    
+                          
                           <td class="text-center">
                             <div class="btn-group-toggle" data-toggle="buttons">
-                              <label class="btn btn-success w-100 checkbox" for="thu-mat">
-                                <input type="checkbox" id="thu-mat" 
-                                value="{{ horario.0 }}, thu" 
-                                autocomplete="off">
+                              <label class="btn btn-success w-100 checkbox" for="thu-mat-{{ forloop.counter }}">
+                                <input type="checkbox" id="thu-mat-{{ forloop.counter }}" 
+                                  value="{{ horario.0 }}, thu" 
+                                  autocomplete="off">
                                 <i class="fas fa-check-circle check"></i>
                               </label>
                             </div>
                           </td>
-    
+                          
                           <td class="text-center">
                             <div class="btn-group-toggle" data-toggle="buttons">
-                              <label class="btn btn-success w-100 checkbox" for="fri-mat">
-                                <input type="checkbox" id="fri-mat" 
-                                value="{{ horario.0 }}, fri" 
-                                autocomplete="off">
+                              <label class="btn btn-success w-100 checkbox" for="fri-mat-{{ forloop.counter }}">
+                                <input type="checkbox" id="fri-mat-{{ forloop.counter }}" 
+                                  value="{{ horario.0 }}, fri" 
+                                  autocomplete="off">
                                 <i class="fas fa-check-circle check"></i>
                               </label>
                             </div>
@@ -155,54 +154,54 @@
     
                           <td class="text-center">
                             <div class="btn-group-toggle" data-toggle="buttons">
-                              <label class="btn btn-success w-100 checkbox" for="mon-ves">
-                                <input type="checkbox" id="mon-ves" 
-                                value="{{ horario.0 }}, mon" 
-                                autocomplete="off">
+                              <label class="btn btn-success w-100 checkbox" for="mon-ves-{{ forloop.counter }}">
+                                <input type="checkbox" id="mon-ves-{{ forloop.counter }}" 
+                                  value="{{ horario.0 }}, mon" 
+                                  autocomplete="off">
                                 <i class="fas fa-check-circle check"></i>
                               </label>
                             </div>
                           </td>
-    
+                          
                           <td class="text-center">
                             <div class="btn-group-toggle" data-toggle="buttons">
-                              <label class="btn btn-success w-100 checkbox" for="tue-ves">
-                                <input type="checkbox" id="tue-ves" 
-                                value="{{ horario.0 }}, tue" 
-                                autocomplete="off">
+                              <label class="btn btn-success w-100 checkbox" for="tue-ves-{{ forloop.counter }}">
+                                <input type="checkbox" id="tue-ves-{{ forloop.counter }}" 
+                                  value="{{ horario.0 }}, tue" 
+                                  autocomplete="off">
                                 <i class="fas fa-check-circle check"></i>
                               </label>
                             </div>
                           </td>
-    
+                          
                           <td class="text-center">
                             <div class="btn-group-toggle" data-toggle="buttons">
-                              <label class="btn btn-success w-100 checkbox" for="wed-ves">
-                                <input type="checkbox" id="wed-ves" 
-                                value="{{ horario.0 }}, wed" 
-                                autocomplete="off">
+                              <label class="btn btn-success w-100 checkbox" for="wed-ves-{{ forloop.counter }}">
+                                <input type="checkbox" id="wed-ves-{{ forloop.counter }}" 
+                                  value="{{ horario.0 }}, wed" 
+                                  autocomplete="off">
                                 <i class="fas fa-check-circle check"></i>
                               </label>
                             </div>
                           </td>
-    
+                          
                           <td class="text-center">
                             <div class="btn-group-toggle" data-toggle="buttons">
-                              <label class="btn btn-success w-100 checkbox" for="thu-ves">
-                                <input type="checkbox" id="thu-ves" 
-                                value="{{ horario.0 }}, thu" 
-                                autocomplete="off">
+                              <label class="btn btn-success w-100 checkbox" for="thu-ves-{{ forloop.counter }}">
+                                <input type="checkbox" id="thu-ves-{{ forloop.counter }}" 
+                                  value="{{ horario.0 }}, thu" 
+                                  autocomplete="off">
                                 <i class="fas fa-check-circle check"></i>
                               </label>
                             </div>
                           </td>
-    
+                          
                           <td class="text-center">
                             <div class="btn-group-toggle" data-toggle="buttons">
-                              <label class="btn btn-success w-100 checkbox" for="fri-ves">
-                                <input type="checkbox" id="fri-ves" 
-                                value="{{ horario.0 }}, fri" 
-                                autocomplete="off">
+                              <label class="btn btn-success w-100 checkbox" for="fri-ves-{{ forloop.counter }}">
+                                <input type="checkbox" id="fri-ves-{{ forloop.counter }}" 
+                                  value="{{ horario.0 }}, fri" 
+                                  autocomplete="off">
                                 <i class="fas fa-check-circle check"></i>
                               </label>
                             </div>
@@ -219,54 +218,54 @@
     
                           <td class="text-center">
                             <div class="btn-group-toggle" data-toggle="buttons">
-                              <label class="btn btn-success w-100 checkbox" for="mon-not">
-                                <input type="checkbox" id="mon-not" 
-                                value="{{ horario.0 }}, mon" 
-                                autocomplete="off">
+                              <label class="btn btn-success w-100 checkbox" for="mon-not-{{ forloop.counter }}">
+                                <input type="checkbox" id="mon-not-{{ forloop.counter }}" 
+                                  value="{{ horario.0 }}, mon" 
+                                  autocomplete="off">
                                 <i class="fas fa-check-circle check"></i>
                               </label>
                             </div>
                           </td>
-    
+                      
                           <td class="text-center">
                             <div class="btn-group-toggle" data-toggle="buttons">
-                              <label class="btn btn-success w-100 checkbox" for="tue-not">
-                                <input type="checkbox" id="tue-not" 
-                                value="{{ horario.0 }}, tue" 
-                                autocomplete="off">
+                              <label class="btn btn-success w-100 checkbox" for="tue-not-{{ forloop.counter }}">
+                                <input type="checkbox" id="tue-not-{{ forloop.counter }}" 
+                                  value="{{ horario.0 }}, tue" 
+                                  autocomplete="off">
                                 <i class="fas fa-check-circle check"></i>
                               </label>
                             </div>
                           </td>
-    
+                      
                           <td class="text-center">
                             <div class="btn-group-toggle" data-toggle="buttons">
-                              <label class="btn btn-success w-100 checkbox" for="wed-not">
-                                <input type="checkbox" id="wed-not" 
-                                value="{{ horario.0 }}, wed" 
-                                autocomplete="off">
-                                <i class="fas fa-check-circle check checkbox"></i>
-                              </label>
-                            </div>
-                          </td>
-    
-                          <td class="text-center">
-                            <div class="btn-group-toggle" data-toggle="buttons">
-                              <label class="btn btn-success w-100 checkbox" for="thu-not">
-                                <input type="checkbox" id="thu-not" 
-                                value="{{ horario.0 }}, thu" 
-                                autocomplete="off">
+                              <label class="btn btn-success w-100 checkbox" for="wed-not-{{ forloop.counter }}">
+                                <input type="checkbox" id="wed-not-{{ forloop.counter }}" 
+                                  value="{{ horario.0 }}, wed" 
+                                  autocomplete="off">
                                 <i class="fas fa-check-circle check"></i>
                               </label>
                             </div>
                           </td>
-    
+                      
                           <td class="text-center">
                             <div class="btn-group-toggle" data-toggle="buttons">
-                              <label class="btn btn-success w-100 checkbox" for="fri-not">
-                                <input type="checkbox" id="fri-not" 
-                                value="{{ horario.0 }}, fri" 
-                                autocomplete="off">
+                              <label class="btn btn-success w-100 checkbox" for="thu-not-{{ forloop.counter }}">
+                                <input type="checkbox" id="thu-not-{{ forloop.counter }}" 
+                                  value="{{ horario.0 }}, thu" 
+                                  autocomplete="off">
+                                <i class="fas fa-check-circle check"></i>
+                              </label>
+                            </div>
+                          </td>
+                      
+                          <td class="text-center">
+                            <div class="btn-group-toggle" data-toggle="buttons">
+                              <label class="btn btn-success w-100 checkbox" for="fri-not-{{ forloop.counter }}">
+                                <input type="checkbox" id="fri-not-{{ forloop.counter }}" 
+                                  value="{{ horario.0 }}, fri" 
+                                  autocomplete="off">
                                 <i class="fas fa-check-circle check"></i>
                               </label>
                             </div>
