@@ -99,6 +99,7 @@
               <a class="dropdown-item disabled" href="#">{{ request.user.get_full_name }}</a>
               <a class="dropdown-item" href="">{% translate "Perfil" %}</a>
               <div class="dropdown-divider"></div>
+              <a class="dropdown-item" data-toggle="modal" data-target="#logoutModal"><i class="bi bi-box-arrow-right"></i> {% translate "Sair" %}</a>
             </div>
           </li>
         </ul>
@@ -164,7 +165,7 @@
                 </div>
               </div>
               <div class="row">
-                <div class="text">
+                <div class="col">
                   <span class="text-footer ">© 2023 Mottarios. {% translate "Todos os direitos reservados" %}.</span>
                 </div>
               </div>
@@ -173,6 +174,14 @@
         </div>
       </div>
     </nav>
+    {% endif %}
+
+      <div class="container base">
+        {% block body %}
+
+        {% endblock %}
+    </div>
+    <!-- Logout modal -->
     <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="confirmLogoutModalLabel" aria-hidden="true">
       <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -190,15 +199,6 @@
             <a class="btn btn-danger" href="{% url 'logout' %}">{% translate "Sair" %}</a>
           </div>
         </div>
-      </div>
-    </div>
-    {% endif %}
-
-      <div class="container base">
-        
-        {% block body %}
-
-        {% endblock %}
       </div>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js" integrity="sha384-7og8luCpGnZn/Ms71Ycm3q8rW2t+jGvRJ9XtT7ieAM8WwhzODZvmmwyQEd/bYUTd" crossorigin="anonymous"></script>

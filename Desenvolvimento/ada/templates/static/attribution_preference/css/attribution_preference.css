@@ -11,3 +11,23 @@
 #work-availability .btn-group-toggle .btn-success {
     background-color: #3F927E;
 }
+.checkbox input[type="checkbox"].unchecked {
+  background-color: initial !important;
+}
+.check {
+  visibility: hidden;   
+}
+
+input[type="checkbox"]:checked + .check{
+  visibility: visible;   
+}
+
+#hour-regime {
+  font-size: 49.5pt;
+  font-weight: 600;
+  color: #2f7363;
+  align-items: center;
+}
+.hours {
+  color: #2f7363;
+}
