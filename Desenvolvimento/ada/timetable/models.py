@@ -29,7 +29,7 @@ class Timeslot(models.Model):
         verbose_name_plural = _('timeslots')
 
     def __str__(self):
-        return str(self.hour_start)
+        return str(self.position)
         
     def clean(self):
         super().clean()

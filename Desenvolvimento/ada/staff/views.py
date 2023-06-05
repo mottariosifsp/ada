@@ -1,4 +1,5 @@
-from datetime import datetime, timezone
+from datetime import datetime
+import json
 from enums import enum
 from django.db import transaction
 from django.http import JsonResponse
@@ -7,8 +8,9 @@ from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.decorators import user_passes_test
 from django.contrib.auth import get_user_model
+from django.utils import timezone
 
-from timetable.models import Timeslot
+from timetable.models import Timeslot, Timetable
 from .models import Deadline
 from area.models import Blockk, Area
 from classs.models import Classs
@@ -45,7 +47,7 @@ def confirm_deadline_configuration(request):
         endAssignmentDeadline = datetime.strptime(request.POST.get('endAssignmentDeadline'), '%Y-%m-%dT%H:%M')
         startExchangeDeadline = datetime.strptime(request.POST.get('startExchangeDeadline'), '%Y-%m-%dT%H:%M')
         endExchangeDeadline = datetime.strptime(request.POST.get('endExchangeDeadline'), '%Y-%m-%dT%H:%M')
-        blockk = request.POST.get('blockk')
+        blockk = request.POST.get('block')
 
         print(startFPADeadline)
 
@@ -61,7 +63,8 @@ def confirm_deadline_configuration(request):
 
         save_deadline(data)
 
-    return render(request, 'staff/deadline/confirm_deadline_configuration.html', data)
+        return render(request, 'staff/deadline/confirm_deadline_configuration.html', data)
+    return render(request, 'staff/deadline/confirm_deadline_configuration.html')
 
 def show_current_deadline(request):
     deadlines = Deadline.objects.all()
@@ -220,17 +223,54 @@ def course_delete(request, course_id):
 @user_passes_test(is_staff)
 def create_timetable(request):
     if request.method == 'GET':
+
         if request.GET.get('class'):
             selected_class = Classs.objects.get(registration_class_id__icontains=(request.GET.get('class')))
+            selected_courses = Course.objects.filter(area=selected_class.area)
         else:
-            selected_class = Classs.objects.all()
-
-        selected_courses = Course.objects.filter(area=selected_class.area)
-
+            selected_class = Classs.objects.all()        
+            selected_courses = Course.objects.all()
+        print(selected_courses)
         data = {
             'courses': selected_courses,
-            'timeslots': Timeslot.objects.all(),
+            'timeslots': Timeslot.objects.all().order_by('hour_start'),
         }
         
-        return render(request, 'staff/timetable/cadastrar.html', data)
+        return render(request, 'staff/timetable/register.html', data)
+
+def confirm_timetable(request):
+    if request.method == 'POST':
+        
+        selected_courses = json.loads(request.POST.get('selected_courses'))
+        selected_class = Classs.objects.get(registration_class_id__icontains=(json.loads(request.POST.get('selected_class'))))
+        print(selected_class)
+
+        for day_number, courses in enumerate(selected_courses):
+            for position, name_course in enumerate(courses):
+                timeslot = Timeslot.objects.get(position=position+1)
+                course = None
+                day = None
+                if name_course:
+                    if(day_number==0):
+                        day = enum.Day.monday.name
+                    elif(day_number==1):
+                        day = enum.Day.tuesday.name
+                    elif(day_number==2):
+                        day = enum.Day.wednesday.name
+                    elif(day_number==3):
+                        day = enum.Day.thursday.name
+                    elif(day_number==4):
+                        day = enum.Day.friday.name
+                    elif(day_number==5):
+                        day = enum.Day.saturday.name              
+
+                    course = Course.objects.get(name_course=name_course)
+                    save_timetable(course, timeslot, selected_class, day)
+
+        return render(request, 'staff/timetable/confirm_timetable.html')
+    return render(request, 'staff/timetable/confirm_timetable.html')
     
+def save_timetable(course, timeslot, classs, day):
+    if(Timetable.objects.filter(day=day, timeslot=timeslot, classs=classs).exists()):
+        Timetable.objects.filter(day=day, timeslot=timeslot, classs=classs).delete()
+    Timetable.objects.create(day=day, timeslot=timeslot, course=course, classs=classs)

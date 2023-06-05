@@ -1,19 +1,56 @@
 $(document).ready(function() {
 
-  var selectedOption
 
-  $('.dropdown-item').click(function() {
-    selectedOption = $(this).text();
-    $(this).closest('.dropdown-menu').prev('.btn.dropdown-toggle').text(selectedOption);
-    console.log($(this).parent().closest('.dropdown-toggle').text())
+  if($('#selected_class').text() == "") {
+    // $('#course_select').hide();
+    $('#course_select').css('opacity', '0.5');
+    $('#course_select').css('pointer-events', 'none');
+    $('#course_select').css('filter', 'grayscale(100%)');
+  }
+
+
+
+
+  var courses_selected = [];
+
+  $("#test_button").click(function() {
+    for (let index = 0; index < 6; index++) {
+      courses_selected[index] = $('.datalist'+index).map(function() {
+        return $(this).val();
+      }).get();      
+    }
+    console.log($('#'));  
   });
 
-  $('#searchInput').on('input', function() {
-    var value = $(this).val().toLowerCase();
-    selectedOption.parent().filter(function() {
-      $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1);
+  $("#submit_timetable").click(function() {
+    let selected_courses = [];
+    
+    for (let index = 0; index < 6; index++) {
+      selected_courses[index] = $('.datalist'+index).map(function() {
+        return $(this).val();
+      }).get();        
+    }
+    
+    let csrftoken = getCookie('csrftoken');
+      $.ajax({
+        method: 'POST',
+        url: '/staff/grade/confirmar/', 
+        data: {
+          'selected_courses': JSON.stringify(selected_courses),
+          'selected_class': $('#selected_class').text(),
+        },
+        headers: {
+            'X-CSRFToken': csrftoken
+        },
+        success: function(response) {
+          window.location.href = '/staff/grade/confirmar/';
+        },
+        error: function(xhr, status, error) {
+            console.log(error);
+        }
     });
-  });  
+  });
+
 });
 
 function getCookie(name) {
