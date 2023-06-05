@@ -11,3 +11,10 @@
 #work-availability .btn-group-toggle .btn-success {
     background-color: #3F927E;
 }
+.check {
+  visibility: hidden;   
+}
+
+input[type="checkbox"]:checked + .check{
+  visibility: visible;   
+}

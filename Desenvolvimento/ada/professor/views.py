@@ -5,7 +5,7 @@ from django.contrib.auth.decorators import login_required
 def is_not_staff(user):
     return not user.is_staff
 
-@login_required(login_url='/user/login/')
+@login_required
 @user_passes_test(is_not_staff)
 def home(request):
     return render(request, 'professor/home_professor.html')

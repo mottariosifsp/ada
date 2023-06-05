@@ -8,10 +8,23 @@ from django.db import transaction
 
 def attribution_preference(request):
     course = Course.objects.all()
-    timeslot = Timeslot.objects.all()
+    turno = {
+        'matu': [],
+        'vesp': [],
+        'notu': []
+    }
+    for i in range(1,7):
+        turno['matu'].append(Timeslot.objects.filter(position=i))
+        turno['vesp'].append(Timeslot.objects.filter(position=i+6))
+        turno['notu'].append(Timeslot.objects.filter(position=i+12))
+
+    print(turno)
+
+
     # timeslot.
     data = {
-        'courses': course
+        'courses': course,
+        'turno': turno
     }
 
     return render(request, 'attribution_preference/attribution_preference.html', data)
