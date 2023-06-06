@@ -22,7 +22,7 @@ input[type="checkbox"]:checked + .check{
   visibility: visible;   
 }
 
-#hour-regime {
+#hour-regime, #min-regime {
   font-size: 49.5pt;
   font-weight: 600;
   color: #2f7363;
