@@ -8,7 +8,7 @@ from common.validator.validator import validate_incongruity_time, validate_inter
 class Timetable(models.Model):
     day = models.CharField(_('day'), choices=[(s.name, s.value) for s in enum.Day], max_length=45)
     timeslot = models.ForeignKey('Timeslot', on_delete=models.CASCADE, related_name='timetable')
-    course = models.ForeignKey('course.Course', on_delete=models.CASCADE, related_name='timetable')
+    course = models.ForeignKey('course.Course', on_delete=models.CASCADE, related_name='timetable', null=True, blank=True)
     classs = models.ForeignKey('classs.Classs', on_delete=models.CASCADE, related_name='timetable')
 
     class Meta:

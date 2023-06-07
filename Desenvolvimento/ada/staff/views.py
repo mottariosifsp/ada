@@ -2,9 +2,9 @@ from datetime import datetime
 import json
 from enums import enum
 from django.db import transaction
-from django.http import JsonResponse
+from django.http import HttpResponseRedirect, JsonResponse
 from django.views.decorators.http import require_http_methods
-from django.shortcuts import render
+from django.shortcuts import redirect, render
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.decorators import user_passes_test
 from django.contrib.auth import get_user_model
@@ -230,47 +230,76 @@ def create_timetable(request):
         else:
             selected_class = Classs.objects.all()        
             selected_courses = Course.objects.all()
-        print(selected_courses)
         data = {
             'courses': selected_courses,
             'timeslots': Timeslot.objects.all().order_by('hour_start'),
         }
         
         return render(request, 'staff/timetable/register.html', data)
-
-def confirm_timetable(request):
     if request.method == 'POST':
-        
+        message = ""
         selected_courses = json.loads(request.POST.get('selected_courses'))
-        selected_class = Classs.objects.get(registration_class_id__icontains=(json.loads(request.POST.get('selected_class'))))
-        print(selected_class)
-
+        try:
+            selected_class = Classs.objects.get(registration_class_id__exact=(json.loads(request.POST.get('selected_class'))))
+        except Classs.DoesNotExist:
+            message = "Selecione uma turma válida"
+            return JsonResponse({'erro': True, 'mensagem': message})    
+        
+        if selected_class is None:
+            message = "Selecione uma turma"
+            return JsonResponse({'erro': True, 'mensagem': message})
+        for courses in selected_courses:
+            for name_course in courses:
+                if name_course:     
+                    if not Course.objects.filter(name_course=name_course).exists():
+                        message = "Selecione uma matéria válida"
+                        return JsonResponse({'erro': True, 'mensagem': message})                    
+        
         for day_number, courses in enumerate(selected_courses):
             for position, name_course in enumerate(courses):
                 timeslot = Timeslot.objects.get(position=position+1)
                 course = None
                 day = None
-                if name_course:
-                    if(day_number==0):
-                        day = enum.Day.monday.name
-                    elif(day_number==1):
-                        day = enum.Day.tuesday.name
-                    elif(day_number==2):
-                        day = enum.Day.wednesday.name
-                    elif(day_number==3):
-                        day = enum.Day.thursday.name
-                    elif(day_number==4):
-                        day = enum.Day.friday.name
-                    elif(day_number==5):
-                        day = enum.Day.saturday.name              
-
+                if(day_number==0):
+                    day = enum.Day.monday.name
+                elif(day_number==1):
+                    day = enum.Day.tuesday.name
+                elif(day_number==2):
+                    day = enum.Day.wednesday.name
+                elif(day_number==3):
+                    day = enum.Day.thursday.name
+                elif(day_number==4):
+                    day = enum.Day.friday.name
+                elif(day_number==5):
+                    day = enum.Day.saturday.name              
+                if name_course:                
                     course = Course.objects.get(name_course=name_course)
                     save_timetable(course, timeslot, selected_class, day)
+                else:
+                    save_timetable(None, timeslot, selected_class, day)
 
-        return render(request, 'staff/timetable/confirm_timetable.html')
-    return render(request, 'staff/timetable/confirm_timetable.html')
+        return JsonResponse({'erro': False, 'mensagem': message})
+
+def show_timetable(request):
+    if request.method == 'GET':
+
+        selected_class = Classs.objects.get(registration_class_id__exact=(request.GET.get('class')))
+
+        timetables = Timetable.objects.filter(classs=selected_class).all()
+
+        data = {
+            'timetables': timetables,
+            'timeslots': Timeslot.objects.all().order_by('hour_start'),
+        }  
+
+
+    return render(request, 'staff/timetable/show_timetable.html', data)
     
 def save_timetable(course, timeslot, classs, day):
     if(Timetable.objects.filter(day=day, timeslot=timeslot, classs=classs).exists()):
         Timetable.objects.filter(day=day, timeslot=timeslot, classs=classs).delete()
     Timetable.objects.create(day=day, timeslot=timeslot, course=course, classs=classs)
+
+def timetables(request):
+    
+    return render(request, 'staff/timetable/timetables.html')
