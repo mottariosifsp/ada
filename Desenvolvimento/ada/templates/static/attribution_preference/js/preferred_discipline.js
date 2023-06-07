@@ -1,6 +1,8 @@
 var timeslots = []
 var lang = document.currentScript.getAttribute('data-lang');
 var time_left = 0.0
+var hour = 0
+var minute = 0
 
 
 $(document).ready(function() {
@@ -8,12 +10,14 @@ $(document).ready(function() {
   $('input[name="regime"]').click(function() {
     $('#hour-regime').val('');
     var valor = $(this).val();
-    if (valor == 'rde') {
+    if (valor == 'rde' || valor == '40') {
       $('#hour-regime').text(40.0);
+      $('#min-regime').text('00');
       time_left = 40.0;
     } else {
-      $('#hour-regime').text(valor);
-      time_left = valor;
+      $('#hour-regime').text(20.0);
+      $('#min-regime').text('00');
+      time_left = 20.0;
     }
 
     if ($('#error-alert-form').is(':visible')) {
@@ -28,7 +32,8 @@ $(document).ready(function() {
     $('input[name="regime"]').prop('checked', false);
     $('.checkbox input[type="checkbox"]').prop('checked', false);
     $('label.checkbox').removeClass('active');
-    $('#hour-regime').text("?");
+    $('#hour-regime').text("--");
+    $('#min-regime').text("--");
     $('#error-alert-form').hide();
 
     window.scrollTo({
@@ -44,14 +49,32 @@ $(document).ready(function() {
     if(!is_checked) {
       time_left -= value;
       time_left = parseFloat(time_left.toFixed(2));
-      $('#hour-regime').text(time_left);
+      transformar_hora();
+      apresentar_hora();
     }
+  }
+
+  function transformar_hora() {
+    hour = Math.floor(time_left);
+    var minutesTotal = Math.round((time_left - hour) * 60);
+    minute = minutesTotal % 60;
+  }
+
+  function apresentar_hora() {
+    $('#hour-regime').text(hour);
+    if (Number.isInteger(minute)) {
+      minuteString = minute.toString().padStart(2, '0');
+    } else {
+      minuteString = toString(minute);
+    }
+    $('#min-regime').text(minuteString);
   }
 
   // Pegar dados dos checkboxes
   $('.checkbox').click(function() {
     if(time_left == 00) {
-      $('#hour-regime').text("?");
+      $('#hour-regime').text("--");
+      $('#min-regime').text("--");
       $('label[for^="mon-"]').add('label[for^="tue-"]').add('label[for^="wed-"]').add('label[for^="thu-"]').add('label[for^="fri-"]').addClass('disabled').attr('aria-disabled', 'true');
       $('input[type="checkbox"][id^="mon-"]').add('input[type="checkbox"][id^="tue-"]').add('input[type="checkbox"][id^="wed-"]').add('input[type="checkbox"][id^="thu-"]').add('input[type="checkbox"][id^="fri-"]').prop('disabled', true);
 
@@ -69,7 +92,8 @@ $(document).ready(function() {
       if(is_checked) {
         time_left = (parseFloat(time_left) + 0.45).toFixed(2);
         timeslots.pop();
-        $('#hour-regime').text(time_left);
+        transformar_hora();
+        apresentar_hora();
       } else {
         var [objeto_elemento, dia_elemento] = input_val.split(',');
 
@@ -82,6 +106,35 @@ $(document).ready(function() {
         atualizar_time_left(is_checked, 0.45);
       }    
     }
+  });
+
+  // Area e disponibilidade
+
+  $('#campoInputArea').on('input', function() {
+    var valor_selecionado = $(this).val();
+    $('.turno').each(function() {
+      var turno = $(this).attr('id').replace('turno-', '');
+      $(this).hide();
+
+      var opcoes = $('#opcoes option').map(function() {
+        return $(this).val();
+      }).get();
+
+      for (var i = 0; i < opcoes.length; i++) {
+        if (turno === opcoes[i]) {
+          $(this).hide();
+          break;
+        }
+      }
+
+      $('#turno-none').hide();
+    });
+
+    if (valor_selecionado == '' || valor_selecionado == null || valor_selecionado.length < 3) {
+      $('#turno-none').show();
+    }
+
+    $('#turno-' + valor_selecionado).show()
   });
 
   $('#sendFPA').click(function() {
