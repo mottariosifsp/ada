@@ -22,7 +22,7 @@ class Timeslot(models.Model):
     position = models.IntegerField(_('position'), null=True, blank=True)
     hour_start = models.TimeField(_('hour start'))
     hour_end = models.TimeField(_('hour end'))
-    area = models.ForeignKey('area.Area', on_delete=models.CASCADE, related_name='timeslot', null=True, blank=True)
+    # area = models.ForeignKey('area.Area', on_delete=models.CASCADE, related_name='timeslot', null=True, blank=True)
 
     class Meta:
         verbose_name = _('timeslot')
