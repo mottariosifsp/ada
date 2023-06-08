@@ -28,6 +28,23 @@ input[type="checkbox"]:checked + .check{
   color: #2f7363;
   align-items: center;
 }
+#min-regime {
+  font-size: 44pt;
+  font-weight: 600;
+  color: #2f7363;
+  align-items: center;
+}
 .hours {
+  font-size: 44pt;
   color: #2f7363;
 }
+
+th {
+  color: #124136;;
+}
+
+.td-turno {
+  height: 100px;
+  font-weight: 700;
+  color: #124136e6;
+} 

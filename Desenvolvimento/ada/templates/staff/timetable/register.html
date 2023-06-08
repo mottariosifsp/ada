@@ -10,6 +10,10 @@
 
 {% block body %}
 {{ block.super }}
+
+<div class="spinner-border" role="status" style="display: none; position: fixed; top: calc( 50% - ( 3rem / 2) ); left: calc( 50% - ( 3rem / 2) ); width: 3rem; height: 3rem;">
+  <span class="sr-only">Loading...</span>
+</div>
 <div class="container mt-3">
 
   {% if request.GET.class == None or request.GET.class == "" %}
@@ -37,6 +41,9 @@
         </div>
       </div>
     </form>
+    <div class="alert alert-danger" role="alert" id="mensagem-erro" style="display: none">
+    </div>     
+    
     <h1><span id="selected_class" class="d-flex justify-content-center">{{ request.GET.class }}</span></h1>
     <div class="container">
       <form id="course_select">
@@ -72,7 +79,7 @@
             {% endfor %}
           </tbody>
         </table>
-        <button type="submit" class="btn btn-primary btn-block form-group" id="submit_timetable">ENVIAR GRADE</button>
+        <button type="button" class="btn btn-primary btn-block form-group" id="submit_timetable">ENVIAR GRADE</button>
       </form>
     </div>
   </div>

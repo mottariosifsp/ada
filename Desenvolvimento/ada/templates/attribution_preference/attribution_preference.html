@@ -3,8 +3,8 @@
 {% load static %}
 
 {% block head %}
-  
   <link rel="stylesheet" href="{% static 'attribution_preference/css/attribution_preference.css' %}">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
   <title>{% translate "Envio Formulário de Preferência de Atividades" %}</title>
 {% endblock %}
 
@@ -56,7 +56,7 @@
               <h4 class="card-title">Horas Restantes:</h4>
               <hr class="my-0">
               <div class="text-center">
-                <span id="hour-regime">?</span><span class="hours">horas</span> 
+                <span id="hour-regime">--</span><span class="hours">h</span><span id="min-regime">--</span>
               </div>
             </div>
           </div>
@@ -65,8 +65,20 @@
       <div class="card info-card sales-card mt-4">
         <div class="card-body">
           <div id="work-availability">
-            <h3>Disponibilidade de horários</h3>
+            <h4>Disponibilidade de horários</h4>
             <hr>
+            <div class="pr-2 pl-2">
+              <h6>Filtrar área:</h6>
+              <div class="input-group">
+                <input list="opcoes" id="campoInputArea" class="form-control mb-4" placeholder="Selecione">
+                <datalist id="opcoes">
+                  {% for area in areas %}
+                    <option value="{{ area.acronym }}">Nome: {{ area.name_area }}</option>
+                  {% endfor %}
+                </datalist>
+              </div>
+            </div>                 
+            
             <div class="table-responsive">
               <table class="table table-bordered table-sm text-center">
                 <thead>
@@ -80,201 +92,301 @@
                     <th class="text-center">Sexta-Feira</th>
                   </tr>
                 </thead>
-                <tbody>
-                  {% for i in "MVN" %}
-                    {% if i == "M" %}
-                      <td class="text-center align-middle" rowspan="7">Matutino</td>
-                      {% for horario in turno.matu %}
-                        <tr>
-                          <td class="text-center align-middle">{{ horario.0.hour_start }} - {{ horario.0.hour_end }}</td>
-    
-                          <td class="text-center">
-                            <div class="btn-group-toggle" data-toggle="buttons">
-                              <label class="btn btn-success w-100 checkbox" for="mon-mat-{{ forloop.counter }}">
-                                <input type="checkbox" id="mon-mat-{{ forloop.counter }}" 
-                                  value="{{ horario.0 }}, mon" 
-                                  autocomplete="off">
-                                <i class="fas fa-check-circle check"></i>
-                              </label>
-                            </div>
-                          </td>
+                  <tbody>
+                    <tr >
+                      <td id="turno-none" class="td-turno text-center align-middle" colspan="7">Selecione uma área para acessar a grade de horários.</td>
+                    </tr>
+                  </tbody>
+                {% for turno in grade_turnos %}
+                  <tbody class="turno" id="turno-{{ turno.matutino.0.area.acronym }}" style="display: none;">
+                    {% for i in "MVN" %}
+                      {% if i == "M" %}
+                        <td class="text-center align-middle" rowspan='{{ turno.matutinoAulas }}'>Matutino</td>
+                        {% for horario in turno.matutino %}
+                          <tr>
+                            <td class="text-center align-middle">{{ horario.hour_start }} - {{ horario.hour_end }}</td>
+      
+                            <td class="text-center">
+                              <div class="openModalBtn">
+                                <div class="btn-group-toggle" data-toggle="buttons">
+                                  <label class="btn btn-success w-100 checkbox" for="mon-mat-{{ forloop.counter }}">
+                                    <input type="checkbox" id="mon-mat-{{ forloop.counter }}" 
+                                      value="{{ horario }}, mon" 
+                                      autocomplete="off">
+                                    <i class="fas fa-check-circle check"></i>
+                                  </label>
+                                </div>
+                              </div>
+                            </td>
+                            
+                            <td class="text-center">
+                              <div class="openModalBtn">
+                                <div class="btn-group-toggle" data-toggle="buttons">
+                                  <label class="btn btn-success w-100 checkbox" for="tue-mat-{{ forloop.counter }}">
+                                    <input type="checkbox" id="tue-mat-{{ forloop.counter }}" 
+                                      value="{{ horario }}, tue" 
+                                      autocomplete="off">
+                                    <i class="fas fa-check-circle check"></i>
+                                  </label>
+                                </div>
+                              </div>
+                            </td>
+                            
+                            <td class="text-center">
+                              <div class="openModalBtn">
+                                <div class="btn-group-toggle" data-toggle="buttons">
+                                  <label class="btn btn-success w-100 checkbox" for="wed-mat-{{ forloop.counter }}">
+                                    <input type="checkbox" id="wed-mat-{{ forloop.counter }}" 
+                                      value="{{ horario }}, wed" 
+                                      autocomplete="off">
+                                    <i class="fas fa-check-circle check"></i>
+                                  </label>
+                                </div>
+                              </div>
+                            </td>
+                            
+                            <td class="text-center">
+                              <div class="openModalBtn">
+                                <div class="btn-group-toggle" data-toggle="buttons">
+                                  <label class="btn btn-success w-100 checkbox" for="thu-mat-{{ forloop.counter }}">
+                                    <input type="checkbox" id="thu-mat-{{ forloop.counter }}" 
+                                      value="{{ horario }}, thu" 
+                                      autocomplete="off">
+                                    <i class="fas fa-check-circle check"></i>
+                                  </label>
+                                </div>
+                              </div>
+                            </td>
+                            
+                            <td class="text-center">
+                              <div class="openModalBtn">
+                                <div class="btn-group-toggle" data-toggle="buttons">
+                                  <label class="btn btn-success w-100 checkbox" for="fri-mat-{{ forloop.counter }}">
+                                    <input type="checkbox" id="fri-mat-{{ forloop.counter }}" 
+                                      value="{{ horario }}, fri" 
+                                      autocomplete="off">
+                                    <i class="fas fa-check-circle check"></i>
+                                  </label>
+                                </div>
+                              </div>
+                            </td>
+                          </tr>
                           
-                          <td class="text-center">
-                            <div class="btn-group-toggle" data-toggle="buttons">
-                              <label class="btn btn-success w-100 checkbox" for="tue-mat-{{ forloop.counter }}">
-                                <input type="checkbox" id="tue-mat-{{ forloop.counter }}" 
-                                  value="{{ horario.0 }}, tue" 
-                                  autocomplete="off">
-                                <i class="fas fa-check-circle check"></i>
-                              </label>
-                            </div>
-                          </td>
+                        {% endfor %}
+                      {% elif i == "V" %}
+                        <td class="text-center align-middle" rowspan="{{ turno.vespertinoAulas }}">Vespertino</td>
+      
+                        {% for horario in turno.vespertino %}
+                          <tr>
+                            <td class="text-center align-middle">{{ horario.hour_start }} - {{ horario.hour_end }}</td>
+      
+                            <td class="text-center">
+                              <div class="openModalBtn">
+                                <div class="btn-group-toggle" data-toggle="buttons">
+                                  <label class="btn btn-success w-100 checkbox" for="mon-ves-{{ forloop.counter }}">
+                                    <input type="checkbox" id="mon-ves-{{ forloop.counter }}" 
+                                      value="{{ horario }}, mon" 
+                                      autocomplete="off">
+                                    <i class="fas fa-check-circle check"></i>
+                                  </label>
+                                </div>
+                              </div>
+                            </td>
+                            
+                            <td class="text-center">
+                              <div class="openModalBtn">
+                                <div class="btn-group-toggle" data-toggle="buttons">
+                                  <label class="btn btn-success w-100 checkbox" for="tue-ves-{{ forloop.counter }}">
+                                    <input type="checkbox" id="tue-ves-{{ forloop.counter }}" 
+                                      value="{{ horario }}, tue" 
+                                      autocomplete="off">
+                                    <i class="fas fa-check-circle check"></i>
+                                  </label>
+                                </div>
+                              </div>
+                            </td>
+                            
+                            <td class="text-center">
+                              <div class="openModalBtn">
+                                <div class="btn-group-toggle" data-toggle="buttons">
+                                  <label class="btn btn-success w-100 checkbox" for="wed-ves-{{ forloop.counter }}">
+                                    <input type="checkbox" id="wed-ves-{{ forloop.counter }}" 
+                                      value="{{ horario }}, wed" 
+                                      autocomplete="off">
+                                    <i class="fas fa-check-circle check"></i>
+                                  </label>
+                                </div>
+                              </div>
+                            </td>
+                            
+                            <td class="text-center">
+                              <div class="openModalBtn">
+                                <div class="btn-group-toggle" data-toggle="buttons">
+                                  <label class="btn btn-success w-100 checkbox" for="thu-ves-{{ forloop.counter }}">
+                                    <input type="checkbox" id="thu-ves-{{ forloop.counter }}" 
+                                      value="{{ horario }}, thu" 
+                                      autocomplete="off">
+                                    <i class="fas fa-check-circle check"></i>
+                                  </label>
+                                </div>
+                              </div>
+                            </td>
+                            
+                            <td class="text-center">
+                              <div class="openModalBtn">
+                                <div class="btn-group-toggle" data-toggle="buttons">
+                                  <label class="btn btn-success w-100 checkbox" for="fri-ves-{{ forloop.counter }}">
+                                    <input type="checkbox" id="fri-ves-{{ forloop.counter }}" 
+                                      value="{{ horario }}, fri" 
+                                      autocomplete="off">
+                                    <i class="fas fa-check-circle check"></i>
+                                  </label>
+                                </div>
+                              </div>
+                            </td>
+                          </tr>
                           
-                          <td class="text-center">
-                            <div class="btn-group-toggle" data-toggle="buttons">
-                              <label class="btn btn-success w-100 checkbox" for="wed-mat-{{ forloop.counter }}">
-                                <input type="checkbox" id="wed-mat-{{ forloop.counter }}" 
-                                  value="{{ horario.0 }}, wed" 
-                                  autocomplete="off">
-                                <i class="fas fa-check-circle check"></i>
-                              </label>
-                            </div>
-                          </td>
-                          
-                          <td class="text-center">
-                            <div class="btn-group-toggle" data-toggle="buttons">
-                              <label class="btn btn-success w-100 checkbox" for="thu-mat-{{ forloop.counter }}">
-                                <input type="checkbox" id="thu-mat-{{ forloop.counter }}" 
-                                  value="{{ horario.0 }}, thu" 
-                                  autocomplete="off">
-                                <i class="fas fa-check-circle check"></i>
-                              </label>
-                            </div>
-                          </td>
-                          
-                          <td class="text-center">
-                            <div class="btn-group-toggle" data-toggle="buttons">
-                              <label class="btn btn-success w-100 checkbox" for="fri-mat-{{ forloop.counter }}">
-                                <input type="checkbox" id="fri-mat-{{ forloop.counter }}" 
-                                  value="{{ horario.0 }}, fri" 
-                                  autocomplete="off">
-                                <i class="fas fa-check-circle check"></i>
-                              </label>
-                            </div>
-                          </td>
-                        </tr>
+                        {% endfor %}
+                      {% else %}
+                        <td class="text-center align-middle" rowspan="{{ turno.noturnoAulas }}">Noturno</td>
+      
+                        {% for horario in turno.noturno %}
+                          <tr>
+                            <td class="text-center align-middle">{{ horario.hour_start }} - {{ horario.hour_end }}</td>
+      
+                            <td class="text-center">
+                              <div class="openModalBtn">
+                                <div class="btn-group-toggle" data-toggle="buttons">
+                                  <label class="btn btn-success w-100 checkbox" for="mon-not-{{ forloop.counter }}">
+                                    <input type="checkbox" id="mon-not-{{ forloop.counter }}" 
+                                      value="{{ horario }}, mon" 
+                                      autocomplete="off">
+                                    <i class="fas fa-check-circle check"></i>
+                                  </label>
+                                </div>
+                              </div>
+                            </td>
                         
-                      {% endfor %}
-                    {% elif i == "V" %}
-                      <td class="text-center align-middle" rowspan="7">Vespertino</td>
-    
-                      {% for horario in turno.vesp %}
-                        <tr>
-                          <td class="text-center align-middle">{{ horario.0.hour_start }} - {{ horario.0.hour_end }}</td>
-    
-                          <td class="text-center">
-                            <div class="btn-group-toggle" data-toggle="buttons">
-                              <label class="btn btn-success w-100 checkbox" for="mon-ves-{{ forloop.counter }}">
-                                <input type="checkbox" id="mon-ves-{{ forloop.counter }}" 
-                                  value="{{ horario.0 }}, mon" 
-                                  autocomplete="off">
-                                <i class="fas fa-check-circle check"></i>
-                              </label>
-                            </div>
-                          </td>
-                          
-                          <td class="text-center">
-                            <div class="btn-group-toggle" data-toggle="buttons">
-                              <label class="btn btn-success w-100 checkbox" for="tue-ves-{{ forloop.counter }}">
-                                <input type="checkbox" id="tue-ves-{{ forloop.counter }}" 
-                                  value="{{ horario.0 }}, tue" 
-                                  autocomplete="off">
-                                <i class="fas fa-check-circle check"></i>
-                              </label>
-                            </div>
-                          </td>
-                          
-                          <td class="text-center">
-                            <div class="btn-group-toggle" data-toggle="buttons">
-                              <label class="btn btn-success w-100 checkbox" for="wed-ves-{{ forloop.counter }}">
-                                <input type="checkbox" id="wed-ves-{{ forloop.counter }}" 
-                                  value="{{ horario.0 }}, wed" 
-                                  autocomplete="off">
-                                <i class="fas fa-check-circle check"></i>
-                              </label>
-                            </div>
-                          </td>
-                          
-                          <td class="text-center">
-                            <div class="btn-group-toggle" data-toggle="buttons">
-                              <label class="btn btn-success w-100 checkbox" for="thu-ves-{{ forloop.counter }}">
-                                <input type="checkbox" id="thu-ves-{{ forloop.counter }}" 
-                                  value="{{ horario.0 }}, thu" 
-                                  autocomplete="off">
-                                <i class="fas fa-check-circle check"></i>
-                              </label>
-                            </div>
-                          </td>
-                          
-                          <td class="text-center">
-                            <div class="btn-group-toggle" data-toggle="buttons">
-                              <label class="btn btn-success w-100 checkbox" for="fri-ves-{{ forloop.counter }}">
-                                <input type="checkbox" id="fri-ves-{{ forloop.counter }}" 
-                                  value="{{ horario.0 }}, fri" 
-                                  autocomplete="off">
-                                <i class="fas fa-check-circle check"></i>
-                              </label>
-                            </div>
-                          </td>
-                        </tr>
+                            <td class="text-center">
+                              <div class="openModalBtn">
+                                <div class="btn-group-toggle" data-toggle="buttons">
+                                  <label class="btn btn-success w-100 checkbox" for="tue-not-{{ forloop.counter }}">
+                                    <input type="checkbox" id="tue-not-{{ forloop.counter }}" 
+                                      value="{{ horario }}, tue" 
+                                      autocomplete="off">
+                                    <i class="fas fa-check-circle check"></i>
+                                  </label>
+                                </div>
+                              </div>
+                            </td>
                         
-                      {% endfor %}
-                    {% else %}
-                      <td class="text-center align-middle" rowspan="7">Noturno</td>
-    
-                      {% for horario in turno.notu %}
-                        <tr>
-                          <td class="text-center align-middle">{{ horario.0.hour_start }} - {{ horario.0.hour_end }}</td>
-    
-                          <td class="text-center">
-                            <div class="btn-group-toggle" data-toggle="buttons">
-                              <label class="btn btn-success w-100 checkbox" for="mon-not-{{ forloop.counter }}">
-                                <input type="checkbox" id="mon-not-{{ forloop.counter }}" 
-                                  value="{{ horario.0 }}, mon" 
-                                  autocomplete="off">
-                                <i class="fas fa-check-circle check"></i>
+                            <td class="text-center">
+                              <div class="openModalBtn">
+                                <div class="btn-group-toggle" data-toggle="buttons">
+                                  <label class="btn btn-success w-100 checkbox" for="wed-not-{{ forloop.counter }}">
+                                    <input type="checkbox" id="wed-not-{{ forloop.counter }}" 
+                                      value="{{ horario }}, wed" 
+                                      autocomplete="off">
+                                    <i class="fas fa-check-circle check"></i>
+                                  </label>
+                                </div>
+                              </div>
+                            </td>
+                        
+                            <td class="text-center">
+                              <div class="openModalBtn">
+                                <div class="btn-group-toggle" data-toggle="buttons">
+                                  <label class="btn btn-success w-100 checkbox" for="thu-not-{{ forloop.counter }}">
+                                    <input type="checkbox" id="thu-not-{{ forloop.counter }}" 
+                                      value="{{ horario }}, thu" 
+                                      autocomplete="off">
+                                    <i class="fas fa-check-circle check"></i>
+                                  </label>
+                                </div>
+                              </div>
+                            </td>
+                        
+                            <td class="text-center">
+                              <div class="openModalBtn">
+                                <div class="btn-group-toggle" data-toggle="buttons">
+                                  <label class="btn btn-success w-100 checkbox" for="fri-not-{{ forloop.counter }}">
+                                    <input type="checkbox" id="fri-not-{{ forloop.counter }}" 
+                                      value="{{ horario }}, fri" 
+                                      autocomplete="off" >
+                                    <i class="fas fa-check-circle check"></i>
+                                  </label>
+                                </div>
+                              </div>                              
+                            </td>
+                          </tr>                        
+                        {% endfor %}
+                      {% endif %}
+                    {% endfor %}
+                  </tbody>               
+                {% endfor %}  
+                <div class="modal center-modal fade" id="addCourseModal" tabindex="-1" role="dialog" aria-labelledby="addCourseModalLabel" aria-hidden="true">
+                  <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h5 class="modal-title" id="addCourseModalLabel">Adicionar Curso</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                          <span aria-hidden="true">&times;</span>
+                        </button>
+                      </div>
+                      <div class="modal-body">
+                        <div id="error-alert" class="alert alert-danger" style="display: none;">
+                          <span id="error-message"></span>
+                        </div>
+                        <form id="addCourseForm" method="post">
+                          {% csrf_token %}
+                          <div class="form-group">
+                            <label for="courseName">Nome do Curso</label>
+                            <select class="form-control" id="courseName">
+                              <option selected disabled>Selecione</option>
+                              {% for course in courses %}
+                              <option value="{{ course.acronym }}">Nome: {{ course.name_course }}</option>
+                              {% endfor %}
+                            </select>
+                          </div>
+                          <div class="form-group">
+                            <label for="numClasses">Número de Aulas</label>
+                            <input type="number" disabled class="form-control" id="numClasses" placeholder="Número de aulas">
+                          </div>
+                          <div class="form-group">
+                            <div class="d-block">
+                              <label>Prioridade</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                              <input class="form-check-input" type="radio" name="priority" id="priorityHigh" value="high">
+                              <label class="form-check-label" for="priorityHigh">
+                                Prioritária
                               </label>
                             </div>
-                          </td>
-                      
-                          <td class="text-center">
-                            <div class="btn-group-toggle" data-toggle="buttons">
-                              <label class="btn btn-success w-100 checkbox" for="tue-not-{{ forloop.counter }}">
-                                <input type="checkbox" id="tue-not-{{ forloop.counter }}" 
-                                  value="{{ horario.0 }}, tue" 
-                                  autocomplete="off">
-                                <i class="fas fa-check-circle check"></i>
+                            <div class="form-check form-check-inline">
+                              <input class="form-check-input" type="radio" name="priority" id="priorityMedium" value="medium">
+                              <label class="form-check-label" for="priorityMedium">
+                                Secundária
                               </label>
                             </div>
-                          </td>
-                      
-                          <td class="text-center">
-                            <div class="btn-group-toggle" data-toggle="buttons">
-                              <label class="btn btn-success w-100 checkbox" for="wed-not-{{ forloop.counter }}">
-                                <input type="checkbox" id="wed-not-{{ forloop.counter }}" 
-                                  value="{{ horario.0 }}, wed" 
-                                  autocomplete="off">
-                                <i class="fas fa-check-circle check"></i>
-                              </label>
-                            </div>
-                          </td>
-                      
-                          <td class="text-center">
-                            <div class="btn-group-toggle" data-toggle="buttons">
-                              <label class="btn btn-success w-100 checkbox" for="thu-not-{{ forloop.counter }}">
-                                <input type="checkbox" id="thu-not-{{ forloop.counter }}" 
-                                  value="{{ horario.0 }}, thu" 
-                                  autocomplete="off">
-                                <i class="fas fa-check-circle check"></i>
-                              </label>
-                            </div>
-                          </td>
-                      
-                          <td class="text-center">
-                            <div class="btn-group-toggle" data-toggle="buttons">
-                              <label class="btn btn-success w-100 checkbox" for="fri-not-{{ forloop.counter }}">
-                                <input type="checkbox" id="fri-not-{{ forloop.counter }}" 
-                                  value="{{ horario.0 }}, fri" 
-                                  autocomplete="off">
-                                <i class="fas fa-check-circle check"></i>
-                              </label>
-                            </div>
-                          </td>
-                        </tr>                        
-                      {% endfor %}
-                    {% endif %}
-                  {% endfor %}
-                </tbody>
+                          </div>                    
+                          <div class="form-group">
+                            <label for="period">Período</label>
+                            <select class="form-control" id="period">
+                              <option selected disabled>Selecione</option>
+                              <option value="morning">Manhã</option>
+                              <option value="afternoon">Tarde</option>
+                              <option value="evening">Noite</option>
+                            </select>
+                          </div>
+                        </form>
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+                        <button type="button" class="btn btn-primary" name="addCourse" id="addCourseButton">Adicionar</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>           
               </table>              
             </div>        
           </div>
@@ -387,5 +499,6 @@
 {% endblock %}
 
 {% block endbody %}
+  
   <script src="{% static 'attribution_preference/js/preferred_discipline.js' %}" data-lang={{LANGUAGE_CODE}}></script>
 {% endblock %}

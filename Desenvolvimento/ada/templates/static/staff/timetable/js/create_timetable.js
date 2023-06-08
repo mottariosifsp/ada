@@ -1,6 +1,9 @@
+window.addEventListener('pageshow', function(event) {
+  hide_loading()
+});
+
 $(document).ready(function() {
-
-
+ 
   if($('#selected_class').text() == "") {
     // $('#course_select').hide();
     $('#course_select').css('opacity', '0.5');
@@ -23,6 +26,8 @@ $(document).ready(function() {
   });
 
   $("#submit_timetable").click(function() {
+    show_loading()
+
     let selected_courses = [];
     
     for (let index = 0; index < 6; index++) {
@@ -34,16 +39,25 @@ $(document).ready(function() {
     let csrftoken = getCookie('csrftoken');
       $.ajax({
         method: 'POST',
-        url: '/staff/grade/confirmar/', 
+        url: window.location.href, 
         data: {
-          'selected_courses': JSON.stringify(selected_courses),
-          'selected_class': $('#selected_class').text(),
-        },
+          'selected_courses': JSON.stringify( selected_courses),
+          'selected_class': $('#selected_class').text()
+      },
         headers: {
-            'X-CSRFToken': csrftoken
+          'X-CSRFToken': csrftoken
         },
         success: function(response) {
-          window.location.href = '/staff/grade/confirmar/';
+
+          if (response.erro) {
+            $('#mensagem-erro').show();
+            $('#mensagem-erro').text(response.mensagem).show();
+            hide_loading()
+          } else {
+            console.log(response);
+            show_loading()
+            window.location.href = "/staff/grade/confirmar/?class="+$('#selected_class').text();            
+          }
         },
         error: function(xhr, status, error) {
             console.log(error);
@@ -66,4 +80,14 @@ function getCookie(name) {
       }
     }
     return cookieValue;
+}
+
+function show_loading(){
+  $('body').css('opacity', '0.5');
+  $('.spinner-border').show();
+}
+
+function hide_loading(){
+  $('body').css('opacity', '1');
+  $('.spinner-border').hide();
 }
