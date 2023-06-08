@@ -1,19 +1,70 @@
+window.addEventListener('pageshow', function(event) {
+  hide_loading()
+});
+
 $(document).ready(function() {
+ 
+  if($('#selected_class').text() == "") {
+    // $('#course_select').hide();
+    $('#course_select').css('opacity', '0.5');
+    $('#course_select').css('pointer-events', 'none');
+    $('#course_select').css('filter', 'grayscale(100%)');
+  }
 
-  var selectedOption
 
-  $('.dropdown-item').click(function() {
-    selectedOption = $(this).text();
-    $(this).closest('.dropdown-menu').prev('.btn.dropdown-toggle').text(selectedOption);
-    console.log($(this).parent().closest('.dropdown-toggle').text())
+
+
+  var courses_selected = [];
+
+  $("#test_button").click(function() {
+    for (let index = 0; index < 6; index++) {
+      courses_selected[index] = $('.datalist'+index).map(function() {
+        return $(this).val();
+      }).get();      
+    }
+    console.log($('#'));  
   });
 
-  $('#searchInput').on('input', function() {
-    var value = $(this).val().toLowerCase();
-    selectedOption.parent().filter(function() {
-      $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1);
+  $("#submit_timetable").click(function() {
+    show_loading()
+
+    let selected_courses = [];
+    
+    for (let index = 0; index < 6; index++) {
+      selected_courses[index] = $('.datalist'+index).map(function() {
+        return $(this).val();
+      }).get();        
+    }
+    
+    let csrftoken = getCookie('csrftoken');
+      $.ajax({
+        method: 'POST',
+        url: window.location.href, 
+        data: {
+          'selected_courses': JSON.stringify( selected_courses),
+          'selected_class': $('#selected_class').text()
+      },
+        headers: {
+          'X-CSRFToken': csrftoken
+        },
+        success: function(response) {
+
+          if (response.erro) {
+            $('#mensagem-erro').show();
+            $('#mensagem-erro').text(response.mensagem).show();
+            hide_loading()
+          } else {
+            console.log(response);
+            show_loading()
+            window.location.href = "/staff/grade/confirmar/?class="+$('#selected_class').text();            
+          }
+        },
+        error: function(xhr, status, error) {
+            console.log(error);
+        }
     });
-  });  
+  });
+
 });
 
 function getCookie(name) {
@@ -29,4 +80,14 @@ function getCookie(name) {
       }
     }
     return cookieValue;
+}
+
+function show_loading(){
+  $('body').css('opacity', '0.5');
+  $('.spinner-border').show();
+}
+
+function hide_loading(){
+  $('body').css('opacity', '1');
+  $('.spinner-border').hide();
 }

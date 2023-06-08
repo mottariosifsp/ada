@@ -9,7 +9,7 @@ class Timetable_admin(admin.ModelAdmin):
 
 class Timeslot_admin(admin.ModelAdmin):
     readonly_fields = ('position',)
-    list_display = ('position', 'hour_start', 'hour_end', 'area')
+    list_display = ('position', 'hour_start', 'hour_end')
     search_fields = ('position', 'hour_start', 'hour_end')
 
 class Timetable_user_admin(admin.ModelAdmin):

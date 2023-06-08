@@ -1,0 +1,30 @@
+{% extends "staff/base.html" %}
+{% load i18n %}
+{% load static %}
+
+{% block head %}
+    <title>{% translate "create timetable" %}</title>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="{% static 'staff/timetable/js/create_timetable.js' %}" data-lang={{LANGUAGE_CODE}}></script>
+{% endblock %}
+
+{% block body %}
+
+<h1>Grades horárias</h1>
+    <table class="table">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">Turma</th>
+      <th scope="col">Area</th>
+      <th scope="col">Editar</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th scope="row"></th>
+      <td></td>
+      <td></td>
+    </tr>
+  </tbody>
+</table>
+{% endblock %}
