@@ -17,17 +17,16 @@
 <h1>Exchange area: {{ area.exchange_area }}</h1>
 <h1>Is high school: {{ area.is_high_school }}</h1>
 
-    {% for course in courses %}
-        <h1>nome do curso: {{ course.name_course }}</h1>
-    {% endfor %}
+<button type="button" class="btn btn-success createCourseBtn"
+        data-toggle="modal" data-target="#createCourseModal">
+    Criar matéria
+</button>
 
 
 <div class="tabela">
         <table class="table table-bordered editable" id="blocks_list">
             <thead>
                 <tr>
-                    <th scope="col" id="hideId">Id</th>
-
                     <th scope="col">Registration Course Id</th>
                     <th scope="col">Name</th>
                     <th scope="col">Acronym</th>
@@ -40,22 +39,51 @@
                 {% for course in courses %}
                     <!-- Lista -->
                         <tr>
-                            <td id="hideId">{{ course.id }}</td>
                             <td>{{ course.registration_course_id }}</td>
                             <td>{{ course.name_course }}</td>
                             <td>{{ course.acronym }}</td>
                             <td>
-                                <button type="button" data-toggle="modal" data-target="#editCourseModal" data-counter="{{ counter }}" class="btn btn-warning editCourseBtn"><i class="bi bi-pencil"></i></button>
-                                <button type="button" class="btn btn-danger deleteCourseBtn" data-url="{% url 'course_delete' course.id %}">Deletar</button>
-
+                                <button type="button" data-toggle="modal" data-target="#editCourseModal" data-course-id="{{ course.id }}" data-counter="{{ counter }}" class="btn btn-warning editCourseBtn"><i class="bi bi-pencil"></i></button>
+                                <button type="button" class="btn btn-danger deleteCourseBtn" data-course-id="{{ course.id }}">Deletar</button>
                             </td>
                         </tr>
                 {% endfor %}
             </tbody>
-{#        <td><a href="{% url 'course_create' %}"><button type="button" class="btn btn-sucess editProfessorBtn">Criar curso</button></a></td>#}
         </table>
 </div>
-
+    <div class="modal fade" id="createCourseModal" tabindex="-1" role="dialog" aria-labelledby="createCourseModelLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="addCreateCourseModal">Criar</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <input type="hidden" class="form-control" id="id">
+                        <div class="form-group">
+                            <label for="registration_course_id">ID</label>
+                            <input type="text" class="form-control" id="registration_course_id_create" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="name_course">Nome</label>
+                            <input type="text" class="form-control" id="name_course_create" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="acronym">Acrônimo</label>
+                            <input type="text" class="form-control" id="acronym_create" required>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+                    <button type="button" class="btn btn-primary" data-area-id="{{ area.id  }}" data-block-id="{{ blockk.id }}" id="saveCreateBtn">Criar</button>
+                </div>
+            </div>
+        </div>
+    </div>
     <div class="modal fade" id="editCourseModal" tabindex="-1" role="dialog" aria-labelledby="edtCourseModelLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
@@ -70,15 +98,15 @@
                         <input type="hidden" class="form-control" id="id">
                         <div class="form-group">
                             <label for="registration_course_id">ID</label>
-                            <input type="text" class="form-control" id="registration_course_id">
+                            <input type="text" class="form-control" id="registration_course_id_update">
                         </div>
                         <div class="form-group">
                             <label for="name_course">Nome</label>
-                            <input type="text" class="form-control" id="name_course">
+                            <input type="text" class="form-control" id="name_course_update">
                         </div>
                         <div class="form-group">
                             <label for="acronym">Acrônimo</label>
-                            <input type="text" class="form-control" id="acronym">
+                            <input type="text" class="form-control" id="acronym_update">
                         </div>
                     </form>
                 </div>
