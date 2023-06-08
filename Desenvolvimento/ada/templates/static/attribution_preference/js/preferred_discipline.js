@@ -4,23 +4,22 @@ var time_left = 0.0
 var hour = 0
 var minute = 0
 
-
 $(document).ready(function() {
   // Mudar horas restantes
   $('input[name="regime"]').click(function() {
     $('#hour-regime').val('');
     var valor = $(this).val();
     if (valor == 'rde' || valor == '40') {
-      $('#hour-regime').text(40.0);
+      $('#hour-regime').text(24.0);
       $('#min-regime').text('00');
-      time_left = 40.0;
+      time_left = 24.0;
       $('.checkbox input[type="checkbox"]').prop('checked', false);
       $('label.checkbox').removeClass('active');
       timeslots = []
     } else {
-      $('#hour-regime').text(20.0);
+      $('#hour-regime').text(12.0);
       $('#min-regime').text('00');
-      time_left = 20.0;
+      time_left = 12.0;
       $('.checkbox input[type="checkbox"]').prop('checked', false);
       $('label.checkbox').removeClass('active');
       timeslots = []
@@ -143,9 +142,27 @@ $(document).ready(function() {
     $('#turno-' + valor_selecionado).show();
   });
 
+  // Validar e mostrar modal
+  function openModalIfValidated(inputId) {
+    var input_element = document.getElementById(inputId);
+    var is_validated = input_element.checked;
+
+    if (!is_validated && time_left ) {
+      $('#addCourseModal').modal('show');
+    }
+  }
+
+  var checkboxElements = document.querySelectorAll('.checkbox');
+  checkboxElements.forEach(function(checkbox) {
+    checkbox.addEventListener('click', function() {
+      var inputId = checkbox.getAttribute('for');
+      openModalIfValidated(inputId);
+    });
+  });
+
+  // Enviar formulário inteiro
   $('#sendFPA').click(function() {
     var work_regime =  $('input[name="regime"]:checked').val();
-
 
     let csrftoken = getCookie('csrftoken');
 

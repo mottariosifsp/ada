@@ -4,6 +4,7 @@
 
 {% block head %}
   <link rel="stylesheet" href="{% static 'attribution_preference/css/attribution_preference.css' %}">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
   <title>{% translate "Envio Formulário de Preferência de Atividades" %}</title>
 {% endblock %}
 
@@ -48,15 +49,7 @@
               </div>
             </div>
           </div>
-        </div><!--
-        <div class="container mt-4">
-          <input list="siglas" class="form-control" placeholder="Digite uma sigla">
-          <datalist id="siglas">
-            <option value="Item 1">  dsadasdsad <span class="custom-circle">fsd</span></option>
-            <option value="Item 2">
-            <option value="Item 3">
-          </datalist>
-        </div>-->
+        </div>
         <div class="col-xxl-4 col-md-4">
           <div class="card info-card sales-card">
             <div class="card-body">
@@ -72,7 +65,7 @@
       <div class="card info-card sales-card mt-4">
         <div class="card-body">
           <div id="work-availability">
-            <h3>Disponibilidade de horários</h3>
+            <h4>Disponibilidade de horários</h4>
             <hr>
             <div class="pr-2 pl-2">
               <h6>Filtrar área:</h6>
@@ -114,57 +107,67 @@
                             <td class="text-center align-middle">{{ horario.hour_start }} - {{ horario.hour_end }}</td>
       
                             <td class="text-center">
-                              <div class="btn-group-toggle" data-toggle="buttons">
-                                <label class="btn btn-success w-100 checkbox" for="mon-mat-{{ forloop.counter }}">
-                                  <input type="checkbox" id="mon-mat-{{ forloop.counter }}" 
-                                    value="{{ horario }}, mon" 
-                                    autocomplete="off">
-                                  <i class="fas fa-check-circle check"></i>
-                                </label>
+                              <div class="openModalBtn">
+                                <div class="btn-group-toggle" data-toggle="buttons">
+                                  <label class="btn btn-success w-100 checkbox" for="mon-mat-{{ forloop.counter }}">
+                                    <input type="checkbox" id="mon-mat-{{ forloop.counter }}" 
+                                      value="{{ horario }}, mon" 
+                                      autocomplete="off">
+                                    <i class="fas fa-check-circle check"></i>
+                                  </label>
+                                </div>
                               </div>
                             </td>
                             
                             <td class="text-center">
-                              <div class="btn-group-toggle" data-toggle="buttons">
-                                <label class="btn btn-success w-100 checkbox" for="tue-mat-{{ forloop.counter }}">
-                                  <input type="checkbox" id="tue-mat-{{ forloop.counter }}" 
-                                    value="{{ horario }}, tue" 
-                                    autocomplete="off">
-                                  <i class="fas fa-check-circle check"></i>
-                                </label>
+                              <div class="openModalBtn">
+                                <div class="btn-group-toggle" data-toggle="buttons">
+                                  <label class="btn btn-success w-100 checkbox" for="tue-mat-{{ forloop.counter }}">
+                                    <input type="checkbox" id="tue-mat-{{ forloop.counter }}" 
+                                      value="{{ horario }}, tue" 
+                                      autocomplete="off">
+                                    <i class="fas fa-check-circle check"></i>
+                                  </label>
+                                </div>
                               </div>
                             </td>
                             
                             <td class="text-center">
-                              <div class="btn-group-toggle" data-toggle="buttons">
-                                <label class="btn btn-success w-100 checkbox" for="wed-mat-{{ forloop.counter }}">
-                                  <input type="checkbox" id="wed-mat-{{ forloop.counter }}" 
-                                    value="{{ horario }}, wed" 
-                                    autocomplete="off">
-                                  <i class="fas fa-check-circle check"></i>
-                                </label>
+                              <div class="openModalBtn">
+                                <div class="btn-group-toggle" data-toggle="buttons">
+                                  <label class="btn btn-success w-100 checkbox" for="wed-mat-{{ forloop.counter }}">
+                                    <input type="checkbox" id="wed-mat-{{ forloop.counter }}" 
+                                      value="{{ horario }}, wed" 
+                                      autocomplete="off">
+                                    <i class="fas fa-check-circle check"></i>
+                                  </label>
+                                </div>
                               </div>
                             </td>
                             
                             <td class="text-center">
-                              <div class="btn-group-toggle" data-toggle="buttons">
-                                <label class="btn btn-success w-100 checkbox" for="thu-mat-{{ forloop.counter }}">
-                                  <input type="checkbox" id="thu-mat-{{ forloop.counter }}" 
-                                    value="{{ horario }}, thu" 
-                                    autocomplete="off">
-                                  <i class="fas fa-check-circle check"></i>
-                                </label>
+                              <div class="openModalBtn">
+                                <div class="btn-group-toggle" data-toggle="buttons">
+                                  <label class="btn btn-success w-100 checkbox" for="thu-mat-{{ forloop.counter }}">
+                                    <input type="checkbox" id="thu-mat-{{ forloop.counter }}" 
+                                      value="{{ horario }}, thu" 
+                                      autocomplete="off">
+                                    <i class="fas fa-check-circle check"></i>
+                                  </label>
+                                </div>
                               </div>
                             </td>
                             
                             <td class="text-center">
-                              <div class="btn-group-toggle" data-toggle="buttons">
-                                <label class="btn btn-success w-100 checkbox" for="fri-mat-{{ forloop.counter }}">
-                                  <input type="checkbox" id="fri-mat-{{ forloop.counter }}" 
-                                    value="{{ horario }}, fri" 
-                                    autocomplete="off">
-                                  <i class="fas fa-check-circle check"></i>
-                                </label>
+                              <div class="openModalBtn">
+                                <div class="btn-group-toggle" data-toggle="buttons">
+                                  <label class="btn btn-success w-100 checkbox" for="fri-mat-{{ forloop.counter }}">
+                                    <input type="checkbox" id="fri-mat-{{ forloop.counter }}" 
+                                      value="{{ horario }}, fri" 
+                                      autocomplete="off">
+                                    <i class="fas fa-check-circle check"></i>
+                                  </label>
+                                </div>
                               </div>
                             </td>
                           </tr>
@@ -178,57 +181,67 @@
                             <td class="text-center align-middle">{{ horario.hour_start }} - {{ horario.hour_end }}</td>
       
                             <td class="text-center">
-                              <div class="btn-group-toggle" data-toggle="buttons">
-                                <label class="btn btn-success w-100 checkbox" for="mon-ves-{{ forloop.counter }}">
-                                  <input type="checkbox" id="mon-ves-{{ forloop.counter }}" 
-                                    value="{{ horario }}, mon" 
-                                    autocomplete="off">
-                                  <i class="fas fa-check-circle check"></i>
-                                </label>
+                              <div class="openModalBtn">
+                                <div class="btn-group-toggle" data-toggle="buttons">
+                                  <label class="btn btn-success w-100 checkbox" for="mon-ves-{{ forloop.counter }}">
+                                    <input type="checkbox" id="mon-ves-{{ forloop.counter }}" 
+                                      value="{{ horario }}, mon" 
+                                      autocomplete="off">
+                                    <i class="fas fa-check-circle check"></i>
+                                  </label>
+                                </div>
                               </div>
                             </td>
                             
                             <td class="text-center">
-                              <div class="btn-group-toggle" data-toggle="buttons">
-                                <label class="btn btn-success w-100 checkbox" for="tue-ves-{{ forloop.counter }}">
-                                  <input type="checkbox" id="tue-ves-{{ forloop.counter }}" 
-                                    value="{{ horario }}, tue" 
-                                    autocomplete="off">
-                                  <i class="fas fa-check-circle check"></i>
-                                </label>
+                              <div class="openModalBtn">
+                                <div class="btn-group-toggle" data-toggle="buttons">
+                                  <label class="btn btn-success w-100 checkbox" for="tue-ves-{{ forloop.counter }}">
+                                    <input type="checkbox" id="tue-ves-{{ forloop.counter }}" 
+                                      value="{{ horario }}, tue" 
+                                      autocomplete="off">
+                                    <i class="fas fa-check-circle check"></i>
+                                  </label>
+                                </div>
                               </div>
                             </td>
                             
                             <td class="text-center">
-                              <div class="btn-group-toggle" data-toggle="buttons">
-                                <label class="btn btn-success w-100 checkbox" for="wed-ves-{{ forloop.counter }}">
-                                  <input type="checkbox" id="wed-ves-{{ forloop.counter }}" 
-                                    value="{{ horario }}, wed" 
-                                    autocomplete="off">
-                                  <i class="fas fa-check-circle check"></i>
-                                </label>
+                              <div class="openModalBtn">
+                                <div class="btn-group-toggle" data-toggle="buttons">
+                                  <label class="btn btn-success w-100 checkbox" for="wed-ves-{{ forloop.counter }}">
+                                    <input type="checkbox" id="wed-ves-{{ forloop.counter }}" 
+                                      value="{{ horario }}, wed" 
+                                      autocomplete="off">
+                                    <i class="fas fa-check-circle check"></i>
+                                  </label>
+                                </div>
                               </div>
                             </td>
                             
                             <td class="text-center">
-                              <div class="btn-group-toggle" data-toggle="buttons">
-                                <label class="btn btn-success w-100 checkbox" for="thu-ves-{{ forloop.counter }}">
-                                  <input type="checkbox" id="thu-ves-{{ forloop.counter }}" 
-                                    value="{{ horario }}, thu" 
-                                    autocomplete="off">
-                                  <i class="fas fa-check-circle check"></i>
-                                </label>
+                              <div class="openModalBtn">
+                                <div class="btn-group-toggle" data-toggle="buttons">
+                                  <label class="btn btn-success w-100 checkbox" for="thu-ves-{{ forloop.counter }}">
+                                    <input type="checkbox" id="thu-ves-{{ forloop.counter }}" 
+                                      value="{{ horario }}, thu" 
+                                      autocomplete="off">
+                                    <i class="fas fa-check-circle check"></i>
+                                  </label>
+                                </div>
                               </div>
                             </td>
                             
                             <td class="text-center">
-                              <div class="btn-group-toggle" data-toggle="buttons">
-                                <label class="btn btn-success w-100 checkbox" for="fri-ves-{{ forloop.counter }}">
-                                  <input type="checkbox" id="fri-ves-{{ forloop.counter }}" 
-                                    value="{{ horario }}, fri" 
-                                    autocomplete="off">
-                                  <i class="fas fa-check-circle check"></i>
-                                </label>
+                              <div class="openModalBtn">
+                                <div class="btn-group-toggle" data-toggle="buttons">
+                                  <label class="btn btn-success w-100 checkbox" for="fri-ves-{{ forloop.counter }}">
+                                    <input type="checkbox" id="fri-ves-{{ forloop.counter }}" 
+                                      value="{{ horario }}, fri" 
+                                      autocomplete="off">
+                                    <i class="fas fa-check-circle check"></i>
+                                  </label>
+                                </div>
                               </div>
                             </td>
                           </tr>
@@ -242,65 +255,138 @@
                             <td class="text-center align-middle">{{ horario.hour_start }} - {{ horario.hour_end }}</td>
       
                             <td class="text-center">
-                              <div class="btn-group-toggle" data-toggle="buttons">
-                                <label class="btn btn-success w-100 checkbox" for="mon-not-{{ forloop.counter }}">
-                                  <input type="checkbox" id="mon-not-{{ forloop.counter }}" 
-                                    value="{{ horario }}, mon" 
-                                    autocomplete="off">
-                                  <i class="fas fa-check-circle check"></i>
-                                </label>
+                              <div class="openModalBtn">
+                                <div class="btn-group-toggle" data-toggle="buttons">
+                                  <label class="btn btn-success w-100 checkbox" for="mon-not-{{ forloop.counter }}">
+                                    <input type="checkbox" id="mon-not-{{ forloop.counter }}" 
+                                      value="{{ horario }}, mon" 
+                                      autocomplete="off">
+                                    <i class="fas fa-check-circle check"></i>
+                                  </label>
+                                </div>
                               </div>
                             </td>
                         
                             <td class="text-center">
-                              <div class="btn-group-toggle" data-toggle="buttons">
-                                <label class="btn btn-success w-100 checkbox" for="tue-not-{{ forloop.counter }}">
-                                  <input type="checkbox" id="tue-not-{{ forloop.counter }}" 
-                                    value="{{ horario }}, tue" 
-                                    autocomplete="off">
-                                  <i class="fas fa-check-circle check"></i>
-                                </label>
+                              <div class="openModalBtn">
+                                <div class="btn-group-toggle" data-toggle="buttons">
+                                  <label class="btn btn-success w-100 checkbox" for="tue-not-{{ forloop.counter }}">
+                                    <input type="checkbox" id="tue-not-{{ forloop.counter }}" 
+                                      value="{{ horario }}, tue" 
+                                      autocomplete="off">
+                                    <i class="fas fa-check-circle check"></i>
+                                  </label>
+                                </div>
                               </div>
                             </td>
                         
                             <td class="text-center">
-                              <div class="btn-group-toggle" data-toggle="buttons">
-                                <label class="btn btn-success w-100 checkbox" for="wed-not-{{ forloop.counter }}">
-                                  <input type="checkbox" id="wed-not-{{ forloop.counter }}" 
-                                    value="{{ horario }}, wed" 
-                                    autocomplete="off">
-                                  <i class="fas fa-check-circle check"></i>
-                                </label>
+                              <div class="openModalBtn">
+                                <div class="btn-group-toggle" data-toggle="buttons">
+                                  <label class="btn btn-success w-100 checkbox" for="wed-not-{{ forloop.counter }}">
+                                    <input type="checkbox" id="wed-not-{{ forloop.counter }}" 
+                                      value="{{ horario }}, wed" 
+                                      autocomplete="off">
+                                    <i class="fas fa-check-circle check"></i>
+                                  </label>
+                                </div>
                               </div>
                             </td>
                         
                             <td class="text-center">
-                              <div class="btn-group-toggle" data-toggle="buttons">
-                                <label class="btn btn-success w-100 checkbox" for="thu-not-{{ forloop.counter }}">
-                                  <input type="checkbox" id="thu-not-{{ forloop.counter }}" 
-                                    value="{{ horario }}, thu" 
-                                    autocomplete="off">
-                                  <i class="fas fa-check-circle check"></i>
-                                </label>
+                              <div class="openModalBtn">
+                                <div class="btn-group-toggle" data-toggle="buttons">
+                                  <label class="btn btn-success w-100 checkbox" for="thu-not-{{ forloop.counter }}">
+                                    <input type="checkbox" id="thu-not-{{ forloop.counter }}" 
+                                      value="{{ horario }}, thu" 
+                                      autocomplete="off">
+                                    <i class="fas fa-check-circle check"></i>
+                                  </label>
+                                </div>
                               </div>
                             </td>
                         
                             <td class="text-center">
-                              <div class="btn-group-toggle" data-toggle="buttons">
-                                <label class="btn btn-success w-100 checkbox" for="fri-not-{{ forloop.counter }}">
-                                  <input type="checkbox" id="fri-not-{{ forloop.counter }}" 
-                                    value="{{ horario }}, fri" 
-                                    autocomplete="off">
-                                  <i class="fas fa-check-circle check"></i>
-                                </label>
-                              </div>
+                              <div class="openModalBtn">
+                                <div class="btn-group-toggle" data-toggle="buttons">
+                                  <label class="btn btn-success w-100 checkbox" for="fri-not-{{ forloop.counter }}">
+                                    <input type="checkbox" id="fri-not-{{ forloop.counter }}" 
+                                      value="{{ horario }}, fri" 
+                                      autocomplete="off" >
+                                    <i class="fas fa-check-circle check"></i>
+                                  </label>
+                                </div>
+                              </div>                              
                             </td>
                           </tr>                        
                         {% endfor %}
                       {% endif %}
                     {% endfor %}
                   </tbody>               
-                {% endfor %}             
+                {% endfor %}  
+                <div class="modal center-modal fade" id="addCourseModal" tabindex="-1" role="dialog" aria-labelledby="addCourseModalLabel" aria-hidden="true">
+                  <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h5 class="modal-title" id="addCourseModalLabel">Adicionar Curso</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                          <span aria-hidden="true">&times;</span>
+                        </button>
+                      </div>
+                      <div class="modal-body">
+                        <div id="error-alert" class="alert alert-danger" style="display: none;">
+                          <span id="error-message"></span>
+                        </div>
+                        <form id="addCourseForm" method="post">
+                          {% csrf_token %}
+                          <div class="form-group">
+                            <label for="courseName">Nome do Curso</label>
+                            <select class="form-control" id="courseName">
+                              <option selected disabled>Selecione</option>
+                              {% for course in courses %}
+                              <option value="{{ course.acronym }}">Nome: {{ course.name_course }}</option>
+                              {% endfor %}
+                            </select>
+                          </div>
+                          <div class="form-group">
+                            <label for="numClasses">Número de Aulas</label>
+                            <input type="number" disabled class="form-control" id="numClasses" placeholder="Número de aulas">
+                          </div>
+                          <div class="form-group">
+                            <div class="d-block">
+                              <label>Prioridade</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                              <input class="form-check-input" type="radio" name="priority" id="priorityHigh" value="high">
+                              <label class="form-check-label" for="priorityHigh">
+                                Prioritária
+                              </label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                              <input class="form-check-input" type="radio" name="priority" id="priorityMedium" value="medium">
+                              <label class="form-check-label" for="priorityMedium">
+                                Secundária
+                              </label>
+                            </div>
+                          </div>                    
+                          <div class="form-group">
+                            <label for="period">Período</label>
+                            <select class="form-control" id="period">
+                              <option selected disabled>Selecione</option>
+                              <option value="morning">Manhã</option>
+                              <option value="afternoon">Tarde</option>
+                              <option value="evening">Noite</option>
+                            </select>
+                          </div>
+                        </form>
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+                        <button type="button" class="btn btn-primary" name="addCourse" id="addCourseButton">Adicionar</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>           
               </table>              
             </div>        
           </div>
@@ -413,5 +499,6 @@
 {% endblock %}
 
 {% block endbody %}
+  
   <script src="{% static 'attribution_preference/js/preferred_discipline.js' %}" data-lang={{LANGUAGE_CODE}}></script>
 {% endblock %}
