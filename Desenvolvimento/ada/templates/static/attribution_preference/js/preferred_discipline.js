@@ -14,10 +14,16 @@ $(document).ready(function() {
       $('#hour-regime').text(40.0);
       $('#min-regime').text('00');
       time_left = 40.0;
+      $('.checkbox input[type="checkbox"]').prop('checked', false);
+      $('label.checkbox').removeClass('active');
+      timeslots = []
     } else {
       $('#hour-regime').text(20.0);
       $('#min-regime').text('00');
       time_left = 20.0;
+      $('.checkbox input[type="checkbox"]').prop('checked', false);
+      $('label.checkbox').removeClass('active');
+      timeslots = []
     }
 
     if ($('#error-alert-form').is(':visible')) {
@@ -134,7 +140,7 @@ $(document).ready(function() {
       $('#turno-none').show();
     }
 
-    $('#turno-' + valor_selecionado).show()
+    $('#turno-' + valor_selecionado).show();
   });
 
   $('#sendFPA').click(function() {
