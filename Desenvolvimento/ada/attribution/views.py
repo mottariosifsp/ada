@@ -1,9 +1,14 @@
-from staff.models import Criteria
+from area.models import Blockk
+from staff.models import Criteria, Deadline
+from timetable.models import Timetable, Timetable_user
 from user.models import User
 from attribution.models import TeacherQueuePosition
 from django.shortcuts import render, redirect
 import json
 from django.db.models import F, Sum, Value
+from django.db import transaction
+from django.utils import timezone
+from datetime import datetime, timezone
 
 marcador = 0
 tabela_data = ""
@@ -176,3 +181,5 @@ def queueSetup(request):
         }
 
         return render(request, 'attribution/queueSetup.html', {'data': data})
+    
+

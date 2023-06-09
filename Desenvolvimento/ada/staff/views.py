@@ -1,5 +1,6 @@
 from datetime import datetime, timezone
 import json
+from attribution.models import TeacherQueuePosition
 
 from enums import enum
 from django.db import transaction
@@ -24,13 +25,32 @@ from .models import Deadline
 def is_staff(user):
     return user.is_staff
 
-
 # prazos
 @login_required
 @user_passes_test(is_staff)
 def home(request):
     return render(request, 'staff/home_staff.html')
 
+@login_required
+@user_passes_test(is_staff)
+def attribution_configuration_index(request):
+
+    return render(request, 'staff/attribution/attribution_configuration_index.html')
+
+@login_required
+@user_passes_test(is_staff)
+def attribution_configuration(request):
+
+    queue = TeacherQueuePosition.objects.all()
+
+    data = {
+        'queue': queue,
+    }
+
+    return render(request, 'staff/attribution/attribution_configuration.html', data)
+
+def attribution_configuration_confirm(request):
+    return render(request, 'staff/attribution/attribution_configuration_confirm.html')
 
 @login_required
 @user_passes_test(is_staff)
