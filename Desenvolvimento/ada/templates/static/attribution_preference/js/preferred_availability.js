@@ -1,25 +1,29 @@
 var timeslots = []
 var lang = document.currentScript.getAttribute('data-lang');
-var time_left = 0.0
+var cel_left = 0
+var type_cel = 0
+var cel_final = "not_checked"
 var hour = 0
 var minute = 0
 
 $(document).ready(function() {
   // Mudar horas restantes
   $('input[name="regime"]').click(function() {
-    $('#hour-regime').val('');
+    $('#cel-regime').val('');
     var valor = $(this).val();
     if (valor == 'rde' || valor == '40') {
-      $('#hour-regime').text(24.0);
-      $('#min-regime').text('00');
-      time_left = 24.0;
+      var this_duracao = 24*60/45;
+      $('#cel-regime').text(this_duracao);
+      cel_left = this_duracao
+      type_cel = 40;
       $('.checkbox input[type="checkbox"]').prop('checked', false);
       $('label.checkbox').removeClass('active');
       timeslots = []
     } else {
-      $('#hour-regime').text(12.0);
-      $('#min-regime').text('00');
-      time_left = 12.0;
+      var this_duracao = 12*60/45;
+      $('#cel-regime').text(this_duracao);
+      cel_left = this_duracao
+      type_cel = 20;
       $('.checkbox input[type="checkbox"]').prop('checked', false);
       $('label.checkbox').removeClass('active');
       timeslots = []
@@ -37,8 +41,7 @@ $(document).ready(function() {
     $('input[name="regime"]').prop('checked', false);
     $('.checkbox input[type="checkbox"]').prop('checked', false);
     $('label.checkbox').removeClass('active');
-    $('#hour-regime').text("--");
-    $('#min-regime').text("--");
+    $('#cel-regime').text("--");
     $('#error-alert-form').hide();
 
     window.scrollTo({
@@ -47,39 +50,15 @@ $(document).ready(function() {
     });
 
     timeslots.length = 0;
-    time_left = 0;
+    cel_left = 0;
   });
 
-  function atualizar_time_left(is_checked, value) {
-    if(!is_checked) {
-      time_left -= value;
-      time_left = parseFloat(time_left.toFixed(2));
-      transformar_hora();
-      apresentar_hora();
-    }
-  }
-
-  function transformar_hora() {
-    hour = Math.floor(time_left);
-    var minutesTotal = Math.round((time_left - hour) * 60);
-    minute = minutesTotal % 60;
-  }
-
-  function apresentar_hora() {
-    $('#hour-regime').text(hour);
-    if (Number.isInteger(minute)) {
-      minuteString = minute.toString().padStart(2, '0');
-    } else {
-      minuteString = toString(minute);
-    }
-    $('#min-regime').text(minuteString);
-  }
+  
 
   // Pegar dados dos checkboxes
   $('.checkbox').click(function() {
-    if(time_left == 00) {
-      $('#hour-regime').text("--");
-      $('#min-regime').text("--");
+    if(cel_left == 0 && type_cel == 0) {
+      $('#cel-regime').text("--");
       $('label[for^="mon-"]').add('label[for^="tue-"]').add('label[for^="wed-"]').add('label[for^="thu-"]').add('label[for^="fri-"]').add('label[for^="sat-"]').addClass('disabled').attr('aria-disabled', 'true');
       $('input[type="checkbox"][id^="mon-"]').add('input[type="checkbox"][id^="tue-"]').add('input[type="checkbox"][id^="wed-"]').add('input[type="checkbox"][id^="thu-"]').add('input[type="checkbox"][id^="fri-"]').add('input[type="checkbox"][id^="sat-"]').prop('disabled', true);
 
@@ -95,9 +74,20 @@ $(document).ready(function() {
       var is_checked = $('#' + input_id).prop('checked');
 
       if(is_checked) {
-        time_left = (parseFloat(time_left) + 0.45).toFixed(2);
+        cel_left += 1;
         var [objeto_elemento, dia_elemento] = input_val.split(',');
         var [inicio, fim] = objeto_elemento.split('-');
+
+        if (cel_final == "checked") {
+          $('input[type="checkbox"][id^="mon-"], input[type="checkbox"][id^="tue-"], input[type="checkbox"][id^="wed-"], input[type="checkbox"][id^="thu-"], input[type="checkbox"][id^="fri-"], input[type="checkbox"][id^="sat-"]').each(function() {
+            if (!$(this).prop('checked')) {
+              $(this).prop('disabled', false);
+              $('label[for="' + $(this).attr('id') + '"]').removeClass('disabled').removeAttr('aria-disabled');
+            }
+          });
+          cel_final = "not_checked"
+          cel_left += 1
+        }
 
         var index = timeslots.findIndex(function(aula) {
           return aula.hora_comeco === inicio;
@@ -107,19 +97,22 @@ $(document).ready(function() {
           timeslots.splice(index, 1);
         }
 
-        transformar_hora();
-        apresentar_hora();
+        $('#cel-regime').text(cel_left);
       } else {
-        var [objeto_elemento, dia_elemento] = input_val.split(',');
-        var [inicio, fim] = objeto_elemento.split('-');
-        var aula = {
-          hora_comeco: inicio,
-          hora_fim: fim,
-          dia_semana: dia_elemento
-        };
+        if(cel_final != "checked") {
+          atualizar_cel_left(is_checked);
+          if (cel_final != "checked") {
+            var [objeto_elemento, dia_elemento] = input_val.split(',');
+            var [inicio, fim] = objeto_elemento.split('-');
+            var aula = {
+              hora_comeco: inicio,
+              hora_fim: fim,
+              dia_semana: dia_elemento
+            };
 
-        timeslots.push(aula)
-        atualizar_time_left(is_checked, 0.45);
+            timeslots.push(aula)
+          }
+        }
       }
     }
   });
@@ -162,12 +155,12 @@ $(document).ready(function() {
 
     let csrftoken = getCookie('csrftoken');
 
-    for (var time in timeslots) {
-      var aulaAtual = timeslots[time];
-      alert(aulaAtual.hora_comeco);
-      alert(aulaAtual.hora_fim);
-      alert(aulaAtual.dia_semana);
-    }
+    // for (var time in timeslots) {
+    //   var aulaAtual = timeslots[time];
+    //   alert(aulaAtual.hora_comeco);
+    //   alert(aulaAtual.hora_fim);
+    //   alert(aulaAtual.dia_semana);
+    // }
 
     if (work_regime && timeslots.length !== 0) {
       $.ajax({
@@ -219,4 +212,28 @@ $(document).ready(function() {
     return cookieValue;
   }
 });
+
+function atualizar_cel_left(is_checked) {
+  if(!is_checked) {
+    if (cel_final == "checked") {
+      cel_left = 0;
+      $('#cel-regime').text(cel_left);
+    } else {
+      cel_left -= 1;
+      if(cel_left == -1) {
+        $('input[type="checkbox"][id^="mon-"], input[type="checkbox"][id^="tue-"], input[type="checkbox"][id^="wed-"], input[type="checkbox"][id^="thu-"], input[type="checkbox"][id^="fri-"], input[type="checkbox"][id^="sat-"]').each(function() {
+          if (!$(this).prop('checked')) {
+            $(this).prop('disabled', true);
+            $('label[for="' + $(this).attr('id') + '"]').addClass('disabled').attr('aria-disabled', 'true');
+          }
+        });
+        cel_final = "checked";
+      } else {
+        $('#cel-regime').text(cel_left);
+      }
+    }    
+  }
+}
+
+
 

@@ -22,20 +22,20 @@ input[type="checkbox"]:checked + .check{
   visibility: visible;   
 }
 
-#hour-regime {
+#cel-regime {
   font-size: 49.5pt;
   font-weight: 600;
   color: #2f7363;
   align-items: center;
 }
-#min-regime {
-  font-size: 44pt;
-  font-weight: 600;
-  color: #2f7363;
-  align-items: center;
+.min-cel {
+  color: #732f46;
 }
-.hours {
-  font-size: 44pt;
+.max-cel {
+  color: #2f3a73;
+}
+.cel, .cel-type {
+  font-size: 12pt;
   color: #2f7363;
 }
 
