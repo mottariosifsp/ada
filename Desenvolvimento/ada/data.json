@@ -4,7 +4,7 @@
         "pk": 1,
         "fields": {
             "registration_area_id": "INF.111111",
-            "name_area": "INFORM�TICA",
+            "name_area": "INFORMÁTICA",
             "acronym": "INF",
             "exchange_area": true,
             "is_high_school": true,
@@ -21,7 +21,7 @@
         "pk": 2,
         "fields": {
             "registration_area_id": "ADS.222222",
-            "name_area": "AN�LISE E DESENVOLVIMENTO DE SISTEMAS",
+            "name_area": "ANÁLISE E DESENVOLVIMENTO DE SISTEMAS",
             "acronym": "ADS",
             "exchange_area": true,
             "is_high_school": false,
@@ -35,8 +35,8 @@
         "pk": 1,
         "fields": {
             "registration_block_id": "776292",
-            "name_block": "T�CNICO",
-            "acronym": "T�C"
+            "name_block": "TÉCNICO",
+            "acronym": "TÉC"
         }
     },
     {
@@ -44,7 +44,7 @@
         "pk": 2,
         "fields": {
             "registration_block_id": "776294",
-            "name_block": "MATEM�TICA",
+            "name_block": "MATEMÁTICA",
             "acronym": "MAT"
         }
     },
@@ -62,7 +62,7 @@
         "pk": 4,
         "fields": {
             "registration_block_id": "776291",
-            "name_block": "CI�NCIAS HUMANAS",
+            "name_block": "CIÊNCIAS HUMANAS",
             "acronym": "HUM"
         }
     },
@@ -231,7 +231,7 @@
         "pk": 1,
         "fields": {
             "registration_course_id": "INT.06327",
-            "name_course": "L�GICA 1",
+            "name_course": "LÓGICA 1",
             "acronym": "LG1-1",
             "area": 1,
             "blockk": 1
@@ -242,7 +242,7 @@
         "pk": 2,
         "fields": {
             "registration_course_id": "INT.06207",
-            "name_course": "INFORM�TICA",
+            "name_course": "INFORMÁTICA",
             "acronym": "INF-1",
             "area": 1,
             "blockk": 1
@@ -275,7 +275,7 @@
         "pk": 5,
         "fields": {
             "registration_course_id": "INT.06189",
-            "name_course": "LINGUAGEM DE PROGRAMA��O 1",
+            "name_course": "LINGUAGEM DE PROGRAMAÇÃO 1",
             "acronym": "LP1-2",
             "area": 1,
             "blockk": 1
@@ -297,7 +297,7 @@
         "pk": 7,
         "fields": {
             "registration_course_id": "INT.06328",
-            "name_course": "L�GICA 2",
+            "name_course": "LÓGICA 2",
             "acronym": "LG2-2",
             "area": 1,
             "blockk": 1
@@ -319,7 +319,7 @@
         "pk": 9,
         "fields": {
             "registration_course_id": "INT.06339",
-            "name_course": "T�PICOS PROFISSIONAIS",
+            "name_course": "TÓPICOS PROFISSIONAIS",
             "acronym": "TPO-3",
             "area": 1,
             "blockk": 1
@@ -341,7 +341,7 @@
         "pk": 11,
         "fields": {
             "registration_course_id": "INT.06333",
-            "name_course": "APLICA��ES PARA WEB 1",
+            "name_course": "APLICAÇÕES PARA WEB 1",
             "acronym": "AW1-3",
             "area": 1,
             "blockk": 1
@@ -352,7 +352,7 @@
         "pk": 12,
         "fields": {
             "registration_course_id": "INT.06330",
-            "name_course": "LINGUAGEM DE PROGRAMA��O 2",
+            "name_course": "LINGUAGEM DE PROGRAMAÇÃO 2",
             "acronym": "LP2-3",
             "area": 1,
             "blockk": 1
@@ -363,7 +363,7 @@
         "pk": 13,
         "fields": {
             "registration_course_id": "INT.06331",
-            "name_course": "LINGUAGEM DE PROGRAMA��O 3",
+            "name_course": "LINGUAGEM DE PROGRAMAÇÃO 3",
             "acronym": "LP3-3",
             "area": 1,
             "blockk": 1
@@ -374,7 +374,7 @@
         "pk": 14,
         "fields": {
             "registration_course_id": "INT.06336",
-            "name_course": "SEGURAN�A DE INFORMA��O",
+            "name_course": "SEGURANÇA DE INFORMAÇÃO",
             "acronym": "SIN-4",
             "area": 1,
             "blockk": 1
@@ -385,7 +385,7 @@
         "pk": 15,
         "fields": {
             "registration_course_id": "INT.06335",
-            "name_course": "APLICA��ES PARA WEB 2",
+            "name_course": "APLICAÇÕES PARA WEB 2",
             "acronym": "AW2-4",
             "area": 1,
             "blockk": 1
@@ -396,7 +396,7 @@
         "pk": 16,
         "fields": {
             "registration_course_id": "INT.06253",
-            "name_course": "GEST�O INDUSTRIAL",
+            "name_course": "GESTÃO INDUSTRIAL",
             "acronym": "GEI-4",
             "area": 1,
             "blockk": 1
@@ -407,7 +407,7 @@
         "pk": 17,
         "fields": {
             "registration_course_id": "INT.06334",
-            "name_course": "PR�TICA DE DESENVOLVIMENTO DE SISTEMAS",
+            "name_course": "PRÁTICA DE DESENVOLVIMENTO DE SISTEMAS",
             "acronym": "PDS-4",
             "area": 1,
             "blockk": 1
@@ -429,7 +429,7 @@
         "pk": 19,
         "fields": {
             "registration_course_id": "SUP.12765",
-            "name_course": "L�GICA DE PROGRAMA��O 1",
+            "name_course": "LÓGICA DE PROGRAMAÇÃO 1",
             "acronym": "LG1A1",
             "area": 2,
             "blockk": 1
@@ -440,7 +440,7 @@
         "pk": 20,
         "fields": {
             "registration_course_id": "SUP.12766",
-            "name_course": "MATEM�TICA PARA INFORM�TICA",
+            "name_course": "MATEMÁTICA PARA INFORMÁTICA",
             "acronym": "MATIA1",
             "area": 2,
             "blockk": 1
@@ -451,7 +451,7 @@
         "pk": 21,
         "fields": {
             "registration_course_id": "SUP.12767",
-            "name_course": "ORGANIZA��O E ARQUITETURA DE COMPUTADORES",
+            "name_course": "ORGANIZAÇÃO E ARQUITETURA DE COMPUTADORES",
             "acronym": "OACOA1",
             "area": 2,
             "blockk": 1
@@ -462,7 +462,7 @@
         "pk": 22,
         "fields": {
             "registration_course_id": "SUP.12856",
-            "name_course": "ADMINISTRA��O DE EMPRESAS",
+            "name_course": "ADMINISTRAÇÃO DE EMPRESAS",
             "acronym": "ADMEA1",
             "area": 2,
             "blockk": 1
@@ -473,7 +473,7 @@
         "pk": 23,
         "fields": {
             "registration_course_id": "SUP.12858",
-            "name_course": "PR�TICAS E FERRAMENTAS DE DESENVOLVIMENTO DE SOFTWARE",
+            "name_course": "PRÁTICAS E FERRAMENTAS DE DESENVOLVIMENTO DE SOFTWARE",
             "acronym": "PFDSA1",
             "area": 2,
             "blockk": 1
@@ -484,7 +484,7 @@
         "pk": 24,
         "fields": {
             "registration_course_id": "SUP.12860",
-            "name_course": "RECURSOS HUMANOS EM TECNOLOGIA DA INFORMA��O",
+            "name_course": "RECURSOS HUMANOS EM TECNOLOGIA DA INFORMAÇÃO",
             "acronym": "RHTIA1",
             "area": 2,
             "blockk": 1
@@ -506,7 +506,7 @@
         "pk": 26,
         "fields": {
             "registration_course_id": "SUP.09364",
-            "name_course": "L�GICA DE PROGRAMA��O 2",
+            "name_course": "LÓGICA DE PROGRAMAÇÃO 2",
             "acronym": "LG2A2",
             "area": 2,
             "blockk": 1
@@ -561,7 +561,7 @@
         "pk": 31,
         "fields": {
             "registration_course_id": "SUP.09369",
-            "name_course": "LINGUAGEM DE PROGRAMA��O 1",
+            "name_course": "LINGUAGEM DE PROGRAMAÇÃO 1",
             "acronym": "LP1A3",
             "area": 2,
             "blockk": 1
@@ -627,7 +627,7 @@
         "pk": 37,
         "fields": {
             "registration_course_id": "SUP.09376",
-            "name_course": "LINGUAGEM DE PROGRAMA��O 2",
+            "name_course": "LINGUAGEM DE PROGRAMAÇÃO 2",
             "acronym": "LP2A4",
             "area": 2,
             "blockk": 1
@@ -638,7 +638,7 @@
         "pk": 38,
         "fields": {
             "registration_course_id": "SUP.09377",
-            "name_course": "SERVI�OS E SERVIDORES DE REDE",
+            "name_course": "SERVIÇOS E SERVIDORES DE REDE",
             "acronym": "SESA4",
             "area": 2,
             "blockk": 1
@@ -660,7 +660,7 @@
         "pk": 40,
         "fields": {
             "registration_course_id": "SUP.10627",
-            "name_course": "SEGURAN�A DA INFORMA��O",
+            "name_course": "SEGURANÇA DA INFORMAÇÃO",
             "acronym": "SEGA4",
             "area": 2,
             "blockk": 1
@@ -671,7 +671,7 @@
         "pk": 41,
         "fields": {
             "registration_course_id": "SUP.10628",
-            "name_course": "GEST�O DE PROJETOS",
+            "name_course": "GESTÃO DE PROJETOS",
             "acronym": "GPRA4",
             "area": 2,
             "blockk": 1
@@ -693,7 +693,7 @@
         "pk": 43,
         "fields": {
             "registration_course_id": "SUP.09382",
-            "name_course": "LINGUAGEM DE PROGRAMA��O 3",
+            "name_course": "LINGUAGEM DE PROGRAMAÇÃO 3",
             "acronym": "LP3A5",
             "area": 2,
             "blockk": 1
@@ -704,7 +704,7 @@
         "pk": 44,
         "fields": {
             "registration_course_id": "SUP.09383",
-            "name_course": "SISTEMAS DISTRIBU�DOS",
+            "name_course": "SISTEMAS DISTRIBUÍDOS",
             "acronym": "SIDA5",
             "area": 2,
             "blockk": 1
@@ -715,7 +715,7 @@
         "pk": 45,
         "fields": {
             "registration_course_id": "SUP.10629",
-            "name_course": "PROGRAMA��O DIN�MICA PARA WEB",
+            "name_course": "PROGRAMAÇÃO DINÂMICA PARA WEB",
             "acronym": "PDWA5",
             "area": 2,
             "blockk": 1
@@ -726,7 +726,7 @@
         "pk": 46,
         "fields": {
             "registration_course_id": "SUP.10630",
-            "name_course": "ESTAT�STICA E PROBABILIDADE",
+            "name_course": "ESTATÍSTICA E PROBABILIDADE",
             "acronym": "ESPA5",
             "area": 2,
             "blockk": 1
@@ -737,7 +737,7 @@
         "pk": 47,
         "fields": {
             "registration_course_id": "SUP.10631",
-            "name_course": "MODELAGEM DE PROCESSOS DE NEG�CIOS",
+            "name_course": "MODELAGEM DE PROCESSOS DE NEGÓCIOS",
             "acronym": "MPNA5",
             "area": 2,
             "blockk": 1
@@ -759,7 +759,7 @@
         "pk": 49,
         "fields": {
             "registration_course_id": "SUP.10632",
-            "name_course": "INTRODU��O � CI�NCIA DE DADOS",
+            "name_course": "INTRODUÇÃO À CIÊNCIA DE DADOS",
             "acronym": "ICDA6",
             "area": 2,
             "blockk": 1
@@ -770,7 +770,7 @@
         "pk": 50,
         "fields": {
             "registration_course_id": "SUP.10633",
-            "name_course": "INTRODU��O � OTIMIZA��O COMBINAT�RIA",
+            "name_course": "INTRODUÇÃO À OTIMIZAÇÃO COMBINATÓRIA",
             "acronym": "I0CA6",
             "area": 2,
             "blockk": 1
@@ -781,7 +781,7 @@
         "pk": 51,
         "fields": {
             "registration_course_id": "SUP.10634",
-            "name_course": "LABORAT�RIO DE ESCALABILIDADE DE SISTEMAS",
+            "name_course": "LABORATÓRIO DE ESCALABILIDADE DE SISTEMAS",
             "acronym": "LESA6",
             "area": 2,
             "blockk": 1
@@ -792,7 +792,7 @@
         "pk": 52,
         "fields": {
             "registration_course_id": "SUP.10635",
-            "name_course": "GEST�O E GOVERNAN�A DA TECNOLOGIA DA INFORMA��O",
+            "name_course": "GESTÃO E GOVERNANÇA DA TECNOLOGIA DA INFORMAÇÃO",
             "acronym": "GTIA6",
             "area": 2,
             "blockk": 1
@@ -829,7 +829,7 @@
         "model": "staff.criteria",
         "pk": 4,
         "fields": {
-            "name_criteria": "TEMPO EXPERI�NCIA DID�TICA NA �REA",
+            "name_criteria": "TEMPO EXPERIÊNCIA DIDÁTICA NA ÁREA",
             "number_criteria": 4,
             "is_select": false
         }
@@ -838,7 +838,7 @@
         "model": "staff.criteria",
         "pk": 5,
         "fields": {
-            "name_criteria": "TEMPO EXPERI�NCIA PROFISSIONAL NA �REA",
+            "name_criteria": "TEMPO EXPERIÊNCIA PROFISSIONAL NA ÁREA",
             "number_criteria": 5,
             "is_select": false
         }
@@ -856,7 +856,7 @@
         "model": "staff.criteria",
         "pk": 7,
         "fields": {
-            "name_criteria": "MAIOR TITULA��O NA �REA",
+            "name_criteria": "MAIOR TITULAÇÃO NA ÁREA",
             "number_criteria": 7,
             "is_select": false
         }
@@ -1031,7 +1031,7 @@
             "last_login": "2023-06-08T14:58:49",
             "registration_id": "3045463",
             "first_name": "ISABELLA",
-            "last_name": "VALERIO MAZAR�",
+            "last_name": "VALERIO MAZARÁ",
             "email": "i.mazara@aluno.ifsp.edu.br",
             "telephone": null,
             "cell_phone": "+5511971810077",
@@ -1293,7 +1293,7 @@
         "model": "user.academicdegree",
         "pk": 1,
         "fields": {
-            "name": "T�CNICO",
+            "name": "TÉCNICO",
             "punctuation": 1
         }
     },
