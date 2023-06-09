@@ -26,7 +26,7 @@ class Blockk(models.Model):
     id = models.AutoField(primary_key=True, unique=True)
     registration_block_id = models.CharField(_('registration block id'), max_length=20, unique=True)
     name_block = models.CharField(_('name block'), max_length=90, unique=True)
-    acronym = models.CharField(_('acronym'), max_length=3, validators=[validate_uppercase, validate_acronym_length])
+    acronym = models.CharField(_('acronym'), max_length=5, validators=[validate_uppercase, validate_acronym_length])
     
     class Meta:
         verbose_name = _('blockk')

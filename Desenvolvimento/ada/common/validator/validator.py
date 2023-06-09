@@ -8,8 +8,8 @@ def validate_uppercase(value):
     
 # validação tamanho da sigla
 def validate_acronym_length(value):
-    if len(value) != 3:
-        raise forms.ValidationError('O acrônimo deve ter exatamente 3 caracteres.')
+    if len(value) != 5:
+        raise forms.ValidationError('O acrônimo deve ter exatamente 5 caracteres.')
 
 # validações sobre mesmo horário
 def validate_incongruity_time(value):

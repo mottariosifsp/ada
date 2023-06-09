@@ -1,0 +1,54 @@
+{% extends "professor/base.html" %} {% load i18n %} {% load static %} {% block head %}
+<title>{% translate "Configuração de atribuição" %}</title>
+<link rel="stylesheet" href="{% static 'staff/attribution/css/attribution_configuration.css' %}">
+{% endblock %} {% block body %}
+<h1>Configuração da atribuição</h1>
+<hr />
+<div class="card custom-card">
+   <div class="card-body">
+      <div class="row">
+         <div class="configuracoes col-6">
+            <h4>configurações dos prazos</h4>
+            <hr />
+            <div class="col-sm-12">
+               <h5>Envio das preferências</h5>
+               <div class="row">
+                  <div class="col-6"><label for="startFPADeadline">Início</label> <input type="datetime-local" name="startFPADeadline" class="form-control" id="startFPADeadline" /></div>
+                  <div class="col-6"><label for="endFPADeadline">Fim</label> <input type="datetime-local" name="endFPADeadline" class="form-control" id="endFPADeadline" /></div>
+               </div>
+            </div>
+            <br />
+            <div class="col-sm-12">
+               <h5>Processo de atribuição de aulas</h5>
+               <div class="row">
+                  <div class="col-6"><label for="startAssignmentDeadline">Início</label> <input type="datetime-local" name="startAssignmentDeadline" class="form-control" id="startAssignmentDeadline" /></div>
+                  <div class="col-6"><label for="endAssignmentDeadline">Fim</label> <input type="datetime-local" name="endAssignmentDeadline" class="form-control" id="endAssignmentDeadline" /></div>
+               </div>
+            </div>
+         </div>
+         <div class="fila col-6 ">
+            <div class="my-custom-scrollbar">
+               <table class="table">
+                  <thead class="thead-dark">
+                     <tr>
+                        <th scope="col">Posição</th>
+                        <th scope="col">Nome</th>
+                     </tr>
+                  </thead>
+                  <tbody>
+                     {% for position in queue %}
+                     <tr>
+                        <th scope="row">{{ position.position }}</th>
+                        <td>{{ position.teacher.first_name }}</td>
+                     </tr>
+                     {% endfor %}
+                  </tbody>
+               </table>
+            </div>
+            <a href="" class="btn btn-primary btn-block">Editar fila</a>
+         </div>
+      </div>
+      <button class="btn btn-success btn-block mt-4">Salvar configurações</button>
+   </div>
+</div>
+{% endblock %}

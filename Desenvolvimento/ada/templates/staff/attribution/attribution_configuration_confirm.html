@@ -1,0 +1,18 @@
+{% extends "professor/base.html" %} {% load i18n %} {% load static %} {% block head %}
+<title>{% translate "Configuração de atribuição" %}</title>
+<script src="{% static 'staff/attribution/js/attribution_configuration_confirm.js' %}"></script>
+
+{% endblock %} 
+{% block body %}
+<div class="d-flex align-items-center justify-content-center" style="min-height: 80vh;">
+   <div class="container text-center">
+      <div class="text-center">
+         <img src="https://img.uxwing.com/wp-content/themes/uxwing/download/checkmark-cross/confirm-icon.svg" style="width: 20%">
+      </div>
+      <h1>Configuração salva!</h1>
+      <p>As atividades foram devidamente configuradas, os prazos estabelecidos e a fila organizada.</p>
+      <br>
+      <button type="button" id="return-button" class="btn btn-outline-primary btn-lg rounded-pill">Voltar a página inicial</button>
+   </div>
+</div>
+{% endblock %}
