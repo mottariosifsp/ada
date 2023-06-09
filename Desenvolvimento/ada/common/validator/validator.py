@@ -29,7 +29,7 @@ def validate_incongruity_time(value):
 
 # validações comparação diferentes horários
 def validate_interrupted_time(model, value):
-    objects = model.objects.filter(area=value.area)
+    objects = model.objects.all()
 
     for obj in objects:
         if obj.hour_start < value.hour_start < obj.hour_end or obj.hour_start < value.hour_end < obj.hour_end:
