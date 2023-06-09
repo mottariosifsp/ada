@@ -4,6 +4,7 @@ from django.contrib.auth.models import PermissionsMixin
 from django.contrib.auth.base_user import AbstractBaseUser, BaseUserManager
 from django.utils.translation import gettext_lazy as _
 from area.models import Blockk, Area
+from common.validator.validator import convert_to_uppercase
 
 # Métodos de gerenciamento de usuário
 class UserManager(BaseUserManager):
@@ -66,6 +67,10 @@ class User(AbstractBaseUser, PermissionsMixin):
     def email_user(self, subject, message, from_email=None, **kwargs):
         send_mail(subject, message, from_email, [self.email], **kwargs)
 
+    def clean(self):
+        super().clean()
+        convert_to_uppercase(self, 'registration_id')
+
 class History(models.Model):
     id_history = models.AutoField(primary_key=True) 
     birth = models.DateField(_('birth'))
@@ -91,8 +96,12 @@ class History(models.Model):
 
 class AcademicDegree(models.Model):
     id_academic_degree = models.AutoField(primary_key=True)
-    name = models.CharField(_('name'), max_length=30)
+    name_academic_degree = models.CharField(_('name academic degree'), max_length=30)
     punctuation = models.IntegerField()
+
+    def clean(self):
+        super().clean()
+        convert_to_uppercase(self, 'name_academic_degree')
 
 class Job(models.Model):
     id_job = models.AutoField(primary_key=True)
@@ -100,6 +109,10 @@ class Job(models.Model):
 
     def __str__(self):
         return self.name_job
+    
+    def clean(self):
+        super().clean()
+        convert_to_uppercase(self, 'name_job')
     
 class Proficiency(models.Model):
     id_proficiency = models.AutoField(primary_key=True)

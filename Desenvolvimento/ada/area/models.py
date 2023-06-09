@@ -23,7 +23,7 @@ class Area(models.Model):
     
     def clean(self):
         super().clean()
-        convert_to_uppercase(self, 'name_area', 'acronym')
+        convert_to_uppercase(self, 'registration_area_id', 'name_area', 'acronym')
 
 class Blockk(models.Model):
     id = models.AutoField(primary_key=True, unique=True)
@@ -40,4 +40,4 @@ class Blockk(models.Model):
     
     def clean(self):
         super().clean()
-        convert_to_uppercase(self, 'name_block', 'acronym')
+        convert_to_uppercase(self, 'registration_block_id', 'name_block', 'acronym')

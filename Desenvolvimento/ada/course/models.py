@@ -24,4 +24,4 @@ class Course(models.Model):
     
     def clean(self):
         super().clean()
-        convert_to_uppercase(self, 'name_course', 'acronym')
+        convert_to_uppercase(self, 'registration_course_id', 'name_course', 'acronym')

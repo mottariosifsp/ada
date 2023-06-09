@@ -1,5 +1,6 @@
 from django.db import models
 from django.utils.translation import gettext_lazy as _
+from common.validator.validator import convert_to_uppercase
 from enums import enum
 
 class Classs(models.Model):
@@ -22,3 +23,7 @@ class Classs(models.Model):
 
     def __str__(self):
         return self.registration_class_id
+    
+    def clean(self):
+        super().clean()
+        convert_to_uppercase(self, 'registration_class_id')
