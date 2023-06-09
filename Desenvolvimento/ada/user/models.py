@@ -69,7 +69,7 @@ class User(AbstractBaseUser, PermissionsMixin):
 
     def clean(self):
         super().clean()
-        convert_to_uppercase(self, 'registration_id')
+        convert_to_uppercase(self, 'registration_id', 'first_name', 'last_name'), 
 
 class History(models.Model):
     id_history = models.AutoField(primary_key=True) 
@@ -96,12 +96,12 @@ class History(models.Model):
 
 class AcademicDegree(models.Model):
     id_academic_degree = models.AutoField(primary_key=True)
-    name_academic_degree = models.CharField(_('name academic degree'), max_length=30)
+    name = models.CharField(_('name'), max_length=30)
     punctuation = models.IntegerField()
 
     def clean(self):
         super().clean()
-        convert_to_uppercase(self, 'name_academic_degree')
+        convert_to_uppercase(self, 'name')
 
 class Job(models.Model):
     id_job = models.AutoField(primary_key=True)

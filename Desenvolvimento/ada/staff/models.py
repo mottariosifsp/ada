@@ -5,7 +5,7 @@ from django.core.exceptions import ValidationError
 from common.validator.validator import convert_to_uppercase
 
 class Deadline(models.Model):
-    name_deadline = models.CharField(_('name deadline'), max_length=90)
+    name = models.CharField(_('name'), max_length=90)
     deadline_start = models.DateTimeField(_('deadline start'))
     deadline_end = models.DateTimeField(_('deadline end'))
     blockk = models.ForeignKey('area.Blockk', on_delete=models.CASCADE, null=True)
@@ -16,7 +16,7 @@ class Deadline(models.Model):
 
     def clean(self):
         super().clean()
-        convert_to_uppercase(self, 'name_deadline')
+        convert_to_uppercase(self, 'name')
 
 class Criteria(models.Model):
     name_criteria = models.CharField(('name criteria'), max_length=90)
