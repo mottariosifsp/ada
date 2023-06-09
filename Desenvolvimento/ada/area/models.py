@@ -1,11 +1,11 @@
 from django.db import models
 from django.utils.translation import gettext_lazy as _
-from common.validator.validator import convert_to_uppercase, validate_acronym_length
+from common.validator.validator import convert_to_uppercase
 
 class Area(models.Model):
     registration_area_id = models.CharField(_('registration area id'), max_length=20, unique=True)
     name_area = models.CharField(_('name area'), max_length=90, unique=True)
-    acronym = models.CharField(_('acronym'), max_length=3, validators=[validate_acronym_length])
+    acronym = models.CharField(_('acronym'), max_length=5, null=True, unique=True)
     exchange_area = models.BooleanField(_('exchange area'), default=True)
     is_high_school = models.BooleanField(_('is high school'), default=True)
 
@@ -29,7 +29,7 @@ class Blockk(models.Model):
     id = models.AutoField(primary_key=True, unique=True)
     registration_block_id = models.CharField(_('registration block id'), max_length=20, unique=True)
     name_block = models.CharField(_('name block'), max_length=90, unique=True)
-    acronym = models.CharField(_('acronym'), max_length=3, validators=[validate_acronym_length])
+    acronym = models.CharField(_('acronym'), max_length=5, null=True, unique=True)
     
     class Meta:
         verbose_name = _('blockk')

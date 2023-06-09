@@ -5,7 +5,7 @@ from common.validator.validator import convert_to_uppercase, validate_acronym_le
 class Course(models.Model):
     registration_course_id = models.CharField(_('registration course id'), max_length=20, unique=True)
     name_course = models.CharField(_('course name'), max_length=45, unique=True)
-    acronym = models.CharField(_('acronym'), max_length=5, null=True, unique=True, validators=[validate_acronym_length])
+    acronym = models.CharField(_('acronym'), max_length=5, null=True, unique=True)
     area = models.ForeignKey('area.Area', on_delete=models.CASCADE, null=True)
     blockk = models.ForeignKey('area.Blockk', on_delete=models.CASCADE, null=True) 
 
