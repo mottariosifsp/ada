@@ -1,6 +1,6 @@
 from django.db import models
 from django.utils.translation import gettext_lazy as _
-from common.validator.validator import validate_acronym_length
+from common.validator.validator import convert_to_uppercase, validate_acronym_length
 
 class Area(models.Model):
     registration_area_id = models.CharField(_('registration area id'), max_length=20, unique=True)
@@ -20,6 +20,10 @@ class Area(models.Model):
 
     def get_blocks(self):
         return self.blocks.all()
+    
+    def clean(self):
+        super().clean()
+        convert_to_uppercase(self, 'name_area', 'acronym')
 
 class Blockk(models.Model):
     id = models.AutoField(primary_key=True, unique=True)
@@ -33,3 +37,7 @@ class Blockk(models.Model):
 
     def __str__(self):
         return self.name_block
+    
+    def clean(self):
+        super().clean()
+        convert_to_uppercase(self, 'name_block', 'acronym')

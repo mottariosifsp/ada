@@ -6,6 +6,15 @@ def validate_uppercase(value):
     if value != value.upper():
         raise ValidationError("Este campo deve conter apenas letras maiúsculas.")
     
+# validação subir pro banco com maiúscula
+def convert_to_uppercase(model, *fields):
+    print("babyshark")
+    for field in fields:
+        field_value = getattr(model, field)
+        print(field)
+        if field_value:
+            setattr(model, field, str(field_value).upper())
+    
 # validação tamanho da sigla
 def validate_acronym_length(value):
     if len(value) != 3:
