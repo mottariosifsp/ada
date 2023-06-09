@@ -3,7 +3,7 @@ from django.dispatch import receiver
 from common.processors import sort_by_time
 from enums import enum
 from django.utils.translation import gettext_lazy as _
-from common.validator.validator import validate_incongruity_time, validate_interrupted_time
+from common.validator.validator import convert_to_uppercase, validate_incongruity_time, validate_interrupted_time
 
 class Timetable(models.Model):
     day = models.CharField(_('day'), choices=[(s.name, s.value) for s in enum.Day], max_length=45)
