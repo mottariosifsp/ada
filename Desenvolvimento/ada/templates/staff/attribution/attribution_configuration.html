@@ -6,6 +6,7 @@
 <hr />
 <div class="card custom-card">
    <div class="card-body">
+    <form action="{% url 'attribution_configuration_confirm'}" method="POST">
       <div class="row">
          <div class="configuracoes col-6">
             <h4>configurações dos prazos</h4>
@@ -49,6 +50,7 @@
          </div>
       </div>
       <button class="btn btn-success btn-block mt-4">Salvar configurações</button>
-   </div>
+    </form>
+    </div>
 </div>
 {% endblock %}
