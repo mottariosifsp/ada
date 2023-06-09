@@ -1,5 +1,6 @@
 from django.db import models
 from django.utils.translation import gettext_lazy as _
+from common.processors import convert_to_uppercase
 from common.validator.validator import validate_acronym_length
     
 class Course(models.Model):
@@ -20,4 +21,9 @@ class Course(models.Model):
         self.save()
 
     def __str__(self):
-        return self.name_course
+        return self.name_course 
+    
+    def save(self, *args, **kwargs):
+        self.name_course = convert_to_uppercase(self.name_course)
+        self.acronym = convert_to_uppercase(self.acronym)
+        super().save(*args, **kwargs)
