@@ -1,0 +1,29 @@
+{% extends "professor/base.html" %}
+{% load i18n %}
+{% load static %}
+
+{% block head %}
+  <link rel="stylesheet" href="{% static 'attribution_preference/css/attribution_preference_courses.css' %}">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <title>{% translate "Envio Formulário de Preferência de Atividades" %}</title>
+{% endblock %}
+
+{% block body %}
+<section class="section dashboard">
+    <h1 class="title-page">Declaração de disponibilidade</h1>
+    <nav>
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="{% url 'home' %}"><i class="bi bi-house-door"></i></a></li>
+        <li class="breadcrumb-item active">Preferência Atribuição</li>
+        <li class="breadcrumb-item active" aria-current="page">Criar FPA</li>
+        <li class="breadcrumb-item active" aria-current="page">Editar Cursos</li>
+      </ol>
+    </nav>
+
+    
+  </section>
+{% endblock %}
+
+{% block endbody %}
+  <script src="{% static 'attribution_preference/js/preferred_courses.js' %}" data-lang={{LANGUAGE_CODE}}></script>
+{% endblock %}
