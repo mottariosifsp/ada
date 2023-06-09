@@ -27,8 +27,8 @@ $(document).ready(function() {
 
     if ($('#error-alert-form').is(':visible')) {
       $('#error-alert-form').hide();
-      $('label[for^="mon-"]').add('label[for^="tue-"]').add('label[for^="wed-"]').add('label[for^="thu-"]').add('label[for^="fri-"]').removeClass('disabled').removeAttr('aria-disabled');
-      $('input[type="checkbox"][id^="mon-"]').add('input[type="checkbox"][id^="tue-"]').add('input[type="checkbox"][id^="wed-"]').add('input[type="checkbox"][id^="thu-"]').add('input[type="checkbox"][id^="fri-"]').prop('disabled', false);
+      $('label[for^="mon-"]').add('label[for^="tue-"]').add('label[for^="wed-"]').add('label[for^="thu-"]').add('label[for^="fri-"]').add('label[for^="sat-"]').removeClass('disabled').removeAttr('aria-disabled');
+      $('input[type="checkbox"][id^="mon-"]').add('input[type="checkbox"][id^="tue-"]').add('input[type="checkbox"][id^="wed-"]').add('input[type="checkbox"][id^="thu-"]').add('input[type="checkbox"][id^="fri-"]').add('input[type="checkbox"][id^="sat-"]').prop('disabled', false);
     }
   });
 
@@ -80,8 +80,8 @@ $(document).ready(function() {
     if(time_left == 00) {
       $('#hour-regime').text("--");
       $('#min-regime').text("--");
-      $('label[for^="mon-"]').add('label[for^="tue-"]').add('label[for^="wed-"]').add('label[for^="thu-"]').add('label[for^="fri-"]').addClass('disabled').attr('aria-disabled', 'true');
-      $('input[type="checkbox"][id^="mon-"]').add('input[type="checkbox"][id^="tue-"]').add('input[type="checkbox"][id^="wed-"]').add('input[type="checkbox"][id^="thu-"]').add('input[type="checkbox"][id^="fri-"]').prop('disabled', true);
+      $('label[for^="mon-"]').add('label[for^="tue-"]').add('label[for^="wed-"]').add('label[for^="thu-"]').add('label[for^="fri-"]').add('label[for^="sat-"]').addClass('disabled').attr('aria-disabled', 'true');
+      $('input[type="checkbox"][id^="mon-"]').add('input[type="checkbox"][id^="tue-"]').add('input[type="checkbox"][id^="wed-"]').add('input[type="checkbox"][id^="thu-"]').add('input[type="checkbox"][id^="fri-"]').add('input[type="checkbox"][id^="sat-"]').prop('disabled', true);
 
       $('#error-message-form').text('Insira o regime de trabalho antes de continuar.');
       $('#error-alert-form').show();
@@ -96,29 +96,40 @@ $(document).ready(function() {
 
       if(is_checked) {
         time_left = (parseFloat(time_left) + 0.45).toFixed(2);
-        timeslots.pop();
+        var [objeto_elemento, dia_elemento] = input_val.split(',');
+        var [inicio, fim] = objeto_elemento.split('-');
+
+        var index = timeslots.findIndex(function(aula) {
+          return aula.hora_comeco === inicio;
+        });
+        
+        if (index !== -1) {
+          timeslots.splice(index, 1);
+        }
+
         transformar_hora();
         apresentar_hora();
       } else {
         var [objeto_elemento, dia_elemento] = input_val.split(',');
-
+        var [inicio, fim] = objeto_elemento.split('-');
         var aula = {
-          hora_começo: objeto_elemento,
+          hora_comeco: inicio,
+          hora_fim: fim,
           dia_semana: dia_elemento
         };
 
-        timeslots.push(aula);
+        timeslots.push(aula)
         atualizar_time_left(is_checked, 0.45);
-      }    
+      }
     }
   });
 
   // Area e disponibilidade
 
-  $('#campoInputArea').on('input', function() {
+  $('#campoInputBlock').on('input', function() {
     var valor_selecionado = $(this).val();
-    $('.turno').each(function() {
-      var turno = $(this).attr('id').replace('turno-', '');
+    $('.block').each(function() {
+      var block = $(this).attr('id').replace('block-', '');
       $(this).hide();
 
       var opcoes = $('#opcoes option').map(function() {
@@ -126,53 +137,45 @@ $(document).ready(function() {
       }).get();
 
       for (var i = 0; i < opcoes.length; i++) {
-        if (turno === opcoes[i]) {
+        if (block === opcoes[i]) {
           $(this).hide();
           break;
         }
       }
 
-      $('#turno-none').hide();
+      $('#block-none').hide();
     });
 
     if (valor_selecionado == '' || valor_selecionado == null || valor_selecionado.length < 3) {
-      $('#turno-none').show();
+      $('#block-none').show();
     }
 
-    $('#turno-' + valor_selecionado).show();
+    $('#block-' + valor_selecionado).show();
   });
 
-  // Validar e mostrar modal
-  function openModalIfValidated(inputId) {
-    var input_element = document.getElementById(inputId);
-    var is_validated = input_element.checked;
-
-    if (!is_validated && time_left ) {
-      $('#addCourseModal').modal('show');
-    }
-  }
-
-  var checkboxElements = document.querySelectorAll('.checkbox');
-  checkboxElements.forEach(function(checkbox) {
-    checkbox.addEventListener('click', function() {
-      var inputId = checkbox.getAttribute('for');
-      openModalIfValidated(inputId);
-    });
-  });
+  
 
   // Enviar formulário inteiro
-  $('#sendFPA').click(function() {
+  $('#sendDisponibility').click(function() {
     var work_regime =  $('input[name="regime"]:checked').val();
+    var jsonData = JSON.stringify(timeslots);
 
     let csrftoken = getCookie('csrftoken');
 
+    for (var time in timeslots) {
+      var aulaAtual = timeslots[time];
+      alert(aulaAtual.hora_comeco);
+      alert(aulaAtual.hora_fim);
+      alert(aulaAtual.dia_semana);
+    }
+
     if (work_regime && timeslots.length !== 0) {
       $.ajax({
-        type: 'POST',
-        url: 'professor/preferencia-atribuicao/ver-fpa/',
+        type: 'post',
+        url: '/' + lang + '/professor/preferencia-atribuicao/criar-fpa/editar-cursos/',
         data: {
           work_regime: work_regime,
-          work_timeslot: [...timeslots]
+          work_timeslots: jsonData
         },
         headers: {
           'X-CSRFToken': csrftoken
@@ -180,8 +183,7 @@ $(document).ready(function() {
         success: function(response) {
           $('input[name="regime"]:checked').prop('checked', false);
           $('#error-alert-form').hide();
-          alert("foi");
-          window.location.href = '/' + lang + '/professor/preferencia-atribuicao/ver-fpa/';
+          window.location.href = '/' + lang + '/professor/preferencia-atribuicao/criar-fpa/editar-cursos/'
         },
         error: function(xhr, status, error) {
           $('#error-message-form').text('Ocorreu um erro no envio de FPA.');

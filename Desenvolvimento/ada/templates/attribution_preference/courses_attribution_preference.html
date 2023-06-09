@@ -3,25 +3,24 @@
 {% load static %}
 
 {% block head %}
-  <link rel="stylesheet" href="{% static 'attribution_preference/css/attribution_preference.css' %}">
+  <link rel="stylesheet" href="{% static 'attribution_preference/css/attribution_preference_courses.css' %}">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
   <title>{% translate "Envio Formulário de Preferência de Atividades" %}</title>
 {% endblock %}
 
-
 {% block body %}
-  <section class="section dashboard">
+<section class="section dashboard">
     <h1 class="title-page">Declaração de disponibilidade</h1>
     <nav>
       <ol class="breadcrumb">
         <li class="breadcrumb-item"><a href="{% url 'home' %}"><i class="bi bi-house-door"></i></a></li>
         <li class="breadcrumb-item active">Preferência Atribuição</li>
         <li class="breadcrumb-item active" aria-current="page">Criar FPA</li>
-        <li class="breadcrumb-item active" aria-current="page">Editar Disponibilidade</li>
+        <li class="breadcrumb-item active" aria-current="page">Editar Cursos</li>
       </ol>
     </nav>
 
-    <form id="sendDisponibilityForm" method="post">
+    <form id="sendFPAForm" method="post">
       {% csrf_token %}
       <div id="error-alert-form" class="alert alert-danger" style="display: none;">
         <span id="error-message-form"></span>
@@ -71,10 +70,10 @@
             <div class="pr-2 pl-2">
               <h6>Filtrar bloco:</h6>
               <div class="input-group">
-                <input list="opcoes" id="campoInputBlock" class="form-control mb-4" placeholder="Selecione">
+                <input list="opcoes" required id="campoInputBlock" class="form-control mb-4" placeholder="Selecione">
                 <datalist id="opcoes">
                   {% for block in user_blocks %}
-                    <option value="{{ block.acronym }}">Nome: {{ block.name_block }}</option>
+                  <option value="{{ block.acronym }}">Nome: {{ block.name_block }}</option>
                   {% endfor %}
                 </datalist>
               </div>
@@ -94,11 +93,6 @@
                     <th class="text-center">Sabádo</th>
                   </tr>
                 </thead>
-                <tbody>
-                  <tr>
-                    <td id="block-none" class="td-block text-center align-middle" colspan="8">Selecione um bloco para acessar a disponibilidade de horários.</td>
-                  </tr>
-                </tbody>
                 {% for block in user_blocks %}
                   <tbody class="block" id="block-{{ block.acronym }}" style="display: none;">
                     {% for i in "MVN" %}
@@ -370,12 +364,12 @@
           </div>
         </div>
       </div>
-      <button type="button" class="btn btn-primary float-right mt-4 mb-5" name="sendDisponibility" id="sendDisponibility">Enviar Disponibilidade</button>
+      <button type="button" class="btn btn-primary float-right mt-4 mb-5" name="sendFPA" id="sendFPA">Enviar Disponibilidade</button>
       <button type="button" class="btn btn-danger float-right mt-4 mb-5 mr-2" name="cleanFPA" id="cleanFPA">Limpar Disponibilidade</button>
     </form>
   </section>
 {% endblock %}
 
 {% block endbody %}
-  <script src="{% static 'attribution_preference/js/preferred_availability.js' %}" data-lang={{LANGUAGE_CODE}}></script>
+  <script src="{% static 'attribution_preference/js/preferred_courses.js' %}" data-lang={{LANGUAGE_CODE}}></script>
 {% endblock %}
