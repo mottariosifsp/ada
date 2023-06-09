@@ -3,7 +3,10 @@ $(document).ready(function() {
     let table = new DataTable('#classes_list', {
         responsive: true
     });
-    $('.btn-warning').click(function() {
+
+    // Editar turma
+
+    $('.editClassBtn').click(function() {
         var row = $(this).closest('tr');
         var classData = {
             registration_class_id: row.find('td:eq(0)').text(),

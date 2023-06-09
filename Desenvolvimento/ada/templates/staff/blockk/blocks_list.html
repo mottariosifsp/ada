@@ -24,6 +24,7 @@
             <tbody>
                 {% csrf_token %}
                 {% for blockk in blocks %}
+                alert(blockk)
                     <!-- Lista -->
                         <tr>
                             <td>{{ blockk.registration_block_id }}</td>

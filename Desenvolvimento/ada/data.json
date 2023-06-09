@@ -67,6 +67,15 @@
         }
     },
     {
+        "model": "area.blockk",
+        "pk": 5,
+        "fields": {
+            "registration_block_id": "721165",
+            "name_block": "CIÊNCIAS DA NATUREZA",
+            "acronym": "NAT"
+        }
+    },
+    {
         "model": "classs.classs",
         "pk": 1,
         "fields": {
