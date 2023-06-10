@@ -117,22 +117,22 @@ $(document).ready(function() {
         var classData = {
             registration_class_id: row.find('td:eq(0)').text()
         };
+
         populateModal(classData);
         $('#confirmDeleteModal').modal('show');
+
         function populateModal(classData) {
             $('#registrationClassId').text(classData.registration_class_id);
         }
-
 
         $('#confirmDeleteModal').modal('show');
         $('#confirmDeleteModal').on('shown.bs.modal', function() {
             $('#registrationClassId').text(registrationClassId);
         });
-        console.log("funcionou o modal")
     
+        // Exclusão
         $('#confirmDeleteClassBtn').click(function() {
             let csrftoken = getCookie('csrftoken');
-            console.log("funcionou antes do ajax")
     
             $.ajax({
                 method: 'POST',
@@ -153,7 +153,6 @@ $(document).ready(function() {
             });
     
             $('#confirmDeleteModal').modal('hide');
-            console.log("funcionou o ajax")
         });
     });
 });
