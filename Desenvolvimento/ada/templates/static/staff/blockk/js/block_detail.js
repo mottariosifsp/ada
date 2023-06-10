@@ -95,14 +95,36 @@ $(document).ready(function() {
         $('#editCourseModal #acronym_update').val(courseData.acronym);
     }
 
+    // Deletar matéria
+
     $('.deleteCourseBtn').click(function(event) {
         event.preventDefault();
         var courseId = $(this).data('course-id');
+        var registrationCourseId = $(this).data('registration-course-id');
         var deleteUrl = '/staff/detalhes-bloco/deletar-materia';
 
-        if (confirm("Tem certeza que deseja deletar o curso?")) {
-            let csrftoken = getCookie('csrftoken');
+        // Modal confirmação
+        var row = $(this).closest('tr');
+        var classData = {
+            registration_course_id: row.find('td:eq(0)').text()
+        };
 
+        populateModal(classData);
+        $('#confirmDeleteCourseModal').modal('show');
+
+        function populateModal(classData) {
+            $('#registrationCourseId').text(classData.registration_course_id);
+        }
+
+        $('#confirmDeleteCourseModal').modal('show');
+        $('#confirmDeleteCourseModal').on('shown.bs.modal', function() {
+            $('#registrationCourseId').text(registrationCourseId);
+        });
+    
+        // Exclusão
+        $('#confirmDeleteCourseBtn').click(function() {
+            let csrftoken = getCookie('csrftoken');
+    
             $.ajax({
                 method: 'POST',
                 url: deleteUrl,
@@ -116,11 +138,13 @@ $(document).ready(function() {
                     location.reload();
                 },
                 error: function(xhr, status, error) {
-                    alert("Erro ao deletar o curso.");
+                    alert("Erro ao deletar a disciplina.");
                     console.error(error);
                 }
             });
-        }
+    
+            $('#confirmDeleteCourseModal').modal('hide');
+        });
     });
 
     function getCookie(name) {

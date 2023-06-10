@@ -8,22 +8,38 @@
     <script src="{% static 'staff/blockk/js/block_detail.js' %}" data-lang={{LANGUAGE_CODE}}></script>
 {% endblock %}
 
+
 {% block body %}
     {{ block.super }}
 
-<h1>Registration area id: {{ area.registration_area_id }}</h1>
-<h1>Nome: {{ area.name_area }}</h1>
-<h1>Acrônimo: {{ area.acronym }}</h1>
-<h1>Exchange area: {{ area.exchange_area }}</h1>
-<h1>Is high school: {{ area.is_high_school }}</h1>
-
-<button type="button" class="btn btn-success createCourseBtn"
-        data-toggle="modal" data-target="#createCourseModal">
-    Criar matéria
-</button>
+    <a href="{% url 'queue_create' %}"><button type="button" class="btn btn-success float-right createCourseBtn"> Criar fila </button></a>
+    <a href="{% url 'queue_show' %}"><button type="button" class="btn btn-success float-right createCourseBtn"> Ver fila </button></a>
 
 
-<div class="tabela">
+    <div class="container mb-4">
+        <div class="row">
+            <div class="col-md-12">
+                <h1>{{ blockk.name_block }}</h1>
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Detalhes</h5>
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item"><strong>Area:</strong> {{ area.name_area }}</li>
+                                <li class="list-group-item"><strong>Registration Area ID:</strong> {{ area.registration_area_id }}</li>
+                                <li class="list-group-item"><strong>Acrônimo:</strong> {{ area.acronym }}</li>
+                                <li class="list-group-item"><strong>Exchange Area:</strong> {{ area.exchange_area }}</li>
+                                <li class="list-group-item"><strong>Is High School:</strong> {{ area.is_high_school }}</li>
+                            </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>      
+
+    <button type="button" class="btn btn-success float-right createCourseBtn" data-toggle="modal" data-target="#createCourseModal"> Criar matéria </button>
+
+
+    <div class="tabela">
         <table class="table table-bordered editable" id="blocks_list">
             <thead>
                 <tr>
@@ -31,7 +47,6 @@
                     <th scope="col">Name</th>
                     <th scope="col">Acronym</th>
                     <th scope="col">Action</th>
-
                 </tr>
             </thead>
             <tbody>
@@ -44,13 +59,15 @@
                             <td>{{ course.acronym }}</td>
                             <td>
                                 <button type="button" data-toggle="modal" data-target="#editCourseModal" data-course-id="{{ course.id }}" data-counter="{{ counter }}" class="btn btn-warning editCourseBtn"><i class="bi bi-pencil"></i></button>
-                                <button type="button" class="btn btn-danger deleteCourseBtn" data-course-id="{{ course.id }}">Deletar</button>
+                                <button type="button" class="btn btn-danger deleteCourseBtn" data-course-id="{{ course.id }}" data-registration-course-id="{{ course.registration_course_id }}"><i class="bi bi-trash"></i></button>
                             </td>
                         </tr>
                 {% endfor %}
             </tbody>
         </table>
-</div>
+    </div>
+
+    <!-- Modal criação matéria -->
     <div class="modal fade" id="createCourseModal" tabindex="-1" role="dialog" aria-labelledby="createCourseModelLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
@@ -84,6 +101,8 @@
             </div>
         </div>
     </div>
+
+    <!-- Modal ediação turma -->
     <div class="modal fade" id="editCourseModal" tabindex="-1" role="dialog" aria-labelledby="edtCourseModelLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
@@ -117,4 +136,25 @@
             </div>
         </div>
     </div>
+
+    <!-- Modal confirmação deletar turma -->
+    <div class="modal fade" id="confirmDeleteCourseModal" tabindex="-1" role="dialog" aria-labelledby="confirmDeleteModalCourseLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="confirmDeleteModalCourseLabel">{% translate "Confirmar Exclusão" %}</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+                <p>{% translate "Tem certeza que quer deletar a disciplina" %} <span id="registrationCourseId"></span>?</p>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">{% translate "Cancelar" %}</button>
+              <button type="button" class="btn btn-danger" id="confirmDeleteCourseBtn">{% translate "Excluir" %}</a>
+            </div>
+          </div> 
+        </div>
+      </div>
 {% endblock %}
