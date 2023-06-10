@@ -255,7 +255,8 @@ def class_delete(request):
 @login_required
 @user_passes_test(is_staff)
 def blocks_list(request):
-    blocks = request.user.blocks.all()
+    blocks = Blockk.objects.all()
+
     return render(request, 'staff/blockk/blocks_list.html', {'blocks': blocks})
 
 @login_required
