@@ -34,20 +34,26 @@ def home(request):
 @login_required
 @user_passes_test(is_staff)
 def attribution_configuration_index(request):
-
-    return render(request, 'staff/attribution/attribution_configuration_index.html')
+    data = {
+        "blocks" : request.user.blocks.all()
+    }
+    return render(request, 'staff/attribution/attribution_configuration_index.html', data)
 
 @login_required
 @user_passes_test(is_staff)
 def attribution_configuration(request):
 
-    queue = TeacherQueuePosition.objects.all()
+    if request.method == 'GET':
+        blockk = Blockk.objects.get(registration_block_id=request.GET.get('blockk'))
+        print(request.GET.get('blockk'))
+        queue = TeacherQueuePosition.objects.filter(blockk=blockk)
 
-    data = {
-        'queue': queue,
-    }
+        data = {
+            'blockk': blockk,
+            'queue': queue,
+        }
 
-    return render(request, 'staff/attribution/attribution_configuration.html', data)
+        return render(request, 'staff/attribution/attribution_configuration.html', data)
 
 def attribution_configuration_confirm(request):
     return render(request, 'staff/attribution/attribution_configuration_confirm.html')
@@ -62,7 +68,6 @@ def deadline_configuration(request):
     }
 
     return render(request, 'staff/deadline/deadline_configuration.html', data)
-
 
 def confirm_deadline_configuration(request):
     if request.method == 'POST':
@@ -292,8 +297,6 @@ def queue_create(request):
 def queue(request):
     return render(request, 'attribution/queue.html')
 
-
-
 @user_passes_test(is_staff)
 def create_timetable(request):
     if request.method == 'GET':
@@ -307,6 +310,7 @@ def create_timetable(request):
         data = {
             'courses': selected_courses,
             'timeslots': Timeslot.objects.all().order_by('hour_start'),
+            'classes': Classs.objects.all(),
         }        
         return render(request, 'staff/timetable/register.html', data)
       
@@ -351,7 +355,6 @@ def create_timetable(request):
                     save_timetable(course, timeslot, selected_class, day)
                 else:
                     save_timetable(None, timeslot, selected_class, day)
-
         return JsonResponse({'erro': False, 'mensagem': message})
 
 def show_timetable(request):
@@ -371,8 +374,9 @@ def show_timetable(request):
     
 def save_timetable(course, timeslot, classs, day):
     if(Timetable.objects.filter(day=day, timeslot=timeslot, classs=classs).exists()):
-        Timetable.objects.filter(day=day, timeslot=timeslot, classs=classs).delete()
-    Timetable.objects.create(day=day, timeslot=timeslot, course=course, classs=classs)
+        Timetable.objects.filter(day=day, timeslot=timeslot, classs=classs).update(course=course)
+    else:
+        Timetable.objects.create(day=day, timeslot=timeslot, course=course, classs=classs)
 
 def timetables(request):
     
