@@ -4,6 +4,47 @@ $(document).ready(function() {
         responsive: true
     });
 
+    // Criar turma
+
+    $('.createClassBtn').click(function() {
+        $('#createClassModal').modal('show');
+    });
+    
+    $('#saveCreateBtn').click(function() {
+        var registration_class_id = $('#registration_class_id_create').val();
+        var period = $('#period_create').val();
+        var semester = $('#semester_create').val();
+        var area = $('#area_create').val();
+    
+        var data = {
+            registration_class_id: registration_class_id,
+            period: period,
+            semester: semester,
+            area: area
+        };
+    
+        let csrftoken = getCookie('csrftoken');
+    
+        // Enviar dados para o servidor via requisição AJAX
+        $.ajax({
+            method: 'POST',
+            url: '/staff/turmas/cadastrar/', 
+            data: data,
+            headers: {
+                'X-CSRFToken': csrftoken
+            },
+            success: function(response) {
+                location.reload();
+                console.log(response);
+                $('#createClassModal').modal('hide');
+            },
+            error: function(xhr, status, error) {
+                console.log(error);
+            }
+        });
+    });
+
+
     // Editar turma
 
     $('.editClassBtn').click(function() {
@@ -20,17 +61,17 @@ $(document).ready(function() {
     });
 
     function populateModal(classData) {
-        $('#editClassModal').find('#registration_class_id').val(classData.registration_class_id);
-        $('#editClassModal').find('#period').val(classData.period);
-        $('#editClassModal').find('#semester').val(classData.semester);
-        $('#editClassModal').find('#area').val(classData.area);
+        $('#editClassModal').find('#registration_class_id_edit').val(classData.registration_class_id);
+        $('#editClassModal').find('#period_edit').val(classData.period);
+        $('#editClassModal').find('#semester_edit').val(classData.semester);
+        $('#editClassModal').find('#area_edit').val(classData.area);
     }
 
     $('#saveUpdateClassBtn').click(function() {
-        var registration_class_id = $('#registration_class_id').val();
-        var period = $('#period').val();
-        var semester = $('#semester').val();
-        var area = $('#area').val();
+        var registration_class_id = $('#registration_class_id_edit').val();
+        var period = $('#period_edit').val();
+        var semester = $('#semester_edit').val();
+        var area = $('#area_edit').val();
         console.log("funcionou o botão")
         
         var data = {

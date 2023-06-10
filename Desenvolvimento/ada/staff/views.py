@@ -6,7 +6,7 @@ from enums import enum
 from django.db import transaction
 from django.http import HttpResponseRedirect, JsonResponse
 from django.views.decorators.http import require_http_methods
-from django.shortcuts import redirect, render
+from django.shortcuts import get_object_or_404, redirect, render
 from django.urls import reverse_lazy
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.decorators import user_passes_test
@@ -140,12 +140,14 @@ def save_deadline(data):
 
 # professor views
 
+@login_required
 @user_passes_test(is_staff)
 def professors_list(request):
     professors = User.objects.filter(is_superuser=False)
     return render(request, 'staff/professor/professors_list.html', {'professors': professors})
 
-
+@login_required
+@user_passes_test(is_staff)
 def update_save(request):
     if request.method == 'POST':
         print("funcionou o if")
@@ -178,6 +180,8 @@ def update_save(request):
 
 
 # class views
+
+@login_required
 @user_passes_test(is_staff)
 def classes_list(request):
     classes = Classs.objects.all()
@@ -188,7 +192,8 @@ def classes_list(request):
     ]
     return render(request, 'staff/classs/classes_list.html', {'classes': classes, 'periods': periods, 'areas': areas})
 
-
+@login_required
+@user_passes_test(is_staff)
 def classes_list_saved(request):
     if request.method == 'POST':
         print("funcionou o if")
@@ -212,15 +217,33 @@ def classes_list_saved(request):
 
         return JsonResponse({'message': 'Alterações salvas com sucesso.'})
 
+@login_required
+@user_passes_test(is_staff)
+def class_create(request):
+    if request.method == 'POST':
+        print("funcionou o if")
+        registration_class_id = request.POST.get('registration_class_id')
+        period = request.POST.get('period')
+        semester = request.POST.get('semester')
+        area_id = request.POST.get('area')
+
+        area = get_object_or_404(Area, id=area_id)
+
+        classs = Classs.objects.create(registration_class_id=registration_class_id, period=period, semester=semester, area=area)
+        classs.save()
+
+        return JsonResponse({'message': 'Turma criada com sucesso.'})
+
 
 # block views
+
 @login_required
 @user_passes_test(is_staff)
 def blocks_list(request):
     blocks = request.user.blocks.all()
     return render(request, 'staff/blockk/blocks_list.html', {'blocks': blocks})
 
-@user_passes_test(is_staff)
+@login_required
 @user_passes_test(is_staff)
 def block_detail(request, registration_block_id):
     blockk = Blockk.objects.get(registration_block_id=registration_block_id)
@@ -242,9 +265,9 @@ def course_create(request):
         block_id = request.POST.get('blockId')
 
         area = Area.objects.get(id=area_id)
-        block = Blockk.objects.get(id=block_id)
+        blockk = Blockk.objects.get(id=block_id)
 
-        course = Course.objects.create(registration_course_id=registration_course_id, name_course=name_course, acronym=acronym, area=area, blockk=block)
+        course = Course.objects.create(registration_course_id=registration_course_id, name_course=name_course, acronym=acronym, area=area, blockk=blockk)
         course.save()
 
         return JsonResponse({'message': 'Matéria criada com sucesso.'})
