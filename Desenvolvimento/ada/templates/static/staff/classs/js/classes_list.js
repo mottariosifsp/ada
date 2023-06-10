@@ -109,13 +109,24 @@ $(document).ready(function() {
     $('.deleteClassBtn').click(function(event) {
         event.preventDefault();
         var classId = $(this).data('class-id');
+        var registrationClassId = $(this).data('registration-class-id');
         var deleteUrl = '/staff/turmas/deletar/';
-        console.log("funcionou o botão")
-    
+
         // Modal confirmação
+        var row = $(this).closest('tr');
+        var classData = {
+            registration_class_id: row.find('td:eq(0)').text()
+        };
+        populateModal(classData);
+        $('#confirmDeleteModal').modal('show');
+        function populateModal(classData) {
+            $('#registrationClassId').text(classData.registration_class_id);
+        }
+
+
         $('#confirmDeleteModal').modal('show');
         $('#confirmDeleteModal').on('shown.bs.modal', function() {
-            $('#classId').text(classId);
+            $('#registrationClassId').text(registrationClassId);
         });
         console.log("funcionou o modal")
     

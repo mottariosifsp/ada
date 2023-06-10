@@ -33,7 +33,7 @@
                             <td>{{ classs.semester }}</td>
                             <td>{{ classs.area.name_area }} ({{ classs.area.acronym }})</td>
                             <td><button type="button" data-toggle="modal" data-target="#editClassModal" data-counter="{{ counter }}" class="btn btn-warning editClassBtn"><i class="bi bi-pencil"></i></button>
-                                <button type="button" class="btn btn-danger deleteClassBtn" data-class-id="{{ classs.id }}"><i class="bi bi-trash"></i></button></td>
+                                <button type="button" class="btn btn-danger deleteClassBtn" data-class-id="{{ classs.id }}" data-registration-class-id="{{ classs.registration_class_id }}"><i class="bi bi-trash"></i></button></td>
                         </tr>
                 {% endfor %}
             </tbody>
@@ -146,7 +146,7 @@
               </button>
             </div>
             <div class="modal-body">
-                <p>{% translate "Tem certeza que quer deletar a turma" %} <span id="classId"></span>?</p>
+                <p>{% translate "Tem certeza que quer deletar a turma" %} <span id="registrationClassId"></span>?</p>
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">{% translate "Cancelar" %}</button>
