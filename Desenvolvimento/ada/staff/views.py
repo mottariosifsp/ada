@@ -233,6 +233,21 @@ def class_create(request):
         classs.save()
 
         return JsonResponse({'message': 'Turma criada com sucesso.'})
+    
+@login_required
+@user_passes_test(is_staff)
+def class_delete(request):
+    if request.method == 'POST':
+        print("funcionou o if")
+        print('id')
+        print(request.POST.get('id'))
+        class_id = request.POST.get('id')
+        try:
+            classs = Classs.objects.get(id=class_id)
+            classs.delete()
+            return JsonResponse({'message': 'Turma deletada com sucesso!'})
+        except Course.DoesNotExist:
+            return JsonResponse({'message': 'A turma não existe.'}, status=404)
 
 
 # block views

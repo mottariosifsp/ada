@@ -103,6 +103,48 @@ $(document).ready(function() {
         });
         console.log("funcionou o ajax")
     });
+
+    // Deletar turma
+
+    $('.deleteClassBtn').click(function(event) {
+        event.preventDefault();
+        var classId = $(this).data('class-id');
+        var deleteUrl = '/staff/turmas/deletar/';
+        console.log("funcionou o botão")
+    
+        // Modal confirmação
+        $('#confirmDeleteModal').modal('show');
+        $('#confirmDeleteModal').on('shown.bs.modal', function() {
+            $('#classId').text(classId);
+        });
+        console.log("funcionou o modal")
+    
+        $('#confirmDeleteClassBtn').click(function() {
+            let csrftoken = getCookie('csrftoken');
+            console.log("funcionou antes do ajax")
+    
+            $.ajax({
+                method: 'POST',
+                url: deleteUrl,
+                headers: {
+                    'X-CSRFToken': csrftoken
+                },
+                data: {
+                    'id': classId
+                },
+                success: function(response) {
+                    location.reload();
+                },
+                error: function(xhr, status, error) {
+                    alert("Erro ao deletar a turma.");
+                    console.error(error);
+                }
+            });
+    
+            $('#confirmDeleteModal').modal('hide');
+            console.log("funcionou o ajax")
+        });
+    });
 });
 
 function getCookie(name) {

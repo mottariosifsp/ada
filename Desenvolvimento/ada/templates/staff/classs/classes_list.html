@@ -32,7 +32,8 @@
                             <td>{{ classs.period }}</td>
                             <td>{{ classs.semester }}</td>
                             <td>{{ classs.area.name_area }} ({{ classs.area.acronym }})</td>
-                            <td><button type="button" data-toggle="modal" data-target="#editClassModal" data-counter="{{ counter }}" class="btn btn-warning editClassBtn"><i class="bi bi-pencil"></i></button></td>
+                            <td><button type="button" data-toggle="modal" data-target="#editClassModal" data-counter="{{ counter }}" class="btn btn-warning editClassBtn"><i class="bi bi-pencil"></i></button>
+                                <button type="button" class="btn btn-danger deleteClassBtn" data-class-id="{{ classs.id }}"><i class="bi bi-trash"></i></button></td>
                         </tr>
                 {% endfor %}
             </tbody>
@@ -133,4 +134,25 @@
             </div>
         </div>
     </div>
+
+    <!-- Modal confirmação deletar turma -->
+    <div class="modal fade" id="confirmDeleteModal" tabindex="-1" role="dialog" aria-labelledby="confirmDeleteModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="confirmDeleteModalLabel">{% translate "Confirmar Exclusão" %}</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+                <p>{% translate "Tem certeza que quer deletar a turma" %} <span id="classId"></span>?</p>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">{% translate "Cancelar" %}</button>
+              <button type="button" class="btn btn-danger" id="confirmDeleteClassBtn">{% translate "Excluir" %}</a>
+            </div>
+          </div> 
+        </div>
+      </div>
 {% endblock %}
