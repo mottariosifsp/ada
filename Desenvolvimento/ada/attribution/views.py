@@ -1,4 +1,5 @@
 from area.models import Blockk
+from attribution.task import schedule_task
 from staff.models import Criteria, Deadline
 from timetable.models import Timetable, Timetable_user
 from user.models import User
@@ -9,6 +10,8 @@ from django.db.models import F, Sum, Value
 from django.db import transaction
 from django.utils import timezone
 from datetime import datetime, timezone
+
+TEMPO_LIMITE_SEGUNDOS = 10 
 
 marcador = 0
 tabela_data = ""
@@ -35,9 +38,9 @@ def get_selected_campo():
     else:
         return ""
 
-def add_teacher_to_queue(teacher, position_input):
+def add_teacher_to_queue(teacher, position_input, blockk):
     position = position_input
-    TeacherQueuePosition.objects.create(teacher=teacher, position=position)
+    TeacherQueuePosition.objects.create(teacher=teacher, position=position, blockk=blockk)
 
 # View que leva para a(s) fila(s) já definida pelo admin
 def queue(request):
@@ -71,7 +74,7 @@ def queueSetup(request):
     if request.method == 'POST': # adiciona os professores no model TeacherQueuePosition
         marcador = 1; # marcador fica como 1 para ter o controle que já foi criado uma tabela
         tabela_data = json.loads(request.POST['tabela_data'])
-
+        blockk = Blockk.objects.get(id=request.POST['blockk_id'])
         campo = get_selected_campo()
 
         for professorInQueue in tabela_data:
@@ -92,6 +95,8 @@ def queueSetup(request):
         return render(request, 'attribution/queueSetup.html', {'data': data})
 
     else: # se a requisição não for POST e for GET sem ter passado a área, ou seja, sem ter atualização no filtro da área, vai cair aqui
+        blockk = Blockk.objects.get(registration_block_id=request.GET.get('blockk'))
+        
         if marcador == 1:
             campo = get_selected_campo()
 
@@ -126,11 +131,12 @@ def queueSetup(request):
                             total_score = 0
                     user.total_score = total_score
                     usuarios_somados.append(user)
-
+            
             data = {
                 'resultados': final_list,
                 'campo': campo,
                 'total_score': usuarios_somados,
+                'blockk': blockk
             }
 
             return render(request, 'attribution/queueSetup.html', {'data': data})
@@ -149,8 +155,9 @@ def queueSetup(request):
                     'resultados': usuarios_ordenados,
                     'campo': campo,
                     'total_score': usuarios_somados,
+                    'blockk': blockk
                 }
-
+                
                 return render(request, 'attribution/queueSetup.html', {'data': data})
 
             else: # se o superadmin selecionou um critério que não tenha relação com nenhum atributo do histórico vai cair aqui
@@ -164,6 +171,7 @@ def queueSetup(request):
                     'resultados': usuarios_ordenados,
                     'campo': campo,
                     'total_score': usuarios_somados,
+                    'blockk': blockk
                 }
 
                 return render(request, 'attribution/queueSetup.html', {'data': data})
@@ -173,13 +181,57 @@ def queueSetup(request):
 
         usuarios_ordenados = User.objects.all()
         usuarios_somados = usuarios_ordenados.annotate(total_score=Sum('history__academic_degrees__punctuation'))
-
+        
         data = {
             'resultados': usuarios_ordenados,
             'campo': campo,
             'total_score': usuarios_somados,
+            'blockk': blockk
         }
 
         return render(request, 'attribution/queueSetup.html', {'data': data})
-    
+     
+def attribution(request):
 
+    blockk = Blockk.objects.get(registration_block_id=request.GET.get('blockk'))
+    queue = TeacherQueuePosition.objects.filter(blockk=blockk).order_by('position').all()
+    data = {
+        'queue' : queue,
+        'blockk': blockk
+    }
+    start_attribution(blockk)
+    return render(request, 'attribution/attribution.html', data)
+
+def start_attribution(blockk):
+    queue = TeacherQueuePosition.objects.filter(blockk=blockk).order_by('position').all()
+    for professor_in_queue in queue:
+        print(professor_in_queue.teacher.first_name) 
+        # attribution_process(blockk.timetable, professor_in_queue.teacher)
+
+def attribution_process(timetable, professor):
+    if validations(timetable, professor):
+        assign_timetable_professor(timetable, professor)
+        return True
+    else:
+        send_email(professor.email)   
+        schedule_task(TEMPO_LIMITE_SEGUNDOS, professor)     
+
+def send_email(professor_email):
+    print("Email enviado")
+
+def validations(timetable, professor):
+    if timetable.user is None:
+        return True
+    # future validations
+
+def assign_timetable_professor(timetable, professor):
+    Timetable_user.objects.filter(timetable=timetable).update(user=professor)
+
+def professor_to_end_queue(professor):
+
+    size_queue = TeacherQueuePosition.objects.count()
+    TeacherQueuePosition.objects.filter(teacher=professor).update(position=size_queue + 1)
+    for professor_in_queue in TeacherQueuePosition.objects.all():
+        professor_in_queue.position = F('position') - 1
+        professor_in_queue.save()
+        

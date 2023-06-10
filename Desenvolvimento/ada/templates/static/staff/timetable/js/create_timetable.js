@@ -32,9 +32,12 @@ $(document).ready(function() {
     
     for (let index = 0; index < 6; index++) {
       selected_courses[index] = $('.datalist'+index).map(function() {
+        console.log($(this).val());
         return $(this).val();
       }).get();        
     }
+
+    alert("for acabado");
     
     let csrftoken = getCookie('csrftoken');
       $.ajax({
@@ -56,7 +59,7 @@ $(document).ready(function() {
           } else {
             console.log(response);
             show_loading()
-            window.location.href = "/staff/grade/confirmar/?class="+$('#selected_class').text();            
+            window.location.href = "/staff/grade/ver/?class="+$('#selected_class').text();            
           }
         },
         error: function(xhr, status, error) {

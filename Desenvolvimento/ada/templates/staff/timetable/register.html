@@ -26,14 +26,16 @@
     <form method="GET">
       <div class="form-group mb-0">
         <div class="row">
-          <i class="fa fa-search"></i>
+          <i class="fa fa-search"></i>  
           <div class="col-sm-10">
-            <input list="classes" name="class" class="form-control" value="{{ request.GET.class }}" placeholder="Digite uma turma...">
-            <datalist id="classes">
-              {% for class in Classes %}
-              <option class="dropdown-item-class" value="{{ class.registration_class_id }}">
-              {% endfor %}
-            </datalist>
+            <div class="input-group">
+              <input list="classes" name="class" class="form-control" placeholder="Digite uma turma..." autocomplete="off">
+              <datalist id="classes">
+                {% for class in classes %}
+                  <option class="dropdown-item-class" value="{{ class.registration_class_id }}"> Area: {{ class.area }} </option>
+                {% endfor %}
+              </datalist>
+            </div>
           </div>
           <div class = "col-sm-2">
             <button class="btn btn-primary btn-block form-group" type="submit">FILTRAR</button>

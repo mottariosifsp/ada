@@ -1,0 +1,12 @@
+{% extends "professor/base.html" %} {% load i18n %} {% load static %} {% block head %}
+<title>{% translate "Configuração de atribuição" %}</title>
+<link rel="stylesheet" href="{% static 'staff/attribution/css/attribution_configuration.css' %}">
+{% endblock %} 
+{% block body %}
+
+  <h1>Escolha um bloco para configuar</h1>
+  <hr>
+  {% for block in blocks %}
+  <a type="button" id="return-button" class="btn btn-outline-primary btn-lg rounded-pill m-1" href="{% url 'attribution_configuration'%}?blockk={{block.registration_block_id}}"> {{ block.name_block }} </a>
+  {% endfor %}
+  {% endblock %}

@@ -8,7 +8,7 @@
 
 {% block body %}
     {{ block.super }}
-    <h1>Painel de configuração da atribuição de aulas</h1>
+    <h1>Painel de configuração da atribuição de aulas ( {{ blockk.name_block }} )</h1>
     <hr>
     <form method="post" action="{% url 'confirm_deadline_configuration' %}">
         {% csrf_token %}    
@@ -17,7 +17,7 @@
         <p>Fim: <input type="datetime-local" name="endFPADeadline"></p>
         <h2>Prazo para a atribuição de aulas</h2>
         <p>Início: <input type="datetime-local" name="startAssignmentDeadline"></p>
-        <p>Fim: <input type="datetime-local" name="endAssignmentDeadline"></p>
+    <p>Fim: <input type="datetime-local" name="endAssignmentDeadline"></p>
         <h2>Prazo para o período de permuta</h2>
         <p>Início: <input type="datetime-local" name="startExchangeDeadline"></p>
         <p>Fim: <input type="datetime-local" name="endExchangeDeadline"></p>

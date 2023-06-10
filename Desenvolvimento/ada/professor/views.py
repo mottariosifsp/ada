@@ -6,6 +6,10 @@ def is_not_staff(user):
     return not user.is_staff
 
 @login_required
-@user_passes_test(is_not_staff)
 def home(request):
-    return render(request, 'professor/home_professor.html')
+
+    data = {
+        'blockks': request.user.blocks.all()
+    }
+
+    return render(request, 'professor/home_professor.html', data)

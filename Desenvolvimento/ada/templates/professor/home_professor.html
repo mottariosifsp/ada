@@ -8,6 +8,9 @@
 {% block body %}
   <h1>{% translate "Login completo" %} - {% translate "HOME PAGE" %}</h1>
   <hr>
+  {% for block in blockks %}
+    <a type="button" id="return-button" class="btn btn-outline-primary btn-lg rounded-pill m-1" href="{% url 'attribution:attribution'%}?blockk={{block.registration_block_id}}"> {{ block.name_block }} </a>
+  {% endfor %}
   {% if user.is_superuser %}
   <div class="container d-flex align-items-center justify-content-center h-70" style="height: 70vh;">
     <div>

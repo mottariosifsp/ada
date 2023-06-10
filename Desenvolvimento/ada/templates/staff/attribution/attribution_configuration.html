@@ -6,7 +6,8 @@
 <hr />
 <div class="card custom-card">
    <div class="card-body">
-    <form action="{% url 'attribution_configuration_confirm'}" method="POST">
+    <form action="{% url 'attribution_configuration_confirm' %}" method="POST">
+      {% csrf_token %}  
       <div class="row">
          <div class="configuracoes col-6">
             <h4>configurações dos prazos</h4>
@@ -46,7 +47,7 @@
                   </tbody>
                </table>
             </div>
-            <a href="" class="btn btn-primary btn-block">Editar fila</a>
+            <a href="{% url 'attribution:queueSetup' %}?blockk={{blockk.registration_block_id}}" class="btn btn-primary btn-block">Editar fila</a>
          </div>
       </div>
       <button class="btn btn-success btn-block mt-4">Salvar configurações</button>
