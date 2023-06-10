@@ -11,7 +11,7 @@ from django.urls import reverse_lazy
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.decorators import user_passes_test
 from django.contrib.auth import get_user_model
-from attribution.views import queueSetup
+from attribution.views import queueSetup, queue
 from django.utils import timezone
 from timetable.models import Timeslot, Timetable
 from .models import Deadline
@@ -314,10 +314,9 @@ def course_delete(request):
         except Course.DoesNotExist:
             return JsonResponse({'message': 'O curso não existe.'}, status=404)
 
-# @login_required
-# @user_passes_test(is_staff)
+@login_required
+@user_passes_test(is_staff)
 def queue_create(request):
-
     response = queueSetup(request)
 
     if hasattr(response, 'render') and callable(response.render):
@@ -328,10 +327,14 @@ def queue_create(request):
 
 @login_required
 @user_passes_test(is_staff)
-def queue(request):
-    return render(request, 'attribution/queue.html')
+def queue_show(request):
+    response = queue(request)
 
+    if hasattr(response, 'render') and callable(response.render):
 
+        return response.render()
+
+    return response
 
 @user_passes_test(is_staff)
 def create_timetable(request):

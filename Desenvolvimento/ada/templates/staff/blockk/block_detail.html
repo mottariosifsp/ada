@@ -8,8 +8,14 @@
     <script src="{% static 'staff/blockk/js/block_detail.js' %}" data-lang={{LANGUAGE_CODE}}></script>
 {% endblock %}
 
+
 {% block body %}
     {{ block.super }}
+
+    <a href="{% url 'queue_create' %}"><button type="button" class="btn btn-success float-right createCourseBtn"> Criar fila </button></a>
+    <a href="{% url 'queue_show' %}"><button type="button" class="btn btn-success float-right createCourseBtn"> Ver fila </button></a>
+
+
     <div class="container mb-4">
         <div class="row">
             <div class="col-md-12">
