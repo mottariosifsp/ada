@@ -97,12 +97,13 @@ def queueSetup(request):
     else: # se a requisição não for POST e for GET sem ter passado a área, ou seja, sem ter atualização no filtro da área, vai cair aqui
         blockk = Blockk.objects.get(registration_block_id=request.GET.get('blockk'))
         
-        if marcador == 1:
+        if Timetable.objects.filter(blockk=blockk).exists(): # se já tiver uma tabela criada para a área selecionada
             campo = get_selected_campo()
 
             teacher_positions = TeacherQueuePosition.objects.order_by('position')
 
             all_users = User.objects.all()
+            
             missing_users = []
 
             for user in all_users:
@@ -190,6 +191,9 @@ def queueSetup(request):
         }
 
         return render(request, 'attribution/queueSetup.html', {'data': data})
+     
+
+
      
 def attribution(request):
 

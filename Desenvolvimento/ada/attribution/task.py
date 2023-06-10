@@ -3,13 +3,13 @@ from datetime import datetime, timedelta
 from time import sleep
 from celery import Celery, shared_task
 
-from attribution.views import professor_to_end_queue
+# from attribution.views import professor_to_end_queue
 
 app = Celery('tasks', broker='redis://localhost:6379')
 
 @app.task
 def times_up(professor):
-    professor_to_end_queue(professor)
+    # professor_to_end_queue(professor)
     return 
 
 def schedule_task(seconds, professor):
