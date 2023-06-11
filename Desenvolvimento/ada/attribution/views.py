@@ -41,6 +41,7 @@ def get_selected_campo():
 def add_teacher_to_queue(teacher, position_input, blockk):
     position = position_input
     TeacherQueuePosition.objects.create(teacher=teacher, position=position, blockk=blockk)
+    print(f'professor { teacher.first_name } adicionado na fila com a posição { position } no bloco { blockk }')
 
 # View que leva para a(s) fila(s) já definida pelo admin
 def queue(request):
@@ -72,9 +73,8 @@ def queueSetup(request):
     global tabela_data # variável utilizada caso a fila já tenha sido definida pelo menos uma vez pelo admin
 
     if request.method == 'POST': # adiciona os professores no model TeacherQueuePosition
-        marcador = 1; # marcador fica como 1 para ter o controle que já foi criado uma tabela
         tabela_data = json.loads(request.POST['tabela_data'])
-        blockk = Blockk.objects.get(id=request.POST['blockk_id'])
+        blockk = Blockk.objects.get(registration_block_id=request.POST['blockk_id'])
         campo = get_selected_campo()
 
         for professorInQueue in tabela_data:
@@ -82,10 +82,10 @@ def queueSetup(request):
             position = professorInQueue[0]
             professor = User.objects.get(registration_id=professor_registration_id)
 
-            if TeacherQueuePosition.objects.filter(teacher=professor).exists():
+            if TeacherQueuePosition.objects.filter(teacher=professor, blockk=blockk).exists():
                 TeacherQueuePosition.objects.filter(teacher=professor).update(position=position)
             else:
-                add_teacher_to_queue(professor, position)
+                add_teacher_to_queue(professor, position, blockk)
 
         data = {
             'resultados': TeacherQueuePosition.objects.select_related('teacher').order_by('position').all(),
@@ -97,10 +97,10 @@ def queueSetup(request):
     else: # se a requisição não for POST e for GET sem ter passado a área, ou seja, sem ter atualização no filtro da área, vai cair aqui
         blockk = Blockk.objects.get(registration_block_id=request.GET.get('blockk'))
         
-        if Timetable.objects.filter(blockk=blockk).exists(): # se já tiver uma tabela criada para a área selecionada
+        if TeacherQueuePosition.objects.filter(blockk=blockk).exists(): # se já tiver uma tabela criada para a área selecionada
             campo = get_selected_campo()
 
-            teacher_positions = TeacherQueuePosition.objects.order_by('position')
+            teacher_positions = TeacherQueuePosition.objects.filter(blockk=blockk).order_by('position')
 
             all_users = User.objects.all()
             
@@ -108,7 +108,9 @@ def queueSetup(request):
 
             for user in all_users:
                 if not teacher_positions.filter(teacher=user).exists():
-                    missing_users.append(user)
+                    if user.is_professor:
+                        if user.blocks.filter(registration_block_id=blockk.registration_block_id).exists(): 
+                            missing_users.append(user)
 
                 final_list = list(teacher_positions) + missing_users
 
@@ -132,7 +134,6 @@ def queueSetup(request):
                             total_score = 0
                     user.total_score = total_score
                     usuarios_somados.append(user)
-            
             data = {
                 'resultados': final_list,
                 'campo': campo,
@@ -147,7 +148,7 @@ def queueSetup(request):
 
             if campo != "":
 
-                usuarios_ordenados = User.objects.all().order_by(f'history__{campo}')
+                usuarios_ordenados = User.objects.filter(is_professor=True,blocks=blockk).order_by(f'history__{campo}')
 
                 # Faz a soma dos academic degrees para cada usuário
                 usuarios_somados = usuarios_ordenados.annotate(total_score=Sum('history__academic_degrees__punctuation'))
@@ -164,10 +165,9 @@ def queueSetup(request):
             else: # se o superadmin selecionou um critério que não tenha relação com nenhum atributo do histórico vai cair aqui
                   # fazer exception?
 
-                usuarios_ordenados = User.objects.all()
+                usuarios_ordenados = User.objects.filter(is_professor=True,blocks=blockk).all()
 
                 usuarios_somados = usuarios_ordenados.annotate(total_score=Sum('history__academic_degrees__punctuation'))
-
                 data = {
                     'resultados': usuarios_ordenados,
                     'campo': campo,
@@ -190,10 +190,7 @@ def queueSetup(request):
             'blockk': blockk
         }
 
-        return render(request, 'attribution/queueSetup.html', {'data': data})
-     
-
-
+        return render(request, 'attribution/queueSetup.html', {'data': data})  
      
 def attribution(request):
 

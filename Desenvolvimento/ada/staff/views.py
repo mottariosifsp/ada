@@ -393,8 +393,9 @@ def create_timetable(request):
     if request.method == 'POST':
         message = ""
         selected_courses = json.loads(request.POST.get('selected_courses'))
+        
         try:
-            selected_class = Classs.objects.get(registration_class_id__exact=(json.loads(request.POST.get('selected_class'))))
+            selected_class = Classs.objects.get(registration_class_id__exact=(request.POST.get('selected_class')))
         except Classs.DoesNotExist:
             message = "Selecione uma turma válida"
             return JsonResponse({'erro': True, 'mensagem': message})    

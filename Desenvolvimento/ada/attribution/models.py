@@ -1,3 +1,4 @@
+from django.dispatch import receiver
 from area.models import Blockk
 from user.models import User
 from django.db import models
@@ -14,3 +15,14 @@ class TeacherQueuePosition(models.Model):
     def clean(self):
         if self.position <= 0:
             raise ValidationError("Deve ser maior que 0")
+    
+@receiver(models.signals.pre_save, sender=User)
+def on_change(sender, instance, **kwargs): 
+
+    old_instance = sender.objects.get(pk=instance.pk)
+    print("antigo: " + str(old_instance.is_professor))
+    print("novo: " + str(instance.is_professor))
+    
+    if old_instance.is_professor and not instance.is_professor:
+        TeacherQueuePosition.objects.filter(teacher=instance).delete()
+        print("deletou")
