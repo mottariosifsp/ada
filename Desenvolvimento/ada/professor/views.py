@@ -2,10 +2,12 @@ from django.shortcuts import render
 from django.contrib.auth.decorators import user_passes_test
 from django.contrib.auth.decorators import login_required
 
+from django.utils.decorators import method_decorator
+
 def is_not_staff(user):
     return not user.is_staff
 
-@login_required
+@method_decorator(login_required)
 def home(request):
 
     data = {

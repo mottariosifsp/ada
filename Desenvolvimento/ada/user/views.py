@@ -1,6 +1,7 @@
 from multiprocessing import AuthenticationError
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import get_user_model
+from django.utils.decorators import method_decorator
 from django.shortcuts import render
 from user.models import User
 
@@ -12,7 +13,7 @@ def login(request):
     
     return render(request, 'login.html', {'form': form})
 
-@login_required
+@method_decorator(login_required)
 def home(request):
     if request.user.is_staff:
         return render(request, "staff/home_staff.html")

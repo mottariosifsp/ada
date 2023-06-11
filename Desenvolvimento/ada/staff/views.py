@@ -8,7 +8,6 @@ from django.http import HttpResponseRedirect, JsonResponse
 from django.views.decorators.http import require_http_methods
 from django.shortcuts import get_object_or_404, redirect, render
 from django.urls import reverse_lazy
-from django.contrib.auth.decorators import login_required
 from django.contrib.auth.decorators import user_passes_test
 from django.contrib.auth import get_user_model
 from attribution.views import queueSetup, queue
@@ -21,6 +20,7 @@ from course.models import Course
 from user.models import User, History
 from .models import Deadline
 
+from django.contrib.auth.decorators import login_required
 
 def is_staff(user):
     return user.is_staff
@@ -393,9 +393,8 @@ def create_timetable(request):
     if request.method == 'POST':
         message = ""
         selected_courses = json.loads(request.POST.get('selected_courses'))
-        
         try:
-            selected_class = Classs.objects.get(registration_class_id__exact=(request.POST.get('selected_class')))
+            selected_class = Classs.objects.get(registration_class_id__exact=(json.loads(request.POST.get('selected_class'))))
         except Classs.DoesNotExist:
             message = "Selecione uma turma válida"
             return JsonResponse({'erro': True, 'mensagem': message})    

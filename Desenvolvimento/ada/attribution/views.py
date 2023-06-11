@@ -11,6 +11,8 @@ from django.db import transaction
 from django.utils import timezone
 from datetime import datetime, timezone
 
+from django.utils.decorators import method_decorator
+
 TEMPO_LIMITE_SEGUNDOS = 10 
 
 marcador = 0
