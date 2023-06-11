@@ -450,8 +450,7 @@ def show_timetable(request):
 
     return render(request, 'staff/timetable/show_timetable.html', data)
 
-@login_required
-@user_passes_test(is_staff)
+
 def save_timetable(course, timeslot, classs, day):
     if(Timetable.objects.filter(day=day, timeslot=timeslot, classs=classs).exists()):
         Timetable.objects.filter(day=day, timeslot=timeslot, classs=classs).update(course=course)
