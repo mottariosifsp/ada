@@ -16,13 +16,13 @@ class TeacherQueuePosition(models.Model):
         if self.position <= 0:
             raise ValidationError("Deve ser maior que 0")
     
-@receiver(models.signals.pre_save, sender=User)
-def on_change(sender, instance, **kwargs): 
+# @receiver(models.signals.pre_save, sender=User)
+# def on_change(sender, instance, **kwargs): 
 
-    old_instance = sender.objects.get(pk=instance.pk)
-    print("antigo: " + str(old_instance.is_professor))
-    print("novo: " + str(instance.is_professor))
+    # old_instance = sender.objects.get(pk=instance.pk)
+    # print("antigo: " + str(old_instance.is_professor))
+    # print("novo: " + str(instance.is_professor))
     
-    if old_instance.is_professor and not instance.is_professor:
-        TeacherQueuePosition.objects.filter(teacher=instance).delete()
-        print("deletou")
+    # if old_instance.is_professor and not instance.is_professor:
+    #     TeacherQueuePosition.objects.filter(teacher=instance).delete()
+    #     print("deletou")
