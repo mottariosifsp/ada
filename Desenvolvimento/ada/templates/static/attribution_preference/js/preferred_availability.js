@@ -16,6 +16,7 @@ $(document).ready(function() {
       $('#cel-regime').text(this_duracao);
       cel_left = this_duracao
       type_cel = 40;
+      cel_final = "not_checked"
       $('.checkbox input[type="checkbox"]').prop('checked', false);
       $('label.checkbox').removeClass('active');
       timeslots = []
@@ -24,6 +25,7 @@ $(document).ready(function() {
       $('#cel-regime').text(this_duracao);
       cel_left = this_duracao
       type_cel = 20;
+      cel_final = "not_checked"
       $('.checkbox input[type="checkbox"]').prop('checked', false);
       $('label.checkbox').removeClass('active');
       timeslots = []
@@ -87,6 +89,8 @@ $(document).ready(function() {
           });
           cel_final = "not_checked"
           cel_left += 1
+
+          $('#error-alert-form').hide();
         }
 
         var index = timeslots.findIndex(function(aula) {
@@ -119,32 +123,32 @@ $(document).ready(function() {
 
   // Area e disponibilidade
 
-  $('#campoInputBlock').on('input', function() {
-    var valor_selecionado = $(this).val();
-    $('.block').each(function() {
-      var block = $(this).attr('id').replace('block-', '');
-      $(this).hide();
+  // $('#campoInputBlock').on('input', function() {
+  //   var valor_selecionado = $(this).val();
+  //   $('.block').each(function() {
+  //     var block = $(this).attr('id').replace('block-', '');
+  //     $(this).hide();
 
-      var opcoes = $('#opcoes option').map(function() {
-        return $(this).val();
-      }).get();
+  //     var opcoes = $('#opcoes option').map(function() {
+  //       return $(this).val();
+  //     }).get();
 
-      for (var i = 0; i < opcoes.length; i++) {
-        if (block === opcoes[i]) {
-          $(this).hide();
-          break;
-        }
-      }
+  //     for (var i = 0; i < opcoes.length; i++) {
+  //       if (block === opcoes[i]) {
+  //         $(this).hide();
+  //         break;
+  //       }
+  //     }
 
-      $('#block-none').hide();
-    });
+  //     $('#block-none').hide();
+  //   });
 
-    if (valor_selecionado == '' || valor_selecionado == null || valor_selecionado.length < 3) {
-      $('#block-none').show();
-    }
+  //   if (valor_selecionado == '' || valor_selecionado == null || valor_selecionado.length < 3) {
+  //     $('#block-none').show();
+  //   }
 
-    $('#block-' + valor_selecionado).show();
-  });
+  //   $('#block-' + valor_selecionado).show();
+  // });
 
   
 
@@ -154,13 +158,6 @@ $(document).ready(function() {
     var jsonData = JSON.stringify(timeslots);
 
     let csrftoken = getCookie('csrftoken');
-
-    // for (var time in timeslots) {
-    //   var aulaAtual = timeslots[time];
-    //   alert(aulaAtual.hora_comeco);
-    //   alert(aulaAtual.hora_fim);
-    //   alert(aulaAtual.dia_semana);
-    // }
 
     if (work_regime && timeslots.length !== 0) {
       $.ajax({
@@ -226,6 +223,12 @@ function atualizar_cel_left(is_checked) {
             $(this).prop('disabled', true);
             $('label[for="' + $(this).attr('id') + '"]').addClass('disabled').attr('aria-disabled', 'true');
           }
+        });
+        $('#error-message-form').text('Você atingiu seu limite de disponibilidade.');
+        $('#error-alert-form').show();
+        window.scrollTo({
+          top: $('#error-alert-form').offset().top - $('.navbar').outerHeight() - 30,
+          behavior: 'smooth'
         });
         cel_final = "checked";
       } else {

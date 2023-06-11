@@ -28,13 +28,8 @@ input[type="checkbox"]:checked + .check{
   color: #2f7363;
   align-items: center;
 }
-.min-cel {
-  color: #732f46;
-}
-.max-cel {
-  color: #2f3a73;
-}
-.cel, .cel-type {
+
+.cel {
   font-size: 12pt;
   color: #2f7363;
 }

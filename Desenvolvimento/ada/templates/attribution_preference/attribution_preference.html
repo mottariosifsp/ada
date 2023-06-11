@@ -4,7 +4,6 @@
 
 {% block head %}
   <link rel="stylesheet" href="{% static 'attribution_preference/css/attribution_preference.css' %}">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
   <title>{% translate "Envio Formulário de Preferência de Atividades" %}</title>
 {% endblock %}
 
@@ -67,40 +66,23 @@
         <div class="card-body">
           <div id="work-availability">
             <h4>Disponibilidade de horários</h4>
-            <hr>
-            <div class="pr-2 pl-2">
-              <h6>Filtrar bloco:</h6>
-              <div class="input-group">
-                <input list="opcoes" id="campoInputBlock" class="form-control mb-4" placeholder="Selecione">
-                <datalist id="opcoes">
-                  {% for block in user_blocks %}
-                    <option value="{{ block.acronym }}">Nome: {{ block.name_block }}</option>
-                  {% endfor %}
-                </datalist>
-              </div>
-            </div>                 
+            <hr> 
             
             <div class="table-responsive">
               <table class="table table-bordered table-sm text-center">
                 <thead>
                   <tr>
-                    <th class="text-center align-middle">Turno</th>
-                    <th class="text-center align-middle">Horários</th>
-                    <th class="text-center">Segunda-Feira</th>
-                    <th class="text-center">Terça-Feira</th>
-                    <th class="text-center">Quarta-Feira</th>
-                    <th class="text-center">Quinta-Feira</th>
-                    <th class="text-center">Sexta-Feira</th>
-                    <th class="text-center">Sabádo</th>
+                    <th class="col-1 text-center align-middle">Turno</th>
+                    <th class="col-2 text-center align-middle">Horários</th>
+                    <th class=" text-center">Segunda-Feira</th>
+                    <th class=" text-center">Terça-Feira</th>
+                    <th class=" text-center">Quarta-Feira</th>
+                    <th class=" text-center">Quinta-Feira</th>
+                    <th class=" text-center">Sexta-Feira</th>
+                    <th class=" text-center">Sabádo</th>
                   </tr>
                 </thead>
-                <tbody>
-                  <tr>
-                    <td id="block-none" class="td-block text-center align-middle" colspan="8">Selecione um bloco para acessar a disponibilidade de horários.</td>
-                  </tr>
-                </tbody>
-                {% for block in user_blocks %}
-                  <tbody class="block" id="block-{{ block.acronym }}" style="display: none;">
+                  <tbody class="block" >
                     {% for i in "MVN" %}
                       {% if i == "M" %}
                         <td class="text-center align-middle" rowspan='{{ turno.matutinoAulas }}'>Matutino</td>
@@ -111,8 +93,8 @@
                             <td class="text-center">
                               <div class="openModalBtn">
                                 <div class="btn-group-toggle" data-toggle="buttons">
-                                  <label class="btn btn-success w-100 checkbox" for="mon-mat-{{ forloop.counter }}-{{ block.acronym }}">
-                                    <input type="checkbox" id="mon-mat-{{ forloop.counter }}-{{ block.acronym }}" 
+                                  <label class="btn btn-success w-100 checkbox" for="mon-mat-{{ forloop.counter }}">
+                                    <input type="checkbox" id="mon-mat-{{ forloop.counter }}" 
                                       value="{{ horario.hour_start }}-{{ horario.hour_end }},mon" 
                                       autocomplete="off">
                                     <i class="fas fa-check-circle check"></i>
@@ -124,8 +106,8 @@
                             <td class="text-center">
                               <div class="openModalBtn">
                                 <div class="btn-group-toggle" data-toggle="buttons">
-                                  <label class="btn btn-success w-100 checkbox" for="tue-mat-{{ forloop.counter }}-{{ block.acronym }}">
-                                    <input type="checkbox" id="tue-mat-{{ forloop.counter }}-{{ block.acronym }}" 
+                                  <label class="btn btn-success w-100 checkbox" for="tue-mat-{{ forloop.counter }}">
+                                    <input type="checkbox" id="tue-mat-{{ forloop.counter }}" 
                                       value="{{ horario.hour_start }}-{{ horario.hour_end }},tue" 
                                       autocomplete="off">
                                     <i class="fas fa-check-circle check"></i>
@@ -137,8 +119,8 @@
                             <td class="text-center">
                               <div class="openModalBtn">
                                 <div class="btn-group-toggle" data-toggle="buttons">
-                                  <label class="btn btn-success w-100 checkbox" for="wed-mat-{{ forloop.counter }}-{{ block.acronym }}">
-                                    <input type="checkbox" id="wed-mat-{{ forloop.counter }}-{{ block.acronym }}" 
+                                  <label class="btn btn-success w-100 checkbox" for="wed-mat-{{ forloop.counter }}">
+                                    <input type="checkbox" id="wed-mat-{{ forloop.counter }}" 
                                       value="{{ horario.hour_start }}-{{ horario.hour_end }},wed" 
                                       autocomplete="off">
                                     <i class="fas fa-check-circle check"></i>
@@ -150,8 +132,8 @@
                             <td class="text-center">
                               <div class="openModalBtn">
                                 <div class="btn-group-toggle" data-toggle="buttons">
-                                  <label class="btn btn-success w-100 checkbox" for="thu-mat-{{ forloop.counter }}-{{ block.acronym }}">
-                                    <input type="checkbox" id="thu-mat-{{ forloop.counter }}-{{ block.acronym }}" 
+                                  <label class="btn btn-success w-100 checkbox" for="thu-mat-{{ forloop.counter }}">
+                                    <input type="checkbox" id="thu-mat-{{ forloop.counter }}" 
                                       value="{{ horario.hour_start }}-{{ horario.hour_end }},thu" 
                                       autocomplete="off">
                                     <i class="fas fa-check-circle check"></i>
@@ -163,8 +145,8 @@
                             <td class="text-center">
                               <div class="openModalBtn">
                                 <div class="btn-group-toggle" data-toggle="buttons">
-                                  <label class="btn btn-success w-100 checkbox" for="fri-mat-{{ forloop.counter }}-{{ block.acronym }}">
-                                    <input type="checkbox" id="fri-mat-{{ forloop.counter }}-{{ block.acronym }}" 
+                                  <label class="btn btn-success w-100 checkbox" for="fri-mat-{{ forloop.counter }}">
+                                    <input type="checkbox" id="fri-mat-{{ forloop.counter }}" 
                                       value="{{ horario.hour_start }}-{{ horario.hour_end }},fri" 
                                       autocomplete="off">
                                     <i class="fas fa-check-circle check"></i>
@@ -176,8 +158,8 @@
                             <td class="text-center">
                               <div class="openModalBtn">
                                 <div class="btn-group-toggle" data-toggle="buttons">
-                                  <label class="btn btn-success w-100 checkbox" for="sat-mat-{{ forloop.counter }}-{{ block.acronym }}">
-                                    <input type="checkbox" id="sat-mat-{{ forloop.counter }}-{{ block.acronym }}" 
+                                  <label class="btn btn-success w-100 checkbox" for="sat-mat-{{ forloop.counter }}">
+                                    <input type="checkbox" id="sat-mat-{{ forloop.counter }}" 
                                       value="{{ horario.hour_start }}-{{ horario.hour_end }},sat" 
                                       autocomplete="off">
                                     <i class="fas fa-check-circle check"></i>
@@ -198,8 +180,8 @@
                             <td class="text-center">
                               <div class="openModalBtn">
                                 <div class="btn-group-toggle" data-toggle="buttons">
-                                  <label class="btn btn-success w-100 checkbox" for="mon-ves-{{ forloop.counter }}-{{ block.acronym }}">
-                                    <input type="checkbox" id="mon-ves-{{ forloop.counter }}-{{ block.acronym }}" 
+                                  <label class="btn btn-success w-100 checkbox" for="mon-ves-{{ forloop.counter }}">
+                                    <input type="checkbox" id="mon-ves-{{ forloop.counter }}" 
                                       value="{{ horario.hour_start }}-{{ horario.hour_end }},mon" 
                                       autocomplete="off">
                                     <i class="fas fa-check-circle check"></i>
@@ -211,8 +193,8 @@
                             <td class="text-center">
                               <div class="openModalBtn">
                                 <div class="btn-group-toggle" data-toggle="buttons">
-                                  <label class="btn btn-success w-100 checkbox" for="tue-ves-{{ forloop.counter }}-{{ block.acronym }}">
-                                    <input type="checkbox" id="tue-ves-{{ forloop.counter }}-{{ block.acronym }}" 
+                                  <label class="btn btn-success w-100 checkbox" for="tue-ves-{{ forloop.counter }}">
+                                    <input type="checkbox" id="tue-ves-{{ forloop.counter }}" 
                                       value="{{ horario.hour_start }}-{{ horario.hour_end }},tue" 
                                       autocomplete="off">
                                     <i class="fas fa-check-circle check"></i>
@@ -224,8 +206,8 @@
                             <td class="text-center">
                               <div class="openModalBtn">
                                 <div class="btn-group-toggle" data-toggle="buttons">
-                                  <label class="btn btn-success w-100 checkbox" for="wed-ves-{{ forloop.counter }}-{{ block.acronym }}">
-                                    <input type="checkbox" id="wed-ves-{{ forloop.counter }}-{{ block.acronym }}" 
+                                  <label class="btn btn-success w-100 checkbox" for="wed-ves-{{ forloop.counter }}">
+                                    <input type="checkbox" id="wed-ves-{{ forloop.counter }}" 
                                       value="{{ horario.hour_start }}-{{ horario.hour_end }},wed" 
                                       autocomplete="off">
                                     <i class="fas fa-check-circle check"></i>
@@ -237,8 +219,8 @@
                             <td class="text-center">
                               <div class="openModalBtn">
                                 <div class="btn-group-toggle" data-toggle="buttons">
-                                  <label class="btn btn-success w-100 checkbox" for="thu-ves-{{ forloop.counter }}-{{ block.acronym }}">
-                                    <input type="checkbox" id="thu-ves-{{ forloop.counter }}-{{ block.acronym }}" 
+                                  <label class="btn btn-success w-100 checkbox" for="thu-ves-{{ forloop.counter }}">
+                                    <input type="checkbox" id="thu-ves-{{ forloop.counter }}" 
                                       value="{{ horario.hour_start }}-{{ horario.hour_end }},thu" 
                                       autocomplete="off">
                                     <i class="fas fa-check-circle check"></i>
@@ -250,8 +232,8 @@
                             <td class="text-center">
                               <div class="openModalBtn">
                                 <div class="btn-group-toggle" data-toggle="buttons">
-                                  <label class="btn btn-success w-100 checkbox" for="fri-ves-{{ forloop.counter }}-{{ block.acronym }}">
-                                    <input type="checkbox" id="fri-ves-{{ forloop.counter }}-{{ block.acronym }}" 
+                                  <label class="btn btn-success w-100 checkbox" for="fri-ves-{{ forloop.counter }}">
+                                    <input type="checkbox" id="fri-ves-{{ forloop.counter }}" 
                                       value="{{ horario.hour_start }}-{{ horario.hour_end }},fri" 
                                       autocomplete="off">
                                     <i class="fas fa-check-circle check"></i>
@@ -263,8 +245,8 @@
                             <td class="text-center">
                               <div class="openModalBtn">
                                 <div class="btn-group-toggle" data-toggle="buttons">
-                                  <label class="btn btn-success w-100 checkbox" for="sat-ves-{{ forloop.counter }}-{{ block.acronym }}">
-                                    <input type="checkbox" id="sat-ves-{{ forloop.counter }}-{{ block.acronym }}" 
+                                  <label class="btn btn-success w-100 checkbox" for="sat-ves-{{ forloop.counter }}">
+                                    <input type="checkbox" id="sat-ves-{{ forloop.counter }}" 
                                       value="{{ horario.hour_start }}-{{ horario.hour_end }},sat" 
                                       autocomplete="off">
                                     <i class="fas fa-check-circle check"></i>
@@ -285,8 +267,8 @@
                             <td class="text-center">
                               <div class="openModalBtn">
                                 <div class="btn-group-toggle" data-toggle="buttons">
-                                  <label class="btn btn-success w-100 checkbox" for="mon-not-{{ forloop.counter }}-{{ block.acronym }}">
-                                    <input type="checkbox" id="mon-not-{{ forloop.counter }}-{{ block.acronym }}" 
+                                  <label class="btn btn-success w-100 checkbox" for="mon-not-{{ forloop.counter }}">
+                                    <input type="checkbox" id="mon-not-{{ forloop.counter }}" 
                                       value="{{ horario.hour_start }}-{{ horario.hour_end }},mon" 
                                       autocomplete="off">
                                     <i class="fas fa-check-circle check"></i>
@@ -298,8 +280,8 @@
                             <td class="text-center">
                               <div class="openModalBtn">
                                 <div class="btn-group-toggle" data-toggle="buttons">
-                                  <label class="btn btn-success w-100 checkbox" for="tue-not-{{ forloop.counter }}-{{ block.acronym }}">
-                                    <input type="checkbox" id="tue-not-{{ forloop.counter }}-{{ block.acronym }}" 
+                                  <label class="btn btn-success w-100 checkbox" for="tue-not-{{ forloop.counter }}">
+                                    <input type="checkbox" id="tue-not-{{ forloop.counter }}" 
                                       value="{{ horario.hour_start }}-{{ horario.hour_end }},tue" 
                                       autocomplete="off">
                                     <i class="fas fa-check-circle check"></i>
@@ -311,8 +293,8 @@
                             <td class="text-center">
                               <div class="openModalBtn">
                                 <div class="btn-group-toggle" data-toggle="buttons">
-                                  <label class="btn btn-success w-100 checkbox" for="wed-not-{{ forloop.counter }}-{{ block.acronym }}">
-                                    <input type="checkbox" id="wed-not-{{ forloop.counter }}-{{ block.acronym }}" 
+                                  <label class="btn btn-success w-100 checkbox" for="wed-not-{{ forloop.counter }}">
+                                    <input type="checkbox" id="wed-not-{{ forloop.counter }}" 
                                       value="{{ horario.hour_start }}-{{ horario.hour_end }},wed" 
                                       autocomplete="off">
                                     <i class="fas fa-check-circle check"></i>
@@ -324,8 +306,8 @@
                             <td class="text-center">
                               <div class="openModalBtn">
                                 <div class="btn-group-toggle" data-toggle="buttons">
-                                  <label class="btn btn-success w-100 checkbox" for="thu-not-{{ forloop.counter }}-{{ block.acronym }}">
-                                    <input type="checkbox" id="thu-not-{{ forloop.counter }}-{{ block.acronym }}" 
+                                  <label class="btn btn-success w-100 checkbox" for="thu-not-{{ forloop.counter }}">
+                                    <input type="checkbox" id="thu-not-{{ forloop.counter }}" 
                                       value="{{ horario.hour_start }}-{{ horario.hour_end }},thu" 
                                       autocomplete="off">
                                     <i class="fas fa-check-circle check"></i>
@@ -337,8 +319,8 @@
                             <td class="text-center">
                               <div class="openModalBtn">
                                 <div class="btn-group-toggle" data-toggle="buttons">
-                                  <label class="btn btn-success w-100 checkbox" for="fri-not-{{ forloop.counter }}-{{ block.acronym }}">
-                                    <input type="checkbox" id="fri-not-{{ forloop.counter }}-{{ block.acronym }}" 
+                                  <label class="btn btn-success w-100 checkbox" for="fri-not-{{ forloop.counter }}">
+                                    <input type="checkbox" id="fri-not-{{ forloop.counter }}" 
                                       value="{{ horario.hour_start }}-{{ horario.hour_end }},fri" 
                                       autocomplete="off" >
                                     <i class="fas fa-check-circle check"></i>
@@ -350,8 +332,8 @@
                             <td class="text-center">
                               <div class="openModalBtn">
                                 <div class="btn-group-toggle" data-toggle="buttons">
-                                  <label class="btn btn-success w-100 checkbox" for="sat-not-{{ forloop.counter }}-{{ block.acronym }}">
-                                    <input type="checkbox" id="sat-not-{{ forloop.counter }}-{{ block.acronym }}" 
+                                  <label class="btn btn-success w-100 checkbox" for="sat-not-{{ forloop.counter }}">
+                                    <input type="checkbox" id="sat-not-{{ forloop.counter }}" 
                                       value="{{ horario.hour_start }}-{{ horario.hour_end }},sat" 
                                       autocomplete="off" >
                                     <i class="fas fa-check-circle check"></i>
@@ -363,8 +345,7 @@
                         {% endfor %}
                       {% endif %}
                     {% endfor %}
-                  </tbody>  
-                {% endfor %}      
+                  </tbody>      
               </table>              
             </div>        
           </div>
