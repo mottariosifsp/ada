@@ -4,10 +4,8 @@ from attribution.models import TeacherQueuePosition
 
 from enums import enum
 from django.db import transaction
-from django.http import HttpResponseRedirect, JsonResponse
-from django.views.decorators.http import require_http_methods
-from django.shortcuts import get_object_or_404, redirect, render
-from django.urls import reverse_lazy
+from django.http import JsonResponse
+from django.shortcuts import get_object_or_404, render
 from django.contrib.auth.decorators import user_passes_test
 from django.contrib.auth import get_user_model
 from attribution.views import queueSetup, queue
@@ -437,16 +435,13 @@ def create_timetable(request):
 @user_passes_test(is_staff)
 def show_timetable(request):
     if request.method == 'GET':
-
         selected_class = Classs.objects.get(registration_class_id__exact=(request.GET.get('class')))
-
         timetables = Timetable.objects.filter(classs=selected_class).all()
 
         data = {
             'timetables': timetables,
             'timeslots': Timeslot.objects.all().order_by('hour_start'),
         }  
-
 
     return render(request, 'staff/timetable/show_timetable.html', data)
 
