@@ -4,8 +4,7 @@ from django.utils.translation import gettext_lazy as _
 
 class Attribution_preference(models.Model): #fpa
     user = models.ForeignKey('user.User', on_delete=models.CASCADE)
-    # adicionar uma chave estrageira de regras para regime
-
+    
     class Meta:
         verbose_name = _('attribution_preference')
         verbose_name_plural = _('attribution_preferences')

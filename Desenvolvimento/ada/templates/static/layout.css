@@ -12,6 +12,15 @@ li.breadcrumb-item a {
     text-decoration: none;
 }
 
+.modal-backdrop {
+    opacity: 0.5;
+    background-color: #0000002d;
+}
+.my-custom-modal .modal-backdrop {
+    opacity: 0.5;
+    background-color: #0000002d;
+}
+
 ol.breadcrumb .breadcrumb-item:not(.active):hover {
     color: #2a5a4f;
     text-decoration: none;
