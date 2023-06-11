@@ -11,9 +11,6 @@ $(document).ready(function() {
     $('#course_select').css('filter', 'grayscale(100%)');
   }
 
-
-
-
   var courses_selected = [];
 
   $("#test_button").click(function() {
@@ -32,9 +29,13 @@ $(document).ready(function() {
     
     for (let index = 0; index < 6; index++) {
       selected_courses[index] = $('.datalist'+index).map(function() {
+        console.log($(this).val());
         return $(this).val();
-      }).get();        
+      }).get();
     }
+
+    console.log("for acabado");
+    alert($("#selected_class").text());
     
     let csrftoken = getCookie('csrftoken');
       $.ajax({
@@ -56,7 +57,7 @@ $(document).ready(function() {
           } else {
             console.log(response);
             show_loading()
-            window.location.href = "/staff/grade/confirmar/?class="+$('#selected_class').text();            
+            window.location.href = "/staff/grade/ver/?class="+$('#selected_class').text();            
           }
         },
         error: function(xhr, status, error) {

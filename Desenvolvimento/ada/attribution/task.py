@@ -3,19 +3,19 @@ from datetime import datetime, timedelta
 from time import sleep
 from celery import Celery, shared_task
 
+# from attribution.views import professor_to_end_queue
+
 app = Celery('tasks', broker='redis://localhost:6379')
 
 @app.task
-def olamundo():
-    return print('rodando tarefa a cada 5 segundos: OK')
+def times_up(professor):
+    # professor_to_end_queue(professor)
+    return 
 
-@shared_task
-def printas():
-    return print('agendamento de tarefa: OK')
-
-def agendar_tarefa():
+def schedule_task(seconds, professor):
     now = datetime.utcnow()
-    printas.apply_async(eta=now + timedelta(seconds=10.0))
+    sleep(seconds)
+    times_up.apply_async(eta=now + timedelta(seconds=seconds), args=[professor])
 
 
 app.conf.timezone = 'UTC'

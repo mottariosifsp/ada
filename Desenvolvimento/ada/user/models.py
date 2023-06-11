@@ -2,8 +2,11 @@ from django.db import models
 from django.core.mail import send_mail
 from django.contrib.auth.models import PermissionsMixin
 from django.contrib.auth.base_user import AbstractBaseUser, BaseUserManager
+from django.dispatch import receiver
 from django.utils.translation import gettext_lazy as _
 from area.models import Blockk, Area
+from common.validator.validator import convert_to_uppercase
+
 
 # Métodos de gerenciamento de usuário
 class UserManager(BaseUserManager):
@@ -43,10 +46,10 @@ class User(AbstractBaseUser, PermissionsMixin):
     is_superuser = models.BooleanField(_('superuser status'), default=False)
     is_staff = models.BooleanField(_('staff status'), default=True)
     is_active = models.BooleanField(_('active'), default=True) #mudar depois
+    is_professor = models.BooleanField(_('professor'), default=False)
     history = models.ForeignKey('user.History', on_delete=models.CASCADE, blank=True, unique=True, null=True)
     job = models.ForeignKey('Job', on_delete=models.CASCADE, null=True, blank=True)
     blocks = models.ManyToManyField('area.Blockk', blank=True, related_name='user_blocks')
-
     objects = UserManager()
 
     USERNAME_FIELD = 'registration_id'
@@ -66,6 +69,13 @@ class User(AbstractBaseUser, PermissionsMixin):
     def email_user(self, subject, message, from_email=None, **kwargs):
         send_mail(subject, message, from_email, [self.email], **kwargs)
 
+    def clean(self):
+        super().clean()
+        convert_to_uppercase(self, 'registration_id', 'first_name', 'last_name'), 
+
+    def __str__(self):
+        return str(self.first_name)        
+
 class History(models.Model):
     id_history = models.AutoField(primary_key=True) 
     birth = models.DateField(_('birth'))
@@ -75,7 +85,7 @@ class History(models.Model):
     date_area = models.DateField(_('date area'))
     date_institute = models.DateField(_('date institute'))
     academic_degrees = models.ManyToManyField('AcademicDegree', blank=True)
-    blocks = models.ManyToManyField('area.Blockk', blank=True, related_name='history_blocks')
+    # blocks = models.ManyToManyField('area.Blockk', blank=True, related_name='history_blocks')
 
     def __str__(self):
         return str(self.id_history)
@@ -94,12 +104,20 @@ class AcademicDegree(models.Model):
     name = models.CharField(_('name'), max_length=30)
     punctuation = models.IntegerField()
 
+    def clean(self):
+        super().clean()
+        convert_to_uppercase(self, 'name')
+
 class Job(models.Model):
     id_job = models.AutoField(primary_key=True)
     name_job = models.CharField(_('name job'), max_length=160)
 
     def __str__(self):
         return self.name_job
+    
+    def clean(self):
+        super().clean()
+        convert_to_uppercase(self, 'name_job')
     
 class Proficiency(models.Model):
     id_proficiency = models.AutoField(primary_key=True)

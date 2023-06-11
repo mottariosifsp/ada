@@ -41,6 +41,8 @@ $(document).ready(function() {
 $('#enviar-tabela').click(function() {
     if (confirm('Deseja realmente enviar a tabela?')) {
   var tabelaData =  $('#queue').DataTable().data().toArray();
+  var blockk_id = $('#blockk-id').attr('value');
+  alert(blockk_id);
   console.log(tabelaData);
   var csrftoken = getCookie('csrftoken');
 
@@ -48,7 +50,8 @@ $('#enviar-tabela').click(function() {
     url: '/attribution/queueSetup/',
     method: 'POST',
     data: {
-      'tabela_data': JSON.stringify(tabelaData)
+      'tabela_data': JSON.stringify(tabelaData),
+      'blockk_id': blockk_id,
     },
     headers: {
       'X-CSRFToken': csrftoken

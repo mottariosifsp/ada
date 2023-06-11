@@ -1,0 +1,31 @@
+{% extends "professor/base.html" %} {% load i18n %} {% load static %} {% block head %}
+<title>{% translate "Configuração de atribuição" %}</title>
+<script src="{% static 'staff/attribution/js/attribution_configuration_confirm.js' %}"></script>
+
+{% endblock %} 
+{% block body %}
+
+<h1>Fila de professores ( {{ blockk.name_block }} )</h1>
+
+<table class="table table-striped">
+    <thead>
+      <tr>
+        <th scope="col">Posição</th>
+        <th scope="col">Nome</th>
+        <th scope="col">Prontuário</th>
+        <th scope="col">Email</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for professor in queue %}
+      <tr>
+        <th scope="row">{{ professor.position }}</th>
+        <td>{{ professor.teacher.first_name }}</td>
+        <td>{{ professor.teacher.registration_id}}</td>
+        <td>{{ professor.teacher.email }}</td>
+      </tr>
+      {% endfor %}
+      
+    </tbody>
+  </table>
+{% endblock %}

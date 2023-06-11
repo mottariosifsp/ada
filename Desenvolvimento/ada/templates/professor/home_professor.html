@@ -1,24 +1,44 @@
 {% extends "professor/base.html" %}
 {% load i18n %}
+{% load static %}
 
 {% block head %}
     <title>{% translate "Home" %}</title>
+    <link rel="stylesheet" href="{% static 'professor/css/home_professor.css' %}">
+    <script src="{% static 'professor/js/home_professor.js' %}" data-lang={{ LANGUAGE_CODE }}></script>
 {% endblock %}
 
 {% block body %}
-  <h1>{% translate "Login completo" %} - {% translate "HOME PAGE" %}</h1>
-  <hr>
+  {% comment %} <a type="button" id="return-button" class="btn btn-outline-primary btn-lg rounded-pill m-1" href="{% url 'attribution:attribution'%}?blockk={{block.registration_block_id}}"> {{ block.name_block }} </a> {% endcomment %}
+  <div class="py-5">
+    <h3 class="font-weight-bold mb-0">Suas atribuições</h3>
+    <p class="font-italic text-muted mb-4">Clique em um bloco para ver o andamento de sua atribuição  </p>
+    <div class="row">
+      <!-- DEMO 5 Item-->
+      {% for block in blockks %}
+        <div class="col-lg-6 mb-1 mb-lg-4 block-card" onclick="redirect({{block.block.registration_block_id}})">
+          <div class="hover hover-5 text-white rounded"><img src="{{block.image}}" alt="">
+            <div class="hover-overlay"></div>
+            <div class="hover-5-content">
+              <h3 class="hover-5-title text-uppercase font-weight-light mb-0"><strong class="font-weight-bold text-white">{{ block.block }}</strong><br><span>Acessar</span></h3>
+            </div>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+    
   {% if user.is_superuser %}
   <div class="container d-flex align-items-center justify-content-center h-70" style="height: 70vh;">
     <div>
-      <h2>{% translate "Olá, administrador"%}</h2>
+      <h2>{% translate "Olá, professor"%}</h2>
       <p>{% translate "Crie a fila da atribuição" %}.</p>
     </div>
   </div>
   {% else %}
   <div class="container d-flex align-items-center justify-content-center h-70" style="height: 70vh;">
     <div>
-      <h2>{% translate "Olá, Professor" %}</h2>
+      <h2>{% translate "Olá, professor" %}</h2>
       <p>{% translate "Entre no processo de atribuição" %}.</p>
     </div>
   </div>

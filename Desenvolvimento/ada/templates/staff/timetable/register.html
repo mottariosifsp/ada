@@ -4,84 +4,66 @@
 
 {% block head %}
     {{ block.super }}
-    <title>{% translate "create timetable" %}</title>
-    <script src="{% static 'staff/timetable/js/create_timetable.js' %}" data-lang={{ LANGUAGE_CODE }}></script>
+      <title>{% translate "create timetable" %}</title>
+      <script src="{% static 'staff/timetable/js/create_timetable.js' %}" data-lang={{ LANGUAGE_CODE }}></script>
 {% endblock %}
 
 {% block body %}
-{{ block.super }}
+  {{ block.super }}
 
-<div class="spinner-border" role="status" style="display: none; position: fixed; top: calc( 50% - ( 3rem / 2) ); left: calc( 50% - ( 3rem / 2) ); width: 3rem; height: 3rem;">
-  <span class="sr-only">Loading...</span>
-</div>
-<div class="container mt-3">
+    <div class="spinner-border" role="status" style="display: none; position: fixed; top: calc( 50% - ( 3rem / 2) ); left: calc( 50% - ( 3rem / 2) ); width: 3rem; height: 3rem;">
+      <span class="sr-only">Loading...</span>
+    </div>
+    <div class="container mt-3">
 
-  {% if request.GET.class == None or request.GET.class == "" %}
-  <div class="alert alert-danger" role="alert">
-    {% translate "Selecione uma turma antes de criar a grade horária" %}
-  </div>    
-  {% endif %}
+      <!-- {% if request.GET.class == None or request.GET.class == "" %}
+      <div class="alert alert-danger" role="alert">
+        {% translate "Selecione uma turma antes de criar a grade horária" %}
+      </div>    
+      {% endif %} -->
 
-  <div class="container">
-    <form method="GET">
-      <div class="form-group mb-0">
-        <div class="row">
-          <i class="fa fa-search"></i>
-          <div class="col-sm-10">
-            <input list="classes" name="class" class="form-control" value="{{ request.GET.class }}" placeholder="Digite uma turma...">
-            <datalist id="classes">
-              {% for class in Classes %}
-              <option class="dropdown-item-class" value="{{ class.registration_class_id }}">
-              {% endfor %}
-            </datalist>
-          </div>
-          <div class = "col-sm-2">
-            <button class="btn btn-primary btn-block form-group" type="submit">FILTRAR</button>
-          </div>
+      <div class="container">
+        <div class="alert alert-danger" role="alert" id="mensagem-erro" style="display: none">
+      </div>     
+        
+      <h1><span id="selected_class" class="d-flex justify-content-center">{{ request.GET.class }}</span></h1>
+      <div class="container">
+        <form id="course_select">
+          {% csrf_token %}
+          <table class="table" id="timetable_table">
+            <thead class="thead-dark">
+              <tr>
+                <th scope="col" class="align-middle">Horário</th>
+                <th scope="col" class="text-center">Segunda-feira</th>
+                <th scope="col" class="text-center">Terça-feira</th>
+                <th scope="col" class="text-center">Quarta-feira</th>
+                <th scope="col" class="text-center">Quinta-feira</th>
+                <th scope="col" class="text-center">Sexta-feira</th>
+                <th scope="col" class="text-center">Sábado</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for timeslot in timeslots %}
+              <tr>
+                <th scope="row">{{ timeslot.hour_start }} - {{ timeslot.hour_end }}</th>
+                <!-- timeslot -->
+                {% for i in '012345'|make_list %}
+                <td>
+                  <input list="courses{{ i }}" name="course" class="form-control datalist{{i}}" autocomplete="off">
+                  <datalist id="courses{{ i }}">
+                    {% for course in courses %}
+                    <option class="dropdown-item-class" value="{{ course.name_course }}">
+                    {% endfor %}
+                  </datalist>
+                </td>
+                  {% endfor %}
+                </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+            <button type="button" class="btn btn-primary btn-block form-group" id="submit_timetable">ENVIAR GRADE</button>
+          </form>
         </div>
       </div>
-    </form>
-    <div class="alert alert-danger" role="alert" id="mensagem-erro" style="display: none">
-    </div>     
-    
-    <h1><span id="selected_class" class="d-flex justify-content-center">{{ request.GET.class }}</span></h1>
-    <div class="container">
-      <form id="course_select">
-        {% csrf_token %}
-        <table class="table" id="timetable_table">
-          <thead class="thead-dark">
-            <tr>
-              <th scope="col" class="align-middle">Horário</th>
-              <th scope="col" class="text-center">Segunda-feira</th>
-              <th scope="col" class="text-center">Terça-feira</th>
-              <th scope="col" class="text-center">Quarta-feira</th>
-              <th scope="col" class="text-center">Quinta-feira</th>
-              <th scope="col" class="text-center">Sexta-feira</th>
-              <th scope="col" class="text-center">Sábado</th>
-            </tr>
-          </thead>
-          <tbody>
-            {% for timeslot in timeslots %}
-            <tr>
-              <th scope="row">{{ timeslot.hour_start }} - {{ timeslot.hour_end }}</th>
-              <!-- timeslot -->
-              {% for i in '012345'|make_list %}
-              <td>
-                <input list="courses{{ i }}" name="course" class="form-control datalist{{i}}" autocomplete="off">
-                <datalist id="courses{{ i }}">
-                  {% for course in courses %}
-                  <option class="dropdown-item-class" value="{{ course.name_course }}">
-                  {% endfor %}
-                </datalist>
-              </td>
-              {% endfor %}
-            </tr>
-            {% endfor %}
-          </tbody>
-        </table>
-        <button type="button" class="btn btn-primary btn-block form-group" id="submit_timetable">ENVIAR GRADE</button>
-      </form>
     </div>
-  </div>
-</div>
 {% endblock %}

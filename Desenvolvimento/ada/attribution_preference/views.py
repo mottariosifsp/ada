@@ -10,6 +10,7 @@ import re
 import datetime, time
 from django.db import transaction
 
+from django.utils.decorators import method_decorator
 
 def attribution_preference(request):
     user = request.user

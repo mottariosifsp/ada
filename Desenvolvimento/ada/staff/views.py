@@ -6,12 +6,11 @@ from enums import enum
 from django.db import transaction
 from django.http import HttpResponseRedirect, JsonResponse
 from django.views.decorators.http import require_http_methods
-from django.shortcuts import redirect, render
+from django.shortcuts import get_object_or_404, redirect, render
 from django.urls import reverse_lazy
-from django.contrib.auth.decorators import login_required
 from django.contrib.auth.decorators import user_passes_test
 from django.contrib.auth import get_user_model
-from attribution.views import queueSetup
+from attribution.views import queueSetup, queue
 from django.utils import timezone
 from timetable.models import Timeslot, Timetable
 from .models import Deadline
@@ -21,11 +20,13 @@ from course.models import Course
 from user.models import User, History
 from .models import Deadline
 
+from django.contrib.auth.decorators import login_required
 
 def is_staff(user):
     return user.is_staff
 
 # prazos
+
 @login_required
 @user_passes_test(is_staff)
 def home(request):
@@ -34,21 +35,29 @@ def home(request):
 @login_required
 @user_passes_test(is_staff)
 def attribution_configuration_index(request):
-
-    return render(request, 'staff/attribution/attribution_configuration_index.html')
+    data = {
+        "blocks" : request.user.blocks.all()
+    }
+    return render(request, 'staff/attribution/attribution_configuration_index.html', data)
 
 @login_required
 @user_passes_test(is_staff)
 def attribution_configuration(request):
 
-    queue = TeacherQueuePosition.objects.all()
+    if request.method == 'GET':
+        blockk = Blockk.objects.get(registration_block_id=request.GET.get('blockk'))
+        print(request.GET.get('blockk'))
+        queue = TeacherQueuePosition.objects.filter(blockk=blockk)
 
-    data = {
-        'queue': queue,
-    }
+        data = {
+            'blockk': blockk,
+            'queue': queue,
+        }
 
-    return render(request, 'staff/attribution/attribution_configuration.html', data)
+        return render(request, 'staff/attribution/attribution_configuration.html', data)
 
+@login_required
+@user_passes_test(is_staff)
 def attribution_configuration_confirm(request):
     return render(request, 'staff/attribution/attribution_configuration_confirm.html')
 
@@ -62,7 +71,6 @@ def deadline_configuration(request):
     }
 
     return render(request, 'staff/deadline/deadline_configuration.html', data)
-
 
 def confirm_deadline_configuration(request):
     if request.method == 'POST':
@@ -140,12 +148,14 @@ def save_deadline(data):
 
 # professor views
 
+@login_required
 @user_passes_test(is_staff)
 def professors_list(request):
     professors = User.objects.filter(is_superuser=False)
     return render(request, 'staff/professor/professors_list.html', {'professors': professors})
 
-
+@login_required
+@user_passes_test(is_staff)
 def update_save(request):
     if request.method == 'POST':
         print("funcionou o if")
@@ -178,6 +188,8 @@ def update_save(request):
 
 
 # class views
+
+@login_required
 @user_passes_test(is_staff)
 def classes_list(request):
     classes = Classs.objects.all()
@@ -188,7 +200,8 @@ def classes_list(request):
     ]
     return render(request, 'staff/classs/classes_list.html', {'classes': classes, 'periods': periods, 'areas': areas})
 
-
+@login_required
+@user_passes_test(is_staff)
 def classes_list_saved(request):
     if request.method == 'POST':
         print("funcionou o if")
@@ -212,15 +225,49 @@ def classes_list_saved(request):
 
         return JsonResponse({'message': 'Alterações salvas com sucesso.'})
 
+@login_required
+@user_passes_test(is_staff)
+def class_create(request):
+    if request.method == 'POST':
+        print("funcionou o if")
+        registration_class_id = request.POST.get('registration_class_id')
+        period = request.POST.get('period')
+        semester = request.POST.get('semester')
+        area_id = request.POST.get('area')
+
+        area = get_object_or_404(Area, id=area_id)
+
+        classs = Classs.objects.create(registration_class_id=registration_class_id, period=period, semester=semester, area=area)
+        classs.save()
+
+        return JsonResponse({'message': 'Turma criada com sucesso.'})
+    
+@login_required
+@user_passes_test(is_staff)
+def class_delete(request):
+    if request.method == 'POST':
+        print("funcionou o if")
+        print('id')
+        print(request.POST.get('id'))
+        class_id = request.POST.get('id')
+        try:
+            classs = Classs.objects.get(id=class_id)
+            classs.delete()
+            return JsonResponse({'message': 'Turma deletada com sucesso!'})
+        except Course.DoesNotExist:
+            return JsonResponse({'message': 'A turma não existe.'}, status=404)
+
 
 # block views
+
 @login_required
 @user_passes_test(is_staff)
 def blocks_list(request):
-    blocks = request.user.blocks.all()
+    blocks = Blockk.objects.all()
+
     return render(request, 'staff/blockk/blocks_list.html', {'blocks': blocks})
 
-@user_passes_test(is_staff)
+@login_required
 @user_passes_test(is_staff)
 def block_detail(request, registration_block_id):
     blockk = Blockk.objects.get(registration_block_id=registration_block_id)
@@ -242,9 +289,9 @@ def course_create(request):
         block_id = request.POST.get('blockId')
 
         area = Area.objects.get(id=area_id)
-        block = Blockk.objects.get(id=block_id)
+        blockk = Blockk.objects.get(id=block_id)
 
-        course = Course.objects.create(registration_course_id=registration_course_id, name_course=name_course, acronym=acronym, area=area, blockk=block)
+        course = Course.objects.create(registration_course_id=registration_course_id, name_course=name_course, acronym=acronym, area=area, blockk=blockk)
         course.save()
 
         return JsonResponse({'message': 'Matéria criada com sucesso.'})
@@ -275,10 +322,11 @@ def course_delete(request):
         except Course.DoesNotExist:
             return JsonResponse({'message': 'O curso não existe.'}, status=404)
 
-# @login_required
-# @user_passes_test(is_staff)
-def queue_create(request):
+# fila view
 
+@login_required
+@user_passes_test(is_staff)
+def queue_create(request):
     response = queueSetup(request)
 
     if hasattr(response, 'render') and callable(response.render):
@@ -289,11 +337,42 @@ def queue_create(request):
 
 @login_required
 @user_passes_test(is_staff)
-def queue(request):
-    return render(request, 'attribution/queue.html')
+def queue_show(request):
+    response = queue(request)
+
+    if hasattr(response, 'render') and callable(response.render):
+
+        return response.render()
+
+    return response
 
 
+# timetable views
 
+@login_required
+@user_passes_test(is_staff)
+def timetables(request):
+    timetables = Timetable.objects.all()
+    user_blocks = []
+    if request.user.is_authenticated:
+        user_blocks = request.user.blocks.all()
+    
+    user_areas = Area.objects.none()
+    for user_block in user_blocks:
+        area = Area.objects.filter(blocks=user_block)
+        user_areas = user_areas.union(area)
+    print(user_areas)
+    
+    classes = Classs.objects.none()
+    for user_area in user_areas:
+        classs = Classs.objects.filter(area=user_area)
+        classes = classes.union(classs)
+    print(classes)
+
+    return render(request, 'staff/timetable/timetables.html', {'timetables': timetables, 'user_blocks': user_blocks, 'classes': classes})
+
+
+@login_required
 @user_passes_test(is_staff)
 def create_timetable(request):
     if request.method == 'GET':
@@ -307,6 +386,7 @@ def create_timetable(request):
         data = {
             'courses': selected_courses,
             'timeslots': Timeslot.objects.all().order_by('hour_start'),
+            'classes': Classs.objects.all(),
         }        
         return render(request, 'staff/timetable/register.html', data)
       
@@ -351,9 +431,10 @@ def create_timetable(request):
                     save_timetable(course, timeslot, selected_class, day)
                 else:
                     save_timetable(None, timeslot, selected_class, day)
-
         return JsonResponse({'erro': False, 'mensagem': message})
 
+@login_required
+@user_passes_test(is_staff)
 def show_timetable(request):
     if request.method == 'GET':
 
@@ -368,12 +449,10 @@ def show_timetable(request):
 
 
     return render(request, 'staff/timetable/show_timetable.html', data)
-    
+
+
 def save_timetable(course, timeslot, classs, day):
     if(Timetable.objects.filter(day=day, timeslot=timeslot, classs=classs).exists()):
-        Timetable.objects.filter(day=day, timeslot=timeslot, classs=classs).delete()
-    Timetable.objects.create(day=day, timeslot=timeslot, course=course, classs=classs)
-
-def timetables(request):
-    
-    return render(request, 'staff/timetable/timetables.html')
+        Timetable.objects.filter(day=day, timeslot=timeslot, classs=classs).update(course=course)
+    else:
+        Timetable.objects.create(day=day, timeslot=timeslot, course=course, classs=classs)
