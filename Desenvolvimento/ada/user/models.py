@@ -80,7 +80,7 @@ class History(models.Model):
     date_area = models.DateField(_('date area'))
     date_institute = models.DateField(_('date institute'))
     academic_degrees = models.ManyToManyField('AcademicDegree', blank=True)
-    blocks = models.ManyToManyField('area.Blockk', blank=True, related_name='history_blocks')
+    # blocks = models.ManyToManyField('area.Blockk', blank=True, related_name='history_blocks')
 
     def __str__(self):
         return str(self.id_history)

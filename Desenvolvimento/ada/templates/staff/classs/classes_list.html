@@ -27,14 +27,14 @@
                 {% csrf_token %}
                 {% for classs in classes %}
                     <!-- Lista -->
-                        <tr>
-                            <td>{{ classs.registration_class_id }}</td>
-                            <td>{{ classs.period }}</td>
-                            <td>{{ classs.semester }}</td>
-                            <td>{{ classs.area.name_area }} ({{ classs.area.acronym }})</td>
-                            <td><button type="button" data-toggle="modal" data-target="#editClassModal" data-counter="{{ counter }}" class="btn btn-warning editClassBtn"><i class="bi bi-pencil"></i></button>
-                                <button type="button" class="btn btn-danger deleteClassBtn" data-class-id="{{ classs.id }}" data-registration-class-id="{{ classs.registration_class_id }}"><i class="bi bi-trash"></i></button></td>
-                        </tr>
+                    <tr>
+                        <td>{{ classs.registration_class_id }}</td>
+                        <td>{{ classs.period }}</td>
+                        <td>{{ classs.semester }}</td>
+                        <td>{{ classs.area.name_area }} ({{ classs.area.acronym }})</td>
+                        <td><button type="button" data-toggle="modal" data-target="#editClassModal" data-counter="{{ counter }}" class="btn btn-warning editClassBtn"><i class="bi bi-pencil"></i></button>
+                            <button type="button" class="btn btn-danger deleteClassBtn" data-class-id="{{ classs.id }}" data-registration-class-id="{{ classs.registration_class_id }}"><i class="bi bi-trash"></i></button></td>
+                    </tr>
                 {% endfor %}
             </tbody>
         </table>

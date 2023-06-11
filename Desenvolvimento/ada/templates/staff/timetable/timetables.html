@@ -3,28 +3,34 @@
 {% load static %}
 
 {% block head %}
+  {{ block.super }}
     <title>{% translate "create timetable" %}</title>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="{% static 'staff/timetable/js/create_timetable.js' %}" data-lang={{LANGUAGE_CODE}}></script>
+    <script src="{% static 'staff/timetable/js/timetables.js' %}" data-lang={{LANGUAGE_CODE}}></script>
 {% endblock %}
 
 {% block body %}
-
-<h1>Grades horárias</h1>
-    <table class="table">
-  <thead class="thead-dark">
-    <tr>
-      <th scope="col">Turma</th>
-      <th scope="col">Area</th>
-      <th scope="col">Editar</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th scope="row"></th>
-      <td></td>
-      <td></td>
-    </tr>
-  </tbody>
-</table>
+  {{ block.super }}
+    <h1>Grades horárias</h1>
+    <div class="tabela">
+      <table class="table table-bordered editable" id="timetable_list">
+        <thead class="thead-dark">
+          <tr>
+            <th scope="col">Registration class id</th>
+            <th scope="col">Area</th>
+            <th scope="col">Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for classs in classes %}
+            <tr>
+                <td>{{ classs.registration_class_id }}</td>
+                <td>{{ classs.area.name_area }}</td>
+                <td><a href="{% url 'create_timetable' %}?class={{classs.registration_class_id}}" class="btn btn-success"><i class="bi bi-calendar-plus"></i></a></td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
 {% endblock %}

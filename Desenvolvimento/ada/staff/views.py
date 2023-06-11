@@ -26,6 +26,7 @@ def is_staff(user):
     return user.is_staff
 
 # prazos
+
 @login_required
 @user_passes_test(is_staff)
 def home(request):
@@ -55,6 +56,8 @@ def attribution_configuration(request):
 
         return render(request, 'staff/attribution/attribution_configuration.html', data)
 
+@login_required
+@user_passes_test(is_staff)
 def attribution_configuration_confirm(request):
     return render(request, 'staff/attribution/attribution_configuration_confirm.html')
 
@@ -319,6 +322,8 @@ def course_delete(request):
         except Course.DoesNotExist:
             return JsonResponse({'message': 'O curso não existe.'}, status=404)
 
+# fila view
+
 @login_required
 @user_passes_test(is_staff)
 def queue_create(request):
@@ -341,6 +346,33 @@ def queue_show(request):
 
     return response
 
+
+# timetable views
+
+@login_required
+@user_passes_test(is_staff)
+def timetables(request):
+    timetables = Timetable.objects.all()
+    user_blocks = []
+    if request.user.is_authenticated:
+        user_blocks = request.user.blocks.all()
+    
+    user_areas = Area.objects.none()
+    for user_block in user_blocks:
+        area = Area.objects.filter(blocks=user_block)
+        user_areas = user_areas.union(area)
+    print(user_areas)
+    
+    classes = Classs.objects.none()
+    for user_area in user_areas:
+        classs = Classs.objects.filter(area=user_area)
+        classes = classes.union(classs)
+    print(classes)
+
+    return render(request, 'staff/timetable/timetables.html', {'timetables': timetables, 'user_blocks': user_blocks, 'classes': classes})
+
+
+@login_required
 @user_passes_test(is_staff)
 def create_timetable(request):
     if request.method == 'GET':
@@ -401,6 +433,8 @@ def create_timetable(request):
                     save_timetable(None, timeslot, selected_class, day)
         return JsonResponse({'erro': False, 'mensagem': message})
 
+@login_required
+@user_passes_test(is_staff)
 def show_timetable(request):
     if request.method == 'GET':
 
@@ -415,13 +449,11 @@ def show_timetable(request):
 
 
     return render(request, 'staff/timetable/show_timetable.html', data)
-    
+
+@login_required
+@user_passes_test(is_staff)
 def save_timetable(course, timeslot, classs, day):
     if(Timetable.objects.filter(day=day, timeslot=timeslot, classs=classs).exists()):
         Timetable.objects.filter(day=day, timeslot=timeslot, classs=classs).update(course=course)
     else:
         Timetable.objects.create(day=day, timeslot=timeslot, course=course, classs=classs)
-
-def timetables(request):
-    
-    return render(request, 'staff/timetable/timetables.html')
