@@ -2,9 +2,11 @@ from django.db import models
 from django.core.mail import send_mail
 from django.contrib.auth.models import PermissionsMixin
 from django.contrib.auth.base_user import AbstractBaseUser, BaseUserManager
+from django.dispatch import receiver
 from django.utils.translation import gettext_lazy as _
 from area.models import Blockk, Area
 from common.validator.validator import convert_to_uppercase
+
 
 # Métodos de gerenciamento de usuário
 class UserManager(BaseUserManager):
@@ -44,10 +46,10 @@ class User(AbstractBaseUser, PermissionsMixin):
     is_superuser = models.BooleanField(_('superuser status'), default=False)
     is_staff = models.BooleanField(_('staff status'), default=True)
     is_active = models.BooleanField(_('active'), default=True) #mudar depois
+    is_professor = models.BooleanField(_('professor'), default=False)
     history = models.ForeignKey('user.History', on_delete=models.CASCADE, blank=True, unique=True, null=True)
     job = models.ForeignKey('Job', on_delete=models.CASCADE, null=True, blank=True)
     blocks = models.ManyToManyField('area.Blockk', blank=True, related_name='user_blocks')
-
     objects = UserManager()
 
     USERNAME_FIELD = 'registration_id'
@@ -70,6 +72,9 @@ class User(AbstractBaseUser, PermissionsMixin):
     def clean(self):
         super().clean()
         convert_to_uppercase(self, 'registration_id', 'first_name', 'last_name'), 
+
+    def __str__(self):
+        return str(self.first_name)        
 
 class History(models.Model):
     id_history = models.AutoField(primary_key=True) 

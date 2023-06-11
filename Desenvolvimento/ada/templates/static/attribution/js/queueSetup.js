@@ -41,7 +41,8 @@ $(document).ready(function() {
 $('#enviar-tabela').click(function() {
     if (confirm('Deseja realmente enviar a tabela?')) {
   var tabelaData =  $('#queue').DataTable().data().toArray();
-  var blockk_id = $('#blockk-id').val();
+  var blockk_id = $('#blockk-id').attr('value');
+  alert(blockk_id);
   console.log(tabelaData);
   var csrftoken = getCookie('csrftoken');
 

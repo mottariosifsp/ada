@@ -11,9 +11,6 @@ $(document).ready(function() {
     $('#course_select').css('filter', 'grayscale(100%)');
   }
 
-
-
-
   var courses_selected = [];
 
   $("#test_button").click(function() {
@@ -37,7 +34,7 @@ $(document).ready(function() {
       }).get();        
     }
 
-    alert("for acabado");
+    alert($("#selected_class").text());
     
     let csrftoken = getCookie('csrftoken');
       $.ajax({
