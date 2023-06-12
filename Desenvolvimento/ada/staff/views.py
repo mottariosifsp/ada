@@ -4,10 +4,8 @@ from attribution.models import TeacherQueuePosition
 
 from enums import enum
 from django.db import transaction
-from django.http import HttpResponseRedirect, JsonResponse
-from django.views.decorators.http import require_http_methods
-from django.shortcuts import get_object_or_404, redirect, render
-from django.urls import reverse_lazy
+from django.http import JsonResponse
+from django.shortcuts import get_object_or_404, render
 from django.contrib.auth.decorators import user_passes_test
 from django.contrib.auth import get_user_model
 from attribution.views import queueSetup, queue
@@ -35,8 +33,31 @@ def home(request):
 @login_required
 @user_passes_test(is_staff)
 def attribution_configuration_index(request):
+   
+    blockks = request.user.blocks.all()
+    blockks_images = []
+
+    for blockk in blockks:
+        blockk_images = {
+            "block": blockk,
+            "image": None
+        }
+        if blockk.registration_block_id == "721165":
+            blockk_images["image"] = "https://media.discordapp.net/attachments/1081682716531118151/1117328326533595207/OIG.png?width=473&height=473"
+        elif blockk.registration_block_id == "776291":
+            blockk_images["image"] = "https://media.discordapp.net/attachments/1081682716531118151/1117321570101248030/OIG.png?width=473&height=473"
+        elif blockk.registration_block_id == "776293":
+            blockk_images["image"] = "https://media.discordapp.net/attachments/1081682716531118151/1117321528380489789/OIG.png?width=473&height=473"
+        elif blockk.registration_block_id == "776294":
+            blockk_images["image"] = "https://media.discordapp.net/attachments/1081682716531118151/1116866399952961586/dan-cristian-padure-h3kuhYUCE9A-unsplash.jpg?width=710&height=473"
+        elif blockk.registration_block_id == "776295":
+            blockk_images["image"] = "https://media.discordapp.net/attachments/1081682716531118151/1116866399671951441/roonz-nl-2xEQDxB0ss4-unsplash.jpg?width=842&height=473"
+        elif blockk.registration_block_id == "776292":
+            blockk_images["image"] = "https://media.discordapp.net/attachments/1081682716531118151/1117348338254233680/image.png"
+        blockks_images.append(blockk_images)
+        print(blockks_images)
     data = {
-        "blocks" : request.user.blocks.all()
+        'blockks': blockks_images
     }
     return render(request, 'staff/attribution/attribution_configuration_index.html', data)
 
@@ -437,16 +458,13 @@ def create_timetable(request):
 @user_passes_test(is_staff)
 def show_timetable(request):
     if request.method == 'GET':
-
         selected_class = Classs.objects.get(registration_class_id__exact=(request.GET.get('class')))
-
         timetables = Timetable.objects.filter(classs=selected_class).all()
 
         data = {
             'timetables': timetables,
             'timeslots': Timeslot.objects.all().order_by('hour_start'),
         }  
-
 
     return render(request, 'staff/timetable/show_timetable.html', data)
 

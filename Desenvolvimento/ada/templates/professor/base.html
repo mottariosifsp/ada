@@ -186,21 +186,35 @@
     </div>
     <!-- Logout modal -->
     <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="confirmLogoutModalLabel" aria-hidden="true">
-      <div class="modal-dialog" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content" style="border-radius: 20px; left: calc( 50% - ( 80% / 2) ); width: 80%;">
+          {% comment %} <div class="modal-header">
             <h5 class="modal-title" id="confirmLogoutModalLabel">{% translate "Confirmar Saída" %}</h5>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
               <span aria-hidden="true">&times;</span>
             </button>
+          </div> {% endcomment %}
+          <div class="modal-body" >
+            <div class="row float-right mr-2">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+            </div>
+            <div class="text-center" style="margin-top: 3rem">
+              <img src="{% static 'images/icon_logout_ada.png' %}" style="width: 7rem;">
+                <div class="text-center" >
+                  <div class="div" style="margin-top: 2rem">
+                    <h4>Deseja realmente sair?</h4>
+                    <button type="button" class="btn mt-4 btn-outline-secondary btn-lg rounded-pill" data-dismiss="modal" style="width:80%;">{% translate "Cancelar" %}</button><br>
+                    <a class="btn btn-danger btn-lg rounded-pill m-2" href="{% url 'logout' %}" style="width:80%">{% translate "Sair" %}</a>
+                  </div>
+                </div>
+            </div>
           </div>
-          <div class="modal-body">
-            <p>{% translate "Tem certeza que quer sair?" %}</p>
-          </div>
-          <div class="modal-footer">
+          {% comment %} <div class="modal-footer">
             <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">{% translate "Cancelar" %}</button>
             <a class="btn btn-danger" href="{% url 'logout' %}">{% translate "Sair" %}</a>
-          </div>
+          </div> {% endcomment %}
         </div>
       </div>
     </div>
