@@ -5,16 +5,47 @@ var type_cel = 0
 var cel_final = "not_checked"
 var hour = 0
 var minute = 0
+var user_blocks = document.currentScript.getAttribute('blocks');
+var user_timetables = document.currentScript.getAttribute('timetables');
 
 $(document).ready(function() {
 
+  var timetables = JSON.parse(user_timetables)
+  console.log("Timetables",timetables)
+  marcarCombos(1);
 
+  function turnCheckboxLabelActive(checkboxId) {
+    var checkbox  = document.getElementById(checkboxId);
+    checkbox.checked = true;
+    var label = document.querySelector('label[for="' + checkboxId + '"]');
+    label.classList.add('active');
+  }
+
+  function marcarCombos(position) {
+    console.log("Entrou no marcar combos");
+    for (i = 1; i <= timetables.length - 1; i++) {
+      if (timetables[i].timeslot_position == 1 ) {
+        console.log("parou na posicao 1");
+        if (timetables[i+1].classs == timetables[i].classs && timetables[i+1].course == timetables[i].course ) {
+          console.log("marcou o primeiro");
+          var checkboxId = "mon-mat-2";
+          turnCheckboxLabelActive(checkboxId);
+        }
+        if (timetables[i+2].classs == timetables[i].classs && timetables[i+2].course == timetables[i].course ) {
+          console.log("marcou o segundo");
+          var checkboxId = "mon-mat-3";
+          turnCheckboxLabelActive(checkboxId);
+        }
+      }
+      console.log("Day", timetables[i].day);
+    }
+  }
 
   // Variáveis para saber a última posição de cada período
   var last_matutine_position = 0;
   var last_vespertine_position = 0;
   var last_nocturnal_position = 0;
-
+  // console.log("Timetables", user_timetables);
 
   $('[id^="mon-mat"]').each(function() {
     var number = $(this).attr('id').split('-')[2];
@@ -366,6 +397,3 @@ function atualizar_cel_left(is_checked) {
     }    
   }
 }
-
-
-

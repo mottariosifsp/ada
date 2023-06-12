@@ -358,5 +358,5 @@
 {% endblock %}
 
 {% block endbody %}
-  <script src="{% static 'attribution_preference/js/preferred_availability.js' %}" data-lang={{LANGUAGE_CODE}}></script>
+  <script src="{% static 'attribution_preference/js/preferred_availability.js' %}" blocks='{{user_blocks}}' timetables='{{timetables}}' data-lang={{LANGUAGE_CODE}}></script>
 {% endblock %}
