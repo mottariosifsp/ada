@@ -7,6 +7,137 @@ var hour = 0
 var minute = 0
 
 $(document).ready(function() {
+
+
+
+  // Variáveis para saber a última posição de cada período
+  var last_matutine_position = 0;
+  var last_vespertine_position = 0;
+  var last_nocturnal_position = 0;
+
+
+  $('[id^="mon-mat"]').each(function() {
+    var number = $(this).attr('id').split('-')[2];
+    last_matutine_position = Number(number);
+  });
+
+  $('[id^="mon-ves"]').each(function() {
+    var number = $(this).attr('id').split('-')[2];
+    last_vespertine_position = last_matutine_position + Number(number);
+  });
+
+  $('[id^="mon-not"]').each(function() {
+    var number = $(this).attr('id').split('-')[2];
+    last_nocturnal_position = last_vespertine_position + Number(number);
+  });
+
+  console.log("Matutino", last_matutine_position);
+  console.log("Vespertino", last_vespertine_position);
+  console.log("Noturno", last_nocturnal_position);
+
+  $('.checkbox').click(function() {
+    // Pega o valor do id do input do checkbox
+    var inputId = $(this).find('input').attr('id')
+    console.log(inputId);
+
+    // Segunda
+    if(inputId.startsWith("mon-mat")) {
+      var selectedCell = Number(inputId.split('-').pop());
+      console.log("selectedCell", selectedCell)
+    }
+
+    if(inputId.startsWith("mon-ves")) {
+      var selectedCell = last_matutine_position + Number(inputId.split('-').pop());
+      console.log("selectedCell", selectedCell)
+    }
+
+    if(inputId.startsWith("mon-not")) {
+      var selectedCell = last_vespertine_position + Number(inputId.split('-').pop());
+      console.log("selectedCell", selectedCell)
+    }
+
+    // Terça
+    if(inputId.startsWith("tue-mat")) {
+      var selectedCell = last_nocturnal_position + Number(inputId.split('-').pop());
+      console.log("selectedCell", selectedCell)
+    }
+
+    if(inputId.startsWith("tue-ves")) {
+      var selectedCell = last_matutine_position + last_nocturnal_position + Number(inputId.split('-').pop());
+      console.log("selectedCell", selectedCell)
+    }
+
+    if(inputId.startsWith("tue-not")) {
+      var selectedCell =  last_vespertine_position + last_nocturnal_position + Number(inputId.split('-').pop());
+      console.log("selectedCell", selectedCell)
+    }
+
+    // Quarta
+    if(inputId.startsWith("wed-mat")) {
+      var selectedCell = last_nocturnal_position * 2 + Number(inputId.split('-').pop());
+      console.log("selectedCell", selectedCell)
+    }
+
+    if(inputId.startsWith("wed-ves")) {
+      var selectedCell = last_matutine_position + last_nocturnal_position * 2 + Number(inputId.split('-').pop());
+      console.log("selectedCell", selectedCell)
+    }
+
+    if(inputId.startsWith("wed-not")) {
+      var selectedCell =  last_vespertine_position + last_nocturnal_position * 2 + Number(inputId.split('-').pop());
+      console.log("selectedCell", selectedCell)
+    }
+
+    // Quinta
+    if(inputId.startsWith("thu-mat")) {
+      var selectedCell = last_nocturnal_position * 3 + Number(inputId.split('-').pop());
+      console.log("selectedCell", selectedCell)
+    }
+
+    if(inputId.startsWith("thu-ves")) {
+      var selectedCell = last_matutine_position + last_nocturnal_position * 3 + Number(inputId.split('-').pop());
+      console.log("selectedCell", selectedCell)
+    }
+
+    if(inputId.startsWith("thu-not")) {
+      var selectedCell =  last_vespertine_position + last_nocturnal_position * 3 + Number(inputId.split('-').pop());
+      console.log("selectedCell", selectedCell)
+    }
+
+    // Sexta
+    if(inputId.startsWith("fri-mat")) {
+      var selectedCell = last_nocturnal_position * 4 + Number(inputId.split('-').pop());
+      console.log("selectedCell", selectedCell)
+    }
+
+    if(inputId.startsWith("fri-ves")) {
+      var selectedCell = last_matutine_position + last_nocturnal_position * 4 + Number(inputId.split('-').pop());
+      console.log("selectedCell", selectedCell)
+    }
+
+    if(inputId.startsWith("fri-not")) {
+      var selectedCell =  last_vespertine_position + last_nocturnal_position * 4 + Number(inputId.split('-').pop());
+      console.log("selectedCell", selectedCell)
+    }
+
+    // Sabado
+    if(inputId.startsWith("sat-mat")) {
+      var selectedCell = last_nocturnal_position * 5 + Number(inputId.split('-').pop());
+      console.log("selectedCell", selectedCell)
+    }
+
+    if(inputId.startsWith("sat-ves")) {
+      var selectedCell = last_matutine_position + last_nocturnal_position * 5 + Number(inputId.split('-').pop());
+      console.log("selectedCell", selectedCell)
+    }
+
+    if(inputId.startsWith("sat-not")) {
+      var selectedCell =  last_vespertine_position + last_nocturnal_position * 5 + Number(inputId.split('-').pop());
+      console.log("selectedCell", selectedCell)
+    }
+  });
+
+
   // Mudar horas restantes
   $('input[name="regime"]').click(function() {
     $('#cel-regime').val('');
@@ -54,8 +185,6 @@ $(document).ready(function() {
     timeslots.length = 0;
     cel_left = 0;
   });
-
-  
 
   // Pegar dados dos checkboxes
   $('.checkbox').click(function() {
