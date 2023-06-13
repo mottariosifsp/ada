@@ -37,9 +37,27 @@ def attribution_preference(request):
         turno['vespertinoAulas'] = len(turno['vespertino']) + 1
         turno['noturnoAulas'] = len(turno['noturno']) + 1
 
+    timetables = Timetable.objects.filter(course__blockk__in=user_blocks)
+    timetables = list(timetables.values_list('day', 'classs', 'course', 'timeslot__position'))
+
+    # Converte para um objeto json
+    converted_timetables = []
+    for timetable in timetables:
+        converted_timetable = {
+            "day": timetable[0],
+            "classs": timetable[1],
+            "course": timetable[2],
+            "timeslot_position": timetable[3]
+        }
+        converted_timetables.append(converted_timetable)
+
+    json_data = json.dumps(converted_timetables)
+    print(json_data)
+
     data = {
         'turno': turno,
-        'user_blocks': user_blocks
+        'user_blocks': user_blocks,
+        'timetables': json_data
     }
 
     return render(request, 'attribution_preference/attribution_preference.html', data)

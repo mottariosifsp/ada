@@ -20,7 +20,7 @@ class Course(models.Model):
         self.save()
 
     def __str__(self):
-        return self.name_course 
+        return str(self.name_course) 
     
     def clean(self):
         super().clean()
