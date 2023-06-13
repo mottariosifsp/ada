@@ -495,10 +495,11 @@ def bobesponja(timetable):
         if not element == '':
             timetable_clear.append(element)
 
-    print(timetable_clear)
+    print("Time table clear", timetable_clear)
     combo_timeslot = []
     current_course = None
     for day_week_number, day_week in enumerate(timetable):
+        print("dayywekk", day_week)
         for timeslot, name_course in enumerate(day_week):
             if current_course is None:
                 current_course = name_course
@@ -508,10 +509,15 @@ def bobesponja(timetable):
             elif current_course != name_course or len(day_week-1):
 
                 queryset_timeslots = []
-                print(type(combo_timeslot))
+                print("Tipo do combo time slot", type(combo_timeslot))
+                print(" combo time slot", combo_timeslot)
                 for position_timeslot in combo_timeslot:
-                    timeslot = Timeslot.objects.get(position=position_timeslot+1)
+                    position = combo_timeslot.index(position_timeslot)
+                    print("Posição:", position)
+                    print(" combo time slot dentro do for", combo_timeslot)
+                    timeslot = Timeslot.objects.get(position=position+1)
                     queryset_timeslots.append(timeslot)
+                    print("Query set", queryset_timeslots)
                 print(f'salvado {current_course} no dia {number_to_day_enum(day_week_number)}, nos horários {combo_timeslot}')
                 save_combo_day(number_to_day_enum(day_week_number), queryset_timeslots)
 
