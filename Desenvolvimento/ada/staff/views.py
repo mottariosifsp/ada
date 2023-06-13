@@ -10,7 +10,7 @@ from django.contrib.auth.decorators import user_passes_test
 from django.contrib.auth import get_user_model
 from attribution.views import queueSetup, queue
 from django.utils import timezone
-from timetable.models import Timeslot, Timetable
+from timetable.models import Day_combo, Timeslot, Timetable
 from .models import Deadline
 from area.models import Blockk, Area
 from classs.models import Classs
@@ -68,7 +68,7 @@ def attribution_configuration(request):
     if request.method == 'GET':
         blockk = Blockk.objects.get(registration_block_id=request.GET.get('blockk'))
         print(request.GET.get('blockk'))
-        queue = TeacherQueuePosition.objects.filter(blockk=blockk)
+        queue = TeacherQueuePosition.objects.filter(blockk=blockk).order_by('position')
 
         data = {
             'blockk': blockk,
@@ -414,6 +414,9 @@ def create_timetable(request):
     if request.method == 'POST':
         message = ""
         selected_courses = json.loads(request.POST.get('selected_courses'))
+        print(selected_courses)
+        bobesponja(selected_courses)
+        
         try:
             selected_class = Classs.objects.get(registration_class_id__exact=(json.loads(request.POST.get('selected_class'))))
         except Classs.DoesNotExist:
@@ -468,9 +471,67 @@ def show_timetable(request):
 
     return render(request, 'staff/timetable/show_timetable.html', data)
 
-
 def save_timetable(course, timeslot, classs, day):
-    if(Timetable.objects.filter(day=day, timeslot=timeslot, classs=classs).exists()):
-        Timetable.objects.filter(day=day, timeslot=timeslot, classs=classs).update(course=course)
-    else:
-        Timetable.objects.create(day=day, timeslot=timeslot, course=course, classs=classs)
+    # if(Timetable.objects.filter(day=day, timeslot=timeslot, classs=classs).exists()):
+    #     Timetable.objects.filter(day=day, timeslot=timeslot, classs=classs).update(course=course)
+    # else:
+    #     Timetable.objects.create(day=day, timeslot=timeslot, course=course, classs=classs)
+    pass
+
+def save_combo_day(day, timeslots):
+    # print(day, timeslots)
+    # if Day_combo.objects.filter(day=day, timeslots__in=timeslots).exists():
+    #     return
+    # else:
+    
+    
+    day_combo = Day_combo.objects.create(day=day)
+    day_combo.timeslots.set(timeslots)
+
+def bobesponja(timetable):
+    Day_combo.objects.all().delete()
+    timetable_clear = []
+    for element in timetable:
+        if not element == '':
+            timetable_clear.append(element)
+
+    print(timetable_clear)
+    combo_timeslot = []
+    current_course = None
+    for day_week_number, day_week in enumerate(timetable):
+        for timeslot, name_course in enumerate(day_week):
+            if current_course is None:
+                current_course = name_course
+                combo_timeslot.append(timeslot)
+            elif current_course == name_course:
+                combo_timeslot.append(timeslot)
+            elif current_course != name_course or len(day_week-1):
+
+                queryset_timeslots = []
+                print(type(combo_timeslot))
+                for position_timeslot in combo_timeslot:
+                    timeslot = Timeslot.objects.get(position=position_timeslot+1)
+                    queryset_timeslots.append(timeslot)
+                print(f'salvado {current_course} no dia {number_to_day_enum(day_week_number)}, nos horários {combo_timeslot}')
+                save_combo_day(number_to_day_enum(day_week_number), queryset_timeslots)
+
+                combo_timeslot = []
+                combo_timeslot.append(timeslot)
+                current_course = None
+
+def number_to_day_enum(day_number):
+    if(day_number==0):
+        return enum.Day.monday.name
+    elif(day_number==1):
+        return enum.Day.tuesday.name
+    elif(day_number==2):
+        return enum.Day.wednesday.name
+    elif(day_number==3):
+        return enum.Day.thursday.name
+    elif(day_number==4):
+        return enum.Day.friday.name
+    elif(day_number==5):
+        return enum.Day.saturday.name        
+
+    
+
