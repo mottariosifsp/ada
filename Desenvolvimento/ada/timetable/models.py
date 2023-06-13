@@ -6,17 +6,15 @@ from django.utils.translation import gettext_lazy as _
 from common.validator.validator import validate_incongruity_time, validate_interrupted_time
 
 class Timetable(models.Model):
-    day = models.CharField(_('day'), choices=[(s.name, s.value) for s in enum.Day], max_length=45)
-    timeslot = models.ForeignKey('Timeslot', on_delete=models.CASCADE, related_name='timetable')
     course = models.ForeignKey('course.Course', on_delete=models.CASCADE, related_name='timetable', null=True, blank=True)
     classs = models.ForeignKey('classs.Classs', on_delete=models.CASCADE, related_name='timetable')
-
+    day_combo = models.ManyToManyField('Day_combo', related_name='day_combos')
     class Meta:
         verbose_name = _('timetable')
         verbose_name_plural = _('timetables')
         
     def __str__(self):
-        return self.day
+        return str(self.course)
     
 class Timeslot(models.Model):
     position = models.IntegerField(_('position'), null=True, blank=True)
@@ -40,7 +38,19 @@ class Timeslot(models.Model):
 def execute_after_save(sender, instance, created, *args, **kwargs):
     if created:
         sort_by_time(Timeslot) # ordenação de horários
-        
+
+class Day_combo(models.Model):
+    day_combo_id = models.AutoField(primary_key=True)
+    day = models.CharField(_('day'), choices=[(s.name, s.value) for s in enum.Day], max_length=45)
+    timeslots = models.ManyToManyField('Timeslot', related_name='day_combos')
+
+    class Meta:
+        verbose_name = _('day_combo')
+        verbose_name_plural = _('day_combos')
+
+    def __str__(self):
+        return self.day
+
 class Timetable_user(models.Model):
     timetable = models.ForeignKey('Timetable', on_delete=models.CASCADE, related_name='timetable_user')
     user = models.ForeignKey('user.User', on_delete=models.CASCADE, related_name='timetable_user')
