@@ -546,18 +546,16 @@ def positions_to_timeslots(positions):
     return timeslot_objects
 
 def number_to_day_enum(day_number):
-    if(day_number==0):
-        return enum.Day.monday.name
-    elif(day_number==1):
-        return enum.Day.tuesday.name
-    elif(day_number==2):
-        return enum.Day.wednesday.name
-    elif(day_number==3):
-        return enum.Day.thursday.name
-    elif(day_number==4):
-        return enum.Day.friday.name
-    elif(day_number==5):
-        return enum.Day.saturday.name        
+    day = (
+        enum.Day.monday.name,
+        enum.Day.tuesday.name,
+        enum.Day.wednesday.name,
+        enum.Day.thursday.name,
+        enum.Day.friday.name,
+        enum.Day.saturday.name,
+    )
+
+    return day[day_number]   
 
     
 
