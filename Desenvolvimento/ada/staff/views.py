@@ -678,4 +678,3 @@ def number_to_day_enum(day_number):
     return day[day_number]   
 
     
-
