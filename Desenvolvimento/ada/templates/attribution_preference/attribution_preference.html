@@ -89,7 +89,6 @@
                         {% for horario in turno.matutino %}
                           <tr>
                             <td class="text-center align-middle">{{ horario.hour_start }} - {{ horario.hour_end }}</td>
-      
                             <td class="text-center">
                               <div class="openModalBtn">
                                 <div class="btn-group-toggle" data-toggle="buttons">
@@ -358,5 +357,5 @@
 {% endblock %}
 
 {% block endbody %}
-  <script src="{% static 'attribution_preference/js/preferred_availability.js' %}" blocks='{{user_blocks}}' timetables='{{timetables}}' data-lang={{LANGUAGE_CODE}}></script>
+  <script src="{% static 'attribution_preference/js/preferred_availability.js' %}" blocks='{{user_blocks}}' timetables='{{timetables}}' max_quantidade_celulas='{{max_quantidade_celulas}}' data-lang={{LANGUAGE_CODE}}></script>
 {% endblock %}

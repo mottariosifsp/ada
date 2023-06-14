@@ -7,39 +7,43 @@ var hour = 0
 var minute = 0
 var user_blocks = document.currentScript.getAttribute('blocks');
 var user_timetables = document.currentScript.getAttribute('timetables');
+var max_quantidade_celulas = document.currentScript.getAttribute('quantidade_celulas');
 
 $(document).ready(function() {
 
   var timetables = JSON.parse(user_timetables)
   console.log("Timetables",timetables)
-  marcarCombos(1);
 
-  function turnCheckboxLabelActive(checkboxId) {
-    var checkbox  = document.getElementById(checkboxId);
-    checkbox.checked = true;
-    var label = document.querySelector('label[for="' + checkboxId + '"]');
-    label.classList.add('active');
-  }
+  console.log(max_quantidade_celulas);
 
-  function marcarCombos(position) {
-    console.log("Entrou no marcar combos");
-    for (i = 1; i <= timetables.length - 1; i++) {
-      if (timetables[i].timeslot_position == 1 ) {
-        console.log("parou na posicao 1");
-        if (timetables[i+1].classs == timetables[i].classs && timetables[i+1].course == timetables[i].course ) {
-          console.log("marcou o primeiro");
-          var checkboxId = "mon-mat-2";
-          turnCheckboxLabelActive(checkboxId);
-        }
-        if (timetables[i+2].classs == timetables[i].classs && timetables[i+2].course == timetables[i].course ) {
-          console.log("marcou o segundo");
-          var checkboxId = "mon-mat-3";
-          turnCheckboxLabelActive(checkboxId);
-        }
-      }
-      console.log("Day", timetables[i].day);
-    }
-  }
+  // marcarCombos(1);
+  //
+  // function turnCheckboxLabelActive(checkboxId) {
+  //   var checkbox  = document.getElementById(checkboxId);
+  //   checkbox.checked = true;
+  //   var label = document.querySelector('label[for="' + checkboxId + '"]');
+  //   label.classList.add('active');
+  // }
+  //
+  // function marcarCombos(position) {
+  //   console.log("Entrou no marcar combos");
+  //   for (i = 1; i <= timetables.length - 1; i++) {
+  //     if (timetables[i].timeslot_position == 1 ) {
+  //       console.log("parou na posicao 1");
+  //       if (timetables[i+1].classs == timetables[i].classs && timetables[i+1].course == timetables[i].course ) {
+  //         console.log("marcou o primeiro");
+  //         var checkboxId = "mon-mat-2";
+  //         turnCheckboxLabelActive(checkboxId);
+  //       }
+  //       if (timetables[i+2].classs == timetables[i].classs && timetables[i+2].course == timetables[i].course ) {
+  //         console.log("marcou o segundo");
+  //         var checkboxId = "mon-mat-3";
+  //         turnCheckboxLabelActive(checkboxId);
+  //       }
+  //     }
+  //     console.log("Day", timetables[i].day);
+  //   }
+  // }
 
   // Variáveis para saber a última posição de cada período
   var last_matutine_position = 0;
@@ -191,6 +195,7 @@ $(document).ready(function() {
       $('.checkbox input[type="checkbox"]').prop('checked', false);
       $('label.checkbox').removeClass('active');
       timeslots = []
+      //console.log(timeslots)
     }
 
     if ($('#error-alert-form').is(':visible')) {
@@ -259,6 +264,7 @@ $(document).ready(function() {
         
         if (index !== -1) {
           timeslots.splice(index, 1);
+          //console.log(timeslots);
         }
 
         $('#cel-regime').text(cel_left);
@@ -268,13 +274,24 @@ $(document).ready(function() {
           if (cel_final != "checked") {
             var [objeto_elemento, dia_elemento] = input_val.split(',');
             var [inicio, fim] = objeto_elemento.split('-');
-            var aula = {
-              hora_comeco: inicio,
-              hora_fim: fim,
-              dia_semana: dia_elemento
-            };
 
-            timeslots.push(aula)
+            console.log(clickCheckbox(inicio, fim));
+            if (clickCheckbox(inicio, fim) > 480) {
+              $('#error-message-form').text('Erro.');
+              $('#error-alert-form').show();
+                window.scrollTo({
+                  top: $('#error-alert-form').offset().top - $('.navbar').outerHeight() - 30,
+                  behavior: 'smooth'
+                });
+            } else {
+              var aula = {
+                hora_comeco: inicio,
+                hora_fim: fim,
+                dia_semana: dia_elemento
+              };
+
+              timeslots.push(aula);
+            }
           }
         }
       }
