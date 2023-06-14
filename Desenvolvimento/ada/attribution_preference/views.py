@@ -38,7 +38,9 @@ def attribution_preference(request):
         turno['noturnoAulas'] = len(turno['noturno']) + 1
 
     timetables = Timetable.objects.filter(course__blockk__in=user_blocks)
-    timetables = list(timetables.values_list('day', 'classs', 'course', 'timeslot__position'))
+    timetables = list(
+        Timetable.objects.values_list('day_combo__day', 'classs', 'course', 'day_combo__timeslots__position')
+    )
 
     # Converte para um objeto json
     converted_timetables = []
@@ -107,6 +109,7 @@ def courses_attribution_preference(request):
         user = request.user
         user_regime = user.job
         timetable = Timetable.objects.all()
+        courses = Course.objects.all()
 
         areas = Area.objects.filter(blocks__in=user.blocks.all()).distinct()
         blocks = Blockk.objects.filter(areas__in=areas)
@@ -116,6 +119,7 @@ def courses_attribution_preference(request):
 
         for area in areas:
             area_obj = {
+                'id': area.registrarion_area_id,
                 'name_area': area.name_area,
                 'acronym': area.acronym,
                 'blocks': [block.acronym for block in area.blocks.all()]
@@ -124,6 +128,7 @@ def courses_attribution_preference(request):
 
         for block in blocks:
             block_obj = {
+                'id': block.registration_block_id,
                 'name_block': block.name_block,
                 'acronym': block.acronym
             }
@@ -135,11 +140,23 @@ def courses_attribution_preference(request):
             timetable_item = {
                 'day': timetable_object.day,
                 'hour_start': timetable_object.timeslot.hour_start.strftime('%H:%M:%S'),
-                'course': timetable_object.course.name_course if timetable_object.course else None,
+                'course_acronym': timetable_object.course.acronym,
                 'classs': timetable_object.classs.registration_class_id,
             }
 
             timetable_array.append(timetable_item)
+
+        courses_array = []
+
+        for course_object in courses:
+            course_item = {
+                'id': course_object.registration_course_id,
+                'name': course_object.name_course,
+                'acronym': course_object.acronym,
+                'area': course_object.area.registration_area_id,
+                'block': course_object.blockk.registration_block_id
+            }
+            courses_array.append(course_item)
 
         turno = {
             'matutino': [],
@@ -197,21 +214,16 @@ def courses_attribution_preference(request):
             else:
                 day = 'sat'
 
-            hour_string = {
-                'hour': begin,
-                'frase': f'{day}-{turno_sessao}-{turno_posicao}'
-            }
             string = {
                 'frase': f'{day}-{turno_sessao}-{turno_posicao}',
                 'posicao': turno_posicao,
                 'sessao': turno_sessao,
-                'dia': day
+                'dia': day,
+                'hour': begin,
             } 
             user_timeslot_traceback.append(string)
-            user_timeslot_hour.append(hour_string)
 
         print(user_timeslot_traceback)
-        print(user_timeslot_hour)
         print(user_blocks)
         print(user_area)
         print(timetable_array)
@@ -221,9 +233,9 @@ def courses_attribution_preference(request):
             'turno': turno,
             'user_disponibility': user_timeslot_traceback,
             'user_blocks': user_blocks,
-            'user_area': user_area,
-            'user_hour': user_timeslot_hour,
-            'timetable': timetable_array
+            'user_areas': user_area,
+            'timetables': timetable_array,
+            'courses': courses_array
         }
 
         return render(request, 'attribution_preference/courses_attribution_preference.html', data)
