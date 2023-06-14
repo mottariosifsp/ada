@@ -5,7 +5,7 @@ from attribution.models import TeacherQueuePosition
 from enums import enum
 from django.db import transaction
 from django.http import JsonResponse
-from django.shortcuts import get_object_or_404, render
+from django.shortcuts import get_object_or_404, redirect, render
 from django.contrib.auth.decorators import user_passes_test
 from django.contrib.auth import get_user_model
 from attribution.views import queueSetup, queue
@@ -23,7 +23,8 @@ from django.contrib.auth.decorators import login_required
 def is_staff(user):
     return user.is_staff
 
-# prazos
+
+# prazos views
 
 @login_required
 @user_passes_test(is_staff)
@@ -299,6 +300,9 @@ def block_detail(request, registration_block_id):
 
     return render(request, 'staff/blockk/block_detail.html', data)
 
+
+# course views
+
 @login_required
 @user_passes_test(is_staff)
 def course_create(request):
@@ -342,6 +346,7 @@ def course_delete(request):
             return JsonResponse({'message': 'Curso deletado com sucesso.'})
         except Course.DoesNotExist:
             return JsonResponse({'message': 'O curso não existe.'}, status=404)
+
 
 # fila view
 
@@ -464,6 +469,67 @@ def create_timetable(request):
                     save_timetable(None, timeslot, selected_class, day)
                     print("She's going off about something that you said")
         return JsonResponse({'erro': False, 'mensagem': message})
+    
+@login_required
+@user_passes_test(is_staff)
+def edit_timetable(request):
+    print(request)
+    if request.method == 'GET':
+        if request.GET.get('classs'):
+            # selected_class = Classs.objects.get(registration_class_id__icontains=(request.GET.get('classs')))
+            selected_class = get_object_or_404(Classs, registration_class_id__icontains=(request.GET.get('classs')))
+            try:
+                timetable = Timetable.objects.get(classs=selected_class)
+                selected_courses = [timetable.course] if timetable.course else []
+            except Timetable.DoesNotExist:
+                timetable = None
+                selected_courses = Course.objects.filter(area=selected_class.area)
+            
+            data = {
+                'courses': selected_courses,
+                'timeslots': Timeslot.objects.all().order_by('hour_start'),
+                'classs': selected_class,
+                'timetable': timetable,
+            }            
+    
+    elif request.method == 'POST':
+        message = ""
+        selected_courses = json.loads(request.POST.get('selected_courses'))
+        print(selected_courses)
+        bobesponja(selected_courses)
+        
+        for courses in selected_courses:
+            for name_course in courses:
+                if name_course and not Course.objects.filter(name_course=name_course).exists():
+                        message = "Selecione uma matéria válida"
+                        return JsonResponse({'erro': True, 'mensagem': message})                    
+        
+        for day_number, courses in enumerate(selected_courses):
+            for position, name_course in enumerate(courses):
+                timeslot = Timeslot.objects.get(position=position+1)
+                course = None
+                day = None
+                if(day_number==0):
+                    day = enum.Day.monday.name
+                elif(day_number==1):
+                    day = enum.Day.tuesday.name
+                elif(day_number==2):
+                    day = enum.Day.wednesday.name
+                elif(day_number==3):
+                    day = enum.Day.thursday.name
+                elif(day_number==4):
+                    day = enum.Day.friday.name
+                elif(day_number==5):
+                    day = enum.Day.saturday.name              
+                if name_course:                
+                    course = Course.objects.get(name_course=name_course)
+                    save_timetable(course, timeslot, selected_class, day)
+                    print("Want you to make me feel like I'm the only girl in the world")
+                else:
+                    save_timetable(None, timeslot, selected_class, day)
+                    print("Like I'm the only one that you'll ever love")
+        return JsonResponse({'erro': False, 'mensagem': message})
+    return render(request, 'staff/timetable/show_timetable.html', data)
 
 @login_required
 @user_passes_test(is_staff)
@@ -480,7 +546,6 @@ def show_timetable(request):
         }
 
     return render(request, 'staff/timetable/show_timetable.html', data)
-
 
 def save_timetable(course, timeslot, classs, day):
     print("'Cause she doesn't get your humor like I do")

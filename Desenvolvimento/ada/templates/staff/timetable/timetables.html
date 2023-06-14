@@ -30,7 +30,6 @@
                 <td>
                   {% if classs.timetable.exists %}
                     <a href="{% url 'show_timetable' %}?class={{classs.registration_class_id}}" class="btn btn-primary"><i class="bi bi-eye"></i></a>
-                    <a href="{% url 'create_timetable' %}?class={{classs.registration_class_id}}" class="btn btn-warning"><i class="bi bi-pencil"></i></a>
                   {% else %}
                     <a href="{% url 'create_timetable' %}?class={{classs.registration_class_id}}" class="btn btn-success"><i class="bi bi-calendar-plus"></i></a>
                   {% endif %}
