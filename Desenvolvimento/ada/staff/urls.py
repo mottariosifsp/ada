@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import attribution_configuration, attribution_configuration_confirm, attribution_configuration_index, class_create, class_delete, classes_list, classes_list_saved, create_timetable, show_timetable, home, confirm_deadline_configuration, \
+from .views import attribution_configuration, attribution_configuration_confirm, attribution_configuration_index, class_create, class_delete, classes_list, classes_list_saved, create_timetable, edit_timetable, show_timetable, home, confirm_deadline_configuration, \
     show_current_deadline, deadline_configuration, professors_list, timetables, update_save, blocks_list, block_detail, \
     course_update_save, course_delete, course_create, queue_create, queue_show
 
@@ -22,6 +22,7 @@ urlpatterns = [
     path("detalhes-bloco/criar-fila", queue_create, name="queue_create"),
     path("detalhes-bloco/lista", queue_show, name="queue_show"),
     path("grade/cadastrar/", create_timetable, name="create_timetable"),
+    path("grade/editar/", edit_timetable, name="edit_timetable"),
     path("grade/ver/", show_timetable, name="show_timetable"),
     path("grade/", timetables, name="timetables"),
     path("atribuicao/configuracao/", attribution_configuration, name="attribution_configuration"),
