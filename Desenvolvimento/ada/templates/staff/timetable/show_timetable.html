@@ -11,47 +11,49 @@
 
 {% block body %}
   {{ block.super }} 
-    <div style="display: none;position: fixed; top: calc( 50% - ( 20rem / 2) ); left: calc( 50% - ( 20rem / 2) ); width: 20rem; height: 20rem;">
-        <img src="https://cdn.awsli.com.br/300x300/1594/1594408/produto/1482066500b9bac0fff.jpg" class="img-fluid" alt="Responsive image" >
-        <h3 class="row d-flex justify-content-center">Tabela salva 🙏🙏🙏</h3>
-    </div>
-    <div class="container">
-        <h5>Grade horária salva!</h5>
-        <h1 class="text-center"> {{ request.GET.class }} </h1>
-        <!-- editar e limpar -->
-        <table class="table" id="timetable_table">
-            <thead class="thead-dark">
-              <tr>
-                <th scope="col" class="text-center">Horário</th>
-                <th scope="col" class="text-center">Segunda-feira</th>
-                <th scope="col" class="text-center">Terça-feira</th>
-                <th scope="col" class="text-center">Quarta-feira</th>
-                <th scope="col" class="text-center">Quinta-feira</th>
-                <th scope="col" class="text-center">Sexta-feira</th>
-                <th scope="col" class="text-center">Sábado</th>
-              </tr>
-            </thead>
-            <tbody>
-              {% for timeslot in timeslots %}
-              <tr class="text-center">
-                <th scope="row">{{ timeslot.hour_start }} - {{ timeslot.hour_end }}</th>
-                <!-- timeslot -->
-                {% for timetable in timetables %}
+  <div style="display: none; position: fixed; top: calc(50% - (20rem / 2)); left: calc(50% - (20rem / 2)); width: 20rem; height: 20rem;">
+    <img src="https://cdn.awsli.com.br/300x300/1594/1594408/produto/1482066500b9bac0fff.jpg" class="img-fluid" alt="Responsive image">
+    <h3 class="row d-flex justify-content-center">Tabela salva 🙏🙏🙏</h3>
+  </div>
+  <div class="container">
+    <h5>Grade horária salva!</h5>
+    <h1 class="text-center">{{ request.GET.class }}</h1>
+    <!-- editar e limpar -->
+    <table class="table" id="timetable_table">
+      <thead class="thead-dark">
+        <tr>
+          <th scope="col" class="text-center">Horário</th>
+          <th scope="col" class="text-center">Segunda-feira</th>
+          <th scope="col" class="text-center">Terça-feira</th>
+          <th scope="col" class="text-center">Quarta-feira</th>
+          <th scope="col" class="text-center">Quinta-feira</th>
+          <th scope="col" class="text-center">Sexta-feira</th>
+          <th scope="col" class="text-center">Sábado</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for timeslot in timeslots %}
+        <tr class="text-center">
+          <th scope="row">{{ timeslot.hour_start }} - {{ timeslot.hour_end }}</th>
+          <!-- timeslot -->
+          {% for day_combo in day_combos %}
+            {% if timeslot in day_combo.timeslots.all %}
+              <td>
+                {% for timetable in day_combo.timetables.all %}
                   {% if timetable.timeslot == timeslot %}
-                    {% if timetable.course != None %}
-                    <td>
-                        {{ timetable.course }}
-                    </td>
+                    {% if timetable.course %}
+                      {{ timetable.course }}
                     {% else %}
-                    <td>
-                        -
-                    </td>
+                      -
                     {% endif %}
                   {% endif %}
                 {% endfor %}
-              </tr>
-              {% endfor %}
-            </tbody>
-          </table>
-    </div>
+              </td>
+            {% endif %}
+          {% endfor %}
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
 {% endblock %}

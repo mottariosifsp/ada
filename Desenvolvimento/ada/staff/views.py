@@ -397,18 +397,24 @@ def timetables(request):
 @user_passes_test(is_staff)
 def create_timetable(request):
     if request.method == 'GET':
-
         if request.GET.get('class'):
             selected_class = Classs.objects.get(registration_class_id__icontains=(request.GET.get('class')))
+            try:
+                timetable = Timetable.objects.get(classs=selected_class)
+            except Timetable.DoesNotExist:
+                timetable = None
             selected_courses = Course.objects.filter(area=selected_class.area)
         else:
-            selected_class = Classs.objects.all()        
+            selected_class = Classs.objects.all()
+            timetable = None
             selected_courses = Course.objects.all()
+
         data = {
             'courses': selected_courses,
             'timeslots': Timeslot.objects.all().order_by('hour_start'),
             'classes': Classs.objects.all(),
-        }        
+            'timetable': timetable,
+        }
         return render(request, 'staff/timetable/register.html', data)
       
     if request.method == 'POST':
@@ -453,8 +459,10 @@ def create_timetable(request):
                 if name_course:                
                     course = Course.objects.get(name_course=name_course)
                     save_timetable(course, timeslot, selected_class, day)
+                    print("You're on the phone with your girlfriend, she's upset")
                 else:
                     save_timetable(None, timeslot, selected_class, day)
+                    print("She's going off about something that you said")
         return JsonResponse({'erro': False, 'mensagem': message})
 
 @login_required
@@ -463,30 +471,44 @@ def show_timetable(request):
     if request.method == 'GET':
         selected_class = Classs.objects.get(registration_class_id__exact=(request.GET.get('class')))
         timetables = Timetable.objects.filter(classs=selected_class).all()
+        day_combos = Day_combo.objects.all() # .filter(classs=selected_class)
 
         data = {
             'timetables': timetables,
             'timeslots': Timeslot.objects.all().order_by('hour_start'),
-        }  
+            'day_combos': day_combos,
+        }
 
     return render(request, 'staff/timetable/show_timetable.html', data)
 
+
 def save_timetable(course, timeslot, classs, day):
-    # if(Timetable.objects.filter(day=day, timeslot=timeslot, classs=classs).exists()):
-    #     Timetable.objects.filter(day=day, timeslot=timeslot, classs=classs).update(course=course)
-    # else:
-    #     Timetable.objects.create(day=day, timeslot=timeslot, course=course, classs=classs)
-    pass
+    print("'Cause she doesn't get your humor like I do")
+    print(course, timeslot, classs, day)
+    timetable, created = Timetable.objects.get_or_create(
+        day_combo__day=day,
+        day_combo__timeslots=timeslot,
+        classs=classs,
+        defaults={'course': course}
+    )
+    print(timetable, created)
+
+    if not created:
+        print("I'm in the room, it's a typical Tuesday night")
+        if course is None:
+            timetable.delete()
+        else:
+            print("I'm listening to the kind of music she doesn't like")
+            print(course)
+            timetable.course = course
+            timetable.save()
+
 
 def save_combo_day(day, timeslots):
-    # print(day, timeslots)
-    # if Day_combo.objects.filter(day=day, timeslots__in=timeslots).exists():
-    #     return
-    # else:
-    
-    
-    day_combo = Day_combo.objects.create(day=day)
+    day_combo, created = Day_combo.objects.get_or_create(day=day)
     day_combo.timeslots.set(timeslots)
+    print("But she wears short skirts")
+    print(day_combo, created)
 
 def bobesponja(timetable):
     Day_combo.objects.all().delete()
@@ -513,9 +535,9 @@ def bobesponja(timetable):
                 print(" combo time slot", combo_timeslot)
                 for position_timeslot in combo_timeslot:
                     position = combo_timeslot.index(position_timeslot)
-                    print("Posição:", position)
+                    print("Posiçãoooooooooooooooooooo oooooooooooooooooo:", position)
                     print(" combo time slot dentro do for", combo_timeslot)
-                    timeslot = Timeslot.objects.get(position=position+1)
+                    timeslot = Timeslot.objects.get(position=position + 1)
                     queryset_timeslots.append(timeslot)
                     print("Query set", queryset_timeslots)
                 print(f'salvado {current_course} no dia {number_to_day_enum(day_week_number)}, nos horários {combo_timeslot}')
