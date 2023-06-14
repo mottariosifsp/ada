@@ -5,7 +5,7 @@ from attribution.models import TeacherQueuePosition
 from enums import enum
 from django.db import transaction
 from django.http import JsonResponse
-from django.shortcuts import get_object_or_404, render
+from django.shortcuts import get_object_or_404, redirect, render
 from django.contrib.auth.decorators import user_passes_test
 from django.contrib.auth import get_user_model
 from attribution.views import queueSetup, queue
@@ -23,7 +23,8 @@ from django.contrib.auth.decorators import login_required
 def is_staff(user):
     return user.is_staff
 
-# prazos
+
+# prazos views
 
 @login_required
 @user_passes_test(is_staff)
@@ -299,6 +300,9 @@ def block_detail(request, registration_block_id):
 
     return render(request, 'staff/blockk/block_detail.html', data)
 
+
+# course views
+
 @login_required
 @user_passes_test(is_staff)
 def course_create(request):
@@ -342,6 +346,7 @@ def course_delete(request):
             return JsonResponse({'message': 'Curso deletado com sucesso.'})
         except Course.DoesNotExist:
             return JsonResponse({'message': 'O curso não existe.'}, status=404)
+
 
 # fila view
 
@@ -397,18 +402,24 @@ def timetables(request):
 @user_passes_test(is_staff)
 def create_timetable(request):
     if request.method == 'GET':
-
         if request.GET.get('class'):
             selected_class = Classs.objects.get(registration_class_id__icontains=(request.GET.get('class')))
+            try:
+                timetable = Timetable.objects.get(classs=selected_class)
+            except Timetable.DoesNotExist:
+                timetable = None
             selected_courses = Course.objects.filter(area=selected_class.area)
         else:
-            selected_class = Classs.objects.all()        
+            selected_class = Classs.objects.all()
+            timetable = None
             selected_courses = Course.objects.all()
+
         data = {
             'courses': selected_courses,
             'timeslots': Timeslot.objects.all().order_by('hour_start'),
             'classes': Classs.objects.all(),
-        }        
+            'timetable': timetable,
+        }
         return render(request, 'staff/timetable/register.html', data)
       
     if request.method == 'POST':
@@ -452,9 +463,72 @@ def create_timetable(request):
                 if name_course:                
                     course = Course.objects.get(name_course=name_course)
                     save_timetable(course, timeslot, selected_class, day)
+                    print("You're on the phone with your girlfriend, she's upset")
                 else:
                     save_timetable(None, timeslot, selected_class, day)
+                    print("She's going off about something that you said")
         return JsonResponse({'erro': False, 'mensagem': message})
+    
+@login_required
+@user_passes_test(is_staff)
+def edit_timetable(request):
+    print(request)
+    if request.method == 'GET':
+        if request.GET.get('classs'):
+            # selected_class = Classs.objects.get(registration_class_id__icontains=(request.GET.get('classs')))
+            selected_class = get_object_or_404(Classs, registration_class_id__icontains=(request.GET.get('classs')))
+            try:
+                timetable = Timetable.objects.get(classs=selected_class)
+                selected_courses = [timetable.course] if timetable.course else []
+            except Timetable.DoesNotExist:
+                timetable = None
+                selected_courses = Course.objects.filter(area=selected_class.area)
+            
+            data = {
+                'courses': selected_courses,
+                'timeslots': Timeslot.objects.all().order_by('hour_start'),
+                'classs': selected_class,
+                'timetable': timetable,
+            }            
+    
+    elif request.method == 'POST':
+        message = ""
+        selected_courses = json.loads(request.POST.get('selected_courses'))
+        print(selected_courses)
+        bobesponja(selected_courses)
+        
+        for courses in selected_courses:
+            for name_course in courses:
+                if name_course and not Course.objects.filter(name_course=name_course).exists():
+                        message = "Selecione uma matéria válida"
+                        return JsonResponse({'erro': True, 'mensagem': message})                    
+        
+        for day_number, courses in enumerate(selected_courses):
+            for position, name_course in enumerate(courses):
+                timeslot = Timeslot.objects.get(position=position+1)
+                course = None
+                day = None
+                if(day_number==0):
+                    day = enum.Day.monday.name
+                elif(day_number==1):
+                    day = enum.Day.tuesday.name
+                elif(day_number==2):
+                    day = enum.Day.wednesday.name
+                elif(day_number==3):
+                    day = enum.Day.thursday.name
+                elif(day_number==4):
+                    day = enum.Day.friday.name
+                elif(day_number==5):
+                    day = enum.Day.saturday.name              
+                if name_course:                
+                    course = Course.objects.get(name_course=name_course)
+                    save_timetable(course, timeslot, selected_class, day)
+                    print("Want you to make me feel like I'm the only girl in the world")
+                else:
+                    save_timetable(None, timeslot, selected_class, day)
+                    print("Like I'm the only one that you'll ever love")
+        return JsonResponse({'erro': False, 'mensagem': message})
+    return render(request, 'staff/timetable/show_timetable.html', data)
 
 @login_required
 @user_passes_test(is_staff)
@@ -462,20 +536,37 @@ def show_timetable(request):
     if request.method == 'GET':
         selected_class = Classs.objects.get(registration_class_id__exact=(request.GET.get('class')))
         timetables = Timetable.objects.filter(classs=selected_class).all()
+        day_combos = Day_combo.objects.all() # .filter(classs=selected_class)
 
         data = {
             'timetables': timetables,
             'timeslots': Timeslot.objects.all().order_by('hour_start'),
-        }  
+            'day_combos': day_combos,
+        }
 
     return render(request, 'staff/timetable/show_timetable.html', data)
 
 def save_timetable(course, timeslot, classs, day):
-    # if(Timetable.objects.filter(day=day, timeslot=timeslot, classs=classs).exists()):
-    #     Timetable.objects.filter(day=day, timeslot=timeslot, classs=classs).update(course=course)
-    # else:
-    #     Timetable.objects.create(day=day, timeslot=timeslot, course=course, classs=classs)
-    pass
+    print("'Cause she doesn't get your humor like I do")
+    print(course, timeslot, classs, day)
+    timetable, created = Timetable.objects.get_or_create(
+        day_combo__day=day,
+        day_combo__timeslots=timeslot,
+        classs=classs,
+        defaults={'course': course}
+    )
+    print(timetable, created)
+
+    if not created:
+        print("I'm in the room, it's a typical Tuesday night")
+        if course is None:
+            timetable.delete()
+        else:
+            print("I'm listening to the kind of music she doesn't like")
+            print(course)
+            timetable.course = course
+            timetable.save()
+
 
 def save_combo_day(day, timeslots):
     # print(day, timeslots)
@@ -483,7 +574,10 @@ def save_combo_day(day, timeslots):
     #     return
     # else:
     day_combo = Day_combo.objects.create(day=day)
+    day_combo, created = Day_combo.objects.get_or_create(day=day)
     day_combo.timeslots.set(timeslots)
+    print("But she wears short skirts")
+    print(day_combo, created)
 
 def timetable_combo_saver(timetable):
     Day_combo.objects.all().delete()
