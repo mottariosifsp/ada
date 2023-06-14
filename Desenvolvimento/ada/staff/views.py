@@ -495,7 +495,7 @@ def edit_timetable(request):
         message = ""
         selected_courses = json.loads(request.POST.get('selected_courses'))
         print(selected_courses)
-        bobesponja(selected_courses)
+        timetable_combo_saver(selected_courses)
         
         for courses in selected_courses:
             for name_course in courses:
@@ -654,4 +654,3 @@ def number_to_day_enum(day_number):
         return enum.Day.saturday.name        
 
     
-
