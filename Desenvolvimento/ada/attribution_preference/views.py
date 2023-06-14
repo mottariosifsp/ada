@@ -112,17 +112,17 @@ def courses_attribution_preference(request):
         courses = Course.objects.all()
 
         areas = Area.objects.filter(blocks__in=user.blocks.all()).distinct()
-        blocks = Blockk.objects.filter(areas__in=areas)
+        blocks = Blockk.objects.filter(areas__in=areas).distinct()
 
         user_area = []
         user_blocks = []
 
         for area in areas:
             area_obj = {
-                'id': area.registrarion_area_id,
+                'id': area.registration_area_id,
                 'name_area': area.name_area,
                 'acronym': area.acronym,
-                'blocks': [block.acronym for block in area.blocks.all()]
+                'blocks': [block.registration_block_id for block in area.blocks.all()]
             }
             user_area.append(area_obj)
 
@@ -137,10 +137,29 @@ def courses_attribution_preference(request):
         timetable_array = []
 
         for timetable_object in timetable:
+            day_combo_objects = timetable_object.day_combo.all()
+            day_combo_data = []
+
+            for day_combo in day_combo_objects:
+                day = day_combo.day
+                timeslots = day_combo.timeslots.all()
+                timeslot_data = []
+
+                for timeslot in timeslots:
+                    timeslot_data.append({
+                        'hour_start': timeslot.hour_start.strftime('%H:%M:%S'),
+                        'hour_end': timeslot.hour_end.strftime('%H:%M:%S'),
+                    })
+
+                day_combo_data.append({
+                    'day': day,
+                    'timeslots': timeslot_data,
+                })
+
             timetable_item = {
-                'day': timetable_object.day,
-                'hour_start': timetable_object.timeslot.hour_start.strftime('%H:%M:%S'),
+                'day_combo': day_combo_data,
                 'course_acronym': timetable_object.course.acronym,
+                'course_name': timetable_object.course.name_course,
                 'classs': timetable_object.classs.registration_class_id,
             }
 
@@ -219,7 +238,7 @@ def courses_attribution_preference(request):
                 'posicao': turno_posicao,
                 'sessao': turno_sessao,
                 'dia': day,
-                'hour': begin,
+                'hour': begin.strftime('%H:%M:%S'),
             } 
             user_timeslot_traceback.append(string)
 

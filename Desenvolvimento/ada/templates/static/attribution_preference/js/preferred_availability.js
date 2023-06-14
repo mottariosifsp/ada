@@ -314,9 +314,9 @@ $(document).ready(function() {
 
   // Enviar formulário inteiro
   $('#sendDisponibility').click(function() {
-    for (var i = 0; i < timeslots.length; i++) {
-      alert(timeslots[i].hora_comeco);
-    }
+    // for (var i = 0; i < timeslots.length; i++) {
+    //   alert(timeslots[i].hora_comeco);
+    // }
     var work_regime =  $('input[name="regime"]:checked').val();
     var jsonData = JSON.stringify(timeslots);
 
