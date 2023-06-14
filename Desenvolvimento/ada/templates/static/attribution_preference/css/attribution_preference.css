@@ -43,3 +43,28 @@ th {
   font-weight: 700;
   color: #124136e6;
 } 
+
+.btn-notchecked, .btn-notchecked input {
+  background-color: #79b9aa;
+  color: white
+}
+.btn-checked:hover {
+  font-weight: 700;
+  color: white;
+}
+.btn-notchecked:hover {
+  color: white;
+  font-weight: 100;
+}
+.btn-checked {
+  background-color: #2f7363;
+  color: white;
+}
+.modal-backdrop {
+  opacity: 0.5;
+  background-color: #0000002d;
+}
+.my-custom-modal .modal-backdrop {
+  opacity: 0.5;
+  background-color: #0000002d;
+}

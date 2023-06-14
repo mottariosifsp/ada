@@ -5,32 +5,6 @@
 {% block head %}
   <link rel="stylesheet" href="{% static 'attribution_preference/css/attribution_preference_courses.css' %}">
   <title>{% translate "Envio Formulário de Preferência de Atividades" %}</title>
-  <style>
-    .btn-notchecked, .btn-notchecked input {
-      background-color: #79b9aa;
-      color: white
-    }
-    .btn-checked:hover {
-      font-weight: 700;
-      color: white;
-    }
-    .btn-notchecked:hover {
-      color: white;
-      font-weight: 100;
-    }
-    .btn-checked {
-      background-color: #2f7363;
-      color: white;
-    }
-    .modal-backdrop {
-      opacity: 0.5;
-      background-color: #0000002d;
-    }
-    .my-custom-modal .modal-backdrop {
-      opacity: 0.5;
-      background-color: #0000002d;
-    }
-  </style>
 {% endblock %}
 
 {% block body %}
@@ -430,5 +404,5 @@
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
   <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-  <script src="{% static 'attribution_preference/js/preferred_courses.js' %}" data-lang='{{ LANGUAGE_CODE }}' blocks='{{user_blocks}}' areas='{{user_area}}' disponibility_hour='{{ user_hour }}' courses='{{ timetable }}' disponibility='{{ user_disponibility }}'></script>
+  <script src="{% static 'attribution_preference/js/preferred_courses.js' %}" data-lang='{{ LANGUAGE_CODE }}' blocks='{{user_blocks}}' areas='{{user_areas}}' disponibility_hour='{{ user_hour }}' courses='{{ courses }}' timetables='{{ timetables }}' disponibility='{{ user_disponibility }}'></script>
 {% endblock %}
