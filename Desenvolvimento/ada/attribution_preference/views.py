@@ -72,7 +72,8 @@ def attribution_preference(request):
         'turno': turno,
         'user_blocks': user_blocks,
         'timetables': json_data,
-        'max_quantidade_celulas': celulas
+        'max_quantidade_celulas': celulas,
+        'diferenca_minutos': diferenca
     }
 
     return render(request, 'attribution_preference/attribution_preference.html', data)

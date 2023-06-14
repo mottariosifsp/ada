@@ -357,5 +357,5 @@
 {% endblock %}
 
 {% block endbody %}
-  <script src="{% static 'attribution_preference/js/preferred_availability.js' %}" blocks='{{user_blocks}}' timetables='{{timetables}}' max_quantidade_celulas='{{max_quantidade_celulas}}' data-lang={{LANGUAGE_CODE}}></script>
+  <script src="{% static 'attribution_preference/js/preferred_availability.js' %}" blocks='{{user_blocks}}' timetables='{{timetables}}' max_quantidade_celulas='{{max_quantidade_celulas}}' diferenca_minutos={{diferenca_minutos}} data-lang={{LANGUAGE_CODE}}></script>
 {% endblock %}
