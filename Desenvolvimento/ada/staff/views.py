@@ -414,7 +414,6 @@ def create_timetable(request):
     if request.method == 'POST':
         message = ""
         selected_courses = json.loads(request.POST.get('selected_courses'))
-        print(selected_courses)
         bobesponja(selected_courses)
         
         try:
@@ -483,47 +482,66 @@ def save_combo_day(day, timeslots):
     # if Day_combo.objects.filter(day=day, timeslots__in=timeslots).exists():
     #     return
     # else:
-    
-    
     day_combo = Day_combo.objects.create(day=day)
     day_combo.timeslots.set(timeslots)
 
 def bobesponja(timetable):
     Day_combo.objects.all().delete()
     timetable_clear = []
-    for element in timetable:
-        if not element == '':
-            timetable_clear.append(element)
-
-    print("Time table clear", timetable_clear)
-    combo_timeslot = []
+    for day in timetable:
+        timeslots = []
+        for timeslot in day:
+            if timeslot:
+                timeslots.append(timeslot)
+        timetable_clear.append(timeslots)
+    print(timetable_clear)
+    combo_number_timeslot = []
     current_course = None
-    for day_week_number, day_week in enumerate(timetable):
-        print("dayywekk", day_week)
+    for day_week_number, day_week in enumerate(timetable_clear):
         for timeslot, name_course in enumerate(day_week):
             if current_course is None:
                 current_course = name_course
-                combo_timeslot.append(timeslot)
-            elif current_course == name_course:
-                combo_timeslot.append(timeslot)
-            elif current_course != name_course or len(day_week-1):
-
-                queryset_timeslots = []
-                print("Tipo do combo time slot", type(combo_timeslot))
-                print(" combo time slot", combo_timeslot)
-                for position_timeslot in combo_timeslot:
-                    position = combo_timeslot.index(position_timeslot)
-                    print("Posição:", position)
-                    print(" combo time slot dentro do for", combo_timeslot)
-                    timeslot = Timeslot.objects.get(position=position+1)
-                    queryset_timeslots.append(timeslot)
-                    print("Query set", queryset_timeslots)
-                print(f'salvado {current_course} no dia {number_to_day_enum(day_week_number)}, nos horários {combo_timeslot}')
-                save_combo_day(number_to_day_enum(day_week_number), queryset_timeslots)
-
-                combo_timeslot = []
-                combo_timeslot.append(timeslot)
+                combo_number_timeslot.append(timeslot)
+            elif timeslot == len(day_week)-1 and current_course == name_course:
+                combo_number_timeslot.append(timeslot)
+                timeslots = positions_to_timeslots(combo_number_timeslot)
+                print(combo_number_timeslot)
+                print(f'salvado {current_course} no dia {number_to_day_enum(day_week_number)}, nos horários {combo_number_timeslot}')
+                save_combo_day(number_to_day_enum(day_week_number), timeslots)
+                combo_number_timeslot.clear()
                 current_course = None
+            elif timeslot == len(day_week)-1 and current_course != name_course:
+                print(combo_number_timeslot)
+                combo_number_timeslot.append(timeslot)
+                timeslots = positions_to_timeslots(combo_number_timeslot)
+                save_combo_day(number_to_day_enum(day_week_number), timeslots)
+                combo_number_timeslot.clear()
+                combo_number_timeslot.append(timeslot)
+                timeslots = positions_to_timeslots(combo_number_timeslot)
+                save_combo_day(number_to_day_enum(day_week_number), timeslots)
+                combo_number_timeslot.clear()  
+                current_course = None
+            elif current_course == name_course:
+                combo_number_timeslot.append(timeslot)
+            else:
+                timeslots = positions_to_timeslots(combo_number_timeslot)
+                print(timeslots)
+                print(f'salvado {current_course} no dia {number_to_day_enum(day_week_number)}, nos horários {combo_number_timeslot}')
+                save_combo_day(number_to_day_enum(day_week_number), timeslots)
+
+                combo_number_timeslot.clear()
+                combo_number_timeslot.append(timeslot)
+                current_course = name_course
+                print(f'current_course {current_course}')
+                print(f'combo_timeslot {combo_number_timeslot}')
+
+def positions_to_timeslots(positions):
+    timeslot_objects = []
+    for position_timeslot in positions:
+        position = int(position_timeslot) + 1
+        timeslot_object = Timeslot.objects.get(position=position)
+        timeslot_objects.append(timeslot_object)
+    return timeslot_objects
 
 def number_to_day_enum(day_number):
     if(day_number==0):
