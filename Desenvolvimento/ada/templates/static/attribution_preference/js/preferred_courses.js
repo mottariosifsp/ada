@@ -1,15 +1,15 @@
+
 var lang = document.currentScript.getAttribute('data-lang');
 var disponibility = document.currentScript.getAttribute('disponibility');
 var timetables = document.currentScript.getAttribute('timetables');
 var courses = document.currentScript.getAttribute('courses');
 var blocks = document.currentScript.getAttribute('blocks');
 var areas = document.currentScript.getAttribute('areas');
-var disponibility_hour = document.currentScript.getAttribute('disponibility_hour');
 
 var timetable_global = []
 
 var disponibility_array = JSON.parse(disponibility.replace(/'/g, '"'));
-var courses_array = parseDisponibilityHour(JSON.parse(courses.replace(/'/g, '"')));
+var courses_array = JSON.parse(courses.replace(/'/g, '"'));
 var timetables_array = JSON.parse(timetables.replace(/'/g, '"'));
 var blocks_array = JSON.parse(blocks.replace(/'/g, '"'));
 var areas_array = JSON.parse(areas.replace(/'/g, '"'));
@@ -18,95 +18,105 @@ var disponibility_array_obj = [];
 
 // For para transformar em array de objeto
 for (var i = 0; i < disponibility_array.length; i++) {
-    var elemento = disponibility_array[i];
-    var frase = elemento.frase;
-    var posicao = elemento.posicao;
-    var sessao = elemento.sessao;
-    var dia = elemento.dia;
-    var hour = elemento.hour;
-    var minute = elemento.minute;
-    var formattedHour = formatHour(hour, minute);
+  var elemento = disponibility_array[i];
+  var frase = elemento.frase;
+  var posicao = elemento.posicao;
+  var sessao = elemento.sessao;
+  var dia = elemento.dia;
+  var horaString = elemento.hour;
 
+  // if (typeof horaString === 'string') {
+  //   var [hour, minute, second] = horaString.split(':');
+  //   var datetime = new Date();
+  //   datetime.setHours(hour, minute, second, 0);
+  //   elemento.hour = datetime;
+  // }
 
-    var novo_objeto = {
-        frase: frase,
-        posicao: posicao,
-        sessao: sessao,
-        dia: dia,
-        hora: formattedHour
-    };
+  // for (var prop in elemento) {
+  //   if (typeof elemento[prop] === 'string' && prop !== 'hour') {
+  //     elemento[prop] = elemento[prop].toUpperCase();
+  //   }
+  // }
 
-    disponibility_array_obj.push(novo_objeto);
+  var novo_objeto = {
+    frase: frase,
+    posicao: posicao,
+    sessao: sessao,
+    dia: dia,
+    hour: horaString
+  };
+
+  disponibility_array_obj.push(novo_objeto);
 }
-// var disponibility_array_hour = parseDisponibilityHour(disponibility_hour);
-// var disponibility_array_hour_obj = [];
+// function parseDisponibilityHour(hourString) {
+//   var regex = /datetime\.time\((\d+), (\d+)\)/g;
+//   var matches = [...hourString.matchAll(regex)];
+//   var hourArray = [];
 
-// // For para transformar em array de objeto com hora formatada
-// for (var i = 0; i < disponibility_array_hour.length; i++) {
-//   var elemento = disponibility_array_hour[i];
-//   var hour = elemento.hour;
-//   var minute = elemento.minute;
-//   var formattedHour = formatHour(hour, minute);
+//   for (var match of matches) {
+//     var hours = parseInt(match[1]);
+//     var minutes = parseInt(match[2]);
+//     var hourObject = {
+//       hour: hours,
+//       minute: minutes
+//     };
+//     hourArray.push(hourObject);
+//   }
 
-//   var novo_objeto = {
-//     hour: formattedHour,
-//     frase: disponibility_array_obj[i].frase
-//   };
-
-//   disponibility_array_hour_obj.push(novo_objeto);
+//   return hourArray;
 // }
 
-function parseDisponibilityHour(hourString) {
-  var regex = /datetime\.time\((\d+), (\d+)\)/g;
-  var matches = hourString.matchAll(regex);
-  var hourArray = [];
-
-  for (var match of matches) {
-    var hours = parseInt(match[1]);
-    var minutes = parseInt(match[2]);
-    var hourObject = {
-      hour: hours,
-      minute: minutes
-    };
-    hourArray.push(hourObject);
-  }
-
-  return hourArray;
-}
-
-function formatHour(hour, minute) {
-  var formattedHour = hour.toString().padStart(2, '0') + ':' +
-    minute.toString().padStart(2, '0') + ':00';
-  return formattedHour;
-}
+// function formatHour(hour, minute) {
+//   var formattedHour = hour.toString().padStart(2, '0') + ':' +
+//     minute.toString().padStart(2, '0') + ':00';
+//   return formattedHour;
+// }
 
 var timetables_array_obj = [];
 
 for (var i = 0; i < timetables_array.length; i++) {
-    var elemento = timetables_array[i];
-    var day = elemento.day;
-    var hour_start = elemento.hour_start;
-    var course = elemento.course_acronym;
-    var classs = elemento.classs;
+  var timetable_object = timetables_array[i];
+  var day_combo_objects = timetable_object.day_combo;
+  var day_combo_data = [];
 
-    var formattedHour = hour_start.substr(0, 5);
-    var hour_start_real = formattedHour + ':00';
+  for (var j = 0; j < day_combo_objects.length; j++) {
+    var day_combo = day_combo_objects[j];
+    var day = day_combo.day;
+    var timeslots = day_combo.timeslots;
+    var timeslot_data = [];
 
-    var novo_objeto = {
-        day: day,
-        hour_start: hour_start_real,
-        course_acronym: course,
-        classs: classs
-    };
+    for (var k = 0; k < timeslots.length; k++) {
+      var timeslot = timeslots[k];
+      timeslot_data.push({
+        'hour_start': timeslot.hour_start,
+        'hour_end': timeslot.hour_end,
+      });
+    }
 
-    timetables_array_obj.push(novo_objeto);
+    day_combo_data.push({
+      'day': day,
+      'timeslots': timeslot_data,
+    });
+  }
+
+  var timetable_item = {
+    'day_combo': day_combo_data,
+    'course_acronym': timetable_object.course_acronym,
+    'course_name': timetable_object.course_name,
+    'classs': timetable_object.classs,
+  };
+  
+  // alert(timetable_item.day_combo[0].day);
+  // alert(timetable_item.day_combo[0].timeslots[0].hour_start);
+
+  timetables_array_obj.push(timetable_item);
 }
 
 var blocks_array_obj = [];
 
 for (var i = 0; i < blocks_array.length; i++) {
   var elemento = blocks_array[i];
-  var id = elemento.registration_block_id;
+  var id = elemento.id;
   var name_block = elemento.name_block;
   var acronym = elemento.acronym;
 
@@ -123,7 +133,7 @@ var areas_array_obj = [];
 
 for (var i = 0; i < areas_array.length; i++) {
   var elemento = areas_array[i];
-  var id = elemento.registration_area_id;
+  var id = elemento.id;
   var name_area = elemento.name_area;
   var acronym = elemento.acronym;
   var blocks = elemento.blocks;
@@ -132,7 +142,7 @@ for (var i = 0; i < areas_array.length; i++) {
     id: id,
     name_area: name_area,
     acronym: acronym,
-    blocks: acronym
+    blocks: blocks
   };
 
   areas_array_obj.push(novo_objeto);
@@ -142,7 +152,7 @@ var courses_array_obj = [];
 
 for (var i = 0; i < courses_array.length; i++) {
   var elemento = courses_array[i];
-  var id = elemento.registration_course_id;
+  var id = elemento.id;
   var name = elemento.name;
   var acronym = elemento.acronym;
   var area = elemento.area;
@@ -162,26 +172,30 @@ for (var i = 0; i < courses_array.length; i++) {
 
 timetables = [] // lista de timetables do modal
 
-$("div[data-toggle='buttons']").on("click", function() {
+$("div[data-toggle='buttons'] label").on("click", function() {
     var dataId = $(this).closest("div[data-id]").data("id"); 
     $("#cel-position").text(dataId).css("visibility", "hidden");
+
+    $('#area-filter').val('');
+    $('#block-filter').val('');
+    $('#course-filter').val('');
     
-    area_options()
-    block_options()
-    timetables_options()
+    area_options();
+    block_options();
+    timetables_options();
     $("#addCourseModal").modal("show");
 });
 
 function area_options() {
     var areaOptionsDatalist = document.getElementById('area-options');
-    areaOptionsDatalist.innerHTML  = ''
+    areaOptionsDatalist.innerHTML  = '';
 
     for (var i = 0; i < areas_array_obj.length; i++) {
         var area = areas_array_obj[i];
     
         var option = document.createElement('option');
-        option.value = area.acronym;
-        option.textContent = area.name_area;
+        option.value = area.id;
+        option.textContent = "Área: " + area.acronym + " | " + area.name_area;
         areaOptionsDatalist.appendChild(option);
     }
 }
@@ -194,8 +208,8 @@ function block_options() {
         var block = blocks_array_obj[i];
 
         var option = document.createElement('option');
-        option.value = block.acronym;
-        option.textContent = block.name_block;
+        option.value = block.id;
+        option.textContent = "Bloco: " + block.acronym + " | " + block.name_block;
         blockOptionsDatalist.appendChild(option);
     }
 }
@@ -203,13 +217,31 @@ function block_options() {
 function timetables_options() {
     var spanValue = $('#cel-position').text();
 
-    var filteredHour = disponibility_array_hour_obj.find(function(element) {
-        return element.frase === spanValue;
+    var filteredElement = disponibility_array_obj.find(function(element) {
+      return element.frase === spanValue;
     });
     
-    var filteredTimetables = timetables_array_obj.filter(function(course) {
-        return course.hour_start === filteredHour.hour;
+    var filteredTimetables = timetables_array_obj.filter(function(timetable) {
+      var dayCombos = timetable.day_combo;
+    
+      for (var i = 0; i < dayCombos.length; i++) {
+        var dayCombo = dayCombos[i];
+        var timeslotDay = dayCombo.day.substring(0, 3);;
+        var timeslots = dayCombo.timeslots;
+    
+        for (var j = 0; j < timeslots.length; j++) {
+          var timeslot = timeslots[j];
+          var timeslotHour = timeslot.hour_start;
+          //alert(timeslotDay)
+          if (timeslotHour === filteredElement.hour && timeslotDay === filteredElement.dia) {
+            return true;
+          }
+        }
+      }
+    
+      return false;
     });
+    
 
     timetables = filteredTimetables;
 
@@ -217,19 +249,52 @@ function timetables_options() {
     var timetableOptionsDatalist = document.getElementById('course-options');
     timetableOptionsDatalist.innerHTML = '';
 
+    if(filteredTimetables.length == 0) {
+      $('#course-filter').val('Nenhuma aula disponível neste horário.');
+      $('#course-filter').prop('disabled', true);
+    }
+
     for (var i = 0; i < filteredTimetables.length; i++) {
+      $('#course-filter').prop('disabled', false);
         var timetable = filteredTimetables[i];
 
         var option = document.createElement('option');
         option.value = timetable.course_acronym;
-        option.textContent = "Turma: " + timetable.classs;
+        option.textContent = "Curso: " + timetable.course_name + " | " + timetable.classs;
         timetableOptionsDatalist.appendChild(option);
     }
 }
 
-// function block_filter() {
+function block_filter() {
+  var block_value = $('#block-filter').val();
+  $('#area-filter').val('');
 
-// }
+  area_options();
+  timetables_options();
+
+  if (block_value == '') {
+
+  } else {
+    var filteredArray = areas_array_obj.filter(function(element) {
+      return element.blocks.includes(block_value);
+    });
+
+    var areaOptionsDatalist = document.getElementById('area-options');
+    areaOptionsDatalist.innerHTML  = '';
+
+    for (var i = 0; i < filteredArray.length; i++) {
+        var area = filteredArray[i];
+    
+        var option = document.createElement('option');
+        option.value = area.id;
+        option.textContent = "Área: " + area.acronym + " | " + area.name_area;
+        areaOptionsDatalist.appendChild(option);
+    }
+  }
+
+  
+
+}
 
 // function area_filter() {
     
