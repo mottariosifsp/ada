@@ -14,11 +14,11 @@ class Timeslot_admin(admin.ModelAdmin):
     search_fields = ('position', 'hour_start', 'hour_end')
 
 class Day_combo_admin(admin.ModelAdmin):
-    list_display = ('day', 'timeslots')
+    list_display = ('day', 'timeslot',)
     search_fields = ('day',)
 
-    def timeslots(self, obj):
-        return ", ".join([str(Timeslot.hour_start) for Timeslot in obj.timeslot.all()])
+    def timeslot(self, obj):
+        return ", ".join([str(Timeslot.position) for Timeslot in obj.timeslots.all()])
 
 class Timetable_user_admin(admin.ModelAdmin):
     list_display = ('timetable', 'user')
