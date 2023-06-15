@@ -303,7 +303,7 @@ $(document).ready(function() {
                 xhr.setRequestHeader("X-CSRFToken", csrftoken);
             },
             success: function(response) {
-              var day_combo_data = filtered_timetable.day_combo;
+              var day_combo_data = filtered_timetable.day_combo; // erro, noa passa daqui
 
               for (var i = 0; i < day_combo_data.length; i++) {
                 var day_combo = day_combo_data[i];
@@ -316,17 +316,17 @@ $(document).ready(function() {
                   // Filtra o disponibility_array_obj pelo mesmo dia e hour_start
                   var filtered_disponibility = disponibility_array_obj.filter(function(disponibility) {
                     return disponibility.dia === day && disponibility.hour === hour_start;
-                  });
+                  }); // dia=mon day=monday *colocar primeiras 3 letras
 
                   // Extrai apenas a propriedade "frase" do objeto filtrado
                   var frases = filtered_disponibility.map(function(disponibility) {
                     return disponibility.frase;
-                  });
+                  }); // pegar a frase do timetable filtrado acima
 
                   if (frases.length > 0) {
                     frases.forEach(function(frase) {
                       $("#sub-" + frase).text(filtered_timetable.course.acronym);
-                    });
+                    }); // colocando acronym em todos do timetable
                   }
                 });
               }
