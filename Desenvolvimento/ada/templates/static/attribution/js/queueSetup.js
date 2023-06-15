@@ -47,7 +47,7 @@ $('#enviar-tabela').click(function() {
   var csrftoken = getCookie('csrftoken');
 
   $.ajax({
-    url: '/attribution/queueSetup/',
+    url: '/atribuicao/queueSetup/',
     method: 'POST',
     data: {
       'tabela_data': JSON.stringify(tabelaData),

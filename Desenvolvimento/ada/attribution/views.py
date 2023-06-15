@@ -10,6 +10,10 @@ from django.db.models import F, Sum, Value
 from django.db import transaction
 from django.utils import timezone
 from datetime import datetime, timezone
+from django.core.mail import send_mail, EmailMessage
+import xml.etree.ElementTree as ET
+import os
+
 
 from django.utils.decorators import method_decorator
 
@@ -216,11 +220,40 @@ def attribution_process(timetable, professor):
         assign_timetable_professor(timetable, professor)
         return True
     else:
-        send_email(professor.email)   
+        send_email(professor)   
         schedule_task(TEMPO_LIMITE_SEGUNDOS, professor)     
 
-def send_email(professor_email):
-    print("Email enviado")
+def email_test(request):
+    if request.method == 'POST':
+        superusers = User.objects.filter(is_superuser=True).all()
+        for superuser in superusers:
+            send_email(superuser)
+
+        return redirect('attribution:email_test')
+    return render(request, 'attribution/email_test.html')
+
+def send_email(professor):
+    subject = 'Ação requerida: Escolha de disciplina alternativa até o prazo estipulado'
+    
+    nome = 'professor.first_name'
+    email = professor.email
+
+    current_path = os.getcwd()
+    print(current_path)
+    with open(current_path + '..\static\email\message.html', 'r', encoding='utf-8') as file:
+        message = file.read()
+        message = message.format(nome=nome)
+    
+    email = EmailMessage(
+        subject,
+        message,
+        'ada.ifsp@gmail.com',
+        [email],
+    )
+
+    email.content_subtype = "html"
+
+    email.send()
 
 def validations(timetable, professor):
     if timetable.user is None:

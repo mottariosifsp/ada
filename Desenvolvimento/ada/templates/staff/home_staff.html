@@ -1,18 +1,59 @@
 {% extends "staff/base.html" %}
+{% load static %}
 {% load i18n %}
-
 {% block head %}
-    <title>{% translate "Home" %}</title>
+  <title>{% translate "Home" %}</title>
+  <script src="{% static 'staff/home/js/home_staff.js' %}"></script>
+  <link rel="stylesheet" href="{% static 'staff/home/css/home_staff.css' %}"></link>
 {% endblock %}
 
 {% block body %}
-  <h1>{% translate "Login completo" %} - {% translate "HOME PAGE" %}</h1>
-  <hr>
 
-  <div class="container d-flex align-items-center justify-content-center h-70" style="height: 70vh;">
-    <div>
-      <h2>{% translate "Olá, administrador"%}</h2>
-      <p>{% translate "Crie a fila da atribuição" %}.</p>
+<h2>Painel de controle</h2>
+<h6>Olá {{ request.user.first_name }}, bem-vindo ao painel de controle do sistema ADA </h6>
+<hr>
+<div class="d-flex">
+  <div class="card m-2 redirect-button" onclick="redirect('{% url  "attribution_configuration_index" %}')">
+    <div class="card-body d-flex flex-column justify-content-center align-items-center" style="padding-top: 0.5rem">
+      <div class="d-flex flex-column justify-content-center align-items-center" style="margin-top: -2rem;">
+        <i class="bi bi-list-check bi-lg" style="font-size: 6rem; margin-bottom: -20px;"></i>
+        <h5 class="card-title mt-0 mb-0" style="color: #ffffff;">Atribuições</h5>
+      </div>
     </div>
+    </div>
+
+    <div class="card m-2 redirect-button" onclick="redirect('{% url  "blocks_list" %}')">
+    <div class="card-body d-flex flex-column justify-content-center align-items-center" style="padding-top: 0.5rem">
+      <div class="d-flex flex-column justify-content-center align-items-center" style="margin-top: -2rem;">
+        <i class="bi bi-grid-fill bi-lg" style="font-size: 6rem; margin-bottom: -10px;"></i>
+        <h5 class="card-title mt-0 mb-0" style="color: #ffffff;">Blocos</h5>
+      </div>
   </div>
+  </div>
+  <div class="card m-2 redirect-button" onclick="redirect('{% url "professors_list" %}')">
+    <div class="card-body d-flex flex-column justify-content-center align-items-center" style="padding-top: 0.5rem;">
+      <div class="d-flex flex-column justify-content-center align-items-center" style="margin-top: -2rem;">
+        <i class="bi bi-people-fill bi-lg" style="font-size: 6rem; margin-bottom: -10px;"></i>
+        <h5 class="card-title mt-0 mb-0" style="color: #ffffff;">Professores</h5>
+      </div>
+  </div>
+  </div>
+  <div class="card m-2 redirect-button" onclick="redirect('{% url "classes_list" %}')">
+    <div class="card-body d-flex flex-column justify-content-center align-items-center" style="padding-top: 0.5rem">
+      <div class="d-flex flex-column justify-content-center align-items-center" style="margin-top: -2rem;">
+        <i class="bi bi-person-workspace bi-lg" style="font-size: 6rem; margin-bottom: -10px;"></i>
+        <h5 class="card-title mt-0 mb-0" style="color: #ffffff;">Turmas</h5>
+      </div>
+  </div>
+  </div>
+  
+  <div class="card m-2 redirect-button" onclick="redirect('{% url "timetables" %}')">
+    <div class="card-body d-flex flex-column justify-content-center align-items-center" style="padding-top: 1rem">
+      <div class="d-flex flex-column justify-content-center align-items-center" style="margin-top: -2rem;">
+        <i class="bi bi-calendar2-week bi-lg" style="font-size: 6rem; margin-bottom: -10px;"></i>
+        <h5 class="card-title mt-0 mb-0" style="color: #ffffff;">Grade</h5>
+      </div>
+  </div>
+  </div>
+</div>
 {% endblock %}

@@ -175,3 +175,5 @@ cython_debug/
 
 #Secret key 
 .dotenv
+
+.env
