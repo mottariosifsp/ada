@@ -12,6 +12,8 @@ from django.utils import timezone
 from datetime import datetime, timezone
 from django.core.mail import send_mail, EmailMessage
 import xml.etree.ElementTree as ET
+import os
+
 
 from django.utils.decorators import method_decorator
 
@@ -236,7 +238,9 @@ def send_email(professor):
     nome = 'professor.first_name'
     email = professor.email
 
-    with open('D:\Downloads\Códigos\ADA PROJETO ()\\ada\Desenvolvimento\\ada\\templates\static\email\message.html', 'r', encoding='utf-8') as file:
+    current_path = os.getcwd()
+    print(current_path)
+    with open(current_path + '..\static\email\message.html', 'r', encoding='utf-8') as file:
         message = file.read()
         message = message.format(nome=nome)
     
