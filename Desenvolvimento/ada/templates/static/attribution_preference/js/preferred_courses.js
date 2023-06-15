@@ -275,7 +275,6 @@ for (var i = 0; i < disponibility_array_obj.length; i++) {
 $(document).ready(function () {
     $("#addCourseButton").on("click", function () {
         var timetable_id = parseInt($("#course-filter").val());
-        console.log("timetable", timetable_id )
         var grade_position = $("#cel-position").text();
 
         var filtered_timetable = timetables_array_obj.filter(function (timetable_item) {
@@ -335,7 +334,7 @@ $(document).ready(function () {
                     $('#error-message').text('Erro ao tentar adicionar uma aula.');
                     $('#error-alert').show();
                     alert("d")
-                }
+                },
             });
         } else {
             $('#error-message').text('Selecione uma aula.');
