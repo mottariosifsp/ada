@@ -427,46 +427,13 @@ def create_timetable(request):
         selected_courses = json.loads(request.POST.get('selected_courses'))
         
         try:
-            selected_class = Classs.objects.get(registration_class_id__exact=(json.loads(request.POST.get('selected_class'))))
+            selected_class = Classs.objects.get(registration_class_id__exact=(request.POST.get('selected_class')))
         except Classs.DoesNotExist:
             message = "Selecione uma turma válida"
-            return JsonResponse({'erro': True, 'mensagem': message})    
+            return JsonResponse({'erro': True, 'mensagem': message})   
+         
         timetable_combo_saver(selected_courses, selected_class)
-        
-        if selected_class is None:
-            message = "Selecione uma turma"
-            return JsonResponse({'erro': True, 'mensagem': message})
-        for courses in selected_courses:
-            for name_course in courses:
-                if name_course:     
-                    if not Course.objects.filter(name_course=name_course).exists():
-                        message = "Selecione uma matéria válida"
-                        return JsonResponse({'erro': True, 'mensagem': message})                    
-        
-        for day_number, courses in enumerate(selected_courses):
-            for position, name_course in enumerate(courses):
-                timeslot = Timeslot.objects.get(position=position+1)
-                course = None
-                day = None
-                if(day_number==0):
-                    day = enum.Day.monday.name
-                elif(day_number==1):
-                    day = enum.Day.tuesday.name
-                elif(day_number==2):
-                    day = enum.Day.wednesday.name
-                elif(day_number==3):
-                    day = enum.Day.thursday.name
-                elif(day_number==4):
-                    day = enum.Day.friday.name
-                elif(day_number==5):
-                    day = enum.Day.saturday.name              
-                if name_course:                
-                    course = Course.objects.get(name_course=name_course)
-                    # save_timetable(course, timeslot, selected_class, day)
-                    print("You're on the phone with your girlfriend, she's upset")
-                else:
-                    # save_timetable(None, timeslot, selected_class, day)
-                    print("She's going off about something that you said")
+
         return JsonResponse({'erro': False, 'mensagem': message})
     
 @login_required
@@ -498,36 +465,6 @@ def edit_timetable(request):
 
         timetable_combo_saver(selected_courses, selected_class)
         
-        for courses in selected_courses:
-            for name_course in courses:
-                if name_course and not Course.objects.filter(name_course=name_course).exists():
-                        message = "Selecione uma matéria válida"
-                        return JsonResponse({'erro': True, 'mensagem': message})                    
-        
-        for day_number, courses in enumerate(selected_courses):
-            for position, name_course in enumerate(courses):
-                timeslot = Timeslot.objects.get(position=position+1)
-                course = None
-                day = None
-                if(day_number==0):
-                    day = enum.Day.monday.name
-                elif(day_number==1):
-                    day = enum.Day.tuesday.name
-                elif(day_number==2):
-                    day = enum.Day.wednesday.name
-                elif(day_number==3):
-                    day = enum.Day.thursday.name
-                elif(day_number==4):
-                    day = enum.Day.friday.name
-                elif(day_number==5):
-                    day = enum.Day.saturday.name              
-                if name_course:                
-                    course = Course.objects.get(name_course=name_course)
-                    # save_timetable(course, timeslot, selected_class, day)
-                    print("Want you to make me feel like I'm the only girl in the world")
-                else:
-                    # save_timetable(None, timeslot, selected_class, day)
-                    print("Like I'm the only one that you'll ever love")
         return JsonResponse({'erro': False, 'mensagem': message})
     return render(request, 'staff/timetable/show_timetable.html', data)
 
@@ -569,93 +506,116 @@ def show_timetable(request):
 #             timetable.save()
 
 def save_timetable(course, classs, day_combo):
-    if Timetable.objects.filter(course=course, classs=classs,day_combo=day_combo).exists():
+    if Timetable.objects.filter(course=course, classs=classs).exists():
         print('existe')
         timetable = Timetable.objects.get(course=course, classs=classs)
         timetable.day_combo.add(day_combo)
     else:
         timetable = Timetable.objects.create(course=course, classs=classs)
-        print(f'criado {course} no dia {day_combo.day}')
+        # print(f'criado {course} no dia {day_combo.day}')
         timetable.day_combo.add(day_combo)
 
     
 def save_combo_day(day, timeslots, course, classs):
-    day_combo, created = Day_combo.objects.get_or_create(day=day)
-    day_combo.timeslots.set(timeslots)
-    save_timetable(course, classs, day_combo)
+    day_combos = Day_combo.objects.filter(day=day)
+    day_combo_valid = Day_combo.objects.none()
 
-def timetable_combo_saver(timetable, classs):
-    Day_combo.objects.all().delete()
+    for day_combo in day_combos:
+        if list(day_combo.timeslots.all()) == timeslots:
+            day_combo_valid = day_combo
+
+    if day_combo_valid:
+        save_timetable(course, classs, day_combo_valid)
+    else:
+        day_combo = Day_combo.objects.create(day=day)
+        day_combo.timeslots.set(timeslots)
+        save_timetable(course, classs, day_combo)
+
+def timetable_combo_saver(timetable, classs):  
     Timetable.objects.filter(classs=classs).delete()
-    timetable_clear = []
-    for day in timetable:
-        timeslots = []
-        for timeslot in day:
-            if timeslot:
-                timeslots.append(timeslot)
-        timetable_clear.append(timeslots)
-    print(timetable_clear)
+    
     combo_number_timeslot = []
     current_course = None
-    for day_week_number, day_week in enumerate(timetable_clear):
+    for day_week_number, day_week in enumerate(timetable):
         for timeslot, name_course in enumerate(day_week):
-            if current_course is None and timeslot != len(day_week)-1:
-                current_course = name_course
-                combo_number_timeslot.append(timeslot)
-            elif timeslot == len(day_week)-1 and current_course == name_course:
-                combo_number_timeslot.append(timeslot)
-                timeslots = positions_to_timeslots(combo_number_timeslot)
-                print(combo_number_timeslot)
+            if name_course:
+                if current_course is None and timeslot != len(day_week)-1:
+                    current_course = name_course
+                    combo_number_timeslot.append(timeslot)
+                elif timeslot == len(day_week)-1 and current_course == name_course:
+                    combo_number_timeslot.append(timeslot)
+                    timeslots = positions_to_timeslots(combo_number_timeslot)
+                    print(combo_number_timeslot)
+                    print(f'salvado {current_course} no dia {number_to_day_enum(day_week_number)}, nos horários {combo_number_timeslot}')
+                    save_combo_day(
+                        number_to_day_enum(day_week_number),
+                        timeslots, 
+                        Course.objects.get(name_course=current_course,area=classs.area), 
+                        classs
+                        )
+                    combo_number_timeslot.clear()
+                    current_course = None
+                elif current_course is None and timeslot == len(day_week)-1:
+                    current_course = name_course
+                    combo_number_timeslot.append(timeslot)
+                    timeslots = positions_to_timeslots(combo_number_timeslot)
+                    save_combo_day(
+                        number_to_day_enum(day_week_number),
+                        timeslots, 
+                        Course.objects.get(name_course=current_course,area=classs.area), 
+                        classs
+                        )
+                    combo_number_timeslot.clear()
+                    current_course = None
+                elif timeslot == len(day_week)-1 and current_course != name_course:
+                    timeslots = positions_to_timeslots(combo_number_timeslot)
+                    print(combo_number_timeslot)
+                    print(f'salvado {current_course} no dia {number_to_day_enum(day_week_number)}, nos horários {combo_number_timeslot}')
+                    save_combo_day(
+                        number_to_day_enum(day_week_number),
+                        timeslots, 
+                        Course.objects.get(name_course=current_course,area=classs.area), 
+                        classs
+                        )
+                    combo_number_timeslot.clear()
+                    combo_number_timeslot.append(timeslot)
+                    timeslots = positions_to_timeslots(combo_number_timeslot)
+                    print(combo_number_timeslot)
+                    print(f'salvado {current_course} no dia {number_to_day_enum(day_week_number)}, nos horários {combo_number_timeslot}')
+                    save_combo_day(
+                        number_to_day_enum(day_week_number),
+                        timeslots, 
+                        Course.objects.get(name_course=current_course,area=classs.area), 
+                        classs
+                        )
+                    combo_number_timeslot.clear()  
+                    current_course = None
+                elif current_course == name_course:
+                    combo_number_timeslot.append(timeslot)
+                else:
+                    timeslots = positions_to_timeslots(combo_number_timeslot)
+                    print(timeslots)
+                    print(f'salvado {current_course} no dia {number_to_day_enum(day_week_number)}, nos horários {combo_number_timeslot}')
+                    save_combo_day(
+                        number_to_day_enum(day_week_number),
+                        timeslots, 
+                        Course.objects.get(name_course=current_course,area=classs.area), 
+                        classs
+                        )
+                    combo_number_timeslot.clear()
+                    combo_number_timeslot.append(timeslot)
+                    current_course = name_course
+            elif current_course is not None:
                 print(f'salvado {current_course} no dia {number_to_day_enum(day_week_number)}, nos horários {combo_number_timeslot}')
+                timeslots = positions_to_timeslots(combo_number_timeslot)
                 save_combo_day(
                     number_to_day_enum(day_week_number),
                     timeslots, 
-                    Course.objects.get(name_course=current_course), 
+                    Course.objects.get(name_course=current_course,area=classs.area), 
                     classs
                     )
-                combo_number_timeslot.clear()
                 current_course = None
-            elif timeslot == len(day_week)-1 and current_course != name_course:
-                timeslots = positions_to_timeslots(combo_number_timeslot)
-                print(combo_number_timeslot)
-                print(f'salvado {current_course} no dia {number_to_day_enum(day_week_number)}, nos horários {combo_number_timeslot}')
-                save_combo_day(
-                    number_to_day_enum(day_week_number),
-                    timeslots, 
-                    Course.objects.get(name_course=current_course), 
-                    classs
-                    )
                 combo_number_timeslot.clear()
-                combo_number_timeslot.append(timeslot)
-                timeslots = positions_to_timeslots(combo_number_timeslot)
-                print(combo_number_timeslot)
-                print(f'salvado {current_course} no dia {number_to_day_enum(day_week_number)}, nos horários {combo_number_timeslot}')
-                save_combo_day(
-                    number_to_day_enum(day_week_number),
-                    timeslots, 
-                    Course.objects.get(name_course=current_course), 
-                    classs
-                    )
-                combo_number_timeslot.clear()  
-                current_course = None
-            elif current_course == name_course:
-                combo_number_timeslot.append(timeslot)
-            else:
-                timeslots = positions_to_timeslots(combo_number_timeslot)
-                print(timeslots)
-                print(f'salvado {current_course} no dia {number_to_day_enum(day_week_number)}, nos horários {combo_number_timeslot}')
-                save_combo_day(
-                    number_to_day_enum(day_week_number),
-                    timeslots, 
-                    Course.objects.get(name_course=current_course), 
-                    classs
-                    )
-
-                combo_number_timeslot.clear()
-                combo_number_timeslot.append(timeslot)
-                current_course = name_course
-                print(f'current_course {current_course}')
-                print(f'combo_timeslot {combo_number_timeslot}')
 
 def positions_to_timeslots(positions):
     timeslot_objects = []
