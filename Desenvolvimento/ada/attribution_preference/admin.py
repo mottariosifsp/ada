@@ -14,8 +14,8 @@ class Attribution_preference_course_preference_admin(admin.ModelAdmin):
     list_display = ('attribution_preference', 'course_preference')
 
 class Course_preference_admin(admin.ModelAdmin):
-    list_display = ('course', 'count_course', 'priority', 'period')
-    search_fields = ('priority', 'period')
+    list_display = ('attribution_preference', 'timetable',)
+    search_fields = ('attribution_preference', 'priority',)
 
 admin.site.register(Attribution_preference, Attribution_preference_admin)
 admin.site.register(Preference_schedule, Preference_schedule_admin)
