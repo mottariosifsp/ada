@@ -157,6 +157,7 @@ def courses_attribution_preference(request):
                 })
 
             timetable_item = {
+                'id': timetable_object.id,
                 'day_combo': day_combo_data,
                 'course_acronym': timetable_object.course.acronym,
                 'course_name': timetable_object.course.name_course,

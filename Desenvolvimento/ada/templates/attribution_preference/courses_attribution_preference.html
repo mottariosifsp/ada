@@ -5,6 +5,16 @@
 {% block head %}
   <link rel="stylesheet" href="{% static 'attribution_preference/css/attribution_preference_courses.css' %}">
   <title>{% translate "Envio Formulário de Preferência de Atividades" %}</title>
+  <style>
+    .btn-checked {
+      background-color: #2f7363;
+      color: white;
+    }
+    .btn-checked:hover {
+      font-weight: 700;
+      color: white;
+    }
+  </style>
 {% endblock %}
 
 {% block body %}
@@ -70,7 +80,7 @@
                     <th class=" text-center">Sabádo</th>
                   </tr>
                 </thead>
-                  <tbody class="block" id="block" >
+                  <tbody class="block" id="timetable-courses" >
                     {% for i in "MVN" %}
                       {% if i == "M" %}
                         <td class="text-center align-middle" rowspan='{{ turno.matutinoAulas }}'>Matutino</td>
@@ -394,8 +404,8 @@
           </div>
         </div>
       </div>
-      <button type="button" data-toggle="modal" data-target="#addCourseModal" class="btn btn-primary float-right mt-4 mb-5" name="sendCourses" id="sendCourses">Enviar Cursos</button>
-      <button type="button" data-toggle="modal" data-target="#addCourseModal" class="btn btn-danger float-right mt-4 mb-5 mr-2" name="cleanFPA" id="cleanFPA">Limpar Cursos</button>
+      <button type="button" class="btn btn-primary float-right mt-4 mb-5" name="sendCourses" id="sendCourses">Enviar Cursos</button>
+      <button type="button"  class="btn btn-danger float-right mt-4 mb-5 mr-2" name="cleanFPA" id="cleanFPA">Limpar Cursos</button>
     </form>
   </section>
 {% endblock %}
