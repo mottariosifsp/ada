@@ -33,10 +33,9 @@ class Attribution_preference_course_preference(models.Model):
         verbose_name_plural = _('attribution_preference_course_preferences')
 
 class Course_preference(models.Model): #disciplinas
-    course = models.ForeignKey('course.Course', on_delete=models.CASCADE)
-    count_course = models.IntegerField(_('count course'))
-    priority = models.CharField(_('priority'), choices=[(s.name, s.value) for s in enum.Priority], max_length=45)
-    period = models.CharField(_('period'), choices=[(s.name, s.value) for s in enum.Period], max_length=45)
+    attribution_preference = models.ForeignKey('Attribution_preference', on_delete=models.CASCADE)
+    timetable = models.ForeignKey('timetable.Timetable', on_delete=models.CASCADE)
+    # priority = models.CharField(_('priority'), choices=[(s.name, s.value) for s in enum.Priority], max_length=45)
     
     class Meta:
         verbose_name = _('course_preference')

@@ -1,5 +1,7 @@
 from datetime import datetime, timezone
 import json
+
+from django.urls import reverse
 from attribution.models import TeacherQueuePosition
 
 from enums import enum
@@ -402,24 +404,20 @@ def timetables(request):
 @user_passes_test(is_staff)
 def create_timetable(request):
     if request.method == 'GET':
-        if request.GET.get('class'):
-            selected_class = Classs.objects.get(registration_class_id__icontains=(request.GET.get('class')))
-            try:
-                timetable = Timetable.objects.get(classs=selected_class)
-            except Timetable.DoesNotExist:
-                timetable = None
-            selected_courses = Course.objects.filter(area=selected_class.area)
-        else:
-            selected_class = Classs.objects.all()
-            timetable = None
-            selected_courses = Course.objects.all()
+        selected_class = Classs.objects.get(registration_class_id__icontains=(request.GET.get('class')))
+        if Timetable.objects.filter(classs=selected_class).count() > 0:
+            print('já existe')
+            url = reverse('edit_timetable') + f'?classs={selected_class.registration_class_id}'
+            return redirect(url) 
+
+        selected_courses = Course.objects.filter(area=selected_class.area)
 
         data = {
             'courses': selected_courses,
             'timeslots': Timeslot.objects.all().order_by('hour_start'),
-            'classes': Classs.objects.all(),
-            'timetable': timetable,
+            'classs': selected_class
         }
+
         return render(request, 'staff/timetable/register.html', data)
       
     if request.method == 'POST':
@@ -480,6 +478,7 @@ def show_timetable(request):
             'timetables': timetables,
             'timeslots': Timeslot.objects.all().order_by('hour_start'),
             'day_combos': day_combos,
+            'classs': selected_class,
         }
 
     return render(request, 'staff/timetable/show_timetable.html', data)
@@ -514,7 +513,6 @@ def save_timetable(course, classs, day_combo):
         timetable = Timetable.objects.create(course=course, classs=classs)
         # print(f'criado {course} no dia {day_combo.day}')
         timetable.day_combo.add(day_combo)
-
     
 def save_combo_day(day, timeslots, course, classs):
     day_combos = Day_combo.objects.filter(day=day)
