@@ -25,57 +25,22 @@ for (var i = 0; i < disponibility_array.length; i++) {
   var dia = elemento.dia;
   var horaString = elemento.hour;
 
-  // if (typeof horaString === 'string') {
-  //   var [hour, minute, second] = horaString.split(':');
-  //   var datetime = new Date();
-  //   datetime.setHours(hour, minute, second, 0);
-  //   elemento.hour = datetime;
-  // }
-
-  // for (var prop in elemento) {
-  //   if (typeof elemento[prop] === 'string' && prop !== 'hour') {
-  //     elemento[prop] = elemento[prop].toUpperCase();
-  //   }
-  // }
-
   var novo_objeto = {
-    frase: frase,
+    frase: frase, // mon-ves-3
     posicao: posicao,
     sessao: sessao,
     dia: dia,
-    hour: horaString
+    hour: horaString // 7:45:00
   };
 
   disponibility_array_obj.push(novo_objeto);
 }
-// function parseDisponibilityHour(hourString) {
-//   var regex = /datetime\.time\((\d+), (\d+)\)/g;
-//   var matches = [...hourString.matchAll(regex)];
-//   var hourArray = [];
-
-//   for (var match of matches) {
-//     var hours = parseInt(match[1]);
-//     var minutes = parseInt(match[2]);
-//     var hourObject = {
-//       hour: hours,
-//       minute: minutes
-//     };
-//     hourArray.push(hourObject);
-//   }
-
-//   return hourArray;
-// }
-
-// function formatHour(hour, minute) {
-//   var formattedHour = hour.toString().padStart(2, '0') + ':' +
-//     minute.toString().padStart(2, '0') + ':00';
-//   return formattedHour;
-// }
 
 var timetables_array_obj = [];
 
 for (var i = 0; i < timetables_array.length; i++) {
   var timetable_object = timetables_array[i];
+  var timetable_id = parseInt(timetable_object.id);
   var day_combo_objects = timetable_object.day_combo;
   var day_combo_data = [];
 
@@ -100,6 +65,7 @@ for (var i = 0; i < timetables_array.length; i++) {
   }
 
   var timetable_item = {
+    'id': timetable_id,
     'day_combo': day_combo_data,
     'course_acronym': timetable_object.course_acronym,
     'course_name': timetable_object.course_name,
@@ -170,9 +136,7 @@ for (var i = 0; i < courses_array.length; i++) {
 }
 
 
-timetables = [] // lista de timetables do modal
-
-$("div[data-toggle='buttons'] label").on("click", function() {
+$("#timetable-courses div[data-toggle='buttons'] label").on("click", function() {
     var dataId = $(this).closest("div[data-id]").data("id"); 
     $("#cel-position").text(dataId).css("visibility", "hidden");
 
@@ -259,7 +223,7 @@ function timetables_options() {
         var timetable = filteredTimetables[i];
 
         var option = document.createElement('option');
-        option.value = timetable.course_acronym;
+        option.value = timetable.id;
         option.textContent = "Curso: " + timetable.course_name + " | " + timetable.classs;
         timetableOptionsDatalist.appendChild(option);
     }
@@ -305,7 +269,12 @@ for (var i = 0; i < disponibility_array_obj.length; i++) {
     var obj = disponibility_array_obj[i];
     var fraseId = obj.frase;
     $("label[for='" + fraseId + "']")
-    .addClass("btn-checked").removeClass("disabled").removeClass("btn-notchecked");
+    .removeClass("disabled").removeClass("btn-notchecked");
+    $("label[for='" + fraseId + "']").css({
+      "font-weight": "700",
+      "color": "white",
+      "background-color": "#2f7363",
+    });
     $("#" + fraseId)
     .prop("disabled", false);
     $("#sub-" + fraseId).text("+");
@@ -314,34 +283,62 @@ for (var i = 0; i < disponibility_array_obj.length; i++) {
 
 $(document).ready(function() {
     $("#addCourseButton").on("click", function() {
-        var selectedCourse = $("#course-filter").val();
-        var span = $("#cel-position").text();
+        var timetable_id = $("#course-filter").val();
+        var grade_position = $("#cel-position").text(); //mon-mat-1 mon-mat-2 mon-mat-3
+
+        var filtered_timetable = timetables_array_obj.filter(function(timetable_item) {
+          return timetable_item.id === timetable_id;
+        });
+
         var csrftoken = $('[name=csrfmiddlewaretoken]').val();
     
-        if (selectedCourse !== "") {
+        if (timetable_id !== "") {
           $.ajax({
             url: "/",
             type: "POST",
             data: {
-              course: selectedCourse
+              timetable: filtered_timetable
             },
             beforeSend: function(xhr) {
                 xhr.setRequestHeader("X-CSRFToken", csrftoken);
             },
             success: function(response) {
-                var formattedText = selectedCourse.toUpperCase().substring(0, 3).trim();
-                $("#sub-" + span).text(formattedText);
-                var course = {
-                    selectedCourse: selectedCourse,
-                    postion
-                }
-                timetable_global.push(selectedCourse);
+              var day_combo_data = filtered_timetable.day_combo; // erro, noa passa daqui
+
+              for (var i = 0; i < day_combo_data.length; i++) {
+                var day_combo = day_combo_data[i];
+                var day = day_combo.day;
+                var timeslots = day_combo.timeslots;
+
+                timeslots.forEach(function(timeslot) {
+                  var hour_start = timeslot.hour_start;
+
+                  // Filtra o disponibility_array_obj pelo mesmo dia e hour_start
+                  var filtered_disponibility = disponibility_array_obj.filter(function(disponibility) {
+                    return disponibility.dia === day && disponibility.hour === hour_start;
+                  }); // dia=mon day=monday *colocar primeiras 3 letras
+
+                  // Extrai apenas a propriedade "frase" do objeto filtrado
+                  var frases = filtered_disponibility.map(function(disponibility) {
+                    return disponibility.frase;
+                  }); // pegar a frase do timetable filtrado acima
+
+                  if (frases.length > 0) {
+                    frases.forEach(function(frase) {
+                      $("#sub-" + frase).text(filtered_timetable.course.acronym);
+                    }); // colocando acronym em todos do timetable
+                  }
+                });
+              }
+                $("#sub-" + grade_position).text(filtered_timetable.course.acronym);
+
+                timetable_global.push(filtered_timetable.id);
                 $("#course-filter").val('');
                 $('#error-alert').hide();
             },
             error: function(xhr, textStatus, errorThrown) {
                 $('#error-message').text('Erro ao tentar adicionar uma aula.');
-                $('#error-alert').show();
+                $('#error-alert').show();alert("d")
             }
           });
         } else {
