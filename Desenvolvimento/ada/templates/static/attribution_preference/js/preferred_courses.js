@@ -7,6 +7,9 @@ var blocks = document.currentScript.getAttribute('blocks');
 var areas = document.currentScript.getAttribute('areas');
 
 var timetable_global = []
+var daycombos_global = []
+var passCellId = '';
+var value_global = '';
 
 var disponibility_array = JSON.parse(disponibility.replace(/'/g, '"'));
 var courses_array = JSON.parse(courses.replace(/'/g, '"'));
@@ -110,6 +113,9 @@ for (var i = 0; i < timetables_array.length; i++) {
   // alert(timetable_item.day_combo[0].timeslots[0].hour_start);
 
   timetables_array_obj.push(timetable_item);
+  daycombos_global.push(timetable_item.day_combo)
+
+  console.log("TIMETABLE FINAL", daycombos_global)
 }
 
 var blocks_array_obj = [];
@@ -183,8 +189,17 @@ $("div[data-toggle='buttons'] label").on("click", function() {
     area_options();
     block_options();
     timetables_options();
+
+    console.log("foi")
+    var checkbox = document.getElementById(dataId);
+    var value = checkbox.value;
+    console.log("valor do horario", value)
+    value_global = convertTimeFormat(value)
+    passCellId = dataId
+    console.log("input - passCellId", passCellId)
     $("#addCourseModal").modal("show");
 });
+
 
 function area_options() {
     var areaOptionsDatalist = document.getElementById('area-options');
@@ -215,15 +230,16 @@ function block_options() {
 }
 
 function timetables_options() {
+
     var spanValue = $('#cel-position').text();
 
     var filteredElement = disponibility_array_obj.find(function(element) {
       return element.frase === spanValue;
     });
-    
+
     var filteredTimetables = timetables_array_obj.filter(function(timetable) {
       var dayCombos = timetable.day_combo;
-    
+
       for (var i = 0; i < dayCombos.length; i++) {
         var dayCombo = dayCombos[i];
         var timeslotDay = dayCombo.day.substring(0, 3);;
@@ -241,7 +257,6 @@ function timetables_options() {
     
       return false;
     });
-    
 
     timetables = filteredTimetables;
 
@@ -314,8 +329,50 @@ for (var i = 0; i < disponibility_array_obj.length; i++) {
 
 $(document).ready(function() {
     $("#addCourseButton").on("click", function() {
+    console.log("TIMETABLE FINALa", JSON.stringify(daycombos_global))
+    json = daycombos_global;
+
+    // var id = 'mon-mat-3';
+    // var tresPrimeirasLetras = id.substring(0, 3);
+    // console.log(tresPrimeirasLetras); // 'mon'
+
+    dayOfWeek = getDayOfWeekFromId(passCellId);
+    console.log("Dia da semana", dayOfWeek);
+
+
+    var startHour = value_global;
+    console.log("startHOUR", startHour)
+
+    var matchingObject = null;
+    var matchingTimeslots = 0;
+
+    // Percorrer o array de objetos JSON
+    for (var i = 0; i < json.length; i++) {
+      var obj = json[i][0]; // Extrair o objeto interno do array
+
+      // Verificar se o dia e o horário de início correspondem
+      if (obj.day === dayOfWeek && obj.timeslots[0].hour_start === startHour) {
+        matchingObject = obj; // Armazenar o objeto correspondente
+        matchingTimeslots = obj.timeslots.length; // Obter a quantidade de timeslots
+          console.log("oi")
+        break; // Encerrar o loop, já que encontramos uma correspondência
+      }
+      console.log("nop")
+    }
+
+    if (matchingObject) {
+      console.log("Objeto correspondente encontrado:");
+      console.log(matchingObject);
+      console.log("Quantidade de timeslots:", matchingTimeslots);
+    } else {
+      console.log("Nenhum objeto correspondente encontrado.");
+    }
+
+        // Lógica para adicionar as outras células
+
         var selectedCourse = $("#course-filter").val();
         var span = $("#cel-position").text();
+        console.log("posição da célula atual", span)
         var csrftoken = $('[name=csrfmiddlewaretoken]').val();
     
         if (selectedCourse !== "") {
@@ -351,4 +408,63 @@ $(document).ready(function() {
       });
 });
 
+
+function getDayOfWeekFromId(id) {
+  var tresPrimeirasLetras = id.substring(0, 3);
+
+  if (tresPrimeirasLetras === 'mon') {
+    return 'monday';
+  } else if (tresPrimeirasLetras === 'tue') {
+    return 'tuesday';
+  } else if (tresPrimeirasLetras === 'wed') {
+    return 'wednesday';
+  } else if (tresPrimeirasLetras === 'thu') {
+    return 'thursday';
+  } else if (tresPrimeirasLetras === 'fri') {
+    return 'friday';
+  } else if (tresPrimeirasLetras === 'sat') {
+    return 'saturday';
+  } else {
+    return 'Dia da semana errado';
+  }
+}
+
+function convertTimeFormat(time) {
+  // Verifica se o valor contém 'a.m.' ou 'p.m.' e remove os espaços em branco
+  var isAM = time.includes('a.m.');
+  var isPM = time.includes('p.m.');
+  time = time.replace(/\s/g, '');
+
+  // Separa a hora e o período ('a.m.' ou 'p.m.')
+  var hour;
+  var minute;
+  var period;
+  if (isAM) {
+    [hour, minute] = time.split('a.m.')[0].split(':');
+    period = 'a.m.';
+  } else if (isPM) {
+    [hour, minute] = time.split('p.m.')[0].split(':');
+    period = 'p.m.';
+  } else {
+    // Caso não haja 'a.m.' ou 'p.m.', retorna o valor original
+    return time;
+  }
+
+  // Verifica se a hora precisa ter dois dígitos
+  if (hour.length === 1) {
+    hour = '0' + hour;
+  }
+
+  // Converte a hora para o formato de 24 horas
+  if (period === 'p.m.' && hour !== '12') {
+    hour = (parseInt(hour) + 12).toString();
+  } else if (period === 'a.m.' && hour === '12') {
+    hour = '00';
+  }
+
+  // Formata o horário completo com os minutos
+  var formattedTime = hour + ':' + (minute || '00') + ':00';
+
+  return formattedTime;
+}
 
