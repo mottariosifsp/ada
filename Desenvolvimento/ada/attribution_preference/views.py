@@ -1,5 +1,6 @@
 from django.shortcuts import render
-from .models import Attribution_preference, Preference_schedule, Course_preference, Attribution_preference_course_preference
+from .models import Attribution_preference, Preference_schedule, Course_preference, \
+    Attribution_preference_course_preference
 from course.models import Course
 from timetable.models import Timetable, Timeslot
 from user.models import User, Job
@@ -11,6 +12,7 @@ import datetime, time
 from django.db import transaction
 
 from django.utils.decorators import method_decorator
+
 
 def attribution_preference(request):
     user = request.user
@@ -24,7 +26,7 @@ def attribution_preference(request):
         'noturno': [],
         'noturnoAulas': 0
     }
-        
+
     for timeslot in Timeslot.objects.all():
         if timeslot.hour_start >= datetime.time(7, 0, 0) and timeslot.hour_end <= datetime.time(12, 0, 0):
             turno['matutino'].append(timeslot)
@@ -32,7 +34,7 @@ def attribution_preference(request):
             turno['vespertino'].append(timeslot)
         elif timeslot.hour_start >= datetime.time(18, 0, 0) and timeslot.hour_end <= datetime.time(23, 0, 0):
             turno['noturno'].append(timeslot)
-        
+
         turno['matutinoAulas'] = len(turno['matutino']) + 1
         turno['vespertinoAulas'] = len(turno['vespertino']) + 1
         turno['noturnoAulas'] = len(turno['noturno']) + 1
@@ -64,6 +66,7 @@ def attribution_preference(request):
 
     return render(request, 'attribution_preference/attribution_preference.html', data)
 
+
 def convert_string_to_datetime(hora_string):
     pattern = r'(\d{1,2})(:\d{2})?\s*(a\.m\.|p\.m\.)'
     match = re.match(pattern, hora_string, re.IGNORECASE)
@@ -81,6 +84,7 @@ def convert_string_to_datetime(hora_string):
             hour = 0
 
         return datetime.time(hour=hour, minute=minute, second=0)
+
 
 def courses_attribution_preference(request):
     work_regime = request.POST.get('work_regime')
@@ -157,6 +161,7 @@ def courses_attribution_preference(request):
                 })
 
             timetable_item = {
+                'id': timetable_object.id,
                 'day_combo': day_combo_data,
                 'course_acronym': timetable_object.course.acronym,
                 'course_name': timetable_object.course.name_course,
@@ -185,7 +190,7 @@ def courses_attribution_preference(request):
             'noturno': [],
             'noturnoAulas': 0
         }
-            
+
         for timeslot in Timeslot.objects.all():
             if timeslot.hour_start >= datetime.time(7, 0, 0) and timeslot.hour_end <= datetime.time(12, 0, 0):
                 turno['matutino'].append(timeslot)
@@ -193,7 +198,7 @@ def courses_attribution_preference(request):
                 turno['vespertino'].append(timeslot)
             elif timeslot.hour_start >= datetime.time(18, 0, 0) and timeslot.hour_end <= datetime.time(23, 0, 0):
                 turno['noturno'].append(timeslot)
-            
+
             turno['matutinoAulas'] = len(turno['matutino']) + 1
             turno['vespertinoAulas'] = len(turno['vespertino']) + 1
             turno['noturnoAulas'] = len(turno['noturno']) + 1
@@ -202,7 +207,7 @@ def courses_attribution_preference(request):
         user_timeslot_traceback = []
         user_preference_schedules = Preference_schedule.objects.filter(attribution_preference__user=request.user)
         for schedule in user_preference_schedules:
-            begin = (schedule.timeslot.hour_start)            
+            begin = (schedule.timeslot.hour_start)
 
             turno_sessao = None
             turno_posicao = None
@@ -212,7 +217,8 @@ def courses_attribution_preference(request):
                 turno_posicao = next((i for i, slot in enumerate(turno['matutino']) if slot.hour_start == begin), None)
             elif begin >= datetime.time(13, 0, 0) and begin < datetime.time(18, 0, 0):
                 turno_sessao = 'ves'
-                turno_posicao = next((i for i, slot in enumerate(turno['vespertino']) if slot.hour_start == begin), None)
+                turno_posicao = next((i for i, slot in enumerate(turno['vespertino']) if slot.hour_start == begin),
+                                     None)
             elif begin >= datetime.time(18, 0, 0) and begin <= datetime.time(23, 0, 0):
                 turno_sessao = 'not'
                 turno_posicao = next((i for i, slot in enumerate(turno['noturno']) if slot.hour_start == begin), None)
@@ -239,7 +245,7 @@ def courses_attribution_preference(request):
                 'sessao': turno_sessao,
                 'dia': day,
                 'hour': begin.strftime('%H:%M:%S'),
-            } 
+            }
             user_timeslot_traceback.append(string)
 
         print(user_timeslot_traceback)
@@ -280,7 +286,7 @@ def save_disponiility_preference(work_timeslots, work_regime, user):
         dia_semana = timeslot["dia_semana"]
 
         timeslot_object = Timeslot.objects.filter(hour_start=hora_comeco).first()
-            
+
         if dia_semana == 'mon':
             day_object = enum.Day.monday.name
         elif dia_semana == 'tue':
@@ -293,7 +299,7 @@ def save_disponiility_preference(work_timeslots, work_regime, user):
             day_object = enum.Day.friday.name
         else:
             day_object = enum.Day.saturday.name
-        
+
         Preference_schedule.objects.create(
             attribution_preference=Attribution_preference.objects.filter(user=user).first(),
             timeslot=timeslot_object,
