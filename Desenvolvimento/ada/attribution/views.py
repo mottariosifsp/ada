@@ -259,7 +259,7 @@ def next_attribution(timetables_preference, next_professor_in_queue, blockk):
         cancel_scheduled_task()
         return start_attribution(blockk)
     else:
-        send_email(professor)
+        # send_email(professor)
         schedule_task(SECONDS_TO_PROFESSOR_CHOOSE, professor, blockk)
         return
 
