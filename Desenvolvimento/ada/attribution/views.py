@@ -1,6 +1,5 @@
 from area.models import Blockk
 from attribution.task import cancel_scheduled_task, schedule_task
-from attribution_preference.models import Attribution_preference, Course_preference
 from staff.models import Criteria, Deadline
 from timetable.models import Timetable, Timetable_user
 from user.models import User
@@ -15,6 +14,7 @@ from django.core.mail import send_mail, EmailMessage
 import xml.etree.ElementTree as ET
 import os
 
+from attribution_preference.models import Course_preference, Attribution_preference
 
 from django.utils.decorators import method_decorator
 
@@ -203,11 +203,18 @@ def attribution(request):
     
     blockk = Blockk.objects.get(registration_block_id=request.GET.get('blockk'))
     queue = TeacherQueuePosition.objects.filter(blockk=blockk).order_by('position').all()
-    next_professor = queue.objects.filter(blockk=blockk).update(position = 0)
+    next_professor = queue.get(blockk=blockk, position=0)
 
-    Attribution_preference = Attribution_preference.objects.filter(user=next_professor)
-    timetables_preference = Course_preference.objects.filter(attribution_preference=Attribution_preference)
-
+    attribution_preference = Attribution_preference.objects.filter(user=next_professor.teacher).all()
+    if attribution_preference:
+        timetables_preference = Course_preference.objects.filter(attribution_preference=attribution_preference).all()
+    
+    if request.method == 'GET':
+        data = {
+            'queue': queue,
+            'blockk': blockk,
+        }
+        return render(request, 'attribution/attribution.html', data)
     if request.method == 'POST':
         if request.User == next_professor:            
             next_attribution(timetables_preference, next_professor, blockk)    
@@ -215,43 +222,64 @@ def attribution(request):
     return render(request, 'attribution/attribution.html')
 
 def start_attribution(blockk):
+
     queue = TeacherQueuePosition.objects.filter(blockk=blockk).order_by('position').all()
-    next_professor = queue.objects.filter(blockk=blockk).update(position = 0)
+    next_professor_in_queue = queue.get(blockk=blockk, position=0)
 
-    Attribution_preference = Attribution_preference.objects.filter(user=next_professor)
-    timetables_preference = Course_preference.objects.filter(attribution_preference=Attribution_preference)
+    attribution_preference = Attribution_preference.objects.get(user=next_professor_in_queue.teacher)
+    if attribution_preference:
+        timetables_preference = Course_preference.objects.filter(attribution_preference=attribution_preference).all()
 
-    next_attribution(timetables_preference, next_professor, blockk)
+    next_attribution(timetables_preference, next_professor_in_queue, blockk)
 
-def next_attribution(timetables, professor, blockk):
-    SECONDS_TO_PROFESSOR_CHOOSE = 30
+def next_attribution(timetables_preference, next_professor_in_queue, blockk):
+    timetables_id = timetables_preference.values_list('timetable', flat=True)
+    professor = next_professor_in_queue.teacher
 
+    timetables = []
+
+    for timetable_id in timetables_id:
+        timetables.append(Timetable.objects.get(id=timetable_id))   
+    print(timetables)
+    SECONDS_TO_PROFESSOR_CHOOSE = 1
+    
     invalidated_timetables = []
+
+    print(f'tamanho da lista de grades: { len(timetables) }')
 
     for timetable in timetables:
         if validate_timetable(timetable, professor) != True:
             invalidated_timetables.append(timetable)
-        
-    if invalidated_timetables.count() == 0:
+        else:
+            assign_timetable_professor(timetable, professor)
+            
+    if len(invalidated_timetables) == 0:
         professor_to_end_queue(professor)
-        professor.delete()
+        next_professor_in_queue.delete()
         cancel_scheduled_task()
         return start_attribution(blockk)
     else:
-        # send_email(professor)
-        schedule_task(SECONDS_TO_PROFESSOR_CHOOSE, professor)
+        send_email(professor)
+        schedule_task(SECONDS_TO_PROFESSOR_CHOOSE, professor, blockk)
         return
 
 def validate_timetable(timetable, professor):
     if validations(timetable, professor):
-        assign_timetable_professor(timetable, professor)
         return True
     else:
         return timetable
 
 def validations(timetable, professor):
-    if timetable.user is None:
+    print(timetable)
+    timetable_user = None
+    if Timetable_user.objects.filter(timetable=timetable).exists():
+        timetable_user = Timetable_user.objects.get(timetable=timetable)
+    else:
+        timetable_user = Timetable_user.objects.create(timetable=timetable, user=None)
+    if timetable_user.user is None:
         return True
+    else:
+        return False
     # future validations
 
 def email_test(request):
@@ -266,12 +294,11 @@ def email_test(request):
 def send_email(professor):
     subject = 'Ação requerida: Escolha de disciplina alternativa até o prazo estipulado'
     
-    nome = 'professor.first_name'
+    nome = professor.first_name
     email = professor.email
 
     current_path = os.getcwd()
-    print(current_path)
-    with open(current_path + '..\static\email\message.html', 'r', encoding='utf-8') as file:
+    with open(current_path + '\\templates\static\email\message.html', 'r', encoding='utf-8') as file:
         message = file.read()
         message = message.format(nome=nome)
     
@@ -287,12 +314,14 @@ def send_email(professor):
     email.send()
 
 def assign_timetable_professor(timetable, professor):
+    print(f'professor { professor.first_name } escolheu a grade { timetable }')
     Timetable_user.objects.filter(timetable=timetable).update(user=professor)
 
 def professor_to_end_queue(professor):
 
-    size_queue = TeacherQueuePosition.objects.count()
-    TeacherQueuePosition.objects.filter(teacher=professor).update(position=size_queue + 1)
+    size_queue = len(TeacherQueuePosition.objects.all())
+    
+    TeacherQueuePosition.objects.filter(teacher=professor).update(position=size_queue-1)
     for professor_in_queue in TeacherQueuePosition.objects.all():
         professor_in_queue.position = F('position') - 1
         professor_in_queue.save()
