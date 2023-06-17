@@ -399,6 +399,82 @@ $(document).ready(function() {
 
           }
 
+          checkboxes[0].sort(function(a, b) {
+          var idA = parseInt(a.id.split('-').pop()); // Obtém o último elemento do ID de a e converte para número
+          var idB = parseInt(b.id.split('-').pop()); // Obtém o último elemento do ID de b e converte para número
+
+          var typeA = a.id.split('-')[1]; // Obtém a parte do tipo de a (mat, vesp, not)
+          var typeB = b.id.split('-')[1]; // Obtém a parte do tipo de b (mat, vesp, not)
+
+          // Define a ordem de prioridade dos tipos (mat > vesp > not)
+          var order = { 'mat': 0, 'ves': 1, 'not': 2 };
+
+          // Realiza a comparação dos tipos
+          if (order[typeA] < order[typeB]) {
+            return -1;
+          } else if (order[typeA] > order[typeB]) {
+            return 1;
+          }
+
+          // Realiza a comparação dos IDs numéricos
+          if (idA < idB) {
+            return -1;
+          } else if (idA > idB) {
+            return 1;
+          } else {
+            return 0;
+          }
+        });
+
+        checkboxes[1].sort(function(a, b) {
+          var idA = parseInt(a.id.split('-').pop()); // Obtém o último elemento do ID de a e converte para número
+          var idB = parseInt(b.id.split('-').pop()); // Obtém o último elemento do ID de b e converte para número
+
+          var typeA = a.id.split('-')[1]; // Obtém a parte do tipo de a (mat, vesp, not)
+          var typeB = b.id.split('-')[1]; // Obtém a parte do tipo de b (mat, vesp, not)
+
+          // Define a ordem de prioridade dos tipos (mat > vesp > not)
+          var order = { 'mat': 0, 'ves': 1, 'not': 2 };
+
+          // Realiza a comparação dos tipos
+          if (order[typeA] < order[typeB]) {
+            return -1;
+          } else if (order[typeA] > order[typeB]) {
+            return 1;
+          }
+
+          // Realiza a comparação dos IDs numéricos
+          if (idA < idB) {
+            return -1;
+          } else if (idA > idB) {
+            return 1;
+          } else {
+            return 0;
+          }
+        });
+
+          // Imprime os inputs ordenados
+          for (var i = 0; i < checkboxes[1].length; i++) {
+            console.log(checkboxes[1][i].id);
+          }
+          console.log(checkboxes);
+
+          var checkboxValor1 = checkboxes[0][checkboxes[0].length - 1].value;
+          var ultimoHorario = checkboxValor1.split(',')[0].split('-').pop().trim();
+          console.log(checkboxValor1);
+          console.log("ultimo horario", ultimoHorario);
+
+          var ultimoHorario1 = moment(ultimoHorario, 'HH:mm');
+          var ultimoHorarioMinutos = ultimoHorario1.hours() * 60 + ultimoHorario1.minutes();
+          console.log("ultimo horario minutos", ultimoHorarioMinutos);
+
+          var checkboxValor2 = checkboxes[1][0].value;
+          var primeiroHorario = checkboxValor2.split(',')[0].split('-').shift().trim();
+          console.log("primeiro horario", primeiroHorario);
+
+          var primeiroHorario1 = moment(primeiroHorario, 'HH:mm');
+          var primeiroHorarioMinutos = primeiroHorario1.hours() * 60 + primeiroHorario1.minutes();
+          console.log("primeiro horario minutos", primeiroHorarioMinutos);
 
 
           if(cel_left == 0 && type_cel == 0) {
