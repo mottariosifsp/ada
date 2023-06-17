@@ -1,4 +1,4 @@
-{#{% extends "staff/base.html" %}#}
+{% extends "staff/base.html" %}
 {% load i18n %}
 {% load static %}
 
@@ -55,5 +55,5 @@
     </div>
 </div>
 
-<script src="{% static 'attribution/js/queueSetup.js' %}" data-lang={{LANGUAGE_CODE}}></script>
+<script src="{% static 'queue/js/queue_create.js' %}" data-lang={{LANGUAGE_CODE}}></script>
 {% endblock %}

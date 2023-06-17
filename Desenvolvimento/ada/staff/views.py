@@ -19,6 +19,7 @@ from classs.models import Classs
 from course.models import Course
 from user.models import User, History
 from .models import Deadline, Criteria
+from django.db.models import F, Sum, Value
 
 from django.contrib.auth.decorators import login_required
 
@@ -672,6 +673,8 @@ def queue_create(request):
         return render(request, 'staff/queue/queue_create.html', {'data': data})
 
     else:  # se a requisição não for POST e for GET sem ter passado a área, ou seja, sem ter atualização no filtro da área, vai cair aqui
+        blockk = request.GET.get('blockk')
+        print("blocoooooo:", blockk)
         blockk = Blockk.objects.get(registration_block_id=request.GET.get('blockk'))
 
         if TeacherQueuePosition.objects.filter(
