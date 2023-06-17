@@ -205,18 +205,34 @@ def attribution(request):
    
     
     if request.method == 'GET':
-        print(get_time_left())
-        # print(cancel_scheduled_task())
-        queue = TeacherQueuePosition.objects.filter(blockk=blockk).order_by('position').all()
-        value = str(float_to_time(int(get_time_left())))
-        print(value)
+        attribution_deadline = Deadline.objects.get(blockk=blockk, name='STARTASSIGNMENTDEADLINE')
+        now = datetime.today()
+        if now > attribution_deadline.deadline_end:
+            return render(request, 'attribution/attribution_error_page_after.html')
+        if now < attribution_deadline.deadline_start:            
+            day = attribution_deadline.deadline_start.strftime("%d/%m/%Y")
+            time = attribution_deadline.deadline_start.strftime("%H:%M:%S")
 
-        data = {
-            'queue': queue,
-            'blockk': blockk,
-            'time_left': value,
-        }
-        return render(request, 'attribution/attribution.html', data)
+            data = {
+                'day': day,
+                'time': time,
+            }
+
+            return render(request, 'attribution/attribution_error_page_before.html', data)
+        else:
+            print(get_time_left())
+            # print(cancel_scheduled_task())
+            queue = TeacherQueuePosition.objects.filter(blockk=blockk).order_by('position').all()
+            value = str(float_to_time(int(get_time_left())))
+            print(value)
+
+            data = {
+                'queue': queue,
+                'blockk': blockk,
+                'time_left': value,
+            }
+            return render(request, 'attribution/attribution.html', data)
+            
     if request.method == 'POST':
         queue = TeacherQueuePosition.objects.filter(blockk=blockk).order_by('position').all()
         next_professor = queue.get(blockk=blockk, position=0)
@@ -352,3 +368,6 @@ def float_to_time(seconds):
 def schedule_attributtion_deadline_staff(seconds, name, *args):
     cancel_scheduled_task('task')
     schedule_deadline(attribution_deadline_start, seconds, name, *args)
+
+def manual_attribution(request):
+    return render(request, 'attribution/manual_attribution.html')
