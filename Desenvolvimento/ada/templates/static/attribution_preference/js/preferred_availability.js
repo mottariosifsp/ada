@@ -503,7 +503,13 @@ $(document).ready(function() {
 
           let csrftoken = getCookie('csrftoken');
 
-          if (work_regime && timeslots.length !== 0) {
+          if (work_regime && timeslots.length !== 0 &&
+              checkboxes[0].length <= max_quantidade_celulas &&
+              checkboxes[1].length <= max_quantidade_celulas &&
+              checkboxes[2].length <= max_quantidade_celulas &&
+              checkboxes[3].length <= max_quantidade_celulas &&
+              checkboxes[4].length <= max_quantidade_celulas &&
+              checkboxes[5].length <= max_quantidade_celulas) {
             $.ajax({
               type: 'post',
               url: '/' + lang + '/professor/preferencia-atribuicao/criar-fpa/editar-cursos/',
@@ -529,7 +535,7 @@ $(document).ready(function() {
               }
             });
           } else {
-            $('#error-message-form').text('Insira as informações pedidas em cada seção.');
+            $('#error-message-form').text('Insira as informações pedidas em cada seção. Se certifique que a seleção de disponibilidade não ultrapassa 8 horas diárias de trabalho.');
             $('#error-alert-form').show();
             window.scrollTo({
               top: $('#error-alert-form').offset().top - $('.navbar').outerHeight() - 30,
