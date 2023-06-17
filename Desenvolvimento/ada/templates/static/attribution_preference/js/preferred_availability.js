@@ -219,6 +219,7 @@ $(document).ready(function() {
 
   // Pegar dados dos checkboxes
   $('.checkbox').click(function() {
+    
     if(cel_left == 0 && type_cel == 0) {
       $('#cel-regime').text("--");
       $('label[for^="mon-"]').add('label[for^="tue-"]').add('label[for^="wed-"]').add('label[for^="thu-"]').add('label[for^="fri-"]').add('label[for^="sat-"]').addClass('disabled').attr('aria-disabled', 'true');
@@ -274,7 +275,7 @@ $(document).ready(function() {
               dia_semana: dia_elemento
             };
 
-            timeslots.push(aula)
+            timeslots.push(aula) // mon-mat-1
           }
         }
       }

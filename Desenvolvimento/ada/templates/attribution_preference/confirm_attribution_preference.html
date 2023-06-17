@@ -10,9 +10,6 @@
 {% block body %}
     <h1>Envio de FPA</h1>
     <p>Insira suas preferências de horário e aula.</p>
-    <form method="post" action="{% url 'confirmConfiguration' %}">
-
-    </form>
     <div id="work-regime">
         <h3>Regime de Trabalho</h3>
         {% for course in preferred_courses %}

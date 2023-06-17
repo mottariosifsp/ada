@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from .models import Attribution_preference, Preference_schedule, Course_preference, Attribution_preference_course_preference
+from .models import Attribution_preference, Preference_schedule, Course_preference
 from course.models import Course
 from timetable.models import Timetable, Timeslot
 from user.models import User, Job
@@ -303,17 +303,37 @@ def save_disponiility_preference(work_timeslots, work_regime, user):
 
 
 def confirm_attribution_preference(request):
-    work_regime = request.POST.get('work_regime')
+    work_courses = request.POST.getlist('timetable')
+    # json_data = [json.loads(item) for item in work_courses]
+    # print(work_courses)
+    timetable = []
+
+    for item in work_courses:
+        item_dict = json.loads(item)
+
+        timetable.append(item_dict)
+    print(timetable)
 
     if request.method == 'POST':
-        data = {
-            'work_regime': work_regime
-        }
+        save_courses_preference(timetable, request.user)
 
         return render(request, 'attribution_preference/confirm_attribution_preference.html')
     elif request.method == 'GET':
-        data = {
-            'preferred_courses': "baata"
-        }
 
-        return render(request, 'attribution_preference/confirm_attribution_preference.html', data)
+        return render(request, 'attribution_preference/confirm_attribution_preference.html')
+
+@transaction.atomic
+def save_courses_preference(work_courses, user):
+    if Course_preference.objects.filter(attribution_preference__user=user).exists():
+        Course_preference.objects.filter(attribution_preference__user=user).delete()
+
+    for courses in work_courses:
+        for i, course in enumerate(courses, 1):
+            id_timetable = int(course['id_timetable'])
+            timetable = Timetable.objects.filter(id=id_timetable).first()
+
+            Course_preference.objects.create(
+                attribution_preference=Attribution_preference.objects.filter(user=user).first(),
+                timetable=timetable
+            )
+

@@ -7,6 +7,7 @@ var blocks = document.currentScript.getAttribute('blocks');
 var areas = document.currentScript.getAttribute('areas');
 
 var timetable_global = []
+var btn_checked_global = []
 
 var disponibility_array = JSON.parse(disponibility.replace(/'/g, '"'));
 var courses_array = JSON.parse(courses.replace(/'/g, '"'));
@@ -40,7 +41,7 @@ var timetables_array_obj = [];
 
 for (var i = 0; i < timetables_array.length; i++) {
   var timetable_object = timetables_array[i];
-  var timetable_id = parseInt(timetable_object.id);
+  var timetable_id = timetable_object.id;
   var day_combo_objects = timetable_object.day_combo;
   var day_combo_data = [];
 
@@ -137,17 +138,25 @@ for (var i = 0; i < courses_array.length; i++) {
 
 
 $("#timetable-courses div[data-toggle='buttons'] label").on("click", function() {
-    var dataId = $(this).closest("div[data-id]").data("id"); 
-    $("#cel-position").text(dataId).css("visibility", "hidden");
+    var dataId = $(this).closest("div[data-id]").data("id");
 
-    $('#area-filter').val('');
-    $('#block-filter').val('');
-    $('#course-filter').val('');
-    
-    area_options();
-    block_options();
-    timetables_options();
-    $("#addCourseModal").modal("show");
+    var updatedArray = btn_checked_global.filter(item => item.position !== dataId); // quando botao foi clicado tirar etc
+    if (updatedArray.length < btn_checked_global.length) {
+      btn_checked_global = updatedArray;
+      alert("Elemento removido");
+      $("#btn-" + dataId).attr("data-toggle", "modal").attr("data-target", "#addCourseModal");
+    } else {
+      $("#cel-position").text(dataId).css("visibility", "hidden");
+      
+      $('#area-filter').val('');
+      $('#block-filter').val('');
+      $('#course-filter').val('');
+      
+      area_options();
+      block_options();
+      timetables_options();
+      $("#addCourseModal").modal("show");
+    }
 });
 
 function area_options() {
@@ -259,7 +268,6 @@ function block_filter() {
   
 
 }
-
 // function area_filter() {
     
 // }
@@ -283,7 +291,7 @@ for (var i = 0; i < disponibility_array_obj.length; i++) {
 
 $(document).ready(function() {
     $("#addCourseButton").on("click", function() {
-        var timetable_id = $("#course-filter").val();
+        var timetable_id = parseInt($("#course-filter").val());
         var grade_position = $("#cel-position").text(); //mon-mat-1 mon-mat-2 mon-mat-3
 
         var filtered_timetable = timetables_array_obj.filter(function(timetable_item) {
@@ -296,49 +304,25 @@ $(document).ready(function() {
           $.ajax({
             url: "/",
             type: "POST",
-            data: {
-              timetable: filtered_timetable
-            },
             beforeSend: function(xhr) {
                 xhr.setRequestHeader("X-CSRFToken", csrftoken);
             },
             success: function(response) {
-              var day_combo_data = filtered_timetable.day_combo; // erro, noa passa daqui
-
-              for (var i = 0; i < day_combo_data.length; i++) {
-                var day_combo = day_combo_data[i];
-                var day = day_combo.day;
-                var timeslots = day_combo.timeslots;
-
-                timeslots.forEach(function(timeslot) {
-                  var hour_start = timeslot.hour_start;
-
-                  // Filtra o disponibility_array_obj pelo mesmo dia e hour_start
-                  var filtered_disponibility = disponibility_array_obj.filter(function(disponibility) {
-                    return disponibility.dia === day && disponibility.hour === hour_start;
-                  }); // dia=mon day=monday *colocar primeiras 3 letras
-
-                  // Extrai apenas a propriedade "frase" do objeto filtrado
-                  var frases = filtered_disponibility.map(function(disponibility) {
-                    return disponibility.frase;
-                  }); // pegar a frase do timetable filtrado acima
-
-                  if (frases.length > 0) {
-                    frases.forEach(function(frase) {
-                      $("#sub-" + frase).text(filtered_timetable.course.acronym);
-                    }); // colocando acronym em todos do timetable
-                  }
-                });
-              }
-                $("#sub-" + grade_position).text(filtered_timetable.course.acronym);
-
-                timetable_global.push(filtered_timetable.id);
+                $("#sub-" + grade_position).text(filtered_timetable[0].course_acronym);
+                $("#btn-" + grade_position).attr("data-toggle", "none").attr("data-target", "#");
+                btn_checked_global.push(grade_position);
+                global = {
+                  id_timetable: filtered_timetable[0].id,
+                  position: grade_position
+                }
+                timetable_global.push(global);
+                //console.log(timetable_global)
                 $("#course-filter").val('');
                 $('#error-alert').hide();
             },
             error: function(xhr, textStatus, errorThrown) {
                 $('#error-message').text('Erro ao tentar adicionar uma aula.');
-                $('#error-alert').show();alert("d")
+                $('#error-alert').show();
             }
           });
         } else {
@@ -346,6 +330,62 @@ $(document).ready(function() {
           $('#error-alert').show();
         }
       });
+
+      $("#sendCourses").on("click", function() {
+        let csrftoken = getCookie('csrftoken');
+        var jsonData = JSON.stringify(timetable_global);
+        alert(jsonData)
+        console.log(timetable_global)
+        
+
+        if (timetable_global.length != 0) {
+          $.ajax({
+            type: 'post',
+            url: '/' + lang + '/professor/preferencia-atribuicao/salvar-fpa/',
+            data: {
+              timetable: jsonData
+            },
+            headers: {
+              'X-CSRFToken': csrftoken
+            },
+            success: function(response) {
+              $("#course-filter-form").val('');
+              $('#error-alert-form').hide();
+              window.location.href = '/' + lang + '/professor/preferencia-atribuicao/salvar-fpa/'
+            },
+            error: function(xhr, textStatus, errorThrown) {
+                $('#error-message-form').text('Erro ao tentar suas preferências de cursos.');
+                $('#error-alert-form').show();
+                window.scrollTo({
+                  top: $('#error-alert-form').offset().top - $('.navbar').outerHeight() - 30,
+                  behavior: 'smooth'
+                });
+            }
+          });
+        } else {
+          $('#error-message-form').text('Selecione suas aulas.');
+          $('#error-alert-form').show();
+          window.scrollTo({
+            top: $('#error-alert-form').offset().top - $('.navbar').outerHeight() - 30,
+            behavior: 'smooth'
+          });
+        }
+      })
+
+      function getCookie(name) {
+        var cookieValue = null;
+        if (document.cookie && document.cookie !== '') {
+          var cookies = document.cookie.split(';');
+          for (var i = 0; i < cookies.length; i++) {
+            var cookie = jQuery.trim(cookies[i]);
+            if (cookie.substring(0, name.length + 1) === (name + '=')) {
+              cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+              break;
+            }
+          }
+        }
+        return cookieValue;
+      }
 });
 
 
