@@ -59,7 +59,6 @@ def attribution_preference(request):
 
     data = {
         'turno': turno,
-        'user_blocks': user_blocks,
         'timetables': json_data
     }
 
@@ -114,8 +113,8 @@ def courses_attribution_preference(request):
         timetable = Timetable.objects.all()
         courses = Course.objects.all()
 
-        areas = Area.objects.filter(blocks__in=user.blocks.all()).distinct()
-        blocks = Blockk.objects.filter(areas__in=areas).distinct()
+        blocks = user.blocks.all().distinct()
+        areas = Area.objects.filter(blocks__in=blocks).distinct()
 
         user_area = []
         user_blocks = []
@@ -164,6 +163,7 @@ def courses_attribution_preference(request):
                 'day_combo': day_combo_data,
                 'course_acronym': timetable_object.course.acronym,
                 'course_name': timetable_object.course.name_course,
+                'course_id': timetable_object.course.registration_course_id,
                 'classs': timetable_object.classs.registration_class_id,
             }
 
@@ -247,7 +247,7 @@ def courses_attribution_preference(request):
             }
             user_timeslot_traceback.append(string)
 
-        print(user_timeslot_traceback)
+        print(courses_array)
         print(user_blocks)
         print(user_area)
         print(timetable_array)
@@ -267,10 +267,8 @@ def courses_attribution_preference(request):
 
 @transaction.atomic
 def save_disponiility_preference(work_timeslots, work_regime, user):
-    if user.job:
-        user.job.delete()
-
     job = Job.objects.create(name_job=work_regime)
+    user.job = None
     user.job = job
     user.save()
 
@@ -278,7 +276,7 @@ def save_disponiility_preference(work_timeslots, work_regime, user):
         Attribution_preference.objects.create(user=user)
 
     if Preference_schedule.objects.filter(attribution_preference__user=user).exists():
-        Preference_schedule.objects.filter(attribution_preference__user=user).exists().delete()
+        Preference_schedule.objects.filter(attribution_preference__user=user).delete()
 
     for timeslot in work_timeslots:
         hora_comeco = timeslot["hora_comeco"]
@@ -308,8 +306,7 @@ def save_disponiility_preference(work_timeslots, work_regime, user):
 
 def confirm_attribution_preference(request):
     work_courses = request.POST.getlist('timetable')
-    # json_data = [json.loads(item) for item in work_courses]
-    # print(work_courses)
+
     timetable = []
 
     for item in work_courses:

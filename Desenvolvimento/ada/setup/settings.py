@@ -174,10 +174,10 @@ LOGOUT_REDIRECT_URL = '/user/sair'
 
 #email_backend to console
 # EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
-DEFAULT_FROM_EMAIL = 'ada.ifsp@gmail.com'
-EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_HOST_USER = config('EMAIL_HOST_USER')
-EMAIL_HOST_PASSWORD = config('EMAIL_HOST_PASSWORD')
-EMAIL_USE_TLS = config('EMAIL_USE_TLS')
-EMAIL_PORT = config('EMAIL_PORT')
-EMAIL_HOST = config('EMAIL_HOST')
+# DEFAULT_FROM_EMAIL = 'ada.ifsp@gmail.com'
+# EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+# EMAIL_HOST_USER = config('EMAIL_HOST_USER')
+# EMAIL_HOST_PASSWORD = config('EMAIL_HOST_PASSWORD')
+# EMAIL_USE_TLS = config('EMAIL_USE_TLS')
+# EMAIL_PORT = config('EMAIL_PORT')
+# EMAIL_HOST = config('EMAIL_HOST')
