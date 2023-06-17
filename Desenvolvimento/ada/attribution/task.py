@@ -17,8 +17,7 @@ task = None
 def times_up(professor_id, blockk_id):
     professor = User.objects.get(id=professor_id)
     blockk = Blockk.objects.get(id=blockk_id)
-    views.professor_to_end_queue(professor)
-    views.start_attribution(blockk)
+    views.timestup(professor, blockk)
 
 def schedule_task(seconds, professor, blockk):
     now = datetime.utcnow()

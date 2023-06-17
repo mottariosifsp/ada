@@ -202,24 +202,31 @@ def queueSetup(request):
 def attribution(request):
     
     blockk = Blockk.objects.get(registration_block_id=request.GET.get('blockk'))
-    queue = TeacherQueuePosition.objects.filter(blockk=blockk).order_by('position').all()
-    next_professor = queue.get(blockk=blockk, position=0)
-
-    attribution_preference = Attribution_preference.objects.filter(user=next_professor.teacher).all()
-    if attribution_preference:
-        timetables_preference = Course_preference.objects.filter(attribution_preference=attribution_preference).all()
+   
     
     if request.method == 'GET':
+        queue = TeacherQueuePosition.objects.filter(blockk=blockk).order_by('position').all()
+        professor_to_end_queue(queue.first().teacher)
         data = {
             'queue': queue,
             'blockk': blockk,
         }
         return render(request, 'attribution/attribution.html', data)
     if request.method == 'POST':
+        queue = TeacherQueuePosition.objects.filter(blockk=blockk).order_by('position').all()
+        next_professor = queue.get(blockk=blockk, position=0)
+
+        attribution_preference = Attribution_preference.objects.filter(user=next_professor.teacher).all()
+        if attribution_preference:
+            timetables_preference = Course_preference.objects.filter(attribution_preference=attribution_preference).all()
         if request.User == next_professor:            
             next_attribution(timetables_preference, next_professor, blockk)    
 
     return render(request, 'attribution/attribution.html')
+
+def timestup(professor, blockk):
+    professor_to_end_queue(professor)
+    start_attribution(blockk)
 
 def start_attribution(blockk):
 
@@ -241,7 +248,7 @@ def next_attribution(timetables_preference, next_professor_in_queue, blockk):
     for timetable_id in timetables_id:
         timetables.append(Timetable.objects.get(id=timetable_id))   
     print(timetables)
-    SECONDS_TO_PROFESSOR_CHOOSE = 1
+    SECONDS_TO_PROFESSOR_CHOOSE = 30
     
     invalidated_timetables = []
 
@@ -320,9 +327,12 @@ def assign_timetable_professor(timetable, professor):
 def professor_to_end_queue(professor):
 
     size_queue = len(TeacherQueuePosition.objects.all())
+
+    print(f'size: {size_queue}')
     
-    TeacherQueuePosition.objects.filter(teacher=professor).update(position=size_queue-1)
+    TeacherQueuePosition.objects.filter(teacher=professor).update(position=size_queue )
     for professor_in_queue in TeacherQueuePosition.objects.all():
-        professor_in_queue.position = F('position') - 1
+        professor_in_queue.position = professor_in_queue.position - 1
         professor_in_queue.save()
+        print(f'professor: {professor_in_queue.teacher.first_name} - position: {professor_in_queue.position}')
         
