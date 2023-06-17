@@ -39,10 +39,9 @@ $(document).ready(function() {
 });
 
 $('#enviar-tabela').click(function() {
-    if (confirm('Deseja realmente enviar a tabela?')) {
+  if (confirm('Deseja realmente enviar a tabela?')) {
   var tabelaData =  $('#queue').DataTable().data().toArray();
   var blockk_id = $('#blockk-id').attr('value');
-  alert(blockk_id);
   console.log(tabelaData);
   var csrftoken = getCookie('csrftoken');
 
@@ -57,7 +56,7 @@ $('#enviar-tabela').click(function() {
       'X-CSRFToken': csrftoken
     },
     success: function(response) {
-      location.reload();
+      window.location.href = '/staff/atribuicao/configuracao/?blockk=' + blockk_id;
     },
     error: function(xhr, status, error) {
       console.error(error);
