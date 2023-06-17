@@ -42,4 +42,4 @@ class Course_preference(models.Model): #disciplinas
         verbose_name_plural = _('course_preferences')
 
     def __str__(self):
-        return self.course.name_course
+        return 'curse_preference - '+str(self.id)
