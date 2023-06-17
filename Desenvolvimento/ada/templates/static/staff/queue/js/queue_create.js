@@ -46,7 +46,7 @@ $('#enviar-tabela').click(function() {
   var csrftoken = getCookie('csrftoken');
 
   $.ajax({
-    url: '/atribuicao/queueSetup/',
+    url: '/staff/detalhes-bloco/criar-fila',
     method: 'POST',
     data: {
       'tabela_data': JSON.stringify(tabelaData),
