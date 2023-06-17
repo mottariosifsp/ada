@@ -22,7 +22,7 @@ from user.views import home
 
 
 urlpatterns = [
-    path("admin/", admin.site.urls),
+    path('admin/', admin.site.urls),
     path('staff/', include("staff.urls")),
     path('professor/', include("professor.urls")),
     path('user/', include('user.urls')),
@@ -31,7 +31,7 @@ urlpatterns = [
 ]
 
 urlpatterns += i18n_patterns ( # quais sessões serão internacionalizadas
-    path("admin/", admin.site.urls),
+    path('admin/', admin.site.urls),
     path('staff/', include("staff.urls")),
     path('professor/', include("professor.urls")),
     path('user/', include('django.contrib.auth.urls')),
