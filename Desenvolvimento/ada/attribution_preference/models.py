@@ -24,14 +24,6 @@ class Preference_schedule(models.Model): # preferencia de horário
     def __str__(self):
         return self.day
 
-class Attribution_preference_course_preference(models.Model): 
-    attribution_preference = models.ForeignKey('Attribution_preference', on_delete=models.CASCADE)
-    course_preference = models.ForeignKey('Course_preference', on_delete=models.CASCADE)
-
-    class Meta:
-        verbose_name = _('attribution_preference_course_preference')
-        verbose_name_plural = _('attribution_preference_course_preferences')
-
 class Course_preference(models.Model): #disciplinas
     attribution_preference = models.ForeignKey('Attribution_preference', on_delete=models.CASCADE)
     timetable = models.ForeignKey('timetable.Timetable', on_delete=models.CASCADE)
@@ -42,4 +34,4 @@ class Course_preference(models.Model): #disciplinas
         verbose_name_plural = _('course_preferences')
 
     def __str__(self):
-        return 'curse_preference - '+str(self.id)
+        return 'course_preference - '+str(self.id)

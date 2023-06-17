@@ -6,6 +6,7 @@ var blocks = document.currentScript.getAttribute('blocks');
 var areas = document.currentScript.getAttribute('areas');
 
 var timetable_global = []
+var btn_checked_global = []
 
 var disponibility_array = JSON.parse(disponibility.replace(/'/g, '"'));
 var courses_array = JSON.parse(courses.replace(/'/g, '"'));
@@ -38,10 +39,10 @@ for (var i = 0; i < disponibility_array.length; i++) {
 var timetables_array_obj = [];
 
 for (var i = 0; i < timetables_array.length; i++) {
-    var timetable_object = timetables_array[i];
-    var timetable_id = parseInt(timetable_object.id);
-    var day_combo_objects = timetable_object.day_combo;
-    var day_combo_data = [];
+  var timetable_object = timetables_array[i];
+  var timetable_id = timetable_object.id;
+  var day_combo_objects = timetable_object.day_combo;
+  var day_combo_data = [];
 
     for (var j = 0; j < day_combo_objects.length; j++) {
         var day_combo = day_combo_objects[j];
@@ -67,6 +68,7 @@ for (var i = 0; i < timetables_array.length; i++) {
         'id': timetable_id,
         'day_combo': day_combo_data,
         'course_acronym': timetable_object.course_acronym,
+        'course_id': timetable_object.course_id,
         'course_name': timetable_object.course_name,
         'classs': timetable_object.classs,
     };
@@ -134,18 +136,42 @@ for (var i = 0; i < courses_array.length; i++) {
     courses_array_obj.push(novo_objeto);
 }
 
-$("#timetable-courses div[data-toggle='buttons'] label").on("click", function () {
+
+$("#timetable-courses div[data-toggle='buttons'] label").on("click", function() {
     var dataId = $(this).closest("div[data-id]").data("id");
-    $("#cel-position").text(dataId).css("visibility", "hidden");
 
-    $('#area-filter').val('');
-    $('#block-filter').val('');
-    $('#course-filter').val('');
+    var updated_array = btn_checked_global.some(function(dict) {
+        return dict.includes(dataId);
+    });
+    if (updated_array) {
+      var filteredTimetables = timetable_global.filter(function(t) {
+        return t.position.includes(dataId);
+      });
+      console.log(filteredTimetables)
+      
+      filteredTimetables.forEach(function(timetable) {
+        timetable.position.forEach(function(position) {
+          $("#sub-" + position).text("+");
+        });
+      });
+      
+      timetable_global = timetable_global.filter(function(t) {
+        return !filteredTimetables.includes(t);
+      });
 
-    area_options();
-    block_options();
-    timetables_options();
-    $("#addCourseModal").modal("show");
+      $("#btn-" + dataId).attr("data-toggle", "modal").attr("data-target", "#addCourseModal");
+    } else {
+      $("#cel-position").text(dataId).css("visibility", "hidden");
+      
+      $('#area-filter').val('');
+      $('#block-filter').val('');
+      $('#course-filter').val('');
+      
+      area_options();
+      block_options();
+      timetables_options();
+      $("#addCourseModal").modal("show");
+    }
 });
 
 function area_options() {
@@ -226,6 +252,7 @@ function timetables_options() {
 function block_filter() {
     var block_value = $('#block-filter').val();
     $('#area-filter').val('');
+    $('#course-filter').val('');
 
     area_options();
     timetables_options();
@@ -233,27 +260,106 @@ function block_filter() {
     if (block_value == '') {
 
     } else {
-        var filteredArray = areas_array_obj.filter(function (element) {
+        var filtered_areas = areas_array_obj.filter(function (element) {
             return element.blocks.includes(block_value);
         });
 
         var areaOptionsDatalist = document.getElementById('area-options');
         areaOptionsDatalist.innerHTML = '';
 
-        for (var i = 0; i < filteredArray.length; i++) {
-            var area = filteredArray[i];
+        for (var i = 0; i < filtered_areas.length; i++) {
+            var area = filtered_areas[i];
 
             var option = document.createElement('option');
             option.value = area.id;
             option.textContent = "Área: " + area.acronym + " | " + area.name_area;
             areaOptionsDatalist.appendChild(option);
         }
+
+        var filtered_timetables = timetables_array_obj.filter(function(timetable) {
+            return courses_array_obj.some(function(course) {
+                return course.block === block_value && course.id === timetable.course_id;
+            });
+        });
+
+        var courseOptionsDatalist = document.getElementById('course-options');
+        courseOptionsDatalist.innerHTML = '';
+
+        for (var i = 0; i < filtered_timetables.length; i++) {
+            $('#course-filter').prop('disabled', false);
+            var timetable = filtered_timetables[i];
+            var option = document.createElement('option');
+            option.value = timetable.id;
+            option.textContent = "Curso: " + timetable.course_name + " | " + timetable.classs;
+            courseOptionsDatalist.appendChild(option);
+        }
+
+        if(filtered_timetables.length == 0) {
+            $('#course-filter').val('Nenhuma aula disponível neste horário.');
+            $('#course-filter').prop('disabled', true);
+        }
     }
 }
+function area_filter() {
+    var area_value = $('#area-filter').val();
+    var block_value = $('#block-filter').val();
+    $('#course-filter').val('');
 
-// function area_filter() {
+    block_options();
+    timetables_options();
 
-// }
+    if (area_value == '') {
+
+    } else {
+        if (block_value == '') {
+            var filtered_timetables = timetables_array_obj.filter(function(timetable) {
+                return courses_array_obj.some(function(course) {
+                    return course.area === area_value && course.id === timetable.course_id;
+                });
+            });
+            
+            var courseOptionsDatalist = document.getElementById('course-options');
+            courseOptionsDatalist.innerHTML = '';
+            
+            for (var i = 0; i < filtered_timetables.length; i++) {
+                $('#course-filter').prop('disabled', false);
+                var timetable = filtered_timetables[i];
+                var option = document.createElement('option');
+                option.value = timetable.id;
+                option.textContent = "Curso: " + timetable.course_name + " | " + timetable.classs;
+                courseOptionsDatalist.appendChild(option);
+            }
+
+            if(filtered_timetables.length == 0) {
+                $('#course-filter').val('Nenhuma aula disponível neste horário.');
+                $('#course-filter').prop('disabled', true);
+            }
+        } else {
+            var filtered_timetables = timetables_array_obj.filter(function(timetable) {
+                return courses_array_obj.some(function(course) {
+                    return course.block === block_value && course.area === area_value && course.id === timetable.course_id;
+                });
+            });
+            
+            var courseOptionsDatalist = document.getElementById('course-options');
+            courseOptionsDatalist.innerHTML = '';
+            
+            for (var i = 0; i < filtered_timetables.length; i++) {
+                $('#course-filter').prop('disabled', false);
+                var timetable = filtered_timetables[i];
+                var option = document.createElement('option');
+                option.value = timetable.id;
+                option.textContent = "Curso: " + timetable.course_name + " | " + timetable.classs;
+                courseOptionsDatalist.appendChild(option);
+            }
+
+            if(filtered_timetables.length == 0) {
+                $('#course-filter').val('Nenhuma aula disponível neste horário.');
+                $('#course-filter').prop('disabled', true);
+            }
+        }
+    }
+}
 
 // Mapea na grade
 for (var i = 0; i < disponibility_array_obj.length; i++) {
@@ -272,10 +378,10 @@ for (var i = 0; i < disponibility_array_obj.length; i++) {
     $("#btn-" + fraseId).attr("data-toggle", "modal").attr("data-target", "#addCourseModal");
 }
 
-$(document).ready(function () {
-    $("#addCourseButton").on("click", function () {
+$(document).ready(function() {
+    $("#addCourseButton").on("click", function() {
         var timetable_id = parseInt($("#course-filter").val());
-        var grade_position = $("#cel-position").text();
+        var grade_position = $("#cel-position").text(); //mon-mat-1 mon-mat-2 mon-mat-3
 
         var filtered_timetable = timetables_array_obj.filter(function (timetable_item) {
             return timetable_item.id === timetable_id;
@@ -298,6 +404,8 @@ $(document).ready(function () {
 
                     var day_combo_data = filtered_timetable[0].day_combo;
 
+                    var frase_array = []
+
                     for (var i = 0; i < day_combo_data.length; i++) {
                         var day_combo = day_combo_data[i];
                         var day = day_combo.day;
@@ -317,15 +425,24 @@ $(document).ready(function () {
 
                             if (frases.length > 0) {
                                 frases.forEach(function (frase) {
-                                    $("#sub-" + frase).text(filtered_timetable[0].course_acronym); // coloca acronym em todos os timetables
+                                    $("#sub-" + frase).text(filtered_timetable[0].course_acronym);
                                 });
+                                frase_array.push(...frases)
+                                $("#btn-" + frases).attr("data-toggle", "none").attr("data-target", "#");
+                                btn_checked_global.push(frases)
                             }
                         });
                     }
 
                     $("#sub-" + grade_position).text(filtered_timetable[0].course_acronym);
+                    $("#btn-" + grade_position).attr("data-toggle", "none").attr("data-target", "#");
 
-                    timetable_global.push(filtered_timetable.id);
+                    btn_checked_global.push(grade_position);
+                    global = {
+                        id_timetable: filtered_timetable[0].id,
+                        position: frase_array
+                    }
+                    timetable_global.push(global);
 
                     $("#course-filter").val('');
                     $('#error-alert').hide();
@@ -340,7 +457,64 @@ $(document).ready(function () {
             $('#error-message').text('Selecione uma aula.');
             $('#error-alert').show();
         }
-    });
+      });
+
+      $("#sendCourses").on("click", function() {
+        let csrftoken = getCookie('csrftoken');
+        var jsonData = JSON.stringify(timetable_global);
+        alert(jsonData)
+        console.log(timetable_global)
+        
+
+        if (timetable_global.length != 0) {
+          $.ajax({
+            type: 'post',
+            url: '/' + lang + '/professor/preferencia-atribuicao/salvar-fpa/',
+            data: {
+              timetable: jsonData
+            },
+            headers: {
+              'X-CSRFToken': csrftoken
+            },
+            success: function(response) {
+              $("#course-filter-form").val('');
+              $('#error-alert-form').hide();
+              window.location.href = '/' + lang + '/professor/preferencia-atribuicao/salvar-fpa/'
+            },
+            error: function(xhr, textStatus, errorThrown) {
+                $('#error-message-form').text('Erro ao tentar suas preferências de cursos.');
+                $('#error-alert-form').show();
+                window.scrollTo({
+                  top: $('#error-alert-form').offset().top - $('.navbar').outerHeight() - 30,
+                  behavior: 'smooth'
+                });
+            }
+          });
+        } else {
+          $('#error-message-form').text('Selecione suas aulas.');
+          $('#error-alert-form').show();
+          window.scrollTo({
+            top: $('#error-alert-form').offset().top - $('.navbar').outerHeight() - 30,
+            behavior: 'smooth'
+          });
+        }
+      })
+
+      function getCookie(name) {
+        var cookieValue = null;
+        if (document.cookie && document.cookie !== '') {
+          var cookies = document.cookie.split(';');
+          for (var i = 0; i < cookies.length; i++) {
+            var cookie = jQuery.trim(cookies[i]);
+            if (cookie.substring(0, name.length + 1) === (name + '=')) {
+              cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+              break;
+            }
+          }
+        }
+        return cookieValue;
+      }
+});
 
     function getFullDayOfWeek(short_day) {
         const dayMappings = {
@@ -354,4 +528,3 @@ $(document).ready(function () {
 
         return dayMappings[short_day] || 'Nenhum dia correspondente';
     }
-});

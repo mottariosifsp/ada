@@ -302,11 +302,11 @@
 
                             <td class="text-center">
                               <div class="openModalBtn">
-                                <div data-id="thu-not-{{ forloop.counter }}"  id="btn-thu-not-{{ forloop.counter }}" class="btn-group-toggle" data-toggle="buttons">
+                                <div data-id="thu-not-{{ forloop.counter }}" id="btn-thu-not-{{ forloop.counter }}" class="btn-group-toggle" data-toggle="buttons">
                                   <label class="btn w-100 btn-notchecked disabled checkbox" for="thu-not-{{ forloop.counter }}">
                                     <input disabled type="checkbox" id="thu-not-{{ forloop.counter }}"
                                       value="{{ horario.hour_start }}-{{ horario.hour_end }},thu"
-                                      autocomplete="off">
+                                      autocomplete="off" >
                                     <div id="sub-thu-not-{{ forloop.counter }}">--</div>
                                   </label>
                                 </div>
@@ -375,7 +375,7 @@
                             <div class="form-group">
                               <label for="area-filter" class="form-label">Filtro área</label>
                               <div class="input-group">
-                                <input list="area-options" id="area-filter" placeholder="--" class="form-control mb-4">
+                                <input list="area-options" id="area-filter" placeholder="--" class="form-control mb-4" onchange="area_filter()">
                                 <datalist id="area-options">
                                 </datalist>
                               </div>
@@ -395,7 +395,7 @@
                     </div>
                     <div class="modal-footer">
                       <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
-                      <button type="button" class="btn btn-primary" name="addCourse" id="addCourseButton">Adicionar</button>
+                      <button type="button" class="btn btn-primary" data-dismiss="modal" name="addCourse" id="addCourseButton">Adicionar</button>
                     </div>
                   </div>
                 </div>
@@ -405,7 +405,7 @@
         </div>
       </div>
       <button type="button" class="btn btn-primary float-right mt-4 mb-5" name="sendCourses" id="sendCourses">Enviar Cursos</button>
-      <button type="button"  class="btn btn-danger float-right mt-4 mb-5 mr-2" name="cleanFPA" id="cleanFPA">Limpar Cursos</button>
+      <button type="button"  class="btn btn-danger float-right mt-4 mb-5 mr-2" name="cleanFPA" style="display: none"id="cleanFPA">Limpar Cursos</button>
     </form>
   </section>
 {% endblock %}
