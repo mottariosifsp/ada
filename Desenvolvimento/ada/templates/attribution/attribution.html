@@ -1,4 +1,5 @@
 {% extends "professor/base.html" %} {% load i18n %} {% load static %} {% block head %}
+
 <title>{% translate "Configuração de atribuição" %}</title>
 <style>
   .label-small {
@@ -24,11 +25,11 @@
         </div>
       </div>
     </div>
-    <div class="col m-0 p-0 mx-3">
+    <div class="col m-0 p-0 ml-3">
       <h5>Tempo restante</h5>
       <div class="card">
         <div class="card-body">
-          <h2 class="card-text">01:38 horas</h2>
+          <h2 class="card-text" id="time-left">{{time_left}}</h2>
         </div>
       </div>
     </div>
@@ -65,5 +66,6 @@
   </div>
 </div>
 <h1>OIER</h1>
+<script src="{% static 'attribution/js/attribution.js' %}" data-lang={{LANGUAGE_CODE}} time-left='{{time_left}}'></script>
 <!-- Movido para dentro do elemento 'row' -->
 {% endblock %}

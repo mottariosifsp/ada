@@ -1,5 +1,5 @@
 from area.models import Blockk
-from attribution.task import cancel_scheduled_task, schedule_task
+from attribution.task import cancel_scheduled_task, get_time_left, schedule_task
 from staff.models import Criteria, Deadline
 from timetable.models import Timetable, Timetable_user
 from user.models import User
@@ -9,7 +9,7 @@ import json
 from django.db.models import F, Sum, Value
 from django.db import transaction
 from django.utils import timezone
-from datetime import datetime, timezone
+from datetime import datetime, timedelta, timezone
 from django.core.mail import send_mail, EmailMessage
 import xml.etree.ElementTree as ET
 import os
@@ -205,11 +205,17 @@ def attribution(request):
    
     
     if request.method == 'GET':
+        print(get_time_left())
+        # print(cancel_scheduled_task())
         queue = TeacherQueuePosition.objects.filter(blockk=blockk).order_by('position').all()
-        professor_to_end_queue(queue.first().teacher)
+        
+        value = str(float_to_time(int(get_time_left())))
+        print(value)
+
         data = {
             'queue': queue,
             'blockk': blockk,
+            'time_left': value,
         }
         return render(request, 'attribution/attribution.html', data)
     if request.method == 'POST':
@@ -248,7 +254,7 @@ def next_attribution(timetables_preference, next_professor_in_queue, blockk):
     for timetable_id in timetables_id:
         timetables.append(Timetable.objects.get(id=timetable_id))   
     print(timetables)
-    SECONDS_TO_PROFESSOR_CHOOSE = 30
+    SECONDS_TO_PROFESSOR_CHOOSE = 10
     
     invalidated_timetables = []
 
@@ -336,3 +342,8 @@ def professor_to_end_queue(professor):
         professor_in_queue.save()
         print(f'professor: {professor_in_queue.teacher.first_name} - position: {professor_in_queue.position}')
         
+
+def float_to_time(seconds):
+    delta = timedelta(seconds=seconds)
+    time = datetime(1, 1, 1) + delta
+    return time.time()
