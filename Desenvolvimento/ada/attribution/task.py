@@ -15,6 +15,28 @@ app = Celery('tasks', broker='redis://localhost:6379')
 redis_client = redis.Redis(host='localhost', port=6379)
 
 @app.task
+def finalization_deadline_start():
+    print("finalization_deadline_start")
+
+@app.task
+def attribution_deadline_start(blockk_id):
+    blockk = Blockk.objects.get(id=blockk_id)
+    print(blockk)
+    views.start_attribution(blockk)
+    print("attribution_deadline_start")
+
+@app.task
+def attribution_preference_deadline_start():
+    print("attribution_preference_deadline_start")
+
+def schedule_deadline(task, dateperiod, name, *args):
+    now_today = datetime.today()
+    now = datetime.utcnow()
+    eta = (dateperiod - now_today).total_seconds()
+    regis_task = task.apply_async(eta=now + timedelta(seconds=eta), args=list(args))
+    redis_client.set(name, regis_task.id)
+
+@app.task
 def times_up(professor_id, blockk_id):
     professor = User.objects.get(id=professor_id)
     blockk = Blockk.objects.get(id=blockk_id)
@@ -30,13 +52,13 @@ def schedule_task(seconds, professor, blockk):
 
     print(f'{professor} has {seconds} seconds to respond')
 
-def cancel_scheduled_task():
-    task_id = redis_client.get('task')
+def cancel_scheduled_task(name):
+    task_id = redis_client.get(name)
     if task_id:
         task = app.AsyncResult(bytes.decode(task_id, 'utf-8'))
         task.revoke(terminate=True)
         print(task)
-        redis_client.delete('task')
+        redis_client.delete(name)
         return True
     return False
 

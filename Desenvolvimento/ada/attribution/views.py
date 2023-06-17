@@ -1,5 +1,5 @@
 from area.models import Blockk
-from attribution.task import cancel_scheduled_task, get_time_left, schedule_task
+from attribution.task import attribution_deadline_start, cancel_scheduled_task, get_time_left, schedule_task, schedule_deadline
 from staff.models import Criteria, Deadline
 from timetable.models import Timetable, Timetable_user
 from user.models import User
@@ -208,7 +208,6 @@ def attribution(request):
         print(get_time_left())
         # print(cancel_scheduled_task())
         queue = TeacherQueuePosition.objects.filter(blockk=blockk).order_by('position').all()
-        
         value = str(float_to_time(int(get_time_left())))
         print(value)
 
@@ -235,7 +234,7 @@ def timestup(professor, blockk):
     start_attribution(blockk)
 
 def start_attribution(blockk):
-
+    print('oier')
     queue = TeacherQueuePosition.objects.filter(blockk=blockk).order_by('position').all()
     next_professor_in_queue = queue.get(blockk=blockk, position=0)
 
@@ -340,10 +339,16 @@ def professor_to_end_queue(professor):
     for professor_in_queue in TeacherQueuePosition.objects.all():
         professor_in_queue.position = professor_in_queue.position - 1
         professor_in_queue.save()
-        print(f'professor: {professor_in_queue.teacher.first_name} - position: {professor_in_queue.position}')
-        
+        print(f'professor: {professor_in_queue.teacher.first_name} - position: {professor_in_queue.position}')        
 
 def float_to_time(seconds):
+    print(seconds)
+    if seconds < 0:
+        seconds = 0
     delta = timedelta(seconds=seconds)
     time = datetime(1, 1, 1) + delta
     return time.time()
+
+def schedule_attributtion_deadline_staff(seconds, name, *args):
+    cancel_scheduled_task('task')
+    schedule_deadline(attribution_deadline_start, seconds, name, *args)
