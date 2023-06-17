@@ -16,10 +16,13 @@ def login(request):
 
 @login_required
 def home(request):
-    if request.user.is_staff:
+    if request.user.is_staff and not request.user.is_professor and not request.user.is_superuser:
         return redirect('home_staff')
-    else:
+    elif request.user.is_professor and not request.user.is_staff and not request.user.is_superuser:
         return redirect('home_professor')
+    else:
+        return render(request, 'user/home.html')
+    
 
 def signup(request):
     return render(request, 'registration/signup.html')

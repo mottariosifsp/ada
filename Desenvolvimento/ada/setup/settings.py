@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 
 from pathlib import Path, os
 from dotenv import load_dotenv
+from decouple import config
 
 load_dotenv()
 
@@ -170,3 +171,13 @@ AUTH_USER_MODEL = "user.User"
 LOGIN_REDIRECT_URL = "/"
 LOGIN_URL = "/user/login"
 LOGOUT_REDIRECT_URL = '/user/sair'
+
+#email_backend to console
+# EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+DEFAULT_FROM_EMAIL = 'ada.ifsp@gmail.com'
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST_USER = config('EMAIL_HOST_USER')
+EMAIL_HOST_PASSWORD = config('EMAIL_HOST_PASSWORD')
+EMAIL_USE_TLS = config('EMAIL_USE_TLS')
+EMAIL_PORT = config('EMAIL_PORT')
+EMAIL_HOST = config('EMAIL_HOST')

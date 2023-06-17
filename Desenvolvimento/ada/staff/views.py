@@ -1,5 +1,7 @@
 from datetime import datetime, timezone
 import json
+
+from django.urls import reverse
 from attribution.models import TeacherQueuePosition
 
 from enums import enum
@@ -8,7 +10,7 @@ from django.http import JsonResponse
 from django.shortcuts import get_object_or_404, redirect, render
 from django.contrib.auth.decorators import user_passes_test
 from django.contrib.auth import get_user_model
-from attribution.views import queueSetup, queue
+from attribution.views import queueSetup, queue, start_attribution
 from django.utils import timezone
 from timetable.models import Day_combo, Timeslot, Timetable
 from .models import Deadline
@@ -22,7 +24,6 @@ from django.contrib.auth.decorators import login_required
 
 def is_staff(user):
     return user.is_staff
-
 
 # prazos views
 
@@ -81,28 +82,14 @@ def attribution_configuration(request):
 @login_required
 @user_passes_test(is_staff)
 def attribution_configuration_confirm(request):
-    return render(request, 'staff/attribution/attribution_configuration_confirm.html')
-
-@login_required
-@user_passes_test(is_staff)
-def deadline_configuration(request):
-    user_blocks = request.user.blocks.all()
-
-    data = {
-        'user_blocks': user_blocks
-    }
-
-    return render(request, 'staff/deadline/deadline_configuration.html', data)
-
-def confirm_deadline_configuration(request):
     if request.method == 'POST':
+        blockk = Blockk.objects.get(registration_block_id=request.POST.get('blockk'))
+        Deadline.objects.filter(blockk=blockk).delete()  
+
         startFPADeadline = datetime.strptime(request.POST.get('startFPADeadline'), '%Y-%m-%dT%H:%M')
         endFPADeadline = datetime.strptime(request.POST.get('endFPADeadline'), '%Y-%m-%dT%H:%M')
         startAssignmentDeadline = datetime.strptime(request.POST.get('startAssignmentDeadline'), '%Y-%m-%dT%H:%M')
         endAssignmentDeadline = datetime.strptime(request.POST.get('endAssignmentDeadline'), '%Y-%m-%dT%H:%M')
-        startExchangeDeadline = datetime.strptime(request.POST.get('startExchangeDeadline'), '%Y-%m-%dT%H:%M')
-        endExchangeDeadline = datetime.strptime(request.POST.get('endExchangeDeadline'), '%Y-%m-%dT%H:%M')
-        blockk = request.POST.get('block')
 
         print(startFPADeadline)
 
@@ -111,16 +98,14 @@ def confirm_deadline_configuration(request):
             'endFPADeadline': endFPADeadline,
             'startAssignmentDeadline': startAssignmentDeadline,
             'endAssignmentDeadline': endAssignmentDeadline,
-            'startExchangeDeadline': startExchangeDeadline,
-            'endExchangeDeadline': endExchangeDeadline,
-            'user_block': Blockk.objects.get(id=blockk)
+            'user_block': blockk,
         }
 
-        save_deadline(data)
+        save_deadline(data)   
+        start_attribution(blockk)
 
-        return render(request, 'staff/deadline/confirm_deadline_configuration.html', data)
-    return render(request, 'staff/deadline/confirm_deadline_configuration.html')
-
+        return render(request, 'staff/attribution/attribution_configuration_confirm.html', data)
+    return render(request, 'staff/attribution/attribution_configuration_confirm.html')
 
 def show_current_deadline(request):
     deadlines = Deadline.objects.all()
@@ -147,7 +132,6 @@ def show_current_deadline(request):
 
 @transaction.atomic
 def save_deadline(data):
-    Deadline.objects.all().delete()
     Deadline.objects.create(
         name="startFPADeadline",
         deadline_start=data['startFPADeadline'],
@@ -158,12 +142,6 @@ def save_deadline(data):
         name="startAssignmentDeadline",
         deadline_start=data['startAssignmentDeadline'],
         deadline_end=data['endAssignmentDeadline'],
-        blockk=data['user_block'],
-    )
-    Deadline.objects.create(
-        name="startExchangeDeadline",
-        deadline_start=data['startExchangeDeadline'],
-        deadline_end=data['endExchangeDeadline'],
         blockk=data['user_block'],
     )
 
@@ -402,24 +380,20 @@ def timetables(request):
 @user_passes_test(is_staff)
 def create_timetable(request):
     if request.method == 'GET':
-        if request.GET.get('class'):
-            selected_class = Classs.objects.get(registration_class_id__icontains=(request.GET.get('class')))
-            try:
-                timetable = Timetable.objects.get(classs=selected_class)
-            except Timetable.DoesNotExist:
-                timetable = None
-            selected_courses = Course.objects.filter(area=selected_class.area)
-        else:
-            selected_class = Classs.objects.all()
-            timetable = None
-            selected_courses = Course.objects.all()
+        selected_class = Classs.objects.get(registration_class_id__icontains=(request.GET.get('class')))
+        if Timetable.objects.filter(classs=selected_class).count() > 0:
+            print('já existe')
+            url = reverse('edit_timetable') + f'?classs={selected_class.registration_class_id}'
+            return redirect(url) 
+
+        selected_courses = Course.objects.filter(area=selected_class.area)
 
         data = {
             'courses': selected_courses,
             'timeslots': Timeslot.objects.all().order_by('hour_start'),
-            'classes': Classs.objects.all(),
-            'timetable': timetable,
+            'classs': selected_class
         }
+
         return render(request, 'staff/timetable/register.html', data)
       
     if request.method == 'POST':
@@ -480,6 +454,7 @@ def show_timetable(request):
             'timetables': timetables,
             'timeslots': Timeslot.objects.all().order_by('hour_start'),
             'day_combos': day_combos,
+            'classs': selected_class,
         }
 
     return render(request, 'staff/timetable/show_timetable.html', data)
@@ -514,7 +489,6 @@ def save_timetable(course, classs, day_combo):
         timetable = Timetable.objects.create(course=course, classs=classs)
         # print(f'criado {course} no dia {day_combo.day}')
         timetable.day_combo.add(day_combo)
-
     
 def save_combo_day(day, timeslots, course, classs):
     day_combos = Day_combo.objects.filter(day=day)

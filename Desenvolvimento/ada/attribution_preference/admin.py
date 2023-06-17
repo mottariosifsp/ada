@@ -10,7 +10,8 @@ class Preference_schedule_admin(admin.ModelAdmin):
     list_display = ('attribution_preference', 'timeslot', 'day')
 
 class Course_preference_admin(admin.ModelAdmin):
-    list_display = ('attribution_preference', 'timetable')
+    list_display = ('attribution_preference', 'timetable',)
+    search_fields = ('attribution_preference',)
 
 admin.site.register(Attribution_preference, Attribution_preference_admin)
 admin.site.register(Preference_schedule, Preference_schedule_admin)
