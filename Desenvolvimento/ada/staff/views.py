@@ -3,14 +3,14 @@ import json
 
 from django.urls import reverse
 from attribution.models import TeacherQueuePosition
-
+# from attribution import task
+from attribution.views import queueSetup, queue, schedule_attributtion_deadline_staff
 from enums import enum
 from django.db import transaction
 from django.http import JsonResponse
 from django.shortcuts import get_object_or_404, redirect, render
 from django.contrib.auth.decorators import user_passes_test
 from django.contrib.auth import get_user_model
-from attribution.views import queueSetup, queue, start_attribution
 from django.utils import timezone
 from timetable.models import Day_combo, Timeslot, Timetable
 from .models import Deadline
@@ -101,8 +101,8 @@ def attribution_configuration_confirm(request):
             'user_block': blockk,
         }
 
-        save_deadline(data)   
-        start_attribution(blockk)
+        save_deadline(data) 
+        schedule_attributtion_deadline_staff(startAssignmentDeadline, 'startAssignmentDeadline', blockk.id)       
 
         return render(request, 'staff/attribution/attribution_configuration_confirm.html', data)
     return render(request, 'staff/attribution/attribution_configuration_confirm.html')
