@@ -619,7 +619,7 @@ def add_teacher_to_queue(teacher, position_input, blockk):
 # View que leva para a(s) fila(s) já definida pelo admin
 @login_required
 @user_passes_test(is_staff)
-def queue(request):
+def queue_show(request):
     campo = get_selected_campo()
 
     teacher_positions = TeacherQueuePosition.objects.order_by('position')
@@ -640,13 +640,13 @@ def queue(request):
         'campo': campo,
     }
 
-    return render(request, 'staff/queue/queue.html', {'data': data})
+    return render(request, 'staff/queue/queue_show.html', {'data': data})
 
 
 # View que leva para a página de definir a fila
 @login_required
 @user_passes_test(is_staff)
-def queue_setup(request):
+def queue_create(request):
     global tabela_data  # variável utilizada caso a fila já tenha sido definida pelo menos uma vez pelo admin
 
     if request.method == 'POST':  # adiciona os professores no model TeacherQueuePosition
@@ -669,7 +669,7 @@ def queue_setup(request):
             'campo': campo,
         }
 
-        return render(request, 'staff/queue/queue_setup.html', {'data': data})
+        return render(request, 'staff/queue/queue_create.html', {'data': data})
 
     else:  # se a requisição não for POST e for GET sem ter passado a área, ou seja, sem ter atualização no filtro da área, vai cair aqui
         blockk = Blockk.objects.get(registration_block_id=request.GET.get('blockk'))
@@ -719,7 +719,7 @@ def queue_setup(request):
                 'blockk': blockk
             }
 
-            return render(request, 'staff/queue/queue_setup.html', {'data': data})
+            return render(request, 'staff/queue/queue_create.html', {'data': data})
 
         if Criteria.objects.filter(is_select=True).exists():
             campo = get_selected_campo()
@@ -739,7 +739,7 @@ def queue_setup(request):
                     'blockk': blockk
                 }
 
-                return render(request, 'staff/queue/queue_setup.html', {'data': data})
+                return render(request, 'staff/queue/queue_create.html', {'data': data})
 
             else:  # se o superadmin selecionou um critério que não tenha relação com nenhum atributo do histórico vai cair aqui
                 # fazer exception?
@@ -755,7 +755,7 @@ def queue_setup(request):
                     'blockk': blockk
                 }
 
-                return render(request, 'staff/queue/queue_setup.htmll', {'data': data})
+                return render(request, 'staff/queue/queue_create.htmll', {'data': data})
 
         # se nenhum critério foi selecionado pelo adm e não tiver feito nenhuma lista manual vai cair aqui
         campo = get_selected_campo()
@@ -770,6 +770,6 @@ def queue_setup(request):
             'blockk': blockk
         }
 
-        return render(request, 'staff/queue/queue_setup.html', {'data': data})
+        return render(request, 'staff/queue/queue_create.html', {'data': data})
 
     
