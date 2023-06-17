@@ -1,4 +1,4 @@
-{#{% extends "staff/base.html" %}#}
+{% extends "staff/base.html" %}
 {% load i18n %}
 {% load static %}
 
@@ -27,7 +27,6 @@
                 </tr>
             </thead>
             <tbody>
-                {% csrf_token %}
                 {% for user in data.resultados %}
                     {% with counter=forloop.counter0 %}
                         <tr>
