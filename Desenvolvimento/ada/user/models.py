@@ -101,7 +101,7 @@ class History(models.Model):
 
 class AcademicDegree(models.Model):
     id_academic_degree = models.AutoField(primary_key=True)
-    name = models.CharField(_('name'), max_length=30)
+    name = models.CharField(_('name'), max_length=90, unique=True)
     punctuation = models.IntegerField()
 
     def clean(self):
@@ -110,7 +110,7 @@ class AcademicDegree(models.Model):
 
 class Job(models.Model):
     id_job = models.AutoField(primary_key=True)
-    name_job = models.CharField(_('name job'), max_length=160)
+    name_job = models.CharField(_('name job'), max_length=160, unique=True)
 
     def __str__(self):
         return self.name_job
