@@ -3,7 +3,7 @@
 {% load static %}
 
 {% block head %}
-    <title>{% translate "Home" %}</title>
+    <title>{% trans "Home" %}</title>
     <link rel="stylesheet" href="{% static 'professor/css/home_professor.css' %}">
     <script src="{% static 'professor/js/home_professor.js' %}" data-lang={{ LANGUAGE_CODE }}></script>
 {% endblock %}
@@ -31,15 +31,15 @@
   {% if user.is_superuser %}
   <div class="container d-flex align-items-center justify-content-center h-70" style="height: 70vh;">
     <div>
-      <h2>{% translate "Olá, professor(a)"%}</h2>
-      <p>{% translate "Crie a fila da atribuição" %}.</p>
+      <h2>{% trans "Olá, professor(a)"%}</h2>
+      <p>{% trans "Crie a fila da atribuição" %}.</p>
     </div>
   </div>
   {% else %}
   <div class="container d-flex align-items-center justify-content-center h-70" style="height: 70vh;">
     <div>
-      <h2>{% translate "Olá, professor(a)" %}</h2>
-      <p>{% translate "Entre no processo de atribuição" %}.</p>
+      <h2>{% trans "Olá, professor(a)" %}</h2>
+      <p>{% trans "Entre no processo de atribuição" %}.</p>
     </div>
   </div>
   {% endif %}

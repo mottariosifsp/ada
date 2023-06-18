@@ -179,7 +179,7 @@ img.lang-icon, img.user-photo {width: 100%;}
 
 .navbar-modal .modal-content {flex-grow: 1;}
 
-.navbar-modal.modal.fade:not(.show).left .modal-dialog {transform: translateX(-100%);}
+.navbar-modal.modal.fade:not(.show).left .modal-dialog {transform: transX(-100%);}
 
 .navbar-modal .modal-content {background-color: #3F927E;}
 

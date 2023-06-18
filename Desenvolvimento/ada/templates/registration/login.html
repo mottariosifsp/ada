@@ -5,7 +5,7 @@
 {% block head %}
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.0/font/bootstrap-icons.css">
     <link rel="stylesheet" href="{% static 'user/css/login.css' %}">
-    <title>{% translate "Login" %}</title>
+    <title>{% trans "Login" %}</title>
 {% endblock %}
 
 {% block body %}
@@ -21,38 +21,38 @@
                 <div class="card mb-3">
                     <div class="card-body">
                         <div class="pt-4 pb-2">
-                            <h5 class="card-title text-center pb-0 fs-4">{% translate "Entre com sua conta" %}</h5>
-                            <p class="text-center small">{% translate "Insira seu prontuário e sua senha" %}</p>
+                            <h5 class="card-title text-center pb-0 fs-4">{% trans "Entre com sua conta" %}</h5>
+                            <p class="text-center small">{% trans "Insira seu prontuário e sua senha" %}</p>
                         </div>
                         <form class="row g-3 " id="form-login" method="post" action="{% url 'login' %}" novalidate>
                             {% csrf_token %}
                             
                             {% if form.non_field_errors %}
-                                <div id="loginError" class="col-12 alert alert-danger alert-dismissible fade show">{% translate "Usuário ou senha incorretos" %}.</div>
+                                <div id="loginError" class="col-12 alert alert-danger alert-dismissible fade show">{% trans "Usuário ou senha incorretos" %}.</div>
                             {% endif %}
                         
                             <div class="col-12">
-                                <label for="yourUsername" class="form-label">{% translate "Prontuário" %}:</label>
+                                <label for="yourUsername" class="form-label">{% trans "Prontuário" %}:</label>
                                 <div class="input-group has-validation">
                                     <span class="input-group-text" id="inputGroupPrepend">CJ</span>
                                     <input type="text" name="username" class="form-control" maxlength='9'id="yourUsername" required>
-                                    <div id="usernameError" class="invalid-feedback">{% translate "Por favor, insira seu prontuário" %}.</div>
+                                    <div id="usernameError" class="invalid-feedback">{% trans "Por favor, insira seu prontuário" %}.</div>
                                 </div>
                             </div>
                         
                             <div class="col-12">
-                                <label for="yourPassword" class="pt-1 form-label">{% translate "Senha" %}:</label>
+                                <label for="yourPassword" class="pt-1 form-label">{% trans "Senha" %}:</label>
                                 <input type="password" name="password" class="form-control" id="yourPassword" required>
-                                <div id="passwordError" class="invalid-feedback">{% translate "Por favor, insira sua senha" %}.</div>
+                                <div id="passwordError" class="invalid-feedback">{% trans "Por favor, insira sua senha" %}.</div>
                             </div>
 
                             <div class="col-12">
-                                <button class="custom-btn w-100" type="submit"><b>{% translate "Entrar" %}</b></button>
+                                <button class="custom-btn w-100" type="submit"><b>{% trans "Entrar" %}</b></button>
                                 <input type="hidden" name="next" value="{{ next }}">
                             </div>
                             <!--
                             <div class="col-12">
-                                <button class="google-btn w-100" type="submit"><i class="bi bi-google"></i> {% translate "Entre com"%}<b> Google</b></button>
+                                <button class="google-btn w-100" type="submit"><i class="bi bi-google"></i> {% trans "Entre com"%}<b> Google</b></button>
                             </div>
                             -->
                         </form>
