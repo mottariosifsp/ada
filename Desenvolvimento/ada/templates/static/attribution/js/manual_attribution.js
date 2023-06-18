@@ -256,7 +256,7 @@ function timetables_options() {
         var timetable = filteredTimetables[i];
         var option = document.createElement("option");
         option.value = timetable.id;
-        option.textContent = "Curso: " + timetable.course_name + " | " + timetable.classs;
+        option.textContent = "Disciplina: " + timetable.course_name + " | " + timetable.classs;
         timetableOptionsDatalist.appendChild(option);
     }
 }
@@ -301,7 +301,7 @@ function block_filter() {
             var timetable = filtered_timetables[i];
             var option = document.createElement("option");
             option.value = timetable.id;
-            option.textContent = "Curso: " + timetable.course_name + " | " + timetable.classs;
+            option.textContent = "Disciplina: " + timetable.course_name + " | " + timetable.classs;
             courseOptionsDatalist.appendChild(option);
         }
 
@@ -336,7 +336,7 @@ function area_filter() {
                 var timetable = filtered_timetables[i];
                 var option = document.createElement("option");
                 option.value = timetable.id;
-                option.textContent = "Curso: " + timetable.course_name + " | " + timetable.classs;
+                option.textContent = "Disciplina: " + timetable.course_name + " | " + timetable.classs;
                 courseOptionsDatalist.appendChild(option);
             }
 
@@ -359,7 +359,7 @@ function area_filter() {
                 var timetable = filtered_timetables[i];
                 var option = document.createElement("option");
                 option.value = timetable.id;
-                option.textContent = "Curso: " + timetable.course_name + " | " + timetable.classs;
+                option.textContent = "Disciplina: " + timetable.course_name + " | " + timetable.classs;
                 courseOptionsDatalist.appendChild(option);
             }
 

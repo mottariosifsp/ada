@@ -8,12 +8,12 @@
 
 
 {% block body %}
-    <h1>Envio de FPA</h1>
-    <p>Insira suas preferências de horário e aula.</p>
+    <h1>{% trans "Envio do FPA" %}</h1>
+    <p>{% trans "Insira suas preferências de horários e disciplinas" %}.</p>
     <div id="work-regime">
-        <h3>Regime de Trabalho</h3>
+        <h3>{% trans "Regime de Trabalho" %}</h3>
         {% for course in preferred_courses %}
-            {{ course.name_course }}
+            {% trans course.name_course %}
         {% endfor %}
     </div>
 

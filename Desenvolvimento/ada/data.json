@@ -79,7 +79,7 @@
         "model": "classs.classs",
         "pk": 1,
         "fields": {
-            "registration_class_id": "113",
+            "registration_class_id": "113.A",
             "period": "morning",
             "semester": 2,
             "area": 1
@@ -89,7 +89,7 @@
         "model": "classs.classs",
         "pk": 2,
         "fields": {
-            "registration_class_id": "131",
+            "registration_class_id": "131.B",
             "period": "afternoon",
             "semester": 2,
             "area": 1
@@ -99,7 +99,7 @@
         "model": "classs.classs",
         "pk": 3,
         "fields": {
-            "registration_class_id": "213",
+            "registration_class_id": "213.A",
             "period": "morning",
             "semester": 2,
             "area": 1
@@ -109,7 +109,7 @@
         "model": "classs.classs",
         "pk": 4,
         "fields": {
-            "registration_class_id": "231",
+            "registration_class_id": "231.A",
             "period": "afternoon",
             "semester": 2,
             "area": 1
@@ -119,7 +119,7 @@
         "model": "classs.classs",
         "pk": 5,
         "fields": {
-            "registration_class_id": "313",
+            "registration_class_id": "313.A",
             "period": "morning",
             "semester": 2,
             "area": 1
@@ -129,7 +129,7 @@
         "model": "classs.classs",
         "pk": 6,
         "fields": {
-            "registration_class_id": "331",
+            "registration_class_id": "331.A",
             "period": "afternoon",
             "semester": 2,
             "area": 1
@@ -233,6 +233,66 @@
             "period": "night",
             "semester": 1,
             "area": 2
+        }
+    },
+    {
+        "model": "classs.classs",
+        "pk": 17,
+        "fields": {
+            "registration_class_id": "113.B",
+            "period": "morning",
+            "semester": 2,
+            "area": 1
+        }
+    },
+    {
+        "model": "classs.classs",
+        "pk": 18,
+        "fields": {
+            "registration_class_id": "131.A",
+            "period": "afternoon",
+            "semester": 2,
+            "area": 1
+        }
+    },
+    {
+        "model": "classs.classs",
+        "pk": 19,
+        "fields": {
+            "registration_class_id": "213.B",
+            "period": "morning",
+            "semester": 2,
+            "area": 1
+        }
+    },
+    {
+        "model": "classs.classs",
+        "pk": 20,
+        "fields": {
+            "registration_class_id": "231.B",
+            "period": "afternoon",
+            "semester": 2,
+            "area": 1
+        }
+    },
+    {
+        "model": "classs.classs",
+        "pk": 21,
+        "fields": {
+            "registration_class_id": "313.B",
+            "period": "morning",
+            "semester": 2,
+            "area": 1
+        }
+    },
+    {
+        "model": "classs.classs",
+        "pk": 22,
+        "fields": {
+            "registration_class_id": "331.B",
+            "period": "afternoon",
+            "semester": 2,
+            "area": 1
         }
     },
     {
@@ -735,7 +795,7 @@
         "pk": 46,
         "fields": {
             "registration_course_id": "SUP.10630",
-            "name_course": "ESTATÍSTICA E PROBABILIDADE",
+            "name_course": "ESTATÁSTICA E PROBABILIDADE",
             "acronym": "ESPA5",
             "area": 2,
             "blockk": 1
@@ -871,6 +931,534 @@
         }
     },
     {
+        "model": "timetable.timetable",
+        "pk": 11,
+        "fields": {
+            "course": 8,
+            "classs": 3,
+            "day_combo": [
+                1
+            ]
+        }
+    },
+    {
+        "model": "timetable.timetable",
+        "pk": 12,
+        "fields": {
+            "course": 5,
+            "classs": 3,
+            "day_combo": [
+                2
+            ]
+        }
+    },
+    {
+        "model": "timetable.timetable",
+        "pk": 13,
+        "fields": {
+            "course": 6,
+            "classs": 3,
+            "day_combo": [
+                8
+            ]
+        }
+    },
+    {
+        "model": "timetable.timetable",
+        "pk": 14,
+        "fields": {
+            "course": 4,
+            "classs": 3,
+            "day_combo": [
+                4
+            ]
+        }
+    },
+    {
+        "model": "timetable.timetable",
+        "pk": 15,
+        "fields": {
+            "course": 7,
+            "classs": 3,
+            "day_combo": [
+                9
+            ]
+        }
+    },
+    {
+        "model": "timetable.timetable",
+        "pk": 16,
+        "fields": {
+            "course": 8,
+            "classs": 19,
+            "day_combo": [
+                10
+            ]
+        }
+    },
+    {
+        "model": "timetable.timetable",
+        "pk": 17,
+        "fields": {
+            "course": 6,
+            "classs": 19,
+            "day_combo": [
+                2
+            ]
+        }
+    },
+    {
+        "model": "timetable.timetable",
+        "pk": 18,
+        "fields": {
+            "course": 5,
+            "classs": 19,
+            "day_combo": [
+                11
+            ]
+        }
+    },
+    {
+        "model": "timetable.timetable",
+        "pk": 19,
+        "fields": {
+            "course": 7,
+            "classs": 19,
+            "day_combo": [
+                4
+            ]
+        }
+    },
+    {
+        "model": "timetable.timetable",
+        "pk": 20,
+        "fields": {
+            "course": 4,
+            "classs": 19,
+            "day_combo": [
+                12
+            ]
+        }
+    },
+    {
+        "model": "timetable.timetable",
+        "pk": 21,
+        "fields": {
+            "course": 4,
+            "classs": 4,
+            "day_combo": [
+                13
+            ]
+        }
+    },
+    {
+        "model": "timetable.timetable",
+        "pk": 22,
+        "fields": {
+            "course": 6,
+            "classs": 4,
+            "day_combo": [
+                14
+            ]
+        }
+    },
+    {
+        "model": "timetable.timetable",
+        "pk": 23,
+        "fields": {
+            "course": 5,
+            "classs": 4,
+            "day_combo": [
+                15
+            ]
+        }
+    },
+    {
+        "model": "timetable.timetable",
+        "pk": 24,
+        "fields": {
+            "course": 7,
+            "classs": 4,
+            "day_combo": [
+                16
+            ]
+        }
+    },
+    {
+        "model": "timetable.timetable",
+        "pk": 25,
+        "fields": {
+            "course": 8,
+            "classs": 4,
+            "day_combo": [
+                17
+            ]
+        }
+    },
+    {
+        "model": "timetable.timetable",
+        "pk": 26,
+        "fields": {
+            "course": 6,
+            "classs": 20,
+            "day_combo": [
+                13
+            ]
+        }
+    },
+    {
+        "model": "timetable.timetable",
+        "pk": 27,
+        "fields": {
+            "course": 4,
+            "classs": 20,
+            "day_combo": [
+                14
+            ]
+        }
+    },
+    {
+        "model": "timetable.timetable",
+        "pk": 28,
+        "fields": {
+            "course": 7,
+            "classs": 20,
+            "day_combo": [
+                15
+            ]
+        }
+    },
+    {
+        "model": "timetable.timetable",
+        "pk": 29,
+        "fields": {
+            "course": 5,
+            "classs": 20,
+            "day_combo": [
+                16
+            ]
+        }
+    },
+    {
+        "model": "timetable.timetable",
+        "pk": 30,
+        "fields": {
+            "course": 8,
+            "classs": 20,
+            "day_combo": [
+                18
+            ]
+        }
+    },
+    {
+        "model": "timetable.timetable",
+        "pk": 31,
+        "fields": {
+            "course": 10,
+            "classs": 5,
+            "day_combo": [
+                19
+            ]
+        }
+    },
+    {
+        "model": "timetable.timetable",
+        "pk": 32,
+        "fields": {
+            "course": 9,
+            "classs": 5,
+            "day_combo": [
+                20
+            ]
+        }
+    },
+    {
+        "model": "timetable.timetable",
+        "pk": 33,
+        "fields": {
+            "course": 12,
+            "classs": 5,
+            "day_combo": [
+                21
+            ]
+        }
+    },
+    {
+        "model": "timetable.timetable",
+        "pk": 34,
+        "fields": {
+            "course": 11,
+            "classs": 5,
+            "day_combo": [
+                22
+            ]
+        }
+    },
+    {
+        "model": "timetable.timetable",
+        "pk": 35,
+        "fields": {
+            "course": 13,
+            "classs": 5,
+            "day_combo": [
+                23
+            ]
+        }
+    },
+    {
+        "model": "timetable.timetable",
+        "pk": 36,
+        "fields": {
+            "course": 12,
+            "classs": 21,
+            "day_combo": [
+                24
+            ]
+        }
+    },
+    {
+        "model": "timetable.timetable",
+        "pk": 37,
+        "fields": {
+            "course": 9,
+            "classs": 21,
+            "day_combo": [
+                25
+            ]
+        }
+    },
+    {
+        "model": "timetable.timetable",
+        "pk": 38,
+        "fields": {
+            "course": 10,
+            "classs": 21,
+            "day_combo": [
+                26
+            ]
+        }
+    },
+    {
+        "model": "timetable.timetable",
+        "pk": 39,
+        "fields": {
+            "course": 13,
+            "classs": 21,
+            "day_combo": [
+                22
+            ]
+        }
+    },
+    {
+        "model": "timetable.timetable",
+        "pk": 40,
+        "fields": {
+            "course": 11,
+            "classs": 21,
+            "day_combo": [
+                27
+            ]
+        }
+    },
+    {
+        "model": "timetable.timetable",
+        "pk": 41,
+        "fields": {
+            "course": 11,
+            "classs": 6,
+            "day_combo": [
+                15
+            ]
+        }
+    },
+    {
+        "model": "timetable.timetable",
+        "pk": 42,
+        "fields": {
+            "course": 13,
+            "classs": 6,
+            "day_combo": [
+                16
+            ]
+        }
+    },
+    {
+        "model": "timetable.timetable",
+        "pk": 43,
+        "fields": {
+            "course": 10,
+            "classs": 6,
+            "day_combo": [
+                17
+            ]
+        }
+    },
+    {
+        "model": "timetable.timetable",
+        "pk": 44,
+        "fields": {
+            "course": 9,
+            "classs": 6,
+            "day_combo": [
+                28
+            ]
+        }
+    },
+    {
+        "model": "timetable.timetable",
+        "pk": 45,
+        "fields": {
+            "course": 12,
+            "classs": 6,
+            "day_combo": [
+                29
+            ]
+        }
+    },
+    {
+        "model": "timetable.timetable",
+        "pk": 46,
+        "fields": {
+            "course": 13,
+            "classs": 22,
+            "day_combo": [
+                15
+            ]
+        }
+    },
+    {
+        "model": "timetable.timetable",
+        "pk": 47,
+        "fields": {
+            "course": 11,
+            "classs": 22,
+            "day_combo": [
+                16
+            ]
+        }
+    },
+    {
+        "model": "timetable.timetable",
+        "pk": 48,
+        "fields": {
+            "course": 12,
+            "classs": 22,
+            "day_combo": [
+                30
+            ]
+        }
+    },
+    {
+        "model": "timetable.timetable",
+        "pk": 49,
+        "fields": {
+            "course": 9,
+            "classs": 22,
+            "day_combo": [
+                31
+            ]
+        }
+    },
+    {
+        "model": "timetable.timetable",
+        "pk": 50,
+        "fields": {
+            "course": 10,
+            "classs": 22,
+            "day_combo": [
+                32
+            ]
+        }
+    },
+    {
+        "model": "timetable.timetable",
+        "pk": 51,
+        "fields": {
+            "course": 17,
+            "classs": 7,
+            "day_combo": [
+                33
+            ]
+        }
+    },
+    {
+        "model": "timetable.timetable",
+        "pk": 52,
+        "fields": {
+            "course": 14,
+            "classs": 7,
+            "day_combo": [
+                34
+            ]
+        }
+    },
+    {
+        "model": "timetable.timetable",
+        "pk": 53,
+        "fields": {
+            "course": 15,
+            "classs": 7,
+            "day_combo": [
+                35
+            ]
+        }
+    },
+    {
+        "model": "timetable.timetable",
+        "pk": 54,
+        "fields": {
+            "course": 16,
+            "classs": 7,
+            "day_combo": [
+                36
+            ]
+        }
+    },
+    {
+        "model": "timetable.timetable",
+        "pk": 55,
+        "fields": {
+            "course": 16,
+            "classs": 8,
+            "day_combo": [
+                37
+            ]
+        }
+    },
+    {
+        "model": "timetable.timetable",
+        "pk": 56,
+        "fields": {
+            "course": 17,
+            "classs": 8,
+            "day_combo": [
+                38
+            ]
+        }
+    },
+    {
+        "model": "timetable.timetable",
+        "pk": 57,
+        "fields": {
+            "course": 14,
+            "classs": 8,
+            "day_combo": [
+                39
+            ]
+        }
+    },
+    {
+        "model": "timetable.timetable",
+        "pk": 58,
+        "fields": {
+            "course": 15,
+            "classs": 8,
+            "day_combo": [
+                40
+            ]
+        }
+    },
+    {
         "model": "timetable.timeslot",
         "pk": 1,
         "fields": {
@@ -991,15 +1579,6 @@
         "model": "timetable.timeslot",
         "pk": 14,
         "fields": {
-            "position": 14,
-            "hour_start": "18:50:00",
-            "hour_end": "19:35:00"
-        }
-    },
-    {
-        "model": "timetable.timeslot",
-        "pk": 15,
-        "fields": {
             "position": 15,
             "hour_start": "19:35:00",
             "hour_end": "20:20:00"
@@ -1007,7 +1586,7 @@
     },
     {
         "model": "timetable.timeslot",
-        "pk": 16,
+        "pk": 15,
         "fields": {
             "position": 16,
             "hour_start": "20:20:00",
@@ -1016,7 +1595,7 @@
     },
     {
         "model": "timetable.timeslot",
-        "pk": 17,
+        "pk": 16,
         "fields": {
             "position": 17,
             "hour_start": "21:20:00",
@@ -1025,7 +1604,7 @@
     },
     {
         "model": "timetable.timeslot",
-        "pk": 18,
+        "pk": 17,
         "fields": {
             "position": 18,
             "hour_start": "22:05:00",
@@ -1033,11 +1612,485 @@
         }
     },
     {
+        "model": "timetable.timeslot",
+        "pk": 18,
+        "fields": {
+            "position": 14,
+            "hour_start": "18:50:00",
+            "hour_end": "19:35:00"
+        }
+    },
+    {
+        "model": "timetable.day_combo",
+        "pk": 1,
+        "fields": {
+            "day": "monday",
+            "timeslots": [
+                3,
+                4
+            ]
+        }
+    },
+    {
+        "model": "timetable.day_combo",
+        "pk": 2,
+        "fields": {
+            "day": "thursday",
+            "timeslots": [
+                1,
+                2,
+                3
+            ]
+        }
+    },
+    {
+        "model": "timetable.day_combo",
+        "pk": 3,
+        "fields": {
+            "day": "thursday",
+            "timeslots": [
+                4,
+                5,
+                7
+            ]
+        }
+    },
+    {
+        "model": "timetable.day_combo",
+        "pk": 4,
+        "fields": {
+            "day": "friday",
+            "timeslots": [
+                1,
+                2,
+                3
+            ]
+        }
+    },
+    {
+        "model": "timetable.day_combo",
+        "pk": 5,
+        "fields": {
+            "day": "friday",
+            "timeslots": [
+                4,
+                5,
+                7
+            ]
+        }
+    },
+    {
+        "model": "timetable.day_combo",
+        "pk": 6,
+        "fields": {
+            "day": "thursday",
+            "timeslots": [
+                4,
+                5,
+                7
+            ]
+        }
+    },
+    {
+        "model": "timetable.day_combo",
+        "pk": 7,
+        "fields": {
+            "day": "friday",
+            "timeslots": [
+                4,
+                5,
+                7
+            ]
+        }
+    },
+    {
+        "model": "timetable.day_combo",
+        "pk": 8,
+        "fields": {
+            "day": "thursday",
+            "timeslots": [
+                4,
+                5,
+                7
+            ]
+        }
+    },
+    {
+        "model": "timetable.day_combo",
+        "pk": 9,
+        "fields": {
+            "day": "friday",
+            "timeslots": [
+                4,
+                5,
+                7
+            ]
+        }
+    },
+    {
+        "model": "timetable.day_combo",
+        "pk": 10,
+        "fields": {
+            "day": "monday",
+            "timeslots": [
+                5,
+                7
+            ]
+        }
+    },
+    {
+        "model": "timetable.day_combo",
+        "pk": 11,
+        "fields": {
+            "day": "thursday",
+            "timeslots": [
+                4,
+                5,
+                7
+            ]
+        }
+    },
+    {
+        "model": "timetable.day_combo",
+        "pk": 12,
+        "fields": {
+            "day": "friday",
+            "timeslots": [
+                4,
+                5,
+                7
+            ]
+        }
+    },
+    {
+        "model": "timetable.day_combo",
+        "pk": 13,
+        "fields": {
+            "day": "monday",
+            "timeslots": [
+                6,
+                8,
+                9
+            ]
+        }
+    },
+    {
+        "model": "timetable.day_combo",
+        "pk": 14,
+        "fields": {
+            "day": "monday",
+            "timeslots": [
+                10,
+                11,
+                12
+            ]
+        }
+    },
+    {
+        "model": "timetable.day_combo",
+        "pk": 15,
+        "fields": {
+            "day": "tuesday",
+            "timeslots": [
+                6,
+                8,
+                9
+            ]
+        }
+    },
+    {
+        "model": "timetable.day_combo",
+        "pk": 16,
+        "fields": {
+            "day": "tuesday",
+            "timeslots": [
+                10,
+                11,
+                12
+            ]
+        }
+    },
+    {
+        "model": "timetable.day_combo",
+        "pk": 17,
+        "fields": {
+            "day": "wednesday",
+            "timeslots": [
+                6,
+                8
+            ]
+        }
+    },
+    {
+        "model": "timetable.day_combo",
+        "pk": 18,
+        "fields": {
+            "day": "wednesday",
+            "timeslots": [
+                9,
+                10
+            ]
+        }
+    },
+    {
+        "model": "timetable.day_combo",
+        "pk": 19,
+        "fields": {
+            "day": "tuesday",
+            "timeslots": [
+                1,
+                2
+            ]
+        }
+    },
+    {
+        "model": "timetable.day_combo",
+        "pk": 20,
+        "fields": {
+            "day": "tuesday",
+            "timeslots": [
+                3
+            ]
+        }
+    },
+    {
+        "model": "timetable.day_combo",
+        "pk": 21,
+        "fields": {
+            "day": "tuesday",
+            "timeslots": [
+                4,
+                5,
+                7
+            ]
+        }
+    },
+    {
+        "model": "timetable.day_combo",
+        "pk": 22,
+        "fields": {
+            "day": "wednesday",
+            "timeslots": [
+                1,
+                2,
+                3
+            ]
+        }
+    },
+    {
+        "model": "timetable.day_combo",
+        "pk": 23,
+        "fields": {
+            "day": "wednesday",
+            "timeslots": [
+                4,
+                5,
+                7
+            ]
+        }
+    },
+    {
+        "model": "timetable.day_combo",
+        "pk": 24,
+        "fields": {
+            "day": "tuesday",
+            "timeslots": [
+                1,
+                2,
+                3
+            ]
+        }
+    },
+    {
+        "model": "timetable.day_combo",
+        "pk": 25,
+        "fields": {
+            "day": "tuesday",
+            "timeslots": [
+                4
+            ]
+        }
+    },
+    {
+        "model": "timetable.day_combo",
+        "pk": 26,
+        "fields": {
+            "day": "tuesday",
+            "timeslots": [
+                5,
+                7
+            ]
+        }
+    },
+    {
+        "model": "timetable.day_combo",
+        "pk": 27,
+        "fields": {
+            "day": "wednesday",
+            "timeslots": [
+                4,
+                5,
+                7
+            ]
+        }
+    },
+    {
+        "model": "timetable.day_combo",
+        "pk": 28,
+        "fields": {
+            "day": "wednesday",
+            "timeslots": [
+                9
+            ]
+        }
+    },
+    {
+        "model": "timetable.day_combo",
+        "pk": 29,
+        "fields": {
+            "day": "wednesday",
+            "timeslots": [
+                10,
+                11,
+                12
+            ]
+        }
+    },
+    {
+        "model": "timetable.day_combo",
+        "pk": 30,
+        "fields": {
+            "day": "wednesday",
+            "timeslots": [
+                6,
+                8,
+                9
+            ]
+        }
+    },
+    {
+        "model": "timetable.day_combo",
+        "pk": 31,
+        "fields": {
+            "day": "wednesday",
+            "timeslots": [
+                10
+            ]
+        }
+    },
+    {
+        "model": "timetable.day_combo",
+        "pk": 32,
+        "fields": {
+            "day": "wednesday",
+            "timeslots": [
+                11,
+                12
+            ]
+        }
+    },
+    {
+        "model": "timetable.day_combo",
+        "pk": 33,
+        "fields": {
+            "day": "monday",
+            "timeslots": [
+                14,
+                15,
+                16,
+                17,
+                18
+            ]
+        }
+    },
+    {
+        "model": "timetable.day_combo",
+        "pk": 34,
+        "fields": {
+            "day": "tuesday",
+            "timeslots": [
+                14,
+                18
+            ]
+        }
+    },
+    {
+        "model": "timetable.day_combo",
+        "pk": 35,
+        "fields": {
+            "day": "tuesday",
+            "timeslots": [
+                15,
+                16,
+                17
+            ]
+        }
+    },
+    {
+        "model": "timetable.day_combo",
+        "pk": 36,
+        "fields": {
+            "day": "thursday",
+            "timeslots": [
+                16,
+                17
+            ]
+        }
+    },
+    {
+        "model": "timetable.day_combo",
+        "pk": 37,
+        "fields": {
+            "day": "tuesday",
+            "timeslots": [
+                13,
+                18
+            ]
+        }
+    },
+    {
+        "model": "timetable.day_combo",
+        "pk": 38,
+        "fields": {
+            "day": "wednesday",
+            "timeslots": [
+                14,
+                15,
+                16,
+                17,
+                18
+            ]
+        }
+    },
+    {
+        "model": "timetable.day_combo",
+        "pk": 39,
+        "fields": {
+            "day": "thursday",
+            "timeslots": [
+                14,
+                18
+            ]
+        }
+    },
+    {
+        "model": "timetable.day_combo",
+        "pk": 40,
+        "fields": {
+            "day": "thursday",
+            "timeslots": [
+                15,
+                16,
+                17
+            ]
+        }
+    },
+    {
         "model": "user.user",
         "pk": 1,
         "fields": {
             "password": "pbkdf2_sha256$390000$adNxghg0YAIhAR1xqWKIOY$S5yaWznfwzfgzlWdq5PrTO5XwCV7m21svar6nO+70fc=",
-            "last_login": "2023-06-08T14:58:49",
+            "last_login": "2023-06-18T01:28:34.089",
             "registration_id": "3045463",
             "first_name": "ISABELLA",
             "last_name": "VALERIO MAZARÁ",
@@ -1047,8 +2100,8 @@
             "date_joined": "2023-06-08T14:58:26.032",
             "is_superuser": true,
             "is_staff": true,
-            "is_professor": false,
             "is_active": true,
+            "is_professor": false,
             "history": null,
             "job": null,
             "groups": [],
@@ -1076,8 +2129,8 @@
             "date_joined": "2023-06-09T07:01:54.152",
             "is_superuser": true,
             "is_staff": true,
-            "is_professor": false,
             "is_active": true,
+            "is_professor": false,
             "history": null,
             "job": null,
             "groups": [],
@@ -1105,8 +2158,8 @@
             "date_joined": "2023-06-09T07:04:20.944",
             "is_superuser": true,
             "is_staff": true,
-            "is_professor": false,
             "is_active": true,
+            "is_professor": false,
             "history": null,
             "job": null,
             "groups": [],
@@ -1134,8 +2187,8 @@
             "date_joined": "2023-06-09T07:05:57.356",
             "is_superuser": true,
             "is_staff": true,
-            "is_professor": false,
             "is_active": true,
+            "is_professor": false,
             "history": null,
             "job": null,
             "groups": [],
@@ -1163,8 +2216,8 @@
             "date_joined": "2023-06-09T07:07:45.973",
             "is_superuser": true,
             "is_staff": true,
-            "is_professor": false,
             "is_active": true,
+            "is_professor": false,
             "history": null,
             "job": null,
             "groups": [],
@@ -1192,8 +2245,8 @@
             "date_joined": "2023-06-09T07:09:36.877",
             "is_superuser": true,
             "is_staff": true,
-            "is_professor": true,
             "is_active": true,
+            "is_professor": true,
             "history": null,
             "job": null,
             "groups": [],
@@ -1221,8 +2274,8 @@
             "date_joined": "2023-06-09T07:14:43.575",
             "is_superuser": false,
             "is_staff": true,
-            "is_professor": true,
             "is_active": true,
+            "is_professor": true,
             "history": 3,
             "job": null,
             "groups": [],
@@ -1247,8 +2300,8 @@
             "date_joined": "2023-06-09T07:18:27.580",
             "is_superuser": false,
             "is_staff": false,
-            "is_professor": true,
             "is_active": true,
+            "is_professor": true,
             "history": 2,
             "job": null,
             "groups": [],
@@ -1273,8 +2326,8 @@
             "date_joined": "2023-06-09T07:20:20.062",
             "is_superuser": false,
             "is_staff": false,
-            "is_professor": false,
             "is_active": true,
+            "is_professor": false,
             "history": 1,
             "job": null,
             "groups": [],
@@ -1299,8 +2352,8 @@
             "date_joined": "2023-06-09T07:35:04.358",
             "is_superuser": true,
             "is_staff": true,
-            "is_professor": false,
             "is_active": true,
+            "is_professor": false,
             "history": null,
             "job": null,
             "groups": [],

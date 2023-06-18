@@ -12,21 +12,21 @@
 
 {% block body %}
   {{ block.super }}
-    <h1>Grades horárias</h1>
+    <h1>{% trans "Grades Horárias" %}</h1>
     <div class="tabela">
       <table class="table table-bordered editable" id="timetable_list">
         <thead class="thead-dark">
           <tr>
-            <th scope="col">Registro</th>
-            <th scope="col">Área</th>
-            <th scope="col">Ação</th>
+            <th scope="col">{% trans "Registro" %}</th>
+            <th scope="col">{% trans "Área" %}</th>
+            <th scope="col">{% trans "Ação" %}</th>
           </tr>
         </thead>
         <tbody>
           {% for classs in classes %}
             <tr>
                 <td>{{ classs.registration_class_id }}</td>
-                <td>{{ classs.area.name_area }}</td>
+                <td>{% trans classs.area.name_area %}</td>
                 <td>
                   {% if classs.timetable.exists %}
                     <a href="{% url 'show_timetable' %}?class={{classs.registration_class_id}}" class="btn btn-primary"><i class="bi bi-eye"></i></a>

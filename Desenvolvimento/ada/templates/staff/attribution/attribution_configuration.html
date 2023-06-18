@@ -8,7 +8,7 @@
 {% endblock %} 
 
 {% block body %}
-<h1>Configuração da atribuição</h1>
+<h1>{% trans "Configuração da atribuição" %}</h1>
 <hr />
 <div class="card custom-card">
    <div class="card-body">
@@ -16,22 +16,22 @@
       {% csrf_token %}  
       <div class="row">
          <div class="configuracoes col-6">
-            <h4>Configurações dos prazos</h4>
+            <h4>{% trans "Configurações dos prazos" %}</h4>
             <hr/>
             <input type="hidden" name="blockk" id="blockk" value="{{blockk.registration_block_id}}"></input>
             <div class="col-sm-12">
-               <h5>Envio das preferências</h5>
+               <h5>{% trans "Envio das preferências" %}</h5>
                <div class="row">
-                  <div class="col-6"><label for="startFPADeadline">Início</label> <input type="datetime-local" name="startFPADeadline" class="form-control" id="startFPADeadline" /></div>
-                  <div class="col-6"><label for="endFPADeadline">Fim</label> <input type="datetime-local" name="endFPADeadline" class="form-control" id="endFPADeadline" /></div>
+                  <div class="col-6"><label for="startFPADeadline">{% trans "Início" %}</label> <input type="datetime-local" name="startFPADeadline" class="form-control" id="startFPADeadline" /></div>
+                  <div class="col-6"><label for="endFPADeadline">{% trans "Fim" %}</label> <input type="datetime-local" name="endFPADeadline" class="form-control" id="endFPADeadline" /></div>
                </div>
             </div>
             <br />
             <div class="col-sm-12">
-               <h5>Processo de atribuição de aulas</h5>
+               <h5>{% trans "Processo de atribuição de aulas" %}</h5>
                <div class="row">
-                  <div class="col-6"><label for="startAssignmentDeadline">Início</label> <input type="datetime-local" name="startAssignmentDeadline" class="form-control" id="startAssignmentDeadline" /></div>
-                  <div class="col-6"><label for="endAssignmentDeadline">Fim</label> <input type="datetime-local" name="endAssignmentDeadline" class="form-control" id="endAssignmentDeadline" /></div>
+                  <div class="col-6"><label for="startAssignmentDeadline">{% trans "Início" %}</label> <input type="datetime-local" name="startAssignmentDeadline" class="form-control" id="startAssignmentDeadline" /></div>
+                  <div class="col-6"><label for="endAssignmentDeadline">{% trans "Fim" %}</label> <input type="datetime-local" name="endAssignmentDeadline" class="form-control" id="endAssignmentDeadline" /></div>
                </div>
             </div>
          </div>
@@ -40,8 +40,8 @@
                <table class="table">
                   <thead class="thead-dark">
                      <tr>
-                        <th scope="col">Posição</th>
-                        <th scope="col">Nome</th>
+                        <th scope="col">{% trans "Posição" %}</th>
+                        <th scope="col">{% trans "Nome" %}</th>
                      </tr>
                   </thead>
                   <tbody>
@@ -54,10 +54,10 @@
                   </tbody>
                </table>
             </div>
-            <a href="{% url 'queue_create' %}?blockk={{blockk.registration_block_id}}" class="btn btn-primary btn-block">Editar fila</a>
+            <a href="{% url 'queue_create' %}?blockk={{blockk.registration_block_id}}" class="btn btn-primary btn-block">{% trans "Editar fila" %}</a>
          </div>
       </div>
-      <button class="btn btn-success btn-block mt-4">Salvar configurações</button>
+      <button class="btn btn-success btn-block mt-4">{% trans "Salvar configurações" %}</button>
     </form>
     </div>
 </div>

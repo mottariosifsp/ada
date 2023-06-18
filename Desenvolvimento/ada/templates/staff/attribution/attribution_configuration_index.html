@@ -10,8 +10,8 @@
 {% block body %}
 
   <div class="py-5">
-    <h3 class="font-weight-bold mb-0">Escolha um bloco para configurar</h3>
-    <p class="font-italic text-muted mb-4">Crie ou edite as filas e os prazos dos seus blocos</p>
+    <h3 class="font-weight-bold mb-0">{% trans "Escolha um bloco para configurar" %}</h3>
+    <p class="font-italic text-muted mb-4">{% trans "Crie ou edite as filas e os prazos dos seus blocos" %}.</p>
     <div class="row">
       <!-- DEMO 5 Item-->
       {% for block in blockks %}
@@ -19,7 +19,7 @@
           <div class="hover hover-5 text-white rounded"><img src="{{block.image}}" alt="">
             <div class="hover-overlay"></div>
             <div class="hover-5-content">
-              <h3 class="hover-5-title text-uppercase font-weight-light mb-0"><strong class="font-weight-bold text-white">{{ block.block }}</strong><br><span>Configurar</span></h3>
+              <h3 class="hover-5-title text-uppercase font-weight-light mb-0"><strong class="font-weight-bold text-white">{% trans block.block %}</strong><br><span>{% trans "Configurar" %}</span></h3>
             </div>
           </div>
         </div>

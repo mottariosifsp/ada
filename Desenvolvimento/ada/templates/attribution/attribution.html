@@ -14,19 +14,19 @@
 
 {% block body %} 
 {% comment %}
-<h1>{% trans "Fila de professores" %} ( {{ blockk.name_block }} )</h1>
+  <h1>{% trans "Fila de professores" %} ( {% trans blockk.name_block %} )</h1>
 {% endcomment %}
-<h1>{% trans "Atribuição do bloco" %} {{blockk.name_block}}</h1>
+<h1>{% trans "Atribuição do bloco" %} {% trans blockk.name_block %}</h1>
 <hr />
   <div class="row mb-3">
     <div class="col m-0 p-0">
-      <h5>{% trans "Professor sendo atribuído:" %}</h5>
+      <h5>{% trans "Professor sendo atribuído" %}:</h5>
       <div class="card">
         <div class="card-body">
             {% if request.user == queue.first.teacher %}
             <h2 class="card-text">{% trans "Você" %}</h2>
             {% else %}
-            <h4 class="card-text">{{queue.first.teacher.get_full_name_camel_case}}<h4>
+            <h4 class="card-text">{% trans queue.first.teacher.get_full_name_camel_case %}<h4>
             {% endif %}
         </div>
       </div>
@@ -41,7 +41,7 @@
     </div>
     {% if request.user == queue.first.teacher %}
     <div class="col-2 ml-3 p-0">
-      <button class="btn btn-success btn-block redirect" style="height:70%; margin-top: 2rem">{% trans "Escolher novas aulas" %}</button>
+      <button class="btn btn-success btn-block redirect" style="height:70%; margin-top: 2rem">{% trans "Escolher novas disciplinas" %}</button>
     </div>
     {% endif %}
   </div>

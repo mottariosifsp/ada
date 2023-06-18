@@ -4,7 +4,7 @@
 
 {% block head %}
     {{ block.super }}
-    <title>Detalhes Bloco</title>
+    <title>{% trans "Detalhes Bloco" %}</title>
     <link rel="stylesheet" href="{% static 'staff/blockk/css/block_detail.css' %}">
     <script src="{% static 'staff/blockk/js/block_detail.js' %}" data-lang={{LANGUAGE_CODE}}></script>
 {% endblock %}
@@ -14,25 +14,25 @@
     {{ block.super }}
 
 <a href="{% url 'queue_create' %}?blockk={{ blockk.registration_block_id }}">
-  <button type="button" class="btn btn-success float-right createCourseBtn">Criar fila</button>
+  <button type="button" class="btn btn-success float-right createCourseBtn">{% trans "Criar fila" %}</button>
 </a>
 
-    <a href="{% url 'queue_show' %}"><button type="button" class="btn btn-success float-right createCourseBtn"> Ver fila </button></a>
+    <a href="{% url 'queue_show' %}"><button type="button" class="btn btn-success float-right createCourseBtn"> {% trans "Ver fila" %} </button></a>
 
 
     <div class="container mb-4">
         <div class="row">
             <div class="col-md-12">
-                <h1>{{ blockk.name_block }}</h1>
+                <h1>{% trans blockk.name_block %}</h1>
                 <div class="card">
                     <div class="card-body">
-                        <h5 class="card-title">Detalhes</h5>
+                        <h5 class="card-title">{% trans "Detalhes" %}</h5>
                             <ul class="list-group list-group-flush">
-                                <li class="list-group-item"><strong>Nome:</strong> {{ area.name_area }}</li>
-                                <li class="list-group-item"><strong>Registro:</strong> {{ area.registration_area_id }}</li>
-                                <li class="list-group-item"><strong>Sigla:</strong> {{ area.acronym }}</li>
-                                <li class="list-group-item"><strong>Permuta:</strong> {{ area.exchange_area }}</li>
-                                <li class="list-group-item"><strong>Ensino Médio:</strong> {{ area.is_high_school }}</li>
+                                <li class="list-group-item"><strong>{% trans "Nome" %}:</strong> {% trans area.name_area %}</li>
+                                <li class="list-group-item"><strong>{% trans "Registro" %}:</strong> {% trans area.registration_area_id %}</li>
+                                <li class="list-group-item"><strong>{% trans "Sigla" %}:</strong> {% trans area.acronym %}</li>
+                                <li class="list-group-item"><strong>{% trans "Permuta" %}:</strong> {% trans area.exchange_area %}</li>
+                                <li class="list-group-item"><strong>{% trans "Ensino Médio" %}:</strong> {% trans area.is_high_school %}</li>
                             </ul>
                     </div>
                 </div>
@@ -40,17 +40,17 @@
         </div>
     </div>      
 
-    <button type="button" class="btn btn-success float-right createCourseBtn" data-toggle="modal" data-target="#createCourseModal"> Criar matéria </button>
+    <button type="button" class="btn btn-success float-right createCourseBtn" data-toggle="modal" data-target="#createCourseModal"> {% trans "Criar Disciplina" %} </button>
 
 
     <div class="tabela">
         <table class="table table-bordered editable" id="blocks_list">
             <thead>
                 <tr>
-                    <th scope="col">Registro</th>
-                    <th scope="col">Nome</th>
-                    <th scope="col">Sigla</th>
-                    <th scope="col">Ação</th>
+                    <th scope="col">{% trans "Registro" %}</th>
+                    <th scope="col">{% trans "Nome" %}</th>
+                    <th scope="col">{% trans "Sigla" %}</th>
+                    <th scope="col">{% trans "Ação" %}</th>
                 </tr>
             </thead>
             <tbody>
@@ -59,8 +59,8 @@
                     <!-- Lista -->
                         <tr>
                             <td>{{ course.registration_course_id }}</td>
-                            <td>{{ course.name_course }}</td>
-                            <td>{{ course.acronym }}</td>
+                            <td>{% trans course.name_course %}</td>
+                            <td>{% trans course.acronym %}</td>
                             <td>
                                 <button type="button" data-toggle="modal" data-target="#editCourseModal" data-course-id="{{ course.id }}" data-counter="{{ counter }}" class="btn btn-warning editCourseBtn"><i class="bi bi-pencil"></i></button>
                                 <button type="button" class="btn btn-danger deleteCourseBtn" data-course-id="{{ course.id }}" data-registration-course-id="{{ course.registration_course_id }}"><i class="bi bi-trash"></i></button>
@@ -71,12 +71,12 @@
         </table>
     </div>
 
-    <!-- Modal criação matéria -->
+    <!-- Modal criação disciplina -->
     <div class="modal fade" id="createCourseModal" tabindex="-1" role="dialog" aria-labelledby="createCourseModelLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="addCreateCourseModal">Criar</h5>
+                    <h5 class="modal-title" id="addCreateCourseModal">{% trans "Criar" %}</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -85,33 +85,33 @@
                     <form>
                         <input type="hidden" class="form-control" id="id">
                         <div class="form-group">
-                            <label for="registration_course_id">Registro</label>
+                            <label for="registration_course_id">{% trans "Registro" %}</label>
                             <input type="text" class="form-control" id="registration_course_id_create" required>
                         </div>
                         <div class="form-group">
-                            <label for="name_course">Nome</label>
+                            <label for="name_course">{% trans "Nome" %}</label>
                             <input type="text" class="form-control" id="name_course_create" required>
                         </div>
                         <div class="form-group">
-                            <label for="acronym">Sigla</label>
+                            <label for="acronym">{% trans "Sigla" %}</label>
                             <input type="text" class="form-control" id="acronym_create" required>
                         </div>
                     </form>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
-                    <button type="button" class="btn btn-primary" data-area-id="{{ area.id  }}" data-block-id="{{ blockk.id }}" id="saveCreateBtn">Criar</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">{% trans "Fechar" %}</button>
+                    <button type="button" class="btn btn-primary" data-area-id="{{ area.id  }}" data-block-id="{{ blockk.id }}" id="saveCreateBtn">{% trans "Criar" %}</button>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- Modal ediação turma -->
+    <!-- Modal edição turma -->
     <div class="modal fade" id="editCourseModal" tabindex="-1" role="dialog" aria-labelledby="edtCourseModelLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="addEditCourseModal">Editar</h5>
+                    <h5 class="modal-title" id="addEditCourseModal">{% trans "Editar" %}</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -120,22 +120,22 @@
                     <form>
                         <input type="hidden" class="form-control" id="id">
                         <div class="form-group">
-                            <label for="registration_course_id">Registro</label>
+                            <label for="registration_course_id">{% trans "Registro" %}</label>
                             <input type="text" class="form-control" id="registration_course_id_update">
                         </div>
                         <div class="form-group">
-                            <label for="name_course">Nome</label>
+                            <label for="name_course">{% trans "Nome" %}</label>
                             <input type="text" class="form-control" id="name_course_update">
                         </div>
                         <div class="form-group">
-                            <label for="acronym">Sigla</label>
+                            <label for="acronym">{% trans "Sigla" %}</label>
                             <input type="text" class="form-control" id="acronym_update">
                         </div>
                     </form>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
-                    <button type="button" class="btn btn-primary" id="saveUpdateBtn">Salvar Alterações</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">{% trans "Fechar" %}</button>
+                    <button type="button" class="btn btn-primary" id="saveUpdateBtn">{% trans "Salvar" }</button>
                 </div>
             </div>
         </div>
