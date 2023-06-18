@@ -1,17 +1,21 @@
-{% extends "professor/base.html" %} {% load i18n %} {% load static %} {% block head %}
-<title>{% translate "Configuração de atribuição" %}</title>
-<script src="{% static 'attribution/js/back_home.js' %}"></script>
+{% extends "professor/base.html" %} 
+{% load i18n %} 
+{% load static %} 
 
-{% endblock %} 
+{% block head %}
+   <title>{% trans "Erro Atribuição" %}</title>
+   <script src="{% static 'attribution/js/back_home.js' %}"></script>
+{% endblock %}
+
 {% block body %}
-<div class="d-flex align-items-center justify-content-center" style="min-height: 80vh;">
-   <div class="container text-center">
-      <div class="text-center">
-    </div>
-      <h1>A atribuição já acabou</h1>
-      <h6>retorne a página inicial</h6>
-      <br>
-      <button type="button" id="return-button" class="btn btn-outline-primary btn-lg rounded-pill">Voltar a página inicial</button>
+   <div class="d-flex align-items-center justify-content-center" style="min-height: 80vh;">
+      <div class="container text-center">
+         <div class="text-center">
+      </div>
+         <h1>{% trans A atribuição já acabou %}</h1>
+         <h6>{% trans Retorne à página inicial %}</h6>
+         <br>
+         <button type="button" id="return-button" class="btn btn-outline-primary btn-lg rounded-pill">{% trans Voltar %}</button>
+      </div>
    </div>
-</div>
 {% endblock %}

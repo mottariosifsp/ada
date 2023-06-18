@@ -10,7 +10,7 @@
 {% block body %}
 
 <h2>Painel de controle</h2>
-<h6>Olá {{ request.user.first_name }}, bem-vindo ao painel de controle do sistema ADA </h6>
+<h6>Olá, {{ request.user.first_name }}"! Bem-vindo(a) ao painel de controle do sistema ADA. </h6>
 <hr>
 <div class="d-flex">
   <div class="card m-2 redirect-button" onclick="redirect('{% url  "attribution_configuration_index" %}')">

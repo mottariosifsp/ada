@@ -1,11 +1,19 @@
-{% extends "staff/base.html" %} {% load i18n %} {% load static %} {% block head %} {{ block.super }}
-<title>{% translate "create timetable" %}</title>
-<script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-<script src="{% static 'staff/timetable/js/create_timetable.js' %}" data-lang="{{LANGUAGE_CODE}}"></script>
-<script src="{% static 'staff/timetable/js/show_timetable.js' %}" data-lang="{{LANGUAGE_CODE}}"></script>
-{% endblock %} {% block body %} {{ block.super }}
-<div style="display: none; position: fixed; top: calc(50% - (20rem / 2)); left: calc(50% - (20rem / 2)); width: 20rem; height: 20rem;">
-    <img src="https://cdn.awsli.com.br/300x300/1594/1594408/produto/1482066500b9bac0fff.jpg" class="img-fluid" alt="Responsive image" />
+{% extends "staff/base.html" %}
+{% load i18n %}
+{% load static %}
+
+{% block head %}
+  {{ block.super }} 
+    <title>{% translate "Detalhe Grade" %}</title>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="{% static 'staff/timetable/js/create_timetable.js' %}" data-lang={{LANGUAGE_CODE}}></script>
+    <script src="{% static 'staff/timetable/js/show_timetable.js' %}" data-lang={{LANGUAGE_CODE}}></script>
+{% endblock %}
+
+{% block body %}
+  {{ block.super }} 
+  <div style="display: none; position: fixed; top: calc(50% - (20rem / 2)); left: calc(50% - (20rem / 2)); width: 20rem; height: 20rem;">
+    <img src="https://cdn.awsli.com.br/300x300/1594/1594408/produto/1482066500b9bac0fff.jpg" class="img-fluid" alt="Responsive image">
     <h3 class="row d-flex justify-content-center">Tabela salva 🙏🙏🙏</h3>
 </div>
 <div class="container">

@@ -2,3 +2,5 @@ Django==4.1.7
 django-browser-reload==1.6.0
 python-dotenv
 celery==5.2.7
+redis
+python-decouple

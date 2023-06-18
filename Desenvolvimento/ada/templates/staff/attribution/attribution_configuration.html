@@ -1,7 +1,13 @@
-{% extends "professor/base.html" %} {% load i18n %} {% load static %} {% block head %}
-<title>{% translate "Configuração de atribuição" %}</title>
-<link rel="stylesheet" href="{% static 'staff/attribution/css/attribution_configuration.css' %}">
-{% endblock %} {% block body %}
+{% extends "professor/base.html" %} 
+{% load i18n %} 
+{% load static %} 
+
+{% block head %}
+   <title>{% translate "Configuração de atribuição" %}</title>
+   <link rel="stylesheet" href="{% static 'staff/attribution/css/attribution_configuration.css' %}">
+{% endblock %} 
+
+{% block body %}
 <h1>Configuração da atribuição</h1>
 <hr />
 <div class="card custom-card">
@@ -10,7 +16,7 @@
       {% csrf_token %}  
       <div class="row">
          <div class="configuracoes col-6">
-            <h4>configurações dos prazos</h4>
+            <h4>Configurações dos prazos</h4>
             <hr/>
             <input type="hidden" name="blockk" id="blockk" value="{{blockk.registration_block_id}}"></input>
             <div class="col-sm-12">

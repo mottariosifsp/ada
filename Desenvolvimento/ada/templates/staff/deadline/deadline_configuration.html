@@ -1,0 +1,35 @@
+{% extends "staff/base.html" %}
+{% load i18n %}
+{% load static %}
+
+{% block head %}
+    {{ block.super }}
+    <title>Criar Prazo</title>
+{% endblock %}
+
+{% block body %}
+    {{ block.super }}
+    <h1>Painel de configuração da atribuição de aulas ( {{ blockk.name_block }} )</h1>
+    <hr>
+    <form method="post" action="{% url 'confirm_deadline_configuration' %}">
+        {% csrf_token %}    
+        <h2>Prazo para o envio da FPA</h2>
+        <p>Início: <input type="datetime-local" name="startFPADeadline"></p>
+        <p>Fim: <input type="datetime-local" name="endFPADeadline"></p>
+        <h2>Prazo para a atribuição de aulas</h2>
+        <p>Início: <input type="datetime-local" name="startAssignmentDeadline"></p>
+    <p>Fim: <input type="datetime-local" name="endAssignmentDeadline"></p>
+        <h2>Prazo para o período de permuta</h2>
+        <p>Início: <input type="datetime-local" name="startExchangeDeadline"></p>
+        <p>Fim: <input type="datetime-local" name="endExchangeDeadline"></p>
+        <h2>Bloco</h2>
+        <p>Bloco: 
+            <select name="block" id="block">
+                {% for blockk in user_blocks %}
+                    <option value="{{ blockk.id }}">{{ blockk.name_block }}</option>
+                {% endfor %}
+            </select> 
+        </p>
+        <button type="submit" class="btn btn-primary">Salvar</button>
+    </form>
+{% endblock %}
