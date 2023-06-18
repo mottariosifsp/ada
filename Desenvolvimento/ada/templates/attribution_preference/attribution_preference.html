@@ -10,13 +10,13 @@
 
 {% block body %}
   <section class="section dashboard">
-    <h1 class="title-page">Declaração de disponibilidade</h1>
+    <h1 class="title-page">{% trans Declaração de disponibilidade %}</h1>
     <nav>
       <ol class="breadcrumb">
         <li class="breadcrumb-item"><a href="{% url 'home' %}"><i class="bi bi-house-door"></i></a></li>
-        <li class="breadcrumb-item active">Preferência Atribuição</li>
-        <li class="breadcrumb-item active" aria-current="page">Criar FPA</li>
-        <li class="breadcrumb-item active" aria-current="page">Editar Disponibilidade</li>
+        <li class="breadcrumb-item active">{% trans Preferência Atribuição %}</li>
+        <li class="breadcrumb-item active" aria-current="page">{% trans Criar FPA %}</li>
+        <li class="breadcrumb-item active" aria-current="page">{% trans Editar Disponibilidade %}</li>
       </ol>
     </nav>
 
@@ -30,20 +30,20 @@
           <div class="card info-card sales-card">
             <div class="card-body">
               <div id="work-regime">
-                <h4 class="card-title">Regime de Trabalho</h4>
+                <h4 class="card-title">{% trans Regime de Trabalho %}</h4>
                 <hr class="my-0">
                 <div class="form-group mt-5 mb-4">
                   <div class="form-check form-check-inline">
                     <input class="form-check-input" type="radio" name="regime" id="radio20" value="20" required>
-                    <label class="form-check-label" for="radio20">20 horas</label>
+                    <label class="form-check-label" for="radio20">20 {% trans horas }</label>
                   </div>
                   <div class="form-check form-check-inline">
                     <input class="form-check-input" type="radio" name="regime" id="radio40" value="40" required>
-                    <label class="form-check-label" for="radio40">40 horas</label>
+                    <label class="form-check-label" for="radio40">40 {% trans horas %}</label>
                   </div>
                   <div class="form-check form-check-inline">
                     <input class="form-check-input" type="radio" name="regime" id="rde" value="rde" required>
-                    <label class="form-check-label" for="rde"><abbr title="Regime de Dedicação Exclusiva">RDE</abbr></label>
+                    <label class="form-check-label" for="rde"><abbr title="Regime de Dedicação Exclusiva">{% trans RDE %}</abbr></label>
                   </div>
                 </div>      
               </div>
@@ -53,10 +53,10 @@
         <div class="col-xxl-4 col-md-4">
           <div class="card info-card sales-card">
             <div class="card-body">
-              <h4 class="card-title">Células restantes:</h4>
+              <h4 class="card-title">{% trans Células restantes: %}</h4>
               <hr class="my-0">
               <div class="text-center">
-                <span class="min-cel" id="cel-regime">--</span><span class="cel">células</span>
+                <span class="min-cel" id="cel-regime">--</span><span class="cel">{% trans células %}</span>
               </div>
             </div>
           </div>
@@ -65,27 +65,27 @@
       <div class="card info-card sales-card mt-4">
         <div class="card-body">
           <div id="work-availability">
-            <h4>Disponibilidade de horários</h4>
+            <h4>{% trans Disponibilidade de horários %}</h4>
             <hr> 
             
             <div class="table-responsive">
               <table class="table table-bordered table-sm text-center">
                 <thead>
                   <tr>
-                    <th class="col-1 text-center align-middle">Turno</th>
-                    <th class="col-2 text-center align-middle">Horários</th>
-                    <th class=" text-center">Segunda-Feira</th>
-                    <th class=" text-center">Terça-Feira</th>
-                    <th class=" text-center">Quarta-Feira</th>
-                    <th class=" text-center">Quinta-Feira</th>
-                    <th class=" text-center">Sexta-Feira</th>
-                    <th class=" text-center">Sabádo</th>
+                    <th class="col-1 text-center align-middle">{% trans Turno %}</th>
+                    <th class="col-2 text-center align-middle">{% trans Horários %}</th>
+                    <th class=" text-center">{% trans Segunda-Feira %}</th>
+                    <th class=" text-center">{% trans Terça-Feira %}</th>
+                    <th class=" text-center">{% trans Quarta-Feira %}</th>
+                    <th class=" text-center">{% trans Quinta-Feira %}</th>
+                    <th class=" text-center">{% trans Sexta-Feira %}</th>
+                    <th class=" text-center">{% trans Sabádo %}</th>
                   </tr>
                 </thead>
                   <tbody class="block" >
                     {% for i in "MVN" %}
                       {% if i == "M" %}
-                        <td class="text-center align-middle" rowspan='{{ turno.matutinoAulas }}'>Matutino</td>
+                        <td class="text-center align-middle" rowspan='{{ turno.matutinoAulas }}'>{% trans Matutino %}</td>
                         {% for horario in turno.matutino %}
                           <tr>
                             <td class="text-center align-middle">{{ horario.hour_start }} - {{ horario.hour_end }}</td>
@@ -171,7 +171,7 @@
                           
                         {% endfor %}
                       {% elif i == "V" %}
-                        <td class="text-center align-middle" rowspan="{{ turno.vespertinoAulas }}">Vespertino</td>
+                        <td class="text-center align-middle" rowspan="{{ turno.vespertinoAulas }}">{% trans Vespertino %}</td>
       
                         {% for horario in turno.vespertino %}
                           <tr>
@@ -258,7 +258,7 @@
                           
                         {% endfor %}
                       {% else %}
-                        <td class="text-center align-middle" rowspan="{{ turno.noturnoAulas }}">Noturno</td>
+                        <td class="text-center align-middle" rowspan="{{ turno.noturnoAulas }}">{% trans Noturno %}</td>
       
                         {% for horario in turno.noturno %}
                           <tr>
@@ -351,8 +351,8 @@
           </div>
         </div>
       </div>
-      <button type="button" class="btn btn-primary float-right mt-4 mb-5" name="sendDisponibility" id="sendDisponibility">Enviar Disponibilidade</button>
-      <button type="button" class="btn btn-danger float-right mt-4 mb-5 mr-2" name="cleanFPA" id="cleanFPA">Limpar Disponibilidade</button>
+      <button type="button" class="btn btn-primary float-right mt-4 mb-5" name="sendDisponibility" id="sendDisponibility">{% trans Enviar %}</button>
+      <button type="button" class="btn btn-danger float-right mt-4 mb-5 mr-2" name="cleanFPA" id="cleanFPA">{% trans Limpar %}</button> <!-- colocar em outro lugar -->
     </form>
   </section>
 {% endblock %}

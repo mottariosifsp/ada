@@ -4,7 +4,7 @@
 
 {% block head %}
     {{ block.super }}
-    <title>Blocos</title>
+    <title>{% trans Blocos %}</title>
     <link rel="stylesheet" href="{% static 'staff/blockk/css/block_list.css' %}">
     <script src="{% static 'staff/blockk/js/blocks_list.js' %}" data-lang={{LANGUAGE_CODE}}></script>
 {% endblock %}
@@ -16,10 +16,10 @@
         <table class="table table-bordered editable" id="blocks_list">
             <thead>
                 <tr>
-                    <th scope="col">Registro</th>
-                    <th scope="col">Nome</th>
-                    <th scope="col">Sigla</th>
-                    <th scope="col">Ação</th>
+                    <th scope="col">{% trans Registro %}</th>
+                    <th scope="col">{% trans Nome %}</th>
+                    <th scope="col">{% trans Sigla %}</th>
+                    <th scope="col">{% trans Ação %}</th>
                 </tr>
             </thead>
             <tbody>
