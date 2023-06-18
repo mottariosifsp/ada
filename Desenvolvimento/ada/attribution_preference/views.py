@@ -1,4 +1,5 @@
 from django.shortcuts import render
+
 from .models import Attribution_preference, Preference_schedule, Course_preference
 from course.models import Course
 from timetable.models import Timetable, Timeslot

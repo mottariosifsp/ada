@@ -1,30 +1,76 @@
-{% extends "professor/base.html" %} {% load i18n %} {% load static %} {% block head %}
-<title>{% translate "Configuração de atribuição" %}</title>
-  
+{% extends "professor/base.html" %} 
+{% load i18n %} 
+{% load static %} 
+
+{% block head %}
+  <title>{% trans "Configuração de Atribuição" %}</title>
+  <style>
+    .label-small {
+      margin-bottom: 5px;
+      display: inline-block;
+    }
+  </style>
 {% endblock %} 
-{% block body %}
 
-<h1>Fila de professores ( {{ blockk.name_block }} )</h1>
-
-<table class="table table-striped">
-    <thead>
-      <tr>
-        <th scope="col">Posição</th>
-        <th scope="col">Nome</th>
-        <th scope="col">Prontuário</th>
-        <th scope="col">Email</th>
-      </tr>
-    </thead>
-    <tbody>
-      {% for professor in queue %}
-      <tr>
-        <th scope="row">{{ professor.position }}</th>
-        <td>{{ professor.teacher.first_name }}</td>
-        <td>{{ professor.teacher.registration_id}}</td>
-        <td>{{ professor.teacher.email }}</td>
-      </tr>
-      {% endfor %}
-      
-    </tbody>
-  </table>
+{% block body %} 
+{% comment %}
+<h1>{% trans Fila de professores %} ( {{ blockk.name_block }} )</h1>
+{% endcomment %}
+<h1>{% trans Atribuição do bloco %} {{blockk.name_block}}</h1>
+<hr />
+  <div class="row mb-3">
+    <div class="col m-0 p-0">
+      <h5>{% trans Professor sendo atribuído: %}</h5>
+      <div class="card">
+        <div class="card-body">
+            {% if request.user == queue.first.teacher %}
+            <h2 class="card-text">{% trans Você %}</h2>
+            {% else %}
+            <h4 class="card-text">{{queue.first.teacher.get_full_name_camel_case}}<h4>
+            {% endif %}
+        </div>
+      </div>
+    </div>
+    <div class="col m-0 p-0 ml-3">
+      <h5>{% trans Tempo restante %}</h5>
+      <div class="card">
+        <div class="card-body">
+          <h2 class="card-text" id="time-left">{{time_left}}</h2>
+        </div>
+      </div>
+    </div>
+    {% if request.user == queue.first.teacher %}
+    <div class="col-2 ml-3 p-0">
+      <button class="btn btn-success btn-block redirect" style="height:70%; margin-top: 2rem">{% trans Escolher novas aulas %}</button>
+    </div>
+    {% endif %}
+  </div>
+<div class="row">
+  <div class="container m-0 p-0" style="height: 24rem;">
+    <div class="card info-card sales-card" style="height: 100%;">
+      <div class="card-body">
+        <table class="table">
+          <thead>
+            <tr>
+              <th scope="col">{% trans Posição %}</th>
+              <th scope="col">{% trans Nome %}</th>
+              <th scope="col">{% trans E-mail %}</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for professor in queue %}
+            <tr>
+              <th scope="row">{{ professor.position }}</th>
+              <td>{{ professor.teacher.first_name }}</td>
+              <td>{{ professor.teacher.email }}</td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+<script src="{% static 'attribution/js/attribution.js' %}" data-lang={{LANGUAGE_CODE}} time-left='{{time_left}}'></script>
+<!-- Movido para dentro do elemento 'row' -->
 {% endblock %}

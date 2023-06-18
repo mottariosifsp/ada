@@ -53,11 +53,11 @@ class Day_combo(models.Model):
 
 class Timetable_user(models.Model):
     timetable = models.ForeignKey('Timetable', on_delete=models.CASCADE, related_name='timetable_user')
-    user = models.ForeignKey('user.User', on_delete=models.CASCADE, related_name='timetable_user')
+    user = models.ForeignKey('user.User', on_delete=models.CASCADE, related_name='timetable_user', null=True, blank=True)
 
     class Meta:
         verbose_name = _('timetable_user')
         verbose_name_plural = _('timetable_users')
 
     def __str__(self):
-        return str(self.timetable.hour_start)
+        return str(self.timetable.course)

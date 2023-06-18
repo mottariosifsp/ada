@@ -1,0 +1,24 @@
+{% extends "professor/base.html" %} 
+{% load i18n %} 
+{% load static %} 
+
+{% block head %}
+   <title>{% trans "Atribuição" %}</title>
+   <script src="{% static 'attribution/js/back_home.js' %}"></script>
+{% endblock %} 
+
+{% block body %}
+   <div class="d-flex align-items-center justify-content-center" style="min-height: 80vh;">
+      <div class="container text-center">
+         <div class="text-center">
+      </div>
+         <h1>{% trans Você chegou muito cedo! %}</h1>
+         <h6>{% trans A atribuição ainda não começou, por favor aguarde %}</h6>
+         {% if day %}
+         <p>{% trans Está prevista para se iniciar dia %} <strong>{{ day }}</strong> ás <strong>{{ time }}<strong></p>
+         {% endif %}
+         <br>
+         <button type="button" id="return-button" class="btn btn-outline-primary btn-lg rounded-pill">{% trans Voltar à página inicial %}</button>
+      </div>
+   </div>
+{% endblock %}
