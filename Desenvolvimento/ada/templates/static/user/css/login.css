@@ -18,7 +18,7 @@ section.register .card {
     position: fixed;
     top: 55%;
     left: 50%;
-    transform: translate(-50%, -50%);
+    transform: trans(-50%, -50%);
 }
 
 /* Estilos para os botões personalizados */

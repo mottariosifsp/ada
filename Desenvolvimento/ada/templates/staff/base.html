@@ -62,10 +62,10 @@
       </div>
       <div class="collapse navbar-collapse justify-content-end" id="navbarToggler">
         <ul class="navbar-nav mx-auto ">
-          <li class="nav-item"><a class="nav-link title" href="{% url 'professors_list' %}">{% translate "Professores" %}</a></li>
-          <li class="nav-item"><a class="nav-link title" href="{% url 'classes_list' %}">{% translate "Turma" %}</a></li>
-          <li class="nav-item"><a class="nav-link title" href="{% url 'blocks_list' %}">{% translate "Bloco" %}</a></li>
-          <li class="nav-item"><a class="nav-link title" href="{% url 'timetables' %}">{% translate "Grade" %}</a></li>
+          <li class="nav-item"><a class="nav-link title" href="{% url 'professors_list' %}">{% trans "Professores" %}</a></li>
+          <li class="nav-item"><a class="nav-link title" href="{% url 'classes_list' %}">{% trans "Turma" %}</a></li>
+          <li class="nav-item"><a class="nav-link title" href="{% url 'blocks_list' %}">{% trans "Bloco" %}</a></li>
+          <li class="nav-item"><a class="nav-link title" href="{% url 'timetables' %}">{% trans "Grade" %}</a></li>
           <li class="nav-item dropdown language-icon">
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownLang" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               <img class="lang-icon" src="{% static 'images/language_icon.png' %}" alt="change of language icon">
@@ -98,9 +98,9 @@
             </a>
             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownPerfil">
               <a class="dropdown-item disabled" href="#">{{ request.user.get_full_name }}</a>
-              <a class="dropdown-item" href="">{% translate "Perfil" %}</a>
+              <a class="dropdown-item" href="">{% trans "Perfil" %}</a>
               <div class="dropdown-divider"></div>
-              <a class="dropdown-item" data-toggle="modal" data-target="#logoutModal"><i class="bi bi-box-arrow-right"></i> {% translate "Sair" %}</a>
+              <a class="dropdown-item" data-toggle="modal" data-target="#logoutModal"><i class="bi bi-box-arrow-right"></i> {% trans "Sair" %}</a>
             </div>
           </li>
         </ul>
@@ -127,13 +127,13 @@
                 </a>
               </div>
               <hr>
-              <div class="modal-line"><a class="nav-link title" href="{% url 'professors_list' %}"><i class="bi bi-people lang-icon"></i> {% translate "Professores" %}</a></div>
-              <div class="modal-line"><a class="nav-link title" href="{% url 'classes_list' %}"><i class="bi bi-layers lang-icon"></i> {% translate "Turma" %}</a></div>
-              <div class="modal-line"><a class="nav-link title" href="{% url 'blocks_list' %}"><i class="bi bi-people-fill lang-icon"></i> {% translate "Bloco" %}</a></div>
-              <div class="modal-line"><a class="nav-link title" href="{% url 'timetables' %}"><i class="bi bi-bar-chart-line lang-icon"></i> {% translate "Grade" %}</a></div>
+              <div class="modal-line"><a class="nav-link title" href="{% url 'professors_list' %}"><i class="bi bi-people lang-icon"></i> {% trans "Professores" %}</a></div>
+              <div class="modal-line"><a class="nav-link title" href="{% url 'classes_list' %}"><i class="bi bi-layers lang-icon"></i> {% trans "Turma" %}</a></div>
+              <div class="modal-line"><a class="nav-link title" href="{% url 'blocks_list' %}"><i class="bi bi-people-fill lang-icon"></i> {% trans "Bloco" %}</a></div>
+              <div class="modal-line"><a class="nav-link title" href="{% url 'timetables' %}"><i class="bi bi-bar-chart-line lang-icon"></i> {% trans "Grade" %}</a></div>
               <div class="modal-line dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownLangSidebar" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                  <i class="bi bi-globe lang-icon"></i> {% translate "Línguas" %}
+                  <i class="bi bi-globe lang-icon"></i> {% trans "Línguas" %}
                 </a>
                 <div class="dropdown-menu lang-modal" aria-labelledby="navbarDropdownLangSidebar">
                   {% get_current_language as LANGUAGE_CODE %}
@@ -162,13 +162,13 @@
               <div class="row">
                 <div class="col">
                   <a class="dropdown-item" data-toggle="modal" data-target="#logoutModal">
-                    <i class="bi bi-box-arrow-right"></i> {% translate "Sair" %}
+                    <i class="bi bi-box-arrow-right"></i> {% trans "Sair" %}
                   </a>
                 </div>
               </div>
               <div class="col">
                 <div class="container">
-                  <span class="text-footer">© 2023 Mottarios. {% translate "Todos os direitos reservados" %}.</span>
+                  <span class="text-footer">© 2023 Mottarios. {% trans "Todos os direitos reservados" %}.</span>
                 </div>
               </div>
             </div>
@@ -188,7 +188,7 @@
         <div class="modal-dialog modal-dialog-centered" role="document">
           <div class="modal-content" style="border-radius: 20px; left: calc( 50% - ( 80% / 2) ); width: 80%;">
             {% comment %} <div class="modal-header">
-              <h5 class="modal-title" id="confirmLogoutModalLabel">{% translate "Confirmar Saída" %}</h5>
+              <h5 class="modal-title" id="confirmLogoutModalLabel">{% trans "Confirmar Saída" %}</h5>
               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
               </button>
@@ -204,15 +204,15 @@
                   <div class="text-center" >
                     <div class="div" style="margin-top: 2rem">
                       <h4>Deseja realmente sair?</h4>
-                      <button type="button" class="btn mt-4 btn-outline-secondary btn-lg rounded-pill" data-dismiss="modal" style="width:80%;">{% translate "Cancelar" %}</button><br>
-                      <a class="btn btn-danger btn-lg rounded-pill m-2" href="{% url 'logout' %}" style="width:80%">{% translate "Sair" %}</a>
+                      <button type="button" class="btn mt-4 btn-outline-secondary btn-lg rounded-pill" data-dismiss="modal" style="width:80%;">{% trans "Cancelar" %}</button><br>
+                      <a class="btn btn-danger btn-lg rounded-pill m-2" href="{% url 'logout' %}" style="width:80%">{% trans "Sair" %}</a>
                     </div>
                   </div>
               </div>
             </div>
             {% comment %} <div class="modal-footer">
-              <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">{% translate "Cancelar" %}</button>
-              <a class="btn btn-danger" href="{% url 'logout' %}">{% translate "Sair" %}</a>
+              <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">{% trans "Cancelar" %}</button>
+              <a class="btn btn-danger" href="{% url 'logout' %}">{% trans "Sair" %}</a>
             </div> {% endcomment %}
           </div>
         </div>
