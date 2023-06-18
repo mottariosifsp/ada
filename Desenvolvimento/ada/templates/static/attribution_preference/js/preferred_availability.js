@@ -371,69 +371,15 @@ $(document).ready(function() {
             var checkboxExists = false;
             var positionDelete = -1;
 
-            // Verificar se o checkbox já existe no array
-                for (var i = 0; i < checkboxes[0].length; i++) {
-                  if (checkboxes[0][i].id === checkbox.id) {
-                    checkboxExists = true;
-                    positionDelete = i;
-                    break;
-                  }
+            for (var j = 0; j < checkboxes.length; j++) {
+              for (var i = 0; i < checkboxes[j].length; i++) {
+                if (checkboxes[j][i].id === checkbox.id) {
+                  checkboxExists = true;
+                  positionDelete = i;
+                  break;
                 }
-
-                // Verificar se o checkbox já existe no array (segunda posição)
-                if (!checkboxExists) {
-                  for (var i = 0; i < checkboxes[1].length; i++) {
-                    if (checkboxes[1][i].id === checkbox.id) {
-                      checkboxExists = true;
-                      positionDelete = i;
-                      break;
-                    }
-                  }
-                }
-
-                // Verificar se o checkbox já existe no array (terceira posição)
-                if (!checkboxExists) {
-                  for (var i = 0; i < checkboxes[2].length; i++) {
-                    if (checkboxes[2][i].id === checkbox.id) {
-                      checkboxExists = true;
-                      positionDelete = i;
-                      break;
-                    }
-                  }
-                }
-
-                // Verificar se o checkbox já existe no array (quarta posição)
-                if (!checkboxExists) {
-                  for (var i = 0; i < checkboxes[3].length; i++) {
-                    if (checkboxes[3][i].id === checkbox.id) {
-                      checkboxExists = true;
-                      positionDelete = i;
-                      break;
-                    }
-                  }
-                }
-
-                // Verificar se o checkbox já existe no array (quinta posição)
-                if (!checkboxExists) {
-                  for (var i = 0; i < checkboxes[4].length; i++) {
-                    if (checkboxes[4][i].id === checkbox.id) {
-                      checkboxExists = true;
-                      positionDelete = i;
-                      break;
-                    }
-                  }
-                }
-
-                // Verificar se o checkbox já existe no array (sexta posição)
-                if (!checkboxExists) {
-                  for (var i = 0; i < checkboxes[5].length; i++) {
-                    if (checkboxes[5][i].id === checkbox.id) {
-                      checkboxExists = true;
-                      positionDelete = i;
-                      break;
-                    }
-                  }
-                }
+              }
+            }
 
             if(is_checked) {
               cel_left += 1;
