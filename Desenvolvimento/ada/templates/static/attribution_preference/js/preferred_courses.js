@@ -440,6 +440,13 @@ $(document).ready(function () {
 
                             console.log(frases)
 
+                            frases.forEach(function(frase) {
+                                if (btn_checked_global.includes(frase)) {
+                                  is_repetead = true;
+                                  frases_repetidas.push(formatarFrase(frase));
+                                }
+                              });
+
                             if(frases[0] == null) {
                                 is_missing = true;
                                 if (!missing_courses.includes(filtered_timetable[0].course_acronym)) {
@@ -448,12 +455,7 @@ $(document).ready(function () {
                                 missing_courses = [...new Set(missing_courses)];
                             }
                         
-                            frases.forEach(function(frase) {
-                              if (btn_checked_global.includes(frase)) {
-                                is_repetead = true;
-                                frases_repetidas.push(formatarFrase(frase));
-                              }
-                            });
+                            
                         });
                     }
 
@@ -499,11 +501,11 @@ $(document).ready(function () {
                     };
                     if (!is_repetead && !is_missing) {
                         timetable_global.push(global);
-                    } 
-                    
+                    }
 
                     $("#course-filter").val("");
                     $("#error-alert").hide();
+                    $("#warning-alert").hide();
                     if (frases_repetidas.length > 0) {
                         var lista_repetidas = frases_repetidas.map(function(frase) {
                           return "<li>" + frase + "</li>";
@@ -513,7 +515,12 @@ $(document).ready(function () {
                         $("#warning-list-message").html("<ul>" + lista_repetidas + "</ul>");
                         $("#warning-alert-message").text("Erro: as seguintes aulas já estão adicionadas:");
                         $("#warning-alert").show();
-                    } 
+                        window.scrollTo({
+                            top: $("#warning-alert").offset().top - $(".navbar").outerHeight() - 30,
+                            behavior: "smooth",
+                        });
+                    }
+                    
                     if (missing_courses.length > 0) {
                         var lista_courses = missing_courses.map(function(frase) {
                             return "<li>" + frase + "</li>";
@@ -523,8 +530,10 @@ $(document).ready(function () {
                           $("#warning-list-message").html("<ul>" + lista_courses + "</ul>");
                           $("#warning-alert-message").text("Erro: os seguintes cursos não estão de acordo com a disponibilidade:");
                           $("#warning-alert").show();
-                    } else {
-                        $("#warning-alert").hide();
+                          window.scrollTo({
+                            top: $("#warning-alert").offset().top - $(".navbar").outerHeight() - 30,
+                            behavior: "smooth",
+                        });
                     }
                 },
                 error: function (xhr, textStatus, errorThrown) {
@@ -541,13 +550,11 @@ $(document).ready(function () {
     $("#sendCourses").on("click", function () {
         let csrftoken = getCookie("csrftoken");
         var jsonData = JSON.stringify(timetable_global);
-        alert(jsonData);
-        console.log(timetable_global);
 
         if (timetable_global.length != 0) {
             $.ajax({
                 type: "post",
-                url: "/" + lang + "/professor/preferencia-atribuicao/salvar-fpa/",
+                url: "/" + lang + "/professor/preferencia-atribuicao/",
                 data: {
                     timetable: jsonData,
                 },
@@ -557,7 +564,7 @@ $(document).ready(function () {
                 success: function (response) {
                     $("#course-filter-form").val("");
                     $("#error-alert-form").hide();
-                    window.location.href = "/" + lang + "/professor/preferencia-atribuicao/salvar-fpa/";
+                    window.location.href = "/" + lang + "/professor/preferencia-atribuicao/";
                 },
                 error: function (xhr, textStatus, errorThrown) {
                     $("#error-message-form").text("Erro ao tentar suas preferências de cursos.");

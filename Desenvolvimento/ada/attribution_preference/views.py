@@ -14,7 +14,7 @@ from django.db import transaction
 from django.utils.decorators import method_decorator
 
 
-def attribution_preference(request):
+def disponibility_attribution_preference(request):
     user = request.user
     user_blocks = user.blocks.all()
 
@@ -62,7 +62,7 @@ def attribution_preference(request):
         'timetables': json_data
     }
 
-    return render(request, 'attribution_preference/attribution_preference.html', data)
+    return render(request, 'attribution_preference/disponibility_attribution_preference.html', data)
 
 
 def convert_string_to_datetime(hora_string):
@@ -305,9 +305,8 @@ def save_disponiility_preference(work_timeslots, work_regime, user):
         )
 
 
-def confirm_attribution_preference(request):
+def attribution_preference(request):
     work_courses = request.POST.getlist('timetable')
-
     timetable = []
 
     for item in work_courses:
@@ -318,10 +317,115 @@ def confirm_attribution_preference(request):
     if request.method == 'POST':
         save_courses_preference(timetable, request.user)
 
-        return render(request, 'attribution_preference/confirm_attribution_preference.html')
+        return render(request, 'attribution_preference/attribution_preference.html')
     elif request.method == 'GET':
+        user = request.user
+        
+        if user.job is None:
+            user_regime = " "
+        else:
+            user_regime = user.job.name_job
 
-        return render(request, 'attribution_preference/confirm_attribution_preference.html')
+        turno = {
+            'matutino': [],
+            'matutinoAulas': 0,
+            'vespertino': [],
+            'vespertinoAulas': 0,
+            'noturno': [],
+            'noturnoAulas': 0
+        }
+
+        for timeslot in Timeslot.objects.all():
+            if timeslot.hour_start >= datetime.time(7, 0, 0) and timeslot.hour_end <= datetime.time(12, 0, 0):
+                turno['matutino'].append(timeslot)
+            elif timeslot.hour_start >= datetime.time(13, 0, 0) and timeslot.hour_end <= datetime.time(18, 0, 0):
+                turno['vespertino'].append(timeslot)
+            elif timeslot.hour_start >= datetime.time(18, 0, 0) and timeslot.hour_end <= datetime.time(23, 0, 0):
+                turno['noturno'].append(timeslot)
+
+            turno['matutinoAulas'] = len(turno['matutino']) + 1
+            turno['vespertinoAulas'] = len(turno['vespertino']) + 1
+            turno['noturnoAulas'] = len(turno['noturno']) + 1
+
+        user_timeslot_traceback = []
+        user_preference_schedules = Preference_schedule.objects.filter(attribution_preference__user=request.user)
+        for schedule in user_preference_schedules:
+            begin = (schedule.timeslot.hour_start)
+
+            turno_sessao = None
+            turno_posicao = None
+
+            if begin >= datetime.time(7, 0, 0) and begin <= datetime.time(12, 0, 0):
+                turno_sessao = 'mat'
+                turno_posicao = next((i for i, slot in enumerate(turno['matutino']) if slot.hour_start == begin), None)
+            elif begin >= datetime.time(13, 0, 0) and begin < datetime.time(18, 0, 0):
+                turno_sessao = 'ves'
+                turno_posicao = next((i for i, slot in enumerate(turno['vespertino']) if slot.hour_start == begin),
+                                     None)
+            elif begin >= datetime.time(18, 0, 0) and begin <= datetime.time(23, 0, 0):
+                turno_sessao = 'not'
+                turno_posicao = next((i for i, slot in enumerate(turno['noturno']) if slot.hour_start == begin), None)
+
+            if turno_posicao is not None:
+                turno_posicao += 1
+
+            if schedule.day == 'monday':
+                day = 'mon'
+            elif schedule.day == 'tuesday':
+                day = 'tue'
+            elif schedule.day == 'wednesday':
+                day = 'wed'
+            elif schedule.day == 'thursday':
+                day = 'thu'
+            elif schedule.day == 'friday':
+                day = 'fri'
+            else:
+                day = 'sat'
+
+            string = {
+                'frase': f'{day}-{turno_sessao}-{turno_posicao}'
+            }
+            user_timeslot_traceback.append(string)
+
+        user_courses_traceback = []
+        user_courses = Course_preference.objects.filter(attribution_preference__user=request.user)
+        for preference in user_courses:
+
+            turno_periodo = ''
+            day_combo = preference.timetable.day_combo.first()
+            if day_combo:
+                first_timeslot = day_combo.timeslots.first()
+                if first_timeslot:
+                    if first_timeslot.hour_start >= datetime.time(7, 0, 0) and first_timeslot.hour_end <= datetime.time(12, 0, 0):
+                        turno_periodo = 'Matutino'
+                    elif first_timeslot.hour_start >= datetime.time(13, 0, 0) and first_timeslot.hour_end <= datetime.time(18, 0, 0):
+                        turno_periodo = 'Vespertino'
+                    elif first_timeslot.hour_start >= datetime.time(18, 0, 0) and first_timeslot.hour_end <= datetime.time(23, 0, 0):
+                        turno_periodo = 'Noturno'
+
+            timetable_object = {
+                'sigla': preference.timetable.course.acronym,
+                'name_course': preference.timetable.course.name_course,
+                'course_area': preference.timetable.course.area.name_area,  # Acessa o nome da área corretamente
+                'period': turno_periodo,
+                'classes': preference.timetable.day_combo.count(),
+            }
+            user_courses_traceback.append(timetable_object)
+
+        if user_regime and user_timeslot_traceback and user_courses:
+            fpa = True
+        else:
+            fpa = False
+
+        data = {
+            'fpa_done': fpa,
+            'turno': turno,
+            'work_regime': user_regime,
+            'work_disponibility': user_timeslot_traceback,
+            'work_courses': user_courses_traceback,
+        }
+
+        return render(request, 'attribution_preference/attribution_preference.html', data)
 
 @transaction.atomic
 def save_courses_preference(work_courses, user):
