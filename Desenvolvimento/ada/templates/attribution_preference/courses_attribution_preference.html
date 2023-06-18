@@ -9,13 +9,13 @@
 
 {% block body %}
 <section class="section dashboard">
-    <h1 class="title-page">Declaração de matérias</h1>
+    <h1 class="title-page">{% trans "Declaração de disciplinas" %}</h1>
     <nav>
       <ol class="breadcrumb">
         <li class="breadcrumb-item"><a href="{% url 'home' %}"><i class="bi bi-house-door"></i></a></li>
-        <li class="breadcrumb-item active">Preferência Atribuição</li>
-        <li class="breadcrumb-item active" aria-current="page">Criar FPA</li>
-        <li class="breadcrumb-item active" aria-current="page">Editar Cursos</li>
+        <li class="breadcrumb-item active">{% trans "Preferência Atribuição" %}</li>
+        <li class="breadcrumb-item active" aria-current="page">{% trans "Criar FPA" %}</li>
+        <li class="breadcrumb-item active" aria-current="page">{% trans "Editar Disciplinas" %}</li>
       </ol>
     </nav>
 
@@ -29,7 +29,7 @@
         <div class="col-xxl-4 col-md-12">
           <div class="card info-card sales-card">
             <div class="card-body">
-              <h4 class="card-title">Regime escolhido:</h4>
+              <h4 class="card-title">{% trans "Regime escolhido" %}:</h4>
               <hr class="my-0">
               <div class="text-center mt-4 mb-4 pr-2 pl-2 d-flex">
                 <i class="form-check-inline fas fa-check-circle custom-icon"></i>
@@ -41,10 +41,10 @@
         <div class="col-xxl-4 col-md-6" style="display: none;">
           <div class="card info-card sales-card">
             <div class="card-body">
-              <h4 class="card-title">Células de Horas restantes:</h4>
+              <h4 class="card-title">{% trans "Células de horas restantes" %}:</h4>
               <hr class="my-0">
               <div class="text-center">
-                <span class="min-cel" id="cel-hour">--</span><span class="cel">células</span> <span class="cel-type">minímas</span>
+                <span class="min-cel" id="cel-hour">--</span><span class="cel">{% trans "células" %}</span> <span class="cel-type">{% trans "minímas" %}</span>
               </div>
             </div>
           </div>
@@ -53,7 +53,7 @@
       <div class="card info-card sales-card mt-4">
         <div class="card-body">
           <div id="work-availability">
-            <h4>Cursos</h4>
+            <h4>{% trans Disciplinas %}</h4>
             <hr>
             <div id="warning-alert" class="alert alert-warning" style="display: none;">
               <span id="warning-alert-message"></span>
@@ -64,20 +64,20 @@
               <table class="table table-bordered table-sm text-center">
                 <thead>
                   <tr>
-                    <th class="col-1 text-center align-middle">Turno</th>
-                    <th class="col-2 text-center align-middle">Horários</th>
-                    <th class=" text-center">Segunda-Feira</th>
-                    <th class=" text-center">Terça-Feira</th>
-                    <th class=" text-center">Quarta-Feira</th>
-                    <th class=" text-center">Quinta-Feira</th>
-                    <th class=" text-center">Sexta-Feira</th>
-                    <th class=" text-center">Sabádo</th>
+                    <th class="col-1 text-center align-middle">{% trans "Turno" %}</th>
+                    <th class="col-2 text-center align-middle">{% trans "Horários" %}</th>
+                    <th class=" text-center">{% trans "Segunda-Feira" %}</th>
+                    <th class=" text-center">{% trans "Terça-Feira" %}</th>
+                    <th class=" text-center">{% trans "Quarta-Feira" %}</th>
+                    <th class=" text-center">{% trans "Quinta-Feira" %}</th>
+                    <th class=" text-center">{% trans "Sexta-Feira" %}</th>
+                    <th class=" text-center">{% trans "Sábado" %}</th>
                   </tr>
                 </thead>
                   <tbody class="block" id="timetable-courses" >
                     {% for i in "MVN" %}
                       {% if i == "M" %}
-                        <td class="text-center align-middle" rowspan='{{ turno.matutinoAulas }}'>Matutino</td>
+                        <td class="text-center align-middle" rowspan='{{ turno.matutinoAulas }}'>{% trans "Matutino" %}</td>
                         {% for horario in turno.matutino %}
                           <tr>
                             <td class="text-center align-middle">{{ horario.hour_start }} - {{ horario.hour_end }}</td>
@@ -162,7 +162,7 @@
                           </tr>
                         {% endfor %}
                       {% elif i == "V" %}
-                        <td class="text-center align-middle" rowspan="{{ turno.vespertinoAulas }}">Vespertino</td>
+                        <td class="text-center align-middle" rowspan="{{ turno.vespertinoAulas }}">{% trans "Vespertino" %}</td>
 
                         {% for horario in turno.vespertino %}
                           <tr>
@@ -249,7 +249,7 @@
 
                         {% endfor %}
                       {% else %}
-                        <td class="text-center align-middle" rowspan="{{ turno.noturnoAulas }}">Noturno</td>
+                        <td class="text-center align-middle" rowspan="{{ turno.noturnoAulas }}">{% trans "Noturno" %}</td>
 
                         {% for horario in turno.noturno %}
                           <tr>
@@ -342,7 +342,7 @@
                 <div class="modal-dialog" role="document">
                   <div class="modal-content">
                     <div class="modal-header">
-                      <h5 class="modal-title" id="addCourseModalLabel">Adicionar Curso</h5><span id="cel-position"></span>
+                      <h5 class="modal-title" id="addCourseModalLabel">{% trans "Adicionar Disciplina" %}</h5><span id="cel-position"></span>
                       <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                       </button>
@@ -356,7 +356,7 @@
                         <div class="row">
                           <div class="col-md-6">
                             <div class="form-group">
-                              <label for="block-filter" class="form-label">Filtro bloco</label>
+                              <label for="block-filter" class="form-label">{% trans "Filtrar bloco" %}</label>
                               <div class="input-group">
                                 <input list="block-options" id="block-filter" placeholder="--" class="form-control mb-4" onchange="block_filter()">
                                 <datalist id="block-options">
@@ -367,7 +367,7 @@
 
                           <div class="col-md-6">
                             <div class="form-group">
-                              <label for="area-filter" class="form-label">Filtro área</label>
+                              <label for="area-filter" class="form-label">{% trans "Filtro área" %}</label>
                               <div class="input-group">
                                 <input list="area-options" id="area-filter" placeholder="--" class="form-control mb-4" onchange="area_filter()">
                                 <datalist id="area-options">
@@ -377,7 +377,7 @@
                           </div>
                         </div>
                         <div class="form-group">
-                          <label for="class-filter" class="form-label">Aulas</label>
+                          <label for="class-filter" class="form-label">{% trans "Disciplinas" %}</label>
                           <div class="input-group">
                             <input list="course-options" id="course-filter" class="form-control w-100" placeholder="Selecione">
                             <datalist id="course-options">
@@ -388,8 +388,8 @@
                       </form>
                     </div>
                     <div class="modal-footer">
-                      <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
-                      <button type="button" class="btn btn-primary" data-dismiss="modal" name="addCourse" id="addCourseButton">Adicionar</button>
+                      <button type="button" class="btn btn-secondary" data-dismiss="modal">{% trans "Fechar" %}</button>
+                      <button type="button" class="btn btn-primary" data-dismiss="modal" name="addCourse" id="addCourseButton">{% trans "Adicionar" %}</button>
                     </div>
                   </div>
                 </div>
@@ -398,8 +398,8 @@
           </div>
         </div>
       </div>
-      <button type="button" class="btn btn-primary float-right mt-4 mb-5" name="sendCourses" id="sendCourses">Enviar Cursos</button>
-      <button type="button"  class="btn btn-danger float-right mt-4 mb-5 mr-2" name="cleanFPA" style="display: none"id="cleanFPA">Limpar Cursos</button>
+      <button type="button" class="btn btn-primary float-right mt-4 mb-5" name="sendCourses" id="sendCourses">{% trans "Enviar" %}</button>
+      <button type="button"  class="btn btn-danger float-right mt-4 mb-5 mr-2" name="cleanFPA" style="display: none"id="cleanFPA">{% trans "Limpar" %}</button>
     </form>
   </section>
 {% endblock %}

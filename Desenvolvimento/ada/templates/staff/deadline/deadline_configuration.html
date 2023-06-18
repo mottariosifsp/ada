@@ -4,32 +4,32 @@
 
 {% block head %}
     {{ block.super }}
-    <title>Criar Prazo</title>
+    <title>{% trans "Criar Prazo" %}</title>
 {% endblock %}
 
 {% block body %}
     {{ block.super }}
-    <h1>Painel de configuração da atribuição de aulas ( {{ blockk.name_block }} )</h1>
+    <h1>{% trans "Painel de configuração da atribuição de aulas" %} ( {{ blockk.name_block }} )</h1>
     <hr>
     <form method="post" action="{% url 'confirm_deadline_configuration' %}">
         {% csrf_token %}    
-        <h2>Prazo para o envio da FPA</h2>
-        <p>Início: <input type="datetime-local" name="startFPADeadline"></p>
-        <p>Fim: <input type="datetime-local" name="endFPADeadline"></p>
-        <h2>Prazo para a atribuição de aulas</h2>
-        <p>Início: <input type="datetime-local" name="startAssignmentDeadline"></p>
-    <p>Fim: <input type="datetime-local" name="endAssignmentDeadline"></p>
-        <h2>Prazo para o período de permuta</h2>
-        <p>Início: <input type="datetime-local" name="startExchangeDeadline"></p>
-        <p>Fim: <input type="datetime-local" name="endExchangeDeadline"></p>
-        <h2>Bloco</h2>
-        <p>Bloco: 
+        <h2>{% trans "Prazo para o envio do FPA" %}</h2>
+        <p>{% trans "Início" %}: <input type="datetime-local" name="startFPADeadline"></p>
+        <p>{% trans "Fim" %}: <input type="datetime-local" name="endFPADeadline"></p>
+        <h2>{% trans "Prazo para a atribuição de aulas" %}</h2>
+        <p>{% trans "Início" %}: <input type="datetime-local" name="startAssignmentDeadline"></p>
+        <p>{% trans "Fim" %}: <input type="datetime-local" name="endAssignmentDeadline"></p>
+        <h2>{% trans "Prazo para o período de permuta" %}</h2>
+        <p>{% trans "Início" %}: <input type="datetime-local" name="startExchangeDeadline"></p>
+        <p>{% trans "Fim" %}: <input type="datetime-local" name="endExchangeDeadline"></p>
+        <h2>{% trans "Bloco" %}</h2>
+        <p>{% trans "Bloco" %}: 
             <select name="block" id="block">
                 {% for blockk in user_blocks %}
                     <option value="{{ blockk.id }}">{{ blockk.name_block }}</option>
                 {% endfor %}
             </select> 
         </p>
-        <button type="submit" class="btn btn-primary">Salvar</button>
+        <button type="submit" class="btn btn-primary">{% trans "Salvar" %}</button>
     </form>
 {% endblock %}
