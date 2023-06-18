@@ -63,6 +63,10 @@ class User(AbstractBaseUser, PermissionsMixin):
         full_name = '%s %s' % (self.first_name, self.last_name)
         return full_name.strip()
 
+    def get_full_name_camel_case(self):
+        full_name = '%s %s' % (self.first_name, self.last_name)
+        return full_name.title().strip()
+
     def get_short_name(self):
         return self.first_name
 
@@ -110,7 +114,7 @@ class AcademicDegree(models.Model):
 
 class Job(models.Model):
     id_job = models.AutoField(primary_key=True)
-    name_job = models.CharField(_('name job'), max_length=160, unique=True)
+    name_job = models.CharField(_('name job'), max_length=160, unique=False)
 
     def __str__(self):
         return self.name_job
