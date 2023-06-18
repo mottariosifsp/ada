@@ -23,23 +23,46 @@ TEMPO_LIMITE_SEGUNDOS = 10
 def attribution(request):
     
     blockk = Blockk.objects.get(registration_block_id=request.GET.get('blockk'))
-   
+    consider_deadline = True
     
     if request.method == 'GET':
-        attribution_deadline = Deadline.objects.get(blockk=blockk, name='STARTASSIGNMENTDEADLINE')
-        now = datetime.today()
-        if now > attribution_deadline.deadline_end:
-            return render(request, 'attribution/attribution_error_page_after.html')
-        if now < attribution_deadline.deadline_start:            
-            day = attribution_deadline.deadline_start.strftime("%d/%m/%Y")
-            time = attribution_deadline.deadline_start.strftime("%H:%M:%S")
+        if consider_deadline:
+            if Deadline.objects.filter(blockk=blockk, name='STARTASSIGNMENTDEADLINE').exists():
+                attribution_deadline = Deadline.objects.get(blockk=blockk, name='STARTASSIGNMENTDEADLINE')        
+                now = datetime.today()
+                if now > attribution_deadline.deadline_end:
+                    return render(request, 'attribution/attribution_error_page_after.html')
+                elif now < attribution_deadline.deadline_start:            
+                    day = attribution_deadline.deadline_start.strftime("%d/%m/%Y")
+                    time = attribution_deadline.deadline_start.strftime("%H:%M:%S")
 
-            data = {
-                'day': day,
-                'time': time,
-            }
+                    data = {
+                        'day': day,
+                        'time': time,
+                    }
 
-            return render(request, 'attribution/attribution_error_page_before.html', data)
+                    return render(request, 'attribution/attribution_error_page_before.html', data)
+                else:
+                    print(get_time_left())
+                    # print(cancel_scheduled_task())
+                    queue = TeacherQueuePosition.objects.filter(blockk=blockk).order_by('position').all()
+                    value = str(float_to_time(int(get_time_left())))
+                    print(value)
+
+                    data = {
+                        'queue': queue,
+                        'blockk': blockk,
+                        'time_left': value,
+                    }
+                    return render(request, 'attribution/attribution.html', data)
+            else:
+
+                data = {
+                    'day': None,
+                    'time': None,
+                }
+
+                return render(request, 'attribution/attribution_error_page_before.html')
         else:
             print(get_time_left())
             # print(cancel_scheduled_task())
@@ -71,7 +94,6 @@ def timestup(professor, blockk):
     start_attribution(blockk)
 
 def start_attribution(blockk):
-    print('oier')
     queue = TeacherQueuePosition.objects.filter(blockk=blockk).order_by('position').all()
     next_professor_in_queue = queue.get(blockk=blockk, position=0)
 
@@ -105,7 +127,7 @@ def next_attribution(timetables_preference, next_professor_in_queue, blockk):
     if len(invalidated_timetables) == 0:
         professor_to_end_queue(professor)
         next_professor_in_queue.delete()
-        cancel_scheduled_task()
+        cancel_scheduled_task('task')
         return start_attribution(blockk)
     else:
         # send_email(professor)
@@ -191,4 +213,5 @@ def schedule_attributtion_deadline_staff(seconds, name, *args):
     schedule_deadline(attribution_deadline_start, seconds, name, *args)
 
 def manual_attribution(request):
+  
     return render(request, 'attribution/manual_attribution.html')
