@@ -4,6 +4,7 @@
 
 {% block head %}
     {{ block.super }}
+    <title>Detalhes Bloco</title>
     <link rel="stylesheet" href="{% static 'staff/blockk/css/block_detail.css' %}">
     <script src="{% static 'staff/blockk/js/block_detail.js' %}" data-lang={{LANGUAGE_CODE}}></script>
 {% endblock %}
@@ -24,11 +25,11 @@
                     <div class="card-body">
                         <h5 class="card-title">Detalhes</h5>
                             <ul class="list-group list-group-flush">
-                                <li class="list-group-item"><strong>Area:</strong> {{ area.name_area }}</li>
-                                <li class="list-group-item"><strong>Registration Area ID:</strong> {{ area.registration_area_id }}</li>
-                                <li class="list-group-item"><strong>Acrônimo:</strong> {{ area.acronym }}</li>
-                                <li class="list-group-item"><strong>Exchange Area:</strong> {{ area.exchange_area }}</li>
-                                <li class="list-group-item"><strong>Is High School:</strong> {{ area.is_high_school }}</li>
+                                <li class="list-group-item"><strong>Nome:</strong> {{ area.name_area }}</li>
+                                <li class="list-group-item"><strong>Registro:</strong> {{ area.registration_area_id }}</li>
+                                <li class="list-group-item"><strong>Sigla:</strong> {{ area.acronym }}</li>
+                                <li class="list-group-item"><strong>Permuta:</strong> {{ area.exchange_area }}</li>
+                                <li class="list-group-item"><strong>Ensino Médio:</strong> {{ area.is_high_school }}</li>
                             </ul>
                     </div>
                 </div>
@@ -43,10 +44,10 @@
         <table class="table table-bordered editable" id="blocks_list">
             <thead>
                 <tr>
-                    <th scope="col">Registration Course Id</th>
-                    <th scope="col">Name</th>
-                    <th scope="col">Acronym</th>
-                    <th scope="col">Action</th>
+                    <th scope="col">Registro</th>
+                    <th scope="col">Nome</th>
+                    <th scope="col">Sigla</th>
+                    <th scope="col">Ação</th>
                 </tr>
             </thead>
             <tbody>
@@ -81,7 +82,7 @@
                     <form>
                         <input type="hidden" class="form-control" id="id">
                         <div class="form-group">
-                            <label for="registration_course_id">ID</label>
+                            <label for="registration_course_id">Registro</label>
                             <input type="text" class="form-control" id="registration_course_id_create" required>
                         </div>
                         <div class="form-group">
@@ -89,7 +90,7 @@
                             <input type="text" class="form-control" id="name_course_create" required>
                         </div>
                         <div class="form-group">
-                            <label for="acronym">Acrônimo</label>
+                            <label for="acronym">Sigla</label>
                             <input type="text" class="form-control" id="acronym_create" required>
                         </div>
                     </form>
@@ -116,7 +117,7 @@
                     <form>
                         <input type="hidden" class="form-control" id="id">
                         <div class="form-group">
-                            <label for="registration_course_id">ID</label>
+                            <label for="registration_course_id">Registro</label>
                             <input type="text" class="form-control" id="registration_course_id_update">
                         </div>
                         <div class="form-group">
@@ -124,7 +125,7 @@
                             <input type="text" class="form-control" id="name_course_update">
                         </div>
                         <div class="form-group">
-                            <label for="acronym">Acrônimo</label>
+                            <label for="acronym">Sigla</label>
                             <input type="text" class="form-control" id="acronym_update">
                         </div>
                     </form>
@@ -148,7 +149,7 @@
               </button>
             </div>
             <div class="modal-body">
-                <p>{% translate "Tem certeza que quer deletar a disciplina" %} <span id="registrationCourseId"></span>?</p>
+                <p>{% translate "Tem certeza de que quer deletar a disciplina" %} <span id="registrationCourseId"></span>?</p>
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">{% translate "Cancelar" %}</button>

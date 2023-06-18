@@ -1,12 +1,17 @@
-{% extends "user/base.html" %} {% load i18n %} {% load static %} {% block head %}
-<title>{% translate "Configuração de atribuição" %}</title>
-<link rel="stylesheet" href="{% static 'staff/attribution/css/attribution_configuration_index.css' %}">
-<script src="{% static 'user/js/home.js' %}" data-lang={{ LANGUAGE_CODE }}></script>
+{% extends "user/base.html" %} 
+{% load i18n %} 
+{% load static %} 
+
+{% block head %}
+    <title>{% translate "Configuração de atribuição" %}</title>
+    <link rel="stylesheet" href="{% static 'staff/attribution/css/attribution_configuration_index.css' %}">
+    <script src="{% static 'user/js/home.js' %}" data-lang={{ LANGUAGE_CODE }}></script>
 {% endblock %} 
+
 {% block body %}
 <div class="d-flex align-items-center justify-content-center" style="height: 75vh;">
     <div class="text-center">
-        <h1>Olá, bem-vindo ao sistema ADA</h1>
+        <h1>Olá, bem-vindo(a) ao sistema ADA.</h1>
         <h3>Você quer acessar o sistema como: </h3>
         <div class="row mt-5">
             {% if request.user.is_professor or request.user.is_superuser%}
@@ -16,12 +21,12 @@
             {% endif %}
             {% if request.user.is_staff or request.user.is_superuser%}
             <div class="col">
-                <button type="button" id="to-staff" url="/staff/" class="btn btn-outline-warning btn-lg rounded-pill btn-block">Staff</button>
+                <button type="button" id="to-staff" url="/staff/" class="btn btn-outline-warning btn-lg rounded-pill btn-block">Administrador</button>
             </div>
             {% endif %}
             {% if request.user.is_superuser %}
             <div class="col">
-                <button type="button" id="to-admin" url="/admin/" class="btn btn-outline-danger btn-lg rounded-pill btn-block">Admin</button>
+                <button type="button" id="to-admin" url="/admin/" class="btn btn-outline-danger btn-lg rounded-pill btn-block">Super Administrador</button>
             </div>
             {% endif %}
         </div>
