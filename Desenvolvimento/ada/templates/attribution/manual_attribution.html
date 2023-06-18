@@ -18,7 +18,7 @@
     label.checkbox {
       font-weight: 700;
       color: white;
-      background-color: #2f7363;
+      background-color: #507c75;
     }
   </style>
 {% endblock %}
@@ -398,5 +398,5 @@
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
   <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-  <script src="{% static 'attribution/js/manual_attribution.js' %}" data-lang='{{ LANGUAGE_CODE }}' blocks='{{user_blocks}}' areas='{{user_areas}}' disponibility_hour='{{ user_hour }}' courses='{{ courses }}' timetables='{{ timetables }}' disponibility='{{ user_disponibility }}'></script>
+  <script src="{% static 'attribution/js/manual_attribution.js' %}" data-lang='{{ LANGUAGE_CODE }}' blocks='{{user_blocks}}' areas='{{user_areas}}' disponibility_hour='{{ user_hour }}' courses='{{ courses }}' timetables='{{ timetables }}' disponibility='{{ user_disponibility }}' timtable-user='{{ timetable_user }}' timetable-current-user='{{ timetable_current_user }}'></script>
 {% endblock %}

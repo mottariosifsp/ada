@@ -228,6 +228,20 @@ def manual_attribution(request):
         blocks = user.blocks.all().distinct()
         areas = Area.objects.filter(blocks__in=blocks).distinct()
 
+        timetables_user = Timetable_user.objects.filter(user=None).all()
+
+        timetable = []
+
+        for timetable_user in timetables_user:
+            timetable.append(timetable_user.timetable)
+
+        timetables_current_user = Timetable_user.objects.filter(user=user).all()
+        
+        timetable_current = []
+
+        for timetable_user in timetables_current_user:
+            timetable_current.append(timetable_user.timetable)
+
         user_area = []
         user_blocks = []
 
@@ -363,6 +377,8 @@ def manual_attribution(request):
         print(user_area)
 
         data = {
+            'timetable_user': timetable,
+            'timetable_current_user': timetable_current,
             'work_regime': user_regime,
             'turno': turno,
             'user_disponibility': user_timeslot_traceback,
