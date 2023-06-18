@@ -237,12 +237,12 @@ function timetables_options() {
 
     timetables = filteredTimetables;
 
-    // Criar a lista de options para datalist com base nos cursos filtrados
+    // Criar a lista de options para datalist com base nos disciplinas filtrados
     var timetableOptionsDatalist = document.getElementById("course-options");
     timetableOptionsDatalist.innerHTML = "";
 
     if (filteredTimetables.length == 0) {
-        $("#course-filter").val("Nenhuma aula disponível neste horário.");
+        $("#course-filter").val("Nenhuma disciplina disponível neste horário.");
         $("#course-filter").prop("disabled", true);
     }
 
@@ -251,7 +251,7 @@ function timetables_options() {
         var timetable = filteredTimetables[i];
         var option = document.createElement("option");
         option.value = timetable.id;
-        option.textContent = "Curso: " + timetable.course_name + " | " + timetable.classs;
+        option.textContent = "Disciplina: " + timetable.course_name + " | " + timetable.classs;
         timetableOptionsDatalist.appendChild(option);
     }
 }
@@ -296,12 +296,12 @@ function block_filter() {
             var timetable = filtered_timetables[i];
             var option = document.createElement("option");
             option.value = timetable.id;
-            option.textContent = "Curso: " + timetable.course_name + " | " + timetable.classs;
+            option.textContent = "Disciplina: " + timetable.course_name + " | " + timetable.classs;
             courseOptionsDatalist.appendChild(option);
         }
 
         if (filtered_timetables.length == 0) {
-            $("#course-filter").val("Nenhuma aula disponível neste horário.");
+            $("#course-filter").val("Nenhuma disciplina disponível neste horário.");
             $("#course-filter").prop("disabled", true);
         }
     }
@@ -331,12 +331,12 @@ function area_filter() {
                 var timetable = filtered_timetables[i];
                 var option = document.createElement("option");
                 option.value = timetable.id;
-                option.textContent = "Curso: " + timetable.course_name + " | " + timetable.classs;
+                option.textContent = "Disciplina: " + timetable.course_name + " | " + timetable.classs;
                 courseOptionsDatalist.appendChild(option);
             }
 
             if (filtered_timetables.length == 0) {
-                $("#course-filter").val("Nenhuma aula disponível neste horário.");
+                $("#course-filter").val("Nenhuma disciplina disponível neste horário.");
                 $("#course-filter").prop("disabled", true);
             }
         } else {
@@ -354,12 +354,12 @@ function area_filter() {
                 var timetable = filtered_timetables[i];
                 var option = document.createElement("option");
                 option.value = timetable.id;
-                option.textContent = "Curso: " + timetable.course_name + " | " + timetable.classs;
+                option.textContent = "Disciplina: " + timetable.course_name + " | " + timetable.classs;
                 courseOptionsDatalist.appendChild(option);
             }
 
             if (filtered_timetables.length == 0) {
-                $("#course-filter").val("Nenhuma aula disponível neste horário.");
+                $("#course-filter").val("Nenhuma disciplina disponível neste horário.");
                 $("#course-filter").prop("disabled", true);
             }
         }
@@ -420,7 +420,7 @@ $(document).ready(function () {
                         var diaSemana = getDiaCompleto(partes[0]);
                         var periodo = partes[1] === "mat" ? "Matutino" : partes[1] === "ves" ? "Vespertino" : "Noturno";
                     
-                        return numeroAula + "° aula " + diaSemana + ", " + periodo;
+                        return numeroAula + "° disciplina " + diaSemana + ", " + periodo;
                     }
 
                     for (var i = 0; i < day_combo_data.length; i++) {
@@ -481,17 +481,17 @@ $(document).ready(function () {
                         }).join("");
                       
                         $("#warning-list-message").html("<ul>" + lista_repetidas + "</ul>");
-                        $("#warning-alert-message").text("Erro: As seguintes aulas já estão adicionadas:");
+                        $("#warning-alert-message").text("Erro: As seguintes disciplinas já estão adicionadas:");
                         $("#warning-alert").show();
                     }
                 },
                 error: function (xhr, textStatus, errorThrown) {
-                    $("#error-message").text("Erro ao tentar adicionar uma aula.");
+                    $("#error-message").text("Erro ao tentar adicionar uma disciplina.");
                     $("#error-alert").show();
                 },
             });
         } else {
-            $("#error-message").text("Selecione uma aula.");
+            $("#error-message").text("Selecione uma disciplina.");
             $("#error-alert").show();
         }
     });
@@ -518,7 +518,7 @@ $(document).ready(function () {
                     window.location.href = "/" + lang + "/professor/preferencia-atribuicao/salvar-fpa/";
                 },
                 error: function (xhr, textStatus, errorThrown) {
-                    $("#error-message-form").text("Erro ao tentar suas preferências de cursos.");
+                    $("#error-message-form").text("Erro ao tentar suas preferências de disciplinas.");
                     $("#error-alert-form").show();
                     window.scrollTo({
                         top: $("#error-alert-form").offset().top - $(".navbar").outerHeight() - 30,
@@ -527,7 +527,7 @@ $(document).ready(function () {
                 },
             });
         } else {
-            $("#error-message-form").text("Selecione suas aulas.");
+            $("#error-message-form").text("Selecione suas disciplinas.");
             $("#error-alert-form").show();
             window.scrollTo({
                 top: $("#error-alert-form").offset().top - $(".navbar").outerHeight() - 30,

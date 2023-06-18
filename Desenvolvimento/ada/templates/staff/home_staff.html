@@ -2,15 +2,15 @@
 {% load static %}
 {% load i18n %}
 {% block head %}
-  <title>{% trans "Home" %}</title>
+  <title>{% trans "Home Administrador" %}</title>
   <script src="{% static 'staff/home/js/home_staff.js' %}"></script>
   <link rel="stylesheet" href="{% static 'staff/home/css/home_staff.css' %}"></link>
 {% endblock %}
 
 {% block body %}
 
-<h2>Painel de controle</h2>
-<h6>{% trans Olá %}, {{ request.user.first_name }}"! {% trans Bem-vindo(a) ao painel de controle do sistema ADA %}. </h6>
+<h2>{% trans "Painel de controle" %}</h2>
+<h6>{% trans "Olá" %}, {{ request.user.first_name }}"! {% trans "Bem-vindo(a) ao painel de controle do sistema ADA" %}. </h6>
 <hr>
 <div class="d-flex">
   <div class="card m-2 redirect-button" onclick="redirect('{% url  "attribution_configuration_index" %}')">

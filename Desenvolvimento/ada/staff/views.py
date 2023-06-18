@@ -300,7 +300,7 @@ def course_create(request):
         course = Course.objects.create(registration_course_id=registration_course_id, name_course=name_course, acronym=acronym, area=area, blockk=blockk)
         course.save()
 
-        return JsonResponse({'message': 'Matéria criada com sucesso.'})
+        return JsonResponse({'message': 'Disciplina criada com sucesso.'})
 
 @login_required
 @user_passes_test(is_staff)
@@ -314,7 +314,7 @@ def course_update_save(request):
         course = Course.objects.get(id=course_id)
         course.update_course(registration_course_id=registration_course_id, name_course=name_course, acronym=acronym)
 
-        return JsonResponse({'message': 'Matéria atualizada com sucesso.'})
+        return JsonResponse({'message': 'Disciplina atualizada com sucesso.'})
 
 @login_required
 @user_passes_test(is_staff)
@@ -324,9 +324,9 @@ def course_delete(request):
         try:
             course = Course.objects.get(id=course_id)
             course.delete()
-            return JsonResponse({'message': 'Curso deletado com sucesso.'})
+            return JsonResponse({'message': 'Disciplina deletado com sucesso.'})
         except Course.DoesNotExist:
-            return JsonResponse({'message': 'O curso não existe.'}, status=404)
+            return JsonResponse({'message': 'O disciplina não existe.'}, status=404)
 
 # timetable views
 

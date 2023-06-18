@@ -95,7 +95,7 @@ $(document).ready(function() {
         $('#editCourseModal #acronym_update').val(courseData.acronym);
     }
 
-    // Deletar matéria
+    // Deletar disciplina
 
     $('.deleteCourseBtn').click(function(event) {
         event.preventDefault();

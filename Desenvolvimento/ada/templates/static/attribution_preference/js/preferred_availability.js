@@ -181,7 +181,7 @@ $(document).ready(function() {
           window.location.href = '/' + lang + '/professor/preferencia-atribuicao/criar-fpa/editar-cursos/'
         },
         error: function(xhr, status, error) {
-          $('#error-message-form').text('Ocorreu um erro no envio de FPA.');
+          $('#error-message-form').text('Ocorreu um erro no envio do FPA.');
           $('#error-alert-form').show();
           window.scrollTo({
             top: $('#error-alert-form').offset().top - $('.navbar').outerHeight() - 30,
