@@ -611,6 +611,20 @@ def get_selected_campo():
     else:
         return ""
 
+# método para deixar separado no html
+def get_string_campo(campo):
+    campos = {
+        'birth': 'birth',
+        'date_career': 'date career',
+        'date_campus': 'date campus',
+        'date_professor': 'date professor',
+        'date_area': 'date area',
+        'date_institute': 'date institute',
+        'academic_degrees': 'academic degrees'
+    }
+
+    return campos.get(campo, "campo")
+
 def add_teacher_to_queue(teacher, position_input, blockk):
     position = position_input
     TeacherQueuePosition.objects.create(teacher=teacher, position=position, blockk=blockk)
@@ -622,6 +636,7 @@ def add_teacher_to_queue(teacher, position_input, blockk):
 @user_passes_test(is_staff)
 def queue_show(request):
     campo = get_selected_campo()
+    print("campo", campo)
 
     teacher_positions = TeacherQueuePosition.objects.order_by('position')
 
@@ -638,7 +653,7 @@ def queue_show(request):
     data = {
         'resultados': resultados,
         'total_scores': total_scores,
-        'campo': campo,
+        'campo': get_string_campo(campo),
     }
 
     return render(request, 'staff/queue/queue_show.html', {'data': data})
@@ -667,7 +682,7 @@ def queue_create(request):
 
         data = {
             'resultados': TeacherQueuePosition.objects.select_related('teacher').order_by('position').all(),
-            'campo': campo,
+            'campo': get_string_campo(campo),
         }
 
         return render(request, 'staff/queue/queue_create.html', {'data': data})
@@ -717,7 +732,7 @@ def queue_create(request):
                     usuarios_somados.append(user)
             data = {
                 'resultados': final_list,
-                'campo': campo,
+                'campo': get_string_campo(campo),
                 'total_score': usuarios_somados,
                 'blockk': blockk
             }
@@ -737,7 +752,7 @@ def queue_create(request):
 
                 data = {
                     'resultados': usuarios_ordenados,
-                    'campo': campo,
+                    'campo': get_string_campo(campo),
                     'total_score': usuarios_somados,
                     'blockk': blockk
                 }
@@ -753,7 +768,7 @@ def queue_create(request):
                     total_score=Sum('history__academic_degrees__punctuation'))
                 data = {
                     'resultados': usuarios_ordenados,
-                    'campo': campo,
+                    'campo': get_string_campo(campo),
                     'total_score': usuarios_somados,
                     'blockk': blockk
                 }
@@ -768,7 +783,7 @@ def queue_create(request):
 
         data = {
             'resultados': usuarios_ordenados,
-            'campo': campo,
+            'campo': get_string_campo(campo),
             'total_score': usuarios_somados,
             'blockk': blockk
         }
