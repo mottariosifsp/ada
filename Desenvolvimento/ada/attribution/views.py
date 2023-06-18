@@ -1,7 +1,9 @@
-from area.models import Blockk
+from area.models import Area, Blockk
 from attribution.task import attribution_deadline_start, cancel_scheduled_task, get_time_left, schedule_task, schedule_deadline
+from attribution_preference.views import convert_string_to_datetime, save_disponiility_preference
+from course.models import Course
 from staff.models import Criteria, Deadline
-from timetable.models import Timetable, Timetable_user
+from timetable.models import Timeslot, Timetable, Timetable_user
 from user.models import User
 from attribution.models import TeacherQueuePosition
 from django.shortcuts import render, redirect
@@ -14,7 +16,7 @@ from django.core.mail import send_mail, EmailMessage
 import xml.etree.ElementTree as ET
 import os
 
-from attribution_preference.models import Course_preference, Attribution_preference
+from attribution_preference.models import Course_preference, Attribution_preference, Preference_schedule
 
 from django.utils.decorators import method_decorator
 
@@ -212,6 +214,162 @@ def schedule_attributtion_deadline_staff(seconds, name, *args):
     cancel_scheduled_task('task')
     schedule_deadline(attribution_deadline_start, seconds, name, *args)
 
+import datetime
+
 def manual_attribution(request):
-  
-    return render(request, 'attribution/manual_attribution.html')
+    if request.method == 'POST':
+        return render(request, 'attribution_preference/courses_attribution_preference.html')
+    else:
+        user = request.user
+        user_regime = user.job
+        timetable = Timetable.objects.all()
+        courses = Course.objects.all()
+
+        blocks = user.blocks.all().distinct()
+        areas = Area.objects.filter(blocks__in=blocks).distinct()
+
+        user_area = []
+        user_blocks = []
+
+        for area in areas:
+            area_obj = {
+                'id': area.registration_area_id,
+                'name_area': area.name_area,
+                'acronym': area.acronym,
+                'blocks': [block.registration_block_id for block in area.blocks.all()]
+            }
+            user_area.append(area_obj)
+
+        for block in blocks:
+            block_obj = {
+                'id': block.registration_block_id,
+                'name_block': block.name_block,
+                'acronym': block.acronym
+            }
+            user_blocks.append(block_obj)
+
+        timetable_array = []
+
+        for timetable_object in timetable:
+            day_combo_objects = timetable_object.day_combo.all()
+            day_combo_data = []
+
+            for day_combo in day_combo_objects:
+                day = day_combo.day
+                timeslots = day_combo.timeslots.all()
+                timeslot_data = []
+
+                for timeslot in timeslots:
+                    timeslot_data.append({
+                        'hour_start': timeslot.hour_start.strftime('%H:%M:%S'),
+                        'hour_end': timeslot.hour_end.strftime('%H:%M:%S'),
+                    })
+
+                day_combo_data.append({
+                    'day': day,
+                    'timeslots': timeslot_data,
+                })
+
+            timetable_item = {
+                'id': timetable_object.id,
+                'day_combo': day_combo_data,
+                'course_acronym': timetable_object.course.acronym,
+                'course_name': timetable_object.course.name_course,
+                'course_id': timetable_object.course.registration_course_id,
+                'classs': timetable_object.classs.registration_class_id,
+            }
+
+            timetable_array.append(timetable_item)
+
+        courses_array = []
+
+        for course_object in courses:
+            course_item = {
+                'id': course_object.registration_course_id,
+                'name': course_object.name_course,
+                'acronym': course_object.acronym,
+                'area': course_object.area.registration_area_id,
+                'block': course_object.blockk.registration_block_id
+            }
+            courses_array.append(course_item)
+
+        turno = {
+            'matutino': [],
+            'matutinoAulas': 0,
+            'vespertino': [],
+            'vespertinoAulas': 0,
+            'noturno': [],
+            'noturnoAulas': 0
+        }
+
+        for timeslot in Timeslot.objects.all():
+            if timeslot.hour_start >= datetime.time(7, 0, 0) and timeslot.hour_end <= datetime.time(12, 0, 0):
+                turno['matutino'].append(timeslot)
+            elif timeslot.hour_start >= datetime.time(13, 0, 0) and timeslot.hour_end <= datetime.time(18, 0, 0):
+                turno['vespertino'].append(timeslot)
+            elif timeslot.hour_start >= datetime.time(18, 0, 0) and timeslot.hour_end <= datetime.time(23, 0, 0):
+                turno['noturno'].append(timeslot)
+
+            turno['matutinoAulas'] = len(turno['matutino']) + 1
+            turno['vespertinoAulas'] = len(turno['vespertino']) + 1
+            turno['noturnoAulas'] = len(turno['noturno']) + 1
+
+        user_timeslot_hour = []
+        user_timeslot_traceback = []
+        user_preference_schedules = Preference_schedule.objects.filter(attribution_preference__user=request.user)
+        for schedule in user_preference_schedules:
+            begin = (schedule.timeslot.hour_start)
+
+            turno_sessao = None
+            turno_posicao = None
+
+            if begin >= datetime.time(7, 0, 0) and begin <= datetime.time(12, 0, 0):
+                turno_sessao = 'mat'
+                turno_posicao = next((i for i, slot in enumerate(turno['matutino']) if slot.hour_start == begin), None)
+            elif begin >= datetime.time(13, 0, 0) and begin < datetime.time(18, 0, 0):
+                turno_sessao = 'ves'
+                turno_posicao = next((i for i, slot in enumerate(turno['vespertino']) if slot.hour_start == begin),
+                                     None)
+            elif begin >= datetime.time(18, 0, 0) and begin <= datetime.time(23, 0, 0):
+                turno_sessao = 'not'
+                turno_posicao = next((i for i, slot in enumerate(turno['noturno']) if slot.hour_start == begin), None)
+
+            if turno_posicao is not None:
+                turno_posicao += 1
+
+            if schedule.day == 'monday':
+                day = 'mon'
+            elif schedule.day == 'tuesday':
+                day = 'tue'
+            elif schedule.day == 'wednesday':
+                day = 'wed'
+            elif schedule.day == 'thursday':
+                day = 'thu'
+            elif schedule.day == 'friday':
+                day = 'fri'
+            else:
+                day = 'sat'
+
+            string = {
+                'frase': f'{day}-{turno_sessao}-{turno_posicao}',
+                'posicao': turno_posicao,
+                'sessao': turno_sessao,
+                'dia': day,
+                'hour': begin.strftime('%H:%M:%S'),
+            }
+            user_timeslot_traceback.append(string)
+
+        print(user_blocks)
+        print(user_area)
+
+        data = {
+            'work_regime': user_regime,
+            'turno': turno,
+            'user_disponibility': user_timeslot_traceback,
+            'user_blocks': user_blocks,
+            'user_areas': user_area,
+            'timetables': timetable_array,
+            'courses': courses_array
+        }
+
+        return render(request, 'attribution/manual_attribution.html', data)
