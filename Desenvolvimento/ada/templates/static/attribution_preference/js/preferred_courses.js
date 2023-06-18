@@ -177,6 +177,8 @@ $("#timetable-courses input").on("click", function () {
     }
 });
 
+timatables_options = []
+
 function area_options() {
     var areaOptionsDatalist = document.getElementById("area-options");
     areaOptionsDatalist.innerHTML = "";
@@ -231,7 +233,7 @@ function timetables_options() {
         return false;
     });
 
-    timetables = filteredTimetables;
+    timatables_options = filteredTimetables;
 
     // Criar a lista de options para datalist com base nos cursos filtrados
     var timetableOptionsDatalist = document.getElementById("course-options");
@@ -278,7 +280,7 @@ function block_filter() {
             areaOptionsDatalist.appendChild(option);
         }
 
-        var filtered_timetables = timetables_array_obj.filter(function (timetable) {
+        var filtered_timetables = timatables_options.filter(function (timetable) {
             return courses_array_obj.some(function (course) {
                 return course.block === block_value && course.id === timetable.course_id;
             });
@@ -313,7 +315,7 @@ function area_filter() {
     if (area_value == "") {
     } else {
         if (block_value == "") {
-            var filtered_timetables = timetables_array_obj.filter(function (timetable) {
+            var filtered_timetables = timatables_options.filter(function (timetable) {
                 return courses_array_obj.some(function (course) {
                     return course.area === area_value && course.id === timetable.course_id;
                 });
@@ -336,7 +338,7 @@ function area_filter() {
                 $("#course-filter").prop("disabled", true);
             }
         } else {
-            var filtered_timetables = timetables_array_obj.filter(function (timetable) {
+            var filtered_timetables = timatables_options.filter(function (timetable) {
                 return courses_array_obj.some(function (course) {
                     return course.block === block_value && course.area === area_value && course.id === timetable.course_id;
                 });
