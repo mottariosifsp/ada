@@ -246,9 +246,15 @@ def courses_attribution_preference(request):
                 'hour': begin.strftime('%H:%M:%S'),
             }
             user_timeslot_traceback.append(string)
+        
+        if user_regime.name_job == "rde":
+            user_regime_choosed = user_regime
+            user_regime_choosed.name_job = '40'
+        else:
+            user_regime_choosed = user_regime
 
         data = {
-            'work_regime': user_regime,
+            'work_regime': user_regime_choosed,
             'turno': turno,
             'user_disponibility': user_timeslot_traceback,
             'user_blocks': user_blocks,
