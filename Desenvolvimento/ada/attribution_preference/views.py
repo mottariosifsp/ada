@@ -55,7 +55,6 @@ def attribution_preference(request):
         converted_timetables.append(converted_timetable)
 
     json_data = json.dumps(converted_timetables)
-    print(json_data)
 
     data = {
         'turno': turno,
@@ -247,11 +246,6 @@ def courses_attribution_preference(request):
             }
             user_timeslot_traceback.append(string)
 
-        print(courses_array)
-        print(user_blocks)
-        print(user_area)
-        print(timetable_array)
-
         data = {
             'work_regime': user_regime,
             'turno': turno,
@@ -313,7 +307,6 @@ def confirm_attribution_preference(request):
         item_dict = json.loads(item)
 
         timetable.append(item_dict)
-    print(timetable)
 
     if request.method == 'POST':
         save_courses_preference(timetable, request.user)

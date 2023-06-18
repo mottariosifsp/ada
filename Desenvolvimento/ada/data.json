@@ -991,6 +991,15 @@
         "model": "timetable.timeslot",
         "pk": 14,
         "fields": {
+            "position": 14,
+            "hour_start": "18:50:00",
+            "hour_end": "19:35:00"
+        }
+    },
+    {
+        "model": "timetable.timeslot",
+        "pk": 15,
+        "fields": {
             "position": 15,
             "hour_start": "19:35:00",
             "hour_end": "20:20:00"
@@ -998,7 +1007,7 @@
     },
     {
         "model": "timetable.timeslot",
-        "pk": 15,
+        "pk": 16,
         "fields": {
             "position": 16,
             "hour_start": "20:20:00",
@@ -1007,7 +1016,7 @@
     },
     {
         "model": "timetable.timeslot",
-        "pk": 16,
+        "pk": 17,
         "fields": {
             "position": 17,
             "hour_start": "21:20:00",
@@ -1016,20 +1025,11 @@
     },
     {
         "model": "timetable.timeslot",
-        "pk": 17,
+        "pk": 18,
         "fields": {
             "position": 18,
             "hour_start": "22:05:00",
             "hour_end": "22:50:00"
-        }
-    },
-    {
-        "model": "timetable.timeslot",
-        "pk": 18,
-        "fields": {
-            "position": 14,
-            "hour_start": "18:50:00",
-            "hour_end": "19:35:00"
         }
     },
     {
