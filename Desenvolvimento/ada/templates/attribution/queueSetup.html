@@ -13,7 +13,7 @@
 {% block body %}
     <h1>{% trans "Fila de professores" %}</h1>
     {% blocktrans with name_block_text=data.blockk.name_block %}
-        <h1 id="blockk-id" value="{{ data.blockk.registration_block_id }}" >{{ data.blockk.name_block }}</h1>
+        <h1 id="blockk-id" value="{{ data.blockk.registration_block_id }}" >{{ name_block_text }}</h1>
     {% endblocktrans %}
 
     {% if data.campo != "" %}
