@@ -136,13 +136,13 @@ def show_current_deadline(request):
 @transaction.atomic
 def save_deadline(data):
     Deadline.objects.create(
-        name="startFPADeadline",
+        name="STARTFPADEADLINE",
         deadline_start=data['startFPADeadline'],
         deadline_end=data['endFPADeadline'],
         blockk=data['user_block'],
     )
     Deadline.objects.create(
-        name="startAssignmentDeadline",
+        name="STARTASSIGNMENTDEADLINE",
         deadline_start=data['startAssignmentDeadline'],
         deadline_end=data['endAssignmentDeadline'],
         blockk=data['user_block'],
@@ -425,12 +425,33 @@ def show_timetable(request):
     if request.method == 'GET':
         selected_class = Classs.objects.get(registration_class_id__exact=(request.GET.get('class')))
         timetables = Timetable.objects.filter(classs=selected_class).all()
-        day_combos = Day_combo.objects.all() # .filter(classs=selected_class)
+        
+        timeslots = Timeslot.objects.all().order_by('hour_start')
+
+        timetable_complete = []
+
+        for day in range(Timeslot.objects.all().count()):
+            list_day = []
+            for timeslot in range(7):
+                list_day.append('')
+            timetable_complete.append(list_day)
+
+        for timetable in timetables:
+            for day_combo in timetable.day_combo.all():
+                for timeslot in day_combo.timeslots.all():
+                    timetable_complete[timeslot.position-1][enum_to_day_number(day_combo.day)+1] = timetable.course.name_course
+
+        for i, row in enumerate(timetable_complete):
+            for j, col in enumerate(row):
+                if j == 0:
+                    col = str(timeslots[i].hour_start) + " - " + str(timeslots[i].hour_end)
+                    timetable_complete[i][j] = col
+
+        print(timetable_complete)
 
         data = {
-            'timetables': timetables,
             'timeslots': Timeslot.objects.all().order_by('hour_start'),
-            'day_combos': day_combos,
+            'timetables': timetable_complete,
             'classs': selected_class,
         }
 
@@ -456,6 +477,17 @@ def show_timetable(request):
 #             print(course)
 #             timetable.course = course
 #             timetable.save()
+
+def enum_to_day_number(day):
+    day_number = (
+        'monday',
+        'tuesday',
+        'wednesday',
+        'thursday',
+        'friday',
+        'saturday',        
+    )
+    return day_number.index(day)
 
 def save_timetable(course, classs, day_combo):
     if Timetable.objects.filter(course=course, classs=classs).exists():
