@@ -12,7 +12,7 @@
   {{ block.super }}
 
     <div class="spinner-border" role="status" style="display: none; position: fixed; top: calc( 50% - ( 3rem / 2) ); left: calc( 50% - ( 3rem / 2) ); width: 3rem; height: 3rem;">
-      <span class="sr-only">Loading...</span>
+      <span class="sr-only">{% trans Carregando %}...</span>
     </div>
     <div class="container mt-3">
 
@@ -35,13 +35,13 @@
             <thead class="thead-dark">
               <tr>
                 <!-- <th scope="col" class="align-middle">Período</th> -->
-                <th scope="col" class="align-middle">Horário</th>
-                <th scope="col" class="text-center">Segunda-feira</th>
-                <th scope="col" class="text-center">Terça-feira</th>
-                <th scope="col" class="text-center">Quarta-feira</th>
-                <th scope="col" class="text-center">Quinta-feira</th>
-                <th scope="col" class="text-center">Sexta-feira</th>
-                <th scope="col" class="text-center">Sábado</th>
+                <th scope="col" class="align-middle">{% trans Horário %}</th>
+                <th scope="col" class="text-center">{% trans Segunda-feira %}</th>
+                <th scope="col" class="text-center">{% trans Terça-feira %}</th>
+                <th scope="col" class="text-center">{% trans Quarta-feira %}</th>
+                <th scope="col" class="text-center">{% trans Quinta-feira %}</th>
+                <th scope="col" class="text-center">{% trans Sexta-feira %}</th>
+                <th scope="col" class="text-center">{% trans Sábado %}</th>
               </tr>
             </thead>
             <tbody>
@@ -64,7 +64,7 @@
                 {% endfor %}
               </tbody>
             </table>
-            <button type="button" class="btn btn-primary btn-block form-group" id="submit_timetable">ENVIAR GRADE</button>
+            <button type="button" class="btn btn-primary btn-block form-group" id="submit_timetable">{% trans Enviar %}</button>
           </form>
         </div>
       </div>

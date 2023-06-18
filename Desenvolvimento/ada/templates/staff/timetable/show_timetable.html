@@ -14,7 +14,7 @@
   {{ block.super }} 
   <div style="display: none; position: fixed; top: calc(50% - (20rem / 2)); left: calc(50% - (20rem / 2)); width: 20rem; height: 20rem;">
     <img src="https://cdn.awsli.com.br/300x300/1594/1594408/produto/1482066500b9bac0fff.jpg" class="img-fluid" alt="Responsive image">
-    <h3 class="row d-flex justify-content-center">Tabela salva 🙏🙏🙏</h3>
+    <h3 class="row d-flex justify-content-center">{% trans Tabela salva %}🙏🙏🙏</h3>
 </div>
 <div class="container">
     <div class="d-flex justify-content-between align-items-center pt-4">
@@ -27,13 +27,13 @@
     <table class="table" id="timetable_table">
         <thead class="thead-dark">
             <tr>
-                <th scope="col" class="text-center">Horário</th>
-                <th scope="col" class="text-center">Segunda-feira</th>
-                <th scope="col" class="text-center">Terça-feira</th>
-                <th scope="col" class="text-center">Quarta-feira</th>
-                <th scope="col" class="text-center">Quinta-feira</th>
-                <th scope="col" class="text-center">Sexta-feira</th>
-                <th scope="col" class="text-center">Sábado</th>
+              <th scope="col" class="align-middle">{% trans Horário %}</th>
+              <th scope="col" class="text-center">{% trans Segunda-feira %}</th>
+              <th scope="col" class="text-center">{% trans Terça-feira %}</th>
+              <th scope="col" class="text-center">{% trans Quarta-feira %}</th>
+              <th scope="col" class="text-center">{% trans Quinta-feira %}</th>
+              <th scope="col" class="text-center">{% trans Sexta-feira %}</th>
+              <th scope="col" class="text-center">{% trans Sábado %}</th>
             </tr>
         </thead>
         <tbody>
