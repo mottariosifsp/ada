@@ -23,16 +23,16 @@
     <div class="container mb-4">
         <div class="row">
             <div class="col-md-12">
-                <h1>{{ blockk.name_block }}</h1>
+                <h1>{% trans blockk.name_block %}</h1>
                 <div class="card">
                     <div class="card-body">
                         <h5 class="card-title">{% trans "Detalhes" %}</h5>
                             <ul class="list-group list-group-flush">
-                                <li class="list-group-item"><strong>{% trans "Nome" %}:</strong> {{ area.name_area }}</li>
-                                <li class="list-group-item"><strong>{% trans "Registro" %}:</strong> {{ area.registration_area_id }}</li>
-                                <li class="list-group-item"><strong>{% trans "Sigla" %}:</strong> {{ area.acronym }}</li>
-                                <li class="list-group-item"><strong>{% trans "Permuta" %}:</strong> {{ area.exchange_area }}</li>
-                                <li class="list-group-item"><strong>{% trans "Ensino Médio" %}:</strong> {{ area.is_high_school }}</li>
+                                <li class="list-group-item"><strong>{% trans "Nome" %}:</strong> {% trans area.name_area %}</li>
+                                <li class="list-group-item"><strong>{% trans "Registro" %}:</strong> {% trans area.registration_area_id %}</li>
+                                <li class="list-group-item"><strong>{% trans "Sigla" %}:</strong> {% trans area.acronym %}</li>
+                                <li class="list-group-item"><strong>{% trans "Permuta" %}:</strong> {% trans area.exchange_area %}</li>
+                                <li class="list-group-item"><strong>{% trans "Ensino Médio" %}:</strong> {% trans area.is_high_school %}</li>
                             </ul>
                     </div>
                 </div>
@@ -59,8 +59,8 @@
                     <!-- Lista -->
                         <tr>
                             <td>{{ course.registration_course_id }}</td>
-                            <td>{{ course.name_course }}</td>
-                            <td>{{ course.acronym }}</td>
+                            <td>{% trans course.name_course %}</td>
+                            <td>{% trans course.acronym %}</td>
                             <td>
                                 <button type="button" data-toggle="modal" data-target="#editCourseModal" data-course-id="{{ course.id }}" data-counter="{{ counter }}" class="btn btn-warning editCourseBtn"><i class="bi bi-pencil"></i></button>
                                 <button type="button" class="btn btn-danger deleteCourseBtn" data-course-id="{{ course.id }}" data-registration-course-id="{{ course.registration_course_id }}"><i class="bi bi-trash"></i></button>
@@ -106,7 +106,7 @@
         </div>
     </div>
 
-    <!-- Modal ediação turma -->
+    <!-- Modal edição turma -->
     <div class="modal fade" id="editCourseModal" tabindex="-1" role="dialog" aria-labelledby="edtCourseModelLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">

@@ -13,7 +13,7 @@
     <div id="work-regime">
         <h3>{% trans "Regime de Trabalho" %}</h3>
         {% for course in preferred_courses %}
-            {{ course.name_course }}
+            {% trans course.name_course %}
         {% endfor %}
     </div>
 

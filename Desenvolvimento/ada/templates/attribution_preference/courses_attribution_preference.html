@@ -33,7 +33,7 @@
               <hr class="my-0">
               <div class="text-center mt-4 mb-4 pr-2 pl-2 d-flex">
                 <i class="form-check-inline fas fa-check-circle custom-icon"></i>
-                <input name="work_regime" value="{{ work_regime }} horas" readonly class="text-center form-check-inline form-check form-control-plaintext custom-border">
+                <input name="work_regime" value="{% trans work_regime %} horas" readonly class="text-center form-check-inline form-check form-control-plaintext custom-border">
               </div>
             </div>
           </div>
@@ -66,12 +66,12 @@
                   <tr>
                     <th class="col-1 text-center align-middle">{% trans "Turno" %}</th>
                     <th class="col-2 text-center align-middle">{% trans "Horários" %}</th>
-                    <th class=" text-center">{% trans "Segunda-Feira" %}</th>
-                    <th class=" text-center">{% trans "Terça-Feira" %}</th>
-                    <th class=" text-center">{% trans "Quarta-Feira" %}</th>
-                    <th class=" text-center">{% trans "Quinta-Feira" %}</th>
-                    <th class=" text-center">{% trans "Sexta-Feira" %}</th>
-                    <th class=" text-center">{% trans "Sábado" %}</th>
+                    <th class="text-center">{% trans "Segunda-Feira" %}</th>
+                    <th class="text-center">{% trans "Terça-Feira" %}</th>
+                    <th class="text-center">{% trans "Quarta-Feira" %}</th>
+                    <th class="text-center">{% trans "Quinta-Feira" %}</th>
+                    <th class="text-center">{% trans "Sexta-Feira" %}</th>
+                    <th class="text-center">{% trans "Sábado" %}</th>
                   </tr>
                 </thead>
                   <tbody class="block" id="timetable-courses" >
@@ -358,7 +358,7 @@
                             <div class="form-group">
                               <label for="block-filter" class="form-label">{% trans "Filtrar bloco" %}</label>
                               <div class="input-group">
-                                <input list="block-options" id="block-filter" placeholder="--" class="form-control mb-4" onchange="block_filter()">
+                                <input list="block-options" id="block-filter" placeholder="--" class="form-control mb-4" onchange="block_filter()"> <!-- HAKUN4MATAT4 -->
                                 <datalist id="block-options">
                                 </datalist>
                               </div>
@@ -367,9 +367,9 @@
 
                           <div class="col-md-6">
                             <div class="form-group">
-                              <label for="area-filter" class="form-label">{% trans "Filtro área" %}</label>
+                              <label for="area-filter" class="form-label">{% trans "Filtrar área" %}</label>
                               <div class="input-group">
-                                <input list="area-options" id="area-filter" placeholder="--" class="form-control mb-4" onchange="area_filter()">
+                                <input list="area-options" id="area-filter" placeholder="--" class="form-control mb-4" onchange="area_filter()"> <!-- HAKUN4MATAT4 -->
                                 <datalist id="area-options">
                                 </datalist>
                               </div>
@@ -381,7 +381,7 @@
                           <div class="input-group">
                             <input list="course-options" id="course-filter" class="form-control w-100" placeholder="Selecione">
                             <datalist id="course-options">
-                              <option class="w-100" value="{{ course.acronym }}">{{ course.name_course }}</option>
+                              <option class="w-100" value="{% trans course.acronym %}">{% trans course.name_course %}</option>
                             </datalist>
                           </div>
                         </div>

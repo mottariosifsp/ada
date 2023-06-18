@@ -3,19 +3,19 @@
 {% load static %}
 
 {% block head %}
-<title>{% trans "Criar Fila" %}</title>
-<link href="https://cdn.datatables.net/v/dt/jq-3.6.0/dt-1.13.4/rr-1.3.3/datatables.min.css" rel="stylesheet"/>
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script src="https://cdn.datatables.net/v/dt/jq-3.6.0/dt-1.13.4/rr-1.3.3/datatables.min.js"></script>
-{#<script src="{% static 'attribution/js/queueSetup.js' %}" data-lang={{LANGUAGE_CODE}}></script>#}
+    <title>{% trans "Criar Fila" %}</title>
+    <link href="https://cdn.datatables.net/v/dt/jq-3.6.0/dt-1.13.4/rr-1.3.3/datatables.min.css" rel="stylesheet"/>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.datatables.net/v/dt/jq-3.6.0/dt-1.13.4/rr-1.3.3/datatables.min.js"></script>
+    {#<script src="{% static 'attribution/js/queueSetup.js' %}" data-lang={{LANGUAGE_CODE}}></script>#}
 {% endblock %}
 
 {% block body %}
     <h1>{% trans "Fila de professores" %}</h1>
-    <h1 id="blockk-id" value="{{ data.blockk.registration_block_id }}" >{{ data.blockk.name_block }}</h1>
+    <h1 id="blockk-id" value="{{ data.blockk.registration_block_id }}" >{% trans data.blockk.name_block %}</h1>
 
     {% if data.campo != "" %}
-    <h3>{% trans "Critério escolhido pelo super administrador" %}: {{ data.campo }}</h3>
+        <h3>{% trans "Critério escolhido pelo super administrador" %}: {% trans data.campo %}</h3>
     {% endif %}
 
 {#    <p>{% trans "Usuários da área" %}:</p>#}

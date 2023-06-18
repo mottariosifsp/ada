@@ -30,9 +30,9 @@
                     <!-- Lista -->
                     <tr>
                         <td>{{ classs.registration_class_id }}</td>
-                        <td>{{ classs.period }}</td>
+                        <td>{% trans classs.period %}</td>
                         <td>{{ classs.semester }}</td>
-                        <td>{{ classs.area.name_area }} ({{ classs.area.acronym }})</td>
+                        <td>{% trans classs.area.name_area %} ({% trans classs.area.acronym %})</td>
                         <td><button type="button" data-toggle="modal" data-target="#editClassModal" data-counter="{{ counter }}" class="btn btn-warning editClassBtn"><i class="bi bi-pencil"></i></button>
                             <button type="button" class="btn btn-danger deleteClassBtn" data-class-id="{{ classs.id }}" data-registration-class-id="{{ classs.registration_class_id }}"><i class="bi bi-trash"></i></button></td>
                     </tr>
@@ -63,7 +63,7 @@
                             <select class="form-control" id="period_create" required>
                                 <option value="">{% trans "Selecione uma opção" %}</option>
                                 {% for period in periods %}
-                                    <option value="{{ period.value }}">{{ period.label }}</option>
+                                    <option value="{% trans period.value %}">{% trans period.label %}</option>
                                 {% endfor %}
                             </select>
                         </div>
@@ -71,11 +71,11 @@
                             <label for="semester_create">{% trans "Semestre" %}</label>
                             <input type="number" class="form-control" id="semester_create" required>
                         </div>
-                        <label for="area_create">Área</label>
+                        <label for="area_create">{% trans "Área" %}</label>
                         <select class="form-control" id="area_create" required>
                             <option value="">{% trans "Selecione uma opção" %}</option>
                             {% for area in areas %}
-                                <option value="{{ area.id }}">{{ area.name_area }} ({{ area.acronym }})</option>
+                                <option value="{{ area.id }}">{% trans area.name_area %} ({% trans area.acronym %})</option>
                             {% endfor %}
                         </select>
                     </form>
@@ -109,7 +109,7 @@
                             <select class="form-control" id="period_edit" required>
                                 <option value="">{% trans "Selecione uma opção" %}</option>
                                 {% for period in periods %}
-                                    <option value="{{ period.value }}">{{ period.label }}</option>
+                                    <option value="{{ period.value }}">{% trans period.label %}</option>
                                 {% endfor %}
                             </select>
                         </div>
@@ -122,7 +122,7 @@
                             <select class="form-control" id="area_edit" required>
                                 <option value="">{% trans "Selecione uma opção" %}</option>
                                 {% for area in areas %}
-                                    <option value="{{ area.id }}">{{ area.name_area }} ({{ area.acronym }})</option>
+                                    <option value="{{ area.id }}">{% trans area.name_area %} ({% trans area.acronym %})</option>
                                 {% endfor %}
                             </select>
                         </div>

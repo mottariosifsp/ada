@@ -9,7 +9,7 @@
 
 {% block body %}
     {{ block.super }}
-    <h1>{% trans "Painel de configuração da atribuição de aulas" %} ( {{ blockk.name_block }} )</h1>
+    <h1>{% trans "Painel de configuração da atribuição de aulas" %} ( {% trans blockk.name_block } )</h1>
     <hr>
     <form method="post" action="{% url 'confirm_deadline_configuration' %}">
         {% csrf_token %}    
@@ -26,7 +26,7 @@
         <p>{% trans "Bloco" %}: 
             <select name="block" id="block">
                 {% for blockk in user_blocks %}
-                    <option value="{{ blockk.id }}">{{ blockk.name_block }}</option>
+                    <option value="{{ blockk.id }}">{% trans blockk.name_block %}</option>
                 {% endfor %}
             </select> 
         </p>

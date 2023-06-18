@@ -14,9 +14,9 @@
 
 {% block body %} 
 {% comment %}
-<h1>{% trans "Fila de professores" %} ( {{ blockk.name_block }} )</h1>
+  <h1>{% trans "Fila de professores" %} ( {% trans blockk.name_block %} )</h1>
 {% endcomment %}
-<h1>{% trans "Atribuição do bloco" %} {{blockk.name_block}}</h1>
+<h1>{% trans "Atribuição do bloco" %} {% trans blockk.name_block %}</h1>
 <hr />
   <div class="row mb-3">
     <div class="col m-0 p-0">
@@ -26,7 +26,7 @@
             {% if request.user == queue.first.teacher %}
             <h2 class="card-text">{% trans "Você" %}</h2>
             {% else %}
-            <h4 class="card-text">{{queue.first.teacher.get_full_name_camel_case}}<h4>
+            <h4 class="card-text">{% trans queue.first.teacher.get_full_name_camel_case %}<h4>
             {% endif %}
         </div>
       </div>

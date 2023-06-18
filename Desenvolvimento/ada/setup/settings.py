@@ -133,13 +133,13 @@ DATE_FORMAT = 'YYYY-MM-DD'
 
 USE_L10N = False
 
-#LANGUAGE_CODE = "pt-br"
+LANGUAGE_CODE = "pt-br"
 
-#TIME_ZONE = "America/Sao_Paulo"
+TIME_ZONE = "America/Sao_Paulo"
 
-#USE_I18N = True
+USE_I18N = True
 
-#USE_TZ = True
+USE_TZ = True
 
 
 # Static files (CSS, JavaScript, Images)
