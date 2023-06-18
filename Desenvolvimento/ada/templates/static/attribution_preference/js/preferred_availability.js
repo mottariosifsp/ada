@@ -366,6 +366,74 @@ $(document).ready(function() {
             var input_id = $(this).attr('for');
             var input_val = $('#' + input_id).val();
             var is_checked = $('#' + input_id).prop('checked');
+            var checkbox = document.getElementById(input_id);
+            console.log("isChechked", is_checked);
+            var checkboxExists = false;
+            var positionDelete = -1;
+
+            // Verificar se o checkbox já existe no array
+                for (var i = 0; i < checkboxes[0].length; i++) {
+                  if (checkboxes[0][i].id === checkbox.id) {
+                    checkboxExists = true;
+                    positionDelete = i;
+                    break;
+                  }
+                }
+
+                // Verificar se o checkbox já existe no array (segunda posição)
+                if (!checkboxExists) {
+                  for (var i = 0; i < checkboxes[1].length; i++) {
+                    if (checkboxes[1][i].id === checkbox.id) {
+                      checkboxExists = true;
+                      positionDelete = i;
+                      break;
+                    }
+                  }
+                }
+
+                // Verificar se o checkbox já existe no array (terceira posição)
+                if (!checkboxExists) {
+                  for (var i = 0; i < checkboxes[2].length; i++) {
+                    if (checkboxes[2][i].id === checkbox.id) {
+                      checkboxExists = true;
+                      positionDelete = i;
+                      break;
+                    }
+                  }
+                }
+
+                // Verificar se o checkbox já existe no array (quarta posição)
+                if (!checkboxExists) {
+                  for (var i = 0; i < checkboxes[3].length; i++) {
+                    if (checkboxes[3][i].id === checkbox.id) {
+                      checkboxExists = true;
+                      positionDelete = i;
+                      break;
+                    }
+                  }
+                }
+
+                // Verificar se o checkbox já existe no array (quinta posição)
+                if (!checkboxExists) {
+                  for (var i = 0; i < checkboxes[4].length; i++) {
+                    if (checkboxes[4][i].id === checkbox.id) {
+                      checkboxExists = true;
+                      positionDelete = i;
+                      break;
+                    }
+                  }
+                }
+
+                // Verificar se o checkbox já existe no array (sexta posição)
+                if (!checkboxExists) {
+                  for (var i = 0; i < checkboxes[5].length; i++) {
+                    if (checkboxes[5][i].id === checkbox.id) {
+                      checkboxExists = true;
+                      positionDelete = i;
+                      break;
+                    }
+                  }
+                }
 
             if(is_checked) {
               cel_left += 1;
@@ -395,82 +463,63 @@ $(document).ready(function() {
               }
 
               $('#cel-regime').text(cel_left);
+
+
+              // Se o checkbox existir, ele é deletado, pois foi desmarcado
+                if (checkboxExists) {
+                  deleteCheckbox(checkboxes, input_id, positionDelete);
+
+
+                console.log("desmarcado");
+                console.log("mon", checkboxes[0].length);
+                console.log("tue", checkboxes[1].length);
+                console.log("wed", checkboxes[2].length);
+                console.log("thu", checkboxes[3].length);
+                console.log("fri", checkboxes[4].length);
+                console.log("sat", checkboxes[5].length);
+                }
+
             } else {
               if(cel_final != "checked") {
-                var checkbox = document.getElementById(input_id);
 
-                var checkboxExists = false;
-                var index = -1;
-
-                // // Verificar se o checkbox já existe no array
-                // for (var i = 0; i < checkboxes[0].length; i++) {
-                //   if (checkboxes[0][i].id === checkbox.id) {
-                //     checkboxExists = true;
-                //     index = i;
-                //     break;
-                //   }
-                // }
-                //
-                // // Verificar se o checkbox já existe no array (segunda posição)
-                // if (!checkboxExists) {
-                //   for (var i = 0; i < checkboxes[1].length; i++) {
-                //     if (checkboxes[1][i].id === checkbox.id) {
-                //       checkboxExists = true;
-                //       index = i;
-                //       break;
-                //     }
-                //   }
-                // }
-                //
-                // // Verificar se o checkbox já existe no array (terceira posição)
-                // if (!checkboxExists) {
-                //   for (var i = 0; i < checkboxes[2].length; i++) {
-                //     if (checkboxes[2][i].id === checkbox.id) {
-                //       checkboxExists = true;
-                //       index = i;
-                //       break;
-                //     }
-                //   }
-                // }
-                //
-                // // Verificar se o checkbox já existe no array (quarta posição)
-                // if (!checkboxExists) {
-                //   for (var i = 0; i < checkboxes[3].length; i++) {
-                //     if (checkboxes[3][i].id === checkbox.id) {
-                //       checkboxExists = true;
-                //       index = i;
-                //       break;
-                //     }
-                //   }
-                // }
-                //
-                // // Verificar se o checkbox já existe no array (quinta posição)
-                // if (!checkboxExists) {
-                //   for (var i = 0; i < checkboxes[4].length; i++) {
-                //     if (checkboxes[4][i].id === checkbox.id) {
-                //       checkboxExists = true;
-                //       index = i;
-                //       break;
-                //     }
-                //   }
-                // }
-                //
-                // // Verificar se o checkbox já existe no array (sexta posição)
-                // if (!checkboxExists) {
-                //   for (var i = 0; i < checkboxes[5].length; i++) {
-                //     if (checkboxes[5][i].id === checkbox.id) {
-                //       checkboxExists = true;
-                //       index = i;
-                //       break;
-                //     }
-                //   }
-                // }
-
-
+                  // for (var j = 0; j < checkboxes.length; j++) {
+                  //   for (var i = 0; i < checkboxes[j].length; i++) {
+                  //     if (checkboxes[j][i].id === checkbox.id) {
+                  //       checkboxExists = true;
+                  //       index = i;
+                  //       break;
+                  //     }
+                  //   }
+                  //
+                  // }
 
                   var controle = 0;
-                  for (var i = 0; i < checkboxes.length; i++) {
-                    if (checkboxes[i].length > (max_quantidade_celulas - 1)) {
+
+               if (controle !== 1) {
+                  // Adicionar o checkbox apenas se não existir no array
+                    if (!checkboxExists) {
+                      if (checkbox.id.startsWith("mon")) {
+                        checkboxes[0].push(checkbox);
+                      } else if (checkbox.id.startsWith("tue")) {
+                        checkboxes[1].push(checkbox);
+                      } else if (checkbox.id.startsWith("wed")) {
+                        checkboxes[2].push(checkbox);
+                      } else if (checkbox.id.startsWith("thu")) {
+                        checkboxes[3].push(checkbox);
+                      } else if (checkbox.id.startsWith("fri")) {
+                        checkboxes[4].push(checkbox);
+                      } else if (checkbox.id.startsWith("sat")) {
+                        checkboxes[5].push(checkbox);
+                      }
+                    }
+                }
+
+                for (var i = 0; i < checkboxes.length; i++) {
+                    if (checkboxes[i].length > max_quantidade_celulas) {
+                      console.log("limite");
+                      checkbox.disabled = true;
+                      var checkbox = document.getElementById(input_id);
+                      deleteCheckbox(checkboxes, input_id, positionDelete);
                       controle = 1;
                       $('#error-message-form').text('A seleção da disponibilidade de horário não pode ultrapassar 8 horas de trabalho diárias.');
                       $('#error-alert-form').show();
@@ -479,59 +528,11 @@ $(document).ready(function() {
                         behavior: 'smooth'
                       });
                       break;
+                    } else {
+                      var checkbox = document.getElementById(input_id);
+                      checkbox.disabled = false;
                     }
                   }
-               if (controle !== 1) {
-                  for (var j = 0; j < checkboxes.length; j++) {
-                  for (var i = 0; i < checkboxes[j].length; i++) {
-                    if (checkboxes[j][i].id !== checkbox.id) {
-                      if (checkboxes[j][i].id.startsWith("mon")) {
-                        checkboxes[j][i].push(checkbox);
-                      }
-                    }
-
-                    }
-                  }
-                }
-
-                    // // Adicionar o checkbox apenas se não existir no array
-                    // if (!checkboxExists) {
-                    //   if (checkbox.id.startsWith("mon")) {
-                    //     checkboxes[0].push(checkbox);
-                    //   } else if (checkbox.id.startsWith("tue")) {
-                    //     checkboxes[1].push(checkbox);
-                    //   } else if (checkbox.id.startsWith("wed")) {
-                    //     checkboxes[2].push(checkbox);
-                    //   } else if (checkbox.id.startsWith("thu")) {
-                    //     checkboxes[3].push(checkbox);
-                    //   } else if (checkbox.id.startsWith("fri")) {
-                    //     checkboxes[4].push(checkbox);
-                    //   } else if (checkbox.id.startsWith("sat")) {
-                    //     checkboxes[5].push(checkbox);
-                    //   }
-                    // }
-                    //
-                    // if (checkboxExists) {
-                    //   if (checkbox.id.startsWith("mon")) {
-                    //     checkboxes[0].splice(index, 1);
-                    //   } else if (checkbox.id.startsWith("tue")) {
-                    //     checkboxes[1].splice(index, 1);
-                    //   } else if (checkbox.id.startsWith("wed")) {
-                    //     checkboxes[2].splice(index, 1);
-                    //   } else if (checkbox.id.startsWith("thu")) {
-                    //     checkboxes[3].splice(index, 1);
-                    //   } else if (checkbox.id.startsWith("fri")) {
-                    //     checkboxes[4].splice(index, 1);
-                    //   } else if (checkbox.id.startsWith("sat")) {
-                    //     checkboxes[5].splice(index, 1);
-                    //   }
-                    // }
-
-                    // Se o checkbox existir, ele é deletado, pois foi desmarcado
-
-
-
-
 
                 console.log("mon", checkboxes[0].length);
                 console.log("tue", checkboxes[1].length);
@@ -539,6 +540,7 @@ $(document).ready(function() {
                 console.log("thu", checkboxes[3].length);
                 console.log("fri", checkboxes[4].length);
                 console.log("sat", checkboxes[5].length);
+
 
 
                 atualizar_cel_left(is_checked);
@@ -677,4 +679,20 @@ function atualizar_cel_left(is_checked) {
       }
     }    
   }
+}
+
+
+function deleteCheckbox(checkboxes, checkboxId, positionDelete) {
+  for (let i = 0; i < checkboxes.length; i++) {
+    if (checkboxId.startsWith(getDayOfWeek(i))) {
+      checkboxes[i].splice(positionDelete, 1);
+      console.log("foi?");
+      break;
+    }
+  }
+}
+
+function getDayOfWeek(index) {
+  const daysOfWeek = ["mon", "tue", "wed", "thu", "fri", "sat"];
+  return daysOfWeek[index];
 }
