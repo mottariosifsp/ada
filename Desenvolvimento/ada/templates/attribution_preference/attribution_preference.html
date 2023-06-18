@@ -14,12 +14,12 @@
 
 
 {% block body %}
-    <h1 class="title-page">FPA Usuário</h1>
+    <h1 class="title-page">{% trans "FPA Usuário" %}</h1>
     <nav>
     <ol class="breadcrumb">
         <li class="breadcrumb-item"><a href="{% url 'home' %}"><i class="bi bi-house-door"></i></a></li>
-        <li class="breadcrumb-item active">Preferência Atribuição</li>
-        <li class="breadcrumb-item active">FPA Usuário</li>
+        <li class="breadcrumb-item active">{% trans "Preferência Atribuição" %}</li>
+        <li class="breadcrumb-item active">{% trans "FPA Usuário" %}</li>
     </ol>
     </nav>
 
@@ -27,10 +27,10 @@
     <div class="container">
         <div id="card-no-fpa" class="card text-center centered-object">
           <div class="card-body">
-            <h5 class="card-title">Nenhum FPA relacionado ao usuário foi encontrado no sistema</h5>
+            <h5 class="card-title">{% trans "Nenhum FPA relacionado ao usuário foi encontrado no sistema" %}</h5>
             <hr>
             <a href="{% url 'disponibility_attribution_preference' %}">
-              <button class="btn btn-success">Comece seu Formulário de Preferência de Atividades</button>
+              <button class="btn btn-success">{% trans "Comece seu Formulário de Preferência de Atividades" %}</button>
             </a>
           </div>
         </div>
@@ -39,64 +39,66 @@
     <div class="container">
         <div class="card centered-object">
           <div class="card-body">
-            <h5 class="card-title">Formulário de Preferência de Atividades - FPA (Anexo I - Resolução nº 109 de 4 de novembro de 2015)</h5>
+            <h5 class="card-title">{% trans "Formulário de Preferência de Atividades - FPA (Anexo I - Resolução nº 109 de 4 de novembro de 2015)" %}</h5>
             <hr>
             <div class="table-responsive">
                 <table class="table table-bordered table-sm text-center">
                 <tr>
-                  <th colspan="6">Identificação do Docente</th>
+                  <th colspan="6">{% trans "Identificação do Docente" %}</th>
                 </tr>
                 <tr>
-                  <th>Docente:</th>
+                  <th>{% trans "Docente" %}:</th>
                   <td colspan="2">{{ request.user.get_full_name }}</td>
-                  <th>Conhecido como:</th>
+                  <th>{% trans "Conhecido como" %}:</th>
                   <td colspan="2">{{ request.user.first_name }}</td>
                 </tr>
                 <tr>
-                  <th>Área:</th>
+                  <th>{% trans "Área" %}:</th>
+                  {% blocktrans with name_block_text=user.blocks.first.name_block %}
                   <td colspan="2">{{ user.blocks.first.name_block }}</td>
-                  <th>E-mail:</th>
+                  {% endblocktrans %}
+                  <th>{% trans "E-mail" %}:</th>
                   <td colspan="2">{{ request.user.email }}</td>
                 </tr>
                 <tr>
-                  <th>Prontuário:</th>
-                  <td colspan="2">CJ{{ request.user.registration_id  }}</td>
-                  <th>Celular:</th>
+                  <th>{% trans "Prontuário" %}:</th>
+                  <td colspan="2">{% trans "CJ" %}{{ request.user.registration_id  }}</td>
+                  <th>{% trans "Celular" %}:</th>
                   <td colspan="2">{{ request.user.cell_phone }}</td>
                 </tr>
                 <tr>
-                    <th>Regime de trabalho:</th>
-                    <td class="col-2 20">20 horas</td>
-                    <td class="col-2 40">40 horas</td>
-                    <td class="col-2 rde">RDE</td>
-                    <td class="col-2">Substituto</td>
-                    <td class="col-2">Temporário</td>
+                    <th>{% trans "Regime de trabalho" %}:</th>
+                    <td class="col-2 20">20 {% trans "horas" %}</td>
+                    <td class="col-2 40">40 {% trans "horas" %}</td>
+                    <td class="col-2 rde">{% trans "RDE" %}</td>
+                    <td class="col-2">{% trans "Substituto" %}</td>
+                    <td class="col-2">{% trans "Temporário" %}</td>
                 </tr>
             </table>
 
               
             <table class="table table-bordered table-sm text-center">
                 <tr>
-                  <th colspan="6">Disponibilidade de horário para atribuição de componentes curriculares</th>
+                  <th colspan="6">{% trans "Disponibilidade de horário para atribuição de componentes curriculares" %}</th>
                 </tr>
                 <tr>
                     <table class="regime table table-bordered table-sm text-center">
                         <thead>
                           <tr>
-                            <th class="col-1 text-center align-middle">Turno</th>
-                            <th class="col-2 text-center align-middle">Horários</th>
-                            <th class=" text-center">Segunda-Feira</th>
-                            <th class=" text-center">Terça-Feira</th>
-                            <th class=" text-center">Quarta-Feira</th>
-                            <th class=" text-center">Quinta-Feira</th>
-                            <th class=" text-center">Sexta-Feira</th>
-                            <th class=" text-center">Sábado</th>
+                            <th class="col-1 text-center align-middle">{% trans "Período" %}</th>
+                            <th class="col-2 text-center align-middle">{% trans "Horários" %}</th>
+                            <th class=" text-center">{% trans "Segunda-Feira" %}</th>
+                            <th class=" text-center">{% trans "Terça-Feira" %}</th>
+                            <th class=" text-center">{% trans "Quarta-Feira" %}</th>
+                            <th class=" text-center">{% trans "Quinta-Feira" %}</th>
+                            <th class=" text-center">{% trans "Sexta-Feira" %}</th>
+                            <th class=" text-center">{% trans "Sábado" %}</th>
                           </tr>
                         </thead>
                         <tbody class="block" id="timetable-courses">
                             {% for i in "MVN" %}
                               {% if i == "M" %}
-                                <td class="text-center align-middle" rowspan="{{ turno.matutinoAulas }}">Matutino</td>
+                                <td class="text-center align-middle" rowspan="{{ turno.matutinoAulas }}">{% trans "Matutino" %}</td>
                                 {% for horario in turno.matutino %}
                                   <tr>
                                     <td class="text-center align-middle">{{ horario.hour_start }} - {{ horario.hour_end }}</td>
@@ -151,7 +153,7 @@
                                   </tr>
                                 {% endfor %}
                               {% elif i == "V" %}
-                                <td class="text-center align-middle" rowspan="{{ turno.vespertinoAulas }}">Vespertino</td>
+                                <td class="text-center align-middle" rowspan="{{ turno.vespertinoAulas }}">{% trans "Vespertino" %}</td>
                                 {% for horario in turno.vespertino %}
                                   <tr>
                                     <td class="text-center align-middle">{{ horario.hour_start }} - {{ horario.hour_end }}</td>
@@ -206,7 +208,7 @@
                                   </tr>
                                 {% endfor %}
                               {% else %}
-                                <td class="text-center align-middle" rowspan="{{ turno.noturnoAulas }}">Noturno</td>
+                                <td class="text-center align-middle" rowspan="{{ turno.noturnoAulas }}">{% trans "Noturno" %}</td>
                                 {% for horario in turno.noturno %}
                                   <tr>
                                     <td class="text-center align-middle">{{ horario.hour_start }} - {{ horario.hour_end }}</td>
@@ -269,15 +271,15 @@
 
             <table class="table table-bordered table-sm text-center">
                 <tr>
-                    <th colspan="6">Disciplinas escolhidas</th>
+                    <th colspan="6">{% trans "Disciplinas escolhidas" %}</th>
                 </tr>
                 <table class="regime table table-bordered table-sm text-center">
                     <thead>
-                        <th class="text-center">Sigla</th>
-                        <th class="text-center">Nome</th>
-                        <th class="text-center">Curso</th>
-                        <th class="text-center">Turno</th>
-                        <th class="text-center">Aulas</th>
+                        <th class="text-center">{% trans "Sigla" %}</th>
+                        <th class="text-center">{% trans "Nome" %}</th>
+                        <th class="text-center">{% trans "Disciplina" %}</th>
+                        <th class="text-center">{% trans "Período" %}</th>
+                        <th class="text-center">{% trans "Aulas" %}</th>
                     </thead>
                     <tbody id="courses-list">
 
@@ -287,7 +289,7 @@
             </table>
 
             </div>
-            <a href="{% url 'disponibility_attribution_preference' %}"><button type="button" class="btn btn-info w-100 float-right mb-2">Refazer FPA</button></a>
+            <a href="{% url 'disponibility_attribution_preference' %}"><button type="button" class="btn btn-info w-100 float-right mb-2">{% trans "Refazer FPA" %}</button></a>
         </div>
     </div>
     

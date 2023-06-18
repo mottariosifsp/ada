@@ -12,16 +12,22 @@
 
 {% block body %}
     <h1>{% trans "Fila de professores" %}</h1>
-    <h1 id="blockk-id" value="{{ data.blockk.registration_block_id }}" >{% trans data.blockk.name_block %}</h1>
+    {% blocktrans with name_block_text=data.blockk.name_block %}
+        <h1 id="blockk-id" value="{{ data.blockk.registration_block_id }}" >{{ data.blockk.name_block }}</h1>
+    {% endblocktrans %}
 
     {% if data.campo != "" %}
-        <h3>{% trans "Critério escolhido pelo super administrador" %}: {% trans data.campo %}</h3>
+    {% blocktrans with campo_text=data.campo %}
+        <h3>{% trans "Critério escolhido pelo administrador" %}: {{ campo_text }}</h3>
+    {% endblocktrans %}
     {% endif %}
 
 {#    <p>{% trans "Usuários da área" %}:</p>#}
 {#        <select class="area-select">#}
 {#          {% for area in data.areas %}#}
+{#            {% blocktrans with name_area_text=area.name_area %}#}
 {#            <option>{{ area.name_area }}</option>#}
+{#            {% endblocktrans %}#}
 {#          {% endfor %}#}
 {#        </select>#}
 {#    <button class="submit-btn">{% trans "Selecionar" %}</button>#}

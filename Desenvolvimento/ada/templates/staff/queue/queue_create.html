@@ -18,7 +18,9 @@
         <h5>{% trans "Bloco" %}:</h5>
         <div class="card">
             <div class="card-body">
-            <h2 id="blockk-id" value={{ data.blockk.registration_block_id }}>{% trans data.blockk.name_block %}</h2>
+            {% blocktrans with name_block_text=data.blockk.name_block %}
+            <h2 id="blockk-id" value={{ data.blockk.registration_block_id }}>{{ name_block_text }}</h2>
+            {% endblocktrans %}
             </div>
         </div>
     </div>
@@ -27,7 +29,9 @@
         <h5>{% trans "Critério definido pela direção" %}:</h5>
         <div class="card">
             <div class="card-body">
-                <h2>{% trans data.campo %}</h2>
+                {% blocktrans with campo_text=data.campo %}
+                <h2>{{ campo_text }}</h2>
+                {% endblocktrans %}
             </div>
         </div>
     </div>
