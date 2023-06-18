@@ -123,37 +123,6 @@ $(document).ready(function() {
     }
   });
 
-  // Area e disponibilidade
-
-  // $('#campoInputBlock').on('input', function() {
-  //   var valor_selecionado = $(this).val();
-  //   $('.block').each(function() {
-  //     var block = $(this).attr('id').replace('block-', '');
-  //     $(this).hide();
-
-  //     var opcoes = $('#opcoes option').map(function() {
-  //       return $(this).val();
-  //     }).get();
-
-  //     for (var i = 0; i < opcoes.length; i++) {
-  //       if (block === opcoes[i]) {
-  //         $(this).hide();
-  //         break;
-  //       }
-  //     }
-
-  //     $('#block-none').hide();
-  //   });
-
-  //   if (valor_selecionado == '' || valor_selecionado == null || valor_selecionado.length < 3) {
-  //     $('#block-none').show();
-  //   }
-
-  //   $('#block-' + valor_selecionado).show();
-  // });
-
-  
-
   // Enviar formulário inteiro
   $('#sendDisponibility').click(function() {
     var work_regime =  $('input[name="regime"]:checked').val();
@@ -162,30 +131,39 @@ $(document).ready(function() {
     let csrftoken = getCookie('csrftoken');
 
     if (work_regime && timeslots.length !== 0) {
-      $.ajax({
-        type: 'post',
-        url: '/' + lang + '/professor/preferencia-atribuicao/criar-fpa/editar-cursos/',
-        data: {
-          work_regime: work_regime,
-          work_timeslots: jsonData
-        },
-        headers: {
-          'X-CSRFToken': csrftoken
-        },
-        success: function(response) {
-          $('input[name="regime"]:checked').prop('checked', false);
-          $('#error-alert-form').hide();
-          window.location.href = '/' + lang + '/professor/preferencia-atribuicao/criar-fpa/editar-cursos/'
-        },
-        error: function(xhr, status, error) {
-          $('#error-message-form').text('Ocorreu um erro no envio do FPA.');
-          $('#error-alert-form').show();
-          window.scrollTo({
-            top: $('#error-alert-form').offset().top - $('.navbar').outerHeight() - 30,
-            behavior: 'smooth'
-          });
-        }
-      });
+      if(cel_left == 0 || cel_left == -1) {
+        $.ajax({
+          type: 'post',
+          url: '/' + lang + '/professor/preferencia-atribuicao/criar-fpa/editar-cursos/',
+          data: {
+            work_regime: work_regime,
+            work_timeslots: jsonData
+          },
+          headers: {
+            'X-CSRFToken': csrftoken
+          },
+          success: function(response) {
+            $('input[name="regime"]:checked').prop('checked', false);
+            $('#error-alert-form').hide();
+            window.location.href = '/' + lang + '/professor/preferencia-atribuicao/criar-fpa/editar-cursos/'
+          },
+          error: function(xhr, status, error) {
+            $('#error-message-form').text('Ocorreu um erro no envio de FPA.');
+            $('#error-alert-form').show();
+            window.scrollTo({
+              top: $('#error-alert-form').offset().top - $('.navbar').outerHeight() - 30,
+              behavior: 'smooth'
+            });
+          }
+        });
+      } else {
+        $('#error-message-form').text('Por favor insira todas as células.');
+        $('#error-alert-form').show();
+        window.scrollTo({
+          top: $('#error-alert-form').offset().top - $('.navbar').outerHeight() - 30,
+          behavior: 'smooth'
+        });
+      }
     } else {
       $('#error-message-form').text('Insira as informações pedidas em cada seção.');
       $('#error-alert-form').show();
