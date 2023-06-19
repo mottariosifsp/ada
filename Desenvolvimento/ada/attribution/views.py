@@ -8,7 +8,7 @@ from user.models import User
 from attribution.models import TeacherQueuePosition
 from django.shortcuts import render, redirect
 import json
-from django.db.models import F, Sum, Value
+from django.db.models import F, Sum, Value  
 from django.db import transaction
 from django.utils import timezone
 from datetime import datetime, timedelta, timezone
@@ -353,7 +353,7 @@ def manual_attribution(request):
                         elif timeslot.hour_start >= datetime.time(18, 0, 0) and timeslot.hour_end <= datetime.time(23, 0, 0):
                             turno = 'not'
 
-                        timeslot_position = timeslot.position
+                        timeslot_position = timeslot.position % 6
                         course_name = timetable_object.course.name_course
                         course_acronym = timetable_object.course.acronym
                         day_string = dias_semana[day]
@@ -422,16 +422,18 @@ def manual_attribution(request):
                     turno_sessao = 'ves'
                 else:
                     turno_sessao = 'not'
-
+                posicao_calc = (posicao % 6) + 1
                 string = {
-                    'frase': f'{dia}-{turno_sessao}-{posicao}',
-                    'posicao': posicao,
+                    'frase': f'{dia}-{turno_sessao}-{posicao_calc}',
+                    'posicao': posicao_calc,
                     'sessao': turno_sessao,
                     'dia': dia,
                     'hour': timeslot.hour_start.strftime('%H:%M:%S'),
                 }
                 user_timeslot_traceback.append(string)
         
+        print(user_timeslot_traceback)
+
         if user_regime.name_job == "rde":
             user_regime_choosed = user_regime
             user_regime_choosed.name_job = '40'
