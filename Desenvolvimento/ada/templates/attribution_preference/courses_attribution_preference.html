@@ -33,7 +33,9 @@
               <hr class="my-0">
               <div class="text-center mt-4 mb-4 pr-2 pl-2 d-flex">
                 <i class="form-check-inline fas fa-check-circle custom-icon"></i>
-                <input name="work_regime" value="{% trans work_regime %} horas" readonly class="text-center form-check-inline form-check form-control-plaintext custom-border">
+                {% blocktrans with work_regime_text=work_regime%}
+                <input name="work_regime" value="{{ work_regime_text }} horas" readonly class="text-center form-check-inline form-check form-control-plaintext custom-border">
+                {% endblocktrans %}
               </div>
             </div>
           </div>
