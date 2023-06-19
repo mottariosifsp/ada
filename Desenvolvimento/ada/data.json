@@ -1498,6 +1498,15 @@
         "model": "timetable.timeslot",
         "pk": 5,
         "fields": {
+            "position": 5,
+            "hour_start": "10:15:00",
+            "hour_end": "11:00:00"
+        }
+    },
+    {
+        "model": "timetable.timeslot",
+        "pk": 6,
+        "fields": {
             "position": 6,
             "hour_start": "11:00:00",
             "hour_end": "11:45:00"
@@ -1505,20 +1514,11 @@
     },
     {
         "model": "timetable.timeslot",
-        "pk": 6,
+        "pk": 7,
         "fields": {
             "position": 7,
             "hour_start": "13:15:00",
             "hour_end": "14:00:00"
-        }
-    },
-    {
-        "model": "timetable.timeslot",
-        "pk": 7,
-        "fields": {
-            "position": 5,
-            "hour_start": "10:15:00",
-            "hour_end": "11:00:00"
         }
     },
     {
