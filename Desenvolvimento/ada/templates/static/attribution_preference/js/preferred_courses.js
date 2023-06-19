@@ -523,7 +523,7 @@ $(document).ready(function () {
                         });
                     }
 
-                    var willZeroOrNegative = (cel_left.time - length_frases) <= 0;
+                    var willZeroOrNegative = (cel_left.time - length_frases) < 0;
 
                     if(willZeroOrNegative) {
                         max_cel = true
