@@ -222,21 +222,9 @@ $(document).ready(function () {
 
             } else {
                 if (cel_final != "checked") {
-
-                    // for (var j = 0; j < checkboxes.length; j++) {
-                    //   for (var i = 0; i < checkboxes[j].length; i++) {
-                    //     if (checkboxes[j][i].id === checkbox.id) {
-                    //       checkboxExists = true;
-                    //       index = i;
-                    //       break;
-                    //     }
-                    //   }
-                    //
-                    // }
-
                     var controle = 0;
 
-                    if (controle !== 1 && (cel_left - 1) != -1) {
+                    if (controle !== 1 && (cel_left - 1) != -1 && !(controlEightHours == true)) {
                         // Adicionar o checkbox apenas se não existir no array
                         if (!checkboxExists) {
                             if (checkbox.id.startsWith("mon")) {
@@ -257,9 +245,8 @@ $(document).ready(function () {
 
                     for (var i = 0; i < checkboxes.length; i++) {
                         if (checkboxes[i].length > max_quantidade_celulas) {
+                            //deleteCheckbox(checkboxes, input_id, positionDelete);
                             controlEightHours = true;
-                            var checkbox = document.getElementById(input_id);
-                            deleteCheckbox(checkboxes, input_id, positionDelete);
                             controle = 1;
                             $('#error-message-form').text('A seleção da disponibilidade de horário não pode ultrapassar 8 horas de trabalho diárias.');
                             $('#error-alert-form').show();
@@ -279,8 +266,7 @@ $(document).ready(function () {
                     console.log("thu", checkboxes[3].length);
                     console.log("fri", checkboxes[4].length);
                     console.log("sat", checkboxes[5].length);
-
-
+                    
                     if (!controlEightHours) {
                         atualizar_cel_left(is_checked);
                     }
@@ -337,6 +323,8 @@ $(document).ready(function () {
 
         let csrftoken = getCookie('csrftoken');
 
+        console.log("contro8horas", controlEightHours);
+        console.log("check teste", checkboxes[0].length);
         if (work_regime && timeslots.length !== 0 &&
             checkboxes[0].length <= max_quantidade_celulas &&
             checkboxes[1].length <= max_quantidade_celulas &&
@@ -344,6 +332,7 @@ $(document).ready(function () {
             checkboxes[3].length <= max_quantidade_celulas &&
             checkboxes[4].length <= max_quantidade_celulas &&
             checkboxes[5].length <= max_quantidade_celulas) {
+            console.log("contro8horasmm", controlEightHours);
             $.ajax({
                 type: 'post',
                 url: '/' + lang + '/professor/preferencia-atribuicao/criar-fpa/editar-cursos/',
@@ -421,7 +410,6 @@ function atualizar_cel_left(is_checked) {
         }
     }
 }
-
 
 function deleteCheckbox(checkboxes, checkboxId, positionDelete) {
     for (let i = 0; i < checkboxes.length; i++) {
