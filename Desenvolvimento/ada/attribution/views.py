@@ -25,7 +25,7 @@ TEMPO_LIMITE_SEGUNDOS = 10
 def attribution(request):
     
     blockk = Blockk.objects.get(registration_block_id=request.GET.get('blockk'))
-    consider_deadline = True
+    consider_deadline = False
     
     if request.method == 'GET':
         if consider_deadline:
@@ -67,15 +67,14 @@ def attribution(request):
                 return render(request, 'attribution/attribution_error_page_before.html')
         else:
             print(get_time_left())
-            # print(cancel_scheduled_task())
             queue = TeacherQueuePosition.objects.filter(blockk=blockk).order_by('position').all()
-            value = str(float_to_time(int(get_time_left())))
-            print(value)
+            # value = str(float_to_time(int(get_time_left())))
+            # print(value)
 
             data = {
                 'queue': queue,
                 'blockk': blockk,
-                'time_left': value,
+                # 'time_left': value,
             }
             return render(request, 'attribution/attribution.html', data)
             
@@ -215,32 +214,62 @@ def schedule_attributtion_deadline_staff(seconds, name, *args):
     schedule_deadline(attribution_deadline_start, seconds, name, *args)
 
 import datetime
+def manual_attribution(request):   
 
-def manual_attribution(request):
     if request.method == 'POST':
-        return render(request, 'attribution_preference/courses_attribution_preference.html')
+        blockk = Blockk.objects.get(registration_block_id=request.POST.get('blockk'))
+
+        work_courses = request.POST.get('timetable')
+
+        data = json.loads(work_courses);
+
+        result = []
+        for item in data:
+            temp_dict = {
+                'id_timetable': item['id_timetable'],
+                'position': item['position']
+            }
+            result.append(temp_dict)
+
+        print(result[0]['id_timetable'])
+
+        timetables = []
+        for item in result:
+            timetables.append(Timetable.objects.get(id=item['id_timetable']))
+
+        timetables_invalidate = manual_attribution_save(timetables, request.user, blockk)
+
+        if len(timetables_invalidate) > 0:
+            return render(request, 'attribution/manual_attribution.html')
+        else:
+            return redirect('attribution')
     else:
+        blockk = Blockk.objects.get(registration_block_id=request.GET.get('blockk'))
         user = request.user
         user_regime = user.job
-        timetable = Timetable.objects.all()
-        courses = Course.objects.all()
-
-        blocks = user.blocks.all().distinct()
-        areas = Area.objects.filter(blocks__in=blocks).distinct()
-
         timetables_user = Timetable_user.objects.filter(user=None).all()
 
+        timetables_current_user = Timetable_user.objects.filter(user=user).all()
+
+        print(timetables_current_user)
+
         timetable = []
+        courses = []
+        timetable_user_c = []
+
+        for timetable_current_user in timetables_current_user:
+            timetable_user_c.append(timetable_current_user.timetable)
+
+        print(timetable_user_c)
+
+        for timetable_user in timetables_user:
+            courses.append(timetable_user.timetable.course)
 
         for timetable_user in timetables_user:
             timetable.append(timetable_user.timetable)
 
-        timetables_current_user = Timetable_user.objects.filter(user=user).all()
-        
-        timetable_current = []
-
-        for timetable_user in timetables_current_user:
-            timetable_current.append(timetable_user.timetable)
+        blocks = user.blocks.all().distinct()
+        areas = Area.objects.filter(blocks__in=blocks).distinct()
 
         user_area = []
         user_blocks = []
@@ -295,6 +324,48 @@ def manual_attribution(request):
 
             timetable_array.append(timetable_item)
 
+        timetable_user_array = []
+
+        dias_semana = {
+            'monday': 'mon',
+            'tuesday': 'tue',
+            'wednesday': 'wed',
+            'thursday': 'thu',
+            'friday': 'fri',
+            'saturday': 'sat'
+        }
+
+        if timetable_user_c:
+            for timetable_object in timetable_user_c:
+                day_combo_objects = timetable_object.day_combo.all()
+
+                for day_combo in day_combo_objects:
+                    day = day_combo.day
+                    timeslots = day_combo.timeslots.all()
+
+                    for timeslot in timeslots:
+                        turno = None
+
+                        if timeslot.hour_start >= datetime.time(7, 0, 0) and timeslot.hour_end <= datetime.time(12, 0, 0):
+                            turno = 'mat'
+                        elif timeslot.hour_start >= datetime.time(13, 0, 0) and timeslot.hour_end <= datetime.time(18, 0, 0):
+                            turno = 'ves'
+                        elif timeslot.hour_start >= datetime.time(18, 0, 0) and timeslot.hour_end <= datetime.time(23, 0, 0):
+                            turno = 'not'
+
+                        timeslot_position = timeslot.position
+                        course_name = timetable_object.course.name_course
+                        course_acronym = timetable_object.course.acronym
+                        day_string = dias_semana[day]
+
+                        timetable_item = {
+                            'phrase': f'{day_string}-{turno}-{timeslot_position}', #sub-fri-mat-4
+                            'course_acronym': course_acronym,
+                            'course_name': course_name,
+                        }
+
+                        timetable_user_array.append(timetable_item)
+
         courses_array = []
 
         for course_object in courses:
@@ -328,64 +399,77 @@ def manual_attribution(request):
             turno['vespertinoAulas'] = len(turno['vespertino']) + 1
             turno['noturnoAulas'] = len(turno['noturno']) + 1
 
-        user_timeslot_hour = []
+        user_timeslot_hour = []        
         user_timeslot_traceback = []
-        user_preference_schedules = Preference_schedule.objects.filter(attribution_preference__user=request.user)
-        for schedule in user_preference_schedules:
-            begin = (schedule.timeslot.hour_start)
+        timeslots = Timeslot.objects.all()
 
-            turno_sessao = None
-            turno_posicao = None
+        dias_semana = {
+            'monday': 'mon',
+            'tuesday': 'tue',
+            'wednesday': 'wed',
+            'thursday': 'thu',
+            'friday': 'fri',
+            'saturday': 'sat'
+        }
 
-            if begin >= datetime.time(7, 0, 0) and begin <= datetime.time(12, 0, 0):
-                turno_sessao = 'mat'
-                turno_posicao = next((i for i, slot in enumerate(turno['matutino']) if slot.hour_start == begin), None)
-            elif begin >= datetime.time(13, 0, 0) and begin < datetime.time(18, 0, 0):
-                turno_sessao = 'ves'
-                turno_posicao = next((i for i, slot in enumerate(turno['vespertino']) if slot.hour_start == begin),
-                                     None)
-            elif begin >= datetime.time(18, 0, 0) and begin <= datetime.time(23, 0, 0):
-                turno_sessao = 'not'
-                turno_posicao = next((i for i, slot in enumerate(turno['noturno']) if slot.hour_start == begin), None)
+        for dia in dias_semana.values():
+            for posicao in range(1, 19):  # 18 horários possíveis
+                timeslot = timeslots[posicao-1]  # Assumindo que timeslots esteja ordenado corretamente
 
-            if turno_posicao is not None:
-                turno_posicao += 1
+                if timeslot.hour_start < datetime.time(12, 0, 0):
+                    turno_sessao = 'mat'
+                elif timeslot.hour_start < datetime.time(18, 0, 0):
+                    turno_sessao = 'ves'
+                else:
+                    turno_sessao = 'not'
 
-            if schedule.day == 'monday':
-                day = 'mon'
-            elif schedule.day == 'tuesday':
-                day = 'tue'
-            elif schedule.day == 'wednesday':
-                day = 'wed'
-            elif schedule.day == 'thursday':
-                day = 'thu'
-            elif schedule.day == 'friday':
-                day = 'fri'
-            else:
-                day = 'sat'
-
-            string = {
-                'frase': f'{day}-{turno_sessao}-{turno_posicao}',
-                'posicao': turno_posicao,
-                'sessao': turno_sessao,
-                'dia': day,
-                'hour': begin.strftime('%H:%M:%S'),
-            }
-            user_timeslot_traceback.append(string)
-
-        print(user_blocks)
-        print(user_area)
-
+                string = {
+                    'frase': f'{dia}-{turno_sessao}-{posicao}',
+                    'posicao': posicao,
+                    'sessao': turno_sessao,
+                    'dia': dia,
+                    'hour': timeslot.hour_start.strftime('%H:%M:%S'),
+                }
+                user_timeslot_traceback.append(string)
+        
+        if user_regime.name_job == "rde":
+            user_regime_choosed = user_regime
+            user_regime_choosed.name_job = '40'
+        else:
+            user_regime_choosed = user_regime
+        
         data = {
-            'timetable_user': timetable,
-            'timetable_current_user': timetable_current,
-            'work_regime': user_regime,
+            'work_regime': user_regime_choosed,
             'turno': turno,
             'user_disponibility': user_timeslot_traceback,
             'user_blocks': user_blocks,
             'user_areas': user_area,
             'timetables': timetable_array,
-            'courses': courses_array
+            'courses': courses_array,
+            'timetables_user': timetable_user_array,
+            'blockk': blockk,
         }
+        print(blockk.registration_block_id)
 
         return render(request, 'attribution/manual_attribution.html', data)
+
+def manual_attribution_save(timetables, professor, blockk):
+
+    invalidated_timetables = []
+
+    for timetable in timetables:
+        if validate_timetable(timetable, professor) != True:
+            invalidated_timetables.append(timetable)
+            print('invalidou')
+        else:
+            print('validou')
+            assign_timetable_professor(timetable, professor)
+    
+    print(invalidated_timetables)
+    if len(invalidated_timetables) == 0:
+        professor_to_end_queue(professor)
+        TeacherQueuePosition.objects.filter(teacher=professor).delete()
+        cancel_scheduled_task('task')
+        return start_attribution(blockk)
+    else:        
+        return invalidated_timetables
