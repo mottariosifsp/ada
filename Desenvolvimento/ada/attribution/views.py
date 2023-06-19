@@ -7,6 +7,7 @@ from timetable.models import Timeslot, Timetable, Timetable_user
 from user.models import User
 from attribution.models import TeacherQueuePosition
 from django.shortcuts import render, redirect
+from django.contrib.auth.decorators import user_passes_test
 import json
 from django.db.models import F, Sum, Value  
 from django.db import transaction
@@ -16,6 +17,7 @@ from django.core.mail import send_mail, EmailMessage
 import xml.etree.ElementTree as ET
 import os
 
+from django.contrib.auth.decorators import login_required
 from attribution_preference.models import Course_preference, Attribution_preference, Preference_schedule
 
 from django.utils.decorators import method_decorator
@@ -475,3 +477,83 @@ def manual_attribution_save(timetables, professor, blockk):
         return start_attribution(blockk)
     else:        
         return invalidated_timetables
+
+@login_required
+def attribution_list(request):
+    user = request.user
+    blocks = user.blocks.all().distinct()
+
+    return render(request, 'attribution/attribution_list.html', {'blocks': blocks})
+
+@login_required
+def attribution_detail(request):
+
+    return render(request, 'attribution/attribution_detail.html', data)
+
+@login_required
+def edit_timetable(request):
+    print(request)
+    if request.method == 'GET':
+        if request.GET.get('classs'):
+            # selected_class = Classs.objects.get(registration_class_id__icontains=(request.GET.get('classs')))
+            selected_class = get_object_or_404(Classs, registration_class_id__icontains=(request.GET.get('classs')))
+            try:
+                timetable = Timetable.objects.get(classs=selected_class)
+                selected_courses = [timetable.course] if timetable.course else []
+            except Timetable.DoesNotExist:
+                timetable = None
+                selected_courses = Course.objects.filter(area=selected_class.area)
+            
+            data = {
+                'courses': selected_courses,
+                'timeslots': Timeslot.objects.all().order_by('hour_start'),
+                'classs': selected_class,
+                'timetable': timetable,
+            }            
+    
+    elif request.method == 'POST':
+        message = ""
+        selected_courses = json.loads(request.POST.get('selected_courses'))
+        selected_class = get_object_or_404(Classs, registration_class_id__icontains=(request.GET.get('classs')))
+
+        timetable_combo_saver(selected_courses, selected_class)
+        
+        return JsonResponse({'erro': False, 'mensagem': message})
+    return render(request, 'staff/timetable/show_timetable.html', data)
+
+@login_required
+def show_timetable(request):
+    if request.method == 'GET':
+        selected_class = Classs.objects.get(registration_class_id__exact=(request.GET.get('class')))
+        timetables = Timetable.objects.filter(classs=selected_class).all()
+        
+        timeslots = Timeslot.objects.all().order_by('hour_start')
+
+        timetable_complete = []
+
+        for day in range(Timeslot.objects.all().count()):
+            list_day = []
+            for timeslot in range(7):
+                list_day.append('')
+            timetable_complete.append(list_day)
+
+        for timetable in timetables:
+            for day_combo in timetable.day_combo.all():
+                for timeslot in day_combo.timeslots.all():
+                    timetable_complete[timeslot.position-1][enum_to_day_number(day_combo.day)+1] = timetable.course.name_course
+
+        for i, row in enumerate(timetable_complete):
+            for j, col in enumerate(row):
+                if j == 0:
+                    col = str(timeslots[i].hour_start) + " - " + str(timeslots[i].hour_end)
+                    timetable_complete[i][j] = col
+
+        print(timetable_complete)
+
+        data = {
+            'timeslots': Timeslot.objects.all().order_by('hour_start'),
+            'timetables': timetable_complete,
+            'classs': selected_class,
+        }
+
+    return render(request, 'staff/timetable/show_timetable.html', data)
