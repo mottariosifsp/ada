@@ -6,9 +6,19 @@
     <link rel="stylesheet" href="{% static 'attribution_preference/css/attribution_preference_courses.css' %}">
     <title>{% trans "FPA Usuário" %}</title>
     <style>
-        .regime {
-            margin-top: -16px;
+        @media print {  
+          .hidden-itens {     
+          display: none;
         }
+
+        .title-page {
+          margin-top: -60px;
+        }
+        
+        .hour-print {
+          font-size: 14px;
+        }
+      }
     </style>
 {% endblock %}
 
@@ -16,7 +26,7 @@
 {% block body %}
     <h1 class="title-page">FPA Usuário</h1>
     <nav>
-    <ol class="breadcrumb">
+    <ol class="breadcrumb hidden-itens">
         <li class="breadcrumb-item"><a href="{% url 'home' %}"><i class="bi bi-house-door"></i></a></li>
         <li class="breadcrumb-item active">Preferência Atribuição</li>
         <li class="breadcrumb-item active">FPA Usuário</li>
@@ -65,12 +75,12 @@
                   <td colspan="2">{{ request.user.cell_phone }}</td>
                 </tr>
                 <tr>
-                    <th>Regime de trabalho:</th>
-                    <td class="col-2 20">20 horas</td>
-                    <td class="col-2 40">40 horas</td>
-                    <td class="col-2 rde">RDE</td>
-                    <td class="col-2">Substituto</td>
-                    <td class="col-2">Temporário</td>
+                  <th>Regime de trabalho:</th>
+                  <td class="col-2 20">20 horas</td>
+                  <td class="col-2 40">40 horas</td>
+                  <td class="col-2 rde">RDE</td>
+                  <td class="col-2">Substituto</td>
+                  <td class="col-2">Temporário</td>
                 </tr>
             </table>
 
@@ -99,7 +109,7 @@
                                 <td class="text-center align-middle" rowspan="{{ turno.matutinoAulas }}">Matutino</td>
                                 {% for horario in turno.matutino %}
                                   <tr>
-                                    <td class="text-center align-middle">{{ horario.hour_start }} - {{ horario.hour_end }}</td>
+                                    <td class="text-center hour-print align-middle">{{ horario.hour_start }} - {{ horario.hour_end }}</td>
                           
                                     <td class="text-center" id="btn-mon-mat-{{ forloop.counter }}">
                                       <div class="openModalBtn">
@@ -154,7 +164,7 @@
                                 <td class="text-center align-middle" rowspan="{{ turno.vespertinoAulas }}">Vespertino</td>
                                 {% for horario in turno.vespertino %}
                                   <tr>
-                                    <td class="text-center align-middle">{{ horario.hour_start }} - {{ horario.hour_end }}</td>
+                                    <td class="text-center hour-print align-middle">{{ horario.hour_start }} - {{ horario.hour_end }}</td>
                           
                                     <td class="text-center" id="btn-mon-ves-{{ forloop.counter }}">
                                       <div class="openModalBtn">
@@ -209,7 +219,7 @@
                                 <td class="text-center align-middle" rowspan="{{ turno.noturnoAulas }}">Noturno</td>
                                 {% for horario in turno.noturno %}
                                   <tr>
-                                    <td class="text-center align-middle">{{ horario.hour_start }} - {{ horario.hour_end }}</td>
+                                    <td class="text-center hour-print align-middle">{{ horario.hour_start }} - {{ horario.hour_end }}</td>
                           
                                     <td class="text-center" id="btn-mon-not-{{ forloop.counter }}">
                                       <div class="openModalBtn">
@@ -285,9 +295,18 @@
                 </table>
                     
             </table>
-
             </div>
-            <a href="{% url 'disponibility_attribution_preference' %}"><button type="button" class="btn btn-info w-100 float-right mb-2">Refazer FPA</button></a>
+            
+            <div class="row">
+              <div class="col-6 text-right">
+                <a href="{% url 'disponibility_attribution_preference' %}">
+                  <button type="button" class="hidden-itens btn btn-info">Refazer FPA</button>
+                </a>
+              </div>
+              <div class="col-6">
+                <button type="button" onClick="window.print();" class="hidden-itens btn btn-success">Imprimir PDF</button>
+              </div>
+            </div>
         </div>
     </div>
     
