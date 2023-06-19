@@ -12,7 +12,7 @@ from django.shortcuts import get_object_or_404, redirect, render
 from django.contrib.auth.decorators import user_passes_test
 from django.contrib.auth import get_user_model
 from django.utils import timezone
-from timetable.models import Day_combo, Timeslot, Timetable
+from timetable.models import Day_combo, Timeslot, Timetable, Timetable_user
 from .models import Deadline
 from area.models import Blockk, Area
 from classs.models import Classs
@@ -498,6 +498,8 @@ def save_timetable(course, classs, day_combo):
         timetable = Timetable.objects.create(course=course, classs=classs)
         # print(f'criado {course} no dia {day_combo.day}')
         timetable.day_combo.add(day_combo)
+        Timetable_user.objects.create(timetable=timetable, user=None)
+        
     
 def save_combo_day(day, timeslots, course, classs):
     day_combos = Day_combo.objects.filter(day=day)
