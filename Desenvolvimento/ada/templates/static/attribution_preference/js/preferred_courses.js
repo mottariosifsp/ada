@@ -4,6 +4,7 @@ var timetables = document.currentScript.getAttribute("timetables");
 var courses = document.currentScript.getAttribute("courses");
 var blocks = document.currentScript.getAttribute("blocks");
 var areas = document.currentScript.getAttribute("areas");
+var regime = document.currentScript.getAttribute("regime");
 
 var timetable_global = [];
 var btn_checked_global = [];
@@ -73,9 +74,6 @@ for (var i = 0; i < timetables_array.length; i++) {
         classs: timetable_object.classs,
     };
 
-    // alert(timetable_item.day_combo[0].day);
-    // alert(timetable_item.day_combo[0].timeslots[0].hour_start);
-
     timetables_array_obj.push(timetable_item);
 }
 
@@ -136,6 +134,25 @@ for (var i = 0; i < courses_array.length; i++) {
     courses_array_obj.push(novo_objeto);
 }
 
+var cel_left = {
+    time: 21,
+    type: ''
+}
+
+if (regime == '20') {
+    cel_left.type = '20h';
+    $('#count-cel').css({
+        'color': '#913f3f'
+    })
+} else if (regime == '40' || regime == 'rde') {
+    cel_left.type = '40h';
+    $('#count-cel').css({
+        'color': '#913f3f'
+    })
+}
+$('#cel-hour').text('21')
+
+// Ao cliar no button
 $("#timetable-courses input").on("click", function () {
     var dataId = $(this).closest("div[data-id]").data("id");
     $("#cel-position").text(dataId).css("visibility", "hidden");
@@ -162,8 +179,11 @@ $("#timetable-courses input").on("click", function () {
                 $("#btn-" + position)
                     .attr("data-toggle", "modal")
                     .attr("data-target", "#addCourseModal");
+                cel_left.time += 1;
             });
         });
+
+        $('#cel-hour').text(cel_left.time)
 
         btn_checked_global = btn_checked_global.filter(function (element) {
             return !filteredTimetables.some(function (timetable) {
@@ -261,6 +281,8 @@ function block_filter() {
 
     area_options();
     timetables_options();
+    $("#info-alert").hide();
+    $("#info-message-list").empty();
 
     if (block_value == "") {
     } else {
@@ -311,6 +333,8 @@ function area_filter() {
 
     block_options();
     timetables_options();
+    $("#info-alert").hide();
+    $("#info-message-list").empty();
 
     if (area_value == "") {
     } else {
@@ -364,6 +388,45 @@ function area_filter() {
     }
 }
 
+function course_apresentation() {
+    var course_value = parseInt($("#course-filter").val());
+    $("#info-alert").hide();
+  
+    var filtered_timetable = timatables_options.filter(function(timetable) {
+      return timetable.id == course_value;
+    });
+
+    console.log(filtered_timetable)
+  
+    $("#info-message-list").empty();
+  
+    filtered_timetable.forEach(function(timetable) {
+      timetable.day_combo.forEach(function(dayCombo) {
+        var day = getDiaCompleto(getFullDayOfWeek(dayCombo.day));
+        var timeslots = dayCombo.timeslots;
+  
+        timeslots.forEach(function(timeslot) {
+          var hourStart = timeslot.hour_start;
+          var hourEnd = timeslot.hour_end;
+  
+            var row = $("<tr></tr>");
+            row.append("<td class='col-3 text-center align-middle'>" + day + "</td>");
+            row.append("<td class='col-3 text-center align-middle'>" + hourStart + " " + hourEnd + "</td>");
+            row.append("<td class='col-3 text-center align-middle'>" + timetable.course_acronym + "</td>");
+            row.append("<td class='col-3 text-center align-middle'>" + timetable.classs + "</td>");
+
+          $("#info-message-list").append(row);
+        });
+      });
+    });
+
+  
+    $("#info-alert").show();
+    if (isNaN(course_value)) {
+        $("#info-alert").hide();
+      }
+  }
+
 // Mapea na grade
 for (var i = 0; i < disponibility_array_obj.length; i++) {
     var obj = disponibility_array_obj[i];
@@ -410,7 +473,9 @@ $(document).ready(function () {
                     var frase_array = [];           
                     var frases_repetidas = [];
                     var is_missing = false;
-                    var missing_courses = []
+                    var missing_courses = [];
+                    var max_cel = false;
+                    var length_frases = 0;
 
                     
                     function formatarFrase(frase) {
@@ -438,9 +503,8 @@ $(document).ready(function () {
                               return disponibility.frase;
                             });
 
-                            console.log(frases)
-
                             frases.forEach(function(frase) {
+                                length_frases ++;
                                 if (btn_checked_global.includes(frase)) {
                                   is_repetead = true;
                                   frases_repetidas.push(formatarFrase(frase));
@@ -456,6 +520,18 @@ $(document).ready(function () {
                             }
                         
                             
+                        });
+                    }
+
+                    var willZeroOrNegative = (cel_left.time - length_frases) <= 0;
+
+                    if(willZeroOrNegative) {
+                        max_cel = true
+                        $("#error-message-form").text("Você atingiu o máximo de células.");
+                        $("#error-alert-form").show();
+                        window.scrollTo({
+                            top: $("#error-alert-form").offset().top - $(".navbar").outerHeight() - 30,
+                            behavior: "smooth",
                         });
                     }
 
@@ -475,7 +551,7 @@ $(document).ready(function () {
                                 return disponibility.frase;
                             });
 
-                            if (!is_repetead && !is_missing) {
+                            if (!is_repetead && !is_missing && !max_cel) {
                                 frases.forEach(function (frase) {
                                     if (!btn_checked_global.includes(frase)) {
                                         $("#sub-" + frase).text(filtered_timetable[0].course_acronym);
@@ -484,7 +560,6 @@ $(document).ready(function () {
                                             .attr("data-toggle", "none")
                                             .attr("data-target", "#");
                                         btn_checked_global.push(frase);
-                                        
                                     }
                                 });
                             }
@@ -499,8 +574,10 @@ $(document).ready(function () {
                         id_timetable: filtered_timetable[0].id,
                         position: frase_array,
                     };
-                    if (!is_repetead && !is_missing) {
+                    if (!is_repetead && !is_missing && !max_cel) {
                         timetable_global.push(global);
+                        cel_left.time -= frase_array.length
+                        $('#cel-hour').text(cel_left.time)
                     }
 
                     $("#course-filter").val("");
@@ -535,6 +612,8 @@ $(document).ready(function () {
                             behavior: "smooth",
                         });
                     }
+                    $("#info-alert").hide();
+                    $("#info-message-list").empty();
                 },
                 error: function (xhr, textStatus, errorThrown) {
                     $("#error-message").text("Erro ao tentar adicionar uma disciplina.");
@@ -552,29 +631,73 @@ $(document).ready(function () {
         var jsonData = JSON.stringify(timetable_global);
 
         if (timetable_global.length != 0) {
-            $.ajax({
-                type: "post",
-                url: "/" + lang + "/professor/preferencia-atribuicao/",
-                data: {
-                    timetable: jsonData,
-                },
-                headers: {
-                    "X-CSRFToken": csrftoken,
-                },
-                success: function (response) {
-                    $("#course-filter-form").val("");
-                    $("#error-alert-form").hide();
-                    window.location.href = "/" + lang + "/professor/preferencia-atribuicao/";
-                },
-                error: function (xhr, textStatus, errorThrown) {
-                    $("#error-message-form").text("Erro ao tentar suas preferências de disciplinas.");
+            if(cel_left.type == '20h') {
+                if(cel_left.time <= 13) {
+                    $.ajax({
+                        type: "post",
+                        url: "/" + lang + "/professor/preferencia-atribuicao/",
+                        data: {
+                            timetable: jsonData,
+                        },
+                        headers: {
+                            "X-CSRFToken": csrftoken,
+                        },
+                        success: function (response) {
+                            $("#course-filter-form").val("");
+                            $("#error-alert-form").hide();
+                            window.location.href = "/" + lang + "/professor/preferencia-atribuicao/";
+                        },
+                        error: function (xhr, textStatus, errorThrown) {
+                            $("#error-message-form").text("Erro ao tentar suas preferências de disciplinas.");
+                            $("#error-alert-form").show();
+                            window.scrollTo({
+                                top: $("#error-alert-form").offset().top - $(".navbar").outerHeight() - 30,
+                                behavior: "smooth",
+                            });
+                        },
+                    });
+                } else {
+                    $("#error-message-form").text("Quantidade de células minímas para seu FPA segundo seu regim é 8 células.");
                     $("#error-alert-form").show();
                     window.scrollTo({
                         top: $("#error-alert-form").offset().top - $(".navbar").outerHeight() - 30,
                         behavior: "smooth",
                     });
-                },
-            });
+                }
+            } else {
+                if(cel_left.time <= 9) {
+                    $.ajax({
+                        type: "post",
+                        url: "/" + lang + "/professor/preferencia-atribuicao/",
+                        data: {
+                            timetable: jsonData,
+                        },
+                        headers: {
+                            "X-CSRFToken": csrftoken,
+                        },
+                        success: function (response) {
+                            $("#course-filter-form").val("");
+                            $("#error-alert-form").hide();
+                            window.location.href = "/" + lang + "/professor/preferencia-atribuicao/";
+                        },
+                        error: function (xhr, textStatus, errorThrown) {
+                            $("#error-message-form").text("Erro ao tentar suas preferências de disciplinas.");
+                            $("#error-alert-form").show();
+                            window.scrollTo({
+                                top: $("#error-alert-form").offset().top - $(".navbar").outerHeight() - 30,
+                                behavior: "smooth",
+                            });
+                        },
+                    });
+                } else {
+                    $("#error-message-form").text("Quantidade de células minímas para seu FPA segundo seu regim é 12 células.");
+                    $("#error-alert-form").show();
+                    window.scrollTo({
+                        top: $("#error-alert-form").offset().top - $(".navbar").outerHeight() - 30,
+                        behavior: "smooth",
+                    });
+                }
+            }
         } else {
             $("#error-message-form").text("Selecione suas disciplinas.");
             $("#error-alert-form").show();
