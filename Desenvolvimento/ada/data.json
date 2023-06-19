@@ -2448,5 +2448,392 @@
             "name": "DOUTORADO",
             "punctuation": 5
         }
-    }
+    },
+    
+    {
+        "model": "timetable.timetable_user",
+        "pk": 1,
+        "fields": {
+            "timetable": 11,
+            "user": null
+        }
+    },
+    {
+        "model": "timetable.timetable_user",
+        "pk": 2,
+        "fields": {
+            "timetable": 12,
+            "user": null
+        }
+    },
+    {
+        "model": "timetable.timetable_user",
+        "pk": 3,
+        "fields": {
+            "timetable": 13,
+            "user": null
+        }
+    },
+    {
+        "model": "timetable.timetable_user",
+        "pk": 4,
+        "fields": {
+            "timetable": 14,
+            "user": null
+        }
+    },
+    {
+        "model": "timetable.timetable_user",
+        "pk": 5,
+        "fields": {
+            "timetable": 15,
+            "user": null
+        }
+    },
+    {
+        "model": "timetable.timetable_user",
+        "pk": 6,
+        "fields": {
+            "timetable": 16,
+            "user": null
+        }
+    },
+    {
+        "model": "timetable.timetable_user",
+        "pk": 7,
+        "fields": {
+            "timetable": 17,
+            "user": null
+        }
+    },
+    {
+        "model": "timetable.timetable_user",
+        "pk": 8,
+        "fields": {
+            "timetable": 18,
+            "user": null
+        }
+    },
+    {
+        "model": "timetable.timetable_user",
+        "pk": 9,
+        "fields": {
+            "timetable": 19,
+            "user": null
+        }
+    },
+    {
+        "model": "timetable.timetable_user",
+        "pk": 10,
+        "fields": {
+            "timetable": 20,
+            "user": null
+        }
+    },
+    {
+        "model": "timetable.timetable_user",
+        "pk": 11,
+        "fields": {
+            "timetable": 21,
+            "user": null
+        }
+    },
+    {
+        "model": "timetable.timetable_user",
+        "pk": 12,
+        "fields": {
+            "timetable": 22,
+            "user": null
+        }
+    },
+    {
+        "model": "timetable.timetable_user",
+        "pk": 13,
+        "fields": {
+            "timetable": 23,
+            "user": null
+        }
+    },
+    {
+        "model": "timetable.timetable_user",
+        "pk": 14,
+        "fields": {
+            "timetable": 24,
+            "user": null
+        }
+    },
+    {
+        "model": "timetable.timetable_user",
+        "pk": 15,
+        "fields": {
+            "timetable": 25,
+            "user": null
+        }
+    },
+    {
+        "model": "timetable.timetable_user",
+        "pk": 16,
+        "fields": {
+            "timetable": 26,
+            "user": null
+        }
+    },
+    {
+        "model": "timetable.timetable_user",
+        "pk": 17,
+        "fields": {
+            "timetable": 27,
+            "user": null
+        }
+    },
+    {
+        "model": "timetable.timetable_user",
+        "pk": 18,
+        "fields": {
+            "timetable": 28,
+            "user": null
+        }
+    },
+    {
+        "model": "timetable.timetable_user",
+        "pk": 19,
+        "fields": {
+            "timetable": 29,
+            "user": null
+        }
+    },
+    {
+        "model": "timetable.timetable_user",
+        "pk": 20,
+        "fields": {
+            "timetable": 30,
+            "user": null
+        }
+    },
+    {
+        "model": "timetable.timetable_user",
+        "pk": 21,
+        "fields": {
+            "timetable": 31,
+            "user": null
+        }
+    },
+    {
+        "model": "timetable.timetable_user",
+        "pk": 22,
+        "fields": {
+            "timetable": 32,
+            "user": null
+        }
+    },
+    {
+        "model": "timetable.timetable_user",
+        "pk": 23,
+        "fields": {
+            "timetable": 33,
+            "user": null
+        }
+    },
+    {
+        "model": "timetable.timetable_user",
+        "pk": 24,
+        "fields": {
+            "timetable": 34,
+            "user": null
+        }
+    },
+    {
+        "model": "timetable.timetable_user",
+        "pk": 25,
+        "fields": {
+            "timetable": 35,
+            "user": null
+        }
+    },
+    {
+        "model": "timetable.timetable_user",
+        "pk": 26,
+        "fields": {
+            "timetable": 36,
+            "user": null
+        }
+    },
+    {
+        "model": "timetable.timetable_user",
+        "pk": 27,
+        "fields": {
+            "timetable": 37,
+            "user": null
+        }
+    },
+    {
+        "model": "timetable.timetable_user",
+        "pk": 28,
+        "fields": {
+            "timetable": 38,
+            "user": null
+        }
+    },
+    {
+        "model": "timetable.timetable_user",
+        "pk": 29,
+        "fields": {
+            "timetable": 39,
+            "user": null
+        }
+    },
+    {
+        "model": "timetable.timetable_user",
+        "pk": 30,
+        "fields": {
+            "timetable": 40,
+            "user": null
+        }
+    },
+    {
+        "model": "timetable.timetable_user",
+        "pk": 31,
+        "fields": {
+            "timetable": 41,
+            "user": null
+        }
+    },
+    {
+        "model": "timetable.timetable_user",
+        "pk": 32,
+        "fields": {
+            "timetable": 42,
+            "user": null
+        }
+    },
+    {
+        "model": "timetable.timetable_user",
+        "pk": 33,
+        "fields": {
+            "timetable": 43,
+            "user": null
+        }
+    },
+    {
+        "model": "timetable.timetable_user",
+        "pk": 34,
+        "fields": {
+            "timetable": 44,
+            "user": null
+        }
+    },
+    {
+        "model": "timetable.timetable_user",
+        "pk": 35,
+        "fields": {
+            "timetable": 45,
+            "user": null
+        }
+    },
+    {
+        "model": "timetable.timetable_user",
+        "pk": 36,
+        "fields": {
+            "timetable": 46,
+            "user": null
+        }
+    },
+    {
+        "model": "timetable.timetable_user",
+        "pk": 37,
+        "fields": {
+            "timetable": 47,
+            "user": null
+        }
+    },
+    {
+        "model": "timetable.timetable_user",
+        "pk": 38,
+        "fields": {
+            "timetable": 48,
+            "user": null
+        }
+    },
+    {
+        "model": "timetable.timetable_user",
+        "pk": 39,
+        "fields": {
+            "timetable": 49,
+            "user": null
+        }
+    },
+    {
+        "model": "timetable.timetable_user",
+        "pk": 40,
+        "fields": {
+            "timetable": 50,
+            "user": null
+        }
+    },
+    {
+        "model": "timetable.timetable_user",
+        "pk": 41,
+        "fields": {
+            "timetable": 51,
+            "user": null
+        }
+    },
+    {
+        "model": "timetable.timetable_user",
+        "pk": 42,
+        "fields": {
+            "timetable": 52,
+            "user": null
+        }
+    },
+    {
+        "model": "timetable.timetable_user",
+        "pk": 43,
+        "fields": {
+            "timetable": 53,
+            "user": null
+        }
+    },
+    {
+        "model": "timetable.timetable_user",
+        "pk": 44,
+        "fields": {
+            "timetable": 54,
+            "user": null
+        }
+    },
+    {
+        "model": "timetable.timetable_user",
+        "pk": 45,
+        "fields": {
+            "timetable": 55,
+            "user": null
+        }
+    },
+    {
+        "model": "timetable.timetable_user",
+        "pk": 46,
+        "fields": {
+            "timetable": 56,
+            "user": null
+        }
+    },
+    {
+        "model": "timetable.timetable_user",
+        "pk": 47,
+        "fields": {
+            "timetable": 57,
+            "user": null
+        }
+    },
+    {
+        "model": "timetable.timetable_user",
+        "pk": 48,
+        "fields": {
+            "timetable": 58,
+            "user": null
+        }
+    }    
+
+
 ]
