@@ -408,7 +408,8 @@ def attribution_preference(request):
                 'name_course': preference.timetable.course.name_course,
                 'course_area': preference.timetable.course.area.name_area,  # Acessa o nome da área corretamente
                 'period': turno_periodo,
-                'classes': preference.timetable.day_combo.count(),
+                'classes': day_combo.timeslots.count(), # feito pelo site
+                #'classes': preference.timetable.day_combo.count(), conta quando é feito direto pelo admin
             }
             user_courses_traceback.append(timetable_object)
 

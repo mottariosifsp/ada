@@ -21,13 +21,13 @@
 input[type="checkbox"]:checked + .check{
   visibility: visible;   
 }
-
+/* 
 #cel-regime {
   font-size: 49.5pt;
   font-weight: 600;
   color: #2f7363;
   align-items: center;
-}
+} */
 
 .cel {
   font-size: 12pt;
@@ -67,4 +67,8 @@ th {
 .my-custom-modal .modal-backdrop {
   opacity: 0.5;
   background-color: #0000002d;
+}
+
+#info-alert table {
+  border-top: none;
 }

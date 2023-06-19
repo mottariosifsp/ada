@@ -64,9 +64,7 @@
                 </tr>
                 <tr>
                   <th>{% trans "Área" %}:</th>
-                  {% blocktrans with name_block_text=user.blocks.first.name_block %}
-                  <td colspan="2">{{ user.blocks.first.name_block }}</td>
-                  {% endblocktrans %}
+                  <td colspan="2">{% translate user.blocks.first.name_block %}</td>
                   <th>{% trans "E-mail" %}:</th>
                   <td colspan="2">{{ request.user.email }}</td>
                 </tr>
