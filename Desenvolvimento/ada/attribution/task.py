@@ -71,4 +71,15 @@ def get_time_left():
         return time_left.total_seconds()
     return None
 
+def cancel_all_tasks():
+
+    # Obtém a lista de tarefas (tasks) ativas
+    active_tasks = app.control.inspect().active()
+
+    # Cancela cada tarefa ativa usando a função revoke()
+    for worker, tasks in active_tasks.items():
+        for task in tasks:
+            app.control.revoke(task['id'], terminate=True)
+
+
 app.conf.timezone = 'UTC'
