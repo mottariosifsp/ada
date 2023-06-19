@@ -26,7 +26,9 @@
             {% if request.user == queue.first.teacher %}
             <h2 class="card-text">{% trans "Você" %}</h2>
             {% else %}
-            <h4 class="card-text">{% trans queue.first.teacher.get_full_name_camel_case %}<h4>
+            {% blocktrans with get_full_name_camel_case_text=queue.first.teacher.get_full_name_camel_case %}
+              <h4 class="card-text">{{ get_full_name_camel_case_text }}<h4>
+            {% endblocktrans %}
             {% endif %}
         </div>
       </div>
@@ -35,7 +37,7 @@
       <h5>{% trans "Tempo restante" %}</h5>
       <div class="card">
         <div class="card-body">
-          <h2 class="card-text" id="time-left">{{time_left}}</h2>
+          <h2 class="card-text" id="time-left">{{ time_left }}</h2>
         </div>
       </div>
     </div>

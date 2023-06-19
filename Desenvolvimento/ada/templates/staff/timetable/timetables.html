@@ -26,7 +26,9 @@
           {% for classs in classes %}
             <tr>
                 <td>{{ classs.registration_class_id }}</td>
-                <td>{% trans classs.area.name_area %}</td>
+                {% blocktrans with name_area_text=classs.area.name_area %}
+                  <td>{{ name_area_text }}</td>
+                {% endblocktrans %}
                 <td>
                   {% if classs.timetable.exists %}
                     <a href="{% url 'show_timetable' %}?class={{classs.registration_class_id}}" class="btn btn-primary"><i class="bi bi-eye"></i></a>

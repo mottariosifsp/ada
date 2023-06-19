@@ -14,12 +14,12 @@ section.register { border-radius: 30px; }
 .logo-notlogged img { width: 150px; }
 
 /* Estilos para a classe "card" dentro da seção de registro */
-section.register .card {
+/* section.register .card {
     position: fixed;
     top: 55%;
     left: 50%;
     transform: trans(-50%, -50%);
-}
+} */
 
 /* Estilos para os botões personalizados */
 .custom-btn,

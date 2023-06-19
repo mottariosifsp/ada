@@ -33,8 +33,8 @@
               <hr class="my-0">
               <div class="text-center mt-4 mb-4 pr-2 pl-2 d-flex">
                 <i class="form-check-inline fas fa-check-circle custom-icon"></i>
-                {% blocktrans with work_regime_text=work_regime%}
-                <input name="work_regime" value="{{ work_regime_text }} horas" readonly class="text-center form-check-inline form-check form-control-plaintext custom-border">
+                {% blocktrans with work_regime_text=work_regime hour_text="horas"%}
+                  <input name="work_regime" value='{{ work_regime_text }} {{hour_text}}' readonly class="text-center form-check-inline form-check form-control-plaintext custom-border">
                 {% endblocktrans %}
               </div>
             </div>
@@ -55,7 +55,7 @@
       <div class="card info-card sales-card mt-4">
         <div class="card-body">
           <div id="work-availability">
-            <h4>{% trans Disciplinas %}</h4>
+            <h4>{% trans "Disciplinas" %}</h4>
             <hr>
             <div id="warning-alert" class="alert alert-warning" style="display: none;">
               <span id="warning-alert-message"></span>
@@ -66,7 +66,7 @@
               <table class="table table-bordered table-sm text-center">
                 <thead>
                   <tr>
-                    <th class="col-1 text-center align-middle">{% trans "Turno" %}</th>
+                    <th class="col-1 text-center align-middle">{% trans "Período" %}</th>
                     <th class="col-2 text-center align-middle">{% trans "Horários" %}</th>
                     <th class="text-center">{% trans "Segunda-Feira" %}</th>
                     <th class="text-center">{% trans "Terça-Feira" %}</th>
@@ -381,9 +381,11 @@
                         <div class="form-group">
                           <label for="class-filter" class="form-label">{% trans "Disciplinas" %}</label>
                           <div class="input-group">
-                            <input list="course-options" id="course-filter" class="form-control w-100" placeholder="Selecione">
+                            <input list="course-options" id="course-filter" class="form-control w-100" placeholder="{% trans Selecione %}">
                             <datalist id="course-options">
-                              <option class="w-100" value="{% trans course.acronym %}">{% trans course.name_course %}</option>
+                              {% blocktrans with name_course_text=course.name_course acronym_text=course.acronym %}
+                                <option class="w-100" value="{{ acronym_text }}">{{ name_course_text }}</option>
+                              {% endblocktrans %}
                             </datalist>
                           </div>
                         </div>
