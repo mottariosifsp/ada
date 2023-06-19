@@ -21,12 +21,12 @@
             {% endif %}
             {% if request.user.is_staff or request.user.is_superuser%}
             <div class="col">
-                <button type="button" id="to-staff" url="/staff/" class="btn btn-outline-warning btn-lg rounded-pill btn-block">{% trans "Administrador" %}</button>
+                <button type="button" id="to-staff" url="/staff/" class="btn btn-outline-warning btn-lg rounded-pill btn-block">{% trans "Staff" %}</button>
             </div>
             {% endif %}
             {% if request.user.is_superuser %}
             <div class="col">
-                <button type="button" id="to-admin" url="/admin/" class="btn btn-outline-danger btn-lg rounded-pill btn-block">{% trans "Super Administrador" %}</button>
+                <button type="button" id="to-admin" url="/admin/" class="btn btn-outline-danger btn-lg rounded-pill btn-block">{% trans "Administrador" %}</button>
             </div>
             {% endif %}
         </div>

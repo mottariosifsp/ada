@@ -55,7 +55,9 @@
                   <input list="courses{{ i }}" name="course" class="form-control datalist{{i}}" autocomplete="off">
                   <datalist id="courses{{ i }}">
                     {% for course in courses %}
-                    <option class="dropdown-item-class" value="{{ course.name_course }}">
+                    {% blocktrans with name_course_text=course.name_course %}
+                      <option class="dropdown-item-class" value="{{ name_course_text }}">
+                    {% endblocktrans %}
                     {% endfor %}
                   </datalist>
                 </td>

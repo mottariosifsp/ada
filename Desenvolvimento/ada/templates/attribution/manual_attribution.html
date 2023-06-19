@@ -18,7 +18,7 @@
     label.checkbox {
       font-weight: 700;
       color: white;
-      background-color: #2f7363;
+      background-color: #507c75;
     }
   </style>
 {% endblock %}
@@ -359,7 +359,7 @@
                             <div class="form-group">
                               <label for="area-filter" class="form-label">{% trans "Filtrar área" %}</label>
                               <div class="input-group">
-                                <input list="area-options" id="area-filter" placeholder="--" class="form-control mb-4" onchange="area_filter()">
+                                <input list="area-options" id="area-filter" placeholder="--" class="form-control mb-4" onchange="area_filter()"> <!--- HAKUN4MATAT4-->
                                 <datalist id="area-options">
                                 </datalist>
                               </div>
@@ -369,9 +369,11 @@
                         <div class="form-group">
                           <label for="class-filter" class="form-label">{% trans "Disciplinas" %}</label>
                           <div class="input-group">
-                            <input list="course-options" id="course-filter" class="form-control w-100" placeholder="Selecione">
+                            <input list="course-options" id="course-filter" class="form-control w-100" placeholder="{% trans Selecione %}">
                             <datalist id="course-options">
-                              <option class="w-100" value="{{ course.acronym }}">{{ course.name_course }}</option>
+                              {% blocktrans with name_course_text=course.name_course and acronym_text=course.acronym %}
+                                <option class="w-100" value="{{ acronym_text }}">{{ name_course_text }}</option>
+                              {% endblocktrans %}
                             </datalist>
                           </div>
                         </div>
@@ -398,5 +400,5 @@
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
   <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-  <script src="{% static 'attribution/js/manual_attribution.js' %}" data-lang='{{ LANGUAGE_CODE }}' blocks='{{user_blocks}}' areas='{{user_areas}}' disponibility_hour='{{ user_hour }}' courses='{{ courses }}' timetables='{{ timetables }}' disponibility='{{ user_disponibility }}'></script>
+  <script src="{% static 'attribution/js/manual_attribution.js' %}" data-lang='{{ LANGUAGE_CODE }}' blocks='{{user_blocks}}' areas='{{user_areas}}' disponibility_hour='{{ user_hour }}' courses='{{ courses }}' timetables='{{ timetables }}' disponibility='{{ user_disponibility }}' timtable-user='{{ timetable_user }}' timetable-current-user='{{ timetable_current_user }}'></script>
 {% endblock %}

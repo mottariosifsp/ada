@@ -9,7 +9,9 @@
 {% endblock %}
 
 {% block body %}
-  {% comment %} <a type="button" id="return-button" class="btn btn-outline-primary btn-lg rounded-pill m-1" href="{% url 'attribution:attribution'%}?blockk={{block.registration_block_id}}"> {{ block.name_block }} </a> {% endcomment %}
+{% blocktrans with name_block_text=block.name_block %}
+  {% comment %} <a type="button" id="return-button" class="btn btn-outline-primary btn-lg rounded-pill m-1" href="{% url 'attribution:attribution'%}?blockk={{block.registration_block_id}}"> {% trans name_block_text %} </a> {% endcomment %}
+{% endblocktrans %}
   <div class="py-5">
     <h3 class="font-weight-bold mb-0">{% trans "Suas atribuições" %}</h3>
     <p class="font-italic text-muted mb-4">{% trans "Clique em um bloco para ver o andamento de sua atribuição" %}. </p>
@@ -20,7 +22,9 @@
           <div class="hover hover-5 text-white rounded"><img src="{{block.image}}" alt="">
             <div class="hover-overlay"></div>
             <div class="hover-5-content">
-              <h3 class="hover-5-title text-uppercase font-weight-light mb-0"><strong class="font-weight-bold text-white">{{ block.block }}</strong><br><span>{% trans "Acessar" %}</span></h3>
+              {% blocktrans with block.block_text=block.block %}
+              <h3 class="hover-5-title text-uppercase font-weight-light mb-0"><strong class="font-weight-bold text-white">{{ block_text }}</strong><br><span>{% trans "Acessar" %}</span></h3>
+              {% endblocktrans %}
             </div>
           </div>
         </div>

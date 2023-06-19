@@ -23,16 +23,26 @@
     <div class="container mb-4">
         <div class="row">
             <div class="col-md-12">
+                {% blocktrans with name_block_text=blockk.name_block %}
                 <h1>{{ blockk.name_block }}</h1>
+                {% endblocktrans %}
                 <div class="card">
                     <div class="card-body">
                         <h5 class="card-title">{% trans "Detalhes" %}</h5>
                             <ul class="list-group list-group-flush">
-                                <li class="list-group-item"><strong>{% trans "Nome" %}:</strong> {{ area.name_area }}</li>
-                                <li class="list-group-item"><strong>{% trans "Registro" %}:</strong> {{ area.registration_area_id }}</li>
-                                <li class="list-group-item"><strong>{% trans "Sigla" %}:</strong> {{ area.acronym }}</li>
-                                <li class="list-group-item"><strong>{% trans "Permuta" %}:</strong> {{ area.exchange_area }}</li>
+                                {% blocktrans with name_area_text=area.name_area %}
+                                <li class="list-group-item"><strong>{% trans "Nome" %}:</strong> {{ name_area_text }}</li>
+                                {% endblocktrans %}
+                                <li class="list-group-item"><strong>{% trans "Registro" %}:</strong> {% trans area.registration_area_id %}</li>
+                                {% blocktrans with acronym_text=area.acronym %}
+                                <li class="list-group-item"><strong>{% trans "Sigla" %}:</strong> {{ acronym_text }}</li>
+                                {% endblocktrans %}
+                                {% blocktrans with exchange_area_text=area.exchange_area %}
+                                <li class="list-group-item"><strong>{% trans "Permuta" %}:</strong> {{ exchange_area_text }}</li>
+                                {% endblocktrans %}
+                                {% blocktrans with is_high_school_text=area.is_high_school %}
                                 <li class="list-group-item"><strong>{% trans "Ensino Médio" %}:</strong> {{ area.is_high_school }}</li>
+                                {% endblocktrans %}
                             </ul>
                     </div>
                 </div>
@@ -59,8 +69,12 @@
                     <!-- Lista -->
                         <tr>
                             <td>{{ course.registration_course_id }}</td>
-                            <td>{{ course.name_course }}</td>
-                            <td>{{ course.acronym }}</td>
+                            {% blocktrans with name_course_text=course.name_course %}
+                            <td>{{ name_course_text }}</td>
+                            {% endblocktrans %}
+                            {% blocktrans with acronym_text=course.acronym %}
+                            <td>{{ acronym_text }}</td>
+                            {% endblocktrans %}
                             <td>
                                 <button type="button" data-toggle="modal" data-target="#editCourseModal" data-course-id="{{ course.id }}" data-counter="{{ counter }}" class="btn btn-warning editCourseBtn"><i class="bi bi-pencil"></i></button>
                                 <button type="button" class="btn btn-danger deleteCourseBtn" data-course-id="{{ course.id }}" data-registration-course-id="{{ course.registration_course_id }}"><i class="bi bi-trash"></i></button>
@@ -106,7 +120,7 @@
         </div>
     </div>
 
-    <!-- Modal ediação turma -->
+    <!-- Modal edição turma -->
     <div class="modal fade" id="editCourseModal" tabindex="-1" role="dialog" aria-labelledby="edtCourseModelLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
