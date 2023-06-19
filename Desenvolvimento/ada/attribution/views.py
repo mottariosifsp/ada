@@ -28,6 +28,7 @@ def attribution(request):
     consider_deadline = False
     
     if request.method == 'GET':
+        
         if consider_deadline:
             if Deadline.objects.filter(blockk=blockk, name='STARTASSIGNMENTDEADLINE').exists():
                 attribution_deadline = Deadline.objects.get(blockk=blockk, name='STARTASSIGNMENTDEADLINE')        
@@ -246,12 +247,11 @@ def manual_attribution(request):
     else:
         blockk = Blockk.objects.get(registration_block_id=request.GET.get('blockk'))
         user = request.user
-        user_regime = user.job
         timetables_user = Timetable_user.objects.filter(user=None).all()
 
         timetables_current_user = Timetable_user.objects.filter(user=user).all()
 
-        print(timetables_current_user)
+        # print(timetables_current_user)
 
         timetable = []
         courses = []
@@ -260,7 +260,7 @@ def manual_attribution(request):
         for timetable_current_user in timetables_current_user:
             timetable_user_c.append(timetable_current_user.timetable)
 
-        print(timetable_user_c)
+        # print(timetable_user_c)
 
         for timetable_user in timetables_user:
             courses.append(timetable_user.timetable.course)
@@ -422,7 +422,7 @@ def manual_attribution(request):
                     turno_sessao = 'ves'
                 else:
                     turno_sessao = 'not'
-                posicao_calc = (posicao % 6) + 1
+                posicao_calc = (posicao % 6)
                 string = {
                     'frase': f'{dia}-{turno_sessao}-{posicao_calc}',
                     'posicao': posicao_calc,
@@ -434,14 +434,10 @@ def manual_attribution(request):
         
         print(user_timeslot_traceback)
 
-        if user_regime.name_job == "rde":
-            user_regime_choosed = user_regime
-            user_regime_choosed.name_job = '40'
-        else:
-            user_regime_choosed = user_regime
+        regime = request.user.job
         
         data = {
-            'work_regime': user_regime_choosed,
+            'regime': regime,
             'turno': turno,
             'user_disponibility': user_timeslot_traceback,
             'user_blocks': user_blocks,
