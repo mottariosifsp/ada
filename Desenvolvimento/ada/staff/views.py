@@ -423,7 +423,7 @@ def edit_timetable(request):
 @user_passes_test(is_staff)
 def show_timetable(request):
     if request.method == 'GET':
-        selected_class = Classs.objects.get(registration_class_id__exact=(request.GET.get('class')))
+        selected_class = Classs.objects.get(registration_class_id__exact=(request.GET.get('classs')))
         timetables = Timetable.objects.filter(classs=selected_class).all()
         
         timeslots = Timeslot.objects.all().order_by('hour_start')
