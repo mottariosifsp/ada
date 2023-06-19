@@ -454,7 +454,7 @@
         "pk": 15,
         "fields": {
             "registration_course_id": "INT.06335",
-            "name_course": "APLICAÇÃOS PARA WEB 2",
+            "name_course": "APLICAÇÕES PARA WEB 2",
             "acronym": "AW2-4",
             "area": 1,
             "blockk": 1
@@ -839,7 +839,7 @@
         "pk": 50,
         "fields": {
             "registration_course_id": "SUP.10633",
-            "name_course": "INTRODUÇÃO À OTIMIZAÇÃO COMBINATÓRIA",
+            "name_course": "INTRODUÇÃO à OTIMIZAÇÃO COMBINATÓRIA",
             "acronym": "I0CA6",
             "area": 2,
             "blockk": 1
@@ -2474,7 +2474,7 @@
         "pk": 1,
         "fields": {
             "password": "pbkdf2_sha256$390000$adNxghg0YAIhAR1xqWKIOY$S5yaWznfwzfgzlWdq5PrTO5XwCV7m21svar6nO+70fc=",
-            "last_login": "2023-06-18T01:28:34.089",
+            "last_login": "2023-06-19T06:20:39.489",
             "registration_id": "3045463",
             "first_name": "ISABELLA",
             "last_name": "VALERIO MAZARÁ",
@@ -2743,6 +2743,58 @@
             "groups": [],
             "user_permissions": [],
             "blocks": []
+        }
+    },
+    {
+        "model": "user.user",
+        "pk": 12,
+        "fields": {
+            "password": "pbkdf2_sha256$390000$eYNaMVx8SkMKJwn8HT9zy1$nw7c5YNe3+FpeMjuZZu3GgUT8wkGrV+mYwjOWhSUeR4=",
+            "last_login": null,
+            "registration_id": "1284708",
+            "first_name": "LEONARDO",
+            "last_name": "ANDRADE MOTTA DE LIMA",
+            "email": "leonardo.motta@ifsp.edu.br",
+            "telephone": null,
+            "cell_phone": "119999999996",
+            "date_joined": "2023-06-19T06:19:54.758",
+            "is_superuser": false,
+            "is_staff": true,
+            "is_active": true,
+            "is_professor": true,
+            "history": null,
+            "job": null,
+            "groups": [],
+            "user_permissions": [],
+            "blocks": [
+                1
+            ]
+        }
+    },
+    {
+        "model": "user.user",
+        "pk": 13,
+        "fields": {
+            "password": "pbkdf2_sha256$390000$0k2WiaQO0ulJ3F4MdkuS9X$Qgjor+HDQ0cP9J+mGqZcA2+4Ry4kzIm7fACV+OfZjM4=",
+            "last_login": null,
+            "registration_id": "3278994",
+            "first_name": "GUSTAVO",
+            "last_name": "FORTUNATO PUGA",
+            "email": "gustavo.puga@ifsp.edu.br",
+            "telephone": null,
+            "cell_phone": "119999999995",
+            "date_joined": "2023-06-19T06:20:23.363",
+            "is_superuser": false,
+            "is_staff": false,
+            "is_active": true,
+            "is_professor": true,
+            "history": null,
+            "job": null,
+            "groups": [],
+            "user_permissions": [],
+            "blocks": [
+                1
+            ]
         }
     },
     {
