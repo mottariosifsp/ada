@@ -24,6 +24,7 @@
 {% endblock %}
 
 {% block body %}
+
 <section class="section dashboard">
     <h1 class="title-page">{% trans "Escolha suas preferências novamente" %}</h1>
     <hr>
@@ -37,10 +38,10 @@
         <div class="col-xxl-4 col-md-12">
           <div class="card info-card sales-card">
             <div class="card-body">
-              <h4 class="card-title">{% trans "Disciplinas rejeitadas" %}:</h4>
+              <h4 class="card-title">{% trans "Bloco" %}:</h4>
               <hr class="my-0">
               <div class="text-center mt-4 mb-4 pr-2 pl-2 d-flex">
-                
+                <h2 id="blockk" value="{{blockk.registration_block_id}}">{{blockk}}</h2>
               </div>
             </div>
           </div>
@@ -398,5 +399,5 @@
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
   <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-  <script src="{% static 'attribution/js/manual_attribution.js' %}" data-lang='{{ LANGUAGE_CODE }}' blocks='{{user_blocks}}' areas='{{user_areas}}' disponibility_hour='{{ user_hour }}' courses='{{ courses }}' timetables='{{ timetables }}' disponibility='{{ user_disponibility }}' timtable-user='{{ timetable_user }}' timetable-current-user='{{ timetable_current_user }}'></script>
+  <script src="{% static 'attribution/js/manual_attribution.js' %}" data-lang='{{ LANGUAGE_CODE }}' blocks='{{user_blocks}}' areas='{{user_areas}}' disponibility_hour='{{ user_hour }}' courses='{{ courses }}' timetables='{{ timetables }}' disponibility='{{ user_disponibility }}' timetables-user='{{ timetables_user }}'></script>
 {% endblock %}
