@@ -31,9 +31,8 @@ var time_left = document.currentScript.getAttribute("time-left");
 
 $(document).ready(function () {
   countdown("time-left", time_left);
-
   $(".redirect").click(function() {
-    window.location.href = "/atribuicao/atribuicao-manual/"
+    window.location.href = "/atribuicao/atribuicao-manual/?blockk=" + $("#blockk").attr("value")
   });
 
 });
