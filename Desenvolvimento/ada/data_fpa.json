@@ -1,0 +1,895 @@
+[
+    {
+        "model": "attribution_preference.attribution_preference",
+        "pk": 1,
+        "fields": {
+            "user": 14
+        }
+    },
+    {
+        "model": "attribution_preference.attribution_preference",
+        "pk": 2,
+        "fields": {
+            "user": 15
+        }
+    },
+    {
+        "model": "attribution_preference.attribution_preference",
+        "pk": 3,
+        "fields": {
+            "user": 16
+        }
+    },
+    {
+        "model": "attribution_preference.preference_schedule",
+        "pk": 1,
+        "fields": {
+            "attribution_preference": 1,
+            "timeslot": 1,
+            "day": "monday"
+        }
+    },
+    {
+        "model": "attribution_preference.preference_schedule",
+        "pk": 2,
+        "fields": {
+            "attribution_preference": 1,
+            "timeslot": 2,
+            "day": "monday"
+        }
+    },
+    {
+        "model": "attribution_preference.preference_schedule",
+        "pk": 3,
+        "fields": {
+            "attribution_preference": 1,
+            "timeslot": 3,
+            "day": "monday"
+        }
+    },
+    {
+        "model": "attribution_preference.preference_schedule",
+        "pk": 4,
+        "fields": {
+            "attribution_preference": 1,
+            "timeslot": 4,
+            "day": "monday"
+        }
+    },
+    {
+        "model": "attribution_preference.preference_schedule",
+        "pk": 5,
+        "fields": {
+            "attribution_preference": 1,
+            "timeslot": 5,
+            "day": "monday"
+        }
+    },
+    {
+        "model": "attribution_preference.preference_schedule",
+        "pk": 6,
+        "fields": {
+            "attribution_preference": 1,
+            "timeslot": 6,
+            "day": "monday"
+        }
+    },
+    {
+        "model": "attribution_preference.preference_schedule",
+        "pk": 7,
+        "fields": {
+            "attribution_preference": 1,
+            "timeslot": 1,
+            "day": "tuesday"
+        }
+    },
+    {
+        "model": "attribution_preference.preference_schedule",
+        "pk": 8,
+        "fields": {
+            "attribution_preference": 1,
+            "timeslot": 2,
+            "day": "tuesday"
+        }
+    },
+    {
+        "model": "attribution_preference.preference_schedule",
+        "pk": 9,
+        "fields": {
+            "attribution_preference": 1,
+            "timeslot": 3,
+            "day": "tuesday"
+        }
+    },
+    {
+        "model": "attribution_preference.preference_schedule",
+        "pk": 10,
+        "fields": {
+            "attribution_preference": 1,
+            "timeslot": 4,
+            "day": "tuesday"
+        }
+    },
+    {
+        "model": "attribution_preference.preference_schedule",
+        "pk": 11,
+        "fields": {
+            "attribution_preference": 1,
+            "timeslot": 5,
+            "day": "tuesday"
+        }
+    },
+    {
+        "model": "attribution_preference.preference_schedule",
+        "pk": 12,
+        "fields": {
+            "attribution_preference": 1,
+            "timeslot": 6,
+            "day": "tuesday"
+        }
+    },
+    {
+        "model": "attribution_preference.preference_schedule",
+        "pk": 13,
+        "fields": {
+            "attribution_preference": 1,
+            "timeslot": 1,
+            "day": "wednesday"
+        }
+    },
+    {
+        "model": "attribution_preference.preference_schedule",
+        "pk": 14,
+        "fields": {
+            "attribution_preference": 1,
+            "timeslot": 2,
+            "day": "wednesday"
+        }
+    },
+    {
+        "model": "attribution_preference.preference_schedule",
+        "pk": 15,
+        "fields": {
+            "attribution_preference": 1,
+            "timeslot": 3,
+            "day": "wednesday"
+        }
+    },
+    {
+        "model": "attribution_preference.preference_schedule",
+        "pk": 16,
+        "fields": {
+            "attribution_preference": 1,
+            "timeslot": 4,
+            "day": "wednesday"
+        }
+    },
+    {
+        "model": "attribution_preference.preference_schedule",
+        "pk": 17,
+        "fields": {
+            "attribution_preference": 1,
+            "timeslot": 5,
+            "day": "wednesday"
+        }
+    },
+    {
+        "model": "attribution_preference.preference_schedule",
+        "pk": 18,
+        "fields": {
+            "attribution_preference": 1,
+            "timeslot": 6,
+            "day": "wednesday"
+        }
+    },
+    {
+        "model": "attribution_preference.preference_schedule",
+        "pk": 19,
+        "fields": {
+            "attribution_preference": 1,
+            "timeslot": 1,
+            "day": "thursday"
+        }
+    },
+    {
+        "model": "attribution_preference.preference_schedule",
+        "pk": 20,
+        "fields": {
+            "attribution_preference": 1,
+            "timeslot": 3,
+            "day": "thursday"
+        }
+    },
+    {
+        "model": "attribution_preference.preference_schedule",
+        "pk": 21,
+        "fields": {
+            "attribution_preference": 1,
+            "timeslot": 2,
+            "day": "thursday"
+        }
+    },
+    {
+        "model": "attribution_preference.preference_schedule",
+        "pk": 22,
+        "fields": {
+            "attribution_preference": 1,
+            "timeslot": 4,
+            "day": "thursday"
+        }
+    },
+    {
+        "model": "attribution_preference.preference_schedule",
+        "pk": 23,
+        "fields": {
+            "attribution_preference": 1,
+            "timeslot": 5,
+            "day": "thursday"
+        }
+    },
+    {
+        "model": "attribution_preference.preference_schedule",
+        "pk": 24,
+        "fields": {
+            "attribution_preference": 1,
+            "timeslot": 6,
+            "day": "thursday"
+        }
+    },
+    {
+        "model": "attribution_preference.preference_schedule",
+        "pk": 25,
+        "fields": {
+            "attribution_preference": 1,
+            "timeslot": 7,
+            "day": "tuesday"
+        }
+    },
+    {
+        "model": "attribution_preference.preference_schedule",
+        "pk": 26,
+        "fields": {
+            "attribution_preference": 1,
+            "timeslot": 8,
+            "day": "tuesday"
+        }
+    },
+    {
+        "model": "attribution_preference.preference_schedule",
+        "pk": 27,
+        "fields": {
+            "attribution_preference": 1,
+            "timeslot": 9,
+            "day": "tuesday"
+        }
+    },
+    {
+        "model": "attribution_preference.preference_schedule",
+        "pk": 28,
+        "fields": {
+            "attribution_preference": 1,
+            "timeslot": 10,
+            "day": "tuesday"
+        }
+    },
+    {
+        "model": "attribution_preference.preference_schedule",
+        "pk": 29,
+        "fields": {
+            "attribution_preference": 1,
+            "timeslot": 11,
+            "day": "tuesday"
+        }
+    },
+    {
+        "model": "attribution_preference.preference_schedule",
+        "pk": 30,
+        "fields": {
+            "attribution_preference": 1,
+            "timeslot": 12,
+            "day": "tuesday"
+        }
+    },
+    {
+        "model": "attribution_preference.preference_schedule",
+        "pk": 31,
+        "fields": {
+            "attribution_preference": 1,
+            "timeslot": 13,
+            "day": "tuesday"
+        }
+    },
+    {
+        "model": "attribution_preference.preference_schedule",
+        "pk": 32,
+        "fields": {
+            "attribution_preference": 1,
+            "timeslot": 14,
+            "day": "tuesday"
+        }
+    },
+    {
+        "model": "attribution_preference.preference_schedule",
+        "pk": 33,
+        "fields": {
+            "attribution_preference": 2,
+            "timeslot": 13,
+            "day": "monday"
+        }
+    },
+    {
+        "model": "attribution_preference.preference_schedule",
+        "pk": 34,
+        "fields": {
+            "attribution_preference": 2,
+            "timeslot": 14,
+            "day": "monday"
+        }
+    },
+    {
+        "model": "attribution_preference.preference_schedule",
+        "pk": 35,
+        "fields": {
+            "attribution_preference": 2,
+            "timeslot": 15,
+            "day": "monday"
+        }
+    },
+    {
+        "model": "attribution_preference.preference_schedule",
+        "pk": 36,
+        "fields": {
+            "attribution_preference": 2,
+            "timeslot": 16,
+            "day": "monday"
+        }
+    },
+    {
+        "model": "attribution_preference.preference_schedule",
+        "pk": 37,
+        "fields": {
+            "attribution_preference": 2,
+            "timeslot": 17,
+            "day": "monday"
+        }
+    },
+    {
+        "model": "attribution_preference.preference_schedule",
+        "pk": 38,
+        "fields": {
+            "attribution_preference": 2,
+            "timeslot": 18,
+            "day": "monday"
+        }
+    },
+    {
+        "model": "attribution_preference.preference_schedule",
+        "pk": 39,
+        "fields": {
+            "attribution_preference": 2,
+            "timeslot": 13,
+            "day": "tuesday"
+        }
+    },
+    {
+        "model": "attribution_preference.preference_schedule",
+        "pk": 40,
+        "fields": {
+            "attribution_preference": 2,
+            "timeslot": 14,
+            "day": "tuesday"
+        }
+    },
+    {
+        "model": "attribution_preference.preference_schedule",
+        "pk": 41,
+        "fields": {
+            "attribution_preference": 2,
+            "timeslot": 15,
+            "day": "tuesday"
+        }
+    },
+    {
+        "model": "attribution_preference.preference_schedule",
+        "pk": 42,
+        "fields": {
+            "attribution_preference": 2,
+            "timeslot": 16,
+            "day": "tuesday"
+        }
+    },
+    {
+        "model": "attribution_preference.preference_schedule",
+        "pk": 43,
+        "fields": {
+            "attribution_preference": 2,
+            "timeslot": 17,
+            "day": "tuesday"
+        }
+    },
+    {
+        "model": "attribution_preference.preference_schedule",
+        "pk": 44,
+        "fields": {
+            "attribution_preference": 2,
+            "timeslot": 18,
+            "day": "tuesday"
+        }
+    },
+    {
+        "model": "attribution_preference.preference_schedule",
+        "pk": 45,
+        "fields": {
+            "attribution_preference": 2,
+            "timeslot": 13,
+            "day": "thursday"
+        }
+    },
+    {
+        "model": "attribution_preference.preference_schedule",
+        "pk": 46,
+        "fields": {
+            "attribution_preference": 2,
+            "timeslot": 14,
+            "day": "thursday"
+        }
+    },
+    {
+        "model": "attribution_preference.preference_schedule",
+        "pk": 47,
+        "fields": {
+            "attribution_preference": 2,
+            "timeslot": 15,
+            "day": "thursday"
+        }
+    },
+    {
+        "model": "attribution_preference.preference_schedule",
+        "pk": 48,
+        "fields": {
+            "attribution_preference": 2,
+            "timeslot": 16,
+            "day": "thursday"
+        }
+    },
+    {
+        "model": "attribution_preference.preference_schedule",
+        "pk": 49,
+        "fields": {
+            "attribution_preference": 2,
+            "timeslot": 17,
+            "day": "thursday"
+        }
+    },
+    {
+        "model": "attribution_preference.preference_schedule",
+        "pk": 50,
+        "fields": {
+            "attribution_preference": 2,
+            "timeslot": 18,
+            "day": "thursday"
+        }
+    },
+    {
+        "model": "attribution_preference.preference_schedule",
+        "pk": 51,
+        "fields": {
+            "attribution_preference": 2,
+            "timeslot": 7,
+            "day": "wednesday"
+        }
+    },
+    {
+        "model": "attribution_preference.preference_schedule",
+        "pk": 52,
+        "fields": {
+            "attribution_preference": 2,
+            "timeslot": 8,
+            "day": "wednesday"
+        }
+    },
+    {
+        "model": "attribution_preference.preference_schedule",
+        "pk": 53,
+        "fields": {
+            "attribution_preference": 2,
+            "timeslot": 9,
+            "day": "wednesday"
+        }
+    },
+    {
+        "model": "attribution_preference.preference_schedule",
+        "pk": 54,
+        "fields": {
+            "attribution_preference": 2,
+            "timeslot": 10,
+            "day": "wednesday"
+        }
+    },
+    {
+        "model": "attribution_preference.preference_schedule",
+        "pk": 55,
+        "fields": {
+            "attribution_preference": 2,
+            "timeslot": 11,
+            "day": "wednesday"
+        }
+    },
+    {
+        "model": "attribution_preference.preference_schedule",
+        "pk": 56,
+        "fields": {
+            "attribution_preference": 2,
+            "timeslot": 12,
+            "day": "wednesday"
+        }
+    },
+    {
+        "model": "attribution_preference.preference_schedule",
+        "pk": 57,
+        "fields": {
+            "attribution_preference": 2,
+            "timeslot": 7,
+            "day": "tuesday"
+        }
+    },
+    {
+        "model": "attribution_preference.preference_schedule",
+        "pk": 58,
+        "fields": {
+            "attribution_preference": 2,
+            "timeslot": 8,
+            "day": "tuesday"
+        }
+    },
+    {
+        "model": "attribution_preference.preference_schedule",
+        "pk": 59,
+        "fields": {
+            "attribution_preference": 2,
+            "timeslot": 9,
+            "day": "tuesday"
+        }
+    },
+    {
+        "model": "attribution_preference.preference_schedule",
+        "pk": 60,
+        "fields": {
+            "attribution_preference": 2,
+            "timeslot": 10,
+            "day": "tuesday"
+        }
+    },
+    {
+        "model": "attribution_preference.preference_schedule",
+        "pk": 61,
+        "fields": {
+            "attribution_preference": 2,
+            "timeslot": 11,
+            "day": "tuesday"
+        }
+    },
+    {
+        "model": "attribution_preference.preference_schedule",
+        "pk": 62,
+        "fields": {
+            "attribution_preference": 2,
+            "timeslot": 12,
+            "day": "tuesday"
+        }
+    },
+    {
+        "model": "attribution_preference.preference_schedule",
+        "pk": 63,
+        "fields": {
+            "attribution_preference": 2,
+            "timeslot": 7,
+            "day": "thursday"
+        }
+    },
+    {
+        "model": "attribution_preference.preference_schedule",
+        "pk": 64,
+        "fields": {
+            "attribution_preference": 2,
+            "timeslot": 8,
+            "day": "thursday"
+        }
+    },
+    {
+        "model": "attribution_preference.preference_schedule",
+        "pk": 81,
+        "fields": {
+            "attribution_preference": 3,
+            "timeslot": 7,
+            "day": "tuesday"
+        }
+    },
+    {
+        "model": "attribution_preference.preference_schedule",
+        "pk": 82,
+        "fields": {
+            "attribution_preference": 3,
+            "timeslot": 9,
+            "day": "tuesday"
+        }
+    },
+    {
+        "model": "attribution_preference.preference_schedule",
+        "pk": 83,
+        "fields": {
+            "attribution_preference": 3,
+            "timeslot": 8,
+            "day": "tuesday"
+        }
+    },
+    {
+        "model": "attribution_preference.preference_schedule",
+        "pk": 84,
+        "fields": {
+            "attribution_preference": 3,
+            "timeslot": 10,
+            "day": "tuesday"
+        }
+    },
+    {
+        "model": "attribution_preference.preference_schedule",
+        "pk": 85,
+        "fields": {
+            "attribution_preference": 3,
+            "timeslot": 11,
+            "day": "tuesday"
+        }
+    },
+    {
+        "model": "attribution_preference.preference_schedule",
+        "pk": 86,
+        "fields": {
+            "attribution_preference": 3,
+            "timeslot": 12,
+            "day": "tuesday"
+        }
+    },
+    {
+        "model": "attribution_preference.preference_schedule",
+        "pk": 87,
+        "fields": {
+            "attribution_preference": 3,
+            "timeslot": 13,
+            "day": "tuesday"
+        }
+    },
+    {
+        "model": "attribution_preference.preference_schedule",
+        "pk": 88,
+        "fields": {
+            "attribution_preference": 3,
+            "timeslot": 12,
+            "day": "wednesday"
+        }
+    },
+    {
+        "model": "attribution_preference.preference_schedule",
+        "pk": 89,
+        "fields": {
+            "attribution_preference": 3,
+            "timeslot": 13,
+            "day": "wednesday"
+        }
+    },
+    {
+        "model": "attribution_preference.preference_schedule",
+        "pk": 90,
+        "fields": {
+            "attribution_preference": 3,
+            "timeslot": 13,
+            "day": "thursday"
+        }
+    },
+    {
+        "model": "attribution_preference.preference_schedule",
+        "pk": 91,
+        "fields": {
+            "attribution_preference": 3,
+            "timeslot": 12,
+            "day": "thursday"
+        }
+    },
+    {
+        "model": "attribution_preference.preference_schedule",
+        "pk": 92,
+        "fields": {
+            "attribution_preference": 3,
+            "timeslot": 11,
+            "day": "thursday"
+        }
+    },
+    {
+        "model": "attribution_preference.preference_schedule",
+        "pk": 93,
+        "fields": {
+            "attribution_preference": 3,
+            "timeslot": 11,
+            "day": "wednesday"
+        }
+    },
+    {
+        "model": "attribution_preference.preference_schedule",
+        "pk": 94,
+        "fields": {
+            "attribution_preference": 3,
+            "timeslot": 10,
+            "day": "wednesday"
+        }
+    },
+    {
+        "model": "attribution_preference.preference_schedule",
+        "pk": 95,
+        "fields": {
+            "attribution_preference": 3,
+            "timeslot": 9,
+            "day": "wednesday"
+        }
+    },
+    {
+        "model": "attribution_preference.preference_schedule",
+        "pk": 96,
+        "fields": {
+            "attribution_preference": 3,
+            "timeslot": 8,
+            "day": "wednesday"
+        }
+    },
+    {
+        "model": "attribution_preference.course_preference",
+        "pk": 1,
+        "fields": {
+            "attribution_preference": 1,
+            "timetable": 16
+        }
+    },
+    {
+        "model": "attribution_preference.course_preference",
+        "pk": 2,
+        "fields": {
+            "attribution_preference": 1,
+            "timetable": 11
+        }
+    },
+    {
+        "model": "attribution_preference.course_preference",
+        "pk": 3,
+        "fields": {
+            "attribution_preference": 1,
+            "timetable": 31
+        }
+    },
+    {
+        "model": "attribution_preference.course_preference",
+        "pk": 4,
+        "fields": {
+            "attribution_preference": 1,
+            "timetable": 33
+        }
+    },
+    {
+        "model": "attribution_preference.course_preference",
+        "pk": 5,
+        "fields": {
+            "attribution_preference": 1,
+            "timetable": 41
+        }
+    },
+    {
+        "model": "attribution_preference.course_preference",
+        "pk": 6,
+        "fields": {
+            "attribution_preference": 1,
+            "timetable": 47
+        }
+    },
+    {
+        "model": "attribution_preference.course_preference",
+        "pk": 7,
+        "fields": {
+            "attribution_preference": 1,
+            "timetable": 12
+        }
+    },
+    {
+        "model": "attribution_preference.course_preference",
+        "pk": 8,
+        "fields": {
+            "attribution_preference": 1,
+            "timetable": 18
+        }
+    },
+    {
+        "model": "attribution_preference.course_preference",
+        "pk": 9,
+        "fields": {
+            "attribution_preference": 2,
+            "timetable": 46
+        }
+    },
+    {
+        "model": "attribution_preference.course_preference",
+        "pk": 10,
+        "fields": {
+            "attribution_preference": 2,
+            "timetable": 42
+        }
+    },
+    {
+        "model": "attribution_preference.course_preference",
+        "pk": 11,
+        "fields": {
+            "attribution_preference": 2,
+            "timetable": 25
+        }
+    },
+    {
+        "model": "attribution_preference.course_preference",
+        "pk": 12,
+        "fields": {
+            "attribution_preference": 2,
+            "timetable": 50
+        }
+    },
+    {
+        "model": "attribution_preference.course_preference",
+        "pk": 13,
+        "fields": {
+            "attribution_preference": 2,
+            "timetable": 51
+        }
+    },
+    {
+        "model": "attribution_preference.course_preference",
+        "pk": 14,
+        "fields": {
+            "attribution_preference": 2,
+            "timetable": 55
+        }
+    },
+    {
+        "model": "attribution_preference.course_preference",
+        "pk": 15,
+        "fields": {
+            "attribution_preference": 2,
+            "timetable": 54
+        }
+    },
+    {
+        "model": "attribution_preference.course_preference",
+        "pk": 16,
+        "fields": {
+            "attribution_preference": 3,
+            "timetable": 46
+        }
+    },
+    {
+        "model": "attribution_preference.course_preference",
+        "pk": 17,
+        "fields": {
+            "attribution_preference": 3,
+            "timetable": 42
+        }
+    },
+    {
+        "model": "attribution_preference.course_preference",
+        "pk": 18,
+        "fields": {
+            "attribution_preference": 3,
+            "timetable": 50
+        }
+    },
+    {
+        "model": "attribution_preference.course_preference",
+        "pk": 19,
+        "fields": {
+            "attribution_preference": 3,
+            "timetable": 49
+        }
+    }
+]

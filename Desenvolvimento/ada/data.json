@@ -795,7 +795,7 @@
         "pk": 46,
         "fields": {
             "registration_course_id": "SUP.10630",
-            "name_course": "ESTATÍSTICA E PROBABILIDADE",
+            "name_course": "ESTATÁSTICA E PROBABILIDADE",
             "acronym": "ESPA5",
             "area": 2,
             "blockk": 1
@@ -839,7 +839,7 @@
         "pk": 50,
         "fields": {
             "registration_course_id": "SUP.10633",
-            "name_course": "INTRODUÇÃO à OTIMIZAÇÃO COMBINATÓRIA",
+            "name_course": "INTRODUÇÃO À OTIMIZAÇÃO COMBINATÓRIA",
             "acronym": "I0CA6",
             "area": 2,
             "blockk": 1
@@ -928,1960 +928,6 @@
             "name_criteria": "MAIOR TITULAÇÃO NA ÁREA",
             "number_criteria": 7,
             "is_select": false
-        }
-    },
-    {
-        "model": "timetable.timetable",
-        "pk": 11,
-        "fields": {
-            "course": 8,
-            "classs": 3,
-            "day_combo": [
-                1
-            ]
-        }
-    },
-    {
-        "model": "timetable.timetable",
-        "pk": 12,
-        "fields": {
-            "course": 5,
-            "classs": 3,
-            "day_combo": [
-                2
-            ]
-        }
-    },
-    {
-        "model": "timetable.timetable",
-        "pk": 13,
-        "fields": {
-            "course": 6,
-            "classs": 3,
-            "day_combo": [
-                8
-            ]
-        }
-    },
-    {
-        "model": "timetable.timetable",
-        "pk": 14,
-        "fields": {
-            "course": 4,
-            "classs": 3,
-            "day_combo": [
-                4
-            ]
-        }
-    },
-    {
-        "model": "timetable.timetable",
-        "pk": 15,
-        "fields": {
-            "course": 7,
-            "classs": 3,
-            "day_combo": [
-                9
-            ]
-        }
-    },
-    {
-        "model": "timetable.timetable",
-        "pk": 16,
-        "fields": {
-            "course": 8,
-            "classs": 19,
-            "day_combo": [
-                10
-            ]
-        }
-    },
-    {
-        "model": "timetable.timetable",
-        "pk": 17,
-        "fields": {
-            "course": 6,
-            "classs": 19,
-            "day_combo": [
-                2
-            ]
-        }
-    },
-    {
-        "model": "timetable.timetable",
-        "pk": 18,
-        "fields": {
-            "course": 5,
-            "classs": 19,
-            "day_combo": [
-                11
-            ]
-        }
-    },
-    {
-        "model": "timetable.timetable",
-        "pk": 19,
-        "fields": {
-            "course": 7,
-            "classs": 19,
-            "day_combo": [
-                4
-            ]
-        }
-    },
-    {
-        "model": "timetable.timetable",
-        "pk": 20,
-        "fields": {
-            "course": 4,
-            "classs": 19,
-            "day_combo": [
-                12
-            ]
-        }
-    },
-    {
-        "model": "timetable.timetable",
-        "pk": 21,
-        "fields": {
-            "course": 4,
-            "classs": 4,
-            "day_combo": [
-                13
-            ]
-        }
-    },
-    {
-        "model": "timetable.timetable",
-        "pk": 22,
-        "fields": {
-            "course": 6,
-            "classs": 4,
-            "day_combo": [
-                14
-            ]
-        }
-    },
-    {
-        "model": "timetable.timetable",
-        "pk": 23,
-        "fields": {
-            "course": 5,
-            "classs": 4,
-            "day_combo": [
-                15
-            ]
-        }
-    },
-    {
-        "model": "timetable.timetable",
-        "pk": 24,
-        "fields": {
-            "course": 7,
-            "classs": 4,
-            "day_combo": [
-                16
-            ]
-        }
-    },
-    {
-        "model": "timetable.timetable",
-        "pk": 25,
-        "fields": {
-            "course": 8,
-            "classs": 4,
-            "day_combo": [
-                17
-            ]
-        }
-    },
-    {
-        "model": "timetable.timetable",
-        "pk": 26,
-        "fields": {
-            "course": 6,
-            "classs": 20,
-            "day_combo": [
-                13
-            ]
-        }
-    },
-    {
-        "model": "timetable.timetable",
-        "pk": 27,
-        "fields": {
-            "course": 4,
-            "classs": 20,
-            "day_combo": [
-                14
-            ]
-        }
-    },
-    {
-        "model": "timetable.timetable",
-        "pk": 28,
-        "fields": {
-            "course": 7,
-            "classs": 20,
-            "day_combo": [
-                15
-            ]
-        }
-    },
-    {
-        "model": "timetable.timetable",
-        "pk": 29,
-        "fields": {
-            "course": 5,
-            "classs": 20,
-            "day_combo": [
-                16
-            ]
-        }
-    },
-    {
-        "model": "timetable.timetable",
-        "pk": 30,
-        "fields": {
-            "course": 8,
-            "classs": 20,
-            "day_combo": [
-                18
-            ]
-        }
-    },
-    {
-        "model": "timetable.timetable",
-        "pk": 31,
-        "fields": {
-            "course": 10,
-            "classs": 5,
-            "day_combo": [
-                19
-            ]
-        }
-    },
-    {
-        "model": "timetable.timetable",
-        "pk": 32,
-        "fields": {
-            "course": 9,
-            "classs": 5,
-            "day_combo": [
-                20
-            ]
-        }
-    },
-    {
-        "model": "timetable.timetable",
-        "pk": 33,
-        "fields": {
-            "course": 12,
-            "classs": 5,
-            "day_combo": [
-                21
-            ]
-        }
-    },
-    {
-        "model": "timetable.timetable",
-        "pk": 34,
-        "fields": {
-            "course": 11,
-            "classs": 5,
-            "day_combo": [
-                22
-            ]
-        }
-    },
-    {
-        "model": "timetable.timetable",
-        "pk": 35,
-        "fields": {
-            "course": 13,
-            "classs": 5,
-            "day_combo": [
-                23
-            ]
-        }
-    },
-    {
-        "model": "timetable.timetable",
-        "pk": 36,
-        "fields": {
-            "course": 12,
-            "classs": 21,
-            "day_combo": [
-                24
-            ]
-        }
-    },
-    {
-        "model": "timetable.timetable",
-        "pk": 37,
-        "fields": {
-            "course": 9,
-            "classs": 21,
-            "day_combo": [
-                25
-            ]
-        }
-    },
-    {
-        "model": "timetable.timetable",
-        "pk": 38,
-        "fields": {
-            "course": 10,
-            "classs": 21,
-            "day_combo": [
-                26
-            ]
-        }
-    },
-    {
-        "model": "timetable.timetable",
-        "pk": 39,
-        "fields": {
-            "course": 13,
-            "classs": 21,
-            "day_combo": [
-                22
-            ]
-        }
-    },
-    {
-        "model": "timetable.timetable",
-        "pk": 40,
-        "fields": {
-            "course": 11,
-            "classs": 21,
-            "day_combo": [
-                27
-            ]
-        }
-    },
-    {
-        "model": "timetable.timetable",
-        "pk": 41,
-        "fields": {
-            "course": 11,
-            "classs": 6,
-            "day_combo": [
-                15
-            ]
-        }
-    },
-    {
-        "model": "timetable.timetable",
-        "pk": 42,
-        "fields": {
-            "course": 13,
-            "classs": 6,
-            "day_combo": [
-                16
-            ]
-        }
-    },
-    {
-        "model": "timetable.timetable",
-        "pk": 43,
-        "fields": {
-            "course": 10,
-            "classs": 6,
-            "day_combo": [
-                17
-            ]
-        }
-    },
-    {
-        "model": "timetable.timetable",
-        "pk": 44,
-        "fields": {
-            "course": 9,
-            "classs": 6,
-            "day_combo": [
-                28
-            ]
-        }
-    },
-    {
-        "model": "timetable.timetable",
-        "pk": 45,
-        "fields": {
-            "course": 12,
-            "classs": 6,
-            "day_combo": [
-                29
-            ]
-        }
-    },
-    {
-        "model": "timetable.timetable",
-        "pk": 46,
-        "fields": {
-            "course": 13,
-            "classs": 22,
-            "day_combo": [
-                15
-            ]
-        }
-    },
-    {
-        "model": "timetable.timetable",
-        "pk": 47,
-        "fields": {
-            "course": 11,
-            "classs": 22,
-            "day_combo": [
-                16
-            ]
-        }
-    },
-    {
-        "model": "timetable.timetable",
-        "pk": 48,
-        "fields": {
-            "course": 12,
-            "classs": 22,
-            "day_combo": [
-                30
-            ]
-        }
-    },
-    {
-        "model": "timetable.timetable",
-        "pk": 49,
-        "fields": {
-            "course": 9,
-            "classs": 22,
-            "day_combo": [
-                31
-            ]
-        }
-    },
-    {
-        "model": "timetable.timetable",
-        "pk": 50,
-        "fields": {
-            "course": 10,
-            "classs": 22,
-            "day_combo": [
-                32
-            ]
-        }
-    },
-    {
-        "model": "timetable.timetable",
-        "pk": 51,
-        "fields": {
-            "course": 17,
-            "classs": 7,
-            "day_combo": [
-                33
-            ]
-        }
-    },
-    {
-        "model": "timetable.timetable",
-        "pk": 52,
-        "fields": {
-            "course": 14,
-            "classs": 7,
-            "day_combo": [
-                34
-            ]
-        }
-    },
-    {
-        "model": "timetable.timetable",
-        "pk": 53,
-        "fields": {
-            "course": 15,
-            "classs": 7,
-            "day_combo": [
-                35
-            ]
-        }
-    },
-    {
-        "model": "timetable.timetable",
-        "pk": 54,
-        "fields": {
-            "course": 16,
-            "classs": 7,
-            "day_combo": [
-                36
-            ]
-        }
-    },
-    {
-        "model": "timetable.timetable",
-        "pk": 55,
-        "fields": {
-            "course": 16,
-            "classs": 8,
-            "day_combo": [
-                37
-            ]
-        }
-    },
-    {
-        "model": "timetable.timetable",
-        "pk": 56,
-        "fields": {
-            "course": 17,
-            "classs": 8,
-            "day_combo": [
-                38
-            ]
-        }
-    },
-    {
-        "model": "timetable.timetable",
-        "pk": 57,
-        "fields": {
-            "course": 14,
-            "classs": 8,
-            "day_combo": [
-                39
-            ]
-        }
-    },
-    {
-        "model": "timetable.timetable",
-        "pk": 58,
-        "fields": {
-            "course": 15,
-            "classs": 8,
-            "day_combo": [
-                40
-            ]
-        }
-    },
-    {
-        "model": "timetable.timeslot",
-        "pk": 1,
-        "fields": {
-            "position": 1,
-            "hour_start": "07:00:00",
-            "hour_end": "07:45:00"
-        }
-    },
-    {
-        "model": "timetable.timeslot",
-        "pk": 2,
-        "fields": {
-            "position": 2,
-            "hour_start": "07:45:00",
-            "hour_end": "08:30:00"
-        }
-    },
-    {
-        "model": "timetable.timeslot",
-        "pk": 3,
-        "fields": {
-            "position": 3,
-            "hour_start": "08:30:00",
-            "hour_end": "09:15:00"
-        }
-    },
-    {
-        "model": "timetable.timeslot",
-        "pk": 4,
-        "fields": {
-            "position": 4,
-            "hour_start": "09:30:00",
-            "hour_end": "10:15:00"
-        }
-    },
-    {
-        "model": "timetable.timeslot",
-        "pk": 5,
-        "fields": {
-            "position": 5,
-            "hour_start": "10:15:00",
-            "hour_end": "11:00:00"
-        }
-    },
-    {
-        "model": "timetable.timeslot",
-        "pk": 6,
-        "fields": {
-            "position": 6,
-            "hour_start": "11:00:00",
-            "hour_end": "11:45:00"
-        }
-    },
-    {
-        "model": "timetable.timeslot",
-        "pk": 7,
-        "fields": {
-            "position": 7,
-            "hour_start": "13:15:00",
-            "hour_end": "14:00:00"
-        }
-    },
-    {
-        "model": "timetable.timeslot",
-        "pk": 8,
-        "fields": {
-            "position": 8,
-            "hour_start": "14:00:00",
-            "hour_end": "14:45:00"
-        }
-    },
-    {
-        "model": "timetable.timeslot",
-        "pk": 9,
-        "fields": {
-            "position": 9,
-            "hour_start": "14:45:00",
-            "hour_end": "15:30:00"
-        }
-    },
-    {
-        "model": "timetable.timeslot",
-        "pk": 10,
-        "fields": {
-            "position": 10,
-            "hour_start": "15:45:00",
-            "hour_end": "16:30:00"
-        }
-    },
-    {
-        "model": "timetable.timeslot",
-        "pk": 11,
-        "fields": {
-            "position": 11,
-            "hour_start": "16:30:00",
-            "hour_end": "17:15:00"
-        }
-    },
-    {
-        "model": "timetable.timeslot",
-        "pk": 12,
-        "fields": {
-            "position": 12,
-            "hour_start": "17:15:00",
-            "hour_end": "18:00:00"
-        }
-    },
-    {
-        "model": "timetable.timeslot",
-        "pk": 13,
-        "fields": {
-            "position": 13,
-            "hour_start": "18:05:00",
-            "hour_end": "18:50:00"
-        }
-    },
-    {
-        "model": "timetable.timeslot",
-        "pk": 14,
-        "fields": {
-            "position": 14,
-            "hour_start": "18:50:00",
-            "hour_end": "19:35:00"
-        }
-    },
-    {
-        "model": "timetable.timeslot",
-        "pk": 15,
-        "fields": {
-            "position": 15,
-            "hour_start": "19:35:00",
-            "hour_end": "20:20:00"
-        }
-    },
-    {
-        "model": "timetable.timeslot",
-        "pk": 16,
-        "fields": {
-            "position": 16,
-            "hour_start": "20:20:00",
-            "hour_end": "21:05:00"
-        }
-    },
-    {
-        "model": "timetable.timeslot",
-        "pk": 17,
-        "fields": {
-            "position": 17,
-            "hour_start": "21:20:00",
-            "hour_end": "22:05:00"
-        }
-    },
-    {
-        "model": "timetable.timeslot",
-        "pk": 18,
-        "fields": {
-            "position": 18,
-            "hour_start": "22:05:00",
-            "hour_end": "22:50:00"
-        }
-    },
-    {
-        "model": "timetable.day_combo",
-        "pk": 1,
-        "fields": {
-            "day": "monday",
-            "timeslots": [
-                3,
-                4
-            ]
-        }
-    },
-    {
-        "model": "timetable.day_combo",
-        "pk": 2,
-        "fields": {
-            "day": "thursday",
-            "timeslots": [
-                1,
-                2,
-                3
-            ]
-        }
-    },
-    {
-        "model": "timetable.day_combo",
-        "pk": 3,
-        "fields": {
-            "day": "thursday",
-            "timeslots": [
-                4,
-                5,
-                7
-            ]
-        }
-    },
-    {
-        "model": "timetable.day_combo",
-        "pk": 4,
-        "fields": {
-            "day": "friday",
-            "timeslots": [
-                1,
-                2,
-                3
-            ]
-        }
-    },
-    {
-        "model": "timetable.day_combo",
-        "pk": 5,
-        "fields": {
-            "day": "friday",
-            "timeslots": [
-                4,
-                5,
-                7
-            ]
-        }
-    },
-    {
-        "model": "timetable.day_combo",
-        "pk": 6,
-        "fields": {
-            "day": "thursday",
-            "timeslots": [
-                4,
-                5,
-                7
-            ]
-        }
-    },
-    {
-        "model": "timetable.day_combo",
-        "pk": 7,
-        "fields": {
-            "day": "friday",
-            "timeslots": [
-                4,
-                5,
-                7
-            ]
-        }
-    },
-    {
-        "model": "timetable.day_combo",
-        "pk": 8,
-        "fields": {
-            "day": "thursday",
-            "timeslots": [
-                4,
-                5,
-                7
-            ]
-        }
-    },
-    {
-        "model": "timetable.day_combo",
-        "pk": 9,
-        "fields": {
-            "day": "friday",
-            "timeslots": [
-                4,
-                5,
-                7
-            ]
-        }
-    },
-    {
-        "model": "timetable.day_combo",
-        "pk": 10,
-        "fields": {
-            "day": "monday",
-            "timeslots": [
-                5,
-                7
-            ]
-        }
-    },
-    {
-        "model": "timetable.day_combo",
-        "pk": 11,
-        "fields": {
-            "day": "thursday",
-            "timeslots": [
-                4,
-                5,
-                7
-            ]
-        }
-    },
-    {
-        "model": "timetable.day_combo",
-        "pk": 12,
-        "fields": {
-            "day": "friday",
-            "timeslots": [
-                4,
-                5,
-                7
-            ]
-        }
-    },
-    {
-        "model": "timetable.day_combo",
-        "pk": 13,
-        "fields": {
-            "day": "monday",
-            "timeslots": [
-                6,
-                8,
-                9
-            ]
-        }
-    },
-    {
-        "model": "timetable.day_combo",
-        "pk": 14,
-        "fields": {
-            "day": "monday",
-            "timeslots": [
-                10,
-                11,
-                12
-            ]
-        }
-    },
-    {
-        "model": "timetable.day_combo",
-        "pk": 15,
-        "fields": {
-            "day": "tuesday",
-            "timeslots": [
-                6,
-                8,
-                9
-            ]
-        }
-    },
-    {
-        "model": "timetable.day_combo",
-        "pk": 16,
-        "fields": {
-            "day": "tuesday",
-            "timeslots": [
-                10,
-                11,
-                12
-            ]
-        }
-    },
-    {
-        "model": "timetable.day_combo",
-        "pk": 17,
-        "fields": {
-            "day": "wednesday",
-            "timeslots": [
-                6,
-                8
-            ]
-        }
-    },
-    {
-        "model": "timetable.day_combo",
-        "pk": 18,
-        "fields": {
-            "day": "wednesday",
-            "timeslots": [
-                9,
-                10
-            ]
-        }
-    },
-    {
-        "model": "timetable.day_combo",
-        "pk": 19,
-        "fields": {
-            "day": "tuesday",
-            "timeslots": [
-                1,
-                2
-            ]
-        }
-    },
-    {
-        "model": "timetable.day_combo",
-        "pk": 20,
-        "fields": {
-            "day": "tuesday",
-            "timeslots": [
-                3
-            ]
-        }
-    },
-    {
-        "model": "timetable.day_combo",
-        "pk": 21,
-        "fields": {
-            "day": "tuesday",
-            "timeslots": [
-                4,
-                5,
-                7
-            ]
-        }
-    },
-    {
-        "model": "timetable.day_combo",
-        "pk": 22,
-        "fields": {
-            "day": "wednesday",
-            "timeslots": [
-                1,
-                2,
-                3
-            ]
-        }
-    },
-    {
-        "model": "timetable.day_combo",
-        "pk": 23,
-        "fields": {
-            "day": "wednesday",
-            "timeslots": [
-                4,
-                5,
-                7
-            ]
-        }
-    },
-    {
-        "model": "timetable.day_combo",
-        "pk": 24,
-        "fields": {
-            "day": "tuesday",
-            "timeslots": [
-                1,
-                2,
-                3
-            ]
-        }
-    },
-    {
-        "model": "timetable.day_combo",
-        "pk": 25,
-        "fields": {
-            "day": "tuesday",
-            "timeslots": [
-                4
-            ]
-        }
-    },
-    {
-        "model": "timetable.day_combo",
-        "pk": 26,
-        "fields": {
-            "day": "tuesday",
-            "timeslots": [
-                5,
-                7
-            ]
-        }
-    },
-    {
-        "model": "timetable.day_combo",
-        "pk": 27,
-        "fields": {
-            "day": "wednesday",
-            "timeslots": [
-                4,
-                5,
-                7
-            ]
-        }
-    },
-    {
-        "model": "timetable.day_combo",
-        "pk": 28,
-        "fields": {
-            "day": "wednesday",
-            "timeslots": [
-                9
-            ]
-        }
-    },
-    {
-        "model": "timetable.day_combo",
-        "pk": 29,
-        "fields": {
-            "day": "wednesday",
-            "timeslots": [
-                10,
-                11,
-                12
-            ]
-        }
-    },
-    {
-        "model": "timetable.day_combo",
-        "pk": 30,
-        "fields": {
-            "day": "wednesday",
-            "timeslots": [
-                6,
-                8,
-                9
-            ]
-        }
-    },
-    {
-        "model": "timetable.day_combo",
-        "pk": 31,
-        "fields": {
-            "day": "wednesday",
-            "timeslots": [
-                10
-            ]
-        }
-    },
-    {
-        "model": "timetable.day_combo",
-        "pk": 32,
-        "fields": {
-            "day": "wednesday",
-            "timeslots": [
-                11,
-                12
-            ]
-        }
-    },
-    {
-        "model": "timetable.day_combo",
-        "pk": 33,
-        "fields": {
-            "day": "monday",
-            "timeslots": [
-                14,
-                15,
-                16,
-                17,
-                18
-            ]
-        }
-    },
-    {
-        "model": "timetable.day_combo",
-        "pk": 34,
-        "fields": {
-            "day": "tuesday",
-            "timeslots": [
-                14,
-                18
-            ]
-        }
-    },
-    {
-        "model": "timetable.day_combo",
-        "pk": 35,
-        "fields": {
-            "day": "tuesday",
-            "timeslots": [
-                15,
-                16,
-                17
-            ]
-        }
-    },
-    {
-        "model": "timetable.day_combo",
-        "pk": 36,
-        "fields": {
-            "day": "thursday",
-            "timeslots": [
-                16,
-                17
-            ]
-        }
-    },
-    {
-        "model": "timetable.day_combo",
-        "pk": 37,
-        "fields": {
-            "day": "tuesday",
-            "timeslots": [
-                13,
-                18
-            ]
-        }
-    },
-    {
-        "model": "timetable.day_combo",
-        "pk": 38,
-        "fields": {
-            "day": "wednesday",
-            "timeslots": [
-                14,
-                15,
-                16,
-                17,
-                18
-            ]
-        }
-    },
-    {
-        "model": "timetable.day_combo",
-        "pk": 39,
-        "fields": {
-            "day": "thursday",
-            "timeslots": [
-                14,
-                18
-            ]
-        }
-    },
-    {
-        "model": "timetable.day_combo",
-        "pk": 40,
-        "fields": {
-            "day": "thursday",
-            "timeslots": [
-                15,
-                16,
-                17
-            ]
-        }
-    },
-    {
-        "model": "timetable.timetable_user",
-        "pk": 1,
-        "fields": {
-            "timetable": 11,
-            "user": null
-        }
-    },
-    {
-        "model": "timetable.timetable_user",
-        "pk": 2,
-        "fields": {
-            "timetable": 12,
-            "user": null
-        }
-    },
-    {
-        "model": "timetable.timetable_user",
-        "pk": 3,
-        "fields": {
-            "timetable": 13,
-            "user": null
-        }
-    },
-    {
-        "model": "timetable.timetable_user",
-        "pk": 4,
-        "fields": {
-            "timetable": 14,
-            "user": null
-        }
-    },
-    {
-        "model": "timetable.timetable_user",
-        "pk": 5,
-        "fields": {
-            "timetable": 15,
-            "user": null
-        }
-    },
-    {
-        "model": "timetable.timetable_user",
-        "pk": 6,
-        "fields": {
-            "timetable": 16,
-            "user": null
-        }
-    },
-    {
-        "model": "timetable.timetable_user",
-        "pk": 7,
-        "fields": {
-            "timetable": 17,
-            "user": null
-        }
-    },
-    {
-        "model": "timetable.timetable_user",
-        "pk": 8,
-        "fields": {
-            "timetable": 18,
-            "user": null
-        }
-    },
-    {
-        "model": "timetable.timetable_user",
-        "pk": 9,
-        "fields": {
-            "timetable": 19,
-            "user": null
-        }
-    },
-    {
-        "model": "timetable.timetable_user",
-        "pk": 10,
-        "fields": {
-            "timetable": 20,
-            "user": null
-        }
-    },
-    {
-        "model": "timetable.timetable_user",
-        "pk": 11,
-        "fields": {
-            "timetable": 21,
-            "user": null
-        }
-    },
-    {
-        "model": "timetable.timetable_user",
-        "pk": 12,
-        "fields": {
-            "timetable": 22,
-            "user": null
-        }
-    },
-    {
-        "model": "timetable.timetable_user",
-        "pk": 13,
-        "fields": {
-            "timetable": 23,
-            "user": null
-        }
-    },
-    {
-        "model": "timetable.timetable_user",
-        "pk": 14,
-        "fields": {
-            "timetable": 24,
-            "user": null
-        }
-    },
-    {
-        "model": "timetable.timetable_user",
-        "pk": 15,
-        "fields": {
-            "timetable": 25,
-            "user": null
-        }
-    },
-    {
-        "model": "timetable.timetable_user",
-        "pk": 16,
-        "fields": {
-            "timetable": 26,
-            "user": null
-        }
-    },
-    {
-        "model": "timetable.timetable_user",
-        "pk": 17,
-        "fields": {
-            "timetable": 27,
-            "user": null
-        }
-    },
-    {
-        "model": "timetable.timetable_user",
-        "pk": 18,
-        "fields": {
-            "timetable": 28,
-            "user": null
-        }
-    },
-    {
-        "model": "timetable.timetable_user",
-        "pk": 19,
-        "fields": {
-            "timetable": 29,
-            "user": null
-        }
-    },
-    {
-        "model": "timetable.timetable_user",
-        "pk": 20,
-        "fields": {
-            "timetable": 30,
-            "user": null
-        }
-    },
-    {
-        "model": "timetable.timetable_user",
-        "pk": 21,
-        "fields": {
-            "timetable": 31,
-            "user": null
-        }
-    },
-    {
-        "model": "timetable.timetable_user",
-        "pk": 22,
-        "fields": {
-            "timetable": 32,
-            "user": null
-        }
-    },
-    {
-        "model": "timetable.timetable_user",
-        "pk": 23,
-        "fields": {
-            "timetable": 33,
-            "user": null
-        }
-    },
-    {
-        "model": "timetable.timetable_user",
-        "pk": 24,
-        "fields": {
-            "timetable": 34,
-            "user": null
-        }
-    },
-    {
-        "model": "timetable.timetable_user",
-        "pk": 25,
-        "fields": {
-            "timetable": 35,
-            "user": null
-        }
-    },
-    {
-        "model": "timetable.timetable_user",
-        "pk": 26,
-        "fields": {
-            "timetable": 36,
-            "user": null
-        }
-    },
-    {
-        "model": "timetable.timetable_user",
-        "pk": 27,
-        "fields": {
-            "timetable": 37,
-            "user": null
-        }
-    },
-    {
-        "model": "timetable.timetable_user",
-        "pk": 28,
-        "fields": {
-            "timetable": 38,
-            "user": null
-        }
-    },
-    {
-        "model": "timetable.timetable_user",
-        "pk": 29,
-        "fields": {
-            "timetable": 39,
-            "user": null
-        }
-    },
-    {
-        "model": "timetable.timetable_user",
-        "pk": 30,
-        "fields": {
-            "timetable": 40,
-            "user": null
-        }
-    },
-    {
-        "model": "timetable.timetable_user",
-        "pk": 31,
-        "fields": {
-            "timetable": 41,
-            "user": null
-        }
-    },
-    {
-        "model": "timetable.timetable_user",
-        "pk": 32,
-        "fields": {
-            "timetable": 42,
-            "user": null
-        }
-    },
-    {
-        "model": "timetable.timetable_user",
-        "pk": 33,
-        "fields": {
-            "timetable": 43,
-            "user": null
-        }
-    },
-    {
-        "model": "timetable.timetable_user",
-        "pk": 34,
-        "fields": {
-            "timetable": 44,
-            "user": null
-        }
-    },
-    {
-        "model": "timetable.timetable_user",
-        "pk": 35,
-        "fields": {
-            "timetable": 45,
-            "user": null
-        }
-    },
-    {
-        "model": "timetable.timetable_user",
-        "pk": 36,
-        "fields": {
-            "timetable": 46,
-            "user": null
-        }
-    },
-    {
-        "model": "timetable.timetable_user",
-        "pk": 37,
-        "fields": {
-            "timetable": 47,
-            "user": null
-        }
-    },
-    {
-        "model": "timetable.timetable_user",
-        "pk": 38,
-        "fields": {
-            "timetable": 48,
-            "user": null
-        }
-    },
-    {
-        "model": "timetable.timetable_user",
-        "pk": 39,
-        "fields": {
-            "timetable": 49,
-            "user": null
-        }
-    },
-    {
-        "model": "timetable.timetable_user",
-        "pk": 40,
-        "fields": {
-            "timetable": 50,
-            "user": null
-        }
-    },
-    {
-        "model": "timetable.timetable_user",
-        "pk": 41,
-        "fields": {
-            "timetable": 51,
-            "user": null
-        }
-    },
-    {
-        "model": "timetable.timetable_user",
-        "pk": 42,
-        "fields": {
-            "timetable": 52,
-            "user": null
-        }
-    },
-    {
-        "model": "timetable.timetable_user",
-        "pk": 43,
-        "fields": {
-            "timetable": 53,
-            "user": null
-        }
-    },
-    {
-        "model": "timetable.timetable_user",
-        "pk": 44,
-        "fields": {
-            "timetable": 54,
-            "user": null
-        }
-    },
-    {
-        "model": "timetable.timetable_user",
-        "pk": 45,
-        "fields": {
-            "timetable": 55,
-            "user": null
-        }
-    },
-    {
-        "model": "timetable.timetable_user",
-        "pk": 46,
-        "fields": {
-            "timetable": 56,
-            "user": null
-        }
-    },
-    {
-        "model": "timetable.timetable_user",
-        "pk": 47,
-        "fields": {
-            "timetable": 57,
-            "user": null
-        }
-    },
-    {
-        "model": "timetable.timetable_user",
-        "pk": 48,
-        "fields": {
-            "timetable": 58,
-            "user": null
-        }
-    },
-    {
-        "model": "user.user",
-        "pk": 1,
-        "fields": {
-            "password": "pbkdf2_sha256$390000$adNxghg0YAIhAR1xqWKIOY$S5yaWznfwzfgzlWdq5PrTO5XwCV7m21svar6nO+70fc=",
-            "last_login": "2023-06-19T06:20:39.489",
-            "registration_id": "3045463",
-            "first_name": "ISABELLA",
-            "last_name": "VALERIO MAZARÁ",
-            "email": "i.mazara@aluno.ifsp.edu.br",
-            "telephone": null,
-            "cell_phone": "+5511971810077",
-            "date_joined": "2023-06-08T14:58:26.032",
-            "is_superuser": true,
-            "is_staff": true,
-            "is_active": true,
-            "is_professor": false,
-            "history": null,
-            "job": null,
-            "groups": [],
-            "user_permissions": [],
-            "blocks": [
-                1,
-                2,
-                3,
-                4
-            ]
-        }
-    },
-    {
-        "model": "user.user",
-        "pk": 2,
-        "fields": {
-            "password": "pbkdf2_sha256$390000$Spni1S5Lel15EBH5B6Lws8$KO3dJH6L/ZxiRbPOZc2ySkA5kMhGVblI4jTQ53HO4jo=",
-            "last_login": null,
-            "registration_id": "3044505",
-            "first_name": "ANA PAULA",
-            "last_name": "MOURA MESSIAS DE SOUZA",
-            "email": "moura.a@aluno.ifsp.edu.br",
-            "telephone": null,
-            "cell_phone": "+5511993978748",
-            "date_joined": "2023-06-09T07:01:54.152",
-            "is_superuser": true,
-            "is_staff": true,
-            "is_active": true,
-            "is_professor": false,
-            "history": null,
-            "job": null,
-            "groups": [],
-            "user_permissions": [],
-            "blocks": [
-                1,
-                2,
-                3,
-                4
-            ]
-        }
-    },
-    {
-        "model": "user.user",
-        "pk": 3,
-        "fields": {
-            "password": "pbkdf2_sha256$390000$5jEpfTzmAQhcmiQWciFI2A$gt2P0ihgorA6r7s6nP5UUEHesgScYr/koT03k4kS070=",
-            "last_login": null,
-            "registration_id": "3044491",
-            "first_name": "GUSTAVO",
-            "last_name": "SANTOS COSTA SOARES",
-            "email": "santos.soares@aluno.ifsp.edu.br",
-            "telephone": null,
-            "cell_phone": "+5511946962284",
-            "date_joined": "2023-06-09T07:04:20.944",
-            "is_superuser": true,
-            "is_staff": true,
-            "is_active": true,
-            "is_professor": false,
-            "history": null,
-            "job": null,
-            "groups": [],
-            "user_permissions": [],
-            "blocks": [
-                1,
-                2,
-                3,
-                4
-            ]
-        }
-    },
-    {
-        "model": "user.user",
-        "pk": 4,
-        "fields": {
-            "password": "pbkdf2_sha256$390000$2sCmSKArQ7ibXqVvlVdC8q$MNqbpwRXd1wNNucZDIttvThIklWJ8aLRo5YC7YbQOhs=",
-            "last_login": null,
-            "registration_id": "3045439",
-            "first_name": "JOSINEUDO",
-            "last_name": "DAS CHAGAS ARRUDA",
-            "email": "josineudo.c@aluno.ifsp.edu.br",
-            "telephone": null,
-            "cell_phone": "+5511966303759",
-            "date_joined": "2023-06-09T07:05:57.356",
-            "is_superuser": true,
-            "is_staff": true,
-            "is_active": true,
-            "is_professor": false,
-            "history": null,
-            "job": null,
-            "groups": [],
-            "user_permissions": [],
-            "blocks": [
-                1,
-                2,
-                3,
-                4
-            ]
-        }
-    },
-    {
-        "model": "user.user",
-        "pk": 5,
-        "fields": {
-            "password": "pbkdf2_sha256$390000$v3bT5PPP9yZyTSc3DM3Za0$jesE674x33gAMocrOoXqa9rTJU2avrz+WKEQSptfxvY=",
-            "last_login": null,
-            "registration_id": "3045382",
-            "first_name": "PAULO",
-            "last_name": "KENJI YOKOTA MUNEISCHI",
-            "email": "paulo.muneischi@aluno.ifsp.edu.br",
-            "telephone": null,
-            "cell_phone": "+5511955691224",
-            "date_joined": "2023-06-09T07:07:45.973",
-            "is_superuser": true,
-            "is_staff": true,
-            "is_active": true,
-            "is_professor": false,
-            "history": null,
-            "job": null,
-            "groups": [],
-            "user_permissions": [],
-            "blocks": [
-                1,
-                2,
-                3,
-                4
-            ]
-        }
-    },
-    {
-        "model": "user.user",
-        "pk": 6,
-        "fields": {
-            "password": "pbkdf2_sha256$390000$EQwKnuRVvxhWU2oDHGAyQ1$PiuXCW/mxNKTlQjsT3CkjK780bq374OauYfaU8XWg14=",
-            "last_login": null,
-            "registration_id": "D",
-            "first_name": "D",
-            "last_name": "D",
-            "email": "d@gmail.com",
-            "telephone": null,
-            "cell_phone": "d",
-            "date_joined": "2023-06-09T07:09:36.877",
-            "is_superuser": true,
-            "is_staff": true,
-            "is_active": true,
-            "is_professor": true,
-            "history": null,
-            "job": null,
-            "groups": [],
-            "user_permissions": [],
-            "blocks": [
-                1,
-                2,
-                3,
-                4
-            ]
-        }
-    },
-    {
-        "model": "user.user",
-        "pk": 7,
-        "fields": {
-            "password": "pbkdf2_sha256$390000$Q0U6NWmL2L0Lnm9XkMo8HH$uTWq527TUm7tIE9MzxbWOwRr6cwYDYbf6RbNPSCqTtE=",
-            "last_login": null,
-            "registration_id": "2306499",
-            "first_name": "CLAUDIA",
-            "last_name": "MIYUKI WERHMULLER",
-            "email": "claudiay@ifsp.edu.br",
-            "telephone": null,
-            "cell_phone": "+5511999999999",
-            "date_joined": "2023-06-09T07:14:43.575",
-            "is_superuser": false,
-            "is_staff": true,
-            "is_active": true,
-            "is_professor": true,
-            "history": 3,
-            "job": null,
-            "groups": [],
-            "user_permissions": [],
-            "blocks": [
-                1
-            ]
-        }
-    },
-    {
-        "model": "user.user",
-        "pk": 9,
-        "fields": {
-            "password": "pbkdf2_sha256$390000$mB4xxJ0vHZZwoS5JkpqMY2$qktKE8H1lPddr/VyyM9h3nsRPlseatfwafciRUh8mrE=",
-            "last_login": null,
-            "registration_id": "2144297",
-            "first_name": "DOMINGOS LUCAS",
-            "last_name": "LATORRE DE OLIVEIRA",
-            "email": "domingos.oliveira@ifsp.edu.br",
-            "telephone": null,
-            "cell_phone": "+5511999999998",
-            "date_joined": "2023-06-09T07:18:27.580",
-            "is_superuser": false,
-            "is_staff": false,
-            "is_active": true,
-            "is_professor": true,
-            "history": 2,
-            "job": null,
-            "groups": [],
-            "user_permissions": [],
-            "blocks": [
-                1
-            ]
-        }
-    },
-    {
-        "model": "user.user",
-        "pk": 10,
-        "fields": {
-            "password": "pbkdf2_sha256$390000$uqXoPzURtLTIr4mzLgdXdK$z7jfpNmsUOlPYZNlK46vdYyOu4w7R49ITnjSLe6jdsE=",
-            "last_login": null,
-            "registration_id": "1977085",
-            "first_name": "JOSCELI MARIA",
-            "last_name": "TENORIO",
-            "email": "josceli.tenorio@ifsp.edu.br",
-            "telephone": null,
-            "cell_phone": "+5511999999997",
-            "date_joined": "2023-06-09T07:20:20.062",
-            "is_superuser": false,
-            "is_staff": false,
-            "is_active": true,
-            "is_professor": false,
-            "history": 1,
-            "job": null,
-            "groups": [],
-            "user_permissions": [],
-            "blocks": [
-                1
-            ]
-        }
-    },
-    {
-        "model": "user.user",
-        "pk": 11,
-        "fields": {
-            "password": "pbkdf2_sha256$390000$JLFuh0oXhL8p8olqqB5YG4$/1z/4SwEr8X/RzCVBELl1B6pOUrMxalIOU3idVA2pj8=",
-            "last_login": "2023-06-09T07:35:19.918",
-            "registration_id": "a",
-            "first_name": "",
-            "last_name": "",
-            "email": "a@g.com",
-            "telephone": null,
-            "cell_phone": "",
-            "date_joined": "2023-06-09T07:35:04.358",
-            "is_superuser": true,
-            "is_staff": true,
-            "is_active": true,
-            "is_professor": false,
-            "history": null,
-            "job": null,
-            "groups": [],
-            "user_permissions": [],
-            "blocks": []
-        }
-    },
-    {
-        "model": "user.user",
-        "pk": 12,
-        "fields": {
-            "password": "pbkdf2_sha256$390000$eYNaMVx8SkMKJwn8HT9zy1$nw7c5YNe3+FpeMjuZZu3GgUT8wkGrV+mYwjOWhSUeR4=",
-            "last_login": null,
-            "registration_id": "1284708",
-            "first_name": "LEONARDO",
-            "last_name": "ANDRADE MOTTA DE LIMA",
-            "email": "leonardo.motta@ifsp.edu.br",
-            "telephone": null,
-            "cell_phone": "119999999996",
-            "date_joined": "2023-06-19T06:19:54.758",
-            "is_superuser": false,
-            "is_staff": true,
-            "is_active": true,
-            "is_professor": true,
-            "history": null,
-            "job": null,
-            "groups": [],
-            "user_permissions": [],
-            "blocks": [
-                1
-            ]
-        }
-    },
-    {
-        "model": "user.user",
-        "pk": 13,
-        "fields": {
-            "password": "pbkdf2_sha256$390000$0k2WiaQO0ulJ3F4MdkuS9X$Qgjor+HDQ0cP9J+mGqZcA2+4Ry4kzIm7fACV+OfZjM4=",
-            "last_login": null,
-            "registration_id": "3278994",
-            "first_name": "GUSTAVO",
-            "last_name": "FORTUNATO PUGA",
-            "email": "gustavo.puga@ifsp.edu.br",
-            "telephone": null,
-            "cell_phone": "119999999995",
-            "date_joined": "2023-06-19T06:20:23.363",
-            "is_superuser": false,
-            "is_staff": false,
-            "is_active": true,
-            "is_professor": true,
-            "history": null,
-            "job": null,
-            "groups": [],
-            "user_permissions": [],
-            "blocks": [
-                1
-            ]
-        }
-    },
-    {
-        "model": "user.history",
-        "pk": 1,
-        "fields": {
-            "birth": "1975-05-22",
-            "date_career": "1995-07-10",
-            "date_campus": "2013-08-14",
-            "date_professor": "2005-04-12",
-            "date_area": "1995-12-01",
-            "date_institute": "2013-08-14",
-            "academic_degrees": []
-        }
-    },
-    {
-        "model": "user.history",
-        "pk": 2,
-        "fields": {
-            "birth": "1982-05-30",
-            "date_career": "2002-01-10",
-            "date_campus": "2017-03-24",
-            "date_professor": "2017-03-24",
-            "date_area": "2002-10-01",
-            "date_institute": "2017-03-24",
-            "academic_degrees": []
-        }
-    },
-    {
-        "model": "user.history",
-        "pk": 3,
-        "fields": {
-            "birth": "1965-07-07",
-            "date_career": "1983-01-10",
-            "date_campus": "2000-02-18",
-            "date_professor": "2005-03-23",
-            "date_area": "1983-01-10",
-            "date_institute": "2000-02-18",
-            "academic_degrees": []
-        }
-    },
-    {
-        "model": "user.academicdegree",
-        "pk": 1,
-        "fields": {
-            "name": "TÉCNICO",
-            "punctuation": 1
-        }
-    },
-    {
-        "model": "user.academicdegree",
-        "pk": 2,
-        "fields": {
-            "name": "LICENCIATURA",
-            "punctuation": 3
-        }
-    },
-    {
-        "model": "user.academicdegree",
-        "pk": 3,
-        "fields": {
-            "name": "BACHARELADO",
-            "punctuation": 2
-        }
-    },
-    {
-        "model": "user.academicdegree",
-        "pk": 4,
-        "fields": {
-            "name": "CURSO LATO SENSU",
-            "punctuation": 1
-        }
-    },
-    {
-        "model": "user.academicdegree",
-        "pk": 5,
-        "fields": {
-            "name": "MESTRADO",
-            "punctuation": 4
-        }
-    },
-    {
-        "model": "user.academicdegree",
-        "pk": 6,
-        "fields": {
-            "name": "DOUTORADO",
-            "punctuation": 5
         }
     },
     {
@@ -4095,14 +2141,6 @@
     },
     {
         "model": "timetable.timetable_user",
-        "pk": 2,
-        "fields": {
-            "timetable": 12,
-            "user": 7
-        }
-    },
-    {
-        "model": "timetable.timetable_user",
         "pk": 3,
         "fields": {
             "timetable": 13,
@@ -4135,26 +2173,10 @@
     },
     {
         "model": "timetable.timetable_user",
-        "pk": 7,
-        "fields": {
-            "timetable": 17,
-            "user": 9
-        }
-    },
-    {
-        "model": "timetable.timetable_user",
         "pk": 8,
         "fields": {
             "timetable": 18,
             "user": null
-        }
-    },
-    {
-        "model": "timetable.timetable_user",
-        "pk": 9,
-        "fields": {
-            "timetable": 19,
-            "user": 7
         }
     },
     {
@@ -4247,14 +2269,6 @@
     },
     {
         "model": "timetable.timetable_user",
-        "pk": 21,
-        "fields": {
-            "timetable": 31,
-            "user": 7
-        }
-    },
-    {
-        "model": "timetable.timetable_user",
         "pk": 22,
         "fields": {
             "timetable": 32,
@@ -4271,26 +2285,10 @@
     },
     {
         "model": "timetable.timetable_user",
-        "pk": 24,
-        "fields": {
-            "timetable": 34,
-            "user": 9
-        }
-    },
-    {
-        "model": "timetable.timetable_user",
         "pk": 25,
         "fields": {
             "timetable": 35,
             "user": null
-        }
-    },
-    {
-        "model": "timetable.timetable_user",
-        "pk": 26,
-        "fields": {
-            "timetable": 36,
-            "user": 9
         }
     },
     {
@@ -4307,14 +2305,6 @@
         "fields": {
             "timetable": 38,
             "user": null
-        }
-    },
-    {
-        "model": "timetable.timetable_user",
-        "pk": 29,
-        "fields": {
-            "timetable": 39,
-            "user": 7
         }
     },
     {
@@ -4483,6 +2473,634 @@
         "fields": {
             "timetable": 60,
             "user": null
+        }
+    },
+    {
+        "model": "user.user",
+        "pk": 1,
+        "fields": {
+            "password": "pbkdf2_sha256$390000$adNxghg0YAIhAR1xqWKIOY$S5yaWznfwzfgzlWdq5PrTO5XwCV7m21svar6nO+70fc=",
+            "last_login": "2023-06-19T06:20:39",
+            "registration_id": "3045463",
+            "first_name": "ISABELLA",
+            "last_name": "VALERIO MAZARÁ",
+            "email": "i.mazara@aluno.ifsp.edu.br",
+            "telephone": null,
+            "cell_phone": "+5511971810077",
+            "date_joined": "2023-06-08T14:58:26.032",
+            "is_superuser": true,
+            "is_staff": true,
+            "is_active": true,
+            "is_professor": true,
+            "history": null,
+            "job": null,
+            "groups": [],
+            "user_permissions": [],
+            "blocks": [
+                1,
+                2,
+                3,
+                4,
+                5
+            ]
+        }
+    },
+    {
+        "model": "user.user",
+        "pk": 2,
+        "fields": {
+            "password": "pbkdf2_sha256$390000$Spni1S5Lel15EBH5B6Lws8$KO3dJH6L/ZxiRbPOZc2ySkA5kMhGVblI4jTQ53HO4jo=",
+            "last_login": null,
+            "registration_id": "3044505",
+            "first_name": "ANA PAULA",
+            "last_name": "MOURA MESSIAS DE SOUZA",
+            "email": "moura.a@aluno.ifsp.edu.br",
+            "telephone": null,
+            "cell_phone": "+5511993978748",
+            "date_joined": "2023-06-09T07:01:54.152",
+            "is_superuser": true,
+            "is_staff": true,
+            "is_active": true,
+            "is_professor": true,
+            "history": null,
+            "job": null,
+            "groups": [],
+            "user_permissions": [],
+            "blocks": [
+                1,
+                2,
+                3,
+                4,
+                5
+            ]
+        }
+    },
+    {
+        "model": "user.user",
+        "pk": 3,
+        "fields": {
+            "password": "pbkdf2_sha256$390000$5jEpfTzmAQhcmiQWciFI2A$gt2P0ihgorA6r7s6nP5UUEHesgScYr/koT03k4kS070=",
+            "last_login": null,
+            "registration_id": "3044491",
+            "first_name": "GUSTAVO",
+            "last_name": "SANTOS COSTA SOARES",
+            "email": "santos.soares@aluno.ifsp.edu.br",
+            "telephone": null,
+            "cell_phone": "+5511946962284",
+            "date_joined": "2023-06-09T07:04:20.944",
+            "is_superuser": true,
+            "is_staff": true,
+            "is_active": true,
+            "is_professor": true,
+            "history": null,
+            "job": null,
+            "groups": [],
+            "user_permissions": [],
+            "blocks": [
+                1,
+                2,
+                3,
+                4,
+                5
+            ]
+        }
+    },
+    {
+        "model": "user.user",
+        "pk": 4,
+        "fields": {
+            "password": "pbkdf2_sha256$390000$2sCmSKArQ7ibXqVvlVdC8q$MNqbpwRXd1wNNucZDIttvThIklWJ8aLRo5YC7YbQOhs=",
+            "last_login": null,
+            "registration_id": "3045439",
+            "first_name": "JOSINEUDO",
+            "last_name": "DAS CHAGAS ARRUDA",
+            "email": "josineudo.c@aluno.ifsp.edu.br",
+            "telephone": null,
+            "cell_phone": "+5511966303759",
+            "date_joined": "2023-06-09T07:05:57.356",
+            "is_superuser": true,
+            "is_staff": true,
+            "is_active": true,
+            "is_professor": true,
+            "history": null,
+            "job": null,
+            "groups": [],
+            "user_permissions": [],
+            "blocks": [
+                1,
+                2,
+                3,
+                4,
+                5
+            ]
+        }
+    },
+    {
+        "model": "user.user",
+        "pk": 5,
+        "fields": {
+            "password": "pbkdf2_sha256$390000$v3bT5PPP9yZyTSc3DM3Za0$jesE674x33gAMocrOoXqa9rTJU2avrz+WKEQSptfxvY=",
+            "last_login": null,
+            "registration_id": "3045382",
+            "first_name": "PAULO",
+            "last_name": "KENJI YOKOTA MUNEISCHI",
+            "email": "paulo.muneischi@aluno.ifsp.edu.br",
+            "telephone": null,
+            "cell_phone": "+5511955691224",
+            "date_joined": "2023-06-09T07:07:45.973",
+            "is_superuser": true,
+            "is_staff": true,
+            "is_active": true,
+            "is_professor": true,
+            "history": null,
+            "job": null,
+            "groups": [],
+            "user_permissions": [],
+            "blocks": [
+                1,
+                2,
+                3,
+                4,
+                5
+            ]
+        }
+    },
+    {
+        "model": "user.user",
+        "pk": 6,
+        "fields": {
+            "password": "pbkdf2_sha256$390000$EQwKnuRVvxhWU2oDHGAyQ1$PiuXCW/mxNKTlQjsT3CkjK780bq374OauYfaU8XWg14=",
+            "last_login": null,
+            "registration_id": "D",
+            "first_name": "D",
+            "last_name": "D",
+            "email": "d@gmail.com",
+            "telephone": null,
+            "cell_phone": "d",
+            "date_joined": "2023-06-09T07:09:36.877",
+            "is_superuser": true,
+            "is_staff": true,
+            "is_active": true,
+            "is_professor": true,
+            "history": null,
+            "job": null,
+            "groups": [],
+            "user_permissions": [],
+            "blocks": [
+                1,
+                2,
+                3,
+                4
+            ]
+        }
+    },
+    {
+        "model": "user.user",
+        "pk": 11,
+        "fields": {
+            "password": "pbkdf2_sha256$390000$JLFuh0oXhL8p8olqqB5YG4$/1z/4SwEr8X/RzCVBELl1B6pOUrMxalIOU3idVA2pj8=",
+            "last_login": "2023-06-09T07:35:19.918",
+            "registration_id": "a",
+            "first_name": "",
+            "last_name": "",
+            "email": "a@g.com",
+            "telephone": null,
+            "cell_phone": "",
+            "date_joined": "2023-06-09T07:35:04.358",
+            "is_superuser": true,
+            "is_staff": true,
+            "is_active": true,
+            "is_professor": false,
+            "history": null,
+            "job": null,
+            "groups": [],
+            "user_permissions": [],
+            "blocks": []
+        }
+    },
+    {
+        "model": "user.user",
+        "pk": 12,
+        "fields": {
+            "password": "pbkdf2_sha256$390000$eYNaMVx8SkMKJwn8HT9zy1$nw7c5YNe3+FpeMjuZZu3GgUT8wkGrV+mYwjOWhSUeR4=",
+            "last_login": null,
+            "registration_id": "1284708",
+            "first_name": "LEONARDO",
+            "last_name": "ANDRADE MOTTA DE LIMA",
+            "email": "leonardo.motta@ifsp.edu.br",
+            "telephone": null,
+            "cell_phone": "119999999996",
+            "date_joined": "2023-06-19T06:19:54.758",
+            "is_superuser": false,
+            "is_staff": true,
+            "is_active": true,
+            "is_professor": true,
+            "history": 10,
+            "job": null,
+            "groups": [],
+            "user_permissions": [],
+            "blocks": [
+                1
+            ]
+        }
+    },
+    {
+        "model": "user.user",
+        "pk": 13,
+        "fields": {
+            "password": "pbkdf2_sha256$390000$0k2WiaQO0ulJ3F4MdkuS9X$Qgjor+HDQ0cP9J+mGqZcA2+4Ry4kzIm7fACV+OfZjM4=",
+            "last_login": null,
+            "registration_id": "3278994",
+            "first_name": "GUSTAVO",
+            "last_name": "FORTUNATO PUGA",
+            "email": "gustavo.puga@ifsp.edu.br",
+            "telephone": null,
+            "cell_phone": "119999999995",
+            "date_joined": "2023-06-19T06:20:23.363",
+            "is_superuser": false,
+            "is_staff": false,
+            "is_active": true,
+            "is_professor": true,
+            "history": 11,
+            "job": null,
+            "groups": [],
+            "user_permissions": [],
+            "blocks": [
+                1
+            ]
+        }
+    },
+    {
+        "model": "user.user",
+        "pk": 14,
+        "fields": {
+            "password": "pbkdf2_sha256$390000$FxJifqK7Muw0mW5gEttyBk$2Yu/G7M2rjHibad6MpUEK3m8B3C9iKMvNrNnffzIKBw=",
+            "last_login": "2023-06-20T04:37:44.251",
+            "registration_id": "1010101",
+            "first_name": "PROFESSOR 1",
+            "last_name": "TESTE",
+            "email": "professor1@ifsp.edu.br",
+            "telephone": null,
+            "cell_phone": "+5511999999991",
+            "date_joined": "2023-06-20T03:49:17.563",
+            "is_superuser": false,
+            "is_staff": false,
+            "is_active": true,
+            "is_professor": true,
+            "history": 4,
+            "job": 1,
+            "groups": [],
+            "user_permissions": [],
+            "blocks": [
+                1
+            ]
+        }
+    },
+    {
+        "model": "user.user",
+        "pk": 15,
+        "fields": {
+            "password": "pbkdf2_sha256$390000$Rn6LlwRQDJN1PTti35gWBp$BRb2gPbT6EP2TvOyH7bCRWWerDD67g6HaaS0gtNN6dw=",
+            "last_login": "2023-06-20T04:38:15.512",
+            "registration_id": "2020202",
+            "first_name": "PROFESSOR 2",
+            "last_name": "TESTE",
+            "email": "professor2@ifsp.edu.br",
+            "telephone": null,
+            "cell_phone": "+5511999999992",
+            "date_joined": "2023-06-20T03:51:08.022",
+            "is_superuser": false,
+            "is_staff": false,
+            "is_active": true,
+            "is_professor": true,
+            "history": 6,
+            "job": 2,
+            "groups": [],
+            "user_permissions": [],
+            "blocks": [
+                1
+            ]
+        }
+    },
+    {
+        "model": "user.user",
+        "pk": 16,
+        "fields": {
+            "password": "pbkdf2_sha256$390000$5AJNFSm0KcNbFt0wx40Xyd$YzLI/395ECiGtHUYQR5ye/CuuMRYSobxk0BV3BHYPec=",
+            "last_login": "2023-06-20T04:41:55.523",
+            "registration_id": "3030303",
+            "first_name": "PROFESSOR 3",
+            "last_name": "TESTE",
+            "email": "professor3@ifsp.edu.br",
+            "telephone": null,
+            "cell_phone": "+5511999999993",
+            "date_joined": "2023-06-20T03:52:35.484",
+            "is_superuser": false,
+            "is_staff": false,
+            "is_active": true,
+            "is_professor": true,
+            "history": 7,
+            "job": 4,
+            "groups": [],
+            "user_permissions": [],
+            "blocks": [
+                1
+            ]
+        }
+    },
+    {
+        "model": "user.user",
+        "pk": 17,
+        "fields": {
+            "password": "pbkdf2_sha256$390000$lfgW3pZjKc1ZmphQDJU5CZ$Ejoj4jIgy5+agu9RltmDtFOCj6s28LBb50BdagjChPU=",
+            "last_login": null,
+            "registration_id": "4040404",
+            "first_name": "PROFESSOR 4",
+            "last_name": "TESTE",
+            "email": "professor4@ifsp.edu.br",
+            "telephone": null,
+            "cell_phone": "+5511999999994",
+            "date_joined": "2023-06-20T03:52:59.587",
+            "is_superuser": false,
+            "is_staff": false,
+            "is_active": true,
+            "is_professor": true,
+            "history": 8,
+            "job": null,
+            "groups": [],
+            "user_permissions": [],
+            "blocks": [
+                1
+            ]
+        }
+    },
+    {
+        "model": "user.user",
+        "pk": 18,
+        "fields": {
+            "password": "pbkdf2_sha256$390000$0pdMr40q4s4sUQae2YWoQp$tpZ4PJzHiwPRt7idX2cksNIPDt/9UNJtRk2HCT1QGF8=",
+            "last_login": null,
+            "registration_id": "5050505",
+            "first_name": "PROFESSOR 5",
+            "last_name": "TESTE",
+            "email": "professor5@ifsp.edu.br",
+            "telephone": null,
+            "cell_phone": "+5511999999995",
+            "date_joined": "2023-06-20T03:54:18.620",
+            "is_superuser": false,
+            "is_staff": false,
+            "is_active": true,
+            "is_professor": true,
+            "history": 9,
+            "job": null,
+            "groups": [],
+            "user_permissions": [],
+            "blocks": []
+        }
+    },
+    {
+        "model": "user.user",
+        "pk": 19,
+        "fields": {
+            "password": "pbkdf2_sha256$390000$gQMuLT2ygiXPby2j6KckZ9$ZF4rNxm8HmfPTdzJIOZtHNMUbNc3vp1ou6CjBCBSC70=",
+            "last_login": null,
+            "registration_id": "1111111",
+            "first_name": "STAFF 1",
+            "last_name": "TESTE",
+            "email": "staff1@ifsp.edu.br",
+            "telephone": null,
+            "cell_phone": "+5511999999911",
+            "date_joined": "2023-06-20T03:55:04.426",
+            "is_superuser": false,
+            "is_staff": true,
+            "is_active": true,
+            "is_professor": true,
+            "history": 5,
+            "job": null,
+            "groups": [],
+            "user_permissions": [],
+            "blocks": [
+                1
+            ]
+        }
+    },
+    {
+        "model": "user.history",
+        "pk": 1,
+        "fields": {
+            "birth": "1975-05-22",
+            "date_career": "1995-07-10",
+            "date_campus": "2013-08-14",
+            "date_professor": "2005-04-12",
+            "date_area": "1995-12-01",
+            "date_institute": "2013-08-14",
+            "academic_degrees": []
+        }
+    },
+    {
+        "model": "user.history",
+        "pk": 2,
+        "fields": {
+            "birth": "1982-05-30",
+            "date_career": "2002-01-10",
+            "date_campus": "2017-03-24",
+            "date_professor": "2017-03-24",
+            "date_area": "2002-10-01",
+            "date_institute": "2017-03-24",
+            "academic_degrees": []
+        }
+    },
+    {
+        "model": "user.history",
+        "pk": 3,
+        "fields": {
+            "birth": "1965-07-07",
+            "date_career": "1983-01-10",
+            "date_campus": "2000-02-18",
+            "date_professor": "2005-03-23",
+            "date_area": "1983-01-10",
+            "date_institute": "2000-02-18",
+            "academic_degrees": []
+        }
+    },
+    {
+        "model": "user.history",
+        "pk": 4,
+        "fields": {
+            "birth": "1985-01-02",
+            "date_career": "2005-07-20",
+            "date_campus": "2015-05-13",
+            "date_professor": "2010-03-30",
+            "date_area": "2005-07-20",
+            "date_institute": "2015-05-13",
+            "academic_degrees": []
+        }
+    },
+    {
+        "model": "user.history",
+        "pk": 5,
+        "fields": {
+            "birth": "1990-08-02",
+            "date_career": "2015-08-09",
+            "date_campus": "2020-07-10",
+            "date_professor": "2015-08-09",
+            "date_area": "2015-08-09",
+            "date_institute": "2020-07-10",
+            "academic_degrees": []
+        }
+    },
+    {
+        "model": "user.history",
+        "pk": 6,
+        "fields": {
+            "birth": "1970-11-07",
+            "date_career": "1990-05-11",
+            "date_campus": "1997-04-25",
+            "date_professor": "1995-05-11",
+            "date_area": "1993-05-11",
+            "date_institute": "1996-03-31",
+            "academic_degrees": []
+        }
+    },
+    {
+        "model": "user.history",
+        "pk": 7,
+        "fields": {
+            "birth": "1997-06-02",
+            "date_career": "2013-05-18",
+            "date_campus": "2021-03-19",
+            "date_professor": "2018-02-01",
+            "date_area": "2013-05-18",
+            "date_institute": "2021-03-19",
+            "academic_degrees": []
+        }
+    },
+    {
+        "model": "user.history",
+        "pk": 8,
+        "fields": {
+            "birth": "1980-02-27",
+            "date_career": "2001-02-09",
+            "date_campus": "2011-11-11",
+            "date_professor": "2012-05-04",
+            "date_area": "2001-02-09",
+            "date_institute": "2011-11-11",
+            "academic_degrees": []
+        }
+    },
+    {
+        "model": "user.history",
+        "pk": 9,
+        "fields": {
+            "birth": "1993-06-17",
+            "date_career": "2005-02-21",
+            "date_campus": "2023-03-26",
+            "date_professor": "2023-03-26",
+            "date_area": "2005-02-21",
+            "date_institute": "2023-03-26",
+            "academic_degrees": []
+        }
+    },
+    {
+        "model": "user.history",
+        "pk": 10,
+        "fields": {
+            "birth": "1983-07-17",
+            "date_career": "2003-05-20",
+            "date_campus": "2013-07-17",
+            "date_professor": "2018-03-20",
+            "date_area": "2003-05-20",
+            "date_institute": "2013-07-17",
+            "academic_degrees": []
+        }
+    },
+    {
+        "model": "user.history",
+        "pk": 11,
+        "fields": {
+            "birth": "1993-10-16",
+            "date_career": "2010-03-10",
+            "date_campus": "2023-02-10",
+            "date_professor": "2023-02-10",
+            "date_area": "2012-05-11",
+            "date_institute": "2023-02-10",
+            "academic_degrees": []
+        }
+    },
+    {
+        "model": "user.academicdegree",
+        "pk": 1,
+        "fields": {
+            "name": "TÉCNICO",
+            "punctuation": 1
+        }
+    },
+    {
+        "model": "user.academicdegree",
+        "pk": 2,
+        "fields": {
+            "name": "LICENCIATURA",
+            "punctuation": 3
+        }
+    },
+    {
+        "model": "user.academicdegree",
+        "pk": 3,
+        "fields": {
+            "name": "BACHARELADO",
+            "punctuation": 2
+        }
+    },
+    {
+        "model": "user.academicdegree",
+        "pk": 4,
+        "fields": {
+            "name": "CURSO LATO SENSU",
+            "punctuation": 1
+        }
+    },
+    {
+        "model": "user.academicdegree",
+        "pk": 5,
+        "fields": {
+            "name": "MESTRADO",
+            "punctuation": 4
+        }
+    },
+    {
+        "model": "user.academicdegree",
+        "pk": 6,
+        "fields": {
+            "name": "DOUTORADO",
+            "punctuation": 5
+        }
+    },
+    {
+        "model": "user.job",
+        "pk": 1,
+        "fields": {
+            "name_job": "rde"
+        }
+    },
+    {
+        "model": "user.job",
+        "pk": 2,
+        "fields": {
+            "name_job": "40"
+        }
+    },
+    {
+        "model": "user.job",
+        "pk": 3,
+        "fields": {
+            "name_job": "20"
+        }
+    },
+    {
+        "model": "user.job",
+        "pk": 4,
+        "fields": {
+            "name_job": "20"
         }
     }
 ]
