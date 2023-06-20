@@ -1,16 +1,19 @@
-1680374607|Criando repositório da equipe
-1680900960|Criando arquivo responsável pelo download das extensões utilizadas
-1680901902|Criação da página de login
-1680982545|Criação lógica referente a atribuição de aulas
-1680992550|Refinamento na página login
-1681350523|Criação o tratamento de dados do banco de dados nas urls
-1681589151|Adicionando internacionalização na página login
-1681590422|Criação continuada sobre o tratamento de dados nas urls
-1681591155|Adicionando internacionalização na página home e atribuição
-1681699338|Refinamento lógica de tratamento de dados
-1681700013|Correções .gitignore
-1681705051|Refinamento da internacionalização sobre página de atribuição e queueSetup
-1681718181|Criação de tabela editável através de ajax
-1681720255|Correção de bugs na internacionalização em tabelas, botões e dropdowns
-1681788128|Correções na pasta locale
+1682996692|Correções primeira fase
+1684216816|Estruturação do projeto (models e afins)
+1684739224|Validações e criação de enums básicos
+1684987229|Página de login - frontend
+1685166111|Configuração de prazos
+1685318461|Página de staff e professor
+1685328576|Começo da criação d página FPA
+1685507892|Criação código fixMigrations e data.json com banco de dados
+1685599838|Correção de erros de envio entre login de staff e professor
+1685603343|Criação da página staff e seus componentes
+1685936792|Página de disponibilidade
+1686281839|Implementação de POC com celery
+1686454631|Algumas alterações em alguns models com atributos desnecessários
+1686805791|Validações página de disponilidade e cursos
+1686992387|Implementação final de fila de atribuição
+1687104194|Lógica atribuição automática com manual
+1687091180|Template para apresntar FPA final de cada usuário
+1687159919|Visualização da atribuição feita
 

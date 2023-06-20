@@ -41,7 +41,7 @@ class User(AbstractBaseUser, PermissionsMixin):
     last_name = models.CharField(_('last name'), max_length=160)
     email = models.EmailField(_('email address'), max_length=160, unique=True)
     telephone = models.CharField(_('telephone'), max_length=11, null=True, blank=True)
-    cell_phone = models.CharField(_('cell phone'), max_length=14, unique=True)
+    cell_phone = models.CharField(_('cell phone'), max_length=14)
     date_joined = models.DateTimeField(_('date joined'), auto_now_add=True)
     is_superuser = models.BooleanField(_('superuser status'), default=False)
     is_staff = models.BooleanField(_('staff status'), default=True)
