@@ -33,7 +33,6 @@ for (var i = 0; i < timetables_user_array.length; i++) {
         course_acronym: course_acronym,
         course_name: course_name,
     };
-
     timetables_user_array_obj.push(novo_objeto);
 }
 
@@ -438,6 +437,7 @@ for (var i = 0; i < timetables_user_array_obj.length; i++) {
     var name = obj.course_name;
     var acronym = obj.course_acronym;
 
+    btn_checked_global.push(phrase);    
     console.log(phrase, name, acronym);
 
     $("#sub-" + phrase).text(acronym);
