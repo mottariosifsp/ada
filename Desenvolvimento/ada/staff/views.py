@@ -103,9 +103,13 @@ def attribution_configuration_confirm(request):
             'endAssignmentDeadline': endAssignmentDeadline,
             'user_block': blockk,
         }
+        for time in Timetable_user.objects.all():
+            time.user = None
+            time.save()
 
         save_deadline(data) 
         schedule_attributtion_deadline_staff(startAssignmentDeadline, 'startAssignmentDeadline', blockk.id)       
+
 
         return render(request, 'staff/attribution/attribution_configuration_confirm.html', data)
     return render(request, 'staff/attribution/attribution_configuration_confirm.html')
@@ -701,6 +705,9 @@ def queue_create(request):
 
     if request.method == 'POST':  # adiciona os professores no model TeacherQueuePosition
         tabela_data = json.loads(request.POST['tabela_data'])
+
+        print(request.POST['blockk_id'])
+
         blockk = Blockk.objects.get(registration_block_id=request.POST['blockk_id'])
         campo = get_selected_campo()
 
