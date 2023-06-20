@@ -1,0 +1,22 @@
+{% extends "professor/base.html" %} 
+{% load i18n %} 
+{% load static %} 
+{% block head %}
+
+<title>{% trans "Configuração de Atribuição" %}</title>
+<script src="{% static 'staff/attribution/js/attribution_configuration_confirm.js' %}"></script>
+
+{% endblock %} 
+{% block body %}
+<div class="d-flex align-items-center justify-content-center" style="min-height: 80vh;">
+   <div class="container text-center">
+      <div class="text-center">
+         <img src="{% static 'images/problem.png' %}" style="width: 20%">
+      </div>
+      <h1>{% trans "Sua atribuição foi finalizada com sucesso!" %}!</h1>
+      <p>{% trans "Suas aulas já foram enviadas, validadas e atribuidas a você" %}.</p>
+      <br>
+      <button type="button" id="return-button" class="btn btn-outline-primary btn-lg rounded-pill">{% trans "Voltar à página inicial" %}</button>
+   </div>
+</div>
+{% endblock %}
