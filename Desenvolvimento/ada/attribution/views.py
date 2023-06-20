@@ -1,3 +1,4 @@
+from django.http import JsonResponse
 from area.models import Area, Blockk
 from attribution.task import attribution_deadline_start, cancel_all_tasks, cancel_scheduled_task, get_time_left, schedule_task, schedule_deadline
 from attribution_preference.views import convert_string_to_datetime, save_disponiility_preference
@@ -105,7 +106,8 @@ def start_attribution(blockk):
             timetables_preference = Course_preference.objects.filter(attribution_preference=attribution_preference).all()
 
         next_attribution(timetables_preference, next_professor_in_queue, blockk)
-
+    else:
+        Deadline.objects.filter(blockk=blockk, name='STARTASSIGNMENTDEADLINE').update(deadline_end=datetime.datetime.now())
 def next_attribution(timetables_preference, next_professor_in_queue, blockk):
     print(f'Analisando professor { next_professor_in_queue.teacher.first_name }')
 
@@ -241,13 +243,13 @@ def manual_attribution(request):
 
         print(timetables_invalidate)
 
-        # if timetables_invalidate == False:
-        #     return render(request, 'attribution/manual_attribution_timesup.html')
-        # elif timetables_invalidate != None:
-        #     return render(request, 'attribution/manual_attribution.html')
-        # else:
-        #     start_attribution(blockk)
-        return redirect('attribution:manual_attribution_confirm')
+        if timetables_invalidate == False:
+            return JsonResponse({'redirect_url': '/atribuicao/atribuicao-manual-erro'}) 
+        elif timetables_invalidate != None:
+            return render(request, 'attribution/manual_attribution.html')
+        else:
+            
+            return JsonResponse({'redirect_url': '/atribuicao/atribuicao-manual-confirmar/?blockk='+str(blockk.registration_block_id)}) 
     else:
         blockk = Blockk.objects.get(registration_block_id=request.GET.get('blockk'))
         user = request.user
@@ -426,7 +428,12 @@ def manual_attribution(request):
                     turno_sessao = 'ves'
                 else:
                     turno_sessao = 'not'
-                posicao_calc = (posicao % 6)
+                if posicao > 12:
+                    posicao_calc = posicao - 12
+                elif posicao > 6:
+                    posicao_calc = posicao - 6
+                else:
+                    posicao_calc = posicao
                 string = {
                     'frase': f'{dia}-{turno_sessao}-{posicao_calc}',
                     'posicao': posicao_calc,
@@ -435,6 +442,8 @@ def manual_attribution(request):
                     'hour': timeslot.hour_start.strftime('%H:%M:%S'),
                 }
                 user_timeslot_traceback.append(string)
+
+        print(user_timeslot_traceback)
 
         regime = request.user.job
         
@@ -454,20 +463,20 @@ def manual_attribution(request):
         return render(request, 'attribution/manual_attribution.html', data)
 
 def manual_attribution_save(timetables, professor, blockk):
-
-    invalidated_timetables = []
-
-    for timetable in timetables:
-        if validate_timetable(timetable, professor) != True:
-            invalidated_timetables.append(timetable)
-        else:
-            assign_timetable_professor(timetable, professor)
-    
+    print(f'Atual professor {TeacherQueuePosition.objects.get(position=0).teacher.first_name} e professor sendo atualizado {professor.first_name}')
     if TeacherQueuePosition.objects.get(position=0).teacher == professor:
+        invalidated_timetables = []
+
+        for timetable in timetables:
+            if validate_timetable(timetable, professor) != True:
+                invalidated_timetables.append(timetable)
+            else:
+                assign_timetable_professor(timetable, professor)
+    
         if len(invalidated_timetables) == 0:
             professor_to_end_queue(professor)
             TeacherQueuePosition.objects.filter(teacher=professor).delete()
-            cancel_scheduled_task('task')
+            
             print(f'Professor { professor.first_name } escolheu suas novas aulas com sucesso!')
             return None
         else:        
@@ -475,6 +484,13 @@ def manual_attribution_save(timetables, professor, blockk):
     else:
         return False
 
+def manual_attribution_timesup(request):
+    
+    return render(request, 'attribution/manual_attribution_timesup.html')
+
 def manual_attribution_confirm(request):
+    blockk = Blockk.objects.get(registration_block_id=request.GET.get('blockk'))
+    cancel_scheduled_task('task')
+    start_attribution(blockk)
 
     return render(request, 'attribution/manual_attribution_confirm.html')
