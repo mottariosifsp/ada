@@ -795,7 +795,7 @@
         "pk": 46,
         "fields": {
             "registration_course_id": "SUP.10630",
-            "name_course": "ESTATÁSTICA E PROBABILIDADE",
+            "name_course": "ESTATÍSTICA E PROBABILIDADE",
             "acronym": "ESPA5",
             "area": 2,
             "blockk": 1
@@ -839,7 +839,7 @@
         "pk": 50,
         "fields": {
             "registration_course_id": "SUP.10633",
-            "name_course": "INTRODUÇÃO À OTIMIZAÇÃO COMBINATÓRIA",
+            "name_course": "INTRODUÇÃO à OTIMIZAÇÃO COMBINATÓRIA",
             "acronym": "I0CA6",
             "area": 2,
             "blockk": 1
@@ -1620,7 +1620,6 @@
             "hour_end": "22:50:00"
         }
     },
-    
     {
         "model": "timetable.day_combo",
         "pk": 1,
@@ -2087,370 +2086,6 @@
         }
     },
     {
-        "model": "user.user",
-        "pk": 1,
-        "fields": {
-            "password": "pbkdf2_sha256$390000$adNxghg0YAIhAR1xqWKIOY$S5yaWznfwzfgzlWdq5PrTO5XwCV7m21svar6nO+70fc=",
-            "last_login": "2023-06-18T01:28:34.089",
-            "registration_id": "3045463",
-            "first_name": "ISABELLA",
-            "last_name": "VALERIO MAZARÁ",
-            "email": "i.mazara@aluno.ifsp.edu.br",
-            "telephone": null,
-            "cell_phone": "+5511971810077",
-            "date_joined": "2023-06-08T14:58:26.032",
-            "is_superuser": true,
-            "is_staff": true,
-            "is_active": true,
-            "is_professor": false,
-            "history": null,
-            "job": null,
-            "groups": [],
-            "user_permissions": [],
-            "blocks": [
-                1,
-                2,
-                3,
-                4
-            ]
-        }
-    },
-    {
-        "model": "user.user",
-        "pk": 2,
-        "fields": {
-            "password": "pbkdf2_sha256$390000$Spni1S5Lel15EBH5B6Lws8$KO3dJH6L/ZxiRbPOZc2ySkA5kMhGVblI4jTQ53HO4jo=",
-            "last_login": null,
-            "registration_id": "3044505",
-            "first_name": "ANA PAULA",
-            "last_name": "MOURA MESSIAS DE SOUZA",
-            "email": "moura.a@aluno.ifsp.edu.br",
-            "telephone": null,
-            "cell_phone": "+5511993978748",
-            "date_joined": "2023-06-09T07:01:54.152",
-            "is_superuser": true,
-            "is_staff": true,
-            "is_active": true,
-            "is_professor": false,
-            "history": null,
-            "job": null,
-            "groups": [],
-            "user_permissions": [],
-            "blocks": [
-                1,
-                2,
-                3,
-                4
-            ]
-        }
-    },
-    {
-        "model": "user.user",
-        "pk": 3,
-        "fields": {
-            "password": "pbkdf2_sha256$390000$5jEpfTzmAQhcmiQWciFI2A$gt2P0ihgorA6r7s6nP5UUEHesgScYr/koT03k4kS070=",
-            "last_login": null,
-            "registration_id": "3044491",
-            "first_name": "GUSTAVO",
-            "last_name": "SANTOS COSTA SOARES",
-            "email": "santos.soares@aluno.ifsp.edu.br",
-            "telephone": null,
-            "cell_phone": "+5511946962284",
-            "date_joined": "2023-06-09T07:04:20.944",
-            "is_superuser": true,
-            "is_staff": true,
-            "is_active": true,
-            "is_professor": false,
-            "history": null,
-            "job": null,
-            "groups": [],
-            "user_permissions": [],
-            "blocks": [
-                1,
-                2,
-                3,
-                4
-            ]
-        }
-    },
-    {
-        "model": "user.user",
-        "pk": 4,
-        "fields": {
-            "password": "pbkdf2_sha256$390000$2sCmSKArQ7ibXqVvlVdC8q$MNqbpwRXd1wNNucZDIttvThIklWJ8aLRo5YC7YbQOhs=",
-            "last_login": null,
-            "registration_id": "3045439",
-            "first_name": "JOSINEUDO",
-            "last_name": "DAS CHAGAS ARRUDA",
-            "email": "josineudo.c@aluno.ifsp.edu.br",
-            "telephone": null,
-            "cell_phone": "+5511966303759",
-            "date_joined": "2023-06-09T07:05:57.356",
-            "is_superuser": true,
-            "is_staff": true,
-            "is_active": true,
-            "is_professor": false,
-            "history": null,
-            "job": null,
-            "groups": [],
-            "user_permissions": [],
-            "blocks": [
-                1,
-                2,
-                3,
-                4
-            ]
-        }
-    },
-    {
-        "model": "user.user",
-        "pk": 5,
-        "fields": {
-            "password": "pbkdf2_sha256$390000$v3bT5PPP9yZyTSc3DM3Za0$jesE674x33gAMocrOoXqa9rTJU2avrz+WKEQSptfxvY=",
-            "last_login": null,
-            "registration_id": "3045382",
-            "first_name": "PAULO",
-            "last_name": "KENJI YOKOTA MUNEISCHI",
-            "email": "paulo.muneischi@aluno.ifsp.edu.br",
-            "telephone": null,
-            "cell_phone": "+5511955691224",
-            "date_joined": "2023-06-09T07:07:45.973",
-            "is_superuser": true,
-            "is_staff": true,
-            "is_active": true,
-            "is_professor": false,
-            "history": null,
-            "job": null,
-            "groups": [],
-            "user_permissions": [],
-            "blocks": [
-                1,
-                2,
-                3,
-                4
-            ]
-        }
-    },
-    {
-        "model": "user.user",
-        "pk": 6,
-        "fields": {
-            "password": "pbkdf2_sha256$390000$EQwKnuRVvxhWU2oDHGAyQ1$PiuXCW/mxNKTlQjsT3CkjK780bq374OauYfaU8XWg14=",
-            "last_login": null,
-            "registration_id": "D",
-            "first_name": "D",
-            "last_name": "D",
-            "email": "d@gmail.com",
-            "telephone": null,
-            "cell_phone": "d",
-            "date_joined": "2023-06-09T07:09:36.877",
-            "is_superuser": true,
-            "is_staff": true,
-            "is_active": true,
-            "is_professor": true,
-            "history": null,
-            "job": null,
-            "groups": [],
-            "user_permissions": [],
-            "blocks": [
-                1,
-                2,
-                3,
-                4
-            ]
-        }
-    },
-    {
-        "model": "user.user",
-        "pk": 7,
-        "fields": {
-            "password": "pbkdf2_sha256$390000$Q0U6NWmL2L0Lnm9XkMo8HH$uTWq527TUm7tIE9MzxbWOwRr6cwYDYbf6RbNPSCqTtE=",
-            "last_login": null,
-            "registration_id": "2306499",
-            "first_name": "CLAUDIA",
-            "last_name": "MIYUKI WERHMULLER",
-            "email": "claudiay@ifsp.edu.br",
-            "telephone": null,
-            "cell_phone": "+5511999999999",
-            "date_joined": "2023-06-09T07:14:43.575",
-            "is_superuser": false,
-            "is_staff": true,
-            "is_active": true,
-            "is_professor": true,
-            "history": 3,
-            "job": null,
-            "groups": [],
-            "user_permissions": [],
-            "blocks": [
-                1
-            ]
-        }
-    },
-    {
-        "model": "user.user",
-        "pk": 9,
-        "fields": {
-            "password": "pbkdf2_sha256$390000$mB4xxJ0vHZZwoS5JkpqMY2$qktKE8H1lPddr/VyyM9h3nsRPlseatfwafciRUh8mrE=",
-            "last_login": null,
-            "registration_id": "2144297",
-            "first_name": "DOMINGOS LUCAS",
-            "last_name": "LATORRE DE OLIVEIRA",
-            "email": "domingos.oliveira@ifsp.edu.br",
-            "telephone": null,
-            "cell_phone": "+5511999999998",
-            "date_joined": "2023-06-09T07:18:27.580",
-            "is_superuser": false,
-            "is_staff": false,
-            "is_active": true,
-            "is_professor": true,
-            "history": 2,
-            "job": null,
-            "groups": [],
-            "user_permissions": [],
-            "blocks": [
-                1
-            ]
-        }
-    },
-    {
-        "model": "user.user",
-        "pk": 10,
-        "fields": {
-            "password": "pbkdf2_sha256$390000$uqXoPzURtLTIr4mzLgdXdK$z7jfpNmsUOlPYZNlK46vdYyOu4w7R49ITnjSLe6jdsE=",
-            "last_login": null,
-            "registration_id": "1977085",
-            "first_name": "JOSCELI MARIA",
-            "last_name": "TENORIO",
-            "email": "josceli.tenorio@ifsp.edu.br",
-            "telephone": null,
-            "cell_phone": "+5511999999997",
-            "date_joined": "2023-06-09T07:20:20.062",
-            "is_superuser": false,
-            "is_staff": false,
-            "is_active": true,
-            "is_professor": false,
-            "history": 1,
-            "job": null,
-            "groups": [],
-            "user_permissions": [],
-            "blocks": [
-                1
-            ]
-        }
-    },
-    {
-        "model": "user.user",
-        "pk": 11,
-        "fields": {
-            "password": "pbkdf2_sha256$390000$JLFuh0oXhL8p8olqqB5YG4$/1z/4SwEr8X/RzCVBELl1B6pOUrMxalIOU3idVA2pj8=",
-            "last_login": "2023-06-09T07:35:19.918",
-            "registration_id": "a",
-            "first_name": "",
-            "last_name": "",
-            "email": "a@g.com",
-            "telephone": null,
-            "cell_phone": "",
-            "date_joined": "2023-06-09T07:35:04.358",
-            "is_superuser": true,
-            "is_staff": true,
-            "is_active": true,
-            "is_professor": false,
-            "history": null,
-            "job": null,
-            "groups": [],
-            "user_permissions": [],
-            "blocks": []
-        }
-    },
-    {
-        "model": "user.history",
-        "pk": 1,
-        "fields": {
-            "birth": "1975-05-22",
-            "date_career": "1995-07-10",
-            "date_campus": "2013-08-14",
-            "date_professor": "2005-04-12",
-            "date_area": "1995-12-01",
-            "date_institute": "2013-08-14",
-            "academic_degrees": []
-        }
-    },
-    {
-        "model": "user.history",
-        "pk": 2,
-        "fields": {
-            "birth": "1982-05-30",
-            "date_career": "2002-01-10",
-            "date_campus": "2017-03-24",
-            "date_professor": "2017-03-24",
-            "date_area": "2002-10-01",
-            "date_institute": "2017-03-24",
-            "academic_degrees": []
-        }
-    },
-    {
-        "model": "user.history",
-        "pk": 3,
-        "fields": {
-            "birth": "1965-07-07",
-            "date_career": "1983-01-10",
-            "date_campus": "2000-02-18",
-            "date_professor": "2005-03-23",
-            "date_area": "1983-01-10",
-            "date_institute": "2000-02-18",
-            "academic_degrees": []
-        }
-    },
-    {
-        "model": "user.academicdegree",
-        "pk": 1,
-        "fields": {
-            "name": "TÉCNICO",
-            "punctuation": 1
-        }
-    },
-    {
-        "model": "user.academicdegree",
-        "pk": 2,
-        "fields": {
-            "name": "LICENCIATURA",
-            "punctuation": 3
-        }
-    },
-    {
-        "model": "user.academicdegree",
-        "pk": 3,
-        "fields": {
-            "name": "BACHARELADO",
-            "punctuation": 2
-        }
-    },
-    {
-        "model": "user.academicdegree",
-        "pk": 4,
-        "fields": {
-            "name": "CURSO LATO SENSU",
-            "punctuation": 1
-        }
-    },
-    {
-        "model": "user.academicdegree",
-        "pk": 5,
-        "fields": {
-            "name": "MESTRADO",
-            "punctuation": 4
-        }
-    },
-    {
-        "model": "user.academicdegree",
-        "pk": 6,
-        "fields": {
-            "name": "DOUTORADO",
-            "punctuation": 5
-        }
-    },
-    
-    {
         "model": "timetable.timetable_user",
         "pk": 1,
         "fields": {
@@ -2833,7 +2468,420 @@
             "timetable": 58,
             "user": null
         }
-    }    
-
-
+    },
+    {
+        "model": "user.user",
+        "pk": 1,
+        "fields": {
+            "password": "pbkdf2_sha256$390000$adNxghg0YAIhAR1xqWKIOY$S5yaWznfwzfgzlWdq5PrTO5XwCV7m21svar6nO+70fc=",
+            "last_login": "2023-06-19T06:20:39.489",
+            "registration_id": "3045463",
+            "first_name": "ISABELLA",
+            "last_name": "VALERIO MAZARÁ",
+            "email": "i.mazara@aluno.ifsp.edu.br",
+            "telephone": null,
+            "cell_phone": "+5511971810077",
+            "date_joined": "2023-06-08T14:58:26.032",
+            "is_superuser": true,
+            "is_staff": true,
+            "is_active": true,
+            "is_professor": false,
+            "history": null,
+            "job": null,
+            "groups": [],
+            "user_permissions": [],
+            "blocks": [
+                1,
+                2,
+                3,
+                4
+            ]
+        }
+    },
+    {
+        "model": "user.user",
+        "pk": 2,
+        "fields": {
+            "password": "pbkdf2_sha256$390000$Spni1S5Lel15EBH5B6Lws8$KO3dJH6L/ZxiRbPOZc2ySkA5kMhGVblI4jTQ53HO4jo=",
+            "last_login": null,
+            "registration_id": "3044505",
+            "first_name": "ANA PAULA",
+            "last_name": "MOURA MESSIAS DE SOUZA",
+            "email": "moura.a@aluno.ifsp.edu.br",
+            "telephone": null,
+            "cell_phone": "+5511993978748",
+            "date_joined": "2023-06-09T07:01:54.152",
+            "is_superuser": true,
+            "is_staff": true,
+            "is_active": true,
+            "is_professor": false,
+            "history": null,
+            "job": null,
+            "groups": [],
+            "user_permissions": [],
+            "blocks": [
+                1,
+                2,
+                3,
+                4
+            ]
+        }
+    },
+    {
+        "model": "user.user",
+        "pk": 3,
+        "fields": {
+            "password": "pbkdf2_sha256$390000$5jEpfTzmAQhcmiQWciFI2A$gt2P0ihgorA6r7s6nP5UUEHesgScYr/koT03k4kS070=",
+            "last_login": null,
+            "registration_id": "3044491",
+            "first_name": "GUSTAVO",
+            "last_name": "SANTOS COSTA SOARES",
+            "email": "santos.soares@aluno.ifsp.edu.br",
+            "telephone": null,
+            "cell_phone": "+5511946962284",
+            "date_joined": "2023-06-09T07:04:20.944",
+            "is_superuser": true,
+            "is_staff": true,
+            "is_active": true,
+            "is_professor": false,
+            "history": null,
+            "job": null,
+            "groups": [],
+            "user_permissions": [],
+            "blocks": [
+                1,
+                2,
+                3,
+                4
+            ]
+        }
+    },
+    {
+        "model": "user.user",
+        "pk": 4,
+        "fields": {
+            "password": "pbkdf2_sha256$390000$2sCmSKArQ7ibXqVvlVdC8q$MNqbpwRXd1wNNucZDIttvThIklWJ8aLRo5YC7YbQOhs=",
+            "last_login": null,
+            "registration_id": "3045439",
+            "first_name": "JOSINEUDO",
+            "last_name": "DAS CHAGAS ARRUDA",
+            "email": "josineudo.c@aluno.ifsp.edu.br",
+            "telephone": null,
+            "cell_phone": "+5511966303759",
+            "date_joined": "2023-06-09T07:05:57.356",
+            "is_superuser": true,
+            "is_staff": true,
+            "is_active": true,
+            "is_professor": false,
+            "history": null,
+            "job": null,
+            "groups": [],
+            "user_permissions": [],
+            "blocks": [
+                1,
+                2,
+                3,
+                4
+            ]
+        }
+    },
+    {
+        "model": "user.user",
+        "pk": 5,
+        "fields": {
+            "password": "pbkdf2_sha256$390000$v3bT5PPP9yZyTSc3DM3Za0$jesE674x33gAMocrOoXqa9rTJU2avrz+WKEQSptfxvY=",
+            "last_login": null,
+            "registration_id": "3045382",
+            "first_name": "PAULO",
+            "last_name": "KENJI YOKOTA MUNEISCHI",
+            "email": "paulo.muneischi@aluno.ifsp.edu.br",
+            "telephone": null,
+            "cell_phone": "+5511955691224",
+            "date_joined": "2023-06-09T07:07:45.973",
+            "is_superuser": true,
+            "is_staff": true,
+            "is_active": true,
+            "is_professor": false,
+            "history": null,
+            "job": null,
+            "groups": [],
+            "user_permissions": [],
+            "blocks": [
+                1,
+                2,
+                3,
+                4
+            ]
+        }
+    },
+    {
+        "model": "user.user",
+        "pk": 6,
+        "fields": {
+            "password": "pbkdf2_sha256$390000$EQwKnuRVvxhWU2oDHGAyQ1$PiuXCW/mxNKTlQjsT3CkjK780bq374OauYfaU8XWg14=",
+            "last_login": null,
+            "registration_id": "D",
+            "first_name": "D",
+            "last_name": "D",
+            "email": "d@gmail.com",
+            "telephone": null,
+            "cell_phone": "d",
+            "date_joined": "2023-06-09T07:09:36.877",
+            "is_superuser": true,
+            "is_staff": true,
+            "is_active": true,
+            "is_professor": true,
+            "history": null,
+            "job": null,
+            "groups": [],
+            "user_permissions": [],
+            "blocks": [
+                1,
+                2,
+                3,
+                4
+            ]
+        }
+    },
+    {
+        "model": "user.user",
+        "pk": 7,
+        "fields": {
+            "password": "pbkdf2_sha256$390000$Q0U6NWmL2L0Lnm9XkMo8HH$uTWq527TUm7tIE9MzxbWOwRr6cwYDYbf6RbNPSCqTtE=",
+            "last_login": null,
+            "registration_id": "2306499",
+            "first_name": "CLAUDIA",
+            "last_name": "MIYUKI WERHMULLER",
+            "email": "claudiay@ifsp.edu.br",
+            "telephone": null,
+            "cell_phone": "+5511999999999",
+            "date_joined": "2023-06-09T07:14:43.575",
+            "is_superuser": false,
+            "is_staff": true,
+            "is_active": true,
+            "is_professor": true,
+            "history": 3,
+            "job": null,
+            "groups": [],
+            "user_permissions": [],
+            "blocks": [
+                1
+            ]
+        }
+    },
+    {
+        "model": "user.user",
+        "pk": 9,
+        "fields": {
+            "password": "pbkdf2_sha256$390000$mB4xxJ0vHZZwoS5JkpqMY2$qktKE8H1lPddr/VyyM9h3nsRPlseatfwafciRUh8mrE=",
+            "last_login": null,
+            "registration_id": "2144297",
+            "first_name": "DOMINGOS LUCAS",
+            "last_name": "LATORRE DE OLIVEIRA",
+            "email": "domingos.oliveira@ifsp.edu.br",
+            "telephone": null,
+            "cell_phone": "+5511999999998",
+            "date_joined": "2023-06-09T07:18:27.580",
+            "is_superuser": false,
+            "is_staff": false,
+            "is_active": true,
+            "is_professor": true,
+            "history": 2,
+            "job": null,
+            "groups": [],
+            "user_permissions": [],
+            "blocks": [
+                1
+            ]
+        }
+    },
+    {
+        "model": "user.user",
+        "pk": 10,
+        "fields": {
+            "password": "pbkdf2_sha256$390000$uqXoPzURtLTIr4mzLgdXdK$z7jfpNmsUOlPYZNlK46vdYyOu4w7R49ITnjSLe6jdsE=",
+            "last_login": null,
+            "registration_id": "1977085",
+            "first_name": "JOSCELI MARIA",
+            "last_name": "TENORIO",
+            "email": "josceli.tenorio@ifsp.edu.br",
+            "telephone": null,
+            "cell_phone": "+5511999999997",
+            "date_joined": "2023-06-09T07:20:20.062",
+            "is_superuser": false,
+            "is_staff": false,
+            "is_active": true,
+            "is_professor": false,
+            "history": 1,
+            "job": null,
+            "groups": [],
+            "user_permissions": [],
+            "blocks": [
+                1
+            ]
+        }
+    },
+    {
+        "model": "user.user",
+        "pk": 11,
+        "fields": {
+            "password": "pbkdf2_sha256$390000$JLFuh0oXhL8p8olqqB5YG4$/1z/4SwEr8X/RzCVBELl1B6pOUrMxalIOU3idVA2pj8=",
+            "last_login": "2023-06-09T07:35:19.918",
+            "registration_id": "a",
+            "first_name": "",
+            "last_name": "",
+            "email": "a@g.com",
+            "telephone": null,
+            "cell_phone": "",
+            "date_joined": "2023-06-09T07:35:04.358",
+            "is_superuser": true,
+            "is_staff": true,
+            "is_active": true,
+            "is_professor": false,
+            "history": null,
+            "job": null,
+            "groups": [],
+            "user_permissions": [],
+            "blocks": []
+        }
+    },
+    {
+        "model": "user.user",
+        "pk": 12,
+        "fields": {
+            "password": "pbkdf2_sha256$390000$eYNaMVx8SkMKJwn8HT9zy1$nw7c5YNe3+FpeMjuZZu3GgUT8wkGrV+mYwjOWhSUeR4=",
+            "last_login": null,
+            "registration_id": "1284708",
+            "first_name": "LEONARDO",
+            "last_name": "ANDRADE MOTTA DE LIMA",
+            "email": "leonardo.motta@ifsp.edu.br",
+            "telephone": null,
+            "cell_phone": "119999999996",
+            "date_joined": "2023-06-19T06:19:54.758",
+            "is_superuser": false,
+            "is_staff": true,
+            "is_active": true,
+            "is_professor": true,
+            "history": null,
+            "job": null,
+            "groups": [],
+            "user_permissions": [],
+            "blocks": [
+                1
+            ]
+        }
+    },
+    {
+        "model": "user.user",
+        "pk": 13,
+        "fields": {
+            "password": "pbkdf2_sha256$390000$0k2WiaQO0ulJ3F4MdkuS9X$Qgjor+HDQ0cP9J+mGqZcA2+4Ry4kzIm7fACV+OfZjM4=",
+            "last_login": null,
+            "registration_id": "3278994",
+            "first_name": "GUSTAVO",
+            "last_name": "FORTUNATO PUGA",
+            "email": "gustavo.puga@ifsp.edu.br",
+            "telephone": null,
+            "cell_phone": "119999999995",
+            "date_joined": "2023-06-19T06:20:23.363",
+            "is_superuser": false,
+            "is_staff": false,
+            "is_active": true,
+            "is_professor": true,
+            "history": null,
+            "job": null,
+            "groups": [],
+            "user_permissions": [],
+            "blocks": [
+                1
+            ]
+        }
+    },
+    {
+        "model": "user.history",
+        "pk": 1,
+        "fields": {
+            "birth": "1975-05-22",
+            "date_career": "1995-07-10",
+            "date_campus": "2013-08-14",
+            "date_professor": "2005-04-12",
+            "date_area": "1995-12-01",
+            "date_institute": "2013-08-14",
+            "academic_degrees": []
+        }
+    },
+    {
+        "model": "user.history",
+        "pk": 2,
+        "fields": {
+            "birth": "1982-05-30",
+            "date_career": "2002-01-10",
+            "date_campus": "2017-03-24",
+            "date_professor": "2017-03-24",
+            "date_area": "2002-10-01",
+            "date_institute": "2017-03-24",
+            "academic_degrees": []
+        }
+    },
+    {
+        "model": "user.history",
+        "pk": 3,
+        "fields": {
+            "birth": "1965-07-07",
+            "date_career": "1983-01-10",
+            "date_campus": "2000-02-18",
+            "date_professor": "2005-03-23",
+            "date_area": "1983-01-10",
+            "date_institute": "2000-02-18",
+            "academic_degrees": []
+        }
+    },
+    {
+        "model": "user.academicdegree",
+        "pk": 1,
+        "fields": {
+            "name": "TÉCNICO",
+            "punctuation": 1
+        }
+    },
+    {
+        "model": "user.academicdegree",
+        "pk": 2,
+        "fields": {
+            "name": "LICENCIATURA",
+            "punctuation": 3
+        }
+    },
+    {
+        "model": "user.academicdegree",
+        "pk": 3,
+        "fields": {
+            "name": "BACHARELADO",
+            "punctuation": 2
+        }
+    },
+    {
+        "model": "user.academicdegree",
+        "pk": 4,
+        "fields": {
+            "name": "CURSO LATO SENSU",
+            "punctuation": 1
+        }
+    },
+    {
+        "model": "user.academicdegree",
+        "pk": 5,
+        "fields": {
+            "name": "MESTRADO",
+            "punctuation": 4
+        }
+    },
+    {
+        "model": "user.academicdegree",
+        "pk": 6,
+        "fields": {
+            "name": "DOUTORADO",
+            "punctuation": 5
+        }
+    }
 ]

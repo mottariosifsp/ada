@@ -15,8 +15,8 @@
          <h1>{% trans "Você chegou muito cedo" %}!</h1>
          <h6>{% trans "A atribuição ainda não começou, por favor aguarde" %}</h6>
          {% if day %}
-         {% blocktrans with day_text=day %}
-            <p>{% trans "Está prevista para se iniciar dia" %} <strong>{{ day_text }}</strong> {% trans "às" %} <strong>{{ time }}<strong></p>
+         {% blocktrans with day_text=day time_text=time text="Está prevista para se iniciar dia" text2="ás" %}
+            <p>{{ text }} <strong>{{ day_text }}</strong> {{ text}} <strong>{{ time_text }}<strong></p>
          {% endblocktrans %}
          {% endif %}
          <br>

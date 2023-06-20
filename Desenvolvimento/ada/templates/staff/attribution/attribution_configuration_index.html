@@ -19,8 +19,8 @@
           <div class="hover hover-5 text-white rounded"><img src="{{block.image}}" alt="">
             <div class="hover-overlay"></div>
             <div class="hover-5-content">
-              {% blocktrans with block_text=block.block %}
-                <h3 class="hover-5-title text-uppercase font-weight-light mb-0"><strong class="font-weight-bold text-white">{{ block_text }}</strong><br><span>{% trans "Configurar" %}</span></h3>
+              {% blocktrans with block_text=block.block config_text="Configurar" %}
+                <h3 class="hover-5-title text-uppercase font-weight-light mb-0"><strong class="font-weight-bold text-white">{{ block_text }}</strong><br><span>{{ config_text }}</span></h3>
               {% endblocktrans %}
             </div>
           </div>

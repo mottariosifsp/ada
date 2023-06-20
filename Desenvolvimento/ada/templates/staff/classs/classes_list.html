@@ -34,7 +34,7 @@
                         <td>{{ period_text }}</td>
                         {% endblocktrans %}
                         <td>{{ classs.semester }}</td>
-                        {% blocktrans with name_area_text=classs.area.name_area and acronym_text=classs.area.acronym %}
+                        {% blocktrans with name_area_text=classs.area.name_area acronym_text=classs.area.acronym %}
                         <td>{{ name_area_text }} ({{ acronym_text }})</td>
                         {% endblocktrans %}
                         <td><button type="button" data-toggle="modal" data-target="#editClassModal" data-counter="{{ counter }}" class="btn btn-warning editClassBtn"><i class="bi bi-pencil"></i></button>
@@ -50,7 +50,7 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="addCreateClassModal">{% trans "Criar Turma" }</h5>
+                    <h5 class="modal-title" id="addCreateClassModal">{% trans "Criar Turma" %}</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -67,7 +67,7 @@
                             <select class="form-control" id="period_create" required>
                                 <option value="">{% trans "Selecione uma opção" %}</option>
                                 {% for period in periods %}
-                                {% blocktrans with value_text=period.value and label_text=period.label %}
+                                {% blocktrans with value_text=period.value label_text=period.label %}
                                     <option value="{{ value_text }}">{{ label_text }}</option>
                                 {% endblocktrans %}
                                 {% endfor %}
@@ -81,7 +81,7 @@
                         <select class="form-control" id="area_create" required>
                             <option value="">{% trans "Selecione uma opção" %}</option>
                             {% for area in areas %}
-                                {% blocktrans with name_area_text=area.name_area and acronym_text=area.acronym %}
+                                {% blocktrans with name_area_text=area.name_area acronym_text=area.acronym %}
                                 <option value="{{ area.id }}">{{ name_area_text }} ({{ acronym_text }})</option>
                                 {% endblocktrans %}
                             {% endfor %}
@@ -117,7 +117,7 @@
                             <select class="form-control" id="period_edit" required>
                                 <option value="">{% trans "Selecione uma opção" %}</option>
                                 {% for period in periods %}
-                                {% blocktrans with value_text=period.value and label_text=period.label %}
+                                {% blocktrans with value_text=period.value label_text=period.label %}
                                     <option value="{{ value_text }}">{{ label_text }}</option>
                                 {% endblocktrans %}
                                 {% endfor %}
@@ -132,7 +132,7 @@
                             <select class="form-control" id="area_edit" required>
                                 <option value="">{% trans "Selecione uma opção" %}</option>
                                 {% for area in areas %}
-                                    {% blocktrans with name_area_text=area.name_area and acronym_text=area.acronym %}
+                                    {% blocktrans with name_area_text=area.name_area acronym_text=area.acronym %}
                                     <option value="{{ area.id }}">{{ name_area_text }} ({{ acronym_text }})</option>
                                     {% endblocktrans %}
                                 {% endfor %}

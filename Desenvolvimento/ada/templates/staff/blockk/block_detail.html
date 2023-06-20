@@ -24,24 +24,24 @@
         <div class="row">
             <div class="col-md-12">
                 {% blocktrans with name_block_text=blockk.name_block %}
-                <h1>{{ blockk.name_block }}</h1>
+                <h1>{{ name_block_text }}</h1>
                 {% endblocktrans %}
                 <div class="card">
                     <div class="card-body">
                         <h5 class="card-title">{% trans "Detalhes" %}</h5>
                             <ul class="list-group list-group-flush">
-                                {% blocktrans with name_area_text=area.name_area %}
-                                <li class="list-group-item"><strong>{% trans "Nome" %}:</strong> {{ name_area_text }}</li>
+                                {% blocktrans with name_area_text=area.name_area name_text="Nome" %}
+                                <li class="list-group-item"><strong>{{ name_text }}:</strong> {{ name_area_text }}</li>
                                 {% endblocktrans %}
                                 <li class="list-group-item"><strong>{% trans "Registro" %}:</strong> {% trans area.registration_area_id %}</li>
-                                {% blocktrans with acronym_text=area.acronym %}
-                                <li class="list-group-item"><strong>{% trans "Sigla" %}:</strong> {{ acronym_text }}</li>
+                                {% blocktrans with acronym_text=area.acronym acronym_label="Sigla"%}
+                                <li class="list-group-item"><strong>{{acronym_label}}:</strong> {{ acronym_text }}</li>
                                 {% endblocktrans %}
-                                {% blocktrans with exchange_area_text=area.exchange_area %}
-                                <li class="list-group-item"><strong>{% trans "Permuta" %}:</strong> {{ exchange_area_text }}</li>
+                                {% blocktrans with exchange_area_text=area.exchange_area exchange_text="Permuta" %}
+                                <li class="list-group-item"><strong>{{ exchange_text }}:</strong> {{ exchange_area_text }}</li>
                                 {% endblocktrans %}
-                                {% blocktrans with is_high_school_text=area.is_high_school %}
-                                <li class="list-group-item"><strong>{% trans "Ensino Médio" %}:</strong> {{ area.is_high_school }}</li>
+                                {% blocktrans with is_high_school_text=area.is_high_school high_school="Ensino Médio" %}
+                                <li class="list-group-item"><strong>{{ high_school }}:</strong> {{ area.is_high_school }}</li>
                                 {% endblocktrans %}
                             </ul>
                     </div>

@@ -701,7 +701,7 @@ $(document).ready(function () {
                 success: function (response) {
                     $("#course-filter-form").val("");
                     $("#error-alert-form").hide();
-                    window.location.href = "/" + lang + "/atribuicao/atribuica-de-aulas/?blockk="+blockk;
+                    window.location.href = "/" + lang + "/atribuicao/atribuicao-manual/?blockk="+blockk;
                 },
                 error: function (xhr, textStatus, errorThrown) {
                     $("#error-message-form").text("Erro ao tentar suas preferências de disciplinas.");
