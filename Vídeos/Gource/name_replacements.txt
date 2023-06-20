@@ -1,10 +1,10 @@
-1680374607|Henrique Baesa|A|/.gitignore
-1680374607|Henrique Baesa|A|/ada/__init__.py
-1680374607|Henrique Baesa|A|/ada/asgi.py
-1680374607|Henrique Baesa|A|/ada/settings.py
-1680374607|Henrique Baesa|A|/ada/urls.py
-1680374607|Henrique Baesa|A|/ada/wsgi.py
-1680374607|Henrique Baesa|A|/manage.py
+1680374607|Baesa|A|/.gitignore
+1680374607|Baesa|A|/ada/__init__.py
+1680374607|Baesa|A|/ada/asgi.py
+1680374607|Baesa|A|/ada/settings.py
+1680374607|Baesa|A|/ada/urls.py
+1680374607|Baesa|A|/ada/wsgi.py
+1680374607|Baesa|A|/manage.py
 1680375531|Henrique Baesa|A|/.devcontainer/devcontainer.json
 1680375531|Henrique Baesa|A|/requirements.txt
 1680377086|Henrique Baesa|M|/.devcontainer/devcontainer.json
@@ -143,14 +143,14 @@
 1681699338|Paulo Kenji|M|/templates/home.html
 1681699338|Paulo Kenji|A|/templates/static/attribution/js/attribution.js
 1681699338|Paulo Kenji|M|/templates/static/attribution/js/queueSetup.js
-1681700013|Isabella Valerio|M|/.gitignore
-1681700013|Isabella Valerio|M|/layout/views.py
-1681700013|Isabella Valerio|M|/locale/en/LC_MESSAGES/django.po
-1681700013|Isabella Valerio|M|/locale/pt_BR/LC_MESSAGES/django.po
-1681701736|Isabella Valerio|M|/professors/migrations/0001_initial.py
-1681701736|Isabella Valerio|M|/professors/migrations/0002_remove_professors_avatar_professors_is_staff_and_more.py
-1681701736|Isabella Valerio|M|/professors/models.py
-1681701736|Isabella Valerio|M|/templates/home.html
+1681700013|isabella-66|M|/.gitignore
+1681700013|isabella-66|M|/layout/views.py
+1681700013|isabella-66|M|/locale/en/LC_MESSAGES/django.po
+1681700013|isabella-66|M|/locale/pt_BR/LC_MESSAGES/django.po
+1681701736|isabella-66|M|/professors/migrations/0001_initial.py
+1681701736|isabella-66|M|/professors/migrations/0002_remove_professors_avatar_professors_is_staff_and_more.py
+1681701736|isabella-66|M|/professors/models.py
+1681701736|isabella-66|M|/templates/home.html
 1681705051|Josineudo Arruda|M|/attribution/views.py
 1681705051|Josineudo Arruda|M|/locale/en/LC_MESSAGES/django.po
 1681705051|Josineudo Arruda|M|/locale/pt_BR/LC_MESSAGES/django.po
@@ -222,18 +222,18 @@
 1681782041|Josineudo Arruda|D|/locale/en/LC_MESSAGES/django.po
 1681782041|Josineudo Arruda|D|/locale/pt_BR/LC_MESSAGES/django.po
 1681782235|Paulo Kenji|M|/attribution/views.py
-1681788128|Isabella Valerio|A|/locale/en/arquivo_teste.txt
-1681788714|Ana Paula|A|/locale/en/LC_MESSAGES/django.po
-1681788714|Ana Paula|D|/locale/en/arquivo_teste.txt
-1681788714|Ana Paula|A|/locale/pt_BR/LC_MESSAGES/django.po
-1681789083|Isabella Valerio|M|/locale/pt_BR/LC_MESSAGES/django.po
-1681789463|Isabella Valerio|M|/locale/pt_BR/LC_MESSAGES/django.po
-1681789463|Isabella Valerio|M|/templates/attribution/attribution.html
-1681789463|Isabella Valerio|M|/templates/home.html
-1681790029|Isabella Valerio|M|/locale/en/LC_MESSAGES/django.po
-1681790314|Ana Paula|M|/locale/en/LC_MESSAGES/django.po
+1681788128|isabella-66|A|/locale/en/arquivo_teste.txt
+1681788714|ana004|A|/locale/en/LC_MESSAGES/django.po
+1681788714|ana004|D|/locale/en/arquivo_teste.txt
+1681788714|ana004|A|/locale/pt_BR/LC_MESSAGES/django.po
+1681789083|isabella-66|M|/locale/pt_BR/LC_MESSAGES/django.po
+1681789463|isabella-66|M|/locale/pt_BR/LC_MESSAGES/django.po
+1681789463|isabella-66|M|/templates/attribution/attribution.html
+1681789463|isabella-66|M|/templates/home.html
+1681790029|isabella-66|M|/locale/en/LC_MESSAGES/django.po
+1681790314|ana004|M|/locale/en/LC_MESSAGES/django.po
 1681794559|Josineudo Arruda|M|/templates/attribution/selectCourse.html
-1681838283|Gustavo Soares|M|/templates/attribution/attribution.html
+1681838283|Gusttavo Soares|M|/templates/attribution/attribution.html
 1682516720|Henrique Baesa|D|/.devcontainer/devcontainer.json
 1682516720|Henrique Baesa|D|/.gitignore
 1682516720|Henrique Baesa|A|/.svn/entries
@@ -542,3 +542,2218 @@
 1682516720|Henrique Baesa|D|/templates/static/attribution/js/attribution.js
 1682516720|Henrique Baesa|D|/templates/static/attribution/js/queueSetup.js
 1682993150|Henrique Baesa|M|/Desenvolvimento/ada/templates/base.html
+1682996692|Josineudo Arruda|A|/V\303\255deos/Gource/members/Ana Paula.jpg
+1682996692|Josineudo Arruda|D|/V\303\255deos/Gource/members/Ana-Paula.jpg
+1682996692|Josineudo Arruda|A|/V\303\255deos/Gource/members/Gustavo Soares.jpg
+1682996692|Josineudo Arruda|D|/V\303\255deos/Gource/members/Gustavo-Soares.jpg
+1682996692|Josineudo Arruda|A|/V\303\255deos/Gource/members/Henrique Baesa.jpg
+1682996692|Josineudo Arruda|D|/V\303\255deos/Gource/members/Henrique-Baesa.jpg
+1682996692|Josineudo Arruda|A|/V\303\255deos/Gource/members/Isabella Valerio.jpg
+1682996692|Josineudo Arruda|D|/V\303\255deos/Gource/members/Isabella-Valerio.jpg
+1682996692|Josineudo Arruda|A|/V\303\255deos/Gource/members/Josineudo Arruda.jpg
+1682996692|Josineudo Arruda|D|/V\303\255deos/Gource/members/Josineudo-Arruda.jpg
+1682996692|Josineudo Arruda|A|/V\303\255deos/Gource/members/Paulo Kenji.jpg
+1682996692|Josineudo Arruda|M|/V\303\255deos/Gource/name_replacements.txt
+1682996692|Josineudo Arruda|A|/V\303\255deos/gource-Segunda_Fase.mp4
+1682997095|Henrique Baesa|A|/.gitignore
+1682997095|Henrique Baesa|M|/Desenvolvimento/ada/requirements.txt
+1683410064|Josineudo Arruda|A|/Desenvolvimento/ada/courses/migrations/0005_course_day.py
+1683410064|Josineudo Arruda|M|/Desenvolvimento/ada/courses/models.py
+1683410064|Josineudo Arruda|M|/Desenvolvimento/ada/locale/en/LC_MESSAGES/django.po
+1683410064|Josineudo Arruda|M|/Desenvolvimento/ada/locale/pt_BR/LC_MESSAGES/django.po
+1683410064|Josineudo Arruda|M|/Desenvolvimento/ada/setup/settings.py
+1683410064|Josineudo Arruda|M|/Desenvolvimento/ada/templates/attribution/attribution.html
+1683410064|Josineudo Arruda|M|/Desenvolvimento/ada/templates/home.html
+1683426677|Josineudo Arruda|M|/Desenvolvimento/ada/templates/base.html
+1683426677|Josineudo Arruda|M|/Desenvolvimento/ada/templates/home.html
+1683426677|Josineudo Arruda|M|/Desenvolvimento/ada/templates/registration/login.html
+1683701835|Josineudo Arruda|M|/Desenvolvimento/ada/templates/base.html
+1683701835|Josineudo Arruda|A|/Desenvolvimento/ada/templates/static/css/style.css
+1683701835|Josineudo Arruda|A|/Desenvolvimento/ada/templates/static/images/language_icon.png
+1683701835|Josineudo Arruda|A|/Desenvolvimento/ada/templates/static/images/logo_ADA.png
+1683701835|Josineudo Arruda|A|/Desenvolvimento/ada/templates/static/images/profile_photo.png
+1683728479|Josineudo Arruda|M|/Desenvolvimento/ada/templates/base.html
+1683728479|Josineudo Arruda|M|/Desenvolvimento/ada/templates/static/css/style.css
+1683728479|Josineudo Arruda|A|/Desenvolvimento/ada/templates/static/images/logo_favicon.jpg
+1683729445|Josineudo Arruda|M|/Desenvolvimento/ada/templates/static/css/style.css
+1683778213|Josineudo Arruda|M|/Desenvolvimento/ada/templates/base.html
+1683778213|Josineudo Arruda|M|/Desenvolvimento/ada/templates/static/css/style.css
+1684102006|Josineudo Arruda|M|/Desenvolvimento/ada/templates/base.html
+1684102006|Josineudo Arruda|M|/Desenvolvimento/ada/templates/static/css/style.css
+1684105417|Josineudo Arruda|M|/Desenvolvimento/ada/templates/base.html
+1684105417|Josineudo Arruda|M|/Desenvolvimento/ada/templates/static/css/style.css
+1684136355|Josineudo Arruda|M|/Desenvolvimento/ada/templates/base.html
+1684136355|Josineudo Arruda|M|/Desenvolvimento/ada/templates/static/css/style.css
+1684138874|Josineudo Arruda|M|/Desenvolvimento/ada/templates/base.html
+1684138874|Josineudo Arruda|M|/Desenvolvimento/ada/templates/home.html
+1684138874|Josineudo Arruda|M|/Desenvolvimento/ada/templates/registration/login.html
+1684138874|Josineudo Arruda|A|/Desenvolvimento/ada/templates/static/css/layout.css
+1684138874|Josineudo Arruda|D|/Desenvolvimento/ada/templates/static/css/style.css
+1684141764|Josineudo Arruda|M|/Desenvolvimento/ada/templates/attribution/queueSetup.html
+1684141764|Josineudo Arruda|M|/Desenvolvimento/ada/templates/base.html
+1684216816|isabella-66|A|/Desenvolvimento/ada/area/__init__.py
+1684216816|isabella-66|A|/Desenvolvimento/ada/area/admin.py
+1684216816|isabella-66|A|/Desenvolvimento/ada/area/apps.py
+1684216816|isabella-66|A|/Desenvolvimento/ada/area/migrations/__init__.py
+1684216816|isabella-66|A|/Desenvolvimento/ada/area/models.py
+1684216816|isabella-66|A|/Desenvolvimento/ada/area/tests.py
+1684216816|isabella-66|A|/Desenvolvimento/ada/area/views.py
+1684216816|isabella-66|M|/Desenvolvimento/ada/attribution/__init__.py
+1684216816|isabella-66|M|/Desenvolvimento/ada/attribution/admin.py
+1684216816|isabella-66|M|/Desenvolvimento/ada/attribution/apps.py
+1684216816|isabella-66|D|/Desenvolvimento/ada/attribution/celery.py
+1684216816|isabella-66|D|/Desenvolvimento/ada/attribution/migrations/0001_initial.py
+1684216816|isabella-66|M|/Desenvolvimento/ada/attribution/models.py
+1684216816|isabella-66|D|/Desenvolvimento/ada/attribution/task.py
+1684216816|isabella-66|D|/Desenvolvimento/ada/attribution/urls.py
+1684216816|isabella-66|M|/Desenvolvimento/ada/attribution/views.py
+1684216816|isabella-66|A|/Desenvolvimento/ada/attribution_preference/__init__.py
+1684216816|isabella-66|A|/Desenvolvimento/ada/attribution_preference/admin.py
+1684216816|isabella-66|A|/Desenvolvimento/ada/attribution_preference/apps.py
+1684216816|isabella-66|A|/Desenvolvimento/ada/attribution_preference/migrations/__init__.py
+1684216816|isabella-66|A|/Desenvolvimento/ada/attribution_preference/models.py
+1684216816|isabella-66|A|/Desenvolvimento/ada/attribution_preference/tests.py
+1684216816|isabella-66|A|/Desenvolvimento/ada/attribution_preference/views.py
+1684216816|isabella-66|A|/Desenvolvimento/ada/class/__init__.py
+1684216816|isabella-66|A|/Desenvolvimento/ada/class/admin.py
+1684216816|isabella-66|A|/Desenvolvimento/ada/class/apps.py
+1684216816|isabella-66|A|/Desenvolvimento/ada/class/migrations/__init__.py
+1684216816|isabella-66|A|/Desenvolvimento/ada/class/models.py
+1684216816|isabella-66|A|/Desenvolvimento/ada/class/tests.py
+1684216816|isabella-66|A|/Desenvolvimento/ada/class/views.py
+1684216816|isabella-66|A|/Desenvolvimento/ada/course/__init__.py
+1684216816|isabella-66|A|/Desenvolvimento/ada/course/admin.py
+1684216816|isabella-66|A|/Desenvolvimento/ada/course/apps.py
+1684216816|isabella-66|A|/Desenvolvimento/ada/course/migrations/__init__.py
+1684216816|isabella-66|A|/Desenvolvimento/ada/course/models.py
+1684216816|isabella-66|A|/Desenvolvimento/ada/course/tests.py
+1684216816|isabella-66|A|/Desenvolvimento/ada/course/views.py
+1684216816|isabella-66|D|/Desenvolvimento/ada/courses/__init__.py
+1684216816|isabella-66|D|/Desenvolvimento/ada/courses/admin.py
+1684216816|isabella-66|D|/Desenvolvimento/ada/courses/apps.py
+1684216816|isabella-66|D|/Desenvolvimento/ada/courses/migrations/0001_initial.py
+1684216816|isabella-66|D|/Desenvolvimento/ada/courses/migrations/0002_remove_course_end_time_remove_course_start_time_and_more.py
+1684216816|isabella-66|D|/Desenvolvimento/ada/courses/migrations/0003_remove_course_end_datetime_and_more.py
+1684216816|isabella-66|D|/Desenvolvimento/ada/courses/migrations/0004_rename_instructor_course_teacher.py
+1684216816|isabella-66|D|/Desenvolvimento/ada/courses/migrations/0005_course_day.py
+1684216816|isabella-66|D|/Desenvolvimento/ada/courses/migrations/__init__.py
+1684216816|isabella-66|D|/Desenvolvimento/ada/courses/models.py
+1684216816|isabella-66|D|/Desenvolvimento/ada/courses/tests.py
+1684216816|isabella-66|D|/Desenvolvimento/ada/courses/views.py
+1684216816|isabella-66|A|/Desenvolvimento/ada/exchange/__init__.py
+1684216816|isabella-66|A|/Desenvolvimento/ada/exchange/admin.py
+1684216816|isabella-66|A|/Desenvolvimento/ada/exchange/apps.py
+1684216816|isabella-66|A|/Desenvolvimento/ada/exchange/migrations/__init__.py
+1684216816|isabella-66|A|/Desenvolvimento/ada/exchange/models.py
+1684216816|isabella-66|A|/Desenvolvimento/ada/exchange/tests.py
+1684216816|isabella-66|A|/Desenvolvimento/ada/exchange/views.py
+1684216816|isabella-66|D|/Desenvolvimento/ada/layout/__init__.py
+1684216816|isabella-66|D|/Desenvolvimento/ada/layout/admin.py
+1684216816|isabella-66|D|/Desenvolvimento/ada/layout/apps.py
+1684216816|isabella-66|D|/Desenvolvimento/ada/layout/migrations/__init__.py
+1684216816|isabella-66|D|/Desenvolvimento/ada/layout/models.py
+1684216816|isabella-66|D|/Desenvolvimento/ada/layout/tests.py
+1684216816|isabella-66|D|/Desenvolvimento/ada/layout/urls.py
+1684216816|isabella-66|D|/Desenvolvimento/ada/layout/views.py
+1684216816|isabella-66|D|/Desenvolvimento/ada/locale/en/LC_MESSAGES/django.po
+1684216816|isabella-66|D|/Desenvolvimento/ada/locale/pt_BR/LC_MESSAGES/django.po
+1684216816|isabella-66|D|/Desenvolvimento/ada/professors/__init__.py
+1684216816|isabella-66|D|/Desenvolvimento/ada/professors/admin.py
+1684216816|isabella-66|D|/Desenvolvimento/ada/professors/apps.py
+1684216816|isabella-66|D|/Desenvolvimento/ada/professors/migrations/0001_initial.py
+1684216816|isabella-66|D|/Desenvolvimento/ada/professors/migrations/0002_remove_professors_avatar_professors_is_staff_and_more.py
+1684216816|isabella-66|D|/Desenvolvimento/ada/professors/migrations/0003_alter_professors_is_staff.py
+1684216816|isabella-66|D|/Desenvolvimento/ada/professors/migrations/0004_rename_professors_professor.py
+1684216816|isabella-66|D|/Desenvolvimento/ada/professors/migrations/0005_rename_professor_professors.py
+1684216816|isabella-66|D|/Desenvolvimento/ada/professors/migrations/__init__.py
+1684216816|isabella-66|D|/Desenvolvimento/ada/professors/models.py
+1684216816|isabella-66|D|/Desenvolvimento/ada/professors/tests.py
+1684216816|isabella-66|D|/Desenvolvimento/ada/professors/urls.py
+1684216816|isabella-66|D|/Desenvolvimento/ada/professors/views.py
+1684216816|isabella-66|M|/Desenvolvimento/ada/setup/settings.py
+1684216816|isabella-66|D|/Desenvolvimento/ada/templates/attribution/attribution.html
+1684216816|isabella-66|D|/Desenvolvimento/ada/templates/attribution/index.html
+1684216816|isabella-66|D|/Desenvolvimento/ada/templates/attribution/queueSetup.html
+1684216816|isabella-66|D|/Desenvolvimento/ada/templates/attribution/selectCourse.html
+1684216816|isabella-66|D|/Desenvolvimento/ada/templates/base.html
+1684216816|isabella-66|D|/Desenvolvimento/ada/templates/home.html
+1684216816|isabella-66|D|/Desenvolvimento/ada/templates/professors/index.html
+1684216816|isabella-66|D|/Desenvolvimento/ada/templates/registration/login.html
+1684216816|isabella-66|D|/Desenvolvimento/ada/templates/static/attribution/js/attribution.js
+1684216816|isabella-66|D|/Desenvolvimento/ada/templates/static/attribution/js/queueSetup.js
+1684216816|isabella-66|D|/Desenvolvimento/ada/templates/static/css/layout.css
+1684216816|isabella-66|D|/Desenvolvimento/ada/templates/static/images/language_icon.png
+1684216816|isabella-66|D|/Desenvolvimento/ada/templates/static/images/logo_ADA.png
+1684216816|isabella-66|D|/Desenvolvimento/ada/templates/static/images/logo_favicon.jpg
+1684216816|isabella-66|D|/Desenvolvimento/ada/templates/static/images/profile_photo.png
+1684216816|isabella-66|A|/Desenvolvimento/ada/timetable/__init__.py
+1684216816|isabella-66|A|/Desenvolvimento/ada/timetable/admin.py
+1684216816|isabella-66|A|/Desenvolvimento/ada/timetable/apps.py
+1684216816|isabella-66|A|/Desenvolvimento/ada/timetable/migrations/__init__.py
+1684216816|isabella-66|A|/Desenvolvimento/ada/timetable/models.py
+1684216816|isabella-66|A|/Desenvolvimento/ada/timetable/tests.py
+1684216816|isabella-66|A|/Desenvolvimento/ada/timetable/views.py
+1684216816|isabella-66|A|/Desenvolvimento/ada/user/__init__.py
+1684216816|isabella-66|A|/Desenvolvimento/ada/user/admin.py
+1684216816|isabella-66|A|/Desenvolvimento/ada/user/apps.py
+1684216816|isabella-66|A|/Desenvolvimento/ada/user/migrations/__init__.py
+1684216816|isabella-66|A|/Desenvolvimento/ada/user/models.py
+1684216816|isabella-66|A|/Desenvolvimento/ada/user/tests.py
+1684216816|isabella-66|A|/Desenvolvimento/ada/user/views.py
+1684216882|isabella-66|M|/Desenvolvimento/ada/setup/urls.py
+1684217160|isabella-66|M|/Desenvolvimento/ada/setup/settings.py
+1684217415|isabella-66|M|/Desenvolvimento/ada/setup/settings.py
+1684217415|isabella-66|A|/Desenvolvimento/ada/templates/a.txt
+1684621368|isabella-66|M|/Desenvolvimento/ada/user/models.py
+1684729129|Paulo Kenji|M|/Desenvolvimento/ada/user/models.py
+1684733263|Paulo Kenji|M|/Desenvolvimento/ada/course/admin.py
+1684733263|Paulo Kenji|A|/Desenvolvimento/ada/course/migrations/0001_initial.py
+1684733263|Paulo Kenji|M|/Desenvolvimento/ada/course/models.py
+1684733263|Paulo Kenji|A|/Desenvolvimento/ada/enums/__init__.py
+1684733263|Paulo Kenji|A|/Desenvolvimento/ada/enums/enum.py
+1684733263|Paulo Kenji|M|/Desenvolvimento/ada/setup/settings.py
+1684733263|Paulo Kenji|M|/Desenvolvimento/ada/setup/urls.py
+1684733263|Paulo Kenji|A|/Desenvolvimento/ada/user/migrations/0001_initial.py
+1684733263|Paulo Kenji|A|/Desenvolvimento/ada/user/migrations/0002_auto_20230522_0201.py
+1684733263|Paulo Kenji|A|/Desenvolvimento/ada/user/migrations/0003_auto_20230522_0213.py
+1684733263|Paulo Kenji|A|/Desenvolvimento/ada/user/migrations/0004_alter_user_password.py
+1684733263|Paulo Kenji|A|/Desenvolvimento/ada/user/migrations/0005_alter_user_is_staff.py
+1684733263|Paulo Kenji|M|/Desenvolvimento/ada/user/models.py
+1684734645|Paulo Kenji|M|/Desenvolvimento/ada/area/models.py
+1684734645|Paulo Kenji|M|/Desenvolvimento/ada/user/admin.py
+1684734645|Paulo Kenji|A|/Desenvolvimento/ada/user/migrations/0006_alter_user_is_staff.py
+1684734645|Paulo Kenji|A|/Desenvolvimento/ada/user/migrations/0007_auto_20230522_0240.py
+1684734645|Paulo Kenji|M|/Desenvolvimento/ada/user/models.py
+1684735952|Paulo Kenji|M|/Desenvolvimento/ada/area/models.py
+1684735952|Paulo Kenji|M|/Desenvolvimento/ada/course/models.py
+1684735952|Paulo Kenji|M|/Desenvolvimento/ada/user/models.py
+1684737563|Paulo Kenji|M|/Desenvolvimento/ada/area/models.py
+1684737563|Paulo Kenji|M|/Desenvolvimento/ada/attribution_preference/models.py
+1684737563|Paulo Kenji|M|/Desenvolvimento/ada/class/models.py
+1684737563|Paulo Kenji|M|/Desenvolvimento/ada/course/models.py
+1684737563|Paulo Kenji|M|/Desenvolvimento/ada/enums/enum.py
+1684737563|Paulo Kenji|M|/Desenvolvimento/ada/timetable/models.py
+1684737597|Paulo Kenji|M|/Desenvolvimento/ada/timetable/models.py
+1684739224|Paulo Kenji|A|/Desenvolvimento/ada/area/migrations/0001_initial.py
+1684739224|Paulo Kenji|A|/Desenvolvimento/ada/class/migrations/0001_initial.py
+1684739224|Paulo Kenji|M|/Desenvolvimento/ada/class/models.py
+1684739224|Paulo Kenji|A|/Desenvolvimento/ada/course/migrations/0002_auto_20230522_0358.py
+1684739224|Paulo Kenji|M|/Desenvolvimento/ada/course/models.py
+1684739224|Paulo Kenji|A|/Desenvolvimento/ada/timetable/migrations/0001_initial.py
+1684739224|Paulo Kenji|A|/Desenvolvimento/ada/timetable/migrations/0002_timetable_user.py
+1684739224|Paulo Kenji|M|/Desenvolvimento/ada/timetable/models.py
+1684739224|Paulo Kenji|A|/Desenvolvimento/ada/user/migrations/0008_auto_20230522_0358.py
+1684739224|Paulo Kenji|M|/Desenvolvimento/ada/user/models.py
+1684741420|Paulo Kenji|M|/Desenvolvimento/ada/attribution_preference/models.py
+1684741420|Paulo Kenji|M|/Desenvolvimento/ada/enums/enum.py
+1684741951|Paulo Kenji|M|/Desenvolvimento/ada/area/admin.py
+1684741951|Paulo Kenji|A|/Desenvolvimento/ada/attribution_preference/migrations/0001_initial.py
+1684741951|Paulo Kenji|M|/Desenvolvimento/ada/class/admin.py
+1684742678|Paulo Kenji|M|/Desenvolvimento/ada/class/admin.py
+1684743252|isabella-66|M|/Desenvolvimento/ada/attribution_preference/admin.py
+1684743252|isabella-66|M|/Desenvolvimento/ada/attribution_preference/models.py
+1684743483|Josineudo Arruda|M|/Desenvolvimento/ada/course/admin.py
+1684743483|Josineudo Arruda|M|/Desenvolvimento/ada/timetable/admin.py
+1684743483|Josineudo Arruda|M|/Desenvolvimento/ada/timetable/models.py
+1684743603|isabella-66|M|/Desenvolvimento/ada/area/admin.py
+1684743603|isabella-66|M|/Desenvolvimento/ada/attribution_preference/admin.py
+1684743847|Paulo Kenji|M|/Desenvolvimento/ada/timetable/admin.py
+1684744253|Paulo Kenji|M|/Desenvolvimento/ada/attribution_preference/admin.py
+1684744253|Paulo Kenji|A|/Desenvolvimento/ada/attribution_preference/migrations/0002_auto_20230522_0525.py
+1684744253|Paulo Kenji|M|/Desenvolvimento/ada/timetable/admin.py
+1684745958|Paulo Kenji|A|/Desenvolvimento/ada/user/migrations/0009_alter_user_is_staff.py
+1684745958|Paulo Kenji|M|/Desenvolvimento/ada/user/models.py
+1684795950|Ana Paula|M|/Desenvolvimento/ada/setup/settings.py
+1684795950|Ana Paula|M|/Desenvolvimento/ada/setup/urls.py
+1684795950|Ana Paula|A|/Desenvolvimento/ada/templates/authentication/login.html
+1684808959|ana004|A|/Desenvolvimento/ada/area/migrations/0002_block.py
+1684808959|ana004|A|/Desenvolvimento/ada/area/migrations/0003_rename_name_block_name_block_remove_block_id_and_more.py
+1684808959|ana004|M|/Desenvolvimento/ada/area/models.py
+1684808959|ana004|A|/Desenvolvimento/ada/user/migrations/0010_alter_user_history_alter_user_job.py
+1684808959|ana004|A|/Desenvolvimento/ada/user/migrations/0011_user_block.py
+1684808959|ana004|A|/Desenvolvimento/ada/user/migrations/0012_alter_proficiency_course_alter_proficiency_user.py
+1684808959|ana004|M|/Desenvolvimento/ada/user/models.py
+1684811725|ana004|M|/Desenvolvimento/ada/setup/urls.py
+1684811725|ana004|D|/Desenvolvimento/ada/templates/a.txt
+1684811725|ana004|D|/Desenvolvimento/ada/templates/authentication/login.html
+1684811725|ana004|A|/Desenvolvimento/ada/templates/home.html
+1684811725|ana004|A|/Desenvolvimento/ada/templates/registration/login.html
+1684811725|ana004|A|/Desenvolvimento/ada/user/urls.py
+1684811725|ana004|M|/Desenvolvimento/ada/user/views.py
+1684813414|ana004|A|/Desenvolvimento/ada/templates/base.html
+1684813414|ana004|M|/Desenvolvimento/ada/templates/home.html
+1684813414|ana004|M|/Desenvolvimento/ada/templates/registration/login.html
+1684813414|ana004|A|/Desenvolvimento/ada/templates/static/css/layout.css
+1684813414|ana004|A|/Desenvolvimento/ada/templates/static/images/language_icon.png
+1684813414|ana004|A|/Desenvolvimento/ada/templates/static/images/logo_ADA.png
+1684813414|ana004|A|/Desenvolvimento/ada/templates/static/images/logo_favicon.jpg
+1684813414|ana004|A|/Desenvolvimento/ada/templates/static/images/profile_photo.png
+1684821669|Josineudo Arruda|A|/Desenvolvimento/ada/configuration/__init__.py
+1684821669|Josineudo Arruda|A|/Desenvolvimento/ada/configuration/admin.py
+1684821669|Josineudo Arruda|A|/Desenvolvimento/ada/configuration/apps.py
+1684821669|Josineudo Arruda|A|/Desenvolvimento/ada/configuration/migrations/__init__.py
+1684821669|Josineudo Arruda|A|/Desenvolvimento/ada/configuration/models.py
+1684821669|Josineudo Arruda|A|/Desenvolvimento/ada/configuration/tests.py
+1684821669|Josineudo Arruda|A|/Desenvolvimento/ada/configuration/views.py
+1684822094|Josineudo Arruda|M|/Desenvolvimento/ada/configuration/models.py
+1684822313|Josineudo Arruda|M|/Desenvolvimento/ada/configuration/admin.py
+1684822313|Josineudo Arruda|A|/Desenvolvimento/ada/user/migrations/0010_alter_user_history_alter_user_job.py
+1684823525|Josineudo Arruda|A|/Desenvolvimento/ada/common/validator/validator.py
+1684823525|Josineudo Arruda|A|/Desenvolvimento/ada/course/migrations/0003_alter_course_name_course.py
+1684823525|Josineudo Arruda|M|/Desenvolvimento/ada/course/models.py
+1684823947|Josineudo Arruda|A|/Desenvolvimento/ada/course/migrations/0004_alter_course_id_course.py
+1684823947|Josineudo Arruda|A|/Desenvolvimento/ada/course/migrations/0005_alter_course_registration_course_id.py
+1684823947|Josineudo Arruda|M|/Desenvolvimento/ada/course/models.py
+1684868828|GusttavoSoares|M|/Desenvolvimento/ada/area/admin.py
+1684868828|GusttavoSoares|A|/Desenvolvimento/ada/area/migrations/0004_remove_block_area_area_block.py
+1684868828|GusttavoSoares|M|/Desenvolvimento/ada/area/models.py
+1684868828|GusttavoSoares|M|/Desenvolvimento/ada/setup/urls.py
+1684868828|GusttavoSoares|A|/Desenvolvimento/ada/templates/registration/signup.html
+1684868828|GusttavoSoares|A|/Desenvolvimento/ada/user/migrations/0013_alter_user_block_alter_user_history_alter_user_job_and_more.py
+1684868828|GusttavoSoares|M|/Desenvolvimento/ada/user/models.py
+1684868828|GusttavoSoares|M|/Desenvolvimento/ada/user/urls.py
+1684868828|GusttavoSoares|M|/Desenvolvimento/ada/user/views.py
+1684869564|GusttavoSoares|A|/Desenvolvimento/ada/user/migrations/0014_remove_user_block_user_blocks.py
+1684869564|GusttavoSoares|M|/Desenvolvimento/ada/user/models.py
+1684870277|GusttavoSoares|M|/Desenvolvimento/ada/area/admin.py
+1684870277|GusttavoSoares|A|/Desenvolvimento/ada/area/migrations/0005_remove_area_block_area_blocks.py
+1684870277|GusttavoSoares|M|/Desenvolvimento/ada/area/models.py
+1684873420|GusttavoSoares|A|/Desenvolvimento/ada/configuration/__init__.py
+1684873420|GusttavoSoares|A|/Desenvolvimento/ada/configuration/admin.py
+1684873420|GusttavoSoares|A|/Desenvolvimento/ada/configuration/apps.py
+1684873420|GusttavoSoares|A|/Desenvolvimento/ada/configuration/migrations/0001_initial.py
+1684873420|GusttavoSoares|A|/Desenvolvimento/ada/configuration/migrations/__init__.py
+1684873420|GusttavoSoares|A|/Desenvolvimento/ada/configuration/models.py
+1684873420|GusttavoSoares|A|/Desenvolvimento/ada/configuration/tests.py
+1684873420|GusttavoSoares|A|/Desenvolvimento/ada/configuration/views.py
+1684873420|GusttavoSoares|M|/Desenvolvimento/ada/setup/settings.py
+1684874414|GusttavoSoares|M|/Desenvolvimento/ada/configuration/admin.py
+1684874414|GusttavoSoares|M|/Desenvolvimento/ada/configuration/models.py
+1684889387|isabella-66|M|/Desenvolvimento/ada/common/validator/validator.py
+1684889387|isabella-66|M|/Desenvolvimento/ada/timetable/models.py
+1684892632|isabella-66|M|/Desenvolvimento/ada/common/validator/validator.py
+1684892632|isabella-66|M|/Desenvolvimento/ada/timetable/models.py
+1684893488|isabella-66|M|/Desenvolvimento/ada/common/validator/validator.py
+1684893488|isabella-66|M|/Desenvolvimento/ada/timetable/models.py
+1684894267|isabella-66|M|/Desenvolvimento/ada/common/validator/validator.py
+1684894267|isabella-66|M|/Desenvolvimento/ada/timetable/models.py
+1684894771|isabella-66|M|/Desenvolvimento/ada/common/validator/validator.py
+1684894771|isabella-66|M|/Desenvolvimento/ada/timetable/models.py
+1684895204|isabella-66|M|/Desenvolvimento/ada/common/validator/validator.py
+1684895204|isabella-66|M|/Desenvolvimento/ada/timetable/models.py
+1684895700|isabella-66|M|/Desenvolvimento/ada/common/validator/validator.py
+1684896665|isabella-66|M|/Desenvolvimento/ada/area/admin.py
+1684896665|isabella-66|A|/Desenvolvimento/ada/area/migrations/0002_area_is_high_school.py
+1684896665|isabella-66|M|/Desenvolvimento/ada/area/models.py
+1684896665|isabella-66|M|/Desenvolvimento/ada/class/admin.py
+1684896665|isabella-66|A|/Desenvolvimento/ada/class/migrations/0002_remove_class_is_high_school.py
+1684896665|isabella-66|M|/Desenvolvimento/ada/class/models.py
+1684896665|isabella-66|M|/Desenvolvimento/ada/timetable/admin.py
+1684896665|isabella-66|A|/Desenvolvimento/ada/timetable/migrations/0003_remove_timeslot_name_timeslot_area_and_more.py
+1684896665|isabella-66|M|/Desenvolvimento/ada/timetable/models.py
+1684896874|isabella-66|M|/Desenvolvimento/ada/timetable/models.py
+1684898224|isabella-66|A|/Desenvolvimento/ada/course/migrations/0003_course_block.py
+1684898224|isabella-66|M|/Desenvolvimento/ada/course/models.py
+1684941668|ana004|A|/Desenvolvimento/ada/attribution/urls.py
+1684941668|ana004|M|/Desenvolvimento/ada/attribution/views.py
+1684941668|ana004|A|/Desenvolvimento/ada/configuration/migrations/0002_criteria_number_criteria.py
+1684941668|ana004|M|/Desenvolvimento/ada/configuration/models.py
+1684941668|ana004|M|/Desenvolvimento/ada/setup/urls.py
+1684941668|ana004|A|/Desenvolvimento/ada/templates/attribution/fila.html
+1684941668|ana004|M|/Desenvolvimento/ada/user/admin.py
+1684941668|ana004|A|/Desenvolvimento/ada/user/migrations/0015_alter_user_history.py
+1684941668|ana004|M|/Desenvolvimento/ada/user/models.py
+1684946584|ana004|M|/Desenvolvimento/ada/attribution/views.py
+1684946584|ana004|M|/Desenvolvimento/ada/setup/settings.py
+1684946584|ana004|M|/Desenvolvimento/ada/templates/attribution/fila.html
+1684946584|ana004|A|/Desenvolvimento/ada/user/migrations/0016_alter_user_history.py
+1684946584|ana004|M|/Desenvolvimento/ada/user/models.py
+1684954988|ana004|M|/Desenvolvimento/ada/attribution/views.py
+1684954988|ana004|M|/Desenvolvimento/ada/templates/attribution/fila.html
+1684954988|ana004|A|/Desenvolvimento/ada/user/migrations/0017_history_nome.py
+1684954988|ana004|A|/Desenvolvimento/ada/user/migrations/0018_rename_nome_history_name.py
+1684954988|ana004|A|/Desenvolvimento/ada/user/migrations/0019_remove_history_name.py
+1684959264|ana004|M|/Desenvolvimento/ada/attribution/views.py
+1684959264|ana004|M|/Desenvolvimento/ada/templates/attribution/fila.html
+1684977232|Gustavo Soares|M|/Desenvolvimento/ada/attribution/views.py
+1684977232|Gustavo Soares|M|/Desenvolvimento/ada/setup/settings.py
+1684977232|Gustavo Soares|M|/Desenvolvimento/ada/templates/attribution/fila.html
+1684987134|Josineudo Arruda|M|/Desenvolvimento/ada/setup/urls.py
+1684987134|Josineudo Arruda|M|/Desenvolvimento/ada/user/urls.py
+1684987134|Josineudo Arruda|M|/Desenvolvimento/ada/user/views.py
+1684987229|Josineudo Arruda|A|/Desenvolvimento/ada/templates/static/css/user/login.css
+1684987294|Josineudo Arruda|M|/Desenvolvimento/ada/templates/registration/login.html
+1684987629|Josineudo Arruda|M|/Desenvolvimento/ada/templates/registration/login.html
+1684990414|Josineudo Arruda|M|/Desenvolvimento/ada/templates/base.html
+1684990414|Josineudo Arruda|M|/Desenvolvimento/ada/templates/registration/login.html
+1684990414|Josineudo Arruda|M|/Desenvolvimento/ada/templates/static/css/layout.css
+1684990414|Josineudo Arruda|M|/Desenvolvimento/ada/templates/static/css/user/login.css
+1684995634|Josineudo Arruda|M|/Desenvolvimento/ada/templates/base.html
+1684995634|Josineudo Arruda|M|/Desenvolvimento/ada/templates/registration/login.html
+1684995634|Josineudo Arruda|M|/Desenvolvimento/ada/templates/static/css/user/login.css
+1684995634|Josineudo Arruda|A|/Desenvolvimento/ada/templates/static/js/user/login.js
+1685000807|Josineudo Arruda|M|/Desenvolvimento/ada/templates/base.html
+1685000807|Josineudo Arruda|M|/Desenvolvimento/ada/templates/registration/login.html
+1685000807|Josineudo Arruda|M|/Desenvolvimento/ada/templates/static/js/user/login.js
+1685000807|Josineudo Arruda|M|/Desenvolvimento/ada/user/urls.py
+1685000807|Josineudo Arruda|M|/Desenvolvimento/ada/user/views.py
+1685002762|Josineudo Arruda|M|/Desenvolvimento/ada/setup/urls.py
+1685002762|Josineudo Arruda|M|/Desenvolvimento/ada/templates/registration/login.html
+1685002762|Josineudo Arruda|M|/Desenvolvimento/ada/templates/static/css/user/login.css
+1685002967|Josineudo Arruda|M|/Desenvolvimento/ada/templates/base.html
+1685005574|Josineudo Arruda|M|/Desenvolvimento/ada/templates/base.html
+1685005574|Josineudo Arruda|M|/Desenvolvimento/ada/templates/registration/login.html
+1685005574|Josineudo Arruda|M|/Desenvolvimento/ada/templates/static/css/user/login.css
+1685005574|Josineudo Arruda|A|/Desenvolvimento/ada/templates/static/images/logo_favicon-withoutbg.png
+1685038049|GusttavoSoares|M|/Desenvolvimento/ada/attribution/urls.py
+1685038049|GusttavoSoares|M|/Desenvolvimento/ada/attribution/views.py
+1685038049|GusttavoSoares|M|/Desenvolvimento/ada/setup/settings.py
+1685038049|GusttavoSoares|M|/Desenvolvimento/ada/setup/urls.py
+1685038049|GusttavoSoares|D|/Desenvolvimento/ada/templates/attribution/fila.html
+1685038049|GusttavoSoares|A|/Desenvolvimento/ada/templates/attribution/queueSetup.html
+1685038049|GusttavoSoares|M|/Desenvolvimento/ada/templates/base.html
+1685038049|GusttavoSoares|A|/Desenvolvimento/ada/templates/static/attribution/js/queueSetup.js
+1685039586|GusttavoSoares|M|/Desenvolvimento/ada/attribution/views.py
+1685044159|GusttavoSoares|M|/Desenvolvimento/ada/attribution/views.py
+1685044159|GusttavoSoares|M|/Desenvolvimento/ada/templates/attribution/queueSetup.html
+1685044159|GusttavoSoares|M|/Desenvolvimento/ada/templates/static/attribution/js/queueSetup.js
+1685083007|GusttavoSoares|M|/Desenvolvimento/ada/attribution/views.py
+1685083007|GusttavoSoares|M|/Desenvolvimento/ada/templates/static/attribution/js/queueSetup.js
+1685084523|GusttavoSoares|M|/Desenvolvimento/ada/attribution/views.py
+1685084523|GusttavoSoares|M|/Desenvolvimento/ada/templates/static/attribution/js/queueSetup.js
+1685122309|GusttavoSoares|A|/Desenvolvimento/ada/attribution/migrations/0001_initial.py
+1685122309|GusttavoSoares|M|/Desenvolvimento/ada/attribution/models.py
+1685122309|GusttavoSoares|M|/Desenvolvimento/ada/attribution/views.py
+1685122309|GusttavoSoares|M|/Desenvolvimento/ada/templates/attribution/queueSetup.html
+1685122309|GusttavoSoares|M|/Desenvolvimento/ada/templates/static/attribution/js/queueSetup.js
+1685123686|GusttavoSoares|M|/Desenvolvimento/ada/attribution/views.py
+1685123686|GusttavoSoares|M|/Desenvolvimento/ada/templates/static/attribution/js/queueSetup.js
+1685125563|GusttavoSoares|M|/Desenvolvimento/ada/attribution/views.py
+1685125563|GusttavoSoares|M|/Desenvolvimento/ada/configuration/models.py
+1685125563|GusttavoSoares|M|/Desenvolvimento/ada/templates/attribution/queueSetup.html
+1685125563|GusttavoSoares|M|/Desenvolvimento/ada/templates/static/attribution/js/queueSetup.js
+1685127836|Paulo Kenji|M|/Desenvolvimento/ada/timetable/models.py
+1685128433|Paulo Kenji|M|/Desenvolvimento/ada/setup/settings.py
+1685128565|Paulo Kenji|A|/Desenvolvimento/ada/setup/celery.py
+1685129422|Paulo Kenji|A|/Desenvolvimento/ada/attribution/tasks.py
+1685129422|Paulo Kenji|M|/Desenvolvimento/ada/requirements.txt
+1685157176|Josineudo Arruda|M|/Desenvolvimento/ada/templates/registration/login.html
+1685157176|Josineudo Arruda|M|/Desenvolvimento/ada/templates/static/css/layout.css
+1685157176|Josineudo Arruda|M|/Desenvolvimento/ada/templates/static/css/user/login.css
+1685157499|Josineudo Arruda|M|/Desenvolvimento/ada/templates/static/css/user/login.css
+1685161798|Josineudo Arruda|M|/Desenvolvimento/ada/area/models.py
+1685161798|Josineudo Arruda|M|/Desenvolvimento/ada/class/models.py
+1685162482|GusttavoSoares|M|/Desenvolvimento/ada/attribution/urls.py
+1685162482|GusttavoSoares|M|/Desenvolvimento/ada/attribution/views.py
+1685162482|GusttavoSoares|A|/Desenvolvimento/ada/templates/attribution/queue.html
+1685162482|GusttavoSoares|M|/Desenvolvimento/ada/templates/attribution/queueSetup.html
+1685165183|Josineudo Arruda|M|/Desenvolvimento/ada/class/tests.py
+1685165183|Josineudo Arruda|A|/Desenvolvimento/ada/class/urls.py
+1685165183|Josineudo Arruda|M|/Desenvolvimento/ada/class/views.py
+1685165449|GusttavoSoares|A|/Desenvolvimento/ada/area/migrations/0006_alter_area_blocks.py
+1685165449|GusttavoSoares|M|/Desenvolvimento/ada/area/models.py
+1685165449|GusttavoSoares|M|/Desenvolvimento/ada/attribution/views.py
+1685165449|GusttavoSoares|M|/Desenvolvimento/ada/templates/attribution/queue.html
+1685165449|GusttavoSoares|M|/Desenvolvimento/ada/templates/attribution/queueSetup.html
+1685165449|GusttavoSoares|A|/Desenvolvimento/ada/user/migrations/0020_alter_user_blocks.py
+1685165449|GusttavoSoares|M|/Desenvolvimento/ada/user/models.py
+1685165635|GusttavoSoares|M|/Desenvolvimento/ada/attribution/views.py
+1685165635|GusttavoSoares|M|/Desenvolvimento/ada/templates/attribution/queue.html
+1685165635|GusttavoSoares|M|/Desenvolvimento/ada/user/models.py
+1685165824|isabella-66|A|/Desenvolvimento/ada/locale/en/LC_MESSAGES/django.po
+1685165824|isabella-66|A|/Desenvolvimento/ada/locale/pt_BR/LC_MESSAGES/django.po
+1685165824|isabella-66|M|/Desenvolvimento/ada/templates/home.html
+1685165824|isabella-66|M|/Desenvolvimento/ada/templates/registration/login.html
+1685165824|isabella-66|M|/Desenvolvimento/ada/templates/registration/signup.html
+1685166111|Paulo Kenji|D|/Desenvolvimento/ada/attribution/tasks.py
+1685166111|Paulo Kenji|M|/Desenvolvimento/ada/attribution/views.py
+1685166111|Paulo Kenji|A|/Desenvolvimento/ada/configuration/migrations/0001_initial.py
+1685166111|Paulo Kenji|M|/Desenvolvimento/ada/configuration/models.py
+1685166111|Paulo Kenji|A|/Desenvolvimento/ada/configuration/tasks.py
+1685166111|Paulo Kenji|A|/Desenvolvimento/ada/configuration/urls.py
+1685166111|Paulo Kenji|M|/Desenvolvimento/ada/configuration/views.py
+1685166111|Paulo Kenji|M|/Desenvolvimento/ada/setup/settings.py
+1685166111|Paulo Kenji|M|/Desenvolvimento/ada/setup/urls.py
+1685166111|Paulo Kenji|A|/Desenvolvimento/ada/templates/configuration/attributionConfiguration.html
+1685166111|Paulo Kenji|A|/Desenvolvimento/ada/templates/configuration/confirmConfiguration.html
+1685166415|isabella-66|M|/Desenvolvimento/ada/locale/en/LC_MESSAGES/django.po
+1685166415|isabella-66|M|/Desenvolvimento/ada/templates/base.html
+1685168343|isabella-66|M|/Desenvolvimento/ada/locale/pt_BR/LC_MESSAGES/django.po
+1685172353|GusttavoSoares|M|/Desenvolvimento/ada/attribution/views.py
+1685172353|GusttavoSoares|M|/Desenvolvimento/ada/templates/attribution/queue.html
+1685172353|GusttavoSoares|M|/Desenvolvimento/ada/templates/attribution/queueSetup.html
+1685172353|GusttavoSoares|M|/Desenvolvimento/ada/templates/static/attribution/js/queueSetup.js
+1685172410|Josineudo Arruda|M|/Desenvolvimento/ada/templates/base.html
+1685172410|Josineudo Arruda|M|/Desenvolvimento/ada/templates/static/css/layout.css
+1685172835|Paulo Kenji|M|/Desenvolvimento/ada/configuration/urls.py
+1685172835|Paulo Kenji|M|/Desenvolvimento/ada/configuration/views.py
+1685172835|Paulo Kenji|M|/Desenvolvimento/ada/templates/configuration/attributionConfiguration.html
+1685172835|Paulo Kenji|M|/Desenvolvimento/ada/templates/configuration/confirmConfiguration.html
+1685172835|Paulo Kenji|A|/Desenvolvimento/ada/templates/configuration/showActualDeadline.html
+1685176471|Josineudo Arruda|M|/Desenvolvimento/ada/area/models.py
+1685176471|Josineudo Arruda|D|/Desenvolvimento/ada/locale/en/LC_MESSAGES/django.po
+1685176471|Josineudo Arruda|D|/Desenvolvimento/ada/locale/pt_BR/LC_MESSAGES/django.po
+1685176520|Josineudo Arruda|M|/Desenvolvimento/ada/attribution_preference/models.py
+1685176571|Josineudo Arruda|M|/Desenvolvimento/ada/class/models.py
+1685176634|Josineudo Arruda|M|/Desenvolvimento/ada/configuration/models.py
+1685176676|Josineudo Arruda|M|/Desenvolvimento/ada/course/models.py
+1685176754|Josineudo Arruda|M|/Desenvolvimento/ada/timetable/models.py
+1685176763|isabella-66|M|/Desenvolvimento/ada/setup/settings.py
+1685177199|isabella-66|M|/Desenvolvimento/ada/user/models.py
+1685177360|isabella-66|M|/Desenvolvimento/ada/user/models.py
+1685177468|isabella-66|M|/Desenvolvimento/ada/area/models.py
+1685177568|isabella-66|M|/Desenvolvimento/ada/area/models.py
+1685177716|isabella-66|M|/Desenvolvimento/ada/attribution/models.py
+1685177716|isabella-66|M|/Desenvolvimento/ada/configuration/models.py
+1685177801|isabella-66|M|/Desenvolvimento/ada/course/models.py
+1685177801|isabella-66|M|/Desenvolvimento/ada/exchange/models.py
+1685178091|isabella-66|M|/Desenvolvimento/ada/area/admin.py
+1685178800|isabella-66|M|/Desenvolvimento/ada/area/apps.py
+1685178800|isabella-66|M|/Desenvolvimento/ada/area/models.py
+1685178800|isabella-66|M|/Desenvolvimento/ada/area/tests.py
+1685178800|isabella-66|M|/Desenvolvimento/ada/area/views.py
+1685178800|isabella-66|M|/Desenvolvimento/ada/attribution/admin.py
+1685178800|isabella-66|M|/Desenvolvimento/ada/attribution/apps.py
+1685178800|isabella-66|M|/Desenvolvimento/ada/attribution/models.py
+1685178800|isabella-66|M|/Desenvolvimento/ada/attribution/tests.py
+1685178800|isabella-66|M|/Desenvolvimento/ada/attribution/views.py
+1685178800|isabella-66|M|/Desenvolvimento/ada/attribution_preference/apps.py
+1685178800|isabella-66|M|/Desenvolvimento/ada/attribution_preference/tests.py
+1685178800|isabella-66|M|/Desenvolvimento/ada/attribution_preference/views.py
+1685178800|isabella-66|M|/Desenvolvimento/ada/class/admin.py
+1685178800|isabella-66|M|/Desenvolvimento/ada/class/apps.py
+1685178800|isabella-66|M|/Desenvolvimento/ada/class/tests.py
+1685178800|isabella-66|M|/Desenvolvimento/ada/class/views.py
+1685178800|isabella-66|M|/Desenvolvimento/ada/configuration/apps.py
+1685178800|isabella-66|M|/Desenvolvimento/ada/configuration/tests.py
+1685178800|isabella-66|M|/Desenvolvimento/ada/configuration/urls.py
+1685178800|isabella-66|M|/Desenvolvimento/ada/course/admin.py
+1685178800|isabella-66|M|/Desenvolvimento/ada/course/apps.py
+1685178800|isabella-66|M|/Desenvolvimento/ada/course/models.py
+1685178800|isabella-66|M|/Desenvolvimento/ada/course/tests.py
+1685178800|isabella-66|M|/Desenvolvimento/ada/course/views.py
+1685178800|isabella-66|M|/Desenvolvimento/ada/exchange/admin.py
+1685178800|isabella-66|M|/Desenvolvimento/ada/exchange/apps.py
+1685178800|isabella-66|M|/Desenvolvimento/ada/exchange/models.py
+1685178800|isabella-66|M|/Desenvolvimento/ada/exchange/tests.py
+1685178800|isabella-66|M|/Desenvolvimento/ada/exchange/views.py
+1685178800|isabella-66|M|/Desenvolvimento/ada/timetable/apps.py
+1685178800|isabella-66|M|/Desenvolvimento/ada/timetable/tests.py
+1685178800|isabella-66|M|/Desenvolvimento/ada/timetable/views.py
+1685178800|isabella-66|M|/Desenvolvimento/ada/user/admin.py
+1685178800|isabella-66|M|/Desenvolvimento/ada/user/models.py
+1685178800|isabella-66|M|/Desenvolvimento/ada/user/tests.py
+1685178800|isabella-66|M|/Desenvolvimento/ada/user/views.py
+1685216515|GusttavoSoares|M|/Desenvolvimento/ada/attribution/views.py
+1685216515|GusttavoSoares|M|/Desenvolvimento/ada/templates/attribution/queue.html
+1685216515|GusttavoSoares|M|/Desenvolvimento/ada/templates/attribution/queueSetup.html
+1685216515|GusttavoSoares|M|/Desenvolvimento/ada/templates/static/attribution/js/queueSetup.js
+1685216839|GusttavoSoares|M|/Desenvolvimento/ada/attribution/views.py
+1685221207|GusttavoSoares|M|/Desenvolvimento/ada/attribution/views.py
+1685221207|GusttavoSoares|M|/Desenvolvimento/ada/templates/attribution/queueSetup.html
+1685223949|GusttavoSoares|M|/Desenvolvimento/ada/attribution/views.py
+1685223949|GusttavoSoares|M|/Desenvolvimento/ada/templates/attribution/queueSetup.html
+1685223949|GusttavoSoares|M|/Desenvolvimento/ada/templates/static/attribution/js/queueSetup.js
+1685225399|GusttavoSoares|M|/Desenvolvimento/ada/attribution/views.py
+1685225399|GusttavoSoares|M|/Desenvolvimento/ada/templates/attribution/queueSetup.html
+1685234669|isabella-66|M|/Desenvolvimento/ada/user/views.py
+1685235489|isabella-66|A|/Desenvolvimento/ada/area/migrations/0006_merge_20230527_2149.py
+1685235489|isabella-66|A|/Desenvolvimento/ada/area/migrations/0007_alter_area_options_alter_block_options.py
+1685235489|isabella-66|A|/Desenvolvimento/ada/attribution_preference/migrations/0003_alter_attribution_preference_options_and_more.py
+1685235489|isabella-66|A|/Desenvolvimento/ada/class/migrations/0003_alter_class_options.py
+1685235489|isabella-66|A|/Desenvolvimento/ada/configuration/migrations/0002_alter_deadline_options_and_more.py
+1685235489|isabella-66|A|/Desenvolvimento/ada/course/migrations/0006_merge_20230527_2149.py
+1685235489|isabella-66|A|/Desenvolvimento/ada/course/migrations/0007_alter_course_options.py
+1685235489|isabella-66|A|/Desenvolvimento/ada/timetable/migrations/0004_alter_timeslot_options_alter_timetable_options_and_more.py
+1685235774|GusttavoSoares|M|/Desenvolvimento/ada/attribution/views.py
+1685235774|GusttavoSoares|M|/Desenvolvimento/ada/templates/attribution/queue.html
+1685235774|GusttavoSoares|M|/Desenvolvimento/ada/templates/attribution/queueSetup.html
+1685235774|GusttavoSoares|M|/Desenvolvimento/ada/templates/static/attribution/js/queueSetup.js
+1685235774|GusttavoSoares|M|/Desenvolvimento/ada/user/models.py
+1685236654|Josineudo Arruda|A|/Desenvolvimento/ada/area/migrations/0006_merge_20230527_2216.py
+1685236654|Josineudo Arruda|A|/Desenvolvimento/ada/course/migrations/0006_merge_20230527_2216.py
+1685236844|Josineudo Arruda|A|/Desenvolvimento/ada/area/migrations/0007_alter_area_options_alter_block_options_and_more.py
+1685236844|Josineudo Arruda|M|/Desenvolvimento/ada/area/models.py
+1685236844|Josineudo Arruda|A|/Desenvolvimento/ada/attribution_preference/migrations/0003_alter_attribution_preference_options_and_more.py
+1685236844|Josineudo Arruda|A|/Desenvolvimento/ada/class/migrations/0003_alter_class_options.py
+1685236844|Josineudo Arruda|A|/Desenvolvimento/ada/configuration/migrations/0002_alter_deadline_options_and_more.py
+1685236844|Josineudo Arruda|A|/Desenvolvimento/ada/course/migrations/0007_alter_course_options.py
+1685236844|Josineudo Arruda|A|/Desenvolvimento/ada/timetable/migrations/0004_alter_timeslot_options_alter_timetable_options_and_more.py
+1685237233|GusttavoSoares|M|/Desenvolvimento/ada/user/admin.py
+1685237233|GusttavoSoares|A|/Desenvolvimento/ada/user/migrations/0021_academicdegree_history_blocks_alter_user_blocks_and_more.py
+1685237233|GusttavoSoares|A|/Desenvolvimento/ada/user/migrations/0022_remove_history_academic_degrees_and_more.py
+1685237233|GusttavoSoares|M|/Desenvolvimento/ada/user/models.py
+1685238009|isabella-66|A|/Desenvolvimento/ada/area/migrations/0008_alter_area_name_area_alter_area_registration_area_id.py
+1685238009|isabella-66|M|/Desenvolvimento/ada/area/models.py
+1685238009|isabella-66|M|/Desenvolvimento/ada/common/validator/validator.py
+1685238009|isabella-66|M|/Desenvolvimento/ada/course/admin.py
+1685238009|isabella-66|A|/Desenvolvimento/ada/course/migrations/0008_course_acronym.py
+1685238009|isabella-66|M|/Desenvolvimento/ada/course/models.py
+1685238211|isabella-66|M|/Desenvolvimento/ada/course/admin.py
+1685238211|isabella-66|A|/Desenvolvimento/ada/course/migrations/0009_remove_course_hour_end_remove_course_hour_start_and_more.py
+1685238211|isabella-66|M|/Desenvolvimento/ada/course/models.py
+1685238679|GusttavoSoares|M|/Desenvolvimento/ada/attribution/views.py
+1685238679|GusttavoSoares|A|/Desenvolvimento/ada/user/migrations/0023_remove_user_academic_degrees_and_more.py
+1685238679|GusttavoSoares|M|/Desenvolvimento/ada/user/models.py
+1685239232|isabella-66|A|/Desenvolvimento/ada/course/migrations/0010_alter_course_id_course.py
+1685239232|isabella-66|A|/Desenvolvimento/ada/course/migrations/0011_alter_course_id_course.py
+1685239232|isabella-66|M|/Desenvolvimento/ada/course/models.py
+1685239361|isabella-66|M|/Desenvolvimento/ada/area/models.py
+1685241644|isabella-66|M|/Desenvolvimento/ada/area/migrations/0001_initial.py
+1685241644|isabella-66|D|/Desenvolvimento/ada/area/migrations/0002_area_is_high_school.py
+1685241644|isabella-66|D|/Desenvolvimento/ada/area/migrations/0002_block.py
+1685241644|isabella-66|D|/Desenvolvimento/ada/area/migrations/0003_rename_name_block_name_block_remove_block_id_and_more.py
+1685241644|isabella-66|D|/Desenvolvimento/ada/area/migrations/0004_remove_block_area_area_block.py
+1685241644|isabella-66|D|/Desenvolvimento/ada/area/migrations/0005_remove_area_block_area_blocks.py
+1685241644|isabella-66|D|/Desenvolvimento/ada/area/migrations/0006_merge_20230527_2149.py
+1685241644|isabella-66|D|/Desenvolvimento/ada/area/migrations/0007_alter_area_options_alter_block_options.py
+1685241644|isabella-66|D|/Desenvolvimento/ada/area/migrations/0008_alter_area_name_area_alter_area_registration_area_id.py
+1685241644|isabella-66|M|/Desenvolvimento/ada/area/models.py
+1685241644|isabella-66|M|/Desenvolvimento/ada/attribution_preference/migrations/0001_initial.py
+1685241644|isabella-66|D|/Desenvolvimento/ada/attribution_preference/migrations/0002_auto_20230522_0525.py
+1685241644|isabella-66|A|/Desenvolvimento/ada/attribution_preference/migrations/0002_initial.py
+1685241644|isabella-66|D|/Desenvolvimento/ada/attribution_preference/migrations/0003_alter_attribution_preference_options_and_more.py
+1685241644|isabella-66|A|/Desenvolvimento/ada/attribution_preference/migrations/0003_initial.py
+1685241644|isabella-66|M|/Desenvolvimento/ada/class/migrations/0001_initial.py
+1685241644|isabella-66|D|/Desenvolvimento/ada/class/migrations/0002_remove_class_is_high_school.py
+1685241644|isabella-66|D|/Desenvolvimento/ada/class/migrations/0003_alter_class_options.py
+1685241644|isabella-66|M|/Desenvolvimento/ada/configuration/migrations/0001_initial.py
+1685241644|isabella-66|D|/Desenvolvimento/ada/configuration/migrations/0002_alter_deadline_options_and_more.py
+1685241644|isabella-66|M|/Desenvolvimento/ada/course/admin.py
+1685241644|isabella-66|M|/Desenvolvimento/ada/course/migrations/0001_initial.py
+1685241644|isabella-66|D|/Desenvolvimento/ada/course/migrations/0002_auto_20230522_0358.py
+1685241644|isabella-66|D|/Desenvolvimento/ada/course/migrations/0003_alter_course_name_course.py
+1685241644|isabella-66|D|/Desenvolvimento/ada/course/migrations/0003_course_block.py
+1685241644|isabella-66|D|/Desenvolvimento/ada/course/migrations/0004_alter_course_id_course.py
+1685241644|isabella-66|D|/Desenvolvimento/ada/course/migrations/0005_alter_course_registration_course_id.py
+1685241644|isabella-66|D|/Desenvolvimento/ada/course/migrations/0006_merge_20230527_2149.py
+1685241644|isabella-66|D|/Desenvolvimento/ada/course/migrations/0007_alter_course_options.py
+1685241644|isabella-66|D|/Desenvolvimento/ada/course/migrations/0008_course_acronym.py
+1685241644|isabella-66|D|/Desenvolvimento/ada/course/migrations/0009_remove_course_hour_end_remove_course_hour_start_and_more.py
+1685241644|isabella-66|D|/Desenvolvimento/ada/course/migrations/0010_alter_course_id_course.py
+1685241644|isabella-66|D|/Desenvolvimento/ada/course/migrations/0011_alter_course_id_course.py
+1685241644|isabella-66|M|/Desenvolvimento/ada/course/models.py
+1685241644|isabella-66|M|/Desenvolvimento/ada/timetable/migrations/0001_initial.py
+1685241644|isabella-66|A|/Desenvolvimento/ada/timetable/migrations/0002_initial.py
+1685241644|isabella-66|D|/Desenvolvimento/ada/timetable/migrations/0002_timetable_user.py
+1685241644|isabella-66|D|/Desenvolvimento/ada/timetable/migrations/0003_remove_timeslot_name_timeslot_area_and_more.py
+1685241644|isabella-66|D|/Desenvolvimento/ada/timetable/migrations/0004_alter_timeslot_options_alter_timetable_options_and_more.py
+1685241644|isabella-66|M|/Desenvolvimento/ada/timetable/models.py
+1685241644|isabella-66|M|/Desenvolvimento/ada/user/migrations/0001_initial.py
+1685241644|isabella-66|D|/Desenvolvimento/ada/user/migrations/0002_auto_20230522_0201.py
+1685241644|isabella-66|D|/Desenvolvimento/ada/user/migrations/0003_auto_20230522_0213.py
+1685241644|isabella-66|D|/Desenvolvimento/ada/user/migrations/0004_alter_user_password.py
+1685241644|isabella-66|D|/Desenvolvimento/ada/user/migrations/0005_alter_user_is_staff.py
+1685241644|isabella-66|D|/Desenvolvimento/ada/user/migrations/0006_alter_user_is_staff.py
+1685241644|isabella-66|D|/Desenvolvimento/ada/user/migrations/0007_auto_20230522_0240.py
+1685241644|isabella-66|D|/Desenvolvimento/ada/user/migrations/0008_auto_20230522_0358.py
+1685241644|isabella-66|D|/Desenvolvimento/ada/user/migrations/0009_alter_user_is_staff.py
+1685241644|isabella-66|D|/Desenvolvimento/ada/user/migrations/0010_alter_user_history_alter_user_job.py
+1685241644|isabella-66|D|/Desenvolvimento/ada/user/migrations/0011_user_block.py
+1685241644|isabella-66|D|/Desenvolvimento/ada/user/migrations/0012_alter_proficiency_course_alter_proficiency_user.py
+1685241644|isabella-66|D|/Desenvolvimento/ada/user/migrations/0013_alter_user_block_alter_user_history_alter_user_job_and_more.py
+1685241644|isabella-66|D|/Desenvolvimento/ada/user/migrations/0014_remove_user_block_user_blocks.py
+1685242812|Josineudo Arruda|M|/Desenvolvimento/ada/attribution_preference/admin.py
+1685242812|Josineudo Arruda|A|/Desenvolvimento/ada/attribution_preference/migrations/0004_remove_attribution_workload_supplementation_attribution_preference_and_more.py
+1685242812|Josineudo Arruda|M|/Desenvolvimento/ada/attribution_preference/models.py
+1685244275|isabella-66|M|/Desenvolvimento/ada/area/admin.py
+1685244275|isabella-66|M|/Desenvolvimento/ada/area/migrations/0001_initial.py
+1685244275|isabella-66|A|/Desenvolvimento/ada/area/migrations/0002_alter_block_registration_block_id.py
+1685244275|isabella-66|A|/Desenvolvimento/ada/area/migrations/0003_alter_block_id_alter_block_registration_block_id.py
+1685244275|isabella-66|M|/Desenvolvimento/ada/area/models.py
+1685244275|isabella-66|M|/Desenvolvimento/ada/attribution_preference/migrations/0001_initial.py
+1685244275|isabella-66|M|/Desenvolvimento/ada/attribution_preference/migrations/0002_initial.py
+1685244275|isabella-66|M|/Desenvolvimento/ada/attribution_preference/migrations/0003_initial.py
+1685244275|isabella-66|M|/Desenvolvimento/ada/class/migrations/0001_initial.py
+1685244275|isabella-66|M|/Desenvolvimento/ada/configuration/migrations/0001_initial.py
+1685244275|isabella-66|M|/Desenvolvimento/ada/course/migrations/0001_initial.py
+1685244275|isabella-66|M|/Desenvolvimento/ada/timetable/migrations/0001_initial.py
+1685244275|isabella-66|M|/Desenvolvimento/ada/timetable/migrations/0002_initial.py
+1685244275|isabella-66|M|/Desenvolvimento/ada/user/migrations/0001_initial.py
+1685244312|GusttavoSoares|M|/Desenvolvimento/ada/attribution/views.py
+1685244312|GusttavoSoares|M|/Desenvolvimento/ada/templates/attribution/queue.html
+1685244312|GusttavoSoares|M|/Desenvolvimento/ada/templates/attribution/queueSetup.html
+1685245283|isabella-66|M|/Desenvolvimento/ada/area/models.py
+1685245585|isabella-66|M|/Desenvolvimento/ada/enums/enum.py
+1685247639|isabella-66|M|/Desenvolvimento/ada/class/models.py
+1685249571|isabella-66|A|/Desenvolvimento/ada/area/migrations/0004_alter_block_acronym_alter_block_name_block.py
+1685249571|isabella-66|A|/Desenvolvimento/ada/attribution_preference/migrations/0004_alter_course_preference_period_and_more.py
+1685249571|isabella-66|A|/Desenvolvimento/ada/class/migrations/0002_alter_class_period_alter_class_registration_class_id.py
+1685249571|isabella-66|A|/Desenvolvimento/ada/common/processors.py
+1685249571|isabella-66|M|/Desenvolvimento/ada/course/models.py
+1685249571|isabella-66|A|/Desenvolvimento/ada/timetable/migrations/0003_alter_timetable_day.py
+1685252755|Paulo Kenji|M|/Desenvolvimento/ada/common/processors.py
+1685252755|Paulo Kenji|M|/Desenvolvimento/ada/timetable/admin.py
+1685252755|Paulo Kenji|A|/Desenvolvimento/ada/timetable/migrations/0004_timeslot_position.py
+1685252755|Paulo Kenji|A|/Desenvolvimento/ada/timetable/migrations/0005_alter_timeslot_area.py
+1685252755|Paulo Kenji|M|/Desenvolvimento/ada/timetable/models.py
+1685252755|Paulo Kenji|M|/Desenvolvimento/ada/user/admin.py
+1685256436|isabella-66|M|/Desenvolvimento/ada/common/processors.py
+1685256436|isabella-66|M|/Desenvolvimento/ada/course/models.py
+1685256436|isabella-66|M|/Desenvolvimento/ada/timetable/models.py
+1685258370|Josineudo Arruda|M|/Desenvolvimento/ada/attribution/views.py
+1685258370|Josineudo Arruda|M|/Desenvolvimento/ada/attribution_preference/models.py
+1685258370|Josineudo Arruda|A|/Desenvolvimento/ada/attribution_preference/urls.py
+1685258370|Josineudo Arruda|M|/Desenvolvimento/ada/attribution_preference/views.py
+1685258370|Josineudo Arruda|M|/Desenvolvimento/ada/setup/urls.py
+1685258370|Josineudo Arruda|A|/Desenvolvimento/ada/templates/attribution_preference/attributionPreference.html
+1685258370|Josineudo Arruda|A|/Desenvolvimento/ada/templates/attribution_preference/confirmAttributionPreference.html
+1685258370|Josineudo Arruda|M|/Desenvolvimento/ada/templates/home.html
+1685258370|Josineudo Arruda|A|/Desenvolvimento/ada/templates/static/js/attribution_preference/preferred-discipline.js
+1685258370|Josineudo Arruda|M|/Desenvolvimento/ada/timetable/models.py
+1685258613|isabella-66|M|/Desenvolvimento/ada/area/models.py
+1685258613|isabella-66|M|/Desenvolvimento/ada/course/models.py
+1685259440|isabella-66|M|/Desenvolvimento/ada/area/migrations/0001_initial.py
+1685259440|isabella-66|D|/Desenvolvimento/ada/area/migrations/0002_alter_block_registration_block_id.py
+1685259440|isabella-66|D|/Desenvolvimento/ada/area/migrations/0003_alter_block_id_alter_block_registration_block_id.py
+1685259440|isabella-66|D|/Desenvolvimento/ada/area/migrations/0004_alter_block_acronym_alter_block_name_block.py
+1685259440|isabella-66|D|/Desenvolvimento/ada/area/migrations/0006_merge_20230527_2216.py
+1685259440|isabella-66|D|/Desenvolvimento/ada/area/migrations/0007_alter_area_options_alter_block_options_and_more.py
+1685259440|isabella-66|M|/Desenvolvimento/ada/attribution_preference/migrations/0001_initial.py
+1685259440|isabella-66|M|/Desenvolvimento/ada/attribution_preference/migrations/0002_initial.py
+1685259440|isabella-66|D|/Desenvolvimento/ada/attribution_preference/migrations/0003_alter_attribution_preference_options_and_more.py
+1685259440|isabella-66|M|/Desenvolvimento/ada/attribution_preference/migrations/0003_initial.py
+1685259440|isabella-66|D|/Desenvolvimento/ada/attribution_preference/migrations/0004_alter_course_preference_period_and_more.py
+1685259440|isabella-66|D|/Desenvolvimento/ada/attribution_preference/migrations/0004_remove_attribution_workload_supplementation_attribution_preference_and_more.py
+1685259440|isabella-66|M|/Desenvolvimento/ada/class/migrations/0001_initial.py
+1685259440|isabella-66|D|/Desenvolvimento/ada/class/migrations/0002_alter_class_period_alter_class_registration_class_id.py
+1685259440|isabella-66|D|/Desenvolvimento/ada/class/migrations/0003_alter_class_options.py
+1685259440|isabella-66|M|/Desenvolvimento/ada/configuration/migrations/0001_initial.py
+1685259440|isabella-66|D|/Desenvolvimento/ada/configuration/migrations/0002_alter_deadline_options_and_more.py
+1685259440|isabella-66|M|/Desenvolvimento/ada/course/migrations/0001_initial.py
+1685259440|isabella-66|D|/Desenvolvimento/ada/course/migrations/0006_merge_20230527_2216.py
+1685259440|isabella-66|D|/Desenvolvimento/ada/course/migrations/0007_alter_course_options.py
+1685259440|isabella-66|M|/Desenvolvimento/ada/timetable/migrations/0001_initial.py
+1685259440|isabella-66|M|/Desenvolvimento/ada/timetable/migrations/0002_initial.py
+1685259440|isabella-66|D|/Desenvolvimento/ada/timetable/migrations/0003_alter_timetable_day.py
+1685259440|isabella-66|D|/Desenvolvimento/ada/timetable/migrations/0004_alter_timeslot_options_alter_timetable_options_and_more.py
+1685259440|isabella-66|D|/Desenvolvimento/ada/timetable/migrations/0004_timeslot_position.py
+1685259440|isabella-66|D|/Desenvolvimento/ada/timetable/migrations/0005_alter_timeslot_area.py
+1685259440|isabella-66|M|/Desenvolvimento/ada/user/migrations/0001_initial.py
+1685301853|GusttavoSoares|M|/Desenvolvimento/ada/attribution/views.py
+1685301853|GusttavoSoares|M|/Desenvolvimento/ada/templates/attribution/queueSetup.html
+1685310327|GusttavoSoares|M|/Desenvolvimento/ada/attribution/views.py
+1685310327|GusttavoSoares|M|/Desenvolvimento/ada/templates/attribution/queue.html
+1685310327|GusttavoSoares|M|/Desenvolvimento/ada/templates/attribution/queueSetup.html
+1685312270|GusttavoSoares|M|/Desenvolvimento/ada/attribution/views.py
+1685312270|GusttavoSoares|M|/Desenvolvimento/ada/templates/attribution/queueSetup.html
+1685318113|GusttavoSoares|M|/Desenvolvimento/ada/attribution/views.py
+1685318113|GusttavoSoares|M|/Desenvolvimento/ada/templates/attribution/queue.html
+1685318461|Paulo Kenji|D|/Desenvolvimento/ada/area/migrations/0001_initial.py
+1685318461|Paulo Kenji|D|/Desenvolvimento/ada/area/migrations/0002_area_is_high_school.py
+1685318461|Paulo Kenji|D|/Desenvolvimento/ada/area/migrations/0002_block.py
+1685318461|Paulo Kenji|D|/Desenvolvimento/ada/area/migrations/0003_rename_name_block_name_block_remove_block_id_and_more.py
+1685318461|Paulo Kenji|D|/Desenvolvimento/ada/area/migrations/0004_remove_block_area_area_block.py
+1685318461|Paulo Kenji|D|/Desenvolvimento/ada/area/migrations/0005_remove_area_block_area_blocks.py
+1685318461|Paulo Kenji|D|/Desenvolvimento/ada/area/migrations/0006_merge_20230527_2216.py
+1685318461|Paulo Kenji|D|/Desenvolvimento/ada/area/migrations/0007_alter_area_options_alter_block_options_and_more.py
+1685318461|Paulo Kenji|A|/Desenvolvimento/ada/staff/__init__.py
+1685318461|Paulo Kenji|A|/Desenvolvimento/ada/staff/admin.py
+1685318461|Paulo Kenji|A|/Desenvolvimento/ada/staff/apps.py
+1685318461|Paulo Kenji|A|/Desenvolvimento/ada/staff/migrations/__init__.py
+1685318461|Paulo Kenji|A|/Desenvolvimento/ada/staff/models.py
+1685318461|Paulo Kenji|A|/Desenvolvimento/ada/staff/tests.py
+1685318461|Paulo Kenji|A|/Desenvolvimento/ada/staff/urls.py
+1685318461|Paulo Kenji|A|/Desenvolvimento/ada/staff/views.py
+1685318461|Paulo Kenji|A|/Desenvolvimento/ada/templates/staff/home.html
+1685318461|Paulo Kenji|A|/Desenvolvimento/ada/templates/staff/professors_list.html
+1685328227|Paulo Kenji|A|/Desenvolvimento/ada/area/migrations/0001_initial.py
+1685328227|Paulo Kenji|M|/Desenvolvimento/ada/attribution_preference/migrations/0001_initial.py
+1685328227|Paulo Kenji|D|/Desenvolvimento/ada/attribution_preference/migrations/0002_auto_20230522_0525.py
+1685328227|Paulo Kenji|A|/Desenvolvimento/ada/attribution_preference/migrations/0002_initial.py
+1685328227|Paulo Kenji|D|/Desenvolvimento/ada/attribution_preference/migrations/0003_alter_attribution_preference_options_and_more.py
+1685328227|Paulo Kenji|A|/Desenvolvimento/ada/attribution_preference/migrations/0003_initial.py
+1685328227|Paulo Kenji|D|/Desenvolvimento/ada/attribution_preference/migrations/0004_remove_attribution_workload_supplementation_attribution_preference_and_more.py
+1685328227|Paulo Kenji|M|/Desenvolvimento/ada/class/migrations/0001_initial.py
+1685328227|Paulo Kenji|D|/Desenvolvimento/ada/class/migrations/0002_remove_class_is_high_school.py
+1685328227|Paulo Kenji|D|/Desenvolvimento/ada/class/migrations/0003_alter_class_options.py
+1685328227|Paulo Kenji|D|/Desenvolvimento/ada/configuration/admin.py
+1685328227|Paulo Kenji|D|/Desenvolvimento/ada/configuration/migrations/0001_initial.py
+1685328227|Paulo Kenji|D|/Desenvolvimento/ada/configuration/migrations/0002_alter_deadline_options_and_more.py
+1685328227|Paulo Kenji|D|/Desenvolvimento/ada/configuration/models.py
+1685328227|Paulo Kenji|D|/Desenvolvimento/ada/configuration/urls.py
+1685328227|Paulo Kenji|D|/Desenvolvimento/ada/configuration/views.py
+1685328227|Paulo Kenji|M|/Desenvolvimento/ada/course/migrations/0001_initial.py
+1685328227|Paulo Kenji|D|/Desenvolvimento/ada/course/migrations/0002_auto_20230522_0358.py
+1685328227|Paulo Kenji|D|/Desenvolvimento/ada/course/migrations/0003_alter_course_name_course.py
+1685328227|Paulo Kenji|D|/Desenvolvimento/ada/course/migrations/0003_course_block.py
+1685328227|Paulo Kenji|D|/Desenvolvimento/ada/course/migrations/0004_alter_course_id_course.py
+1685328227|Paulo Kenji|D|/Desenvolvimento/ada/course/migrations/0005_alter_course_registration_course_id.py
+1685328227|Paulo Kenji|D|/Desenvolvimento/ada/course/migrations/0006_merge_20230527_2216.py
+1685328227|Paulo Kenji|D|/Desenvolvimento/ada/course/migrations/0007_alter_course_options.py
+1685328227|Paulo Kenji|A|/Desenvolvimento/ada/fixMigrations.py
+1685328227|Paulo Kenji|M|/Desenvolvimento/ada/setup/settings.py
+1685328227|Paulo Kenji|M|/Desenvolvimento/ada/setup/urls.py
+1685328227|Paulo Kenji|M|/Desenvolvimento/ada/staff/admin.py
+1685328227|Paulo Kenji|A|/Desenvolvimento/ada/staff/migrations/0001_initial.py
+1685328227|Paulo Kenji|M|/Desenvolvimento/ada/staff/models.py
+1685328227|Paulo Kenji|M|/Desenvolvimento/ada/staff/urls.py
+1685328227|Paulo Kenji|M|/Desenvolvimento/ada/staff/views.py
+1685328227|Paulo Kenji|M|/Desenvolvimento/ada/templates/base.html
+1685328227|Paulo Kenji|D|/Desenvolvimento/ada/templates/configuration/attributionConfiguration.html
+1685328227|Paulo Kenji|D|/Desenvolvimento/ada/templates/configuration/confirmConfiguration.html
+1685328227|Paulo Kenji|D|/Desenvolvimento/ada/templates/configuration/showActualDeadline.html
+1685328227|Paulo Kenji|A|/Desenvolvimento/ada/templates/staff/deadline/confirm_deadline_configuration.html
+1685328227|Paulo Kenji|A|/Desenvolvimento/ada/templates/staff/deadline/deadline_configuration.html
+1685328227|Paulo Kenji|A|/Desenvolvimento/ada/templates/staff/deadline/show_current_deadline.html
+1685328227|Paulo Kenji|M|/Desenvolvimento/ada/templates/staff/home.html
+1685328227|Paulo Kenji|M|/Desenvolvimento/ada/timetable/migrations/0001_initial.py
+1685328227|Paulo Kenji|A|/Desenvolvimento/ada/timetable/migrations/0002_initial.py
+1685328227|Paulo Kenji|D|/Desenvolvimento/ada/timetable/migrations/0002_timetable_user.py
+1685328227|Paulo Kenji|D|/Desenvolvimento/ada/timetable/migrations/0003_remove_timeslot_name_timeslot_area_and_more.py
+1685328227|Paulo Kenji|D|/Desenvolvimento/ada/timetable/migrations/0004_alter_timeslot_options_alter_timetable_options_and_more.py
+1685328227|Paulo Kenji|M|/Desenvolvimento/ada/user/migrations/0001_initial.py
+1685328227|Paulo Kenji|D|/Desenvolvimento/ada/user/migrations/0002_auto_20230522_0201.py
+1685328227|Paulo Kenji|D|/Desenvolvimento/ada/user/migrations/0003_auto_20230522_0213.py
+1685328227|Paulo Kenji|D|/Desenvolvimento/ada/user/migrations/0004_alter_user_password.py
+1685328227|Paulo Kenji|D|/Desenvolvimento/ada/user/migrations/0005_alter_user_is_staff.py
+1685328227|Paulo Kenji|D|/Desenvolvimento/ada/user/migrations/0006_alter_user_is_staff.py
+1685328227|Paulo Kenji|D|/Desenvolvimento/ada/user/migrations/0007_auto_20230522_0240.py
+1685328227|Paulo Kenji|D|/Desenvolvimento/ada/user/migrations/0008_auto_20230522_0358.py
+1685328227|Paulo Kenji|D|/Desenvolvimento/ada/user/migrations/0009_alter_user_is_staff.py
+1685328227|Paulo Kenji|D|/Desenvolvimento/ada/user/migrations/0010_alter_user_history_alter_user_job.py
+1685328227|Paulo Kenji|D|/Desenvolvimento/ada/user/migrations/0011_user_block.py
+1685328227|Paulo Kenji|D|/Desenvolvimento/ada/user/migrations/0012_alter_proficiency_course_alter_proficiency_user.py
+1685328227|Paulo Kenji|D|/Desenvolvimento/ada/user/migrations/0013_alter_user_block_alter_user_history_alter_user_job_and_more.py
+1685328227|Paulo Kenji|D|/Desenvolvimento/ada/user/migrations/0014_remove_user_block_user_blocks.py
+1685328576|Josineudo Arruda|M|/Desenvolvimento/ada/attribution_preference/urls.py
+1685328576|Josineudo Arruda|M|/Desenvolvimento/ada/attribution_preference/views.py
+1685328576|Josineudo Arruda|M|/Desenvolvimento/ada/setup/settings.py
+1685328576|Josineudo Arruda|M|/Desenvolvimento/ada/templates/attribution_preference/attributionPreference.html
+1685328576|Josineudo Arruda|M|/Desenvolvimento/ada/templates/attribution_preference/confirmAttributionPreference.html
+1685328576|Josineudo Arruda|M|/Desenvolvimento/ada/templates/base.html
+1685328576|Josineudo Arruda|A|/Desenvolvimento/ada/templates/static/css/attribution_preference/attribution_preference.css
+1685328576|Josineudo Arruda|M|/Desenvolvimento/ada/templates/static/css/layout.css
+1685328576|Josineudo Arruda|M|/Desenvolvimento/ada/templates/static/js/attribution_preference/preferred-discipline.js
+1685333096|Josineudo Arruda|M|/Desenvolvimento/ada/templates/static/js/attribution_preference/preferred-discipline.js
+1685333318|GusttavoSoares|M|/Desenvolvimento/ada/attribution/models.py
+1685333318|GusttavoSoares|M|/Desenvolvimento/ada/attribution/views.py
+1685333318|GusttavoSoares|D|/Desenvolvimento/ada/configuration/__init__.py
+1685333318|GusttavoSoares|D|/Desenvolvimento/ada/configuration/apps.py
+1685333318|GusttavoSoares|D|/Desenvolvimento/ada/configuration/migrations/__init__.py
+1685333318|GusttavoSoares|D|/Desenvolvimento/ada/configuration/tasks.py
+1685333318|GusttavoSoares|D|/Desenvolvimento/ada/configuration/tests.py
+1685333318|GusttavoSoares|M|/Desenvolvimento/ada/staff/admin.py
+1685333318|GusttavoSoares|M|/Desenvolvimento/ada/staff/models.py
+1685333408|Josineudo Arruda|M|/Desenvolvimento/ada/templates/attribution_preference/attributionPreference.html
+1685334734|Josineudo Arruda|M|/Desenvolvimento/ada/templates/attribution_preference/attributionPreference.html
+1685334734|Josineudo Arruda|M|/Desenvolvimento/ada/templates/static/js/attribution_preference/preferred-discipline.js
+1685338231|Josineudo Arruda|M|/Desenvolvimento/ada/templates/attribution_preference/attributionPreference.html
+1685338231|Josineudo Arruda|M|/Desenvolvimento/ada/templates/static/js/attribution_preference/preferred-discipline.js
+1685339359|isabella-66|M|/Desenvolvimento/ada/staff/models.py
+1685339359|isabella-66|M|/Desenvolvimento/ada/staff/views.py
+1685339359|isabella-66|M|/Desenvolvimento/ada/templates/base.html
+1685339359|isabella-66|M|/Desenvolvimento/ada/templates/staff/deadline/deadline_configuration.html
+1685339359|isabella-66|M|/Desenvolvimento/ada/templates/staff/home.html
+1685340294|isabella-66|M|/Desenvolvimento/ada/staff/urls.py
+1685340294|isabella-66|M|/Desenvolvimento/ada/staff/views.py
+1685340294|isabella-66|M|/Desenvolvimento/ada/templates/base.html
+1685340294|isabella-66|M|/Desenvolvimento/ada/templates/staff/deadline/confirm_deadline_configuration.html
+1685340294|isabella-66|M|/Desenvolvimento/ada/templates/staff/professors_list.html
+1685340362|Paulo Kenji|M|/Desenvolvimento/ada/area/migrations/0001_initial.py
+1685340362|Paulo Kenji|M|/Desenvolvimento/ada/area/models.py
+1685340362|Paulo Kenji|M|/Desenvolvimento/ada/attribution_preference/migrations/0001_initial.py
+1685340362|Paulo Kenji|M|/Desenvolvimento/ada/attribution_preference/migrations/0002_initial.py
+1685340362|Paulo Kenji|M|/Desenvolvimento/ada/attribution_preference/migrations/0003_initial.py
+1685340362|Paulo Kenji|M|/Desenvolvimento/ada/class/migrations/0001_initial.py
+1685340362|Paulo Kenji|M|/Desenvolvimento/ada/course/migrations/0001_initial.py
+1685340362|Paulo Kenji|M|/Desenvolvimento/ada/fixMigrations.py
+1685340362|Paulo Kenji|M|/Desenvolvimento/ada/staff/migrations/0001_initial.py
+1685340362|Paulo Kenji|M|/Desenvolvimento/ada/staff/models.py
+1685340362|Paulo Kenji|M|/Desenvolvimento/ada/staff/views.py
+1685340362|Paulo Kenji|M|/Desenvolvimento/ada/templates/base.html
+1685340362|Paulo Kenji|M|/Desenvolvimento/ada/templates/staff/deadline/deadline_configuration.html
+1685340362|Paulo Kenji|M|/Desenvolvimento/ada/timetable/migrations/0001_initial.py
+1685340362|Paulo Kenji|M|/Desenvolvimento/ada/timetable/migrations/0002_initial.py
+1685340362|Paulo Kenji|M|/Desenvolvimento/ada/user/migrations/0001_initial.py
+1685341001|isabella-66|M|/Desenvolvimento/ada/area/models.py
+1685341001|isabella-66|M|/Desenvolvimento/ada/attribution/views.py
+1685341001|isabella-66|M|/Desenvolvimento/ada/attribution_preference/migrations/0003_initial.py
+1685341001|isabella-66|D|/Desenvolvimento/ada/configuration/admin.py
+1685341001|isabella-66|D|/Desenvolvimento/ada/configuration/models.py
+1685341001|isabella-66|M|/Desenvolvimento/ada/setup/urls.py
+1685341318|isabella-66|M|/Desenvolvimento/ada/area/admin.py
+1685341318|isabella-66|M|/Desenvolvimento/ada/area/migrations/0001_initial.py
+1685341318|isabella-66|D|/Desenvolvimento/ada/area/migrations/0002_alter_area_blocks.py
+1685341318|isabella-66|M|/Desenvolvimento/ada/area/models.py
+1685341318|isabella-66|M|/Desenvolvimento/ada/attribution/migrations/0001_initial.py
+1685341318|isabella-66|A|/Desenvolvimento/ada/attribution/migrations/0002_initial.py
+1685341318|isabella-66|M|/Desenvolvimento/ada/attribution_preference/migrations/0001_initial.py
+1685341318|isabella-66|M|/Desenvolvimento/ada/attribution_preference/migrations/0002_initial.py
+1685341318|isabella-66|M|/Desenvolvimento/ada/attribution_preference/migrations/0003_initial.py
+1685341318|isabella-66|M|/Desenvolvimento/ada/class/migrations/0001_initial.py
+1685341318|isabella-66|M|/Desenvolvimento/ada/course/migrations/0001_initial.py
+1685341318|isabella-66|M|/Desenvolvimento/ada/staff/migrations/0001_initial.py
+1685341318|isabella-66|D|/Desenvolvimento/ada/staff/migrations/0002_criteria_number_criteria.py
+1685341318|isabella-66|M|/Desenvolvimento/ada/timetable/migrations/0001_initial.py
+1685341318|isabella-66|M|/Desenvolvimento/ada/timetable/migrations/0002_initial.py
+1685341318|isabella-66|M|/Desenvolvimento/ada/user/migrations/0001_initial.py
+1685341318|isabella-66|D|/Desenvolvimento/ada/user/migrations/0002_academicdegree_history_blocks_alter_user_blocks_and_more.py
+1685341548|isabella-66|M|/Desenvolvimento/ada/templates/staff/professors_list.html
+1685343937|isabella-66|M|/Desenvolvimento/ada/staff/urls.py
+1685343937|isabella-66|M|/Desenvolvimento/ada/templates/base.html
+1685343937|isabella-66|M|/Desenvolvimento/ada/templates/staff/professors_list.html
+1685343937|isabella-66|M|/Desenvolvimento/ada/templates/static/attribution/js/queueSetup.js
+1685343937|isabella-66|A|/Desenvolvimento/ada/templates/static/staff/js/professors_list.js
+1685344415|Paulo Kenji|M|/Desenvolvimento/ada/staff/views.py
+1685344415|Paulo Kenji|M|/Desenvolvimento/ada/templates/staff/deadline/deadline_configuration.html
+1685344791|Josineudo Arruda|M|/Desenvolvimento/ada/attribution_preference/views.py
+1685344791|Josineudo Arruda|M|/Desenvolvimento/ada/templates/attribution_preference/attributionPreference.html
+1685344791|Josineudo Arruda|M|/Desenvolvimento/ada/templates/base.html
+1685344791|Josineudo Arruda|M|/Desenvolvimento/ada/templates/static/css/attribution_preference/attribution_preference.css
+1685344791|Josineudo Arruda|M|/Desenvolvimento/ada/templates/static/css/layout.css
+1685344791|Josineudo Arruda|M|/Desenvolvimento/ada/templates/static/js/attribution_preference/preferred-discipline.js
+1685344915|Josineudo Arruda|M|/Desenvolvimento/ada/templates/base.html
+1685344915|Josineudo Arruda|M|/Desenvolvimento/ada/templates/static/css/layout.css
+1685348157|isabella-66|M|/Desenvolvimento/ada/area/admin.py
+1685348157|isabella-66|M|/Desenvolvimento/ada/area/migrations/0001_initial.py
+1685348157|isabella-66|M|/Desenvolvimento/ada/attribution/migrations/0001_initial.py
+1685348157|isabella-66|M|/Desenvolvimento/ada/attribution/migrations/0002_initial.py
+1685348157|isabella-66|M|/Desenvolvimento/ada/attribution_preference/migrations/0001_initial.py
+1685348157|isabella-66|M|/Desenvolvimento/ada/attribution_preference/migrations/0002_initial.py
+1685348157|isabella-66|M|/Desenvolvimento/ada/attribution_preference/migrations/0003_initial.py
+1685348157|isabella-66|M|/Desenvolvimento/ada/class/migrations/0001_initial.py
+1685348157|isabella-66|M|/Desenvolvimento/ada/course/migrations/0001_initial.py
+1685348157|isabella-66|M|/Desenvolvimento/ada/staff/migrations/0001_initial.py
+1685348157|isabella-66|M|/Desenvolvimento/ada/staff/urls.py
+1685348157|isabella-66|M|/Desenvolvimento/ada/templates/staff/professors_list.html
+1685348157|isabella-66|M|/Desenvolvimento/ada/templates/static/staff/js/professors_list.js
+1685348157|isabella-66|M|/Desenvolvimento/ada/timetable/migrations/0001_initial.py
+1685348157|isabella-66|M|/Desenvolvimento/ada/timetable/migrations/0002_initial.py
+1685348157|isabella-66|M|/Desenvolvimento/ada/user/migrations/0001_initial.py
+1685349258|isabella-66|M|/Desenvolvimento/ada/templates/base.html
+1685349258|isabella-66|M|/Desenvolvimento/ada/templates/staff/professors_list.html
+1685374042|Paulo Kenji|M|/Desenvolvimento/ada/templates/staff/professors_list.html
+1685374042|Paulo Kenji|A|/Desenvolvimento/ada/templates/static/css/staff/professors_list.css
+1685417672|isabella-66|M|/Desenvolvimento/ada/templates/staff/professors_list.html
+1685417672|isabella-66|M|/Desenvolvimento/ada/templates/static/css/staff/professors_list.css
+1685417672|isabella-66|M|/Desenvolvimento/ada/templates/static/staff/js/professors_list.js
+1685424341|isabella-66|A|/Desenvolvimento/ada/area/migrations/0001_initial.py
+1685424341|isabella-66|A|/Desenvolvimento/ada/attribution/migrations/0001_initial.py
+1685424341|isabella-66|A|/Desenvolvimento/ada/attribution/migrations/0002_initial.py
+1685424341|isabella-66|A|/Desenvolvimento/ada/attribution_preference/migrations/0001_initial.py
+1685424341|isabella-66|A|/Desenvolvimento/ada/attribution_preference/migrations/0002_initial.py
+1685424341|isabella-66|A|/Desenvolvimento/ada/attribution_preference/migrations/0003_initial.py
+1685424341|isabella-66|A|/Desenvolvimento/ada/class/migrations/0001_initial.py
+1685424341|isabella-66|A|/Desenvolvimento/ada/course/migrations/0001_initial.py
+1685424341|isabella-66|A|/Desenvolvimento/ada/staff/migrations/0001_initial.py
+1685424341|isabella-66|M|/Desenvolvimento/ada/staff/urls.py
+1685424341|isabella-66|M|/Desenvolvimento/ada/staff/views.py
+1685424341|isabella-66|M|/Desenvolvimento/ada/templates/base.html
+1685424341|isabella-66|M|/Desenvolvimento/ada/templates/staff/professors_list.html
+1685424341|isabella-66|M|/Desenvolvimento/ada/templates/static/staff/js/professors_list.js
+1685424341|isabella-66|A|/Desenvolvimento/ada/timetable/migrations/0001_initial.py
+1685424341|isabella-66|A|/Desenvolvimento/ada/timetable/migrations/0002_initial.py
+1685424341|isabella-66|A|/Desenvolvimento/ada/user/migrations/0001_initial.py
+1685424341|isabella-66|M|/Desenvolvimento/ada/user/models.py
+1685424857|Josineudo Arruda|M|/Desenvolvimento/ada/attribution_preference/urls.py
+1685424857|Josineudo Arruda|M|/Desenvolvimento/ada/attribution_preference/views.py
+1685424857|Josineudo Arruda|M|/Desenvolvimento/ada/course/models.py
+1685424857|Josineudo Arruda|M|/Desenvolvimento/ada/templates/attribution_preference/attributionPreference.html
+1685424857|Josineudo Arruda|M|/Desenvolvimento/ada/templates/attribution_preference/confirmAttributionPreference.html
+1685424857|Josineudo Arruda|M|/Desenvolvimento/ada/templates/base.html
+1685424857|Josineudo Arruda|M|/Desenvolvimento/ada/templates/static/js/attribution_preference/preferred-discipline.js
+1685429399|Paulo Kenji|M|/Desenvolvimento/ada/area/migrations/0001_initial.py
+1685429399|Paulo Kenji|M|/Desenvolvimento/ada/attribution/migrations/0001_initial.py
+1685429399|Paulo Kenji|M|/Desenvolvimento/ada/attribution/migrations/0002_initial.py
+1685429399|Paulo Kenji|M|/Desenvolvimento/ada/attribution_preference/migrations/0001_initial.py
+1685429399|Paulo Kenji|M|/Desenvolvimento/ada/attribution_preference/migrations/0002_initial.py
+1685429399|Paulo Kenji|M|/Desenvolvimento/ada/attribution_preference/migrations/0003_initial.py
+1685429399|Paulo Kenji|M|/Desenvolvimento/ada/class/migrations/0001_initial.py
+1685429399|Paulo Kenji|M|/Desenvolvimento/ada/course/migrations/0001_initial.py
+1685429399|Paulo Kenji|A|/Desenvolvimento/ada/data.json
+1685429399|Paulo Kenji|M|/Desenvolvimento/ada/staff/migrations/0001_initial.py
+1685429399|Paulo Kenji|M|/Desenvolvimento/ada/templates/staff/professors_list.html
+1685429399|Paulo Kenji|M|/Desenvolvimento/ada/templates/static/staff/js/professors_list.js
+1685429399|Paulo Kenji|M|/Desenvolvimento/ada/timetable/migrations/0001_initial.py
+1685429399|Paulo Kenji|M|/Desenvolvimento/ada/timetable/migrations/0002_initial.py
+1685429399|Paulo Kenji|M|/Desenvolvimento/ada/user/migrations/0001_initial.py
+1685431149|Paulo Kenji|M|/Desenvolvimento/ada/staff/views.py
+1685431149|Paulo Kenji|A|/Desenvolvimento/ada/user/migrations/0002_alter_history_birth.py
+1685431149|Paulo Kenji|A|/Desenvolvimento/ada/user/migrations/0003_alter_history_academic_degrees_alter_history_blocks_and_more.py
+1685504594|isabella-66|M|/Desenvolvimento/ada/staff/views.py
+1685504594|isabella-66|M|/Desenvolvimento/ada/templates/staff/professors_list.html
+1685506932|Josineudo Arruda|A|/Desenvolvimento/ada/attribution_preference/migrations/0005_alter_course_preference_priority.py
+1685506932|Josineudo Arruda|M|/Desenvolvimento/ada/attribution_preference/models.py
+1685506932|Josineudo Arruda|M|/Desenvolvimento/ada/attribution_preference/views.py
+1685506932|Josineudo Arruda|A|/Desenvolvimento/ada/course/migrations/0008_alter_course_name_course.py
+1685506932|Josineudo Arruda|M|/Desenvolvimento/ada/templates/attribution_preference/confirmAttributionPreference.html
+1685506932|Josineudo Arruda|M|/Desenvolvimento/ada/templates/base.html
+1685506932|Josineudo Arruda|M|/Desenvolvimento/ada/templates/home.html
+1685506932|Josineudo Arruda|M|/Desenvolvimento/ada/templates/static/js/attribution_preference/preferred-discipline.js
+1685506932|Josineudo Arruda|M|/Desenvolvimento/ada/user/views.py
+1685507892|isabella-66|A|/Desenvolvimento/ada/_class/__init__.py
+1685507892|isabella-66|A|/Desenvolvimento/ada/_class/admin.py
+1685507892|isabella-66|A|/Desenvolvimento/ada/_class/apps.py
+1685507892|isabella-66|A|/Desenvolvimento/ada/_class/migrations/0001_initial.py
+1685507892|isabella-66|A|/Desenvolvimento/ada/_class/migrations/__init__.py
+1685507892|isabella-66|A|/Desenvolvimento/ada/_class/models.py
+1685507892|isabella-66|A|/Desenvolvimento/ada/_class/tests.py
+1685507892|isabella-66|A|/Desenvolvimento/ada/_class/views.py
+1685507892|isabella-66|M|/Desenvolvimento/ada/area/migrations/0001_initial.py
+1685507892|isabella-66|M|/Desenvolvimento/ada/attribution/migrations/0001_initial.py
+1685507892|isabella-66|M|/Desenvolvimento/ada/attribution/migrations/0002_initial.py
+1685507892|isabella-66|M|/Desenvolvimento/ada/attribution_preference/migrations/0001_initial.py
+1685507892|isabella-66|M|/Desenvolvimento/ada/attribution_preference/migrations/0002_initial.py
+1685507892|isabella-66|M|/Desenvolvimento/ada/attribution_preference/migrations/0003_initial.py
+1685507892|isabella-66|D|/Desenvolvimento/ada/class/__init__.py
+1685507892|isabella-66|D|/Desenvolvimento/ada/class/admin.py
+1685507892|isabella-66|D|/Desenvolvimento/ada/class/apps.py
+1685507892|isabella-66|D|/Desenvolvimento/ada/class/migrations/0001_initial.py
+1685507892|isabella-66|D|/Desenvolvimento/ada/class/migrations/__init__.py
+1685507892|isabella-66|D|/Desenvolvimento/ada/class/models.py
+1685507892|isabella-66|D|/Desenvolvimento/ada/class/tests.py
+1685507892|isabella-66|D|/Desenvolvimento/ada/class/views.py
+1685507892|isabella-66|M|/Desenvolvimento/ada/common/processors.py
+1685507892|isabella-66|M|/Desenvolvimento/ada/course/migrations/0001_initial.py
+1685507892|isabella-66|M|/Desenvolvimento/ada/course/models.py
+1685507892|isabella-66|M|/Desenvolvimento/ada/fixMigrations.py
+1685507892|isabella-66|M|/Desenvolvimento/ada/setup/settings.py
+1685507892|isabella-66|M|/Desenvolvimento/ada/staff/admin.py
+1685507892|isabella-66|M|/Desenvolvimento/ada/staff/migrations/0001_initial.py
+1685507892|isabella-66|M|/Desenvolvimento/ada/staff/urls.py
+1685507892|isabella-66|M|/Desenvolvimento/ada/staff/views.py
+1685507892|isabella-66|M|/Desenvolvimento/ada/templates/base.html
+1685507892|isabella-66|A|/Desenvolvimento/ada/templates/staff/classes_list.html
+1685507892|isabella-66|M|/Desenvolvimento/ada/timetable/migrations/0001_initial.py
+1685507892|isabella-66|M|/Desenvolvimento/ada/timetable/migrations/0002_initial.py
+1685507892|isabella-66|M|/Desenvolvimento/ada/timetable/models.py
+1685507892|isabella-66|M|/Desenvolvimento/ada/user/migrations/0001_initial.py
+1685507892|isabella-66|D|/Desenvolvimento/ada/user/migrations/0002_alter_history_birth.py
+1685507892|isabella-66|D|/Desenvolvimento/ada/user/migrations/0003_alter_history_academic_degrees_alter_history_blocks_and_more.py
+1685509997|isabella-66|M|/Desenvolvimento/ada/staff/urls.py
+1685509997|isabella-66|M|/Desenvolvimento/ada/templates/staff/classes_list.html
+1685512523|ana004|M|/Desenvolvimento/ada/staff/urls.py
+1685512523|ana004|M|/Desenvolvimento/ada/staff/views.py
+1685512523|ana004|A|/Desenvolvimento/ada/templates/staff/block/blocks_list.html
+1685512523|ana004|M|/Desenvolvimento/ada/templates/staff/home.html
+1685512523|ana004|A|/Desenvolvimento/ada/templates/static/staff/js/blocks_list.js
+1685516036|ana004|M|/Desenvolvimento/ada/staff/urls.py
+1685516036|ana004|M|/Desenvolvimento/ada/staff/views.py
+1685516036|ana004|A|/Desenvolvimento/ada/templates/staff/block/block_detail.html
+1685516036|ana004|A|/Desenvolvimento/ada/templates/staff/block/blocks_list.html
+1685516036|ana004|M|/Desenvolvimento/ada/templates/staff/home.html
+1685516036|ana004|A|/Desenvolvimento/ada/templates/static/staff/js/blocks_list.js
+1685516350|ana004|M|/Desenvolvimento/ada/staff/urls.py
+1685516350|ana004|M|/Desenvolvimento/ada/staff/views.py
+1685516350|ana004|M|/Desenvolvimento/ada/templates/staff/block/blocks_list.html
+1685518299|isabella-66|M|/Desenvolvimento/ada/staff/urls.py
+1685518299|isabella-66|M|/Desenvolvimento/ada/staff/views.py
+1685518299|isabella-66|M|/Desenvolvimento/ada/templates/staff/classes_list.html
+1685518299|isabella-66|M|/Desenvolvimento/ada/templates/staff/professors_list.html
+1685518299|isabella-66|A|/Desenvolvimento/ada/templates/static/staff/classes_list.js
+1685518299|isabella-66|D|/Desenvolvimento/ada/templates/static/staff/js/professors_list.js
+1685518299|isabella-66|A|/Desenvolvimento/ada/templates/static/staff/professors_list.js
+1685518668|Josineudo Arruda|M|/Desenvolvimento/ada/attribution_preference/views.py
+1685518668|Josineudo Arruda|M|/Desenvolvimento/ada/templates/static/js/attribution_preference/preferred-discipline.js
+1685518668|Josineudo Arruda|M|/Desenvolvimento/ada/user/views.py
+1685525309|Josineudo Arruda|M|/Desenvolvimento/ada/attribution_preference/models.py
+1685525309|Josineudo Arruda|M|/Desenvolvimento/ada/configuration/models.py
+1685525309|Josineudo Arruda|M|/Desenvolvimento/ada/templates/attribution_preference/attributionPreference.html
+1685525309|Josineudo Arruda|M|/Desenvolvimento/ada/templates/static/css/attribution_preference/attribution_preference.css
+1685525309|Josineudo Arruda|M|/Desenvolvimento/ada/timetable/models.py
+1685526274|Josineudo Arruda|M|/Desenvolvimento/ada/attribution_preference/views.py
+1685526274|Josineudo Arruda|M|/Desenvolvimento/ada/templates/attribution_preference/attributionPreference.html
+1685526274|Josineudo Arruda|M|/Desenvolvimento/ada/timetable/models.py
+1685558515|GusttavoSoares|M|/Desenvolvimento/ada/course/models.py
+1685558515|GusttavoSoares|M|/Desenvolvimento/ada/staff/urls.py
+1685558515|GusttavoSoares|M|/Desenvolvimento/ada/staff/views.py
+1685558515|GusttavoSoares|M|/Desenvolvimento/ada/templates/attribution/queueSetup.html
+1685558515|GusttavoSoares|M|/Desenvolvimento/ada/templates/staff/block/block_detail.html
+1685558515|GusttavoSoares|A|/Desenvolvimento/ada/templates/static/css/staff/block/block_detail.css
+1685558515|GusttavoSoares|A|/Desenvolvimento/ada/templates/static/staff/block_detail.js
+1685563398|GusttavoSoares|M|/Desenvolvimento/ada/staff/urls.py
+1685563398|GusttavoSoares|M|/Desenvolvimento/ada/staff/views.py
+1685563398|GusttavoSoares|M|/Desenvolvimento/ada/templates/staff/block/block_detail.html
+1685563398|GusttavoSoares|M|/Desenvolvimento/ada/templates/static/staff/block_detail.js
+1685570757|isabella-66|M|/Desenvolvimento/ada/_class/migrations/0001_initial.py
+1685570757|isabella-66|M|/Desenvolvimento/ada/area/migrations/0001_initial.py
+1685570757|isabella-66|M|/Desenvolvimento/ada/attribution/migrations/0001_initial.py
+1685570757|isabella-66|M|/Desenvolvimento/ada/attribution/migrations/0002_initial.py
+1685570757|isabella-66|M|/Desenvolvimento/ada/attribution_preference/migrations/0001_initial.py
+1685570757|isabella-66|M|/Desenvolvimento/ada/attribution_preference/migrations/0002_initial.py
+1685570757|isabella-66|M|/Desenvolvimento/ada/attribution_preference/migrations/0003_initial.py
+1685570757|isabella-66|M|/Desenvolvimento/ada/course/migrations/0001_initial.py
+1685570757|isabella-66|M|/Desenvolvimento/ada/staff/migrations/0001_initial.py
+1685570757|isabella-66|M|/Desenvolvimento/ada/staff/urls.py
+1685570757|isabella-66|M|/Desenvolvimento/ada/staff/views.py
+1685570757|isabella-66|M|/Desenvolvimento/ada/templates/staff/classes_list.html
+1685570757|isabella-66|M|/Desenvolvimento/ada/templates/staff/professors_list.html
+1685570757|isabella-66|M|/Desenvolvimento/ada/templates/static/staff/classes_list.js
+1685570757|isabella-66|M|/Desenvolvimento/ada/timetable/migrations/0001_initial.py
+1685570757|isabella-66|M|/Desenvolvimento/ada/timetable/migrations/0002_initial.py
+1685570757|isabella-66|M|/Desenvolvimento/ada/user/migrations/0001_initial.py
+1685572093|isabella-66|M|/Desenvolvimento/ada/staff/views.py
+1685573032|isabella-66|M|/Desenvolvimento/ada/course/models.py
+1685573887|isabella-66|M|/Desenvolvimento/ada/course/models.py
+1685577117|isabella-66|M|/Desenvolvimento/ada/exchange/models.py
+1685577307|isabella-66|M|/Desenvolvimento/ada/course/models.py
+1685581279|isabella-66|M|/Desenvolvimento/ada/area/models.py
+1685581279|isabella-66|M|/Desenvolvimento/ada/attribution/models.py
+1685593686|Josineudo Arruda|M|/Desenvolvimento/ada/templates/attribution/queue.html
+1685593686|Josineudo Arruda|M|/Desenvolvimento/ada/templates/attribution/queueSetup.html
+1685593686|Josineudo Arruda|M|/Desenvolvimento/ada/templates/attribution_preference/attributionPreference.html
+1685593686|Josineudo Arruda|M|/Desenvolvimento/ada/templates/attribution_preference/confirmAttributionPreference.html
+1685593686|Josineudo Arruda|D|/Desenvolvimento/ada/templates/base.html
+1685593686|Josineudo Arruda|D|/Desenvolvimento/ada/templates/home.html
+1685593686|Josineudo Arruda|A|/Desenvolvimento/ada/templates/professor/base.html
+1685593686|Josineudo Arruda|A|/Desenvolvimento/ada/templates/professor/home.html
+1685593686|Josineudo Arruda|M|/Desenvolvimento/ada/templates/registration/login.html
+1685593686|Josineudo Arruda|A|/Desenvolvimento/ada/templates/staff/base.html
+1685593857|Josineudo Arruda|M|/Desenvolvimento/ada/templates/professor/base.html
+1685593857|Josineudo Arruda|M|/Desenvolvimento/ada/timetable/models.py
+1685595673|Josineudo Arruda|M|/Desenvolvimento/ada/_class/migrations/0001_initial.py
+1685595673|Josineudo Arruda|M|/Desenvolvimento/ada/area/migrations/0001_initial.py
+1685595673|Josineudo Arruda|M|/Desenvolvimento/ada/area/views.py
+1685595673|Josineudo Arruda|M|/Desenvolvimento/ada/attribution/migrations/0001_initial.py
+1685595673|Josineudo Arruda|M|/Desenvolvimento/ada/attribution/migrations/0002_initial.py
+1685595673|Josineudo Arruda|M|/Desenvolvimento/ada/attribution/views.py
+1685595673|Josineudo Arruda|M|/Desenvolvimento/ada/attribution_preference/migrations/0001_initial.py
+1685595673|Josineudo Arruda|M|/Desenvolvimento/ada/attribution_preference/migrations/0002_initial.py
+1685595673|Josineudo Arruda|M|/Desenvolvimento/ada/attribution_preference/migrations/0003_initial.py
+1685595673|Josineudo Arruda|D|/Desenvolvimento/ada/attribution_preference/migrations/0005_alter_course_preference_priority.py
+1685595673|Josineudo Arruda|M|/Desenvolvimento/ada/course/migrations/0001_initial.py
+1685595673|Josineudo Arruda|D|/Desenvolvimento/ada/course/migrations/0008_alter_course_name_course.py
+1685595673|Josineudo Arruda|A|/Desenvolvimento/ada/professor/__init__.py
+1685595673|Josineudo Arruda|A|/Desenvolvimento/ada/professor/admin.py
+1685595673|Josineudo Arruda|A|/Desenvolvimento/ada/professor/apps.py
+1685595673|Josineudo Arruda|A|/Desenvolvimento/ada/professor/migrations/__init__.py
+1685595673|Josineudo Arruda|A|/Desenvolvimento/ada/professor/models.py
+1685595673|Josineudo Arruda|A|/Desenvolvimento/ada/professor/tests.py
+1685595673|Josineudo Arruda|A|/Desenvolvimento/ada/professor/urls.py
+1685595673|Josineudo Arruda|A|/Desenvolvimento/ada/professor/views.py
+1685595673|Josineudo Arruda|M|/Desenvolvimento/ada/setup/urls.py
+1685595673|Josineudo Arruda|M|/Desenvolvimento/ada/staff/migrations/0001_initial.py
+1685595673|Josineudo Arruda|M|/Desenvolvimento/ada/staff/urls.py
+1685595673|Josineudo Arruda|M|/Desenvolvimento/ada/templates/professor/home.html
+1685595673|Josineudo Arruda|M|/Desenvolvimento/ada/templates/registration/login.html
+1685595673|Josineudo Arruda|M|/Desenvolvimento/ada/templates/staff/block/block_detail.html
+1685595673|Josineudo Arruda|M|/Desenvolvimento/ada/templates/staff/block/blocks_list.html
+1685595673|Josineudo Arruda|M|/Desenvolvimento/ada/templates/staff/classes_list.html
+1685595673|Josineudo Arruda|M|/Desenvolvimento/ada/templates/staff/home.html
+1685595673|Josineudo Arruda|M|/Desenvolvimento/ada/templates/staff/professors_list.html
+1685595673|Josineudo Arruda|M|/Desenvolvimento/ada/timetable/migrations/0001_initial.py
+1685595673|Josineudo Arruda|M|/Desenvolvimento/ada/timetable/migrations/0002_initial.py
+1685595673|Josineudo Arruda|M|/Desenvolvimento/ada/user/migrations/0001_initial.py
+1685599838|Josineudo Arruda|M|/Desenvolvimento/ada/attribution_preference/urls.py
+1685599838|Josineudo Arruda|M|/Desenvolvimento/ada/attribution_preference/views.py
+1685599838|Josineudo Arruda|M|/Desenvolvimento/ada/professor/urls.py
+1685599838|Josineudo Arruda|M|/Desenvolvimento/ada/professor/views.py
+1685599838|Josineudo Arruda|M|/Desenvolvimento/ada/setup/urls.py
+1685599838|Josineudo Arruda|M|/Desenvolvimento/ada/staff/urls.py
+1685599838|Josineudo Arruda|M|/Desenvolvimento/ada/staff/views.py
+1685599838|Josineudo Arruda|D|/Desenvolvimento/ada/templates/attribution_preference/attributionPreference.html
+1685599838|Josineudo Arruda|A|/Desenvolvimento/ada/templates/attribution_preference/attribution_preference.html
+1685599838|Josineudo Arruda|D|/Desenvolvimento/ada/templates/attribution_preference/confirmAttributionPreference.html
+1685599838|Josineudo Arruda|A|/Desenvolvimento/ada/templates/attribution_preference/confirm_attribution_preference.html
+1685599838|Josineudo Arruda|M|/Desenvolvimento/ada/templates/professor/base.html
+1685599838|Josineudo Arruda|D|/Desenvolvimento/ada/templates/professor/home.html
+1685599838|Josineudo Arruda|A|/Desenvolvimento/ada/templates/professor/home_professor.html
+1685599838|Josineudo Arruda|M|/Desenvolvimento/ada/templates/registration/login.html
+1685599838|Josineudo Arruda|M|/Desenvolvimento/ada/templates/staff/base.html
+1685599838|Josineudo Arruda|D|/Desenvolvimento/ada/templates/staff/home.html
+1685599838|Josineudo Arruda|A|/Desenvolvimento/ada/templates/staff/home_staff.html
+1685599838|Josineudo Arruda|M|/Desenvolvimento/ada/user/views.py
+1685599945|Josineudo Arruda|M|/Desenvolvimento/ada/templates/professor/base.html
+1685599945|Josineudo Arruda|M|/Desenvolvimento/ada/templates/staff/base.html
+1685600160|Josineudo Arruda|M|/Desenvolvimento/ada/templates/static/css/layout.css
+1685602661|Paulo Kenji|M|/Desenvolvimento/ada/staff/urls.py
+1685602661|Paulo Kenji|M|/Desenvolvimento/ada/staff/views.py
+1685602661|Paulo Kenji|A|/Desenvolvimento/ada/templates/staff/timetable/criar.html
+1685602661|Paulo Kenji|A|/Desenvolvimento/ada/templates/static/staff/js/create_datatable.js
+1685603343|isabella-66|M|/Desenvolvimento/ada/staff/views.py
+1685603343|isabella-66|M|/Desenvolvimento/ada/templates/staff/base.html
+1685603343|isabella-66|M|/Desenvolvimento/ada/templates/staff/block/block_detail.html
+1685603343|isabella-66|M|/Desenvolvimento/ada/templates/staff/block/blocks_list.html
+1685603343|isabella-66|A|/Desenvolvimento/ada/templates/staff/class/classes_list.html
+1685603343|isabella-66|D|/Desenvolvimento/ada/templates/staff/classes_list.html
+1685603343|isabella-66|A|/Desenvolvimento/ada/templates/staff/professor/professors_list.html
+1685603343|isabella-66|D|/Desenvolvimento/ada/templates/staff/professors_list.html
+1685603343|isabella-66|A|/Desenvolvimento/ada/templates/static/attribution_preference/css/attribution_preference.css
+1685603343|isabella-66|A|/Desenvolvimento/ada/templates/static/attribution_preference/js/preferred-discipline.js
+1685603343|isabella-66|D|/Desenvolvimento/ada/templates/static/css/attribution_preference/attribution_preference.css
+1685603343|isabella-66|D|/Desenvolvimento/ada/templates/static/css/layout.css
+1685603343|isabella-66|D|/Desenvolvimento/ada/templates/static/css/staff/block/block_detail.css
+1685603343|isabella-66|D|/Desenvolvimento/ada/templates/static/css/staff/professors_list.css
+1685603343|isabella-66|D|/Desenvolvimento/ada/templates/static/css/user/login.css
+1685603343|isabella-66|D|/Desenvolvimento/ada/templates/static/js/attribution_preference/preferred-discipline.js
+1685603343|isabella-66|D|/Desenvolvimento/ada/templates/static/js/user/login.js
+1685603343|isabella-66|A|/Desenvolvimento/ada/templates/static/layout.css
+1685603343|isabella-66|A|/Desenvolvimento/ada/templates/static/staff/block/css/block_detail.css
+1685603343|isabella-66|A|/Desenvolvimento/ada/templates/static/staff/block/js/block_detail.js
+1685603343|isabella-66|A|/Desenvolvimento/ada/templates/static/staff/block/js/blocks_list.js
+1685603343|isabella-66|D|/Desenvolvimento/ada/templates/static/staff/block_detail.js
+1685603343|isabella-66|D|/Desenvolvimento/ada/templates/static/staff/blocks_list.js
+1685603343|isabella-66|A|/Desenvolvimento/ada/templates/static/staff/class/classes_list.js
+1685603343|isabella-66|D|/Desenvolvimento/ada/templates/static/staff/classes_list.js
+1685603343|isabella-66|A|/Desenvolvimento/ada/templates/static/staff/professor/css/professors_list.css
+1685603343|isabella-66|A|/Desenvolvimento/ada/templates/static/staff/professor/js/professors_list.js
+1685603343|isabella-66|D|/Desenvolvimento/ada/templates/static/staff/professors_list.js
+1685603343|isabella-66|A|/Desenvolvimento/ada/templates/static/user/css/login.css
+1685603343|isabella-66|A|/Desenvolvimento/ada/templates/static/user/js/login.js
+1685612686|isabella-66|M|/Desenvolvimento/ada/templates/attribution_preference/attribution_preference.html
+1685612686|isabella-66|M|/Desenvolvimento/ada/templates/professor/base.html
+1685612686|isabella-66|M|/Desenvolvimento/ada/templates/registration/login.html
+1685612686|isabella-66|M|/Desenvolvimento/ada/templates/staff/base.html
+1685612686|isabella-66|M|/Desenvolvimento/ada/templates/staff/block/block_detail.html
+1685612686|isabella-66|M|/Desenvolvimento/ada/templates/staff/block/blocks_list.html
+1685612686|isabella-66|M|/Desenvolvimento/ada/templates/staff/class/classes_list.html
+1685612686|isabella-66|M|/Desenvolvimento/ada/templates/staff/home_staff.html
+1685612686|isabella-66|M|/Desenvolvimento/ada/templates/staff/professor/professors_list.html
+1685612686|isabella-66|M|/Desenvolvimento/ada/templates/staff/timetable/criar.html
+1685612686|isabella-66|D|/Desenvolvimento/ada/templates/static/staff/js/create_datatable.js
+1685612686|isabella-66|A|/Desenvolvimento/ada/templates/static/staff/timetable/js/create_timetable.js
+1685615309|isabella-66|M|/Desenvolvimento/ada/staff/urls.py
+1685615309|isabella-66|M|/Desenvolvimento/ada/staff/views.py
+1685615309|isabella-66|M|/Desenvolvimento/ada/templates/staff/base.html
+1685615309|isabella-66|M|/Desenvolvimento/ada/templates/staff/block/block_detail.html
+1685615309|isabella-66|M|/Desenvolvimento/ada/templates/staff/block/blocks_list.html
+1685615309|isabella-66|M|/Desenvolvimento/ada/templates/staff/class/classes_list.html
+1685615309|isabella-66|M|/Desenvolvimento/ada/templates/staff/deadline/confirm_deadline_configuration.html
+1685615309|isabella-66|M|/Desenvolvimento/ada/templates/staff/deadline/deadline_configuration.html
+1685615309|isabella-66|M|/Desenvolvimento/ada/templates/staff/deadline/show_current_deadline.html
+1685615309|isabella-66|A|/Desenvolvimento/ada/templates/static/staff/block/css/block_list.css
+1685615309|isabella-66|D|/Desenvolvimento/ada/templates/static/staff/class/classes_list.js
+1685615309|isabella-66|A|/Desenvolvimento/ada/templates/static/staff/class/css/classes_list.css
+1685615309|isabella-66|A|/Desenvolvimento/ada/templates/static/staff/class/js/classes_list.js
+1685616618|isabella-66|M|/Desenvolvimento/ada/templates/staff/base.html
+1685617248|isabella-66|M|/Desenvolvimento/ada/_class/admin.py
+1685617248|isabella-66|M|/Desenvolvimento/ada/area/admin.py
+1685617248|isabella-66|M|/Desenvolvimento/ada/area/models.py
+1685617248|isabella-66|M|/Desenvolvimento/ada/course/models.py
+1685617248|isabella-66|M|/Desenvolvimento/ada/user/models.py
+1685643406|Paulo Kenji|M|/Desenvolvimento/ada/staff/views.py
+1685643406|Paulo Kenji|M|/Desenvolvimento/ada/templates/staff/base.html
+1685643406|Paulo Kenji|M|/Desenvolvimento/ada/templates/staff/timetable/criar.html
+1685648834|Josineudo Arruda|M|/Desenvolvimento/ada/templates/attribution_preference/attribution_preference.html
+1685648834|Josineudo Arruda|M|/Desenvolvimento/ada/templates/professor/base.html
+1685648834|Josineudo Arruda|M|/Desenvolvimento/ada/templates/staff/base.html
+1685648834|Josineudo Arruda|M|/Desenvolvimento/ada/templates/static/layout.css
+1685675185|isabella-66|D|/Desenvolvimento/ada/_class/__init__.py
+1685675185|isabella-66|D|/Desenvolvimento/ada/_class/admin.py
+1685675185|isabella-66|D|/Desenvolvimento/ada/_class/apps.py
+1685675185|isabella-66|D|/Desenvolvimento/ada/_class/migrations/0001_initial.py
+1685675185|isabella-66|D|/Desenvolvimento/ada/_class/migrations/__init__.py
+1685675185|isabella-66|D|/Desenvolvimento/ada/_class/models.py
+1685675185|isabella-66|D|/Desenvolvimento/ada/_class/tests.py
+1685675185|isabella-66|D|/Desenvolvimento/ada/_class/urls.py
+1685675185|isabella-66|D|/Desenvolvimento/ada/_class/views.py
+1685675185|isabella-66|M|/Desenvolvimento/ada/area/admin.py
+1685675185|isabella-66|M|/Desenvolvimento/ada/area/migrations/0001_initial.py
+1685675185|isabella-66|M|/Desenvolvimento/ada/area/models.py
+1685675185|isabella-66|M|/Desenvolvimento/ada/attribution/migrations/0001_initial.py
+1685675185|isabella-66|M|/Desenvolvimento/ada/attribution/migrations/0002_initial.py
+1685675185|isabella-66|M|/Desenvolvimento/ada/attribution_preference/migrations/0001_initial.py
+1685675185|isabella-66|M|/Desenvolvimento/ada/attribution_preference/migrations/0002_initial.py
+1685675185|isabella-66|M|/Desenvolvimento/ada/attribution_preference/migrations/0003_initial.py
+1685675185|isabella-66|A|/Desenvolvimento/ada/classs/__init__.py
+1685675185|isabella-66|A|/Desenvolvimento/ada/classs/admin.py
+1685675185|isabella-66|A|/Desenvolvimento/ada/classs/apps.py
+1685675185|isabella-66|A|/Desenvolvimento/ada/classs/migrations/0001_initial.py
+1685675185|isabella-66|A|/Desenvolvimento/ada/classs/migrations/__init__.py
+1685675185|isabella-66|A|/Desenvolvimento/ada/classs/models.py
+1685675185|isabella-66|A|/Desenvolvimento/ada/classs/tests.py
+1685675185|isabella-66|A|/Desenvolvimento/ada/classs/urls.py
+1685675185|isabella-66|A|/Desenvolvimento/ada/classs/views.py
+1685675185|isabella-66|M|/Desenvolvimento/ada/course/admin.py
+1685675185|isabella-66|M|/Desenvolvimento/ada/course/migrations/0001_initial.py
+1685675185|isabella-66|M|/Desenvolvimento/ada/course/models.py
+1685675185|isabella-66|M|/Desenvolvimento/ada/fixMigrations.py
+1685675185|isabella-66|M|/Desenvolvimento/ada/setup/settings.py
+1685675185|isabella-66|M|/Desenvolvimento/ada/staff/migrations/0001_initial.py
+1685675185|isabella-66|M|/Desenvolvimento/ada/staff/models.py
+1685675185|isabella-66|M|/Desenvolvimento/ada/staff/tests.py
+1685675185|isabella-66|M|/Desenvolvimento/ada/staff/views.py
+1685675185|isabella-66|D|/Desenvolvimento/ada/templates/staff/block/block_detail.html
+1685675185|isabella-66|D|/Desenvolvimento/ada/templates/staff/block/blocks_list.html
+1685675185|isabella-66|A|/Desenvolvimento/ada/templates/staff/blockk/block_detail.html
+1685675185|isabella-66|A|/Desenvolvimento/ada/templates/staff/blockk/blocks_list.html
+1685675185|isabella-66|D|/Desenvolvimento/ada/templates/staff/class/classes_list.html
+1685675185|isabella-66|A|/Desenvolvimento/ada/templates/staff/classs/classes_list.html
+1685675185|isabella-66|M|/Desenvolvimento/ada/templates/staff/deadline/deadline_configuration.html
+1685675185|isabella-66|D|/Desenvolvimento/ada/templates/static/staff/block/css/block_detail.css
+1685675185|isabella-66|D|/Desenvolvimento/ada/templates/static/staff/block/css/block_list.css
+1685675185|isabella-66|D|/Desenvolvimento/ada/templates/static/staff/block/js/block_detail.js
+1685675185|isabella-66|D|/Desenvolvimento/ada/templates/static/staff/block/js/blocks_list.js
+1685675185|isabella-66|A|/Desenvolvimento/ada/templates/static/staff/blockk/css/block_detail.css
+1685675185|isabella-66|A|/Desenvolvimento/ada/templates/static/staff/blockk/css/block_list.css
+1685675185|isabella-66|A|/Desenvolvimento/ada/templates/static/staff/blockk/js/block_detail.js
+1685675185|isabella-66|A|/Desenvolvimento/ada/templates/static/staff/blockk/js/blocks_list.js
+1685675185|isabella-66|D|/Desenvolvimento/ada/templates/static/staff/class/css/classes_list.css
+1685675185|isabella-66|D|/Desenvolvimento/ada/templates/static/staff/class/js/classes_list.js
+1685675185|isabella-66|A|/Desenvolvimento/ada/templates/static/staff/classs/css/classes_list.css
+1685675185|isabella-66|A|/Desenvolvimento/ada/templates/static/staff/classs/js/classes_list.js
+1685675185|isabella-66|M|/Desenvolvimento/ada/timetable/admin.py
+1685675185|isabella-66|M|/Desenvolvimento/ada/timetable/migrations/0001_initial.py
+1685675185|isabella-66|M|/Desenvolvimento/ada/timetable/migrations/0002_initial.py
+1685675185|isabella-66|M|/Desenvolvimento/ada/timetable/models.py
+1685675185|isabella-66|M|/Desenvolvimento/ada/user/migrations/0001_initial.py
+1685675185|isabella-66|M|/Desenvolvimento/ada/user/models.py
+1685675321|isabella-66|M|/Desenvolvimento/ada/staff/views.py
+1685675954|isabella-66|M|/Desenvolvimento/ada/staff/views.py
+1685675954|isabella-66|M|/Desenvolvimento/ada/templates/staff/blockk/blocks_list.html
+1685675954|isabella-66|A|/Desenvolvimento/ada/templates/staff/timetable/create_timetable.html
+1685675954|isabella-66|D|/Desenvolvimento/ada/templates/staff/timetable/criar.html
+1685680922|Josineudo Arruda|M|/Desenvolvimento/ada/templates/professor/base.html
+1685680922|Josineudo Arruda|M|/Desenvolvimento/ada/templates/staff/base.html
+1685680922|Josineudo Arruda|M|/Desenvolvimento/ada/templates/static/layout.css
+1685680922|Josineudo Arruda|M|/Desenvolvimento/ada/user/admin.py
+1685681515|Josineudo Arruda|M|/Desenvolvimento/ada/user/admin.py
+1685685758|Paulo Kenji|M|/Desenvolvimento/ada/_class/migrations/0001_initial.py
+1685685758|Paulo Kenji|M|/Desenvolvimento/ada/area/migrations/0001_initial.py
+1685685758|Paulo Kenji|M|/Desenvolvimento/ada/attribution/migrations/0001_initial.py
+1685685758|Paulo Kenji|M|/Desenvolvimento/ada/attribution/migrations/0002_initial.py
+1685685758|Paulo Kenji|M|/Desenvolvimento/ada/attribution_preference/migrations/0001_initial.py
+1685685758|Paulo Kenji|M|/Desenvolvimento/ada/attribution_preference/migrations/0002_initial.py
+1685685758|Paulo Kenji|M|/Desenvolvimento/ada/attribution_preference/migrations/0003_initial.py
+1685685758|Paulo Kenji|M|/Desenvolvimento/ada/course/migrations/0001_initial.py
+1685685758|Paulo Kenji|M|/Desenvolvimento/ada/data.json
+1685685758|Paulo Kenji|M|/Desenvolvimento/ada/staff/migrations/0001_initial.py
+1685685758|Paulo Kenji|M|/Desenvolvimento/ada/staff/views.py
+1685685758|Paulo Kenji|M|/Desenvolvimento/ada/templates/staff/timetable/criar.html
+1685685758|Paulo Kenji|M|/Desenvolvimento/ada/timetable/migrations/0001_initial.py
+1685685758|Paulo Kenji|M|/Desenvolvimento/ada/timetable/migrations/0002_initial.py
+1685685758|Paulo Kenji|M|/Desenvolvimento/ada/user/migrations/0001_initial.py
+1685688498|Paulo Kenji|A|/Desenvolvimento/ada/area/migrations/0001_initial.py
+1685688498|Paulo Kenji|A|/Desenvolvimento/ada/attribution/migrations/0001_initial.py
+1685688498|Paulo Kenji|A|/Desenvolvimento/ada/attribution/migrations/0002_initial.py
+1685688498|Paulo Kenji|A|/Desenvolvimento/ada/attribution_preference/migrations/0001_initial.py
+1685688498|Paulo Kenji|A|/Desenvolvimento/ada/attribution_preference/migrations/0002_initial.py
+1685688498|Paulo Kenji|A|/Desenvolvimento/ada/attribution_preference/migrations/0003_initial.py
+1685688498|Paulo Kenji|A|/Desenvolvimento/ada/classs/migrations/0001_initial.py
+1685688498|Paulo Kenji|A|/Desenvolvimento/ada/course/migrations/0001_initial.py
+1685688498|Paulo Kenji|M|/Desenvolvimento/ada/data.json
+1685688498|Paulo Kenji|A|/Desenvolvimento/ada/data1.json
+1685688498|Paulo Kenji|A|/Desenvolvimento/ada/staff/migrations/0001_initial.py
+1685688498|Paulo Kenji|M|/Desenvolvimento/ada/staff/views.py
+1685688498|Paulo Kenji|A|/Desenvolvimento/ada/templates/staff/timetable/cadastrar.html
+1685688498|Paulo Kenji|D|/Desenvolvimento/ada/templates/staff/timetable/create_timetable.html
+1685688498|Paulo Kenji|A|/Desenvolvimento/ada/timetable/migrations/0001_initial.py
+1685688498|Paulo Kenji|A|/Desenvolvimento/ada/timetable/migrations/0002_initial.py
+1685688498|Paulo Kenji|M|/Desenvolvimento/ada/user/admin.py
+1685688498|Paulo Kenji|A|/Desenvolvimento/ada/user/migrations/0001_initial.py
+1685692561|Paulo Kenji|M|/Desenvolvimento/ada/staff/views.py
+1685692561|Paulo Kenji|M|/Desenvolvimento/ada/templates/staff/timetable/cadastrar.html
+1685692561|Paulo Kenji|M|/Desenvolvimento/ada/templates/static/staff/timetable/js/create_timetable.js
+1685728929|ana004|M|/Desenvolvimento/ada/staff/urls.py
+1685728929|ana004|M|/Desenvolvimento/ada/staff/views.py
+1685728929|ana004|M|/Desenvolvimento/ada/templates/staff/blockk/block_detail.html
+1685728929|ana004|M|/Desenvolvimento/ada/templates/static/staff/blockk/js/block_detail.js
+1685826109|ana004|M|/Desenvolvimento/ada/staff/urls.py
+1685826109|ana004|M|/Desenvolvimento/ada/staff/views.py
+1685826109|ana004|M|/Desenvolvimento/ada/templates/staff/blockk/block_detail.html
+1685826109|ana004|M|/Desenvolvimento/ada/templates/static/staff/blockk/js/block_detail.js
+1685830460|GusttavoSoares|M|/Desenvolvimento/ada/templates/staff/blockk/block_detail.html
+1685831295|Paulo Kenji|D|/Desenvolvimento/ada/data1.json
+1685834246|GusttavoSoares|M|/Desenvolvimento/ada/attribution/urls.py
+1685834246|GusttavoSoares|M|/Desenvolvimento/ada/setup/urls.py
+1685834246|GusttavoSoares|M|/Desenvolvimento/ada/staff/urls.py
+1685834246|GusttavoSoares|M|/Desenvolvimento/ada/staff/views.py
+1685834246|GusttavoSoares|A|/Desenvolvimento/ada/templates/staff/queue/queue.html
+1685839948|Josineudo Arruda|A|/CNAME
+1685839962|Josineudo Arruda|D|/CNAME
+1685840016|Josineudo Arruda|A|/CNAME
+1685936792|Josineudo Arruda|M|/Desenvolvimento/ada/attribution_preference/views.py
+1685936792|Josineudo Arruda|M|/Desenvolvimento/ada/professor/views.py
+1685936792|Josineudo Arruda|M|/Desenvolvimento/ada/templates/attribution_preference/attribution_preference.html
+1685936792|Josineudo Arruda|M|/Desenvolvimento/ada/templates/professor/base.html
+1685936792|Josineudo Arruda|M|/Desenvolvimento/ada/templates/staff/base.html
+1685936792|Josineudo Arruda|M|/Desenvolvimento/ada/templates/static/attribution_preference/css/attribution_preference.css
+1685936792|Josineudo Arruda|M|/Desenvolvimento/ada/templates/static/attribution_preference/js/preferred-discipline.js
+1685948295|Josineudo Arruda|M|/Desenvolvimento/ada/templates/attribution_preference/attribution_preference.html
+1685948295|Josineudo Arruda|M|/Desenvolvimento/ada/templates/static/attribution_preference/css/attribution_preference.css
+1685948295|Josineudo Arruda|M|/Desenvolvimento/ada/templates/static/attribution_preference/js/preferred-discipline.js
+1685948295|Josineudo Arruda|M|/Desenvolvimento/ada/templates/static/layout.css
+1685949840|Josineudo Arruda|M|/Desenvolvimento/ada/templates/attribution_preference/attribution_preference.html
+1685949840|Josineudo Arruda|M|/Desenvolvimento/ada/templates/static/attribution_preference/js/preferred-discipline.js
+1685970400|Josineudo Arruda|M|/Desenvolvimento/ada/attribution_preference/views.py
+1685970400|Josineudo Arruda|M|/Desenvolvimento/ada/templates/attribution_preference/attribution_preference.html
+1685970400|Josineudo Arruda|D|/Desenvolvimento/ada/templates/static/attribution_preference/js/preferred-discipline.js
+1685970400|Josineudo Arruda|A|/Desenvolvimento/ada/templates/static/attribution_preference/js/preferred_discipline.js
+1685992831|Paulo Kenji|M|/Desenvolvimento/ada/area/admin.py
+1685992831|Paulo Kenji|M|/Desenvolvimento/ada/area/migrations/0001_initial.py
+1685992831|Paulo Kenji|M|/Desenvolvimento/ada/area/models.py
+1685992831|Paulo Kenji|M|/Desenvolvimento/ada/attribution/migrations/0001_initial.py
+1685992831|Paulo Kenji|M|/Desenvolvimento/ada/attribution/migrations/0002_initial.py
+1685992831|Paulo Kenji|M|/Desenvolvimento/ada/attribution_preference/migrations/0001_initial.py
+1685992831|Paulo Kenji|M|/Desenvolvimento/ada/attribution_preference/migrations/0002_initial.py
+1685992831|Paulo Kenji|M|/Desenvolvimento/ada/attribution_preference/migrations/0003_initial.py
+1685992831|Paulo Kenji|M|/Desenvolvimento/ada/classs/migrations/0001_initial.py
+1685992831|Paulo Kenji|M|/Desenvolvimento/ada/course/migrations/0001_initial.py
+1685992831|Paulo Kenji|M|/Desenvolvimento/ada/staff/migrations/0001_initial.py
+1685992831|Paulo Kenji|M|/Desenvolvimento/ada/staff/urls.py
+1685992831|Paulo Kenji|M|/Desenvolvimento/ada/staff/views.py
+1685992831|Paulo Kenji|D|/Desenvolvimento/ada/templates/staff/timetable/cadastrar.html
+1685992831|Paulo Kenji|A|/Desenvolvimento/ada/templates/staff/timetable/confirm_timetable.html
+1685992831|Paulo Kenji|A|/Desenvolvimento/ada/templates/staff/timetable/register.html
+1685992831|Paulo Kenji|M|/Desenvolvimento/ada/templates/static/staff/timetable/js/create_timetable.js
+1685992831|Paulo Kenji|M|/Desenvolvimento/ada/timetable/migrations/0001_initial.py
+1685992831|Paulo Kenji|M|/Desenvolvimento/ada/timetable/migrations/0002_initial.py
+1685992831|Paulo Kenji|M|/Desenvolvimento/ada/timetable/models.py
+1685992831|Paulo Kenji|M|/Desenvolvimento/ada/user/migrations/0001_initial.py
+1686081310|Josineudo Arruda|M|/Desenvolvimento/ada/templates/attribution_preference/attribution_preference.html
+1686081310|Josineudo Arruda|M|/Desenvolvimento/ada/templates/static/attribution_preference/css/attribution_preference.css
+1686081310|Josineudo Arruda|M|/Desenvolvimento/ada/templates/static/attribution_preference/js/preferred_discipline.js
+1686131366|Josineudo Arruda|M|/Desenvolvimento/ada/area/migrations/0001_initial.py
+1686131366|Josineudo Arruda|M|/Desenvolvimento/ada/attribution/migrations/0001_initial.py
+1686131366|Josineudo Arruda|M|/Desenvolvimento/ada/attribution/migrations/0002_initial.py
+1686131366|Josineudo Arruda|M|/Desenvolvimento/ada/attribution_preference/migrations/0001_initial.py
+1686131366|Josineudo Arruda|M|/Desenvolvimento/ada/attribution_preference/migrations/0002_initial.py
+1686131366|Josineudo Arruda|M|/Desenvolvimento/ada/attribution_preference/migrations/0003_initial.py
+1686131366|Josineudo Arruda|M|/Desenvolvimento/ada/attribution_preference/views.py
+1686131366|Josineudo Arruda|M|/Desenvolvimento/ada/classs/migrations/0001_initial.py
+1686131366|Josineudo Arruda|M|/Desenvolvimento/ada/common/validator/validator.py
+1686131366|Josineudo Arruda|M|/Desenvolvimento/ada/course/migrations/0001_initial.py
+1686131366|Josineudo Arruda|M|/Desenvolvimento/ada/data.json
+1686131366|Josineudo Arruda|M|/Desenvolvimento/ada/staff/migrations/0001_initial.py
+1686131366|Josineudo Arruda|M|/Desenvolvimento/ada/templates/attribution_preference/attribution_preference.html
+1686131366|Josineudo Arruda|M|/Desenvolvimento/ada/templates/static/attribution_preference/css/attribution_preference.css
+1686131366|Josineudo Arruda|M|/Desenvolvimento/ada/templates/static/attribution_preference/js/preferred_discipline.js
+1686131366|Josineudo Arruda|M|/Desenvolvimento/ada/timetable/migrations/0001_initial.py
+1686131366|Josineudo Arruda|M|/Desenvolvimento/ada/timetable/migrations/0002_initial.py
+1686131366|Josineudo Arruda|M|/Desenvolvimento/ada/timetable/models.py
+1686131366|Josineudo Arruda|M|/Desenvolvimento/ada/user/migrations/0001_initial.py
+1686165938|Paulo Kenji|A|/Desenvolvimento/ada/.vscode/settings.json
+1686165938|Paulo Kenji|M|/Desenvolvimento/ada/staff/urls.py
+1686165938|Paulo Kenji|M|/Desenvolvimento/ada/staff/views.py
+1686165938|Paulo Kenji|D|/Desenvolvimento/ada/templates/staff/timetable/confirm_timetable.html
+1686165938|Paulo Kenji|M|/Desenvolvimento/ada/templates/staff/timetable/register.html
+1686165938|Paulo Kenji|A|/Desenvolvimento/ada/templates/staff/timetable/show_timetable.html
+1686165938|Paulo Kenji|A|/Desenvolvimento/ada/templates/staff/timetable/timetables.html
+1686165938|Paulo Kenji|M|/Desenvolvimento/ada/templates/static/staff/timetable/js/create_timetable.js
+1686165938|Paulo Kenji|A|/Desenvolvimento/ada/timetable/migrations/0003_alter_timetable_course.py
+1686165938|Paulo Kenji|M|/Desenvolvimento/ada/timetable/models.py
+1686201298|Josineudo Arruda|M|/Desenvolvimento/ada/templates/static/attribution_preference/js/preferred_discipline.js
+1686210252|Josineudo Arruda|M|/Desenvolvimento/ada/templates/attribution_preference/attribution_preference.html
+1686210252|Josineudo Arruda|M|/Desenvolvimento/ada/templates/professor/base.html
+1686210252|Josineudo Arruda|M|/Desenvolvimento/ada/templates/static/attribution_preference/js/preferred_discipline.js
+1686219033|isabella-66|M|/Desenvolvimento/ada/area/migrations/0001_initial.py
+1686219033|isabella-66|M|/Desenvolvimento/ada/attribution/migrations/0001_initial.py
+1686219033|isabella-66|M|/Desenvolvimento/ada/attribution/migrations/0002_initial.py
+1686219033|isabella-66|M|/Desenvolvimento/ada/attribution_preference/migrations/0001_initial.py
+1686219033|isabella-66|M|/Desenvolvimento/ada/attribution_preference/migrations/0002_initial.py
+1686219033|isabella-66|M|/Desenvolvimento/ada/attribution_preference/migrations/0003_initial.py
+1686219033|isabella-66|M|/Desenvolvimento/ada/classs/migrations/0001_initial.py
+1686219033|isabella-66|M|/Desenvolvimento/ada/course/migrations/0001_initial.py
+1686219033|isabella-66|M|/Desenvolvimento/ada/staff/migrations/0001_initial.py
+1686219033|isabella-66|M|/Desenvolvimento/ada/timetable/admin.py
+1686219033|isabella-66|M|/Desenvolvimento/ada/timetable/migrations/0001_initial.py
+1686219033|isabella-66|M|/Desenvolvimento/ada/timetable/migrations/0002_initial.py
+1686219033|isabella-66|M|/Desenvolvimento/ada/timetable/models.py
+1686219033|isabella-66|M|/Desenvolvimento/ada/user/migrations/0001_initial.py
+1686245761|isabella-66|M|/Desenvolvimento/ada/area/migrations/0001_initial.py
+1686245761|isabella-66|M|/Desenvolvimento/ada/attribution/migrations/0001_initial.py
+1686245761|isabella-66|M|/Desenvolvimento/ada/attribution/migrations/0002_initial.py
+1686245761|isabella-66|M|/Desenvolvimento/ada/attribution_preference/migrations/0001_initial.py
+1686245761|isabella-66|M|/Desenvolvimento/ada/attribution_preference/migrations/0002_initial.py
+1686245761|isabella-66|M|/Desenvolvimento/ada/attribution_preference/migrations/0003_initial.py
+1686245761|isabella-66|M|/Desenvolvimento/ada/classs/migrations/0001_initial.py
+1686245761|isabella-66|M|/Desenvolvimento/ada/course/migrations/0001_initial.py
+1686245761|isabella-66|M|/Desenvolvimento/ada/staff/migrations/0001_initial.py
+1686245761|isabella-66|M|/Desenvolvimento/ada/templates/staff/classs/classes_list.html
+1686245761|isabella-66|M|/Desenvolvimento/ada/timetable/migrations/0001_initial.py
+1686245761|isabella-66|M|/Desenvolvimento/ada/timetable/migrations/0002_initial.py
+1686245761|isabella-66|M|/Desenvolvimento/ada/user/migrations/0001_initial.py
+1686281802|isabella-66|A|/Desenvolvimento/ada/area/migrations/0002_alter_area_acronym_alter_blockk_acronym.py
+1686281802|isabella-66|M|/Desenvolvimento/ada/area/models.py
+1686281802|isabella-66|M|/Desenvolvimento/ada/course/models.py
+1686281839|Paulo Kenji|M|/Desenvolvimento/ada/area/migrations/0001_initial.py
+1686281839|Paulo Kenji|M|/Desenvolvimento/ada/area/models.py
+1686281839|Paulo Kenji|M|/Desenvolvimento/ada/attribution/migrations/0001_initial.py
+1686281839|Paulo Kenji|M|/Desenvolvimento/ada/attribution/migrations/0002_initial.py
+1686281839|Paulo Kenji|A|/Desenvolvimento/ada/attribution/task.py
+1686281839|Paulo Kenji|M|/Desenvolvimento/ada/attribution/views.py
+1686281839|Paulo Kenji|M|/Desenvolvimento/ada/attribution_preference/migrations/0001_initial.py
+1686281839|Paulo Kenji|M|/Desenvolvimento/ada/attribution_preference/migrations/0002_initial.py
+1686281839|Paulo Kenji|M|/Desenvolvimento/ada/attribution_preference/migrations/0003_initial.py
+1686281839|Paulo Kenji|M|/Desenvolvimento/ada/attribution_preference/models.py
+1686281839|Paulo Kenji|M|/Desenvolvimento/ada/classs/migrations/0001_initial.py
+1686281839|Paulo Kenji|M|/Desenvolvimento/ada/common/validator/validator.py
+1686281839|Paulo Kenji|M|/Desenvolvimento/ada/course/migrations/0001_initial.py
+1686281839|Paulo Kenji|M|/Desenvolvimento/ada/course/models.py
+1686281839|Paulo Kenji|M|/Desenvolvimento/ada/data.json
+1686281839|Paulo Kenji|M|/Desenvolvimento/ada/setup/celery.py
+1686281839|Paulo Kenji|M|/Desenvolvimento/ada/setup/settings.py
+1686281839|Paulo Kenji|M|/Desenvolvimento/ada/staff/migrations/0001_initial.py
+1686281839|Paulo Kenji|M|/Desenvolvimento/ada/staff/urls.py
+1686281839|Paulo Kenji|M|/Desenvolvimento/ada/staff/views.py
+1686281839|Paulo Kenji|A|/Desenvolvimento/ada/templates/staff/attribution/attribution_configuration.html
+1686281839|Paulo Kenji|A|/Desenvolvimento/ada/templates/staff/attribution/attribution_configuration_confirm.html
+1686281839|Paulo Kenji|A|/Desenvolvimento/ada/templates/static/staff/attribution/css/attribution_configuration.css
+1686281839|Paulo Kenji|A|/Desenvolvimento/ada/templates/static/staff/attribution/js/attribution_configuration_confirm.js
+1686281839|Paulo Kenji|M|/Desenvolvimento/ada/timetable/migrations/0001_initial.py
+1686281839|Paulo Kenji|M|/Desenvolvimento/ada/timetable/migrations/0002_initial.py
+1686281839|Paulo Kenji|M|/Desenvolvimento/ada/user/migrations/0001_initial.py
+1686283422|isabella-66|M|/Desenvolvimento/ada/area/migrations/0001_initial.py
+1686283422|isabella-66|D|/Desenvolvimento/ada/area/migrations/0002_alter_area_acronym_alter_blockk_acronym.py
+1686283422|isabella-66|M|/Desenvolvimento/ada/area/models.py
+1686283422|isabella-66|M|/Desenvolvimento/ada/attribution/migrations/0001_initial.py
+1686283422|isabella-66|M|/Desenvolvimento/ada/attribution/migrations/0002_initial.py
+1686283422|isabella-66|M|/Desenvolvimento/ada/attribution_preference/migrations/0001_initial.py
+1686283422|isabella-66|M|/Desenvolvimento/ada/attribution_preference/migrations/0002_initial.py
+1686283422|isabella-66|M|/Desenvolvimento/ada/attribution_preference/migrations/0003_initial.py
+1686283422|isabella-66|M|/Desenvolvimento/ada/classs/migrations/0001_initial.py
+1686283422|isabella-66|M|/Desenvolvimento/ada/common/processors.py
+1686283422|isabella-66|M|/Desenvolvimento/ada/common/validator/validator.py
+1686283422|isabella-66|M|/Desenvolvimento/ada/course/migrations/0001_initial.py
+1686283422|isabella-66|M|/Desenvolvimento/ada/course/models.py
+1686283422|isabella-66|M|/Desenvolvimento/ada/staff/admin.py
+1686283422|isabella-66|M|/Desenvolvimento/ada/staff/migrations/0001_initial.py
+1686283422|isabella-66|M|/Desenvolvimento/ada/staff/models.py
+1686283422|isabella-66|M|/Desenvolvimento/ada/timetable/migrations/0001_initial.py
+1686283422|isabella-66|M|/Desenvolvimento/ada/timetable/migrations/0002_initial.py
+1686283422|isabella-66|M|/Desenvolvimento/ada/timetable/models.py
+1686283422|isabella-66|M|/Desenvolvimento/ada/user/migrations/0001_initial.py
+1686284085|isabella-66|M|/Desenvolvimento/ada/area/models.py
+1686284085|isabella-66|M|/Desenvolvimento/ada/course/models.py
+1686284178|Paulo Kenji|A|/Desenvolvimento/ada/area/migrations/0001_initial.py
+1686284178|Paulo Kenji|A|/Desenvolvimento/ada/attribution/migrations/0001_initial.py
+1686284178|Paulo Kenji|A|/Desenvolvimento/ada/attribution/migrations/0002_initial.py
+1686284178|Paulo Kenji|A|/Desenvolvimento/ada/attribution_preference/migrations/0001_initial.py
+1686284178|Paulo Kenji|A|/Desenvolvimento/ada/attribution_preference/migrations/0002_initial.py
+1686284178|Paulo Kenji|A|/Desenvolvimento/ada/attribution_preference/migrations/0003_initial.py
+1686284178|Paulo Kenji|A|/Desenvolvimento/ada/classs/migrations/0001_initial.py
+1686284178|Paulo Kenji|M|/Desenvolvimento/ada/common/validator/validator.py
+1686284178|Paulo Kenji|A|/Desenvolvimento/ada/course/migrations/0001_initial.py
+1686284178|Paulo Kenji|A|/Desenvolvimento/ada/staff/migrations/0001_initial.py
+1686284178|Paulo Kenji|M|/Desenvolvimento/ada/templates/staff/attribution/attribution_configuration.html
+1686284178|Paulo Kenji|A|/Desenvolvimento/ada/timetable/migrations/0001_initial.py
+1686284178|Paulo Kenji|A|/Desenvolvimento/ada/timetable/migrations/0002_initial.py
+1686284178|Paulo Kenji|A|/Desenvolvimento/ada/user/migrations/0001_initial.py
+1686284958|isabella-66|M|/Desenvolvimento/ada/area/models.py
+1686284958|isabella-66|M|/Desenvolvimento/ada/classs/models.py
+1686284958|isabella-66|M|/Desenvolvimento/ada/course/models.py
+1686284958|isabella-66|M|/Desenvolvimento/ada/user/models.py
+1686303594|Josineudo Arruda|M|/Desenvolvimento/ada/attribution_preference/urls.py
+1686303594|Josineudo Arruda|M|/Desenvolvimento/ada/attribution_preference/views.py
+1686303594|Josineudo Arruda|M|/Desenvolvimento/ada/templates/attribution_preference/attribution_preference.html
+1686303594|Josineudo Arruda|A|/Desenvolvimento/ada/templates/attribution_preference/confirm_attribution_preference copy.html
+1686303594|Josineudo Arruda|D|/Desenvolvimento/ada/templates/attribution_preference/confirm_attribution_preference.html
+1686303594|Josineudo Arruda|A|/Desenvolvimento/ada/templates/attribution_preference/courses_attribution_preference.html
+1686303594|Josineudo Arruda|M|/Desenvolvimento/ada/templates/static/attribution_preference/css/attribution_preference.css
+1686303594|Josineudo Arruda|A|/Desenvolvimento/ada/templates/static/attribution_preference/css/attribution_preference_courses.css
+1686303594|Josineudo Arruda|A|/Desenvolvimento/ada/templates/static/attribution_preference/js/preferred_availability.js
+1686303594|Josineudo Arruda|A|/Desenvolvimento/ada/templates/static/attribution_preference/js/preferred_courses.js
+1686303594|Josineudo Arruda|D|/Desenvolvimento/ada/templates/static/attribution_preference/js/preferred_discipline.js
+1686307027|isabella-66|A|/Desenvolvimento/ada/area/migrations/0001_initial.py
+1686307027|isabella-66|A|/Desenvolvimento/ada/attribution/migrations/0001_initial.py
+1686307027|isabella-66|A|/Desenvolvimento/ada/attribution/migrations/0002_initial.py
+1686307027|isabella-66|A|/Desenvolvimento/ada/attribution_preference/migrations/0001_initial.py
+1686307027|isabella-66|A|/Desenvolvimento/ada/attribution_preference/migrations/0002_initial.py
+1686307027|isabella-66|A|/Desenvolvimento/ada/attribution_preference/migrations/0003_initial.py
+1686307027|isabella-66|A|/Desenvolvimento/ada/classs/migrations/0001_initial.py
+1686307027|isabella-66|M|/Desenvolvimento/ada/classs/models.py
+1686307027|isabella-66|A|/Desenvolvimento/ada/course/migrations/0001_initial.py
+1686307027|isabella-66|A|/Desenvolvimento/ada/course/migrations/0002_alter_course_acronym_alter_course_name_course.py
+1686307027|isabella-66|M|/Desenvolvimento/ada/course/models.py
+1686307027|isabella-66|M|/Desenvolvimento/ada/data.json
+1686307027|isabella-66|M|/Desenvolvimento/ada/staff/admin.py
+1686307027|isabella-66|A|/Desenvolvimento/ada/staff/migrations/0001_initial.py
+1686307027|isabella-66|M|/Desenvolvimento/ada/staff/models.py
+1686307027|isabella-66|A|/Desenvolvimento/ada/timetable/migrations/0001_initial.py
+1686307027|isabella-66|A|/Desenvolvimento/ada/timetable/migrations/0002_initial.py
+1686307027|isabella-66|A|/Desenvolvimento/ada/user/migrations/0001_initial.py
+1686307027|isabella-66|M|/Desenvolvimento/ada/user/models.py
+1686319210|Josineudo Arruda|A|/Desenvolvimento/ada/area/migrations/0001_initial.py
+1686319210|Josineudo Arruda|A|/Desenvolvimento/ada/attribution/migrations/0001_initial.py
+1686319210|Josineudo Arruda|A|/Desenvolvimento/ada/attribution/migrations/0002_initial.py
+1686319210|Josineudo Arruda|A|/Desenvolvimento/ada/attribution_preference/migrations/0001_initial.py
+1686319210|Josineudo Arruda|A|/Desenvolvimento/ada/attribution_preference/migrations/0002_initial.py
+1686319210|Josineudo Arruda|A|/Desenvolvimento/ada/attribution_preference/migrations/0003_initial.py
+1686319210|Josineudo Arruda|A|/Desenvolvimento/ada/classs/migrations/0001_initial.py
+1686319210|Josineudo Arruda|A|/Desenvolvimento/ada/course/migrations/0001_initial.py
+1686319210|Josineudo Arruda|A|/Desenvolvimento/ada/staff/migrations/0001_initial.py
+1686319210|Josineudo Arruda|M|/Desenvolvimento/ada/templates/attribution_preference/attribution_preference.html
+1686319210|Josineudo Arruda|M|/Desenvolvimento/ada/templates/attribution_preference/courses_attribution_preference.html
+1686319210|Josineudo Arruda|M|/Desenvolvimento/ada/templates/static/attribution_preference/css/attribution_preference.css
+1686319210|Josineudo Arruda|M|/Desenvolvimento/ada/templates/static/attribution_preference/js/preferred_availability.js
+1686319210|Josineudo Arruda|M|/Desenvolvimento/ada/templates/static/attribution_preference/js/preferred_courses.js
+1686319210|Josineudo Arruda|A|/Desenvolvimento/ada/timetable/migrations/0001_initial.py
+1686319210|Josineudo Arruda|A|/Desenvolvimento/ada/timetable/migrations/0002_initial.py
+1686319210|Josineudo Arruda|A|/Desenvolvimento/ada/user/migrations/0001_initial.py
+1686337946|isabella-66|M|/Desenvolvimento/ada/data.json
+1686342974|isabella-66|M|/Desenvolvimento/ada/data.json
+1686348936|isabella-66|M|/Desenvolvimento/ada/data.json
+1686348936|isabella-66|M|/Desenvolvimento/ada/templates/staff/blockk/blocks_list.html
+1686348936|isabella-66|M|/Desenvolvimento/ada/templates/staff/classs/classes_list.html
+1686348936|isabella-66|M|/Desenvolvimento/ada/templates/static/staff/classs/js/classes_list.js
+1686362757|isabella-66|M|/Desenvolvimento/ada/staff/urls.py
+1686362757|isabella-66|M|/Desenvolvimento/ada/staff/views.py
+1686362757|isabella-66|M|/Desenvolvimento/ada/templates/staff/classs/classes_list.html
+1686362757|isabella-66|M|/Desenvolvimento/ada/templates/static/staff/classs/js/classes_list.js
+1686389800|isabella-66|M|/Desenvolvimento/ada/staff/urls.py
+1686389800|isabella-66|M|/Desenvolvimento/ada/staff/views.py
+1686389800|isabella-66|M|/Desenvolvimento/ada/templates/staff/classs/classes_list.html
+1686389800|isabella-66|M|/Desenvolvimento/ada/templates/static/staff/classs/js/classes_list.js
+1686390945|isabella-66|M|/Desenvolvimento/ada/templates/staff/classs/classes_list.html
+1686390945|isabella-66|M|/Desenvolvimento/ada/templates/static/staff/classs/js/classes_list.js
+1686392303|isabella-66|M|/Desenvolvimento/ada/data.json
+1686392303|isabella-66|M|/Desenvolvimento/ada/templates/static/staff/classs/js/classes_list.js
+1686397038|isabella-66|M|/Desenvolvimento/ada/staff/views.py
+1686397038|isabella-66|M|/Desenvolvimento/ada/templates/staff/blockk/blocks_list.html
+1686397038|isabella-66|M|/Desenvolvimento/ada/templates/static/staff/blockk/js/blocks_list.js
+1686399396|isabella-66|M|/Desenvolvimento/ada/templates/staff/blockk/block_detail.html
+1686399396|isabella-66|M|/Desenvolvimento/ada/templates/static/staff/blockk/js/block_detail.js
+1686432805|ana004|M|/Desenvolvimento/ada/staff/urls.py
+1686432805|ana004|M|/Desenvolvimento/ada/staff/views.py
+1686432805|ana004|M|/Desenvolvimento/ada/templates/staff/blockk/block_detail.html
+1686436678|Paulo Kenji|M|/Desenvolvimento/ada/.vscode/settings.json
+1686436678|Paulo Kenji|M|/Desenvolvimento/ada/area/migrations/0001_initial.py
+1686436678|Paulo Kenji|M|/Desenvolvimento/ada/attribution/migrations/0001_initial.py
+1686436678|Paulo Kenji|M|/Desenvolvimento/ada/attribution/migrations/0002_initial.py
+1686436678|Paulo Kenji|A|/Desenvolvimento/ada/attribution/migrations/0003_teacherqueueposition_blockk.py
+1686436678|Paulo Kenji|M|/Desenvolvimento/ada/attribution/models.py
+1686436678|Paulo Kenji|M|/Desenvolvimento/ada/attribution/task.py
+1686436678|Paulo Kenji|M|/Desenvolvimento/ada/attribution/urls.py
+1686436678|Paulo Kenji|M|/Desenvolvimento/ada/attribution/views.py
+1686436678|Paulo Kenji|M|/Desenvolvimento/ada/attribution_preference/migrations/0001_initial.py
+1686436678|Paulo Kenji|M|/Desenvolvimento/ada/attribution_preference/migrations/0002_initial.py
+1686436678|Paulo Kenji|M|/Desenvolvimento/ada/attribution_preference/migrations/0003_initial.py
+1686436678|Paulo Kenji|M|/Desenvolvimento/ada/classs/migrations/0001_initial.py
+1686436678|Paulo Kenji|M|/Desenvolvimento/ada/course/migrations/0001_initial.py
+1686436678|Paulo Kenji|M|/Desenvolvimento/ada/professor/views.py
+1686436678|Paulo Kenji|M|/Desenvolvimento/ada/staff/migrations/0001_initial.py
+1686436678|Paulo Kenji|M|/Desenvolvimento/ada/staff/urls.py
+1686436678|Paulo Kenji|A|/Desenvolvimento/ada/templates/attribution/attribution.html
+1686436678|Paulo Kenji|M|/Desenvolvimento/ada/templates/attribution/queueSetup.html
+1686436678|Paulo Kenji|M|/Desenvolvimento/ada/templates/professor/home_professor.html
+1686436678|Paulo Kenji|M|/Desenvolvimento/ada/templates/staff/attribution/attribution_configuration.html
+1686436678|Paulo Kenji|A|/Desenvolvimento/ada/templates/staff/attribution/attribution_configuration_index.html
+1686436678|Paulo Kenji|M|/Desenvolvimento/ada/templates/staff/deadline/deadline_configuration.html
+1686436678|Paulo Kenji|M|/Desenvolvimento/ada/templates/staff/home_staff.html
+1686436678|Paulo Kenji|M|/Desenvolvimento/ada/templates/staff/timetable/register.html
+1686436678|Paulo Kenji|M|/Desenvolvimento/ada/templates/static/attribution/js/queueSetup.js
+1686436678|Paulo Kenji|M|/Desenvolvimento/ada/templates/static/staff/timetable/js/create_timetable.js
+1686436678|Paulo Kenji|M|/Desenvolvimento/ada/timetable/migrations/0001_initial.py
+1686436678|Paulo Kenji|M|/Desenvolvimento/ada/timetable/migrations/0002_initial.py
+1686436678|Paulo Kenji|M|/Desenvolvimento/ada/user/migrations/0001_initial.py
+1686436771|Paulo Kenji|M|/Desenvolvimento/ada/attribution/admin.py
+1686436771|Paulo Kenji|M|/Desenvolvimento/ada/attribution/task.py
+1686436771|Paulo Kenji|M|/Desenvolvimento/ada/attribution/views.py
+1686436809|Paulo Kenji|M|/Desenvolvimento/ada/staff/views.py
+1686437580|isabella-66|M|/Desenvolvimento/ada/data.json
+1686453883|Paulo Kenji|M|/Desenvolvimento/ada/area/migrations/0001_initial.py
+1686453883|Paulo Kenji|M|/Desenvolvimento/ada/attribution/migrations/0001_initial.py
+1686453883|Paulo Kenji|M|/Desenvolvimento/ada/attribution/migrations/0002_initial.py
+1686453883|Paulo Kenji|D|/Desenvolvimento/ada/attribution/migrations/0003_teacherqueueposition_blockk.py
+1686453883|Paulo Kenji|M|/Desenvolvimento/ada/attribution/models.py
+1686453883|Paulo Kenji|M|/Desenvolvimento/ada/attribution/views.py
+1686453883|Paulo Kenji|M|/Desenvolvimento/ada/attribution_preference/migrations/0001_initial.py
+1686453883|Paulo Kenji|M|/Desenvolvimento/ada/attribution_preference/migrations/0002_initial.py
+1686453883|Paulo Kenji|M|/Desenvolvimento/ada/attribution_preference/migrations/0003_initial.py
+1686453883|Paulo Kenji|M|/Desenvolvimento/ada/classs/migrations/0001_initial.py
+1686453883|Paulo Kenji|M|/Desenvolvimento/ada/course/migrations/0001_initial.py
+1686453883|Paulo Kenji|M|/Desenvolvimento/ada/staff/migrations/0001_initial.py
+1686453883|Paulo Kenji|M|/Desenvolvimento/ada/staff/models.py
+1686453883|Paulo Kenji|M|/Desenvolvimento/ada/templates/attribution/queueSetup.html
+1686453883|Paulo Kenji|M|/Desenvolvimento/ada/templates/static/attribution/js/queueSetup.js
+1686453883|Paulo Kenji|M|/Desenvolvimento/ada/templates/static/staff/timetable/js/create_timetable.js
+1686453883|Paulo Kenji|M|/Desenvolvimento/ada/timetable/migrations/0001_initial.py
+1686453883|Paulo Kenji|M|/Desenvolvimento/ada/timetable/migrations/0002_initial.py
+1686453883|Paulo Kenji|M|/Desenvolvimento/ada/user/migrations/0001_initial.py
+1686453883|Paulo Kenji|A|/Desenvolvimento/ada/user/migrations/0002_user_is_professor.py
+1686453883|Paulo Kenji|M|/Desenvolvimento/ada/user/models.py
+1686453908|Paulo Kenji|M|/Desenvolvimento/ada/staff/views.py
+1686454631|isabella-66|M|/Desenvolvimento/ada/area/models.py
+1686454631|isabella-66|M|/Desenvolvimento/ada/staff/views.py
+1686454631|isabella-66|M|/Desenvolvimento/ada/templates/professor/home_professor.html
+1686454631|isabella-66|M|/Desenvolvimento/ada/templates/staff/base.html
+1686454631|isabella-66|M|/Desenvolvimento/ada/templates/staff/classs/classes_list.html
+1686454631|isabella-66|M|/Desenvolvimento/ada/templates/staff/timetable/register.html
+1686454631|isabella-66|M|/Desenvolvimento/ada/templates/staff/timetable/show_timetable.html
+1686454631|isabella-66|M|/Desenvolvimento/ada/templates/staff/timetable/timetables.html
+1686454631|isabella-66|M|/Desenvolvimento/ada/templates/static/staff/timetable/js/create_timetable.js
+1686454631|isabella-66|A|/Desenvolvimento/ada/templates/static/staff/timetable/js/timetables.js
+1686454631|isabella-66|M|/Desenvolvimento/ada/timetable/models.py
+1686454631|isabella-66|A|/Desenvolvimento/ada/user/migrations/0002_remove_history_blocks.py
+1686454631|isabella-66|M|/Desenvolvimento/ada/user/models.py
+1686456126|isabella-66|M|/Desenvolvimento/ada/area/migrations/0001_initial.py
+1686456126|isabella-66|M|/Desenvolvimento/ada/attribution/migrations/0001_initial.py
+1686456126|isabella-66|M|/Desenvolvimento/ada/attribution/migrations/0002_initial.py
+1686456126|isabella-66|M|/Desenvolvimento/ada/attribution/models.py
+1686456126|isabella-66|M|/Desenvolvimento/ada/attribution_preference/migrations/0001_initial.py
+1686456126|isabella-66|M|/Desenvolvimento/ada/attribution_preference/migrations/0002_initial.py
+1686456126|isabella-66|M|/Desenvolvimento/ada/attribution_preference/migrations/0003_initial.py
+1686456126|isabella-66|M|/Desenvolvimento/ada/classs/migrations/0001_initial.py
+1686456126|isabella-66|M|/Desenvolvimento/ada/course/migrations/0001_initial.py
+1686456126|isabella-66|M|/Desenvolvimento/ada/data.json
+1686456126|isabella-66|M|/Desenvolvimento/ada/staff/migrations/0001_initial.py
+1686456126|isabella-66|M|/Desenvolvimento/ada/timetable/migrations/0001_initial.py
+1686456126|isabella-66|M|/Desenvolvimento/ada/timetable/migrations/0002_initial.py
+1686456126|isabella-66|M|/Desenvolvimento/ada/user/migrations/0001_initial.py
+1686456126|isabella-66|D|/Desenvolvimento/ada/user/migrations/0002_remove_history_blocks.py
+1686456126|isabella-66|D|/Desenvolvimento/ada/user/migrations/0002_user_is_professor.py
+1686457738|isabella-66|M|/Desenvolvimento/ada/attribution/views.py
+1686457738|isabella-66|M|/Desenvolvimento/ada/attribution_preference/views.py
+1686457738|isabella-66|M|/Desenvolvimento/ada/professor/views.py
+1686457738|isabella-66|M|/Desenvolvimento/ada/staff/views.py
+1686457738|isabella-66|M|/Desenvolvimento/ada/user/views.py
+1686469203|Paulo Kenji|M|/Desenvolvimento/ada/professor/views.py
+1686469203|Paulo Kenji|M|/Desenvolvimento/ada/staff/views.py
+1686469203|Paulo Kenji|M|/Desenvolvimento/ada/templates/professor/home_professor.html
+1686469203|Paulo Kenji|A|/Desenvolvimento/ada/templates/static/professor/css/home_professor.css
+1686469203|Paulo Kenji|A|/Desenvolvimento/ada/templates/static/professor/js/home_professor.js
+1686471584|Josineudo Arruda|M|/Desenvolvimento/ada/attribution_preference/models.py
+1686471584|Josineudo Arruda|M|/Desenvolvimento/ada/attribution_preference/views.py
+1686471584|Josineudo Arruda|M|/Desenvolvimento/ada/templates/attribution_preference/attribution_preference.html
+1686471584|Josineudo Arruda|M|/Desenvolvimento/ada/templates/attribution_preference/courses_attribution_preference.html
+1686471584|Josineudo Arruda|M|/Desenvolvimento/ada/templates/static/attribution_preference/css/attribution_preference.css
+1686471584|Josineudo Arruda|M|/Desenvolvimento/ada/templates/static/attribution_preference/css/attribution_preference_courses.css
+1686471584|Josineudo Arruda|M|/Desenvolvimento/ada/templates/static/attribution_preference/js/preferred_availability.js
+1686471584|Josineudo Arruda|M|/Desenvolvimento/ada/templates/static/attribution_preference/js/preferred_courses.js
+1686471584|Josineudo Arruda|M|/Desenvolvimento/ada/templates/static/layout.css
+1686524680|Paulo Kenji|M|/Desenvolvimento/ada/setup/settings.py
+1686524680|Paulo Kenji|M|/Desenvolvimento/ada/staff/views.py
+1686524680|Paulo Kenji|M|/Desenvolvimento/ada/templates/staff/attribution/attribution_configuration_index.html
+1686524680|Paulo Kenji|M|/Desenvolvimento/ada/templates/static/professor/js/home_professor.js
+1686524680|Paulo Kenji|A|/Desenvolvimento/ada/templates/static/staff/attribution/css/attribution_configuration_index.css
+1686524680|Paulo Kenji|A|/Desenvolvimento/ada/templates/static/staff/attribution/js/attribution_configuration_index.js
+1686526042|isabella-66|M|/Desenvolvimento/ada/staff/views.py
+1686526042|isabella-66|M|/Desenvolvimento/ada/templates/staff/timetable/register.html
+1686526042|isabella-66|M|/Desenvolvimento/ada/templates/staff/timetable/timetables.html
+1686532605|GusttavoSoares|M|/Desenvolvimento/ada/templates/attribution_preference/attribution_preference.html
+1686532605|GusttavoSoares|M|/Desenvolvimento/ada/templates/static/attribution_preference/js/preferred_availability.js
+1686533442|Paulo Kenji|M|/Desenvolvimento/ada/setup/settings.py
+1686533442|Paulo Kenji|M|/Desenvolvimento/ada/setup/urls.py
+1686533442|Paulo Kenji|M|/Desenvolvimento/ada/templates/professor/base.html
+1686533442|Paulo Kenji|M|/Desenvolvimento/ada/templates/staff/base.html
+1686533442|Paulo Kenji|A|/Desenvolvimento/ada/templates/static/images/icon_logout_ada.png
+1686533442|Paulo Kenji|M|/Desenvolvimento/ada/user/urls.py
+1686533442|Paulo Kenji|M|/Desenvolvimento/ada/user/views.py
+1686533879|isabella-66|A|/Desenvolvimento/ada/templates/home.html
+1686533879|isabella-66|M|/Desenvolvimento/ada/templates/staff/blockk/blocks_list.html
+1686533879|isabella-66|M|/Desenvolvimento/ada/templates/staff/timetable/show_timetable.html
+1686541924|GusttavoSoares|M|/Desenvolvimento/ada/attribution_preference/views.py
+1686541924|GusttavoSoares|M|/Desenvolvimento/ada/templates/attribution_preference/attribution_preference.html
+1686541924|GusttavoSoares|M|/Desenvolvimento/ada/templates/static/attribution_preference/js/preferred_availability.js
+1686672759|Paulo Kenji|M|/Desenvolvimento/ada/course/models.py
+1686672759|Paulo Kenji|M|/Desenvolvimento/ada/timetable/admin.py
+1686672759|Paulo Kenji|M|/Desenvolvimento/ada/timetable/models.py
+1686673149|Paulo Kenji|M|/Desenvolvimento/ada/staff/views.py
+1686673149|Paulo Kenji|M|/Desenvolvimento/ada/templates/staff/attribution/attribution_configuration_confirm.html
+1686682705|GusttavoSoares|M|/Desenvolvimento/ada/staff/views.py
+1686682705|GusttavoSoares|A|/Desenvolvimento/ada/timetable/migrations/0003_remove_timetable_day_remove_timetable_timeslot_and_more.py
+1686717236|Josineudo Arruda|M|/Desenvolvimento/ada/attribution_preference/views.py
+1686717236|Josineudo Arruda|M|/Desenvolvimento/ada/templates/attribution_preference/courses_attribution_preference.html
+1686717236|Josineudo Arruda|M|/Desenvolvimento/ada/templates/static/attribution_preference/css/attribution_preference.css
+1686717236|Josineudo Arruda|M|/Desenvolvimento/ada/templates/static/attribution_preference/js/preferred_availability.js
+1686717236|Josineudo Arruda|M|/Desenvolvimento/ada/templates/static/attribution_preference/js/preferred_courses.js
+1686717236|Josineudo Arruda|A|/Desenvolvimento/ada/timetable/migrations/0003_remove_timetable_day_remove_timetable_timeslot_and_more.py
+1686728929|isabella-66|M|/Desenvolvimento/ada/area/migrations/0001_initial.py
+1686728929|isabella-66|M|/Desenvolvimento/ada/attribution/migrations/0001_initial.py
+1686728929|isabella-66|M|/Desenvolvimento/ada/attribution/migrations/0002_initial.py
+1686728929|isabella-66|M|/Desenvolvimento/ada/attribution_preference/migrations/0001_initial.py
+1686728929|isabella-66|M|/Desenvolvimento/ada/attribution_preference/migrations/0002_initial.py
+1686728929|isabella-66|M|/Desenvolvimento/ada/attribution_preference/migrations/0003_initial.py
+1686728929|isabella-66|M|/Desenvolvimento/ada/classs/migrations/0001_initial.py
+1686728929|isabella-66|M|/Desenvolvimento/ada/course/migrations/0001_initial.py
+1686728929|isabella-66|M|/Desenvolvimento/ada/staff/migrations/0001_initial.py
+1686728929|isabella-66|M|/Desenvolvimento/ada/staff/views.py
+1686728929|isabella-66|M|/Desenvolvimento/ada/templates/staff/timetable/show_timetable.html
+1686728929|isabella-66|M|/Desenvolvimento/ada/templates/staff/timetable/timetables.html
+1686728929|isabella-66|M|/Desenvolvimento/ada/timetable/migrations/0001_initial.py
+1686728929|isabella-66|M|/Desenvolvimento/ada/timetable/migrations/0002_initial.py
+1686728929|isabella-66|D|/Desenvolvimento/ada/timetable/migrations/0003_remove_timetable_day_remove_timetable_timeslot_and_more.py
+1686728929|isabella-66|M|/Desenvolvimento/ada/user/migrations/0001_initial.py
+1686744105|Paulo Kenji|M|/Desenvolvimento/ada/templates/static/professor/js/home_professor.js
+1686744127|Paulo Kenji|M|/Desenvolvimento/ada/staff/views.py
+1686744127|Paulo Kenji|M|/Desenvolvimento/ada/timetable/admin.py
+1686745253|Paulo Kenji|M|/Desenvolvimento/ada/staff/views.py
+1686747567|isabella-66|M|/Desenvolvimento/ada/staff/urls.py
+1686747567|isabella-66|M|/Desenvolvimento/ada/staff/views.py
+1686747567|isabella-66|M|/Desenvolvimento/ada/templates/staff/timetable/show_timetable.html
+1686747567|isabella-66|M|/Desenvolvimento/ada/templates/staff/timetable/timetables.html
+1686747567|isabella-66|A|/Desenvolvimento/ada/templates/static/staff/timetable/js/show_timetable.js
+1686747567|isabella-66|M|/Desenvolvimento/ada/templates/static/staff/timetable/js/timetables.js
+1686749151|isabella-66|M|/Desenvolvimento/ada/area/migrations/0001_initial.py
+1686749151|isabella-66|M|/Desenvolvimento/ada/attribution/migrations/0001_initial.py
+1686749151|isabella-66|M|/Desenvolvimento/ada/attribution/migrations/0002_initial.py
+1686749151|isabella-66|M|/Desenvolvimento/ada/attribution_preference/migrations/0001_initial.py
+1686749151|isabella-66|M|/Desenvolvimento/ada/attribution_preference/migrations/0002_initial.py
+1686749151|isabella-66|M|/Desenvolvimento/ada/attribution_preference/migrations/0003_initial.py
+1686749151|isabella-66|M|/Desenvolvimento/ada/classs/migrations/0001_initial.py
+1686749151|isabella-66|M|/Desenvolvimento/ada/course/migrations/0001_initial.py
+1686749151|isabella-66|M|/Desenvolvimento/ada/staff/migrations/0001_initial.py
+1686749151|isabella-66|M|/Desenvolvimento/ada/timetable/migrations/0001_initial.py
+1686749151|isabella-66|M|/Desenvolvimento/ada/timetable/migrations/0002_initial.py
+1686749151|isabella-66|M|/Desenvolvimento/ada/user/migrations/0001_initial.py
+1686750724|Paulo Kenji|M|/Desenvolvimento/ada/staff/views.py
+1686750830|isabella-66|M|/Desenvolvimento/ada/staff/views.py
+1686753206|Paulo Kenji|M|/Desenvolvimento/ada/staff/views.py
+1686757813|Josineudo Arruda|M|/Desenvolvimento/ada/attribution_preference/views.py
+1686757813|Josineudo Arruda|M|/Desenvolvimento/ada/templates/attribution_preference/courses_attribution_preference.html
+1686757813|Josineudo Arruda|M|/Desenvolvimento/ada/templates/static/attribution_preference/js/preferred_availability.js
+1686757813|Josineudo Arruda|M|/Desenvolvimento/ada/templates/static/attribution_preference/js/preferred_courses.js
+1686760270|GusttavoSoares|D|/Desenvolvimento/ada/templates/attribution_preference/confirm_attribution_preference copy.html
+1686760270|GusttavoSoares|A|/Desenvolvimento/ada/templates/attribution_preference/confirm_attribution_preference_copy.html
+1686771838|Paulo Kenji|M|/Desenvolvimento/ada/staff/views.py
+1686805791|Josineudo Arruda|M|/Desenvolvimento/ada/attribution_preference/views.py
+1686805791|Josineudo Arruda|M|/Desenvolvimento/ada/templates/attribution_preference/courses_attribution_preference.html
+1686805791|Josineudo Arruda|M|/Desenvolvimento/ada/templates/static/attribution_preference/js/preferred_courses.js
+1686805955|Josineudo Arruda|M|/Desenvolvimento/ada/templates/static/attribution_preference/js/preferred_courses.js
+1686806665|GusttavoSoares|M|/Desenvolvimento/ada/templates/static/attribution_preference/js/preferred_courses.js
+1686806929|Paulo Kenji|A|/Desenvolvimento/ada/templates/static/user/js/home.js
+1686806929|Paulo Kenji|A|/Desenvolvimento/ada/templates/user/home.html
+1686806929|Paulo Kenji|M|/Desenvolvimento/ada/user/views.py
+1686807364|Paulo Kenji|M|/Desenvolvimento/ada/templates/staff/attribution/attribution_configuration_confirm.html
+1686807397|Paulo Kenji|M|/Desenvolvimento/ada/staff/views.py
+1686807823|Paulo Kenji|M|/Desenvolvimento/ada/attribution_preference/admin.py
+1686807823|Paulo Kenji|M|/Desenvolvimento/ada/attribution_preference/models.py
+1686808854|Paulo Kenji|M|/.gitignore
+1686849056|GusttavoSoares|M|/Desenvolvimento/ada/attribution_preference/views.py
+1686849056|GusttavoSoares|M|/Desenvolvimento/ada/templates/attribution_preference/courses_attribution_preference.html
+1686849056|GusttavoSoares|M|/Desenvolvimento/ada/templates/static/attribution_preference/js/preferred_courses.js
+1686852415|GusttavoSoares|M|/Desenvolvimento/ada/templates/static/attribution_preference/js/preferred_courses.js
+1686853636|GusttavoSoares|M|/Desenvolvimento/ada/templates/static/attribution_preference/js/preferred_courses.js
+1686856608|Paulo Kenji|M|/Desenvolvimento/ada/templates/staff/home_staff.html
+1686856608|Paulo Kenji|A|/Desenvolvimento/ada/templates/static/staff/home/css/home_staff.css
+1686856608|Paulo Kenji|A|/Desenvolvimento/ada/templates/static/staff/home/js/home_staff.js
+1686856669|Paulo Kenji|M|/Desenvolvimento/ada/attribution/urls.py
+1686856669|Paulo Kenji|M|/Desenvolvimento/ada/attribution/views.py
+1686856669|Paulo Kenji|M|/Desenvolvimento/ada/setup/settings.py
+1686856669|Paulo Kenji|A|/Desenvolvimento/ada/templates/attribution/email_test.html
+1686856669|Paulo Kenji|A|/Desenvolvimento/ada/templates/static/email/message.html
+1686856683|Paulo Kenji|M|/Desenvolvimento/ada/setup/urls.py
+1686857265|Paulo Kenji|M|/Desenvolvimento/ada/templates/static/attribution/js/queueSetup.js
+1686857566|Paulo Kenji|M|/Desenvolvimento/ada/attribution/views.py
+1686860937|GusttavoSoares|A|/Desenvolvimento/ada/attribution_preference/migrations/0004_remove_course_preference_count_course_and_more.py
+1686860937|GusttavoSoares|M|/Desenvolvimento/ada/templates/static/attribution_preference/js/preferred_availability.js
+1686889954|Paulo Kenji|M|/Desenvolvimento/ada/staff/urls.py
+1686889954|Paulo Kenji|M|/Desenvolvimento/ada/staff/views.py
+1686892137|Paulo Kenji|M|/Desenvolvimento/ada/attribution/task.py
+1686892137|Paulo Kenji|M|/Desenvolvimento/ada/attribution/views.py
+1686892137|Paulo Kenji|M|/Desenvolvimento/ada/templates/staff/attribution/attribution_configuration.html
+1686892137|Paulo Kenji|M|/Desenvolvimento/ada/templates/staff/base.html
+1686925186|Paulo Kenji|M|/Desenvolvimento/ada/attribution/task.py
+1686925186|Paulo Kenji|M|/Desenvolvimento/ada/attribution/views.py
+1686925216|Paulo Kenji|M|/Desenvolvimento/ada/templates/attribution/attribution.html
+1686925238|Paulo Kenji|M|/Desenvolvimento/ada/attribution_preference/models.py
+1686925284|Paulo Kenji|M|/Desenvolvimento/ada/templates/static/professor/js/home_professor.js
+1686925383|Paulo Kenji|M|/Desenvolvimento/ada/attribution/views.py
+1686974230|Josineudo Arruda|M|/Desenvolvimento/ada/area/migrations/0001_initial.py
+1686974230|Josineudo Arruda|M|/Desenvolvimento/ada/attribution/migrations/0001_initial.py
+1686974230|Josineudo Arruda|M|/Desenvolvimento/ada/attribution/migrations/0002_initial.py
+1686974230|Josineudo Arruda|M|/Desenvolvimento/ada/attribution_preference/admin.py
+1686974230|Josineudo Arruda|M|/Desenvolvimento/ada/attribution_preference/migrations/0001_initial.py
+1686974230|Josineudo Arruda|M|/Desenvolvimento/ada/attribution_preference/migrations/0002_initial.py
+1686974230|Josineudo Arruda|M|/Desenvolvimento/ada/attribution_preference/migrations/0003_initial.py
+1686974230|Josineudo Arruda|M|/Desenvolvimento/ada/attribution_preference/models.py
+1686974230|Josineudo Arruda|M|/Desenvolvimento/ada/attribution_preference/views.py
+1686974230|Josineudo Arruda|M|/Desenvolvimento/ada/classs/migrations/0001_initial.py
+1686974230|Josineudo Arruda|M|/Desenvolvimento/ada/course/migrations/0001_initial.py
+1686974230|Josineudo Arruda|M|/Desenvolvimento/ada/staff/migrations/0001_initial.py
+1686974230|Josineudo Arruda|D|/Desenvolvimento/ada/templates/attribution_preference/confirm_attribution_preference copy.html
+1686974230|Josineudo Arruda|A|/Desenvolvimento/ada/templates/attribution_preference/confirm_attribution_preference.html
+1686974230|Josineudo Arruda|M|/Desenvolvimento/ada/templates/attribution_preference/courses_attribution_preference.html
+1686974230|Josineudo Arruda|M|/Desenvolvimento/ada/templates/static/attribution_preference/js/preferred_availability.js
+1686974230|Josineudo Arruda|M|/Desenvolvimento/ada/templates/static/attribution_preference/js/preferred_courses.js
+1686974230|Josineudo Arruda|M|/Desenvolvimento/ada/timetable/migrations/0001_initial.py
+1686974230|Josineudo Arruda|M|/Desenvolvimento/ada/timetable/migrations/0002_initial.py
+1686974230|Josineudo Arruda|M|/Desenvolvimento/ada/user/migrations/0001_initial.py
+1686976509|isabella-66|M|/Desenvolvimento/ada/area/migrations/0001_initial.py
+1686976509|isabella-66|M|/Desenvolvimento/ada/attribution/migrations/0001_initial.py
+1686976509|isabella-66|M|/Desenvolvimento/ada/attribution/migrations/0002_initial.py
+1686976509|isabella-66|M|/Desenvolvimento/ada/attribution_preference/migrations/0001_initial.py
+1686976509|isabella-66|M|/Desenvolvimento/ada/attribution_preference/migrations/0002_initial.py
+1686976509|isabella-66|M|/Desenvolvimento/ada/attribution_preference/migrations/0003_initial.py
+1686976509|isabella-66|M|/Desenvolvimento/ada/classs/migrations/0001_initial.py
+1686976509|isabella-66|M|/Desenvolvimento/ada/course/migrations/0001_initial.py
+1686976509|isabella-66|M|/Desenvolvimento/ada/staff/migrations/0001_initial.py
+1686976509|isabella-66|M|/Desenvolvimento/ada/timetable/migrations/0001_initial.py
+1686976509|isabella-66|M|/Desenvolvimento/ada/timetable/migrations/0002_initial.py
+1686976509|isabella-66|M|/Desenvolvimento/ada/user/migrations/0001_initial.py
+1686976509|isabella-66|M|/Desenvolvimento/ada/user/models.py
+1686976694|Josineudo Arruda|D|/Desenvolvimento/ada/area/migrations/0001_initial.py
+1686976694|Josineudo Arruda|D|/Desenvolvimento/ada/attribution/migrations/0001_initial.py
+1686976694|Josineudo Arruda|D|/Desenvolvimento/ada/attribution/migrations/0002_initial.py
+1686976694|Josineudo Arruda|D|/Desenvolvimento/ada/attribution_preference/migrations/0001_initial.py
+1686976694|Josineudo Arruda|D|/Desenvolvimento/ada/attribution_preference/migrations/0002_initial.py
+1686976694|Josineudo Arruda|D|/Desenvolvimento/ada/attribution_preference/migrations/0003_initial.py
+1686976694|Josineudo Arruda|D|/Desenvolvimento/ada/attribution_preference/migrations/0004_remove_course_preference_count_course_and_more.py
+1686976694|Josineudo Arruda|D|/Desenvolvimento/ada/classs/migrations/0001_initial.py
+1686976694|Josineudo Arruda|D|/Desenvolvimento/ada/course/migrations/0001_initial.py
+1686976694|Josineudo Arruda|D|/Desenvolvimento/ada/staff/migrations/0001_initial.py
+1686976694|Josineudo Arruda|D|/Desenvolvimento/ada/timetable/migrations/0001_initial.py
+1686976694|Josineudo Arruda|D|/Desenvolvimento/ada/timetable/migrations/0002_initial.py
+1686976694|Josineudo Arruda|D|/Desenvolvimento/ada/user/migrations/0001_initial.py
+1686980486|Paulo Kenji|M|/Desenvolvimento/ada/attribution/task.py
+1686980486|Paulo Kenji|M|/Desenvolvimento/ada/attribution/views.py
+1686981587|Paulo Kenji|M|/Desenvolvimento/ada/templates/attribution/attribution.html
+1686981587|Paulo Kenji|M|/Desenvolvimento/ada/timetable/models.py
+1686981587|Paulo Kenji|M|/Desenvolvimento/ada/user/models.py
+1686984523|isabella-66|A|/Desenvolvimento/ada/area/migrations/0001_initial.py
+1686984523|isabella-66|A|/Desenvolvimento/ada/attribution/migrations/0001_initial.py
+1686984523|isabella-66|A|/Desenvolvimento/ada/attribution/migrations/0002_initial.py
+1686984523|isabella-66|A|/Desenvolvimento/ada/attribution_preference/migrations/0001_initial.py
+1686984523|isabella-66|A|/Desenvolvimento/ada/attribution_preference/migrations/0002_initial.py
+1686984523|isabella-66|A|/Desenvolvimento/ada/attribution_preference/migrations/0003_initial.py
+1686984523|isabella-66|A|/Desenvolvimento/ada/classs/migrations/0001_initial.py
+1686984523|isabella-66|A|/Desenvolvimento/ada/course/migrations/0001_initial.py
+1686984523|isabella-66|A|/Desenvolvimento/ada/staff/migrations/0001_initial.py
+1686984523|isabella-66|A|/Desenvolvimento/ada/templates/static/images/atribuicao.png
+1686984523|isabella-66|A|/Desenvolvimento/ada/templates/user/base.html
+1686984523|isabella-66|M|/Desenvolvimento/ada/templates/user/home.html
+1686984523|isabella-66|A|/Desenvolvimento/ada/timetable/migrations/0001_initial.py
+1686984523|isabella-66|A|/Desenvolvimento/ada/timetable/migrations/0002_initial.py
+1686984523|isabella-66|A|/Desenvolvimento/ada/user/migrations/0001_initial.py
+1686986226|Josineudo Arruda|A|/Desenvolvimento/ada/area/migrations/0001_initial.py
+1686986226|Josineudo Arruda|A|/Desenvolvimento/ada/attribution/migrations/0001_initial.py
+1686986226|Josineudo Arruda|A|/Desenvolvimento/ada/attribution/migrations/0002_initial.py
+1686986226|Josineudo Arruda|A|/Desenvolvimento/ada/attribution_preference/migrations/0001_initial.py
+1686986226|Josineudo Arruda|A|/Desenvolvimento/ada/attribution_preference/migrations/0002_initial.py
+1686986226|Josineudo Arruda|A|/Desenvolvimento/ada/attribution_preference/migrations/0003_initial.py
+1686986226|Josineudo Arruda|M|/Desenvolvimento/ada/attribution_preference/views.py
+1686986226|Josineudo Arruda|A|/Desenvolvimento/ada/classs/migrations/0001_initial.py
+1686986226|Josineudo Arruda|A|/Desenvolvimento/ada/course/migrations/0001_initial.py
+1686986226|Josineudo Arruda|M|/Desenvolvimento/ada/setup/settings.py
+1686986226|Josineudo Arruda|A|/Desenvolvimento/ada/staff/migrations/0001_initial.py
+1686986226|Josineudo Arruda|D|/Desenvolvimento/ada/templates/attribution_preference/confirm_attribution_preference_copy.html
+1686986226|Josineudo Arruda|M|/Desenvolvimento/ada/templates/attribution_preference/courses_attribution_preference.html
+1686986226|Josineudo Arruda|M|/Desenvolvimento/ada/templates/static/attribution_preference/js/preferred_courses.js
+1686986226|Josineudo Arruda|A|/Desenvolvimento/ada/timetable/migrations/0001_initial.py
+1686986226|Josineudo Arruda|A|/Desenvolvimento/ada/timetable/migrations/0002_initial.py
+1686986226|Josineudo Arruda|A|/Desenvolvimento/ada/user/migrations/0001_initial.py
+1686986226|Josineudo Arruda|A|/Desenvolvimento/ada/user/migrations/0002_alter_job_name_job.py
+1686986226|Josineudo Arruda|M|/Desenvolvimento/ada/user/models.py
+1686989170|Josineudo Arruda|M|/Desenvolvimento/ada/templates/attribution_preference/courses_attribution_preference.html
+1686992387|Paulo Kenji|M|/Desenvolvimento/ada/attribution/task.py
+1686992387|Paulo Kenji|M|/Desenvolvimento/ada/attribution/views.py
+1686992387|Paulo Kenji|M|/Desenvolvimento/ada/templates/attribution/attribution.html
+1686992387|Paulo Kenji|A|/Desenvolvimento/ada/templates/static/attribution/js/attribution.js
+1687019543|Paulo Kenji|D|/Desenvolvimento/ada/templates/staff/deadline/confirm_deadline_configuration.html
+1687019543|Paulo Kenji|D|/Desenvolvimento/ada/templates/staff/deadline/deadline_configuration.html
+1687019543|Paulo Kenji|D|/Desenvolvimento/ada/templates/staff/deadline/show_current_deadline.html
+1687034577|Paulo Kenji|M|/Desenvolvimento/ada/templates/attribution/attribution.html
+1687034593|Paulo Kenji|M|/Desenvolvimento/ada/staff/views.py
+1687034626|Paulo Kenji|M|/Desenvolvimento/ada/attribution/task.py
+1687034626|Paulo Kenji|M|/Desenvolvimento/ada/attribution/views.py
+1687036236|Paulo Kenji|M|/Desenvolvimento/ada/templates/attribution/queueSetup.html
+1687039344|Paulo Kenji|M|/Desenvolvimento/ada/templates/attribution/queueSetup.html
+1687039344|Paulo Kenji|M|/Desenvolvimento/ada/templates/static/attribution/js/queueSetup.js
+1687040453|GusttavoSoares|M|/Desenvolvimento/ada/attribution/urls.py
+1687040453|GusttavoSoares|M|/Desenvolvimento/ada/attribution/views.py
+1687040453|GusttavoSoares|M|/Desenvolvimento/ada/setup/urls.py
+1687040453|GusttavoSoares|M|/Desenvolvimento/ada/staff/urls.py
+1687040453|GusttavoSoares|M|/Desenvolvimento/ada/staff/views.py
+1687040453|GusttavoSoares|D|/Desenvolvimento/ada/templates/attribution/queue.html
+1687040453|GusttavoSoares|D|/Desenvolvimento/ada/templates/attribution/queueSetup.html
+1687040453|GusttavoSoares|M|/Desenvolvimento/ada/templates/staff/blockk/block_detail.html
+1687040453|GusttavoSoares|M|/Desenvolvimento/ada/templates/staff/queue/queue.html
+1687040453|GusttavoSoares|A|/Desenvolvimento/ada/templates/staff/queue/queueSetup.html
+1687040453|GusttavoSoares|A|/Desenvolvimento/ada/timetable/migrations/0003_alter_timetable_user_user.py
+1687040729|GusttavoSoares|M|/Desenvolvimento/ada/staff/urls.py
+1687040729|GusttavoSoares|M|/Desenvolvimento/ada/staff/views.py
+1687040729|GusttavoSoares|M|/Desenvolvimento/ada/templates/staff/blockk/block_detail.html
+1687040729|GusttavoSoares|D|/Desenvolvimento/ada/templates/staff/queue/queue.html
+1687040729|GusttavoSoares|D|/Desenvolvimento/ada/templates/staff/queue/queueSetup.html
+1687040729|GusttavoSoares|A|/Desenvolvimento/ada/templates/staff/queue/queue_create.html
+1687040729|GusttavoSoares|A|/Desenvolvimento/ada/templates/staff/queue/queue_show.html
+1687042107|GusttavoSoares|M|/Desenvolvimento/ada/staff/views.py
+1687042107|GusttavoSoares|M|/Desenvolvimento/ada/templates/staff/blockk/block_detail.html
+1687042107|GusttavoSoares|M|/Desenvolvimento/ada/templates/staff/queue/queue_create.html
+1687042107|GusttavoSoares|M|/Desenvolvimento/ada/templates/staff/queue/queue_show.html
+1687042107|GusttavoSoares|D|/Desenvolvimento/ada/templates/static/attribution/js/queueSetup.js
+1687042107|GusttavoSoares|A|/Desenvolvimento/ada/templates/static/staff/queue/js/queueSetup.js
+1687043908|Paulo Kenji|M|/Desenvolvimento/ada/attribution/views.py
+1687043908|Paulo Kenji|A|/Desenvolvimento/ada/templates/attribution/attribution_error_page_after.html
+1687043908|Paulo Kenji|A|/Desenvolvimento/ada/templates/attribution/attribution_error_page_before.html
+1687043908|Paulo Kenji|A|/Desenvolvimento/ada/templates/static/attribution/js/back_home.js
+1687043973|Paulo Kenji|A|/Desenvolvimento/ada/templates/attribution/manual_attribution.html
+1687043989|Paulo Kenji|M|/Desenvolvimento/ada/templates/attribution/queue.html
+1687044034|Paulo Kenji|A|/Desenvolvimento/ada/templates/static/images/hourglass.png
+1687044034|Paulo Kenji|A|/Desenvolvimento/ada/templates/static/images/problem.png
+1687044492|Paulo Kenji|M|/Desenvolvimento/ada/templates/staff/attribution/attribution_configuration.html
+1687044492|Paulo Kenji|M|/Desenvolvimento/ada/templates/staff/queue/queue_create.html
+1687044492|Paulo Kenji|D|/Desenvolvimento/ada/templates/static/staff/queue/js/queueSetup.js
+1687044492|Paulo Kenji|A|/Desenvolvimento/ada/templates/static/staff/queue/js/queue_create.js
+1687049695|GusttavoSoares|M|/Desenvolvimento/ada/staff/views.py
+1687057668|Paulo Kenji|M|/Desenvolvimento/ada/staff/views.py
+1687057668|Paulo Kenji|M|/Desenvolvimento/ada/templates/staff/timetable/show_timetable.html
+1687057714|Paulo Kenji|M|/Desenvolvimento/ada/attribution/urls.py
+1687057714|Paulo Kenji|M|/Desenvolvimento/ada/attribution_preference/views.py
+1687057714|Paulo Kenji|M|/Desenvolvimento/ada/templates/attribution/manual_attribution.html
+1687057748|Paulo Kenji|M|/Desenvolvimento/ada/attribution/views.py
+1687057775|Paulo Kenji|M|/Desenvolvimento/ada/templates/attribution/attribution_error_page_before.html
+1687057832|Paulo Kenji|M|/Desenvolvimento/ada/templates/attribution/attribution.html
+1687057844|Paulo Kenji|M|/Desenvolvimento/ada/templates/static/attribution/js/attribution.js
+1687060723|isabella-66|M|/Desenvolvimento/ada/templates/attribution/attribution.html
+1687060723|isabella-66|M|/Desenvolvimento/ada/templates/attribution/queue.html
+1687060723|isabella-66|M|/Desenvolvimento/ada/templates/attribution/queueSetup.html
+1687060723|isabella-66|M|/Desenvolvimento/ada/templates/attribution_preference/attribution_preference.html
+1687060723|isabella-66|M|/Desenvolvimento/ada/templates/attribution_preference/confirm_attribution_preference.html
+1687060723|isabella-66|M|/Desenvolvimento/ada/templates/attribution_preference/confirm_attribution_preference_copy.html
+1687060723|isabella-66|M|/Desenvolvimento/ada/templates/attribution_preference/courses_attribution_preference.html
+1687060723|isabella-66|M|/Desenvolvimento/ada/templates/professor/base.html
+1687060723|isabella-66|M|/Desenvolvimento/ada/templates/professor/home_professor.html
+1687060723|isabella-66|M|/Desenvolvimento/ada/templates/registration/login.html
+1687060723|isabella-66|M|/Desenvolvimento/ada/templates/staff/attribution/attribution_configuration.html
+1687060723|isabella-66|M|/Desenvolvimento/ada/templates/staff/attribution/attribution_configuration_confirm.html
+1687060723|isabella-66|M|/Desenvolvimento/ada/templates/staff/attribution/attribution_configuration_index.html
+1687060723|isabella-66|M|/Desenvolvimento/ada/templates/staff/blockk/block_detail.html
+1687060723|isabella-66|M|/Desenvolvimento/ada/templates/staff/blockk/blocks_list.html
+1687060723|isabella-66|M|/Desenvolvimento/ada/templates/staff/classs/classes_list.html
+1687060723|isabella-66|M|/Desenvolvimento/ada/templates/staff/deadline/confirm_deadline_configuration.html
+1687060723|isabella-66|M|/Desenvolvimento/ada/templates/staff/deadline/deadline_configuration.html
+1687060723|isabella-66|D|/Desenvolvimento/ada/templates/staff/deadline/show_current_deadline.html
+1687060723|isabella-66|M|/Desenvolvimento/ada/templates/staff/home_staff.html
+1687060723|isabella-66|M|/Desenvolvimento/ada/templates/staff/professor/professors_list.html
+1687060723|isabella-66|M|/Desenvolvimento/ada/templates/staff/timetable/register.html
+1687060723|isabella-66|M|/Desenvolvimento/ada/templates/staff/timetable/show_timetable.html
+1687060723|isabella-66|M|/Desenvolvimento/ada/templates/staff/timetable/timetables.html
+1687060723|isabella-66|M|/Desenvolvimento/ada/templates/static/staff/timetable/js/show_timetable.js
+1687060723|isabella-66|M|/Desenvolvimento/ada/templates/user/home.html
+1687062446|isabella-66|M|/Desenvolvimento/ada/templates/attribution/attribution.html
+1687062446|isabella-66|M|/Desenvolvimento/ada/templates/attribution/attribution_error_page_after.html
+1687062446|isabella-66|M|/Desenvolvimento/ada/templates/attribution/attribution_error_page_before.html
+1687062446|isabella-66|M|/Desenvolvimento/ada/templates/attribution/manual_attribution.html
+1687062446|isabella-66|M|/Desenvolvimento/ada/templates/attribution/queueSetup.html
+1687062926|Josineudo Arruda|M|/Desenvolvimento/ada/attribution_preference/views.py
+1687062926|Josineudo Arruda|M|/Desenvolvimento/ada/data.json
+1687062926|Josineudo Arruda|M|/Desenvolvimento/ada/templates/attribution_preference/courses_attribution_preference.html
+1687062926|Josineudo Arruda|M|/Desenvolvimento/ada/templates/static/attribution_preference/js/preferred_courses.js
+1687067804|Paulo Kenji|M|/Desenvolvimento/ada/attribution/views.py
+1687067804|Paulo Kenji|M|/Desenvolvimento/ada/templates/attribution/manual_attribution.html
+1687067804|Paulo Kenji|A|/Desenvolvimento/ada/templates/static/attribution/js/manual_attribution.js
+1687067903|Paulo Kenji|D|/Desenvolvimento/ada/area/migrations/0001_initial.py
+1687067903|Paulo Kenji|D|/Desenvolvimento/ada/attribution/migrations/0001_initial.py
+1687067903|Paulo Kenji|D|/Desenvolvimento/ada/attribution/migrations/0002_initial.py
+1687067903|Paulo Kenji|D|/Desenvolvimento/ada/attribution_preference/migrations/0001_initial.py
+1687067903|Paulo Kenji|D|/Desenvolvimento/ada/attribution_preference/migrations/0002_initial.py
+1687067903|Paulo Kenji|D|/Desenvolvimento/ada/attribution_preference/migrations/0003_initial.py
+1687067903|Paulo Kenji|D|/Desenvolvimento/ada/classs/migrations/0001_initial.py
+1687067903|Paulo Kenji|D|/Desenvolvimento/ada/course/migrations/0001_initial.py
+1687067903|Paulo Kenji|D|/Desenvolvimento/ada/staff/migrations/0001_initial.py
+1687067903|Paulo Kenji|D|/Desenvolvimento/ada/timetable/migrations/0001_initial.py
+1687067903|Paulo Kenji|D|/Desenvolvimento/ada/timetable/migrations/0002_initial.py
+1687067903|Paulo Kenji|D|/Desenvolvimento/ada/timetable/migrations/0003_alter_timetable_user_user.py
+1687067903|Paulo Kenji|D|/Desenvolvimento/ada/user/migrations/0001_initial.py
+1687067903|Paulo Kenji|D|/Desenvolvimento/ada/user/migrations/0002_alter_job_name_job.py
+1687068599|isabella-66|M|/Desenvolvimento/ada/templates/attribution/attribution.html
+1687068599|isabella-66|M|/Desenvolvimento/ada/templates/attribution/attribution_error_page_after.html
+1687068599|isabella-66|M|/Desenvolvimento/ada/templates/attribution/attribution_error_page_before.html
+1687068599|isabella-66|M|/Desenvolvimento/ada/templates/attribution/manual_attribution.html
+1687068599|isabella-66|M|/Desenvolvimento/ada/templates/attribution/queueSetup.html
+1687068599|isabella-66|M|/Desenvolvimento/ada/templates/attribution_preference/attribution_preference.html
+1687068599|isabella-66|M|/Desenvolvimento/ada/templates/attribution_preference/confirm_attribution_preference.html
+1687068599|isabella-66|M|/Desenvolvimento/ada/templates/attribution_preference/courses_attribution_preference.html
+1687068599|isabella-66|M|/Desenvolvimento/ada/templates/professor/base.html
+1687068599|isabella-66|M|/Desenvolvimento/ada/templates/professor/home_professor.html
+1687068599|isabella-66|M|/Desenvolvimento/ada/templates/registration/login.html
+1687068599|isabella-66|M|/Desenvolvimento/ada/templates/staff/attribution/attribution_configuration.html
+1687068599|isabella-66|M|/Desenvolvimento/ada/templates/staff/attribution/attribution_configuration_confirm.html
+1687068599|isabella-66|M|/Desenvolvimento/ada/templates/staff/attribution/attribution_configuration_index.html
+1687068599|isabella-66|M|/Desenvolvimento/ada/templates/staff/base.html
+1687068599|isabella-66|M|/Desenvolvimento/ada/templates/staff/blockk/block_detail.html
+1687068599|isabella-66|M|/Desenvolvimento/ada/templates/staff/classs/classes_list.html
+1687068599|isabella-66|M|/Desenvolvimento/ada/templates/staff/home_staff.html
+1687068599|isabella-66|M|/Desenvolvimento/ada/templates/staff/queue/queue_create.html
+1687068599|isabella-66|M|/Desenvolvimento/ada/templates/staff/queue/queue_show.html
+1687068599|isabella-66|M|/Desenvolvimento/ada/templates/staff/timetable/register.html
+1687068599|isabella-66|M|/Desenvolvimento/ada/templates/staff/timetable/show_timetable.html
+1687068599|isabella-66|M|/Desenvolvimento/ada/templates/staff/timetable/timetables.html
+1687068599|isabella-66|M|/Desenvolvimento/ada/templates/static/layout.css
+1687068599|isabella-66|M|/Desenvolvimento/ada/templates/static/user/css/login.css
+1687068599|isabella-66|M|/Desenvolvimento/ada/templates/user/base.html
+1687068599|isabella-66|M|/Desenvolvimento/ada/templates/user/home.html
+1687071232|isabella-66|A|/Desenvolvimento/ada/area/migrations/0001_initial.py
+1687071232|isabella-66|A|/Desenvolvimento/ada/attribution/migrations/0001_initial.py
+1687071232|isabella-66|A|/Desenvolvimento/ada/attribution/migrations/0002_initial.py
+1687071232|isabella-66|A|/Desenvolvimento/ada/attribution_preference/migrations/0001_initial.py
+1687071232|isabella-66|A|/Desenvolvimento/ada/attribution_preference/migrations/0002_initial.py
+1687071232|isabella-66|A|/Desenvolvimento/ada/attribution_preference/migrations/0003_initial.py
+1687071232|isabella-66|A|/Desenvolvimento/ada/classs/migrations/0001_initial.py
+1687071232|isabella-66|A|/Desenvolvimento/ada/course/migrations/0001_initial.py
+1687071232|isabella-66|M|/Desenvolvimento/ada/data.json
+1687071232|isabella-66|A|/Desenvolvimento/ada/staff/migrations/0001_initial.py
+1687071232|isabella-66|A|/Desenvolvimento/ada/timetable/migrations/0001_initial.py
+1687071232|isabella-66|A|/Desenvolvimento/ada/timetable/migrations/0002_initial.py
+1687071232|isabella-66|A|/Desenvolvimento/ada/user/migrations/0001_initial.py
+1687075692|Josineudo Arruda|M|/Desenvolvimento/ada/attribution_preference/views.py
+1687075692|Josineudo Arruda|M|/Desenvolvimento/ada/templates/attribution_preference/courses_attribution_preference.html
+1687075692|Josineudo Arruda|M|/Desenvolvimento/ada/templates/static/attribution_preference/js/preferred_availability.js
+1687075692|Josineudo Arruda|M|/Desenvolvimento/ada/templates/static/attribution_preference/js/preferred_courses.js
+1687076008|Josineudo Arruda|M|/Desenvolvimento/ada/templates/static/attribution_preference/js/preferred_courses.js
+1687076740|isabella-66|M|/Desenvolvimento/ada/templates/attribution_preference/attribution_preference.html
+1687076740|isabella-66|M|/Desenvolvimento/ada/templates/attribution_preference/confirm_attribution_preference.html
+1687076740|isabella-66|M|/Desenvolvimento/ada/templates/attribution_preference/courses_attribution_preference.html
+1687076740|isabella-66|M|/Desenvolvimento/ada/templates/professor/home_professor.html
+1687076740|isabella-66|M|/Desenvolvimento/ada/templates/staff/attribution/attribution_configuration.html
+1687076740|isabella-66|M|/Desenvolvimento/ada/templates/staff/attribution/attribution_configuration_confirm.html
+1687076740|isabella-66|M|/Desenvolvimento/ada/templates/staff/attribution/attribution_configuration_index.html
+1687076740|isabella-66|M|/Desenvolvimento/ada/templates/staff/blockk/block_detail.html
+1687076740|isabella-66|M|/Desenvolvimento/ada/templates/staff/blockk/blocks_list.html
+1687076740|isabella-66|M|/Desenvolvimento/ada/templates/staff/classs/classes_list.html
+1687076740|isabella-66|M|/Desenvolvimento/ada/templates/staff/deadline/confirm_deadline_configuration.html
+1687076740|isabella-66|M|/Desenvolvimento/ada/templates/staff/deadline/deadline_configuration.html
+1687077331|isabella-66|M|/Desenvolvimento/ada/templates/staff/professor/professors_list.html
+1687077331|isabella-66|M|/Desenvolvimento/ada/templates/staff/queue/queue_create.html
+1687077331|isabella-66|M|/Desenvolvimento/ada/templates/staff/timetable/register.html
+1687077331|isabella-66|M|/Desenvolvimento/ada/templates/staff/timetable/show_timetable.html
+1687077331|isabella-66|M|/Desenvolvimento/ada/templates/staff/timetable/timetables.html
+1687079553|isabella-66|M|/Desenvolvimento/ada/templates/attribution/attribution.html
+1687079553|isabella-66|M|/Desenvolvimento/ada/templates/attribution/attribution_error_page_before.html
+1687079553|isabella-66|M|/Desenvolvimento/ada/templates/attribution/manual_attribution.html
+1687079553|isabella-66|M|/Desenvolvimento/ada/templates/attribution/queueSetup.html
+1687079553|isabella-66|M|/Desenvolvimento/ada/templates/attribution_preference/attribution_preference.html
+1687079553|isabella-66|M|/Desenvolvimento/ada/templates/attribution_preference/confirm_attribution_preference.html
+1687079553|isabella-66|M|/Desenvolvimento/ada/templates/attribution_preference/courses_attribution_preference.html
+1687079553|isabella-66|M|/Desenvolvimento/ada/templates/staff/attribution/attribution_configuration_confirm.html
+1687079553|isabella-66|M|/Desenvolvimento/ada/templates/staff/home_staff.html
+1687081513|isabella-66|M|/Desenvolvimento/ada/staff/views.py
+1687081513|isabella-66|M|/Desenvolvimento/ada/templates/attribution/attribution.html
+1687081513|isabella-66|M|/Desenvolvimento/ada/templates/attribution/manual_attribution.html
+1687081513|isabella-66|M|/Desenvolvimento/ada/templates/attribution_preference/attribution_preference.html
+1687081513|isabella-66|M|/Desenvolvimento/ada/templates/attribution_preference/confirm_attribution_preference.html
+1687081513|isabella-66|M|/Desenvolvimento/ada/templates/attribution_preference/courses_attribution_preference.html
+1687081513|isabella-66|M|/Desenvolvimento/ada/templates/professor/home_professor.html
+1687081513|isabella-66|M|/Desenvolvimento/ada/templates/staff/attribution/attribution_configuration.html
+1687081513|isabella-66|M|/Desenvolvimento/ada/templates/staff/attribution/attribution_configuration_confirm.html
+1687081513|isabella-66|M|/Desenvolvimento/ada/templates/staff/attribution/attribution_configuration_index.html
+1687081513|isabella-66|M|/Desenvolvimento/ada/templates/staff/blockk/block_detail.html
+1687081513|isabella-66|M|/Desenvolvimento/ada/templates/staff/blockk/blocks_list.html
+1687081513|isabella-66|M|/Desenvolvimento/ada/templates/staff/classs/classes_list.html
+1687081513|isabella-66|M|/Desenvolvimento/ada/templates/staff/deadline/confirm_deadline_configuration.html
+1687081513|isabella-66|M|/Desenvolvimento/ada/templates/staff/deadline/deadline_configuration.html
+1687081513|isabella-66|M|/Desenvolvimento/ada/templates/staff/home_staff.html
+1687081513|isabella-66|M|/Desenvolvimento/ada/templates/staff/professor/professors_list.html
+1687081513|isabella-66|M|/Desenvolvimento/ada/templates/staff/queue/queue_create.html
+1687081513|isabella-66|M|/Desenvolvimento/ada/templates/staff/queue/queue_show.html
+1687081513|isabella-66|M|/Desenvolvimento/ada/templates/staff/timetable/register.html
+1687081513|isabella-66|M|/Desenvolvimento/ada/templates/staff/timetable/show_timetable.html
+1687081513|isabella-66|M|/Desenvolvimento/ada/templates/staff/timetable/timetables.html
+1687081513|isabella-66|M|/Desenvolvimento/ada/templates/static/attribution/js/manual_attribution.js
+1687081513|isabella-66|M|/Desenvolvimento/ada/templates/static/attribution_preference/js/preferred_availability.js
+1687081513|isabella-66|M|/Desenvolvimento/ada/templates/static/attribution_preference/js/preferred_courses.js
+1687081513|isabella-66|M|/Desenvolvimento/ada/templates/static/email/message.html
+1687081513|isabella-66|M|/Desenvolvimento/ada/templates/static/staff/blockk/js/block_detail.js
+1687081513|isabella-66|M|/Desenvolvimento/ada/templates/user/home.html
+1687091180|Josineudo Arruda|M|/Desenvolvimento/ada/attribution_preference/urls.py
+1687091180|Josineudo Arruda|M|/Desenvolvimento/ada/attribution_preference/views.py
+1687091180|Josineudo Arruda|M|/Desenvolvimento/ada/templates/attribution_preference/attribution_preference.html
+1687091180|Josineudo Arruda|D|/Desenvolvimento/ada/templates/attribution_preference/confirm_attribution_preference.html
+1687091180|Josineudo Arruda|A|/Desenvolvimento/ada/templates/attribution_preference/disponibility_attribution_preference.html
+1687091180|Josineudo Arruda|M|/Desenvolvimento/ada/templates/static/attribution_preference/css/attribution_preference_courses.css
+1687091180|Josineudo Arruda|A|/Desenvolvimento/ada/templates/static/attribution_preference/js/attribution_preference.js
+1687091180|Josineudo Arruda|M|/Desenvolvimento/ada/templates/static/attribution_preference/js/preferred_availability.js
+1687091180|Josineudo Arruda|M|/Desenvolvimento/ada/templates/static/attribution_preference/js/preferred_courses.js
+1687091487|Josineudo Arruda|M|/Desenvolvimento/ada/templates/attribution_preference/attribution_preference.html
+1687096402|isabella-66|M|/Desenvolvimento/ada/setup/settings.py
+1687096402|isabella-66|M|/Desenvolvimento/ada/templates/attribution/attribution.html
+1687096402|isabella-66|M|/Desenvolvimento/ada/templates/attribution/attribution_error_page_after.html
+1687096402|isabella-66|M|/Desenvolvimento/ada/templates/attribution/attribution_error_page_before.html
+1687096402|isabella-66|M|/Desenvolvimento/ada/templates/attribution/email_test.html
+1687096402|isabella-66|M|/Desenvolvimento/ada/templates/attribution/manual_attribution.html
+1687096402|isabella-66|M|/Desenvolvimento/ada/templates/attribution/queueSetup.html
+1687096402|isabella-66|M|/Desenvolvimento/ada/templates/attribution_preference/confirm_attribution_preference.html
+1687096402|isabella-66|M|/Desenvolvimento/ada/templates/attribution_preference/courses_attribution_preference.html
+1687096402|isabella-66|M|/Desenvolvimento/ada/templates/professor/home_professor.html
+1687096402|isabella-66|M|/Desenvolvimento/ada/templates/staff/attribution/attribution_configuration_index.html
+1687096402|isabella-66|M|/Desenvolvimento/ada/templates/staff/blockk/block_detail.html
+1687096402|isabella-66|M|/Desenvolvimento/ada/templates/staff/blockk/blocks_list.html
+1687096402|isabella-66|M|/Desenvolvimento/ada/templates/staff/classs/classes_list.html
+1687096402|isabella-66|M|/Desenvolvimento/ada/templates/staff/deadline/deadline_configuration.html
+1687096402|isabella-66|M|/Desenvolvimento/ada/templates/staff/home_staff.html
+1687096402|isabella-66|M|/Desenvolvimento/ada/templates/staff/professor/professors_list.html
+1687096402|isabella-66|M|/Desenvolvimento/ada/templates/staff/queue/queue_create.html
+1687096402|isabella-66|M|/Desenvolvimento/ada/templates/staff/queue/queue_show.html
+1687096402|isabella-66|M|/Desenvolvimento/ada/templates/staff/timetable/register.html
+1687096402|isabella-66|M|/Desenvolvimento/ada/templates/staff/timetable/timetables.html
+1687096402|isabella-66|A|/Desenvolvimento/ada/templates/static/professor/js/professors_list.js
+1687097035|isabella-66|M|/Desenvolvimento/ada/templates/attribution_preference/disponibility_attribution_preference.html
+1687104194|Paulo Kenji|M|/Desenvolvimento/ada/attribution/views.py
+1687104194|Paulo Kenji|M|/Desenvolvimento/ada/templates/attribution/manual_attribution.html
+1687104194|Paulo Kenji|M|/Desenvolvimento/ada/templates/static/attribution/js/manual_attribution.js
+1687131226|isabella-66|M|/Desenvolvimento/ada/templates/attribution/attribution.html
+1687131226|isabella-66|M|/Desenvolvimento/ada/templates/attribution/attribution_error_page_before.html
+1687131226|isabella-66|M|/Desenvolvimento/ada/templates/attribution/manual_attribution.html
+1687131226|isabella-66|M|/Desenvolvimento/ada/templates/attribution/queueSetup.html
+1687131226|isabella-66|M|/Desenvolvimento/ada/templates/attribution_preference/attribution_preference.html
+1687131226|isabella-66|M|/Desenvolvimento/ada/templates/attribution_preference/confirm_attribution_preference.html
+1687131226|isabella-66|M|/Desenvolvimento/ada/templates/attribution_preference/courses_attribution_preference.html
+1687131226|isabella-66|M|/Desenvolvimento/ada/templates/attribution_preference/disponibility_attribution_preference.html
+1687131226|isabella-66|M|/Desenvolvimento/ada/templates/professor/home_professor.html
+1687131226|isabella-66|M|/Desenvolvimento/ada/templates/registration/login.html
+1687131226|isabella-66|M|/Desenvolvimento/ada/templates/staff/attribution/attribution_configuration_index.html
+1687131226|isabella-66|M|/Desenvolvimento/ada/templates/staff/blockk/block_detail.html
+1687131226|isabella-66|M|/Desenvolvimento/ada/templates/staff/blockk/blocks_list.html
+1687131226|isabella-66|M|/Desenvolvimento/ada/templates/staff/classs/classes_list.html
+1687131226|isabella-66|M|/Desenvolvimento/ada/templates/staff/deadline/confirm_deadline_configuration.html
+1687131226|isabella-66|M|/Desenvolvimento/ada/templates/staff/deadline/deadline_configuration.html
+1687131226|isabella-66|M|/Desenvolvimento/ada/templates/staff/professor/professors_list.html
+1687131226|isabella-66|M|/Desenvolvimento/ada/templates/staff/queue/queue_create.html
+1687131226|isabella-66|M|/Desenvolvimento/ada/templates/staff/timetable/show_timetable.html
+1687131226|isabella-66|M|/Desenvolvimento/ada/templates/staff/timetable/timetables.html
+1687131226|isabella-66|M|/Desenvolvimento/ada/templates/user/home.html
+1687132042|isabella-66|M|/Desenvolvimento/ada/templates/attribution/attribution_error_page_before.html
+1687132042|isabella-66|M|/Desenvolvimento/ada/templates/attribution/queueSetup.html
+1687132042|isabella-66|M|/Desenvolvimento/ada/templates/attribution_preference/courses_attribution_preference.html
+1687132042|isabella-66|M|/Desenvolvimento/ada/templates/staff/classs/classes_list.html
+1687132042|isabella-66|M|/Desenvolvimento/ada/templates/staff/timetable/register.html
+1687132161|isabella-66|M|/Desenvolvimento/ada/templates/static/professor/js/professors_list.js
+1687140154|Josineudo Arruda|M|/Desenvolvimento/ada/templates/attribution_preference/attribution_preference.html
+1687140154|Josineudo Arruda|M|/Desenvolvimento/ada/templates/static/attribution_preference/css/attribution_preference_courses.css
+1687142923|Josineudo Arruda|M|/Desenvolvimento/ada/setup/settings.py
+1687142923|Josineudo Arruda|M|/Desenvolvimento/ada/templates/attribution_preference/attribution_preference.html
+1687142923|Josineudo Arruda|M|/Desenvolvimento/ada/templates/attribution_preference/courses_attribution_preference.html
+1687142923|Josineudo Arruda|M|/Desenvolvimento/ada/templates/attribution_preference/disponibility_attribution_preference.html
+1687142923|Josineudo Arruda|M|/Desenvolvimento/ada/templates/professor/home_professor.html
+1687142923|Josineudo Arruda|M|/Desenvolvimento/ada/templates/static/attribution_preference/css/attribution_preference_courses.css
+1687142923|Josineudo Arruda|M|/Desenvolvimento/ada/templates/static/user/css/login.css
+1687142955|isabella-66|M|/Desenvolvimento/ada/staff/views.py
+1687142955|isabella-66|D|/Desenvolvimento/ada/templates/attribution_preference/confirm_attribution_preference.html
+1687154721|Paulo Kenji|M|/Desenvolvimento/ada/staff/views.py
+1687154738|Paulo Kenji|M|/Desenvolvimento/ada/attribution/task.py
+1687154775|Paulo Kenji|M|/Desenvolvimento/ada/templates/static/attribution/js/attribution.js
+1687154827|Paulo Kenji|M|/Desenvolvimento/ada/templates/attribution/attribution.html
+1687154876|Paulo Kenji|M|/Desenvolvimento/ada/templates/attribution/manual_attribution.html
+1687154916|Paulo Kenji|M|/Desenvolvimento/ada/templates/professor/home_professor.html
+1687154942|Paulo Kenji|M|/Desenvolvimento/ada/templates/attribution_preference/disponibility_attribution_preference.html
+1687154968|Paulo Kenji|M|/Desenvolvimento/ada/templates/staff/timetable/show_timetable.html
+1687155047|Paulo Kenji|M|/Desenvolvimento/ada/attribution/views.py
+1687155047|Paulo Kenji|M|/Desenvolvimento/ada/templates/static/attribution/js/manual_attribution.js
+1687155063|Paulo Kenji|M|/Desenvolvimento/ada/templates/attribution_preference/courses_attribution_preference.html
+1687155990|Josineudo Arruda|M|/Desenvolvimento/ada/attribution_preference/views.py
+1687155990|Josineudo Arruda|M|/Desenvolvimento/ada/templates/attribution_preference/attribution_preference.html
+1687155990|Josineudo Arruda|M|/Desenvolvimento/ada/templates/attribution_preference/courses_attribution_preference.html
+1687155990|Josineudo Arruda|M|/Desenvolvimento/ada/templates/static/attribution_preference/css/attribution_preference.css
+1687155990|Josineudo Arruda|M|/Desenvolvimento/ada/templates/static/attribution_preference/js/preferred_courses.js
+1687156648|Paulo Kenji|M|/Desenvolvimento/ada/staff/views.py
+1687157318|Josineudo Arruda|M|/Desenvolvimento/ada/area/migrations/0001_initial.py
+1687157318|Josineudo Arruda|M|/Desenvolvimento/ada/attribution/migrations/0001_initial.py
+1687157318|Josineudo Arruda|M|/Desenvolvimento/ada/attribution/migrations/0002_initial.py
+1687157318|Josineudo Arruda|M|/Desenvolvimento/ada/attribution_preference/migrations/0001_initial.py
+1687157318|Josineudo Arruda|M|/Desenvolvimento/ada/attribution_preference/migrations/0002_initial.py
+1687157318|Josineudo Arruda|M|/Desenvolvimento/ada/attribution_preference/migrations/0003_initial.py
+1687157318|Josineudo Arruda|M|/Desenvolvimento/ada/classs/migrations/0001_initial.py
+1687157318|Josineudo Arruda|M|/Desenvolvimento/ada/course/migrations/0001_initial.py
+1687157318|Josineudo Arruda|M|/Desenvolvimento/ada/data.json
+1687157318|Josineudo Arruda|M|/Desenvolvimento/ada/staff/migrations/0001_initial.py
+1687157318|Josineudo Arruda|M|/Desenvolvimento/ada/timetable/migrations/0001_initial.py
+1687157318|Josineudo Arruda|M|/Desenvolvimento/ada/timetable/migrations/0002_initial.py
+1687157318|Josineudo Arruda|M|/Desenvolvimento/ada/user/migrations/0001_initial.py
+1687157415|Paulo Kenji|M|/Desenvolvimento/ada/attribution/views.py
+1687157415|Paulo Kenji|M|/Desenvolvimento/ada/templates/attribution/manual_attribution.html
+1687157590|Josineudo Arruda|M|/Desenvolvimento/ada/data.json
+1687159288|Paulo Kenji|M|/Desenvolvimento/ada/data.json
+1687159919|Paulo Kenji|M|/Desenvolvimento/ada/attribution/urls.py
+1687159919|Paulo Kenji|A|/Desenvolvimento/ada/templates/attribution/attribution_detail.html
+1687159919|Paulo Kenji|A|/Desenvolvimento/ada/templates/attribution/attribution_list.html
+1687160851|isabella-66|M|/Desenvolvimento/ada/staff/urls.py
+1687164209|Josineudo Arruda|M|/Desenvolvimento/ada/area/migrations/0001_initial.py
+1687164209|Josineudo Arruda|M|/Desenvolvimento/ada/attribution/migrations/0001_initial.py
+1687164209|Josineudo Arruda|M|/Desenvolvimento/ada/attribution/migrations/0002_initial.py
+1687164209|Josineudo Arruda|M|/Desenvolvimento/ada/attribution/urls.py
+1687164209|Josineudo Arruda|M|/Desenvolvimento/ada/attribution/views.py
+1687164209|Josineudo Arruda|M|/Desenvolvimento/ada/attribution_preference/migrations/0001_initial.py
+1687164209|Josineudo Arruda|M|/Desenvolvimento/ada/attribution_preference/migrations/0002_initial.py
+1687164209|Josineudo Arruda|M|/Desenvolvimento/ada/attribution_preference/migrations/0003_initial.py
+1687164209|Josineudo Arruda|M|/Desenvolvimento/ada/attribution_preference/urls.py
+1687164209|Josineudo Arruda|M|/Desenvolvimento/ada/classs/migrations/0001_initial.py
+1687164209|Josineudo Arruda|M|/Desenvolvimento/ada/course/migrations/0001_initial.py
+1687164209|Josineudo Arruda|M|/Desenvolvimento/ada/staff/migrations/0001_initial.py
+1687164209|Josineudo Arruda|M|/Desenvolvimento/ada/templates/attribution/attribution_list.html
+1687164209|Josineudo Arruda|A|/Desenvolvimento/ada/templates/static/attribution/js/attribution_list.js
+1687164209|Josineudo Arruda|M|/Desenvolvimento/ada/templates/static/attribution_preference/js/preferred_courses.js
+1687164209|Josineudo Arruda|M|/Desenvolvimento/ada/timetable/migrations/0001_initial.py
+1687164209|Josineudo Arruda|M|/Desenvolvimento/ada/timetable/migrations/0002_initial.py
+1687164209|Josineudo Arruda|M|/Desenvolvimento/ada/user/migrations/0001_initial.py

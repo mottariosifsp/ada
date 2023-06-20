@@ -8,6 +8,7 @@ from timetable.models import Timeslot, Timetable, Timetable_user
 from user.models import User
 from attribution.models import TeacherQueuePosition
 from django.shortcuts import render, redirect
+from django.contrib.auth.decorators import user_passes_test
 import json
 from django.db.models import F, Sum, Value  
 from django.db import transaction
@@ -17,6 +18,7 @@ from django.core.mail import send_mail, EmailMessage
 import xml.etree.ElementTree as ET
 import os
 
+from django.contrib.auth.decorators import login_required
 from attribution_preference.models import Course_preference, Attribution_preference, Preference_schedule
 
 from django.utils.decorators import method_decorator

@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import attribution_preference, courses_attribution_preference ,disponibility_attribution_preference
+from .views import attribution_preference, courses_attribution_preference, disponibility_attribution_preference
 
 urlpatterns = [
     path('criar-fpa/editar-disponibilidade/', disponibility_attribution_preference, name='disponibility_attribution_preference'),

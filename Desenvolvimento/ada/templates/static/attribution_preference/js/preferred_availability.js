@@ -96,7 +96,7 @@ $(document).ready(function() {
         }
 
         var index = timeslots.findIndex(function(aula) {
-          return aula.hora_comeco === inicio;
+          return aula.id === input_id;
         });
         
         if (index !== -1) {
@@ -113,7 +113,8 @@ $(document).ready(function() {
             var aula = {
               hora_comeco: inicio,
               hora_fim: fim,
-              dia_semana: dia_elemento
+              dia_semana: dia_elemento,
+              id: input_id
             };
 
             timeslots.push(aula) // mon-mat-1

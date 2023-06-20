@@ -164,6 +164,8 @@ $("#timetable-courses input").on("click", function () {
     area_options();
     block_options();
     timetables_options();
+    $("#info-alert").hide();
+    $("#info-message-list").empty();
 
     var updated_array = btn_checked_global.some(function (dict) {
         return dict.includes(dataId);
