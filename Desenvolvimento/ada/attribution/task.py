@@ -41,6 +41,7 @@ def times_up(professor_id, blockk_id):
     professor = User.objects.get(id=professor_id)
     blockk = Blockk.objects.get(id=blockk_id)
     views.timestup(professor, blockk)
+    print(f'Tempo do professor {professor} acabou!')
 
 def schedule_task(seconds, professor, blockk):
     now = datetime.utcnow()
@@ -50,7 +51,7 @@ def schedule_task(seconds, professor, blockk):
     redis_client.set('task', task.id)
     redis_client.set('task_eta', eta.isoformat())
 
-    print(f'{professor} has {seconds} seconds to respond')
+    print(f'Professor {professor} tem {seconds} segundos para escolher suas novas aulas')
 
 def cancel_scheduled_task(name):
     task_id = redis_client.get(name)
@@ -72,14 +73,16 @@ def get_time_left():
     return None
 
 def cancel_all_tasks():
-
+    print('excluindo tarefas')
     # Obtém a lista de tarefas (tasks) ativas
-    active_tasks = app.control.inspect().active()
-
+    active_tasks = app.control.inspect().scheduled()
+    print(active_tasks)
     # Cancela cada tarefa ativa usando a função revoke()
     for worker, tasks in active_tasks.items():
+        print(tasks)
         for task in tasks:
-            app.control.revoke(task['id'], terminate=True)
+            print(task)
+            task.revoke(terminate=True)
 
 
 app.conf.timezone = 'UTC'
