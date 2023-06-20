@@ -361,13 +361,21 @@ def manual_attribution(request):
                         elif timeslot.hour_start >= datetime.time(18, 0, 0) and timeslot.hour_end <= datetime.time(23, 0, 0):
                             turno = 'not'
 
-                        timeslot_position = timeslot.position % 6
+                        posicao = timeslot.position
+
+                        if posicao > 12:
+                            posicao_calc = posicao - 12
+                        elif posicao > 6:
+                            posicao_calc = posicao - 6
+                        else:
+                            posicao_calc = posicao
+
                         course_name = timetable_object.course.name_course
                         course_acronym = timetable_object.course.acronym
                         day_string = dias_semana[day]
 
                         timetable_item = {
-                            'phrase': f'{day_string}-{turno}-{timeslot_position}', #sub-fri-mat-4
+                            'phrase': f'{day_string}-{turno}-{posicao_calc}', #sub-fri-mat-4
                             'course_acronym': course_acronym,
                             'course_name': course_name,
                         }
