@@ -72,3 +72,10 @@ th {
 #info-alert table {
   border-top: none;
 }
+
+#cel-regime {
+  font-size: 49.5pt;
+  font-weight: 600;
+  color: #2f7363;
+  align-items: center;
+}
