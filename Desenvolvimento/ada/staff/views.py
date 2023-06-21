@@ -683,8 +683,11 @@ def queue_show(request):
     for teacher_position in teacher_positions:
         user = teacher_position.teacher
         history = user.history
-        total_score = history.academic_degrees.aggregate(total_score=Sum('punctuation'))['total_score']
-        total_scores.append(total_score)
+
+        if history is not None:
+            if history.academic_degrees is not None:
+                total_score = history.academic_degrees.aggregate(total_score=Sum('punctuation'))['total_score']
+                total_scores.append(total_score)
 
     resultados = teacher_positions.select_related('teacher').order_by('position').all()
 
