@@ -2,6 +2,7 @@ from django.http import JsonResponse
 from area.models import Area, Blockk
 from attribution.task import attribution_deadline_start, cancel_all_tasks, cancel_scheduled_task, get_time_left, schedule_task, schedule_deadline
 from attribution_preference.views import convert_string_to_datetime, save_disponiility_preference
+from classs.models import Classs
 from course.models import Course
 from staff.models import Criteria, Deadline
 from timetable.models import Timeslot, Timetable, Timetable_user
@@ -40,7 +41,8 @@ def attribution(request):
                 attribution_deadline = Deadline.objects.get(blockk=blockk, name='STARTASSIGNMENTDEADLINE')        
                 now = datetime.datetime.today()
                 if now > attribution_deadline.deadline_end:
-                    return render(request, 'attribution/attribution_error_page_after.html')
+
+                    return render(request, 'attribution/attribution_error_page_after.html', {'blockk': request.GET.get('blockk')})
                 elif now < attribution_deadline.deadline_start:            
                     day = attribution_deadline.deadline_start.strftime("%d/%m/%Y")
                     time = attribution_deadline.deadline_start.strftime("%H:%M:%S")
@@ -504,3 +506,66 @@ def manual_attribution_confirm(request):
     start_attribution(blockk)
 
     return render(request, 'attribution/manual_attribution_confirm.html')
+
+def attribution_class_list(request, blockk):
+    areas = Blockk.objects.get(registration_block_id=blockk).areas.all()
+    print(f'Areas: {areas}')
+    classses = Classs.objects.filter(area__in=areas).all()
+    print(f'Classses: {classses}')
+    data = {
+        'classses': classses,
+    }
+
+    return render(request, 'attribution/attribution_class_list.html', data)
+
+def attribution_detail(request):
+    classs = Classs.objects.get(registration_class_id=request.GET.get('class'))
+    timetables = Timetable.objects.filter(classs=classs).all()
+    timeslots_all = Timeslot.objects.all()
+    timetables_user = Timetable_user.objects.filter(timetable__in=timetables).all()
+
+    timetables_professor = []
+    
+    for timetable_user in timetables_user:
+        day_combos = timetable_user.timetable.day_combo.all()
+        for day_combo in day_combos:
+            day = day_to_number(day_combo.day)
+            timeslots = day_combo.timeslots.all()
+
+            if timetable_user.user is not None:
+                professor = timetable_user.user.first_name
+            else:
+                professor = "-"
+
+            for timeslot in timeslots:
+
+                position = timeslot.position
+                print(timetable_user.user)
+                timetable_professor = {
+                    "cord": f'{position}-{day}',
+                    "course": timetable_user.timetable.course.name_course,
+                    "acronym": timetable_user.timetable.course.acronym,
+                    "professor": professor,
+                }
+                timetables_professor.append(timetable_professor)
+    timetables_professor_json = json.dumps(timetables_professor, ensure_ascii=False).encode('utf8').decode()
+    # print(timetables_professor_json)
+
+    data = {
+        'timeslots': timeslots_all,
+        'timetables_professor': timetables_professor_json,
+        'classs': classs
+    }
+    return render(request, 'attribution/attribution_detail.html', data)
+
+
+def day_to_number(day):
+    number = {
+        'monday': 1,
+        'tuesday': 2,
+        'wednesday': 3,
+        'thursday': 4,
+        'friday': 5,
+        'saturday': 6,
+    }
+    return number[day]
