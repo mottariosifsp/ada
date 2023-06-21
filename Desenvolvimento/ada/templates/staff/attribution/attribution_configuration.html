@@ -9,8 +9,15 @@
 {% endblock %} 
 
 {% block body %}
-<h1>{% trans "Configuração da atribuição" %}</h1>
-<hr />
+<h1 class="title-page">{% trans "Configuração da atribuição" %}</h1>
+    <nav>
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="{% url 'home' %}"><i class="bi bi-house-door"></i></a></li>
+        <li class="breadcrumb-item active" aria-current="page">{% trans "Configurar Atribuições" %}</li>
+        <li class="breadcrumb-item active"><a href="{% url 'attribution_configuration_index' %}">{% trans "Seus Blocos" %}</a></li>
+        <li class="breadcrumb-item active" aria-current="page">{% trans "Prazos" %}</li>
+      </ol>
+    </nav>
 <div id="error-alert-form" class="alert alert-danger" style="display: none;">
    <span id="error-message-form"></span>
 </div>

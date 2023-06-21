@@ -8,8 +8,15 @@
   <script src="{% static 'staff/attribution/js/attribution_configuration_index.js' %}" data-lang={{ LANGUAGE_CODE }}></script>
 {% endblock %} 
 {% block body %}
-
-  <div class="py-5">
+<h1 class="title-page">{% trans "Blocos Atribuição" %}</h1>
+    <nav>
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="{% url 'home' %}"><i class="bi bi-house-door"></i></a></li>
+        <li class="breadcrumb-item active" aria-current="page">{% trans "Configurar Atribuições" %}</li>
+        <li class="breadcrumb-item active">{% trans "Seus Blocos" %}</li>
+      </ol>
+    </nav>
+  <div class="">
     <h3 class="font-weight-bold mb-0">{% trans "Escolha um bloco para configurar" %}</h3>
     <p class="font-italic text-muted mb-4">{% trans "Crie ou edite as filas e os prazos dos seus blocos" %}.</p>
     <div class="row">

@@ -10,7 +10,15 @@
 
 {% block body %}
   {{ block.super }}
-
+  <h1 class="title-page">{% trans "Grade" %}</h1>
+  <nav>
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item"><a href="{% url 'home' %}"><i class="bi bi-house-door"></i></a></li>
+      <li class="breadcrumb-item active" aria-current="page">{% trans "Configurar Grades Horárias" %}</li>
+      <li class="breadcrumb-item active"><a href="{% url 'timetables' %}">{% trans "Grades Horárias" %}</a></li>
+      <li class="breadcrumb-item active">{% trans "Editar" %} {{ request.GET.class }}</li>
+    </ol>
+  </nav>
     <div class="spinner-border" role="status" style="display: none; position: fixed; top: calc( 50% - ( 3rem / 2) ); left: calc( 50% - ( 3rem / 2) ); width: 3rem; height: 3rem;">
       <span class="sr-only">{% trans "Carregando" %}...</span>
     </div>

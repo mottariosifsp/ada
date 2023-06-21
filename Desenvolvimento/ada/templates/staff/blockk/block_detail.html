@@ -12,7 +12,15 @@
 
 {% block body %}
     {{ block.super }}
-
+    <h1 class="title-page">{% trans "Configuração da atribuição" %}</h1>
+    <nav>
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="{% url 'home' %}"><i class="bi bi-house-door"></i></a></li>
+        <li class="breadcrumb-item active" aria-current="page">{% trans "Configurar Blocos" %}</li>
+        <li class="breadcrumb-item active"><a href="{% url 'blocks_list' %}">{% trans "Blocos" %}</a></li>
+        <li class="breadcrumb-item active" aria-current="page">{{blockk.acronym}}</li>
+      </ol>
+    </nav>
 <a href="{% url 'queue_create' %}?blockk={{ blockk.registration_block_id }}">
   <button type="button" class="btn btn-success float-right createCourseBtn">{% trans "Criar fila" %}</button>
 </a>

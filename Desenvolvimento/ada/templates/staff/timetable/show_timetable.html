@@ -11,7 +11,16 @@
 {% endblock %}
 
 {% block body %}
-  {{ block.super }} 
+  {{ block.super }}
+  <h1 class="title-page">{% trans "Grade" %}</h1>
+  <nav>
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item"><a href="{% url 'home' %}"><i class="bi bi-house-door"></i></a></li>
+      <li class="breadcrumb-item active" aria-current="page">{% trans "Configurar Grades Horárias" %}</li>
+      <li class="breadcrumb-item active"><a href="{% url 'timetables' %}">{% trans "Grades Horárias" %}</a></li>
+      <li class="breadcrumb-item active">{% trans "Grade" %} {{ request.GET.class }}</li>
+    </ol>
+  </nav>
   <div style="display: none; position: fixed; top: calc(50% - (20rem / 2)); left: calc(50% - (20rem / 2)); width: 20rem; height: 20rem;">
     <img src="https://cdn.awsli.com.br/300x300/1594/1594408/produto/1482066500b9bac0fff.jpg" class="img-fluid" alt="Responsive image">
     <h3 class="row d-flex justify-content-center">{% trans 'Tabela salva' %}🙏🙏🙏</h3>
