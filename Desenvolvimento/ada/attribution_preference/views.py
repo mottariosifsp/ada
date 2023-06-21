@@ -57,9 +57,16 @@ def disponibility_attribution_preference(request):
 
     json_data = json.dumps(converted_timetables)
 
+    timeslot = Timeslot.objects.get(id=1)
+
+    start_minutes = timeslot.hour_start.hour * 60 + timeslot.hour_start.minute
+    end_minutes = timeslot.hour_end.hour * 60 + timeslot.hour_end.minute
+    diferenca = end_minutes - start_minutes
+
     data = {
         'turno': turno,
-        'timetables': json_data
+        'timetables': json_data,
+        'diferenca_minutos': diferenca
     }
 
     return render(request, 'attribution_preference/disponibility_attribution_preference.html', data)
