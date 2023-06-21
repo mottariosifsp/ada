@@ -1,0 +1,44 @@
+{% extends "professor/base.html" %} 
+{% load i18n %} 
+{% load static %} 
+
+{% block head %}
+  {{ block.super }}
+  <title>{% trans "Grade horária" %}</title>
+  {% comment %} <link rel="stylesheet" href="{% static 'staff/blockk/css/block_list.css' %}"> {% endcomment %}
+
+{% endblock %} 
+
+{% block body %} 
+{{ block.super }}
+  <h1>{% trans "Grade horária da " %}{{ classs }}</h1>
+  <div class="tabela">
+      <table class="table table-bordered editable" id="blocks_list">
+          <thead class="thead-dark">
+              <tr>
+                  <th scope="col">{% trans "Horário" %}</th>
+                  <th scope="col">{% trans "Segunda" %}</th>
+                  <th scope="col">{% trans "Terça" %}</th>
+                  <th scope="col">{% trans "Quarta" %}</th>
+                  <th scope="col">{% trans "Quinta" %}</th>
+                  <th scope="col">{% trans "Sexta" %}</th>
+                  <th scope="col">{% trans "Sábado" %}</th>
+              </tr>
+          </thead>
+          <tbody>
+            {% for timeslot in timeslots %}
+            <tr>
+                {% with timeslot_counter=forloop.counter %}                     
+                   <th scope="row" class="p-2">{{ timeslot.hour_start }} - {{timeslot.hour_end}}</th>
+                      {% for cell in "012345" %}
+                         <td class="text-center p-2" id="cel-{{ timeslot_counter }}-{{ forloop.counter }}">{{ cell.content }}</td>
+                      {% endfor %}
+                {% endwith %}
+            </tr>
+          {% endfor %} 
+          </tbody>
+      </table>
+  </div>
+  <script src="{% static 'attribution/js/attribution_detail.js' %}" timetables-user="{{timetables_professor}}">
+
+{% endblock %}
