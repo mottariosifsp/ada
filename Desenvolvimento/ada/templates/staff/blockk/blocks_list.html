@@ -11,7 +11,14 @@
 
 {% block body %}
     {{ block.super }}
-    <h1>{% trans "Blocos" %}</h1>
+    <h1 class="title-page">{% trans "Blocos" %}</h1>
+    <nav>
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="{% url 'home' %}"><i class="bi bi-house-door"></i></a></li>
+        <li class="breadcrumb-item active" aria-current="page">{% trans "Configurar Blocos" %}</li>
+        <li class="breadcrumb-item active">{% trans "Blocos" %}</li>
+      </ol>
+    </nav>
     <div class="tabela">
         <table class="table table-bordered editable" id="blocks_list">
             <thead>

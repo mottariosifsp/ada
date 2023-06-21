@@ -7,15 +7,18 @@ var hour = 0
 var minute = 0
 var user_blocks = document.currentScript.getAttribute('blocks');
 var user_timetables = document.currentScript.getAttribute('timetables');
+var timeslot_minutes = document.currentScript.getAttribute('diferenca_minutos');
 
 $(document).ready(function() {
+
+  console.log("timeslot minutos", timeslot_minutes);
 
   // Mudar horas restantes
   $('input[name="regime"]').click(function() {
     $('#cel-regime').val('');
     var valor = $(this).val();
     if (valor == 'rde' || valor == '40') {
-      var this_duracao = 24*60/45;
+      var this_duracao = 24*60/timeslot_minutes;
       $('#cel-regime').text(this_duracao);
       cel_left = this_duracao
       type_cel = 40;
@@ -24,7 +27,7 @@ $(document).ready(function() {
       $('label.checkbox').removeClass('active');
       timeslots = []
     } else {
-      var this_duracao = 12*60/45;
+      var this_duracao = 12*60/timeslot_minutes;
       $('#cel-regime').text(this_duracao);
       cel_left = this_duracao
       type_cel = 20;

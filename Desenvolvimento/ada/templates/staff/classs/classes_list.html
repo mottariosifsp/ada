@@ -11,7 +11,14 @@
 
 {% block body %}
     {{ block.super }}
-    <h1>{% trans "Turmas" %}</h1>
+    <h1 class="title-page">{% trans "Turmas" %}</h1>
+    <nav>
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="{% url 'home' %}"><i class="bi bi-house-door"></i></a></li>
+        <li class="breadcrumb-item active" aria-current="page">{% trans "Configurar Turmas" %}</li>
+        <li class="breadcrumb-item active">{% trans "Turmas" %}</li>
+      </ol>
+    </nav>
     <button type="button" class="btn btn-success float-right createClassBtn" data-toggle="modal" data-target="#createClassModal"><i class="bi bi-plus"></i> {% trans "Criar Turma" %} </button>
     <div class="tabela">
         <table class="table table-bordered editable" id="classes_list">

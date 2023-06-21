@@ -11,7 +11,14 @@
 
 {% block body %}
     {{ block.super }}
-    <h1>{% trans "Professores" %}</h1>
+    <h1 class="title-page">{% trans "Professores" %}</h1>
+    <nav>
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="{% url 'home' %}"><i class="bi bi-house-door"></i></a></li>
+        <li class="breadcrumb-item active" aria-current="page">{% trans "Configurar Lista de Professores" %}</li>
+        <li class="breadcrumb-item active">{% trans "Professores" %}</li>
+      </ol>
+    </nav>
     <div class="tabela">
         <table class="table table-bordered editable" id="professors_list">
             <thead>
