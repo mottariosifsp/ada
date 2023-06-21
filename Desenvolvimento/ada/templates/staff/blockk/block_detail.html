@@ -12,12 +12,13 @@
 
 {% block body %}
     {{ block.super }}
-    <h1 class="title-page">{% trans "Configuração da atribuição" %}</h1>
+    <h1 class="title-page">{% trans "Detalhes Bloco" %}</h1>
     <nav>
       <ol class="breadcrumb">
         <li class="breadcrumb-item"><a href="{% url 'home' %}"><i class="bi bi-house-door"></i></a></li>
         <li class="breadcrumb-item active" aria-current="page">{% trans "Configurar Blocos" %}</li>
         <li class="breadcrumb-item active"><a href="{% url 'blocks_list' %}">{% trans "Blocos" %}</a></li>
+        <!-- blocktrans? batatinha -->
         <li class="breadcrumb-item active" aria-current="page">{{blockk.acronym}}</li>
       </ol>
     </nav>
@@ -43,14 +44,14 @@
                                 <li class="list-group-item"><strong>{{ name_text }}:</strong> {{ name_area_text }}</li>
                                 {% endblocktrans %}
                                 <li class="list-group-item"><strong>{% trans "Registro" %}:</strong> {% trans area.registration_area_id %}</li>
-                                {% blocktrans with acronym_text=area.acronym acronym_label="Sigla"%}
-                                <li class="list-group-item"><strong>{{acronym_label}}:</strong> {{ acronym_text }}</li>
+                                {% blocktrans with acronym_text=area.acronym acronym_label="Sigla" %}
+                                <li class="list-group-item"><strong>{{ acronym_label }}:</strong> {{ acronym_text }}</li>
                                 {% endblocktrans %}
                                 {% blocktrans with exchange_area_text=area.exchange_area exchange_text="Permuta" %}
                                 <li class="list-group-item"><strong>{{ exchange_text }}:</strong> {{ exchange_area_text }}</li>
                                 {% endblocktrans %}
                                 {% blocktrans with is_high_school_text=area.is_high_school high_school="Ensino Médio" %}
-                                <li class="list-group-item"><strong>{{ high_school }}:</strong> {{ area.is_high_school }}</li>
+                                <li class="list-group-item"><strong>{{ high_school }}:</strong> {{ is_high_school_text }}</li>
                                 {% endblocktrans %}
                             </ul>
                     </div>
@@ -158,7 +159,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">{% trans "Fechar" %}</button>
-                    <button type="button" class="btn btn-primary" id="saveUpdateBtn">{% trans "Salvar" }</button>
+                    <button type="button" class="btn btn-primary" id="saveUpdateBtn">{% trans "Salvar" %}</button>
                 </div>
             </div>
         </div>

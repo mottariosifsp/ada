@@ -88,8 +88,9 @@
                         <select class="form-control" id="area_create" required>
                             <option value="">{% trans "Selecione uma opção" %}</option>
                             {% for area in areas %}
+                                <option value="{{ area.id }}">
                                 {% blocktrans with name_area_text=area.name_area acronym_text=area.acronym %}
-                                <option value="{{ area.id }}">{{ name_area_text }} ({{ acronym_text }})</option>
+                                    {{ name_area_text }} ({{ acronym_text }})</option>
                                 {% endblocktrans %}
                             {% endfor %}
                         </select>
@@ -124,9 +125,10 @@
                             <select class="form-control" id="period_edit" required>
                                 <option value="">{% trans "Selecione uma opção" %}</option>
                                 {% for period in periods %}
-                                {% blocktrans with value_text=period.value label_text=period.label %}
-                                    <option value="{{ value_text }}">{{ label_text }}</option>
-                                {% endblocktrans %}
+                                    <option value="{{ period.value }}">
+                                    {% blocktrans with label_text=period.label %}
+                                        {{ label_text }}</option>
+                                    {% endblocktrans %}
                                 {% endfor %}
                             </select>
                         </div>
@@ -139,8 +141,9 @@
                             <select class="form-control" id="area_edit" required>
                                 <option value="">{% trans "Selecione uma opção" %}</option>
                                 {% for area in areas %}
+                                    <option value="{{ area.id }}">
                                     {% blocktrans with name_area_text=area.name_area acronym_text=area.acronym %}
-                                    <option value="{{ area.id }}">{{ name_area_text }} ({{ acronym_text }})</option>
+                                        {{ name_area_text }} ({{ acronym_text }})</option>
                                     {% endblocktrans %}
                                 {% endfor %}
                             </select>

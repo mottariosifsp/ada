@@ -12,13 +12,14 @@
 
 {% block body %}
     <h1>{% trans "Fila de professores" %}</h1>
-    {% blocktrans with name_block_text=data.blockk.name_block %}
-        <h1 id="blockk-id" value="{{ data.blockk.registration_block_id }}" >{{ name_block_text }}</h1>
-    {% endblocktrans %}
+        <h1 id="blockk-id" value="{{ data.blockk.registration_block_id }}" >
+        {% blocktrans with name_block_text=data.blockk.name_block %}
+            {{ name_block_text }}</h1>
+        {% endblocktrans %}
 
     {% if data.campo != "" %}
-    {% blocktrans with campo_text=data.campo %}
-        <h3>{% trans "Critério escolhido pelo administrador" %}: {{ campo_text }}</h3>
+    {% blocktrans with campo_text=data.campo text="Critério escolhido pelo administrador" %}
+        <h3>{{ text }}: {{ campo_text }}</h3>
     {% endblocktrans %}
     {% endif %}
 

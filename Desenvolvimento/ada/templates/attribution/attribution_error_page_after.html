@@ -3,7 +3,7 @@
 {% load static %} 
 
 {% block head %}
-   <title>{% trans "Erro Atribuição" %}</title>
+   <title>{% trans "Fim Atribuição" %}</title>
    <script src="{% static 'attribution/js/back_home.js' %}" url="{% url 'attribution:attribution_class_list' blockk=blockk %}"></script>
 {% endblock %}
 
@@ -14,7 +14,7 @@
       </div>
          <h1>{% trans "A atribuição já acabou" %}</h1>
          <br>
-         <button type="button" id="return-button" class="btn btn-outline-primary btn-lg rounded-pill">{% trans "Voltar à página inicial" %}</button>
+         <!-- <button type="button" id="return-button" class="btn btn-outline-primary btn-lg rounded-pill">{% trans "Voltar à página inicial" %}</button> -->
       </div>
    </div>
 {% endblock %}

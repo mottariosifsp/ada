@@ -40,7 +40,7 @@
             <h5 class="card-title">{% trans "Nenhum FPA relacionado ao usuário foi encontrado no sistema" %}</h5>
             <hr>
             <a href="{% url 'disponibility_attribution_preference' %}">
-              <button class="btn btn-success">{% trans "Comece seu Formulário de Preferência de Atividades" %}</button>
+              <button class="btn btn-success">{% trans "Comece o seu FPA" %}</button>
             </a>
           </div>
         </div>
@@ -64,7 +64,9 @@
                 </tr>
                 <tr>
                   <th>{% trans "Área" %}:</th>
-                  <td colspan="2">{% translate user.blocks.first.name_block %}</td>
+                  {% blocktrans with name_block_text=user.blocks.first.name_block %}
+                  <td colspan="2">{{ name_block_text }}</td>
+                  {% endblocktrans %}
                   <th>{% trans "E-mail" %}:</th>
                   <td colspan="2">{{ request.user.email }}</td>
                 </tr>
@@ -300,11 +302,11 @@
             <div class="row">
               <div class="col-6 text-right">
                 <a href="{% url 'disponibility_attribution_preference' %}">
-                  <button type="button" class="hidden-itens btn btn-info">Refazer FPA</button>
+                  <button type="button" class="hidden-itens btn btn-info">{% trans "Refazer FPA" %}</button>
                 </a>
               </div>
               <div class="col-6">
-                <button type="button" onClick="window.print();" class="hidden-itens btn btn-success">Imprimir PDF</button>
+                <button type="button" onClick="window.print();" class="hidden-itens btn btn-success">{% trans "Imprimir PDF" %}</button>
               </div>
             </div>
         </div>

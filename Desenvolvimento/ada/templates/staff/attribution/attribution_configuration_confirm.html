@@ -1,9 +1,9 @@
-{% extends "professor/base.html" %} 
+{% extends "staff/base.html" %} 
 {% load i18n %} 
 {% load static %} 
 {% block head %}
 
-<title>{% trans "Configuração de Atribuição" %}</title>
+<title>{% trans "Atribuição Concluída" %}</title>
 <script src="{% static 'staff/attribution/js/attribution_configuration_confirm.js' %}"></script>
 
 {% endblock %} 
@@ -16,7 +16,7 @@
       <h1>{% trans "Configuração salva" %}!</h1>
       <p>{% trans "As atividades foram devidamente configuradas, os prazos estabelecidos e a fila organizada" %}.</p>
       <br>
-      <button type="button" id="return-button" class="btn btn-outline-primary btn-lg rounded-pill">{% trans "Voltar à página inicial" %}</button>
+      <!-- <button type="button" id="return-button" class="btn btn-outline-primary btn-lg rounded-pill">{% trans "Voltar à página inicial" %}</button> -->
    </div>
 </div>
 {% endblock %}
