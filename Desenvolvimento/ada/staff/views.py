@@ -798,7 +798,8 @@ def queue_show(request):
     campo = get_selected_campo()
     print("campo", campo)
 
-    teacher_positions = TeacherQueuePosition.objects.order_by('position')
+    blockk = Blockk.objects.get(registration_block_id=request.GET.get('blockk'))
+    teacher_positions = TeacherQueuePosition.objects.filter(blockk=blockk).order_by('position').all()
 
     total_scores = []
 
@@ -855,7 +856,6 @@ def queue_create(request):
 
     else:  # se a requisição não for POST e for GET sem ter passado a área, ou seja, sem ter atualização no filtro da área, vai cair aqui
         blockk = request.GET.get('blockk')
-        print("blocoooooo:", blockk)
         blockk = Blockk.objects.get(registration_block_id=request.GET.get('blockk'))
 
         if TeacherQueuePosition.objects.filter(
