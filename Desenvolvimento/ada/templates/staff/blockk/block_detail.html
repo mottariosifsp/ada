@@ -26,7 +26,7 @@
       <button type="button" class="btn btn-success float-right createCourseBtn ml-3">{% trans "Criar fila" %}</button>
     </a>
 
-    <a href="{% url 'queue_show' %}"><button type="button" class="btn btn-success float-right createCourseBtn"> {% trans "Ver fila" %} </button></a>
+    <a href="{% url 'queue_show' %}?blockk={{ blockk.registration_block_id }}"><button type="button" class="btn btn-success float-right createCourseBtn"> {% trans "Ver fila" %} </button></a>
 
 
     <div class="container mb-4">
