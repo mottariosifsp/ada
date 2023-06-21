@@ -1,0 +1,54 @@
+{% extends "professor/base.html" %} 
+{% load i18n %} 
+{% load static %} 
+{% block head %}
+
+<title>{% trans "Configuração de Atribuição" %}</title>
+<script src="{% static 'staff/attribution/js/attribution_configuration_confirm.js' %}"></script>
+
+{% endblock %} 
+{% block body %}
+
+<div class="container pt-5">
+   <h2>{{professor.get_full_name_camel_case}}</h2>
+   <hr>
+   <h5>Sua atribuição</h5>
+   <div class="card">
+      <div class="card-body">
+         <table class="table table-bordered text-center">
+            <thead>
+              <tr>
+                <th scope="col" style="width: 14%">Horário</th>
+                <th scope="col">Segunda</th>
+                <th scope="col">Terça</th>
+                <th scope="col">Quarta</th>
+                <th scope="col">Quinta</th>
+                <th scope="col">Sexta</th>
+                <th scope="col">Sábado</th>
+              </tr>
+            </thead>
+            <tbody>
+                  {% for timeslot in timeslots %}
+                    <tr>
+                        {% with timeslot_counter=forloop.counter %}                     
+                           <th scope="row" class="p-2">{{ timeslot.hour_start }} - {{timeslot.hour_end}}</th>
+                              {% for cell in "012345" %}
+                                 <td class="text-center p-2" id="cel-{{ timeslot_counter }}-{{ forloop.counter }}">{{ cell.content }}</td>
+                              {% endfor %}
+                        {% endwith %}
+                    </tr>
+                  {% endfor %}                
+            </tbody>
+          </table>
+          
+      </div>
+   </div>
+</div>
+
+{% endblock %}
+
+{% block endbody %}
+
+<script src="{% static 'professor/js/profile.js' %}" timetables-professor='{{timetables_professor}}'></script>
+
+{% endblock %}
