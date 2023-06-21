@@ -1,7 +1,15 @@
-$(document).ready(function() {
+var url = document.currentScript.getAttribute("url");
 
-    $("#return-button").click(function() {
-        window.location.href = "/";
-    });
+$(document).ready(function() {
+    
+    if(url != null || url != "") {
+        $("#return-button").click(function() {
+            window.location.href = url;
+        });
+    }else {
+        $("#return-button").click(function() {
+            window.location.href = "/";
+        });
+    }
     
 });
