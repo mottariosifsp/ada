@@ -79,9 +79,7 @@ def cancel_all_tasks():
     print(active_tasks)
     # Cancela cada tarefa ativa usando a função revoke()
     for worker, tasks in active_tasks.items():
-        print(tasks)
         for task in tasks:
-            print(task)
             task.revoke(terminate=True)
 
 
