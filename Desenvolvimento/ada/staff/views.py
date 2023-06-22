@@ -434,7 +434,8 @@ def edit_timetable(request):
     elif request.method == 'POST':
         message = ""
         selected_courses = json.loads(request.POST.get('selected_courses'))
-        
+        print(f'cursos selecionados {selected_courses}')
+        selected_courses.pop(0)
         try:
             selected_class = Classs.objects.get(registration_class_id__icontains=(request.GET.get('class')))
         except Classs.DoesNotExist:
