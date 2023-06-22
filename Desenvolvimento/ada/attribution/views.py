@@ -143,7 +143,7 @@ def next_attribution(timetables_preference, next_professor_in_queue, blockk):
         return start_attribution(blockk)
     else:
         print(f'Conflito na atribuição do professor { professor.first_name }')
-        # send_email(professor)
+        send_email(professor)
         schedule_task(SECONDS_TO_PROFESSOR_CHOOSE, professor, blockk)
         return
 
