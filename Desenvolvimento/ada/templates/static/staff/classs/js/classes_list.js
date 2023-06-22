@@ -55,7 +55,6 @@ $(document).ready(function() {
             semester: row.find('td:eq(2)').text(),
             area: row.find('td:eq(3)').text()
         };
-    
         populateModal(classData);
         $('#editClassModal').modal('show');
     });
@@ -72,7 +71,6 @@ $(document).ready(function() {
         var period = $('#period_edit').val();
         var semester = $('#semester_edit').val();
         var area = $('#area_edit').val();
-        console.log("funcionou o botão")
         
         var data = {
             registration_class_id: registration_class_id,

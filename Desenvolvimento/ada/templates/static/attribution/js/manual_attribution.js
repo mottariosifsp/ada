@@ -686,7 +686,6 @@ $(document).ready(function () {
         let csrftoken = getCookie("csrftoken");
         var jsonData = JSON.stringify(timetable_global);
         var blockk = $("#blockk").attr("value");
-        alert(typeof jsonData)
         if (timetable_global.length != 0) {
             $.ajax({
                 type: "post",
