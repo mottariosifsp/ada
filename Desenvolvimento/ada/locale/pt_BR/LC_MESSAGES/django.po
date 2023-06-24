@@ -107,7 +107,7 @@ msgstr "turma"
 
 #: .\classs\models.py:14
 msgid "classes"
-msgstr turmas""
+msgstr "turmas"
 
 #: .\course\models.py:6
 msgid "registration course id"
