@@ -6,6 +6,7 @@
    <title>{% trans "Configuração Atribuição" %}</title>
    <link rel="stylesheet" href="{% static 'staff/attribution/css/attribution_configuration.css' %}">
    <script src="{% static 'staff/attribution/js/attribution_configuration.js' %}"></script>
+
 {% endblock %} 
 
 {% block body %}
@@ -65,7 +66,7 @@
                   </tbody>
                </table>
             </div>
-            <a href="{% url 'queue_create' %}?blockk={{blockk.registration_block_id}}" class="btn btn-primary btn-block">{% trans "Editar fila" %}</a>
+            <a href="{% url 'queue_create' %}?blockk={{blockk.registration_block_id}}" class="btn btn-primary btn-block" id="edit-queue-button">{% trans "Editar fila" %}</a>
          </div>
       </div>
       <button id="submit-button" class="btn btn-success btn-block mt-4">{% trans "Salvar configurações" %}</button>

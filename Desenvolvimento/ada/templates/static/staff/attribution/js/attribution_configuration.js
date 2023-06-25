@@ -1,6 +1,6 @@
-$("document").ready(function(){
+$("document").ready(function () {
 
-    $("#submit-button").click(function(){
+    $("#submit-button").click(function () {
         $("#error-alert-form").hide();
         $("#form").off("submit");
         let startFPA = $("#startFPADeadline").val();
@@ -24,7 +24,31 @@ $("document").ready(function(){
             error_message("Todos os campos devem ser preenchidos.");
         }
     });
+
+     // Salvar os valores dos campos de entrada no localStorage ao sair da página
+     $("#edit-queue-button").click(function () {
+        alert('teste');
+        // Salvar os valores dos campos "startFPADeadline" e "endFPADeadline" no localStorage
+        var startFPADeadlineValue = document.getElementById('startFPADeadline').value;
+        localStorage.setItem('startFPADeadline', startFPADeadlineValue);
+
+        var endFPADeadlineValue = document.getElementById('endFPADeadline').value;
+        localStorage.setItem('endFPADeadline', endFPADeadlineValue);
+
+        // Salvar os valores dos campos "startAssignmentDeadline" e "endAssignmentDeadline" no localStorage
+        var startAssignmentDeadlineValue = document.getElementById('startAssignmentDeadline').value;
+        localStorage.setItem('startAssignmentDeadline', startAssignmentDeadlineValue);
+
+        var endAssignmentDeadlineValue = document.getElementById('endAssignmentDeadline').value;
+        localStorage.setItem('endAssignmentDeadline', endAssignmentDeadlineValue);
+    });
+
+    $("#submit-button").click(function () {
+        alert('teste');
+        localStorage.clear();
+    });
 });
+
 function error_message(message) {
     $("#error-message-form").text(message);
     $("#error-alert-form").show();
@@ -32,8 +56,34 @@ function error_message(message) {
         top: $("#error-alert-form").offset().top - $(".navbar").outerHeight() - 30,
         behavior: "smooth",
     });
-    $("#form").on("submit", function(e){
+    $("#form").on("submit", function (e) {
         e.preventDefault();
-    });
+    });   
 }
-    
+
+// Recuperar os valores dos campos de entrada do localStorage ao carregar a página
+window.addEventListener('load', function () {
+
+    // Recuperar os valores dos campos "startFPADeadline" e "endFPADeadline" do localStorage
+    var startFPADeadlineValue = localStorage.getItem('startFPADeadline');
+    if (startFPADeadlineValue) {
+        document.getElementById('startFPADeadline').value = startFPADeadlineValue;
+    }
+
+    var endFPADeadlineValue = localStorage.getItem('endFPADeadline');
+    if (endFPADeadlineValue) {
+        document.getElementById('endFPADeadline').value = endFPADeadlineValue;
+    }
+
+    // Recuperar os valores dos campos "startAssignmentDeadline" e "endAssignmentDeadline" do localStorage
+    var startAssignmentDeadlineValue = localStorage.getItem('startAssignmentDeadline');
+    if (startAssignmentDeadlineValue) {
+        document.getElementById('startAssignmentDeadline').value = startAssignmentDeadlineValue;
+    }
+
+    var endAssignmentDeadlineValue = localStorage.getItem('endAssignmentDeadline');
+    if (endAssignmentDeadlineValue) {
+        document.getElementById('endAssignmentDeadline').value = endAssignmentDeadlineValue;
+    }
+});
+
