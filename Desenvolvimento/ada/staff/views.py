@@ -792,7 +792,7 @@ def add_teacher_to_queue(teacher, position_input, blockk):
 def add_teacher_to_queue_backup(teacher, position_input, blockk):
     position = position_input
     TeacherQueuePositionBackup.objects.create(teacher=teacher, position=position, blockk=blockk)
-    print(f'professor { teacher.first_name } adicionado na fila com a posição { position } no bloco { blockk }')
+    print(f'professor { teacher.first_name } adicionado na fila de backup com a posição { position } no bloco { blockk }')
 
 # View que leva para a(s) fila(s) já definida pelo admin
 @login_required
@@ -906,7 +906,8 @@ def queue_create(request):
                 'resultados': final_list,
                 'campo': get_string_campo(campo),
                 'total_score': usuarios_somados,
-                'blockk': blockk
+                'blockk': blockk,
+                'recover_queue': True
             }
 
             return render(request, 'staff/queue/queue_create.html', {'data': data})

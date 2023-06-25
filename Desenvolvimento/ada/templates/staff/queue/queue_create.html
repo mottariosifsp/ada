@@ -10,6 +10,7 @@
 {% endblock %} 
 
 {% block body %}
+
 <h1 class="title-page">{% trans "Fila de Professores" %}</h1>
     <nav>
       <ol class="breadcrumb">
@@ -21,6 +22,11 @@
       </ol>
     </nav>
 <hr/>
+{% if data.recover_queue %}
+<div class="alert alert-success" role="alert">
+    Fila anterior recuperada, caso deseje manter-la, clique em enviar.
+</div>
+{% endif%}
 <div class="container">
 <div class="row mb-3">
     <div class="col m-0 p-0 mr-3">
