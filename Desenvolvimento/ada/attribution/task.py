@@ -21,7 +21,6 @@ def finalization_deadline_start():
 @app.task
 def attribution_deadline_start(blockk_id):
     blockk = Blockk.objects.get(id=blockk_id)
-    print(blockk)
     views.start_attribution(blockk)
     print("attribution_deadline_start")
 

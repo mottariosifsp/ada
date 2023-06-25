@@ -470,7 +470,6 @@ def manual_attribution(request):
             'timetables_user': timetable_user_array,
             'blockk': blockk,
         }
-        print(blockk.registration_block_id)
 
         return render(request, 'attribution/manual_attribution.html', data)
 
