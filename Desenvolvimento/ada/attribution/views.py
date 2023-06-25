@@ -557,6 +557,12 @@ def attribution_detail(request):
     }
     return render(request, 'attribution/attribution_detail.html', data)
 
+def remove_professors_without_preference(blockk):
+    queue = TeacherQueuePosition.objects.filter(blockk=blockk).order_by('position').all()
+    for professor_in_queue in queue:
+        if not Attribution_preference.objects.filter(user=professor_in_queue.teacher).exists():
+            professor_in_queue.delete()
+    return
 
 def day_to_number(day):
     number = {

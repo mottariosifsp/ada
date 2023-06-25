@@ -22,6 +22,7 @@ def finalization_deadline_start():
 def attribution_deadline_start(blockk_id):
     blockk = Blockk.objects.get(id=blockk_id)
     views.start_attribution(blockk)
+    views.remove_professors_without_preference(blockk)
     print("attribution_deadline_start")
 
 @app.task
