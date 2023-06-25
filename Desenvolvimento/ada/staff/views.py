@@ -2,7 +2,7 @@ from datetime import datetime, timezone
 import json
 
 from django.urls import reverse
-from attribution.models import TeacherQueuePosition
+from attribution.models import TeacherQueuePosition, TeacherQueuePositionBackup
 # from attribution import task
 from attribution.views import schedule_attributtion_deadline_staff
 from enums import enum
@@ -775,13 +775,13 @@ def get_selected_campo():
 # método para deixar separado no html
 def get_string_campo(campo):
     campos = {
-        'birth': 'birth',
-        'date_career': 'date career',
-        'date_campus': 'date campus',
-        'date_professor': 'date professor',
-        'date_area': 'date area',
-        'date_institute': 'date institute',
-        'academic_degrees': 'academic degrees'
+        'birth': 'Data de nascimento',
+        'date_career': 'Data de carreira',
+        'date_campus': 'Data no campus',
+        'date_professor': 'Data como professor',
+        'date_area': 'Data na área',
+        'date_institute': 'Data no instituto',
+        'academic_degrees': 'Potuação de titulação'
     }
 
     return campos.get(campo, "campo")
@@ -791,6 +791,10 @@ def add_teacher_to_queue(teacher, position_input, blockk):
     TeacherQueuePosition.objects.create(teacher=teacher, position=position, blockk=blockk)
     print(f'professor { teacher.first_name } adicionado na fila com a posição { position } no bloco { blockk }')
 
+def add_teacher_to_queue_backup(teacher, position_input, blockk):
+    position = position_input
+    TeacherQueuePositionBackup.objects.create(teacher=teacher, position=position, blockk=blockk)
+    print(f'professor { teacher.first_name } adicionado na fila com a posição { position } no bloco { blockk }')
 
 # View que leva para a(s) fila(s) já definida pelo admin
 @login_required
@@ -800,7 +804,7 @@ def queue_show(request):
     print("campo", campo)
 
     blockk = Blockk.objects.get(registration_block_id=request.GET.get('blockk'))
-    teacher_positions = TeacherQueuePosition.objects.filter(blockk=blockk).order_by('position').all()
+    teacher_positions = TeacherQueuePositionBackup.objects.filter(blockk=blockk).order_by('position').all()
 
     total_scores = []
 
@@ -843,13 +847,18 @@ def queue_create(request):
             position = professorInQueue[0]
             professor = User.objects.get(registration_id=professor_registration_id)
 
+            if TeacherQueuePositionBackup.objects.filter(teacher=professor, blockk=blockk).exists():
+                TeacherQueuePositionBackup.objects.filter(teacher=professor).update(position=position)
+            else:
+                add_teacher_to_queue_backup(professor, position, blockk)
+
             if TeacherQueuePosition.objects.filter(teacher=professor, blockk=blockk).exists():
                 TeacherQueuePosition.objects.filter(teacher=professor).update(position=position)
             else:
                 add_teacher_to_queue(professor, position, blockk)
 
         data = {
-            'resultados': TeacherQueuePosition.objects.select_related('teacher').order_by('position').all(),
+            'resultados': TeacherQueuePositionBackup.objects.select_related('teacher').order_by('position').all(),
             'campo': get_string_campo(campo),
         }
 
@@ -859,28 +868,26 @@ def queue_create(request):
         blockk = request.GET.get('blockk')
         blockk = Blockk.objects.get(registration_block_id=request.GET.get('blockk'))
 
-        if TeacherQueuePosition.objects.filter(
-                blockk=blockk).exists():  # se já tiver uma tabela criada para a área selecionada
+        if TeacherQueuePositionBackup.objects.filter(blockk=blockk).exists():  # se já tiver uma tabela criada para a área selecionada
             campo = get_selected_campo()
 
-            teacher_positions = TeacherQueuePosition.objects.filter(blockk=blockk).order_by('position')
+            teacher_positions = TeacherQueuePositionBackup.objects.filter(blockk=blockk).order_by('position')
 
             all_users = User.objects.all()
 
             missing_users = []
 
             for user in all_users:
-                if not teacher_positions.filter(teacher=user).exists():
+                if not TeacherQueuePositionBackup.objects.filter(teacher=user).exists():
                     if user.is_professor:
                         if user.blocks.filter(registration_block_id=blockk.registration_block_id).exists():
                             missing_users.append(user)
 
                 final_list = list(teacher_positions) + missing_users
-
                 usuarios_somados = []
 
                 for item in final_list:
-                    if isinstance(item, TeacherQueuePosition):
+                    if isinstance(item, TeacherQueuePositionBackup):
                         user = item.teacher
                         if user is not None and user.history is not None:
                             total_score = user.history.academic_degrees.aggregate(total_score=Sum('punctuation'))[
