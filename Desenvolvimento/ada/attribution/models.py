@@ -30,7 +30,10 @@ class TeacherQueuePositionBackup(models.Model):
 
 @receiver(models.signals.pre_save, sender=User)
 def on_change(sender, instance, **kwargs): 
-    old_instance = sender.objects.get(pk=instance.pk)
+    try:
+        old_instance = sender.objects.get(pk=instance.pk)
+    except sender.DoesNotExist:
+        return False
     if old_instance.is_professor and not instance.is_professor:
         TeacherQueuePosition.objects.filter(teacher=instance).delete()
 
