@@ -60,7 +60,6 @@ def attribution_configuration_index(request):
         elif blockk.registration_block_id == "776292":
             blockk_images["image"] = "https://media.discordapp.net/attachments/1081682716531118151/1117348338254233680/image.png"
         blockks_images.append(blockk_images)
-        print(blockks_images)
     data = {
         'blockks': blockks_images
     }
@@ -72,7 +71,6 @@ def attribution_configuration(request):
 
     if request.method == 'GET':
         blockk = Blockk.objects.get(registration_block_id=request.GET.get('blockk'))
-        print(request.GET.get('blockk'))
         queue = TeacherQueuePosition.objects.filter(blockk=blockk).order_by('position')
 
         data = {

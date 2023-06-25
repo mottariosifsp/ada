@@ -36,7 +36,6 @@ def home(request):
         elif blockk.registration_block_id == "776292":
             blockk_images["image"] = "https://media.discordapp.net/attachments/1081682716531118151/1117348338254233680/image.png"
         blockks_images.append(blockk_images)
-        print(blockks_images)
     data = {
         'blockks': blockks_images
     }
