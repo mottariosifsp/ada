@@ -18,33 +18,32 @@ def disponibility_attribution_preference(request):
     user = request.user
     user_blocks = user.blocks.all()
 
-    turno = {
-        'matutino': [],
-        'matutinoAulas': 0,
-        'vespertino': [],
-        'vespertinoAulas': 0,
-        'noturno': [],
-        'noturnoAulas': 0
+    shift = {
+        'morning': [],
+        'morning_classes': 0,
+        'afternoon': [],
+        'afternoon_classes': 0,
+        'nocturnal': [],
+        'nocturnal_classes': 0
     }
 
     for timeslot in Timeslot.objects.all():
         if timeslot.hour_start >= datetime.time(7, 0, 0) and timeslot.hour_end <= datetime.time(12, 0, 0):
-            turno['matutino'].append(timeslot)
+            shift['morning'].append(timeslot)
         elif timeslot.hour_start >= datetime.time(13, 0, 0) and timeslot.hour_end <= datetime.time(18, 0, 0):
-            turno['vespertino'].append(timeslot)
+            shift['afternoon'].append(timeslot)
         elif timeslot.hour_start >= datetime.time(18, 0, 0) and timeslot.hour_end <= datetime.time(23, 0, 0):
-            turno['noturno'].append(timeslot)
+            shift['nocturnal'].append(timeslot)
 
-        turno['matutinoAulas'] = len(turno['matutino']) + 1
-        turno['vespertinoAulas'] = len(turno['vespertino']) + 1
-        turno['noturnoAulas'] = len(turno['noturno']) + 1
+        shift['morning_classes'] = len(shift['morning']) + 1
+        shift['afternoon_classes'] = len(shift['afternoon']) + 1
+        shift['nocturnal_classes'] = len(shift['nocturnal']) + 1
 
     timetables = Timetable.objects.filter(course__blockk__in=user_blocks)
     timetables = list(
         Timetable.objects.values_list('day_combo__day', 'classs', 'course', 'day_combo__timeslots__position')
     )
 
-    # Converte para um objeto json
     converted_timetables = []
     for timetable in timetables:
         converted_timetable = {
@@ -61,57 +60,37 @@ def disponibility_attribution_preference(request):
 
     start_minutes = timeslot.hour_start.hour * 60 + timeslot.hour_start.minute
     end_minutes = timeslot.hour_end.hour * 60 + timeslot.hour_end.minute
-    diferenca = end_minutes - start_minutes
+    variation = end_minutes - start_minutes
 
     data = {
-        'turno': turno,
+        'shift': shift,
         'timetables': json_data,
-        'diferenca_minutos': diferenca
+        'variation_minutes': variation # alterar
     }
 
     return render(request, 'attribution_preference/disponibility_attribution_preference.html', data)
 
-
-def convert_string_to_datetime(hora_string):
-    pattern = r'(\d{1,2})(:\d{2})?\s*(a\.m\.|p\.m\.)'
-    match = re.match(pattern, hora_string, re.IGNORECASE)
-
-    if match:
-        hour = int(match.group(1))
-        minute = 0
-        if match.group(2):
-            minute = int(match.group(2)[1:])
-        indicator = match.group(3).lower()
-
-        if indicator == 'p.m.' and hour != 12:
-            hour += 12
-        elif indicator == 'a.m.' and hour == 12:
-            hour = 0
-
-        return datetime.time(hour=hour, minute=minute, second=0)
-
-
 def courses_attribution_preference(request):
-    work_regime = request.POST.get('work_regime')
-    work_timeslots = request.POST.getlist('work_timeslots')
-    json_data = [json.loads(item) for item in work_timeslots]
+    user_regime = request.POST.get('user_regime')
+    user_timeslots = request.POST.getlist('user_timeslots')
+    json_data = [json.loads(item) for item in user_timeslots]
 
     timeslots = []
 
     for obj in json_data:
         for item in obj:
-            hora_comeco = convert_string_to_datetime(item["hora_comeco"])
-            dia_semana = item["dia_semana"]
+            timeslot_begin_hour = convert_string_to_datetime(item["timeslot_begin_hour"])
+            day_of_week = item["day_of_week"]
 
             timeslot_preference = {
-                "hora_comeco": hora_comeco,
-                "dia_semana": dia_semana
+                "timeslot_begin_hour": timeslot_begin_hour,
+                "day_of_week": day_of_week
             }
 
             timeslots.append(timeslot_preference)
 
     if request.method == 'POST':
-        save_disponiility_preference(timeslots, work_regime, request.user)
+        save_disponiility_preference(timeslots, user_regime, request.user)
 
         return render(request, 'attribution_preference/courses_attribution_preference.html')
     else:
@@ -261,7 +240,7 @@ def courses_attribution_preference(request):
             user_regime_choosed = user_regime
 
         data = {
-            'work_regime': user_regime_choosed,
+            'user_regime': user_regime_choosed,
             'turno': turno,
             'user_disponibility': user_timeslot_traceback,
             'user_blocks': user_blocks,
@@ -274,8 +253,8 @@ def courses_attribution_preference(request):
 
 
 @transaction.atomic
-def save_disponiility_preference(work_timeslots, work_regime, user):
-    job = Job.objects.create(name_job=work_regime)
+def save_disponiility_preference(user_timeslots, user_regime, user):
+    job = Job.objects.create(name_job=user_regime)
     user.job = None
     user.job = job
     user.save()
@@ -286,21 +265,21 @@ def save_disponiility_preference(work_timeslots, work_regime, user):
     if Preference_schedule.objects.filter(attribution_preference__user=user).exists():
         Preference_schedule.objects.filter(attribution_preference__user=user).delete()
 
-    for timeslot in work_timeslots:
-        hora_comeco = timeslot["hora_comeco"]
-        dia_semana = timeslot["dia_semana"]
+    for timeslot in user_timeslots:
+        timeslot_begin_hour = timeslot["timeslot_begin_hour"]
+        day_of_week = timeslot["day_of_week"]
 
-        timeslot_object = Timeslot.objects.filter(hour_start=hora_comeco).first()
+        timeslot_object = Timeslot.objects.filter(hour_start=timeslot_begin_hour).first()
 
-        if dia_semana == 'mon':
+        if day_of_week == 'mon':
             day_object = enum.Day.monday.name
-        elif dia_semana == 'tue':
+        elif day_of_week == 'tue':
             day_object = enum.Day.tuesday.name
-        elif dia_semana == 'wed':
+        elif day_of_week == 'wed':
             day_object = enum.Day.wednesday.name
-        elif dia_semana == 'thu':
+        elif day_of_week == 'thu':
             day_object = enum.Day.thursday.name
-        elif dia_semana == 'fri':
+        elif day_of_week == 'fri':
             day_object = enum.Day.friday.name
         else:
             day_object = enum.Day.saturday.name
@@ -428,7 +407,7 @@ def attribution_preference(request):
         data = {
             'fpa_done': fpa,
             'turno': turno,
-            'work_regime': user_regime,
+            'user_regime': user_regime,
             'work_disponibility': user_timeslot_traceback,
             'work_courses': user_courses_traceback,
         }
@@ -449,4 +428,22 @@ def save_courses_preference(work_courses, user):
                 attribution_preference=Attribution_preference.objects.filter(user=user).first(),
                 timetable=timetable
             )
+
+def convert_string_to_datetime(hora_string):
+    pattern = r'(\d{1,2})(:\d{2})?\s*(a\.m\.|p\.m\.)'
+    match = re.match(pattern, hora_string, re.IGNORECASE)
+
+    if match:
+        hour = int(match.group(1))
+        minute = 0
+        if match.group(2):
+            minute = int(match.group(2)[1:])
+        indicator = match.group(3).lower()
+
+        if indicator == 'p.m.' and hour != 12:
+            hour += 12
+        elif indicator == 'a.m.' and hour == 12:
+            hour = 0
+
+        return datetime.time(hour=hour, minute=minute, second=0)
 

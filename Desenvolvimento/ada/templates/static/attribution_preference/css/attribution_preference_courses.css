@@ -52,3 +52,17 @@ th {
 .regime {
   margin-top: -17px;
 }
+
+@media print {  
+    .hidden-itens {     
+    display: none;
+  }
+
+  .title-page {
+    margin-top: -60px;
+  }
+
+  .hour-print {
+    font-size: 14px;
+  }
+}
