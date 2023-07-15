@@ -1,4 +1,4 @@
-from datetime import datetime, timezone
+from datetime import datetime, time, timezone
 import json
 
 from django.urls import reverse
@@ -366,10 +366,14 @@ def create_timetable(request):
             return redirect(url) 
 
         selected_courses = Course.objects.filter(area=selected_class.area)
-
+        timeslots = {
+            'morning': Timeslot.objects.filter(hour_start__gte=time(6, 0, 0), hour_end__lte=time(12, 0, 0)).order_by('hour_start'),
+            'afternoon': Timeslot.objects.filter(hour_start__gte=time(12, 0, 0), hour_end__lte=time(18, 0, 0)).order_by('hour_start'),
+            'night': Timeslot.objects.filter(hour_start__gte=time(18, 0, 0), hour_end__lte=time(23, 59, 59)).order_by('hour_start'),
+        }
         data = {
             'courses': selected_courses,
-            'timeslots': Timeslot.objects.all().order_by('hour_start'),
+            'timeslots': timeslots,
             'classs': selected_class
         }
 
