@@ -3,7 +3,7 @@
 {% load static %}
 
 {% block head %}
-  <link rel="stylesheet" href="{% static 'attribution_preference/css/attribution_preference.css' %}">
+  <link rel="stylesheet" href="{% static 'attribution_preference/css/disponibility.css' %}">
   <title>{% trans "Envio FPA" %}</title>
   <style>
     abbr[title] {
@@ -29,7 +29,7 @@
       </ol>
     </nav>
 
-    <form id="sendDisponibilityForm" method="post">
+    <form id="send_disponibility_form" method="post">
       {% csrf_token %}
       <div id="error-alert-form" class="alert alert-danger" style="display: none;">
         <span id="error-message-form"></span>
@@ -43,12 +43,12 @@
                 <hr class="my-0">
                 <div class="form-group mt-5 mb-4">
                   <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="radio" name="regime" id="radio20" value="20" required>
-                    <label class="form-check-label" for="radio20">20 {% trans "horas" %}</label>
+                    <input class="form-check-input" type="radio" name="regime" id="radio-20" value="20" required>
+                    <label class="form-check-label" for="radio-20">20 {% trans "horas" %}</label>
                   </div>
                   <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="radio" name="regime" id="radio40" value="40" required>
-                    <label class="form-check-label" for="radio40">40 {% trans "horas" %}</label>
+                    <input class="form-check-input" type="radio" name="regime" id="radio-40" value="40" required>
+                    <label class="form-check-label" for="radio-40">40 {% trans "horas" %}</label>
                   </div>
                   <div class="form-check form-check-inline">
                     <input class="form-check-input" type="radio" name="regime" id="rde" value="rde" required>
@@ -94,17 +94,17 @@
                   <tbody class="block" >
                     {% for i in "MVN" %}
                       {% if i == "M" %}
-                        <td class="text-center align-middle" rowspan='{{ turno.matutinoAulas }}'>{% trans "Matutino" %}</td>
-                        {% for horario in turno.matutino %}
+                        <td class="text-center align-middle" rowspan='{{ shift.morning_classes }}'>{% trans "Matutino" %}</td>
+                        {% for timeslot in shift.morning %}
                           <tr>
-                            <td class="text-center align-middle">{{ horario.hour_start }} - {{ horario.hour_end }}</td>
+                            <td class="text-center align-middle">{{ timeslot.hour_start }} - {{ timeslot.hour_end }}</td>
       
                             <td class="text-center">
                               <div class="openModalBtn">
                                 <div class="btn-group-toggle" data-toggle="buttons">
                                   <label class="btn btn-success w-100 checkbox" for="mon-mat-{{ forloop.counter }}">
                                     <input type="checkbox" id="mon-mat-{{ forloop.counter }}" 
-                                      value="{{ horario.hour_start }}-{{ horario.hour_end }},mon" 
+                                      value="{{ timeslot.hour_start }}-{{ timeslot.hour_end }},mon" 
                                       autocomplete="off">
                                     <i class="fas fa-check-circle check"></i>
                                   </label>
@@ -117,7 +117,7 @@
                                 <div class="btn-group-toggle" data-toggle="buttons">
                                   <label class="btn btn-success w-100 checkbox" for="tue-mat-{{ forloop.counter }}">
                                     <input type="checkbox" id="tue-mat-{{ forloop.counter }}"
-                                      value="{{ horario.hour_start }}-{{ horario.hour_end }},tue" 
+                                      value="{{ timeslot.hour_start }}-{{ timeslot.hour_end }},tue" 
                                       autocomplete="off">
                                     <i class="fas fa-check-circle check"></i>
                                   </label>
@@ -130,7 +130,7 @@
                                 <div class="btn-group-toggle" data-toggle="buttons">
                                   <label class="btn btn-success w-100 checkbox" for="wed-mat-{{ forloop.counter }}">
                                     <input type="checkbox" id="wed-mat-{{ forloop.counter }}" 
-                                      value="{{ horario.hour_start }}-{{ horario.hour_end }},wed" 
+                                      value="{{ timeslot.hour_start }}-{{ timeslot.hour_end }},wed" 
                                       autocomplete="off">
                                     <i class="fas fa-check-circle check"></i>
                                   </label>
@@ -143,7 +143,7 @@
                                 <div class="btn-group-toggle" data-toggle="buttons">
                                   <label class="btn btn-success w-100 checkbox" for="thu-mat-{{ forloop.counter }}">
                                     <input type="checkbox" id="thu-mat-{{ forloop.counter }}" 
-                                      value="{{ horario.hour_start }}-{{ horario.hour_end }},thu" 
+                                      value="{{ timeslot.hour_start }}-{{ timeslot.hour_end }},thu" 
                                       autocomplete="off">
                                     <i class="fas fa-check-circle check"></i>
                                   </label>
@@ -156,7 +156,7 @@
                                 <div class="btn-group-toggle" data-toggle="buttons">
                                   <label class="btn btn-success w-100 checkbox" for="fri-mat-{{ forloop.counter }}">
                                     <input type="checkbox" id="fri-mat-{{ forloop.counter }}" 
-                                      value="{{ horario.hour_start }}-{{ horario.hour_end }},fri" 
+                                      value="{{ timeslot.hour_start }}-{{ timeslot.hour_end }},fri" 
                                       autocomplete="off">
                                     <i class="fas fa-check-circle check"></i>
                                   </label>
@@ -169,7 +169,7 @@
                                 <div class="btn-group-toggle" data-toggle="buttons">
                                   <label class="btn btn-success w-100 checkbox" for="sat-mat-{{ forloop.counter }}">
                                     <input type="checkbox" id="sat-mat-{{ forloop.counter }}" 
-                                      value="{{ horario.hour_start }}-{{ horario.hour_end }},sat" 
+                                      value="{{ timeslot.hour_start }}-{{ timeslot.hour_end }},sat" 
                                       autocomplete="off">
                                     <i class="fas fa-check-circle check"></i>
                                   </label>
@@ -180,18 +180,18 @@
                           
                         {% endfor %}
                       {% elif i == "V" %}
-                        <td class="text-center align-middle" rowspan="{{ turno.vespertinoAulas }}">{% trans "Vespertino" %}</td>
+                        <td class="text-center align-middle" rowspan="{{ shift.afternoon_classes }}">{% trans "Vespertino" %}</td>
       
-                        {% for horario in turno.vespertino %}
+                        {% for timeslot in shift.afternoon %}
                           <tr>
-                            <td class="text-center align-middle">{{ horario.hour_start }} - {{ horario.hour_end }}</td>
+                            <td class="text-center align-middle">{{ timeslot.hour_start }} - {{ timeslot.hour_end }}</td>
       
                             <td class="text-center">
                               <div class="openModalBtn">
                                 <div class="btn-group-toggle" data-toggle="buttons">
                                   <label class="btn btn-success w-100 checkbox" for="mon-ves-{{ forloop.counter }}">
                                     <input type="checkbox" id="mon-ves-{{ forloop.counter }}" 
-                                      value="{{ horario.hour_start }}-{{ horario.hour_end }},mon" 
+                                      value="{{ timeslot.hour_start }}-{{ timeslot.hour_end }},mon" 
                                       autocomplete="off">
                                     <i class="fas fa-check-circle check"></i>
                                   </label>
@@ -204,7 +204,7 @@
                                 <div class="btn-group-toggle" data-toggle="buttons">
                                   <label class="btn btn-success w-100 checkbox" for="tue-ves-{{ forloop.counter }}">
                                     <input type="checkbox" id="tue-ves-{{ forloop.counter }}" 
-                                      value="{{ horario.hour_start }}-{{ horario.hour_end }},tue" 
+                                      value="{{ timeslot.hour_start }}-{{ timeslot.hour_end }},tue" 
                                       autocomplete="off">
                                     <i class="fas fa-check-circle check"></i>
                                   </label>
@@ -217,7 +217,7 @@
                                 <div class="btn-group-toggle" data-toggle="buttons">
                                   <label class="btn btn-success w-100 checkbox" for="wed-ves-{{ forloop.counter }}">
                                     <input type="checkbox" id="wed-ves-{{ forloop.counter }}" 
-                                      value="{{ horario.hour_start }}-{{ horario.hour_end }},wed" 
+                                      value="{{ timeslot.hour_start }}-{{ timeslot.hour_end }},wed" 
                                       autocomplete="off">
                                     <i class="fas fa-check-circle check"></i>
                                   </label>
@@ -230,7 +230,7 @@
                                 <div class="btn-group-toggle" data-toggle="buttons">
                                   <label class="btn btn-success w-100 checkbox" for="thu-ves-{{ forloop.counter }}">
                                     <input type="checkbox" id="thu-ves-{{ forloop.counter }}" 
-                                      value="{{ horario.hour_start }}-{{ horario.hour_end }},thu" 
+                                      value="{{ timeslot.hour_start }}-{{ timeslot.hour_end }},thu" 
                                       autocomplete="off">
                                     <i class="fas fa-check-circle check"></i>
                                   </label>
@@ -243,7 +243,7 @@
                                 <div class="btn-group-toggle" data-toggle="buttons">
                                   <label class="btn btn-success w-100 checkbox" for="fri-ves-{{ forloop.counter }}">
                                     <input type="checkbox" id="fri-ves-{{ forloop.counter }}" 
-                                      value="{{ horario.hour_start }}-{{ horario.hour_end }},fri" 
+                                      value="{{ timeslot.hour_start }}-{{ timeslot.hour_end }},fri" 
                                       autocomplete="off">
                                     <i class="fas fa-check-circle check"></i>
                                   </label>
@@ -256,7 +256,7 @@
                                 <div class="btn-group-toggle" data-toggle="buttons">
                                   <label class="btn btn-success w-100 checkbox" for="sat-ves-{{ forloop.counter }}">
                                     <input type="checkbox" id="sat-ves-{{ forloop.counter }}" 
-                                      value="{{ horario.hour_start }}-{{ horario.hour_end }},sat" 
+                                      value="{{ timeslot.hour_start }}-{{ timeslot.hour_end }},sat" 
                                       autocomplete="off">
                                     <i class="fas fa-check-circle check"></i>
                                   </label>
@@ -267,18 +267,18 @@
                           
                         {% endfor %}
                       {% else %}
-                        <td class="text-center align-middle" rowspan="{{ turno.noturnoAulas }}">{% trans "Noturno" %}</td>
+                        <td class="text-center align-middle" rowspan="{{ shift.nocturnal_classes }}">{% trans "Noturno" %}</td>
       
-                        {% for horario in turno.noturno %}
+                        {% for timeslot in shift.nocturnal %}
                           <tr>
-                            <td class="text-center align-middle">{{ horario.hour_start }} - {{ horario.hour_end }}</td>
+                            <td class="text-center align-middle">{{ timeslot.hour_start }} - {{ timeslot.hour_end }}</td>
       
                             <td class="text-center">
                               <div class="openModalBtn">
                                 <div class="btn-group-toggle" data-toggle="buttons">
                                   <label class="btn btn-success w-100 checkbox" for="mon-not-{{ forloop.counter }}">
                                     <input type="checkbox" id="mon-not-{{ forloop.counter }}" 
-                                      value="{{ horario.hour_start }}-{{ horario.hour_end }},mon" 
+                                      value="{{ timeslot.hour_start }}-{{ timeslot.hour_end }},mon" 
                                       autocomplete="off">
                                     <i class="fas fa-check-circle check"></i>
                                   </label>
@@ -291,7 +291,7 @@
                                 <div class="btn-group-toggle" data-toggle="buttons">
                                   <label class="btn btn-success w-100 checkbox" for="tue-not-{{ forloop.counter }}">
                                     <input type="checkbox" id="tue-not-{{ forloop.counter }}" 
-                                      value="{{ horario.hour_start }}-{{ horario.hour_end }},tue" 
+                                      value="{{ timeslot.hour_start }}-{{ timeslot.hour_end }},tue" 
                                       autocomplete="off">
                                     <i class="fas fa-check-circle check"></i>
                                   </label>
@@ -304,7 +304,7 @@
                                 <div class="btn-group-toggle" data-toggle="buttons">
                                   <label class="btn btn-success w-100 checkbox" for="wed-not-{{ forloop.counter }}">
                                     <input type="checkbox" id="wed-not-{{ forloop.counter }}" 
-                                      value="{{ horario.hour_start }}-{{ horario.hour_end }},wed" 
+                                      value="{{ timeslot.hour_start }}-{{ timeslot.hour_end }},wed" 
                                       autocomplete="off">
                                     <i class="fas fa-check-circle check"></i>
                                   </label>
@@ -317,7 +317,7 @@
                                 <div class="btn-group-toggle" data-toggle="buttons">
                                   <label class="btn btn-success w-100 checkbox" for="thu-not-{{ forloop.counter }}">
                                     <input type="checkbox" id="thu-not-{{ forloop.counter }}" 
-                                      value="{{ horario.hour_start }}-{{ horario.hour_end }},thu" 
+                                      value="{{ timeslot.hour_start }}-{{ timeslot.hour_end }},thu" 
                                       autocomplete="off">
                                     <i class="fas fa-check-circle check"></i>
                                   </label>
@@ -330,7 +330,7 @@
                                 <div class="btn-group-toggle" data-toggle="buttons">
                                   <label class="btn btn-success w-100 checkbox" for="fri-not-{{ forloop.counter }}">
                                     <input type="checkbox" id="fri-not-{{ forloop.counter }}" 
-                                      value="{{ horario.hour_start }}-{{ horario.hour_end }},fri" 
+                                      value="{{ timeslot.hour_start }}-{{ timeslot.hour_end }},fri" 
                                       autocomplete="off" >
                                     <i class="fas fa-check-circle check"></i>
                                   </label>
@@ -343,7 +343,7 @@
                                 <div class="btn-group-toggle" data-toggle="buttons">
                                   <label class="btn btn-success w-100 checkbox" for="sat-not-{{ forloop.counter }}">
                                     <input type="checkbox" id="sat-not-{{ forloop.counter }}" 
-                                      value="{{ horario.hour_start }}-{{ horario.hour_end }},sat" 
+                                      value="{{ timeslot.hour_start }}-{{ timeslot.hour_end }},sat" 
                                       autocomplete="off" >
                                     <i class="fas fa-check-circle check"></i>
                                   </label>
@@ -360,12 +360,12 @@
           </div>
         </div>
       </div>
-      <button type="button" class="btn btn-primary float-right mt-4 mb-5" name="sendDisponibility" id="sendDisponibility">{% trans "Enviar Disponibilidade" %}</button>
-      <button type="button" class="btn btn-danger float-right mt-4 mb-5 mr-2" name="cleanFPA" id="cleanFPA">{% trans "Limpar Disponibilidade" %}</button>
+      <button type="button" class="btn btn-primary float-right mt-4 mb-5" name="send-disponibility" id="send-disponibility">{% trans "Enviar Disponibilidade" %}</button>
+      <button type="button" class="btn btn-danger float-right mt-4 mb-5 mr-2" name="clean-fpa" id="clean-fpa">{% trans "Limpar Disponibilidade" %}</button>
     </form>
   </section>
 {% endblock %}
 
 {% block endbody %}
-  <script src="{% static 'attribution_preference/js/preferred_availability.js' %}" blocks='{{user_blocks}}' timetables='{{timetables}}' diferenca_minutos='{{diferenca_minutos}}' data-lang={{LANGUAGE_CODE}}></script>
+  <script src="{% static 'attribution_preference/js/disponibility.js' %}" blocks='{{user_blocks}}' timetables='{{timetables}}' variation_minutes='{{variation_minutes}}' data-lang={{LANGUAGE_CODE}}></script>
 {% endblock %}

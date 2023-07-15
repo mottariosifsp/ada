@@ -1,37 +1,34 @@
+var current_language = document.currentScript.getAttribute('data-lang');
 var timeslots = []
-var lang = document.currentScript.getAttribute('data-lang');
-var cel_left = 0
-var type_cel = 0
-var cel_final = "not_checked"
-var hour = 0
-var minute = 0
+var cell_left_number = 0
+var cell_type_choosed = 0
+var cell_situation = "not_checked" 
+
 var user_blocks = document.currentScript.getAttribute('blocks');
 var user_timetables = document.currentScript.getAttribute('timetables');
-var timeslot_minutes = document.currentScript.getAttribute('diferenca_minutos');
+var timeslot_minutes = document.currentScript.getAttribute('variation_minutes');
 
 $(document).ready(function() {
-
   console.log("timeslot minutos", timeslot_minutes);
 
-  // Mudar horas restantes
   $('input[name="regime"]').click(function() {
     $('#cel-regime').val('');
-    var valor = $(this).val();
-    if (valor == 'rde' || valor == '40') {
-      var this_duracao = 24*60/timeslot_minutes;
-      $('#cel-regime').text(this_duracao);
-      cel_left = this_duracao
-      type_cel = 40;
-      cel_final = "not_checked"
+    var value = $(this).val();
+    if (value == 'rde' || value == '40') {
+      var this_duration = 24*60/timeslot_minutes;
+      $('#cel-regime').text(this_duration);
+      cell_left_number = this_duration
+      cell_type_choosed = 40;
+      cell_situation = "not_checked"
       $('.checkbox input[type="checkbox"]').prop('checked', false);
       $('label.checkbox').removeClass('active');
       timeslots = []
     } else {
-      var this_duracao = 12*60/timeslot_minutes;
-      $('#cel-regime').text(this_duracao);
-      cel_left = this_duracao
-      type_cel = 20;
-      cel_final = "not_checked"
+      var this_duration = 12*60/timeslot_minutes;
+      $('#cel-regime').text(this_duration);
+      cell_left_number = this_duration
+      cell_type_choosed = 20;
+      cell_situation = "not_checked"
       $('.checkbox input[type="checkbox"]').prop('checked', false);
       $('label.checkbox').removeClass('active');
       timeslots = []
@@ -45,7 +42,7 @@ $(document).ready(function() {
   });
 
   // Limpar formulário inteiro
-  $('#cleanFPA').click(function() {
+  $('#clean-fpa').click(function() {
     $('input[name="regime"]').prop('checked', false);
     $('.checkbox input[type="checkbox"]').prop('checked', false);
     $('label.checkbox').removeClass('active');
@@ -58,13 +55,13 @@ $(document).ready(function() {
     });
 
     timeslots.length = 0;
-    cel_left = 0;
+    cell_left_number = 0;
   });
 
   // Pegar dados dos checkboxes
   $('.checkbox').click(function() {
     
-    if(cel_left == 0 && type_cel == 0) {
+    if(cell_left_number == 0 && cell_type_choosed == 0) {
       $('#cel-regime').text("--");
       $('label[for^="mon-"]').add('label[for^="tue-"]').add('label[for^="wed-"]').add('label[for^="thu-"]').add('label[for^="fri-"]').add('label[for^="sat-"]').addClass('disabled').attr('aria-disabled', 'true');
       $('input[type="checkbox"][id^="mon-"]').add('input[type="checkbox"][id^="tue-"]').add('input[type="checkbox"][id^="wed-"]').add('input[type="checkbox"][id^="thu-"]').add('input[type="checkbox"][id^="fri-"]').add('input[type="checkbox"][id^="sat-"]').prop('disabled', true);
@@ -81,46 +78,46 @@ $(document).ready(function() {
       var is_checked = $('#' + input_id).prop('checked');
 
       if(is_checked) {
-        cel_left += 1;
-        var [objeto_elemento, dia_elemento] = input_val.split(',');
-        var [inicio, fim] = objeto_elemento.split('-');
+        cell_left_number += 1;
+        var [input_object, input_day] = input_val.split(',');
+        var [timeslot_begin_hour, timeslot_end_hour] = input_object.split('-');
 
-        if (cel_final == "checked") {
+        if (cell_situation == "checked") {
           $('input[type="checkbox"][id^="mon-"], input[type="checkbox"][id^="tue-"], input[type="checkbox"][id^="wed-"], input[type="checkbox"][id^="thu-"], input[type="checkbox"][id^="fri-"], input[type="checkbox"][id^="sat-"]').each(function() {
             if (!$(this).prop('checked')) {
               $(this).prop('disabled', false);
               $('label[for="' + $(this).attr('id') + '"]').removeClass('disabled').removeAttr('aria-disabled');
             }
           });
-          cel_final = "not_checked"
-          cel_left += 1
+          cell_situation = "not_checked"
+          cell_left_number += 1
 
           $('#error-alert-form').hide();
         }
 
-        var index = timeslots.findIndex(function(aula) {
-          return aula.id === input_id;
+        var index = timeslots.findIndex(function(lesson) {
+          return lesson.id === input_id;
         });
         
         if (index !== -1) {
           timeslots.splice(index, 1);
         }
 
-        $('#cel-regime').text(cel_left);
+        $('#cel-regime').text(cell_left_number);
       } else {
-        if(cel_final != "checked") {
-          atualizar_cel_left(is_checked);
-          if (cel_final != "checked") {
-            var [objeto_elemento, dia_elemento] = input_val.split(',');
-            var [inicio, fim] = objeto_elemento.split('-');
-            var aula = {
-              hora_comeco: inicio,
-              hora_fim: fim,
-              dia_semana: dia_elemento,
-              id: input_id
+        if(cell_situation != "checked") {
+          update_cell_left_number(is_checked);
+          if (cell_situation != "checked") {
+            var [input_object, input_day] = input_val.split(',');
+            var [timeslot_begin_hour, timeslot_end_hour] = input_object.split('-');
+            var lesson = {
+              id: input_id,
+              timeslot_begin_hour: timeslot_begin_hour,
+              timeslot_end_hour: timeslot_end_hour,
+              day_of_week: input_day,
             };
 
-            timeslots.push(aula) // mon-mat-1
+            timeslots.push(lesson) // mon-mat-1
           }
         }
       }
@@ -128,20 +125,20 @@ $(document).ready(function() {
   });
 
   // Enviar formulário inteiro
-  $('#sendDisponibility').click(function() {
-    var work_regime =  $('input[name="regime"]:checked').val();
-    var jsonData = JSON.stringify(timeslots);
+  $('#send-disponibility').click(function() {
+    var user_regime =  $('input[name="regime"]:checked').val();
+    var json_data = JSON.stringify(timeslots);
 
-    let csrftoken = getCookie('csrftoken');
+    let csrftoken = get_cookie('csrftoken');
 
-    if (work_regime && timeslots.length !== 0) {
-      if(cel_left == 0 || cel_left == -1) {
+    if (user_regime && timeslots.length !== 0) {
+      if(cell_left_number == 0 || cell_left_number == -1) {
         $.ajax({
           type: 'post',
-          url: '/' + lang + '/professor/preferencia-atribuicao/criar-fpa/editar-cursos/',
+          url: '/' + current_language + '/professor/preferencia-atribuicao/criar-fpa/editar-cursos/',
           data: {
-            work_regime: work_regime,
-            work_timeslots: jsonData
+            user_regime: user_regime,
+            user_timeslots: json_data
           },
           headers: {
             'X-CSRFToken': csrftoken
@@ -149,7 +146,7 @@ $(document).ready(function() {
           success: function(response) {
             $('input[name="regime"]:checked').prop('checked', false);
             $('#error-alert-form').hide();
-            window.location.href = '/' + lang + '/professor/preferencia-atribuicao/criar-fpa/editar-cursos/'
+            window.location.href = '/' + current_language + '/professor/preferencia-atribuicao/criar-fpa/editar-cursos/'
           },
           error: function(xhr, status, error) {
             $('#error-message-form').text('Ocorreu um erro no envio de FPA.');
@@ -178,7 +175,7 @@ $(document).ready(function() {
     }
   });
 
-  function getCookie(name) {
+  function get_cookie(name) {
     var cookieValue = null;
     if (document.cookie && document.cookie !== '') {
       var cookies = document.cookie.split(';');
@@ -194,14 +191,14 @@ $(document).ready(function() {
   }
 });
 
-function atualizar_cel_left(is_checked) {
+function update_cell_left_number(is_checked) {
   if(!is_checked) {
-    if (cel_final == "checked") {
-      cel_left = 0;
-      $('#cel-regime').text(cel_left);
+    if (cell_situation == "checked") {
+      cell_left_number = 0;
+      $('#cel-regime').text(cell_left_number);
     } else {
-      cel_left -= 1;
-      if(cel_left == -1) {
+      cell_left_number -= 1;
+      if(cell_left_number == -1) {
         $('input[type="checkbox"][id^="mon-"], input[type="checkbox"][id^="tue-"], input[type="checkbox"][id^="wed-"], input[type="checkbox"][id^="thu-"], input[type="checkbox"][id^="fri-"], input[type="checkbox"][id^="sat-"]').each(function() {
           if (!$(this).prop('checked')) {
             $(this).prop('disabled', true);
@@ -214,9 +211,9 @@ function atualizar_cel_left(is_checked) {
           top: $('#error-alert-form').offset().top - $('.navbar').outerHeight() - 30,
           behavior: 'smooth'
         });
-        cel_final = "checked";
+        cell_situation = "checked";
       } else {
-        $('#cel-regime').text(cel_left);
+        $('#cel-regime').text(cell_left_number);
       }
     }    
   }

@@ -3,7 +3,7 @@
 {% load static %}
 
 {% block head %}
-  <link rel="stylesheet" href="{% static 'attribution_preference/css/attribution_preference_courses.css' %}">
+  <link rel="stylesheet" href="{% static 'attribution_preference/css/courses.css' %}">
   <title>{% trans "Envio FPA" %}</title>
 {% endblock %}
 
@@ -19,7 +19,7 @@
       </ol>
     </nav>
 
-    <form id="sendDisponibilityForm" method="post">
+    <form id="send-disponibility-form" method="post">
       {% csrf_token %}
       <div id="error-alert-form" class="alert alert-danger" style="display: none;">
         <span id="error-message-form"></span>
@@ -33,7 +33,7 @@
               <hr class="my-0">
               <div class="text-center mt-4 mb-4 pr-2 pl-2 d-flex">
                 <i class="form-check-inline fas fa-check-circle custom-icon"></i>
-                {% blocktrans with work_regime_text=work_regime hour_text="horas"%}
+                {% blocktrans with work_regime_text=user_regime hour_text="horas"%}
                   <input name="work_regime" value='{{ work_regime_text }} {{hour_text}}' readonly class="text-center form-check-inline form-check form-control-plaintext custom-border">
                 {% endblocktrans %}
               </div>
@@ -79,17 +79,17 @@
                   <tbody class="block" id="timetable-courses" >
                     {% for i in "MVN" %}
                       {% if i == "M" %}
-                        <td class="text-center align-middle" rowspan='{{ turno.matutinoAulas }}'>{% trans "Matutino" %}</td>
-                        {% for horario in turno.matutino %}
+                        <td class="text-center align-middle" rowspan='{{ shift.morning_classes }}'>{% trans "Matutino" %}</td>
+                        {% for timeslot in shift.morning %}
                           <tr>
-                            <td class="text-center align-middle">{{ horario.hour_start }} - {{ horario.hour_end }}</td>
+                            <td class="text-center align-middle">{{ timeslot.hour_start }} - {{ timeslot.hour_end }}</td>
 
                             <td class="text-center">
                               <div class="openModalBtn" >
                                 <div data-id="mon-mat-{{ forloop.counter }}" id="btn-mon-mat-{{ forloop.counter }}" class="btn-group-toggle" data-toggle="buttons">
                                   <label class="btn w-100 btn-notchecked checkbox disabled" for="mon-mat-{{ forloop.counter }}">
                                     <input  disabled type="checkbox" id="mon-mat-{{ forloop.counter }}"
-                                      value="{{ horario.hour_start }}-{{ horario.hour_end }},mon"
+                                      value="{{ timeslot.hour_start }}-{{ timeslot.hour_end }},mon"
                                       autocomplete="off">
                                       <div id="sub-mon-mat-{{ forloop.counter }}">--</div>
                                   </label>
@@ -102,7 +102,7 @@
                                 <div data-id="tue-mat-{{ forloop.counter }}" id="btn-tue-mat-{{ forloop.counter }}" class="btn-group-toggle" data-toggle="buttons">
                                   <label class="btn w-100 btn-notchecked checkbox disabled" for="tue-mat-{{ forloop.counter }}">
                                     <input disabled type="checkbox" id="tue-mat-{{ forloop.counter }}"
-                                      value="{{ horario.hour_start }}-{{ horario.hour_end }},tue"
+                                      value="{{ timeslot.hour_start }}-{{ timeslot.hour_end }},tue"
                                       autocomplete="off">
                                       <div id="sub-tue-mat-{{ forloop.counter }}">--</div>
                                   </label>
@@ -115,7 +115,7 @@
                                 <div data-id="wed-mat-{{ forloop.counter }}" id="btn-wed-mat-{{ forloop.counter }}" class="btn-group-toggle" data-toggle="buttons">
                                   <label class="btn w-100 btn-notchecked checkbox disabled" for="wed-mat-{{ forloop.counter }}">
                                     <input disabled type="checkbox" id="wed-mat-{{ forloop.counter }}"
-                                      value="{{ horario.hour_start }}-{{ horario.hour_end }},wed"
+                                      value="{{ timeslot.hour_start }}-{{ timeslot.hour_end }},wed"
                                       autocomplete="off">
                                       <div id="sub-wed-mat-{{ forloop.counter }}">--</div>
                                   </label>
@@ -128,7 +128,7 @@
                                 <div data-id="thu-mat-{{ forloop.counter }}" id="btn-thu-mat-{{ forloop.counter }}" class="btn-group-toggle" data-toggle="buttons">
                                   <label class="btn w-100 btn-notchecked disabled checkbox" for="thu-mat-{{ forloop.counter }}">
                                     <input disabled type="checkbox" id="thu-mat-{{ forloop.counter }}"
-                                      value="{{ horario.hour_start }}-{{ horario.hour_end }},thu"
+                                      value="{{ timeslot.hour_start }}-{{ timeslot.hour_end }},thu"
                                       autocomplete="off">
                                       <div id="sub-thu-mat-{{ forloop.counter }}">--</div>
                                   </label>
@@ -141,7 +141,7 @@
                                 <div data-id="fri-mat-{{ forloop.counter }}" id="btn-fri-mat-{{ forloop.counter }}" class="btn-group-toggle" data-toggle="buttons">
                                   <label class="btn w-100 btn-notchecked disabled checkbox" for="fri-mat-{{ forloop.counter }}">
                                     <input disabled type="checkbox" id="fri-mat-{{ forloop.counter }}"
-                                      value="{{ horario.hour_start }}-{{ horario.hour_end }},fri"
+                                      value="{{ timeslot.hour_start }}-{{ timeslot.hour_end }},fri"
                                       autocomplete="off">
                                       <div id="sub-fri-mat-{{ forloop.counter }}">--</div>
                                   </label>
@@ -154,7 +154,7 @@
                                 <div data-id="sat-mat-{{ forloop.counter }}" id="btn-sat-mat-{{ forloop.counter }}" class="btn-group-toggle" data-toggle="buttons">
                                   <label class="btn w-100 btn-notchecked disabled checkbox" for="sat-mat-{{ forloop.counter }}">
                                     <input disabled type="checkbox" id="sat-mat-{{ forloop.counter }}"
-                                      value="{{ horario.hour_start }}-{{ horario.hour_end }},sat"
+                                      value="{{ timeslot.hour_start }}-{{ timeslot.hour_end }},sat"
                                       autocomplete="off">
                                     <div id="sub-sat-mat-{{ forloop.counter }}">--</div>
                                   </label>
@@ -164,18 +164,18 @@
                           </tr>
                         {% endfor %}
                       {% elif i == "V" %}
-                        <td class="text-center align-middle" rowspan="{{ turno.vespertinoAulas }}">{% trans "Vespertino" %}</td>
+                        <td class="text-center align-middle" rowspan="{{ shift.afternoon_classes }}">{% trans "Vespertino" %}</td>
 
-                        {% for horario in turno.vespertino %}
+                        {% for timeslot in shift.afternoon %}
                           <tr>
-                            <td class="text-center align-middle">{{ horario.hour_start }} - {{ horario.hour_end }}</td>
+                            <td class="text-center align-middle">{{ timeslot.hour_start }} - {{ timeslot.hour_end }}</td>
 
                             <td class="text-center">
                               <div class="openModalBtn">
                                 <div data-id="mon-ves-{{ forloop.counter }}" id="btn-mon-ves-{{ forloop.counter }}" class="btn-group-toggle" data-toggle="buttons">
                                   <label class="btn w-100 btn-notchecked disabled checkbox" for="mon-ves-{{ forloop.counter }}">
                                     <input disabled type="checkbox" id="mon-ves-{{ forloop.counter }}"
-                                      value="{{ horario.hour_start }}-{{ horario.hour_end }},mon"
+                                      value="{{ timeslot.hour_start }}-{{ timeslot.hour_end }},mon"
                                       autocomplete="off">
                                       <div id="sub-mon-ves-{{ forloop.counter }}">--</div>
                                   </label>
@@ -188,7 +188,7 @@
                                 <div data-id="tue-ves-{{ forloop.counter }}" id="btn-tue-ves-{{ forloop.counter }}" class="btn-group-toggle" data-toggle="buttons">
                                   <label class="btn w-100 btn-notchecked disabled checkbox" for="tue-ves-{{ forloop.counter }}">
                                     <input disabled type="checkbox" id="tue-ves-{{ forloop.counter }}"
-                                      value="{{ horario.hour_start }}-{{ horario.hour_end }},tue"
+                                      value="{{ timeslot.hour_start }}-{{ timeslot.hour_end }},tue"
                                       autocomplete="off">
                                       <div id="sub-tue-ves-{{ forloop.counter }}">--</div>
                                   </label>
@@ -201,7 +201,7 @@
                                 <div data-id="wed-ves-{{ forloop.counter }}" id="btn-wed-ves-{{ forloop.counter }}" class="btn-group-toggle" data-toggle="buttons">
                                   <label class="btn w-100 btn-notchecked disabled checkbox" for="wed-ves-{{ forloop.counter }}">
                                     <input disabled type="checkbox" id="wed-ves-{{ forloop.counter }}"
-                                      value="{{ horario.hour_start }}-{{ horario.hour_end }},wed"
+                                      value="{{ timeslot.hour_start }}-{{ timeslot.hour_end }},wed"
                                       autocomplete="off">
                                       <div id="sub-wed-ves-{{ forloop.counter }}">--</div>
                                   </label>
@@ -214,7 +214,7 @@
                                 <div data-id="thu-ves-{{ forloop.counter }}" id="btn-thu-ves-{{ forloop.counter }}" class="btn-group-toggle" data-toggle="buttons">
                                   <label class="btn w-100 btn-notchecked disabled checkbox" for="thu-ves-{{ forloop.counter }}">
                                     <input disabled type="checkbox" id="thu-ves-{{ forloop.counter }}"
-                                      value="{{ horario.hour_start }}-{{ horario.hour_end }},thu"
+                                      value="{{ timeslot.hour_start }}-{{ timeslot.hour_end }},thu"
                                       autocomplete="off">
                                       <div id="sub-thu-ves-{{ forloop.counter }}">--</div>
                                   </label>
@@ -227,7 +227,7 @@
                                 <div data-id="fri-ves-{{ forloop.counter }}" id="btn-fri-ves-{{ forloop.counter }}" class="btn-group-toggle" data-toggle="buttons">
                                   <label class="btn w-100 btn-notchecked disabled checkbox" for="fri-ves-{{ forloop.counter }}">
                                     <input disabled type="checkbox" id="fri-ves-{{ forloop.counter }}"
-                                      value="{{ horario.hour_start }}-{{ horario.hour_end }},fri"
+                                      value="{{ timeslot.hour_start }}-{{ timeslot.hour_end }},fri"
                                       autocomplete="off">
                                       <div id="sub-fri-ves-{{ forloop.counter }}">--</div>
                                   </label>
@@ -240,7 +240,7 @@
                                 <div data-id="sat-ves-{{ forloop.counter }}" id="btn-sat-ves-{{ forloop.counter }}" class="btn-group-toggle" data-toggle="buttons">
                                   <label class="btn w-100 btn-notchecked disabled checkbox" for="sat-ves-{{ forloop.counter }}">
                                     <input disabled type="checkbox" id="sat-ves-{{ forloop.counter }}"
-                                      value="{{ horario.hour_start }}-{{ horario.hour_end }},sat"
+                                      value="{{ timeslot.hour_start }}-{{ timeslot.hour_end }},sat"
                                       autocomplete="off">
                                     <div id="sub-sat-ves-{{ forloop.counter }}">--</div>
                                   </label>
@@ -251,18 +251,18 @@
 
                         {% endfor %}
                       {% else %}
-                        <td class="text-center align-middle" rowspan="{{ turno.noturnoAulas }}">{% trans "Noturno" %}</td>
+                        <td class="text-center align-middle" rowspan="{{ shift.nocturnal_classes }}">{% trans "Noturno" %}</td>
 
-                        {% for horario in turno.noturno %}
+                        {% for timeslot in shift.nocturnal %}
                           <tr>
-                            <td class="text-center align-middle">{{ horario.hour_start }} - {{ horario.hour_end }}</td>
+                            <td class="text-center align-middle">{{ timeslot.hour_start }} - {{ timeslot.hour_end }}</td>
 
                             <td class="text-center">
                               <div class="openModalBtn">
                                 <div data-id="mon-not-{{ forloop.counter }}" id="btn-mon-not-{{ forloop.counter }}" class="btn-group-toggle" data-toggle="buttons">
                                   <label class="btn w-100 btn-notchecked disabled checkbox" for="mon-not-{{ forloop.counter }}">
                                     <input disabled type="checkbox" id="mon-not-{{ forloop.counter }}"
-                                      value="{{ horario.hour_start }}-{{ horario.hour_end }},mon"
+                                      value="{{ timeslot.hour_start }}-{{ timeslot.hour_end }},mon"
                                       autocomplete="off">
                                     <div id="sub-mon-not-{{ forloop.counter }}">--</div>
                                   </label>
@@ -275,7 +275,7 @@
                                 <div data-id="tue-not-{{ forloop.counter }}" id="btn-tue-not-{{ forloop.counter }}" class="btn-group-toggle" data-toggle="buttons">
                                   <label class="btn w-100 btn-notchecked checkbox disabled" for="tue-not-{{ forloop.counter }}">
                                     <input disabled type="checkbox" id="tue-not-{{ forloop.counter }}"
-                                      value="{{ horario.hour_start }}-{{ horario.hour_end }},tue"
+                                      value="{{ timeslot.hour_start }}-{{ timeslot.hour_end }},tue"
                                       autocomplete="off">
                                     <div id="sub-tue-not-{{ forloop.counter }}">--</div>
                                   </label>
@@ -288,7 +288,7 @@
                                 <div data-id="wed-not-{{ forloop.counter }}" id="btn-wed-not-{{ forloop.counter }}" class="btn-group-toggle" data-toggle="buttons">
                                   <label class="btn w-100 btn-notchecked disabled checkbox" for="wed-not-{{ forloop.counter }}">
                                     <input disabled type="checkbox" id="wed-not-{{ forloop.counter }}"
-                                      value="{{ horario.hour_start }}-{{ horario.hour_end }},wed"
+                                      value="{{ timeslot.hour_start }}-{{ timeslot.hour_end }},wed"
                                       autocomplete="off">
                                     <div id="sub-wed-not-{{ forloop.counter }}">--</div>
                                   </label>
@@ -301,7 +301,7 @@
                                 <div data-id="thu-not-{{ forloop.counter }}" id="btn-thu-not-{{ forloop.counter }}" class="btn-group-toggle" data-toggle="buttons">
                                   <label class="btn w-100 btn-notchecked checkbox disabled" for="thu-not-{{ forloop.counter }}">
                                     <input disabled type="checkbox" id="thu-not-{{ forloop.counter }}"
-                                      value="{{ horario.hour_start }}-{{ horario.hour_end }},tue"
+                                      value="{{ timeslot.hour_start }}-{{ timeslot.hour_end }},tue"
                                       autocomplete="off">
                                       <div id="sub-thu-not-{{ forloop.counter }}">--</div>
                                   </label>
@@ -314,7 +314,7 @@
                                 <div data-id="fri-not-{{ forloop.counter }}" id="btn-fri-not-{{ forloop.counter }}" class="btn-group-toggle" data-toggle="buttons">
                                   <label class="btn w-100 btn-notchecked disabled checkbox" for="fri-not-{{ forloop.counter }}">
                                     <input disabled type="checkbox" id="fri-not-{{ forloop.counter }}"
-                                      value="{{ horario.hour_start }}-{{ horario.hour_end }},fri"
+                                      value="{{ timeslot.hour_start }}-{{ timeslot.hour_end }},fri"
                                       autocomplete="off" >
                                     <div id="sub-fri-not-{{ forloop.counter }}">--</div>
                                   </label>
@@ -327,7 +327,7 @@
                                 <div data-id="sat-not-{{ forloop.counter }}"  id="btn-sat-not-{{ forloop.counter }}" class="btn-group-toggle" data-toggle="buttons">
                                   <label class="btn w-100 btn-notchecked disabled checkbox" for="sat-not-{{ forloop.counter }}">
                                     <input disabled type="checkbox" id="sat-not-{{ forloop.counter }}"
-                                      value="{{ horario.hour_start }}-{{ horario.hour_end }},sat"
+                                      value="{{ timeslot.hour_start }}-{{ timeslot.hour_end }},sat"
                                       autocomplete="off" >
                                     <div id="sub-sat-not-{{ forloop.counter }}">--</div>
                                   </label>
@@ -340,11 +340,11 @@
                     {% endfor %}
                   </tbody>
               </table>
-              <div class="modal center-modal fade my-custom-modal" id="addCourseModal" tabindex="-1" role="dialog" aria-labelledby="addCourseModalLabel" aria-hidden="true">
+              <div class="modal center-modal fade my-custom-modal" id="add-course-modal" tabindex="-1" role="dialog" aria-labelledby="add-course-modal-label" aria-hidden="true">
                 <div class="modal-dialog" role="document">
                   <div class="modal-content">
                     <div class="modal-header">
-                      <h5 class="modal-title" id="addCourseModalLabel">{% trans "Adicionar Disciplina" %}</h5><span id="cel-position"></span>
+                      <h5 class="modal-title" id="add-course-modal-label">{% trans "Adicionar Disciplina" %}</h5><span id="cel-position"></span>
                       <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                       </button>
@@ -353,7 +353,7 @@
                       <div id="error-alert" class="alert alert-danger" style="display: none;">
                         <span id="error-message"></span>
                       </div>
-                      <form id="addCourseForm" method="post">
+                      <form id="add-course-form" method="post">
                         {% csrf_token %}
                         <div class="row">
                           <div class="col-md-6">
@@ -412,7 +412,7 @@
                     </div>
                     <div class="modal-footer">
                       <button type="button" class="btn btn-secondary" data-dismiss="modal">{% trans "Fechar" %}</button>
-                      <button type="button" class="btn btn-primary" data-dismiss="modal" name="addCourse" id="addCourseButton">{% trans "Adicionar" %}</button>
+                      <button type="button" class="btn btn-primary" data-dismiss="modal" name="add-course" id="add-course-button">{% trans "Adicionar" %}</button>
                     </div>
                   </div>
                 </div>
@@ -421,15 +421,17 @@
           </div>
         </div>
       </div>
-      <button type="button" class="btn btn-primary float-right mt-4 mb-5" name="sendCourses" id="sendCourses">{% trans "Enviar" %}</button>
+      <button type="button" class="btn btn-primary float-right mt-4 mb-5" name="send-courses" id="send-courses">{% trans "Enviar" %}</button>
       <a href="{% url 'disponibility_attribution_preference' %}"><button type="button"  class="btn btn-info float-left mt-4 mb-5 mr-2" ><i class="bi bi-arrow-left"></i> {% trans "Retornar Disponibilidade" %}</button></a>
     </form>
   </section>
 {% endblock %}
 
 {% block endbody %}
+<script>//alert('{{ user_blocks }}')
+console.log('{{ user_blocks }}')</script>
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
   <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-  <script src="{% static 'attribution_preference/js/preferred_courses.js' %}" data-lang='{{ LANGUAGE_CODE }}' regime='{{ work_regime }}' blocks='{{user_blocks}}' areas='{{user_areas}}' disponibility_hour='{{ user_hour }}' courses='{{ courses }}' timetables='{{ timetables }}' disponibility='{{ user_disponibility }}'></script>
+  <script src="{% static 'attribution_preference/js/courses.js' %}" data-lang='{{ LANGUAGE_CODE }}' user_regime='{{ user_regime }}' user_blocks='{{ user_blocks }}' user_areas='{{ user_areas }}' user_courses='{{ user_courses }}' user_timetables='{{ user_timetables }}' user_disponibility='{{ user_disponibility }}'></script>
 {% endblock %}
