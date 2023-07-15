@@ -564,7 +564,7 @@ def timetable_combo_saver(timetable, classs):
                     save_combo_day(
                         number_to_day_enum(day_week_number),
                         timeslots, 
-                        Course.objects.get(name_course=current_course,area=classs.area), 
+                        Course.objects.get(registration_course_id=current_course,area=classs.area),
                         classs
                         )
                     combo_number_timeslot.clear()
@@ -576,7 +576,7 @@ def timetable_combo_saver(timetable, classs):
                     save_combo_day(
                         number_to_day_enum(day_week_number),
                         timeslots, 
-                        Course.objects.get(name_course=current_course,area=classs.area), 
+                        Course.objects.get(registration_course_id=current_course,area=classs.area), 
                         classs
                         )
                     combo_number_timeslot.clear()
@@ -588,7 +588,7 @@ def timetable_combo_saver(timetable, classs):
                     save_combo_day(
                         number_to_day_enum(day_week_number),
                         timeslots, 
-                        Course.objects.get(name_course=current_course,area=classs.area), 
+                        Course.objects.get(registration_course_id=current_course,area=classs.area), 
                         classs
                         )
                     combo_number_timeslot.clear()
@@ -599,7 +599,7 @@ def timetable_combo_saver(timetable, classs):
                     save_combo_day(
                         number_to_day_enum(day_week_number),
                         timeslots, 
-                        Course.objects.get(name_course=current_course,area=classs.area), 
+                        Course.objects.get(registration_course_id=current_course,area=classs.area), 
                         classs
                         )
                     combo_number_timeslot.clear()  
@@ -613,7 +613,7 @@ def timetable_combo_saver(timetable, classs):
                     save_combo_day(
                         number_to_day_enum(day_week_number),
                         timeslots, 
-                        Course.objects.get(name_course=current_course,area=classs.area), 
+                        Course.objects.get(registration_course_id=current_course,area=classs.area), 
                         classs
                         )
                     combo_number_timeslot.clear()
@@ -625,7 +625,7 @@ def timetable_combo_saver(timetable, classs):
                 save_combo_day(
                     number_to_day_enum(day_week_number),
                     timeslots, 
-                    Course.objects.get(name_course=current_course,area=classs.area), 
+                    Course.objects.get(registration_course_id=current_course,area=classs.area), 
                     classs
                     )
                 current_course = None

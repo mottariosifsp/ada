@@ -21,6 +21,15 @@ $(document).ready(function() {
     }
   });
 
+  $('.course-input').on('input', function() {
+    var course = $(this).val();
+    var list_name = $(this).attr('list');
+    var selectedOption = $('#'+list_name+' option').filter(function() {
+      return $(this).val() === course;
+    });
+    $(this).attr('course-id', selectedOption.attr('course-id'));
+  });
+
   if($('#selected_class').text() == "") {
     // $('#course_select').hide();
     $('#course_select').css('opacity', '0.5');
@@ -35,8 +44,8 @@ $(document).ready(function() {
     
     for (let index = 0; index < 6; index++) {
       selected_courses[index] = $('.datalist'+index).map(function() {
-        console.log($(this).val());
-        return $(this).val();
+        console.log($(this).attr('course-id'));
+        return $(this).attr('course-id');
       }).get();
     }
 
