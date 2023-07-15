@@ -44,8 +44,11 @@ $(document).ready(function() {
     
     for (let index = 0; index < 6; index++) {
       selected_courses[index] = $('.datalist'+index).map(function() {
-        console.log($(this).attr('course-id'));
-        return $(this).attr('course-id');
+        if($(this).attr('course-id') == undefined){
+          return '';
+        }else{
+          return $(this).attr('course-id');
+        }
       }).get();
     }
 
