@@ -178,13 +178,13 @@ cython_debug/
 
 .env
 
-.area/migrations/
-.attribution/migrations/
-.attribution_preference/migrations/
-.classs/migrations/
-.course/migrations/
-.exchange/migrations/
-.professor/migrations/
-.staff/migrations/
-.timetable/migrations/
-.user/migrations/
+area/migrations/
+attribution/migrations/
+attribution_preference/migrations/
+classs/migrations/
+course/migrations/
+exchange/migrations/
+professor/migrations/
+staff/migrations/
+timetable/migrations/
+user/migrations/
