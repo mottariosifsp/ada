@@ -1,0 +1,22 @@
+input[name="course"]::-webkit-calendar-picker-indicator{
+    opacity: 0.0;
+    display: none;
+    margin: 0px;
+    padding: 0px;
+    width: 0px;
+    height: 0px;
+}
+
+input[name="course"]:hover::-webkit-calendar-picker-indicator {
+    opacity:1;
+    display: block;
+    margin: 4px;
+    padding: 0px;
+    width: 1px;
+    height: 3px;
+}
+
+.header-table:hover{
+    opacity: 0.9;
+    cursor: pointer;
+}
