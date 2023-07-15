@@ -28,17 +28,6 @@ $(document).ready(function() {
     $('#course_select').css('filter', 'grayscale(100%)');
   }
 
-  var courses_selected = [];
-
-  $("#test_button").click(function() {
-    for (let index = 0; index < 6; index++) {
-      courses_selected[index] = $('.datalist'+index).map(function() {
-        return $(this).val();
-      }).get();      
-    }
-    console.log($('#'));  
-  });
-
   $("#submit_timetable").click(function() {
     show_loading()
 
