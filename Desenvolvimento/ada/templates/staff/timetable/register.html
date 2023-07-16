@@ -57,7 +57,7 @@
                 <!-- timeslot -->
                 {% for i in '012345'|make_list %}
                 <td rowspan="">
-                  <input list="courses{{ i }}" name="course" class="form-control datalist{{i}} course-input" autocomplete="off" style="text-align: center;">
+                  <input list="courses{{ i }}" name="course" class="form-control datalist{{i}} course-input" autocomplete="off" style="text-align: center;" course-id>
                   <datalist id="courses{{ i }}">
                     {% for course in courses %}
                     <option class="dropdown-item-class" 
@@ -98,7 +98,7 @@
                   <!-- timeslot -->
                   {% for i in '012345'|make_list %}
                   <td rowspan="">
-                    <input list="courses{{ i }}" name="course" class="form-control datalist{{i}} course-input" autocomplete="off" style="text-align: center;">
+                    <input list="courses{{ i }}" name="course" class="form-control datalist{{i}} course-input" autocomplete="off" style="text-align: center;" course-id>
                     <datalist id="courses{{ i }}">
                       {% for course in courses %}
                       <option class="dropdown-item-class" 
@@ -139,7 +139,7 @@
                     <!-- timeslot -->
                     {% for i in '012345'|make_list %}
                     <td rowspan="">
-                      <input list="courses{{ i }}" name="course" class="form-control datalist{{i}} course-input" autocomplete="off" style="text-align: center;">
+                      <input list="courses{{ i }}" name="course" class="form-control datalist{{i}} course-input" autocomplete="off" style="text-align: center;" course-id>
                       <datalist id="courses{{ i }}">
                         {% for course in courses %}
                         <option class="dropdown-item-class" 

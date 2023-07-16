@@ -20,3 +20,8 @@ input[name="course"]:hover::-webkit-calendar-picker-indicator {
     opacity: 0.9;
     cursor: pointer;
 }
+
+.form-control:focus{
+    border-color: #80bdff;
+    box-shadow: 0 0 0 0.0rem rgba(0,123,255,.25);
+}

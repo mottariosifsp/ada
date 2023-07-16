@@ -27,7 +27,23 @@ $(document).ready(function() {
     var selectedOption = $('#'+list_name+' option').filter(function() {
       return $(this).val() === course;
     });
-    $(this).attr('course-id', selectedOption.attr('course-id'));
+    if(selectedOption.attr('course-id') != undefined){
+      $(this).attr('course-id', selectedOption.attr('course-id'));
+      $('.form-control').on('focus', function() {
+        $(this).css('border-color', '#80bdff');
+      });
+      $('.form-control').on('blur', function() {
+        $(this).css('border-color', '#ced4da');
+      });
+      $(this).css('border', '1px solid #ced4da');
+    }else{
+      $(this).attr('course-id', course);
+      if(course == ""){
+        $(this).css('border', '1px solid #ced4da');
+      }else{
+        $(this).css('border', '1px solid rgb(255, 0, 0,0.3)');
+      }
+    }
   });
 
   if($('#selected_class').text() == "") {

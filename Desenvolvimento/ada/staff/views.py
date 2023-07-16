@@ -388,7 +388,19 @@ def create_timetable(request):
         except Classs.DoesNotExist:
             message = "Selecione uma turma válida"
             return JsonResponse({'erro': True, 'mensagem': message})   
-         
+        
+
+        for day_week in selected_courses:
+            for course_name in day_week:
+                if(course_name == ''):
+                    continue
+                try:
+                    course = Course.objects.get(registration_course_id=course_name)
+                    course_name=course
+                except Course.DoesNotExist:
+                    message = "Selecione uma disciplina válida"
+                    return JsonResponse({'erro': True, 'mensagem': message})
+
         timetable_combo_saver(selected_courses, selected_class)
 
         return JsonResponse({'erro': False, 'mensagem': message})
