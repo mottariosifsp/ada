@@ -18,7 +18,7 @@
     </ol>
     </nav>
 
-    {% if not fpa_done %}
+    {% if not is_fpa_done %}
     <div class="container">
         <div id="card-no-fpa" class="card text-center centered-object">
           <div class="card-body">
@@ -93,10 +93,10 @@
                         <tbody class="block" id="timetable-courses">
                             {% for i in "MVN" %}
                               {% if i == "M" %}
-                                <td class="text-center align-middle" rowspan="{{ turno.matutinoAulas }}">{% trans "Matutino" %}</td>
-                                {% for horario in turno.matutino %}
+                                <td class="text-center align-middle" rowspan="{{ shift.morning_classes }}">{% trans "Matutino" %}</td>
+                                {% for timeslot in shift.morning %}
                                   <tr>
-                                    <td class="text-center hour-print align-middle">{{ horario.hour_start }} - {{ horario.hour_end }}</td>
+                                    <td class="text-center hour-print align-middle">{{ timeslot.hour_start }} - {{ timeslot.hour_end }}</td>
                           
                                     <td class="text-center" id="btn-mon-mat-{{ forloop.counter }}">
                                       <div class="openModalBtn">
@@ -148,10 +148,10 @@
                                   </tr>
                                 {% endfor %}
                               {% elif i == "V" %}
-                                <td class="text-center align-middle" rowspan="{{ turno.vespertinoAulas }}">{% trans "Vespertino" %}</td>
-                                {% for horario in turno.vespertino %}
+                                <td class="text-center align-middle" rowspan="{{ shift.afternoon_classes }}">{% trans "Vespertino" %}</td>
+                                {% for timeslot in shift.afternoon %}
                                   <tr>
-                                    <td class="text-center hour-print align-middle">{{ horario.hour_start }} - {{ horario.hour_end }}</td>
+                                    <td class="text-center hour-print align-middle">{{ timeslot.hour_start }} - {{ timeslot.hour_end }}</td>
                           
                                     <td class="text-center" id="btn-mon-ves-{{ forloop.counter }}">
                                       <div class="openModalBtn">
@@ -203,10 +203,10 @@
                                   </tr>
                                 {% endfor %}
                               {% else %}
-                                <td class="text-center align-middle" rowspan="{{ turno.noturnoAulas }}">{% trans "Noturno" %}</td>
-                                {% for horario in turno.noturno %}
+                                <td class="text-center align-middle" rowspan="{{ shift.nocturnal_classes }}">{% trans "Noturno" %}</td>
+                                {% for timeslot in shift.nocturnal %}
                                   <tr>
-                                    <td class="text-center hour-print align-middle">{{ horario.hour_start }} - {{ horario.hour_end }}</td>
+                                    <td class="text-center hour-print align-middle">{{ timeslot.hour_start }} - {{ timeslot.hour_end }}</td>
                           
                                     <td class="text-center" id="btn-mon-not-{{ forloop.counter }}">
                                       <div class="openModalBtn">
@@ -302,5 +302,5 @@
 {% endblock %}
 
 {% block endbody %}
-  <script src="{% static 'attribution_preference/js/attribution_preference.js' %}" work_regime='{{work_regime}}' work_disponibility='{{work_disponibility}}' work_courses='{{work_courses}}' data-lang={{LANGUAGE_CODE}}></script>
+  <script src="{% static 'attribution_preference/js/attribution_preference.js' %}" user_regime='{{ user_regime }}' user_disponibility_choosed='{{user_disponibility_choosed}}' user_courses_choosed='{{user_courses_choosed}}' data-lang={{LANGUAGE_CODE}}></script>
 {% endblock %}

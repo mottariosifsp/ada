@@ -130,8 +130,8 @@ def courses_attribution_preference(request):
 
                 for timeslot in timeslots:
                     timeslot_data.append({
-                        'hour_start': timeslot.hour_start.strftime('%H:%M:%S'),
-                        'hour_end': timeslot.hour_end.strftime('%H:%M:%S'),
+                        'timeslot_begin_hour': timeslot.hour_start.strftime('%H:%M:%S'),
+                        'timeslot_end_hour': timeslot.hour_end.strftime('%H:%M:%S'),
                     })
 
                 day_combo_data.append({
@@ -225,7 +225,6 @@ def courses_attribution_preference(request):
                 'timeslot_begin_hour': timeslot_begin_hour.strftime('%H:%M:%S'),
             }
             user_timeslot_table.append(string)
-        print(user_timetable)
         
         if user_regime.name_job == "rde":
             user_regime_choosed = user_regime
@@ -307,25 +306,25 @@ def attribution_preference(request):
             user_regime = user.job.name_job
 
         shift = {
-            'matutino': [],
-            'matutinoAulas': 0,
-            'vespertino': [],
-            'vespertinoAulas': 0,
-            'noshift': [],
-            'noshiftAulas': 0
+            'morning': [],
+            'morning_classes': 0,
+            'afternoon': [],
+            'afternoon_classes': 0,
+            'nocturnal': [],
+            'nocturnal_classes': 0
         }
 
         for timeslot in Timeslot.objects.all():
             if timeslot.hour_start >= datetime.time(7, 0, 0) and timeslot.hour_end <= datetime.time(12, 0, 0):
-                shift['matutino'].append(timeslot)
+                shift['morning'].append(timeslot)
             elif timeslot.hour_start >= datetime.time(13, 0, 0) and timeslot.hour_end <= datetime.time(18, 0, 0):
-                shift['vespertino'].append(timeslot)
+                shift['afternoon'].append(timeslot)
             elif timeslot.hour_start >= datetime.time(18, 0, 0) and timeslot.hour_end <= datetime.time(23, 0, 0):
-                shift['noshift'].append(timeslot)
+                shift['nocturnal'].append(timeslot)
 
-            shift['matutinoAulas'] = len(shift['matutino']) + 1
-            shift['vespertinoAulas'] = len(shift['vespertino']) + 1
-            shift['noshiftAulas'] = len(shift['noshift']) + 1
+            shift['morning_classes'] = len(shift['morning']) + 1
+            shift['afternoon_classes'] = len(shift['afternoon']) + 1
+            shift['nocturnal_classes'] = len(shift['nocturnal']) + 1
 
         user_timeslot_traceback = []
         user_preference_schedules = Preference_schedule.objects.filter(attribution_preference__user=request.user)
@@ -337,33 +336,33 @@ def attribution_preference(request):
 
             if begin >= datetime.time(7, 0, 0) and begin <= datetime.time(12, 0, 0):
                 shift_type = 'mat'
-                shift_position = next((i for i, slot in enumerate(shift['matutino']) if slot.hour_start == begin), None)
+                shift_position = next((i for i, slot in enumerate(shift['morning']) if slot.hour_start == begin), None)
             elif begin >= datetime.time(13, 0, 0) and begin < datetime.time(18, 0, 0):
                 shift_type = 'ves'
-                shift_position = next((i for i, slot in enumerate(shift['vespertino']) if slot.hour_start == begin),
+                shift_position = next((i for i, slot in enumerate(shift['afternoon']) if slot.hour_start == begin),
                                      None)
             elif begin >= datetime.time(18, 0, 0) and begin <= datetime.time(23, 0, 0):
                 shift_type = 'not'
-                shift_position = next((i for i, slot in enumerate(shift['noshift']) if slot.hour_start == begin), None)
+                shift_position = next((i for i, slot in enumerate(shift['nocturnal']) if slot.hour_start == begin), None)
 
             if shift_position is not None:
                 shift_position += 1
 
             if schedule.day == 'monday':
-                day = 'mon'
+                day_of_week = 'mon'
             elif schedule.day == 'tuesday':
-                day = 'tue'
+                day_of_week = 'tue'
             elif schedule.day == 'wednesday':
-                day = 'wed'
+                day_of_week = 'wed'
             elif schedule.day == 'thursday':
-                day = 'thu'
+                day_of_week = 'thu'
             elif schedule.day == 'friday':
-                day = 'fri'
+                day_of_week = 'fri'
             else:
-                day = 'sat'
+                day_of_week = 'sat'
 
             string = {
-                'frase': f'{day}-{shift_type}-{shift_position}'
+                'id': f'{day_of_week}-{shift_type}-{shift_position}'
             }
             user_timeslot_traceback.append(string)
 
@@ -371,40 +370,42 @@ def attribution_preference(request):
         user_courses = Course_preference.objects.filter(attribution_preference__user=request.user)
         for preference in user_courses:
 
-            shift_periodo = ''
+            shift_period = ''
             day_combo = preference.timetable.day_combo.first()
             if day_combo:
                 first_timeslot = day_combo.timeslots.first()
                 if first_timeslot:
                     if first_timeslot.hour_start >= datetime.time(7, 0, 0) and first_timeslot.hour_end <= datetime.time(12, 0, 0):
-                        shift_periodo = 'Matutino'
+                        shift_period = 'morning'
                     elif first_timeslot.hour_start >= datetime.time(13, 0, 0) and first_timeslot.hour_end <= datetime.time(18, 0, 0):
-                        shift_periodo = 'Vespertino'
+                        shift_period = 'afternoon'
                     elif first_timeslot.hour_start >= datetime.time(18, 0, 0) and first_timeslot.hour_end <= datetime.time(23, 0, 0):
-                        shift_periodo = 'Noshift'
+                        shift_period = 'nocturnal'
 
             timetable_object = {
-                'sigla': preference.timetable.course.acronym,
+                'acronym': preference.timetable.course.acronym,
                 'name_course': preference.timetable.course.name_course,
                 'course_area': preference.timetable.course.area.name_area,  # Acessa o nome da área corretamente
-                'period': shift_periodo,
+                'period': shift_period,
                 'classes': day_combo.timeslots.count(), # feito pelo site
                 #'classes': preference.timetable.day_combo.count(), conta quando é feito direto pelo admin
             }
             user_courses_traceback.append(timetable_object)
 
         if user_regime and user_timeslot_traceback and user_courses:
-            fpa = True
+            is_fpa_done = True
         else:
-            fpa = False
+            is_fpa_done = False
 
         data = {
-            'fpa_done': fpa,
+            'is_fpa_done': is_fpa_done,
             'shift': shift,
             'user_regime': user_regime,
-            'work_disponibility': user_timeslot_traceback,
-            'work_courses': user_courses_traceback,
+            'user_disponibility_choosed': user_timeslot_traceback,
+            'user_courses_choosed': user_courses_traceback,
         }
+
+        print(data)
 
         return render(request, 'attribution_preference/attribution_preference.html', data)
 

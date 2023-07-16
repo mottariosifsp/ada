@@ -1,5 +1,4 @@
 var lang = document.currentScript.getAttribute("data-lang");
-alert("f")
 var user_regime = document.currentScript.getAttribute("user_user_regime");
 
 var timetable_choosed = [];
@@ -48,7 +47,7 @@ for (var i = 0; i < user_timetables.length; i++) {
             var timeslot = timeslots[k];
             timeslot_data.push({
                 timeslot_begin_hour: timeslot.timeslot_begin_hour,
-                hour_end: timeslot.hour_end,
+                timeslot_end_hour: timeslot.timeslot_end_hour,
             });
         }
         day_combo_data.push({
@@ -144,7 +143,8 @@ $('#cel-hour').text('21')
 // Ao cliar no button
 $("#timetable-courses input").on("click", function () {
     var data_id = $(this).closest("div[data-id]").data("id");
-    $("#cel-position").text(data_id).css("visibility", "hidden");
+    $("#cel-position").text(data_id)
+    //.css("visibility", "hidden");
 
     $("#area-filter").val("");
     $("#block-filter").val("");
@@ -234,8 +234,7 @@ function timetables_options() {
             for (var j = 0; j < timeslots.length; j++) {
                 var timeslot = timeslots[j];
                 var timeslot_hour = timeslot.timeslot_begin_hour;
-                //alert(timeslot_day)
-                if (timeslot_hour === filtered_element.hour && timeslot_day === filtered_element.day) {
+                if (timeslot_hour === filtered_element.timeslot_begin_hour && timeslot_day === filtered_element.day) {
                     return true;
                 }
             }
@@ -387,7 +386,6 @@ function course_apresentation() {
       return timetable.id == course_value;
     });
 
-    console.log(filtered_timetable)
   
     $("#info-message-list").empty();
   
@@ -398,11 +396,11 @@ function course_apresentation() {
   
         timeslots.forEach(function(timeslot) {
           var timeslot_begin_hour = timeslot.timeslot_begin_hour;
-          var hour_end = timeslot.hour_end;
+          var timeslot_end_hour = timeslot.timeslot_end_hour;
   
             var row = $("<tr></tr>");
             row.append("<td class='col-3 text-center align-middle'>" + day + "</td>");
-            row.append("<td class='col-3 text-center align-middle'>" + timeslot_begin_hour + " " + hour_end + "</td>");
+            row.append("<td class='col-3 text-center align-middle'>" + timeslot_begin_hour + " " + timeslot_end_hour + "</td>");
             row.append("<td class='col-3 text-center align-middle'>" + timetable.course_acronym + "</td>");
             row.append("<td class='col-3 text-center align-middle'>" + timetable.classs + "</td>");
 
@@ -487,7 +485,7 @@ $(document).ready(function () {
                             var timeslot_begin_hour = timeslot.timeslot_begin_hour;
                         
                             var filtered_disponibility = user_disponibility_obj.filter(function(disponibility) {
-                              return disponibility.day === get_full_day_of_week(day) && disponibility.hour === timeslot_begin_hour;
+                              return disponibility.day === get_full_day_of_week(day) && disponibility.timeslot_begin_hour === timeslot_begin_hour;
                             });
                         
                             var ids = filtered_disponibility.map(function(disponibility) {
@@ -535,7 +533,7 @@ $(document).ready(function () {
                             var timeslot_begin_hour = timeslot.timeslot_begin_hour;
 
                             var filtered_disponibility = user_disponibility_obj.filter(function (disponibility) {
-                                return disponibility.day === get_full_day_of_week(day) && disponibility.hour === timeslot_begin_hour;
+                                return disponibility.day === get_full_day_of_week(day) && disponibility.timeslot_begin_hour === timeslot_begin_hour;
                             });
 
                             var ids = filtered_disponibility.map(function (disponibility) {
