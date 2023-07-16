@@ -87,6 +87,9 @@ $(document).ready(function() {
           if (response.erro) {
             $('#mensagem-erro').show();
             $('#mensagem-erro').text(response.mensagem).show();
+            $('html, body').animate({
+              scrollTop: $('#mensagem-erro').offset().top - 100
+            }, 600);      
             hide_loading()
           } else {
             console.log(response);
