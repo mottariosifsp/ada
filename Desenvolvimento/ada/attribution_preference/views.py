@@ -7,6 +7,7 @@ from user.models import User, Job
 from area.models import Area, Blockk
 from enums import enum
 import json
+import math
 import re
 import datetime, time
 from django.db import transaction
@@ -61,11 +62,13 @@ def disponibility_attribution_preference(request):
     start_minutes = timeslot.hour_start.hour * 60 + timeslot.hour_start.minute
     end_minutes = timeslot.hour_end.hour * 60 + timeslot.hour_end.minute
     variation = end_minutes - start_minutes
+    max_quantity_cells = math.floor(480 / variation)
 
     data = {
         'shift': shift,
         'timetables': json_data,
-        'variation_minutes': variation # alterar
+        'variation_minutes': variation, # alterar
+        'max_quantity_cells': max_quantity_cells
     }
 
     return render(request, 'attribution_preference/disponibility_attribution_preference.html', data)

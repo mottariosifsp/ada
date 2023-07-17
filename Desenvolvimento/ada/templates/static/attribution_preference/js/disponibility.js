@@ -69,12 +69,12 @@ $(document).ready(function() {
 
     checkboxes = $('input[type="checkbox"]:checked').filter('[id^='+input_day_of_week+']');
 
-    if (checkboxes.filter('[id^="mon"]').length > 9 ||
-        checkboxes.filter('[id^="tue"]').length > 9 ||
-        checkboxes.filter('[id^="wed"]').length > 9 ||
-        checkboxes.filter('[id^="thu"]').length > 9 ||
-        checkboxes.filter('[id^="fri"]').length > 9 ||
-        checkboxes.filter('[id^="sat"]').length > 9) {
+    if (checkboxes.filter('[id^="mon"]').length > max_quantity_cells - 1 ||
+        checkboxes.filter('[id^="tue"]').length > max_quantity_cells - 1 ||
+        checkboxes.filter('[id^="wed"]').length > max_quantity_cells - 1 ||
+        checkboxes.filter('[id^="thu"]').length > max_quantity_cells - 1 ||
+        checkboxes.filter('[id^="fri"]').length > max_quantity_cells - 1 ||
+        checkboxes.filter('[id^="sat"]').length > max_quantity_cells - 1) {
       limited_hours_passed = true;
       $('#error-alert-form').text('A seleção da disponibilidade de horário não pode ultrapassar 8 horas de trabalho diárias.');
       $('#error-alert-form').show();
