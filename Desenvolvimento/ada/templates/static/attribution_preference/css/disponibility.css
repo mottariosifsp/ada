@@ -28,7 +28,16 @@ abbr[title] {
   font-weight: 500 !important;
 }
 
-.cel {
+.custom-icon {
+  color: #2f7363;
+  display: none;
+}
+
+.cel-plus {
+  display: none;
+}
+
+.cel, .cel-plus {
   font-size: 12pt;
   color: #2f7363;
 }

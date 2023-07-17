@@ -65,9 +65,9 @@ $(document).ready(function() {
     } else {
       var input_id = $(this).attr('for');
       var input_val = $('#' + input_id).val();
-      var is_checked = $('#' + input_id).prop('checked');
+      var button_is_checked = $('#' + input_id).prop('checked');
 
-      if(is_checked) {
+      if(button_is_checked) {
         cell_left_number += 1;
         var [input_object, input_day] = input_val.split(',');
         var [timeslot_begin_hour, timeslot_end_hour] = input_object.split('-');
@@ -93,10 +93,21 @@ $(document).ready(function() {
           timeslots.splice(index, 1);
         }
 
-        $('#cel-regime').text(cell_left_number);
+        if(cell_left_number < 0) {
+          var positive_value = Math.abs(cell_left_number)
+          $('#cel-regime').text('+'+positive_value);
+          $('.custom-icon').css('display', '');
+          $('.cel-plus').css('display', '');
+          $('.cel').css('display', 'none');
+        } else {
+          $('#cel-regime').text(cell_left_number);
+          $('.custom-icon').css('display', 'none');
+          $('.cel-plus').css('display', 'none');
+          $('.cel').css('display', '');
+        }
       } else {
         if(cell_situation != "checked") {
-          update_cell_left_number(is_checked);
+          update_cell_left_number(button_is_checked);
           if (cell_situation != "checked") {
             var [input_object, input_day] = input_val.split(',');
             var [timeslot_begin_hour, timeslot_end_hour] = input_object.split('-');
@@ -122,7 +133,7 @@ $(document).ready(function() {
     let csrftoken = get_cookie('csrftoken');
 
     if (user_regime && timeslots.length !== 0) {
-      if(cell_left_number == 0 || cell_left_number == -1) {
+      if(cell_left_number <= 0) {
         $.ajax({
           type: 'post',
           url: '/' + current_language + '/professor/preferencia-atribuicao/criar-fpa/editar-cursos/',
@@ -190,7 +201,9 @@ function period_input(value) {
       "background-color": "#507c75",
       "color": "white",
       "font-weight": 700
-  })
+    })
+
+
   }
 }
 
@@ -233,29 +246,24 @@ function block_options() {
   });
 }
 
-function update_cell_left_number(is_checked) {
-  if(!is_checked) {
+function update_cell_left_number(button_is_checked) {
+  if(!button_is_checked) {
     if (cell_situation == "checked") {
       cell_left_number = 0;
       $('#cel-regime').text(cell_left_number);
     } else {
       cell_left_number -= 1;
-      if(cell_left_number == -1) {
-        $('input[type="checkbox"][id^="mon-"], input[type="checkbox"][id^="tue-"], input[type="checkbox"][id^="wed-"], input[type="checkbox"][id^="thu-"], input[type="checkbox"][id^="fri-"], input[type="checkbox"][id^="sat-"]').each(function() {
-          if (!$(this).prop('checked')) {
-            $(this).prop('disabled', true);
-            $('label[for="' + $(this).attr('id') + '"]').addClass('disabled').attr('aria-disabled', 'true');
-          }
-        });
-        $('#error-message-form').text('Você atingiu seu limite de disponibilidade.');
-        $('#error-alert-form').show();
-        window.scrollTo({
-          top: $('#error-alert-form').offset().top - $('.navbar').outerHeight() - 30,
-          behavior: 'smooth'
-        });
-        cell_situation = "checked";
+      if(cell_left_number < 0) {
+        var positive_value = Math.abs(cell_left_number)
+        $('#cel-regime').text('+'+positive_value);
+        $('.custom-icon').css('display', '');
+        $('.cel-plus').css('display', '');
+        $('.cel').css('display', 'none');
       } else {
         $('#cel-regime').text(cell_left_number);
+        $('.custom-icon').css('display', 'none');
+        $('.cel-plus').css('display', 'none');
+        $('.cel').css('display', '');
       }
     }    
   }
