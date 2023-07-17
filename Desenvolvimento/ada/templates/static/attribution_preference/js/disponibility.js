@@ -60,18 +60,8 @@ $(document).ready(function() {
 
   // Pegar dados dos checkboxes
   $('.checkbox').click(function() {
-    
     if(cell_left_number == 0 && cell_type_choosed == 0) {
-      $('#cel-regime').text("--");
-      $('label[for^="mon-"]').add('label[for^="tue-"]').add('label[for^="wed-"]').add('label[for^="thu-"]').add('label[for^="fri-"]').add('label[for^="sat-"]').addClass('disabled').attr('aria-disabled', 'true');
-      $('input[type="checkbox"][id^="mon-"]').add('input[type="checkbox"][id^="tue-"]').add('input[type="checkbox"][id^="wed-"]').add('input[type="checkbox"][id^="thu-"]').add('input[type="checkbox"][id^="fri-"]').add('input[type="checkbox"][id^="sat-"]').prop('disabled', true);
-
-      $('#error-message-form').text('Insira o regime de trabalho antes de continuar.');
-      $('#error-alert-form').show();
-      window.scrollTo({
-        top: $('#error-alert-form').offset().top - $('.navbar').outerHeight() - 30,
-        behavior: 'smooth'
-      });
+      block_options();
     } else {
       var input_id = $(this).attr('for');
       var input_val = $('#' + input_id).val();
@@ -117,7 +107,7 @@ $(document).ready(function() {
               day_of_week: input_day,
             };
 
-            timeslots.push(lesson) // mon-mat-1
+            timeslots.push(lesson) // mon-mor-1
           }
         }
       }
@@ -190,6 +180,58 @@ $(document).ready(function() {
     return cookieValue;
   }
 });
+
+function period_input(value) {
+  if(cell_left_number == 0 && cell_type_choosed == 0) {
+    block_options();
+    $('#error-message-form').text('Insira o regime de trabalho acrescestar sua disponibilidade.');
+  } else {
+    $('#period-' + value).css({
+      "background-color": "#507c75",
+      "color": "white",
+      "font-weight": 700
+  })
+  }
+}
+
+function timeslot_input(value) {
+  if(cell_left_number == 0 && cell_type_choosed == 0) {
+    block_options();
+    $('#error-message-form').text('Insira o regime de trabalho acrescestar sua disponibilidade.');
+  } else {
+    $('#timeslot-' + value).css({
+      "background-color": "#507c75",
+      "color": "white",
+      "font-weight": 700
+  })
+  }
+}
+
+function day_of_week_input(value) {
+  if(cell_left_number == 0 && cell_type_choosed == 0) {
+    block_options();
+    $('#error-message-form').text('Insira o regime de trabalho acrescestar sua disponibilidade.');
+  } else {
+    $('#day_of_week-' + value).css({
+      "background-color": "#507c75",
+      "color": "white",
+      "font-weight": 700
+  })
+  }
+}
+
+function block_options() {
+  $('#cel-regime').text("--");
+  $('label[for^="mon-"]').add('label[for^="tue-"]').add('label[for^="wed-"]').add('label[for^="thu-"]').add('label[for^="fri-"]').add('label[for^="sat-"]').addClass('disabled').attr('aria-disabled', 'true');
+  $('input[type="checkbox"][id^="mon-"]').add('input[type="checkbox"][id^="tue-"]').add('input[type="checkbox"][id^="wed-"]').add('input[type="checkbox"][id^="thu-"]').add('input[type="checkbox"][id^="fri-"]').add('input[type="checkbox"][id^="sat-"]').prop('disabled', true);
+
+  $('#error-message-form').text('Insira o regime de trabalho antes de continuar.');
+  $('#error-alert-form').show();
+  window.scrollTo({
+    top: $('#error-alert-form').offset().top - $('.navbar').outerHeight() - 30,
+    behavior: 'smooth'
+  });
+}
 
 function update_cell_left_number(is_checked) {
   if(!is_checked) {

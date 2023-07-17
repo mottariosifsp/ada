@@ -1,4 +1,4 @@
-var lang = document.currentScript.getAttribute("data-lang");alert("f")
+var lang = document.currentScript.getAttribute("data-lang");
 var user_regime = document.currentScript.getAttribute("user_regime");
 var user_disponibility_choosed = document.currentScript.getAttribute("user_disponibility_choosed");
 var user_courses_choosed = document.currentScript.getAttribute("user_courses_choosed");

@@ -65,7 +65,7 @@
               <h4 class="card-title">{% trans "Células restantes" %}:</h4>
               <hr class="my-0">
               <div class="text-center">
-                <span class="min-cel" id="cel-regime">--</span><span class="cel">{% trans "células" %}</span>
+                <span class="min-cel" id="cel-regime">--</span><span class="cel">{% trans "células mínimas" %}</span>
               </div>
             </div>
           </div>
@@ -83,27 +83,27 @@
                   <tr>
                     <th class="col-1 text-center align-middle">{% trans "Período" %}</th>
                     <th class="col-2 text-center align-middle">{% trans "Horários" %}</th>
-                    <th class=" text-center">{% trans "Segunda-Feira" %}</th>
-                    <th class=" text-center">{% trans "Terça-Feira" %}</th>
-                    <th class=" text-center">{% trans "Quarta-Feira" %}</th>
-                    <th class=" text-center">{% trans "Quinta-Feira" %}</th>
-                    <th class=" text-center">{% trans "Sexta-Feira" %}</th>
-                    <th class=" text-center">{% trans "Sábado" %}</th>
+                    <th class=" text-center" id='day_of_week-mon' onclick='day_of_week_input("mon")'>{% trans "Segunda-Feira" %}</th>
+                    <th class=" text-center" id='day_of_week-tue' onclick='day_of_week_input("tue")'>{% trans "Terça-Feira" %}</th>
+                    <th class=" text-center" id='day_of_week-wed' onclick='day_of_week_input("wed")'>{% trans "Quarta-Feira" %}</th>
+                    <th class=" text-center" id='day_of_week-thu' onclick='day_of_week_input("thu")'>{% trans "Quinta-Feira" %}</th>
+                    <th class=" text-center" id='day_of_week-fri' onclick='day_of_week_input("fri")'>{% trans "Sexta-Feira" %}</th>
+                    <th class=" text-center" id='day_of_week-sat' onclick='day_of_week_input("sat")'>{% trans "Sábado" %}</th>
                   </tr>
                 </thead>
                   <tbody class="block" >
                     {% for i in "MVN" %}
                       {% if i == "M" %}
-                        <td class="text-center align-middle" rowspan='{{ shift.morning_classes }}'>{% trans "Matutino" %}</td>
+                        <td class="text-center align-middle" id='period-{{ forloop.counter }}' rowspan='{{ shift.morning_classes }}' onclick="period_input('{{forloop.counter}}')">{% trans "Matutino" %}</td>
                         {% for timeslot in shift.morning %}
                           <tr>
-                            <td class="text-center align-middle">{{ timeslot.hour_start }} - {{ timeslot.hour_end }}</td>
+                            <td class="text-center align-middle" id='timeslot-mor-{{ forloop.counter }}' onclick="timeslot_input('mor-{{forloop.counter}}')">{{ timeslot.hour_start }} - {{ timeslot.hour_end }}</td>
       
                             <td class="text-center">
                               <div class="openModalBtn">
                                 <div class="btn-group-toggle" data-toggle="buttons">
-                                  <label class="btn btn-success w-100 checkbox" for="mon-mat-{{ forloop.counter }}">
-                                    <input type="checkbox" id="mon-mat-{{ forloop.counter }}" 
+                                  <label class="btn btn-success w-100 checkbox" for="mon-mor-{{ forloop.counter }}">
+                                    <input type="checkbox" id="mon-mor-{{ forloop.counter }}" 
                                       value="{{ timeslot.hour_start }}-{{ timeslot.hour_end }},mon" 
                                       autocomplete="off">
                                     <i class="fas fa-check-circle check"></i>
@@ -115,8 +115,8 @@
                             <td class="text-center">
                               <div class="openModalBtn">
                                 <div class="btn-group-toggle" data-toggle="buttons">
-                                  <label class="btn btn-success w-100 checkbox" for="tue-mat-{{ forloop.counter }}">
-                                    <input type="checkbox" id="tue-mat-{{ forloop.counter }}"
+                                  <label class="btn btn-success w-100 checkbox" for="tue-mor-{{ forloop.counter }}">
+                                    <input type="checkbox" id="tue-mor-{{ forloop.counter }}"
                                       value="{{ timeslot.hour_start }}-{{ timeslot.hour_end }},tue" 
                                       autocomplete="off">
                                     <i class="fas fa-check-circle check"></i>
@@ -128,8 +128,8 @@
                             <td class="text-center">
                               <div class="openModalBtn">
                                 <div class="btn-group-toggle" data-toggle="buttons">
-                                  <label class="btn btn-success w-100 checkbox" for="wed-mat-{{ forloop.counter }}">
-                                    <input type="checkbox" id="wed-mat-{{ forloop.counter }}" 
+                                  <label class="btn btn-success w-100 checkbox" for="wed-mor-{{ forloop.counter }}">
+                                    <input type="checkbox" id="wed-mor-{{ forloop.counter }}" 
                                       value="{{ timeslot.hour_start }}-{{ timeslot.hour_end }},wed" 
                                       autocomplete="off">
                                     <i class="fas fa-check-circle check"></i>
@@ -141,8 +141,8 @@
                             <td class="text-center">
                               <div class="openModalBtn">
                                 <div class="btn-group-toggle" data-toggle="buttons">
-                                  <label class="btn btn-success w-100 checkbox" for="thu-mat-{{ forloop.counter }}">
-                                    <input type="checkbox" id="thu-mat-{{ forloop.counter }}" 
+                                  <label class="btn btn-success w-100 checkbox" for="thu-mor-{{ forloop.counter }}">
+                                    <input type="checkbox" id="thu-mor-{{ forloop.counter }}" 
                                       value="{{ timeslot.hour_start }}-{{ timeslot.hour_end }},thu" 
                                       autocomplete="off">
                                     <i class="fas fa-check-circle check"></i>
@@ -154,8 +154,8 @@
                             <td class="text-center">
                               <div class="openModalBtn">
                                 <div class="btn-group-toggle" data-toggle="buttons">
-                                  <label class="btn btn-success w-100 checkbox" for="fri-mat-{{ forloop.counter }}">
-                                    <input type="checkbox" id="fri-mat-{{ forloop.counter }}" 
+                                  <label class="btn btn-success w-100 checkbox" for="fri-mor-{{ forloop.counter }}">
+                                    <input type="checkbox" id="fri-mor-{{ forloop.counter }}" 
                                       value="{{ timeslot.hour_start }}-{{ timeslot.hour_end }},fri" 
                                       autocomplete="off">
                                     <i class="fas fa-check-circle check"></i>
@@ -167,8 +167,8 @@
                             <td class="text-center">
                               <div class="openModalBtn">
                                 <div class="btn-group-toggle" data-toggle="buttons">
-                                  <label class="btn btn-success w-100 checkbox" for="sat-mat-{{ forloop.counter }}">
-                                    <input type="checkbox" id="sat-mat-{{ forloop.counter }}" 
+                                  <label class="btn btn-success w-100 checkbox" for="sat-mor-{{ forloop.counter }}">
+                                    <input type="checkbox" id="sat-mor-{{ forloop.counter }}" 
                                       value="{{ timeslot.hour_start }}-{{ timeslot.hour_end }},sat" 
                                       autocomplete="off">
                                     <i class="fas fa-check-circle check"></i>
@@ -180,17 +180,17 @@
                           
                         {% endfor %}
                       {% elif i == "V" %}
-                        <td class="text-center align-middle" rowspan="{{ shift.afternoon_classes }}">{% trans "Vespertino" %}</td>
+                        <td class="text-center align-middle" id='period-{{ forloop.counter }}' rowspan="{{ shift.afternoon_classes }}" onclick="period_input('{{forloop.counter}}')">{% trans "Vespertino" %}</td>
       
                         {% for timeslot in shift.afternoon %}
                           <tr>
-                            <td class="text-center align-middle">{{ timeslot.hour_start }} - {{ timeslot.hour_end }}</td>
+                            <td class="text-center align-middle" id='timeslot-aft-{{ forloop.counter }}' onclick="timeslot_input('aft-{{forloop.counter}}')">{{ timeslot.hour_start }} - {{ timeslot.hour_end }}</td>
       
                             <td class="text-center">
                               <div class="openModalBtn">
                                 <div class="btn-group-toggle" data-toggle="buttons">
-                                  <label class="btn btn-success w-100 checkbox" for="mon-ves-{{ forloop.counter }}">
-                                    <input type="checkbox" id="mon-ves-{{ forloop.counter }}" 
+                                  <label class="btn btn-success w-100 checkbox" for="mon-aft-{{ forloop.counter }}">
+                                    <input type="checkbox" id="mon-aft-{{ forloop.counter }}" 
                                       value="{{ timeslot.hour_start }}-{{ timeslot.hour_end }},mon" 
                                       autocomplete="off">
                                     <i class="fas fa-check-circle check"></i>
@@ -202,8 +202,8 @@
                             <td class="text-center">
                               <div class="openModalBtn">
                                 <div class="btn-group-toggle" data-toggle="buttons">
-                                  <label class="btn btn-success w-100 checkbox" for="tue-ves-{{ forloop.counter }}">
-                                    <input type="checkbox" id="tue-ves-{{ forloop.counter }}" 
+                                  <label class="btn btn-success w-100 checkbox" for="tue-aft-{{ forloop.counter }}">
+                                    <input type="checkbox" id="tue-aft-{{ forloop.counter }}" 
                                       value="{{ timeslot.hour_start }}-{{ timeslot.hour_end }},tue" 
                                       autocomplete="off">
                                     <i class="fas fa-check-circle check"></i>
@@ -215,8 +215,8 @@
                             <td class="text-center">
                               <div class="openModalBtn">
                                 <div class="btn-group-toggle" data-toggle="buttons">
-                                  <label class="btn btn-success w-100 checkbox" for="wed-ves-{{ forloop.counter }}">
-                                    <input type="checkbox" id="wed-ves-{{ forloop.counter }}" 
+                                  <label class="btn btn-success w-100 checkbox" for="wed-aft-{{ forloop.counter }}">
+                                    <input type="checkbox" id="wed-aft-{{ forloop.counter }}" 
                                       value="{{ timeslot.hour_start }}-{{ timeslot.hour_end }},wed" 
                                       autocomplete="off">
                                     <i class="fas fa-check-circle check"></i>
@@ -228,8 +228,8 @@
                             <td class="text-center">
                               <div class="openModalBtn">
                                 <div class="btn-group-toggle" data-toggle="buttons">
-                                  <label class="btn btn-success w-100 checkbox" for="thu-ves-{{ forloop.counter }}">
-                                    <input type="checkbox" id="thu-ves-{{ forloop.counter }}" 
+                                  <label class="btn btn-success w-100 checkbox" for="thu-aft-{{ forloop.counter }}">
+                                    <input type="checkbox" id="thu-aft-{{ forloop.counter }}" 
                                       value="{{ timeslot.hour_start }}-{{ timeslot.hour_end }},thu" 
                                       autocomplete="off">
                                     <i class="fas fa-check-circle check"></i>
@@ -241,8 +241,8 @@
                             <td class="text-center">
                               <div class="openModalBtn">
                                 <div class="btn-group-toggle" data-toggle="buttons">
-                                  <label class="btn btn-success w-100 checkbox" for="fri-ves-{{ forloop.counter }}">
-                                    <input type="checkbox" id="fri-ves-{{ forloop.counter }}" 
+                                  <label class="btn btn-success w-100 checkbox" for="fri-aft-{{ forloop.counter }}">
+                                    <input type="checkbox" id="fri-aft-{{ forloop.counter }}" 
                                       value="{{ timeslot.hour_start }}-{{ timeslot.hour_end }},fri" 
                                       autocomplete="off">
                                     <i class="fas fa-check-circle check"></i>
@@ -254,8 +254,8 @@
                             <td class="text-center">
                               <div class="openModalBtn">
                                 <div class="btn-group-toggle" data-toggle="buttons">
-                                  <label class="btn btn-success w-100 checkbox" for="sat-ves-{{ forloop.counter }}">
-                                    <input type="checkbox" id="sat-ves-{{ forloop.counter }}" 
+                                  <label class="btn btn-success w-100 checkbox" for="sat-aft-{{ forloop.counter }}">
+                                    <input type="checkbox" id="sat-aft-{{ forloop.counter }}" 
                                       value="{{ timeslot.hour_start }}-{{ timeslot.hour_end }},sat" 
                                       autocomplete="off">
                                     <i class="fas fa-check-circle check"></i>
@@ -267,17 +267,17 @@
                           
                         {% endfor %}
                       {% else %}
-                        <td class="text-center align-middle" rowspan="{{ shift.nocturnal_classes }}">{% trans "Noturno" %}</td>
+                        <td class="text-center align-middle" id='period-{{ forloop.counter }}' rowspan="{{ shift.nocturnal_classes }}" onclick="period_input('{{forloop.counter}}')">{% trans "Noturno" %}</td>
       
                         {% for timeslot in shift.nocturnal %}
                           <tr>
-                            <td class="text-center align-middle">{{ timeslot.hour_start }} - {{ timeslot.hour_end }}</td>
+                            <td class="text-center align-middle" id='timeslot-noc-{{ forloop.counter }}' onclick="timeslot_input('noc-{{forloop.counter}}')">{{ timeslot.hour_start }} - {{ timeslot.hour_end }}</td>
       
                             <td class="text-center">
                               <div class="openModalBtn">
                                 <div class="btn-group-toggle" data-toggle="buttons">
-                                  <label class="btn btn-success w-100 checkbox" for="mon-not-{{ forloop.counter }}">
-                                    <input type="checkbox" id="mon-not-{{ forloop.counter }}" 
+                                  <label class="btn btn-success w-100 checkbox" for="mon-noc-{{ forloop.counter }}">
+                                    <input type="checkbox" id="mon-noc-{{ forloop.counter }}" 
                                       value="{{ timeslot.hour_start }}-{{ timeslot.hour_end }},mon" 
                                       autocomplete="off">
                                     <i class="fas fa-check-circle check"></i>
@@ -289,8 +289,8 @@
                             <td class="text-center">
                               <div class="openModalBtn">
                                 <div class="btn-group-toggle" data-toggle="buttons">
-                                  <label class="btn btn-success w-100 checkbox" for="tue-not-{{ forloop.counter }}">
-                                    <input type="checkbox" id="tue-not-{{ forloop.counter }}" 
+                                  <label class="btn btn-success w-100 checkbox" for="tue-noc-{{ forloop.counter }}">
+                                    <input type="checkbox" id="tue-noc-{{ forloop.counter }}" 
                                       value="{{ timeslot.hour_start }}-{{ timeslot.hour_end }},tue" 
                                       autocomplete="off">
                                     <i class="fas fa-check-circle check"></i>
@@ -302,8 +302,8 @@
                             <td class="text-center">
                               <div class="openModalBtn">
                                 <div class="btn-group-toggle" data-toggle="buttons">
-                                  <label class="btn btn-success w-100 checkbox" for="wed-not-{{ forloop.counter }}">
-                                    <input type="checkbox" id="wed-not-{{ forloop.counter }}" 
+                                  <label class="btn btn-success w-100 checkbox" for="wed-noc-{{ forloop.counter }}">
+                                    <input type="checkbox" id="wed-noc-{{ forloop.counter }}" 
                                       value="{{ timeslot.hour_start }}-{{ timeslot.hour_end }},wed" 
                                       autocomplete="off">
                                     <i class="fas fa-check-circle check"></i>
@@ -315,8 +315,8 @@
                             <td class="text-center">
                               <div class="openModalBtn">
                                 <div class="btn-group-toggle" data-toggle="buttons">
-                                  <label class="btn btn-success w-100 checkbox" for="thu-not-{{ forloop.counter }}">
-                                    <input type="checkbox" id="thu-not-{{ forloop.counter }}" 
+                                  <label class="btn btn-success w-100 checkbox" for="thu-noc-{{ forloop.counter }}">
+                                    <input type="checkbox" id="thu-noc-{{ forloop.counter }}" 
                                       value="{{ timeslot.hour_start }}-{{ timeslot.hour_end }},thu" 
                                       autocomplete="off">
                                     <i class="fas fa-check-circle check"></i>
@@ -328,8 +328,8 @@
                             <td class="text-center">
                               <div class="openModalBtn">
                                 <div class="btn-group-toggle" data-toggle="buttons">
-                                  <label class="btn btn-success w-100 checkbox" for="fri-not-{{ forloop.counter }}">
-                                    <input type="checkbox" id="fri-not-{{ forloop.counter }}" 
+                                  <label class="btn btn-success w-100 checkbox" for="fri-noc-{{ forloop.counter }}">
+                                    <input type="checkbox" id="fri-noc-{{ forloop.counter }}" 
                                       value="{{ timeslot.hour_start }}-{{ timeslot.hour_end }},fri" 
                                       autocomplete="off" >
                                     <i class="fas fa-check-circle check"></i>
@@ -341,8 +341,8 @@
                             <td class="text-center">
                               <div class="openModalBtn">
                                 <div class="btn-group-toggle" data-toggle="buttons">
-                                  <label class="btn btn-success w-100 checkbox" for="sat-not-{{ forloop.counter }}">
-                                    <input type="checkbox" id="sat-not-{{ forloop.counter }}" 
+                                  <label class="btn btn-success w-100 checkbox" for="sat-noc-{{ forloop.counter }}">
+                                    <input type="checkbox" id="sat-noc-{{ forloop.counter }}" 
                                       value="{{ timeslot.hour_start }}-{{ timeslot.hour_end }},sat" 
                                       autocomplete="off" >
                                     <i class="fas fa-check-circle check"></i>
