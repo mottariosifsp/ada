@@ -30,11 +30,6 @@ abbr[title] {
 
 .custom-icon {
   color: #2f7363;
-  display: none;
-}
-
-.cel-plus {
-  display: none;
 }
 
 .cel, .cel-plus {
@@ -43,7 +38,7 @@ abbr[title] {
 }
 
 th {
-  color: #124136;;
+  color: #124136;
 }
 
 .td-block {

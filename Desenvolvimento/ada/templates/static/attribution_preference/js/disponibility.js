@@ -9,7 +9,10 @@ var user_timetables = document.currentScript.getAttribute('timetables');
 var timeslot_minutes = document.currentScript.getAttribute('variation_minutes');
 
 $(document).ready(function() {
-  console.log("timeslot minutos", timeslot_minutes);
+  $('.custom-icon').css('display', 'none');
+  $('.cel-plus').css('display', 'none');
+
+  //console.log("timeslot minutos", timeslot_minutes);
 
   $('input[name="regime"]').click(function() {
     $('#cel-regime').val('');
@@ -39,6 +42,22 @@ $(document).ready(function() {
       $('label[for^="mon-"]').add('label[for^="tue-"]').add('label[for^="wed-"]').add('label[for^="thu-"]').add('label[for^="fri-"]').add('label[for^="sat-"]').removeClass('disabled').removeAttr('aria-disabled');
       $('input[type="checkbox"][id^="mon-"]').add('input[type="checkbox"][id^="tue-"]').add('input[type="checkbox"][id^="wed-"]').add('input[type="checkbox"][id^="thu-"]').add('input[type="checkbox"][id^="fri-"]').add('input[type="checkbox"][id^="sat-"]').prop('disabled', false);
     }
+
+    $('tbody.block').find('*').css({
+      "background-color": "",
+      "color": "",
+      "font-weight": ""
+    });
+
+    $('thead.block').find('*').css({
+      "background-color": "",
+      "color": "",
+      "font-weight": ""
+    });
+
+    $('.custom-icon').css('display', 'none');
+    $('.cel-plus').css('display', 'none');
+    $('.cel').css('display', '');
   });
 
   // Limpar formulário inteiro
@@ -73,6 +92,7 @@ $(document).ready(function() {
         var [timeslot_begin_hour, timeslot_end_hour] = input_object.split('-');
 
         if (cell_situation == "checked") {
+          //pode causar conflito com regra de 8 horas e 11 
           $('input[type="checkbox"][id^="mon-"], input[type="checkbox"][id^="tue-"], input[type="checkbox"][id^="wed-"], input[type="checkbox"][id^="thu-"], input[type="checkbox"][id^="fri-"], input[type="checkbox"][id^="sat-"]').each(function() {
             if (!$(this).prop('checked')) {
               $(this).prop('disabled', false);
@@ -92,6 +112,24 @@ $(document).ready(function() {
         if (index !== -1) {
           timeslots.splice(index, 1);
         }
+
+        var [id_day, id_period, id_timeslot] = input_id.split('-');
+
+        $('#period-' + id_period).css({
+          "background-color": "",
+          "color": "",
+          "font-weight": ""
+        });
+        $('#timeslot-' + id_period + '-' + id_timeslot).css({
+          "background-color": "",
+          "color": "",
+          "font-weight": ""
+        });
+        $('#day_of_week-' + id_day).css({
+          "background-color": "",
+          "color": "",
+          "font-weight": ""
+        });
 
         if(cell_left_number < 0) {
           var positive_value = Math.abs(cell_left_number)
@@ -193,44 +231,92 @@ $(document).ready(function() {
 });
 
 function period_input(value) {
-  if(cell_left_number == 0 && cell_type_choosed == 0) {
-    block_options();
-    $('#error-message-form').text('Insira o regime de trabalho acrescestar sua disponibilidade.');
-  } else {
+  var element = document.getElementById("period-" + value);
+  var backgroundColor = getComputedStyle(element).backgroundColor;
+  var isTrue = backgroundColor == "rgb(80, 124, 117)";
+  if(isTrue) {
+    take_off_ckecked(value);
+
     $('#period-' + value).css({
-      "background-color": "#507c75",
-      "color": "white",
-      "font-weight": 700
+      "background-color": "",
+      "color": "",
+      "font-weight": ''
     })
+  } else {
+    if(cell_left_number == 0 && cell_type_choosed == 0) {
+      block_options();
+      $('#error-message-form').text('Insira o regime de trabalho acrescestar sua disponibilidade.');
+    } else {
+      $('#period-' + value).css({
+        "background-color": "#507c75",
+        "color": "white",
+        "font-weight": 700
+      })
 
-
+      take_off_ckecked(value);
+      put_in_checked(value);
+    }
   }
+  
 }
 
 function timeslot_input(value) {
-  if(cell_left_number == 0 && cell_type_choosed == 0) {
-    block_options();
-    $('#error-message-form').text('Insira o regime de trabalho acrescestar sua disponibilidade.');
-  } else {
+  var element = document.getElementById("timeslot-" + value);
+  var backgroundColor = getComputedStyle(element).backgroundColor;
+  var isTrue = backgroundColor == "rgb(80, 124, 117)";
+  if(isTrue) {
+    take_off_ckecked(value);
+
     $('#timeslot-' + value).css({
-      "background-color": "#507c75",
-      "color": "white",
-      "font-weight": 700
-  })
+      "background-color": "",
+      "color": "",
+      "font-weight": ''
+    })
+  } else {
+    if(cell_left_number == 0 && cell_type_choosed == 0) {
+      block_options();
+      $('#error-message-form').text('Insira o regime de trabalho acrescestar sua disponibilidade.');
+    } else {
+      $('#timeslot-' + value).css({
+        "background-color": "#507c75",
+        "color": "white",
+        "font-weight": 700
+      })
+
+      take_off_ckecked(value);
+      put_in_checked(value);
+    }
   }
 }
 
 function day_of_week_input(value) {
-  if(cell_left_number == 0 && cell_type_choosed == 0) {
-    block_options();
-    $('#error-message-form').text('Insira o regime de trabalho acrescestar sua disponibilidade.');
-  } else {
+  var element = document.getElementById("day_of_week-" + value);
+  var backgroundColor = getComputedStyle(element).backgroundColor;
+  var isTrue = backgroundColor == "rgb(80, 124, 117)";
+  if(isTrue) {
+    take_off_ckecked(value);
+
     $('#day_of_week-' + value).css({
-      "background-color": "#507c75",
-      "color": "white",
-      "font-weight": 700
-  })
+      "background-color": "",
+      "color": "",
+      "font-weight": ''
+    })
+  } else {
+    if(cell_left_number == 0 && cell_type_choosed == 0) {
+      block_options();
+      $('#error-message-form').text('Insira o regime de trabalho acrescestar sua disponibilidade.');
+    } else {
+      $('#day_of_week-' + value).css({
+        "background-color": "#507c75",
+        "color": "white",
+        "font-weight": 700
+      })
+
+      take_off_ckecked(value);
+      put_in_checked(value);
+    }
   }
+  
 }
 
 function block_options() {
@@ -244,6 +330,79 @@ function block_options() {
     top: $('#error-alert-form').offset().top - $('.navbar').outerHeight() - 30,
     behavior: 'smooth'
   });
+}
+
+function take_off_ckecked(value) {
+  var checkboxes_checked = Array.from(document.querySelectorAll('input[type="checkbox"]:checked[id*="'+value+'"]')).map(function(checkbox) {
+    return checkbox.id;
+  });
+
+  for(var i = 0; i < checkboxes_checked.length; i++) {
+    var checked_id = checkboxes_checked[i]
+    var index = timeslots.findIndex(function(lesson) {
+      return lesson.id === checked_id;
+    });
+    
+    if (index !== -1) {
+      timeslots.splice(index, 1);
+    }
+
+    var checkbox = document.getElementById(checked_id);
+    if (checkbox) {
+      checkbox.checked = false;
+      var button = checkbox.parentElement;
+      var label = button.parentElement;
+      button.classList.remove("active");
+      label.classList.remove("active");
+    }
+
+    cell_left_number += 1
+
+    if(cell_left_number < 0) {
+      var positive_value = Math.abs(cell_left_number)
+      $('#cel-regime').text('+'+positive_value);
+      $('.custom-icon').css('display', '');
+      $('.cel-plus').css('display', '');
+      $('.cel').css('display', 'none');
+    } else {
+      $('#cel-regime').text(cell_left_number);
+      $('.custom-icon').css('display', 'none');
+      $('.cel-plus').css('display', 'none');
+      $('.cel').css('display', '');
+    }
+  }
+}
+
+function put_in_checked(value) {
+  var checkboxes_not_checked = Array.from(document.querySelectorAll('input[type="checkbox"]:not(:checked)[id*="'+value+'"]')).map(function(checkbox) {
+    return checkbox.id;
+  });
+
+  for(var i = 0; i < checkboxes_not_checked.length; i++) {
+    var checked_id = checkboxes_not_checked[i];
+    var checked_value = $('#' + checked_id).val();
+
+    update_cell_left_number(false);
+    var [checked_object, checked_day] = checked_value.split(',');
+    var [timeslot_begin_hour, timeslot_end_hour] = checked_object.split('-');
+    var lesson = {
+      id: checked_id,
+      timeslot_begin_hour: timeslot_begin_hour,
+      timeslot_end_hour: timeslot_end_hour,
+      day_of_week: checked_day,
+    };
+
+    timeslots.push(lesson)
+
+    var checkbox = document.getElementById(checked_id);
+    if (checkbox) {
+      checkbox.checked = true;
+      var button = checkbox.parentElement;
+      var label = button.parentElement;
+      button.classList.add("active");
+      label.classList.add("active");
+    }
+  }
 }
 
 function update_cell_left_number(button_is_checked) {
