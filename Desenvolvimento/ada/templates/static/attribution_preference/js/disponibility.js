@@ -8,10 +8,12 @@ var user_blocks = document.currentScript.getAttribute('blocks');
 var user_timetables = document.currentScript.getAttribute('timetables');
 var timeslot_minutes = document.currentScript.getAttribute('variation_minutes');
 var max_quantity_cells = document.currentScript.getAttribute('max_quantity_cells');
+var cells_3_hours = document.currentScript.getAttribute('quantity_cells_3_hours');
 var limited_hours_passed;
 var checkboxes = [];
 
 $(document).ready(function() {
+  console.log("quantidade de células para três horas", cells_3_hours);
   console.log("timeslot minutos", timeslot_minutes);
 
   $('input[name="regime"]').click(function() {
