@@ -2,11 +2,15 @@ var current_language = document.currentScript.getAttribute('data-lang');
 var timeslots = []
 var cell_left_number = 0
 var cell_type_choosed = 0
-var cell_situation = "not_checked" 
+var cell_situation = "not_checked"
 
 var user_blocks = document.currentScript.getAttribute('blocks');
 var user_timetables = document.currentScript.getAttribute('timetables');
 var timeslot_minutes = document.currentScript.getAttribute('variation_minutes');
+var max_quantity_cells = document.currentScript.getAttribute('max_quantity_cells');
+var cells_3_hours = document.currentScript.getAttribute('quantity_cells_3_hours');
+var limited_hours_passed;
+var checkboxes = [];
 
 $(document).ready(function() {
   $('.custom-icon').css('display', 'none');
@@ -79,10 +83,34 @@ $(document).ready(function() {
 
   // Pegar dados dos checkboxes
   $('.checkbox').click(function() {
+
+    var input_id = $(this).attr('for');
+    var [input_day_of_week, input_period, input_timeslot] = input_id.split('-');
+
+    checkboxes = $('input[type="checkbox"]:checked').filter('[id^='+input_day_of_week+']');
+
+    if (checkboxes.filter('[id^="mon"]').length > max_quantity_cells - 1 ||
+        checkboxes.filter('[id^="tue"]').length > max_quantity_cells - 1 ||
+        checkboxes.filter('[id^="wed"]').length > max_quantity_cells - 1 ||
+        checkboxes.filter('[id^="thu"]').length > max_quantity_cells - 1 ||
+        checkboxes.filter('[id^="fri"]').length > max_quantity_cells - 1 ||
+        checkboxes.filter('[id^="sat"]').length > max_quantity_cells - 1) {
+      limited_hours_passed = true;
+      $('#error-alert-form').text('A seleção da disponibilidade de horário não pode ultrapassar 8 horas de trabalho diárias.');
+      $('#error-alert-form').show();
+      window.scrollTo({
+        top: $('#error-alert-form').offset().top - $('.navbar').outerHeight() - 30,
+        behavior: 'smooth'
+      });
+    } else {
+      limited_hours_passed = false;
+      $('#error-alert-form').hide();
+    }
+    console.log(checkboxes.length);
+
     if(cell_left_number == 0 && cell_type_choosed == 0) {
       block_options();
     } else {
-      var input_id = $(this).attr('for');
       var input_val = $('#' + input_id).val();
       var button_is_checked = $('#' + input_id).prop('checked');
 
@@ -108,7 +136,7 @@ $(document).ready(function() {
         var index = timeslots.findIndex(function(lesson) {
           return lesson.id === input_id;
         });
-        
+
         if (index !== -1) {
           timeslots.splice(index, 1);
         }
@@ -172,7 +200,8 @@ $(document).ready(function() {
 
     if (user_regime && timeslots.length !== 0) {
       if(cell_left_number <= 0) {
-        $.ajax({
+        if(!limited_hours_passed) {
+          $.ajax({
           type: 'post',
           url: '/' + current_language + '/professor/preferencia-atribuicao/criar-fpa/editar-cursos/',
           data: {
@@ -194,8 +223,15 @@ $(document).ready(function() {
               top: $('#error-alert-form').offset().top - $('.navbar').outerHeight() - 30,
               behavior: 'smooth'
             });
+          }});
+          } else {
+            $('#error-message-form').text('Se certifique que a seleção de disponibilidade não ultrapassa 8 horas diárias de trabalho.');
+            $('#error-alert-form').show();
+            window.scrollTo({
+              top: $('#error-alert-form').offset().top - $('.navbar').outerHeight() - 30,
+              behavior: 'smooth'
+            });
           }
-        });
       } else {
         $('#error-message-form').text('Por favor insira todas as células.');
         $('#error-alert-form').show();
@@ -424,6 +460,6 @@ function update_cell_left_number(button_is_checked) {
         $('.cel-plus').css('display', 'none');
         $('.cel').css('display', '');
       }
-    }    
+    }
   }
 }
