@@ -196,14 +196,14 @@ def courses_attribution_preference(request):
             shift_position = None
 
             if timeslot_begin_hour >= datetime.time(7, 0, 0) and timeslot_begin_hour <= datetime.time(12, 0, 0):
-                shift_type = 'mat'
+                shift_type = 'mor'
                 shift_position = next((i for i, slot in enumerate(shift['morning']) if slot.hour_start == timeslot_begin_hour), None)
             elif timeslot_begin_hour >= datetime.time(13, 0, 0) and timeslot_begin_hour < datetime.time(18, 0, 0):
-                shift_type = 'ves'
+                shift_type = 'aft'
                 shift_position = next((i for i, slot in enumerate(shift['afternoon']) if slot.hour_start == timeslot_begin_hour),
                                      None)
             elif timeslot_begin_hour >= datetime.time(18, 0, 0) and timeslot_begin_hour <= datetime.time(23, 0, 0):
-                shift_type = 'not'
+                shift_type = 'noc'
                 shift_position = next((i for i, slot in enumerate(shift['nocturnal']) if slot.hour_start == timeslot_begin_hour), None)
 
             if shift_position is not None:
@@ -340,14 +340,14 @@ def attribution_preference(request):
             shift_position = None
 
             if begin >= datetime.time(7, 0, 0) and begin <= datetime.time(12, 0, 0):
-                shift_type = 'mat'
+                shift_type = 'mor'
                 shift_position = next((i for i, slot in enumerate(shift['morning']) if slot.hour_start == begin), None)
             elif begin >= datetime.time(13, 0, 0) and begin < datetime.time(18, 0, 0):
-                shift_type = 'ves'
+                shift_type = 'aft'
                 shift_position = next((i for i, slot in enumerate(shift['afternoon']) if slot.hour_start == begin),
                                      None)
             elif begin >= datetime.time(18, 0, 0) and begin <= datetime.time(23, 0, 0):
-                shift_type = 'not'
+                shift_type = 'noc'
                 shift_position = next((i for i, slot in enumerate(shift['nocturnal']) if slot.hour_start == begin), None)
 
             if shift_position is not None:
