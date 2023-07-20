@@ -5,21 +5,6 @@
 {% block head %}
   <link rel="stylesheet" href="{% static 'attribution_preference/css/courses.css' %}">
   <title>{% trans "Envio FPA" %}</title>
-  <style>
-    button.info-button {
-      margin-bottom: 5px;
-      float: right;
-    }
-    button.info-button{
-      margin-top: -5px;
-    }
-    button.info-button svg{
-      margin-bottom: 5px;
-    }
-    #info-input-message {
-      font-size: 14px;
-    }
-  </style>
 {% endblock %}
 
 {% block body %}
@@ -384,7 +369,7 @@
                                 </svg>
                               </button>
                               <div class="input-group">
-                                <input list="block-options" id="block-filter" placeholder="--" class="form-control mb-4" onchange="block_filter()"> <!-- HAKUN4MATAT4 -->
+                                <input list="block-options" id="block-filter" placeholder="--" class="form-control mb-4" onChange="block_filter()"> <!-- HAKUN4MATAT4 -->
                                 <datalist id="block-options">
                                 </datalist>
                               </div>
@@ -401,7 +386,7 @@
                                 </svg>
                               </button>
                               <div class="input-group">
-                                <input list="area-options" id="area-filter" placeholder="--" class="form-control mb-4" onchange="area_filter()"> <!-- HAKUN4MATAT4 -->
+                                <input list="area-options" id="area-filter" placeholder="--" class="form-control mb-4" onChange="area_filter()"> <!-- HAKUN4MATAT4 -->
                                 <datalist id="area-options">
                                 </datalist>
                               </div>
@@ -420,22 +405,27 @@
                           </div>
                         </div>
                         <div>
-                          <div id="info-alert" class="alert alert-info" style="display: none">
-                            <table class="table table-sm text-center">
-                              <tr>
-                                <th class="text-center col-2">{% trans "Dia" %}</th>
-                                <th class="text-center col-2">{% trans "Horário" %}</th>
-                                <th class="text-center col-2">{% trans "Sigla" %}</th>
-                                <th class="text-center col-2">{% trans "Turma" %}</th>
-                              </tr>
+                          <div id="info-alert" style="display: none">
+                            <table class="table table-sm table-info text-center">
+                              <tbody>
+                                <tr>
+                                  <td>{% trans "Disciplina Escolhida" %}</td>
+                                  <td class="info-displine"></td>
+                                </tr>
+                                <tr>
+                                  <td>{% trans "Dia da Semana" %}</td>
+                                  <td class="info-day"></td>
+                                </tr>
+                                <tr>
+                                  <td>{% trans "Início e Fim" %}</td>
+                                  <td class="info-start-and-end-hour"></td>
+                                </tr>
+                                <tr>
+                                  <td>{% trans "Turma" %}</td>
+                                  <td class="info-class"></td>
+                                </tr>
+                              </tbody>
                             </table>
-                            <div>
-                              <table class="table table-bordered table-sm text-center">
-                                <div id="info-message-list">
-
-                                </div>
-                              </table>
-                            </div>
                           </div>
                         </div>
                       </form>
@@ -458,8 +448,6 @@
 {% endblock %}
 
 {% block endbody %}
-<script>//alert('{{ user_blocks }}')
-console.log('{{ user_blocks }}')</script>
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
   <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">

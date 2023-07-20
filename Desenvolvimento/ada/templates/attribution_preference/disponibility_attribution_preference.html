@@ -94,7 +94,7 @@
                   <tbody class="block" >
                     {% for i in "MVN" %}
                       {% if i == "M" %}
-                        <td class="text-center align-middle" id='period-mor' rowspan='{{ shift.morning_classes }}' onclick="period_input('mor')">{% trans "Matutino" %}</td>
+                        <td class="text-center align-middle period" id='period-mor' rowspan='{{ shift.morning_classes }}' onclick="period_input('mor')">{% trans "Matutino" %}</td>
                         {% for timeslot in shift.morning %}
                           <tr>
                             <td class="text-center align-middle" id='timeslot-mor-{{ forloop.counter }}' onclick="timeslot_input('mor-{{forloop.counter}}')">{{ timeslot.hour_start }} - {{ timeslot.hour_end }}</td>
@@ -180,7 +180,7 @@
                           
                         {% endfor %}
                       {% elif i == "V" %}
-                        <td class="text-center align-middle" id='period-aft' rowspan="{{ shift.afternoon_classes }}" onclick="period_input('aft')">{% trans "Vespertino" %}</td>
+                        <td class="text-center align-middle period" id='period-aft' rowspan="{{ shift.afternoon_classes }}" onclick="period_input('aft')">{% trans "Vespertino" %}</td>
       
                         {% for timeslot in shift.afternoon %}
                           <tr>
@@ -267,7 +267,7 @@
                           
                         {% endfor %}
                       {% else %}
-                        <td class="text-center align-middle" id='period-noc' rowspan="{{ shift.nocturnal_classes }}" onclick="period_input('noc')">{% trans "Noturno" %}</td>
+                        <td class="text-center align-middle period" id='period-noc' rowspan="{{ shift.nocturnal_classes }}" onclick="period_input('noc')">{% trans "Noturno" %}</td>
       
                         {% for timeslot in shift.nocturnal %}
                           <tr>

@@ -594,6 +594,12 @@ function timeslot_input(value) {
       "color": "",
       "font-weight": ''
     })
+
+    $('#period-' + value.substring(0, 3)).css({
+      "background-color": "",
+      "color": "",
+      "font-weight": ''
+    })
   } else {
     if(cell_left_number == 0 && cell_type_choosed == 0) {
       block_options();
@@ -622,7 +628,13 @@ function day_of_week_input(value) {
       "background-color": "",
       "color": "",
       "font-weight": ''
-    })
+    });
+
+    $('.period').css({
+      "background-color": "",
+      "color": "",
+      "font-weight": ""
+    });
   } else {
     if(cell_left_number == 0 && cell_type_choosed == 0) {
       block_options();
