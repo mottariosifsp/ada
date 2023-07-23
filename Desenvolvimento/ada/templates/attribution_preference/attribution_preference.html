@@ -7,7 +7,6 @@
     <title>{% trans "FPA Usuário" %}</title>
 {% endblock %}
 
-
 {% block body %}
     <h1 class="title-page">{% trans "FPA Usuário" %}</h1>
     <nav>
@@ -18,7 +17,7 @@
     </ol>
     </nav>
 
-    {% if not fpa_done %}
+    {% if not is_fpa_done %}
     <div class="container">
         <div id="card-no-fpa" class="card text-center centered-object">
           <div class="card-body">
@@ -93,165 +92,165 @@
                         <tbody class="block" id="timetable-courses">
                             {% for i in "MVN" %}
                               {% if i == "M" %}
-                                <td class="text-center align-middle" rowspan="{{ turno.matutinoAulas }}">{% trans "Matutino" %}</td>
-                                {% for horario in turno.matutino %}
+                                <td class="text-center align-middle" rowspan="{{ shift.morning_classes }}">{% trans "Matutino" %}</td>
+                                {% for timeslot in shift.morning %}
                                   <tr>
-                                    <td class="text-center hour-print align-middle">{{ horario.hour_start }} - {{ horario.hour_end }}</td>
+                                    <td class="text-center hour-print align-middle">{{ timeslot.hour_start }} - {{ timeslot.hour_end }}</td>
                           
-                                    <td class="text-center" id="btn-mon-mat-{{ forloop.counter }}">
+                                    <td class="text-center" id="btn-mon-mor-{{ forloop.counter }}">
                                       <div class="openModalBtn">
-                                        <div data-id="mon-mat-{{ forloop.counter }}" class="btn-group-toggle" data-toggle="buttons">
-                                          <div id="mon-mat-{{ forloop.counter }}"><i></i></div>
+                                        <div data-id="mon-mor-{{ forloop.counter }}" class="btn-group-toggle" data-toggle="buttons">
+                                          <div id="mon-mor-{{ forloop.counter }}"><i></i></div>
                                         </div>
                                       </div>
                                     </td>
                           
-                                    <td class="text-center" id="btn-tue-mat-{{ forloop.counter }}">
+                                    <td class="text-center" id="btn-tue-mor-{{ forloop.counter }}">
                                       <div class="openModalBtn">
-                                        <div data-id="tue-mat-{{ forloop.counter }}" class="btn-group-toggle" data-toggle="buttons">
-                                          <div id="tue-mat-{{ forloop.counter }}"><i></i></div>
+                                        <div data-id="tue-mor-{{ forloop.counter }}" class="btn-group-toggle" data-toggle="buttons">
+                                          <div id="tue-mor-{{ forloop.counter }}"><i></i></div>
                                         </div>
                                       </div>
                                     </td>
                           
-                                    <td class="text-center" id="btn-wed-mat-{{ forloop.counter }}">
+                                    <td class="text-center" id="btn-wed-mor-{{ forloop.counter }}">
                                       <div class="openModalBtn">
-                                        <div data-id="wed-mat-{{ forloop.counter }}" class="btn-group-toggle" data-toggle="buttons">
-                                          <div id="wed-mat-{{ forloop.counter }}"><i></i></div>
+                                        <div data-id="wed-mor-{{ forloop.counter }}" class="btn-group-toggle" data-toggle="buttons">
+                                          <div id="wed-mor-{{ forloop.counter }}"><i></i></div>
                                         </div>
                                       </div>
                                     </td>
                           
-                                    <td class="text-center" id="btn-thu-mat-{{ forloop.counter }}">
+                                    <td class="text-center" id="btn-thu-mor-{{ forloop.counter }}">
                                       <div class="openModalBtn">
-                                        <div data-id="thu-mat-{{ forloop.counter }}" class="btn-group-toggle" data-toggle="buttons">
-                                          <div id="thu-mat-{{ forloop.counter }}"><i></i></div>
+                                        <div data-id="thu-mor-{{ forloop.counter }}" class="btn-group-toggle" data-toggle="buttons">
+                                          <div id="thu-mor-{{ forloop.counter }}"><i></i></div>
                                         </div>
                                       </div>
                                     </td>
                           
-                                    <td class="text-center" id="btn-fri-mat-{{ forloop.counter }}">
+                                    <td class="text-center" id="btn-fri-mor-{{ forloop.counter }}">
                                       <div class="openModalBtn">
-                                        <div data-id="fri-mat-{{ forloop.counter }}" class="btn-group-toggle" data-toggle="buttons">
-                                          <div id="fri-mat-{{ forloop.counter }}"><i></i></div>
+                                        <div data-id="fri-mor-{{ forloop.counter }}" class="btn-group-toggle" data-toggle="buttons">
+                                          <div id="fri-mor-{{ forloop.counter }}"><i></i></div>
                                         </div>
                                       </div>
                                     </td>
                           
-                                    <td class="text-center" id="btn-sat-mat-{{ forloop.counter }}">
+                                    <td class="text-center" id="btn-sat-mor-{{ forloop.counter }}">
                                       <div class="openModalBtn">
-                                        <div data-id="sat-mat-{{ forloop.counter }}" class="btn-group-toggle" data-toggle="buttons">
-                                          <div id="sat-mat-{{ forloop.counter }}"><i></i></div>
+                                        <div data-id="sat-mor-{{ forloop.counter }}" class="btn-group-toggle" data-toggle="buttons">
+                                          <div id="sat-mor-{{ forloop.counter }}"><i></i></div>
                                         </div>
                                       </div>
                                     </td>
                                   </tr>
                                 {% endfor %}
                               {% elif i == "V" %}
-                                <td class="text-center align-middle" rowspan="{{ turno.vespertinoAulas }}">{% trans "Vespertino" %}</td>
-                                {% for horario in turno.vespertino %}
+                                <td class="text-center align-middle" rowspan="{{ shift.afternoon_classes }}">{% trans "Vespertino" %}</td>
+                                {% for timeslot in shift.afternoon %}
                                   <tr>
-                                    <td class="text-center hour-print align-middle">{{ horario.hour_start }} - {{ horario.hour_end }}</td>
+                                    <td class="text-center hour-print align-middle">{{ timeslot.hour_start }} - {{ timeslot.hour_end }}</td>
                           
-                                    <td class="text-center" id="btn-mon-ves-{{ forloop.counter }}">
+                                    <td class="text-center" id="btn-mon-aft-{{ forloop.counter }}">
                                       <div class="openModalBtn">
-                                        <div data-id="mon-ves-{{ forloop.counter }}" class="btn-group-toggle" data-toggle="buttons">
-                                          <div id="mon-ves-{{ forloop.counter }}"><i></i></div>
+                                        <div data-id="mon-aft-{{ forloop.counter }}" class="btn-group-toggle" data-toggle="buttons">
+                                          <div id="mon-aft-{{ forloop.counter }}"><i></i></div>
                                         </div>
                                       </div>
                                     </td>
                           
-                                    <td class="text-center" id="btn-tue-ves-{{ forloop.counter }}">
+                                    <td class="text-center" id="btn-tue-aft-{{ forloop.counter }}">
                                       <div class="openModalBtn">
-                                        <div data-id="tue-ves-{{ forloop.counter }}" class="btn-group-toggle" data-toggle="buttons">
-                                          <div id="tue-ves-{{ forloop.counter }}"><i></i></div>
+                                        <div data-id="tue-aft-{{ forloop.counter }}" class="btn-group-toggle" data-toggle="buttons">
+                                          <div id="tue-aft-{{ forloop.counter }}"><i></i></div>
                                         </div>
                                       </div>
                                     </td>
                           
-                                    <td class="text-center" id="btn-wed-ves-{{ forloop.counter }}">
+                                    <td class="text-center" id="btn-wed-aft-{{ forloop.counter }}">
                                       <div class="openModalBtn">
-                                        <div data-id="wed-ves-{{ forloop.counter }}" class="btn-group-toggle" data-toggle="buttons">
-                                          <div id="wed-ves-{{ forloop.counter }}"><i></i></div>
+                                        <div data-id="wed-aft-{{ forloop.counter }}" class="btn-group-toggle" data-toggle="buttons">
+                                          <div id="wed-aft-{{ forloop.counter }}"><i></i></div>
                                         </div>
                                       </div>
                                     </td>
                           
-                                    <td class="text-center" id="btn-thu-ves-{{ forloop.counter }}">
+                                    <td class="text-center" id="btn-thu-aft-{{ forloop.counter }}">
                                       <div class="openModalBtn">
-                                        <div data-id="thu-ves-{{ forloop.counter }}" class="btn-group-toggle" data-toggle="buttons">
-                                          <div id="thu-ves-{{ forloop.counter }}"><i></i></div>
+                                        <div data-id="thu-aft-{{ forloop.counter }}" class="btn-group-toggle" data-toggle="buttons">
+                                          <div id="thu-aft-{{ forloop.counter }}"><i></i></div>
                                         </div>
                                       </div>
                                     </td>
                           
-                                    <td class="text-center" id="btn-fri-ves-{{ forloop.counter }}">
+                                    <td class="text-center" id="btn-fri-aft-{{ forloop.counter }}">
                                       <div class="openModalBtn">
-                                        <div data-id="fri-ves-{{ forloop.counter }}" class="btn-group-toggle" data-toggle="buttons">
-                                          <div id="fri-ves-{{ forloop.counter }}"><i></i></div>
+                                        <div data-id="fri-aft-{{ forloop.counter }}" class="btn-group-toggle" data-toggle="buttons">
+                                          <div id="fri-aft-{{ forloop.counter }}"><i></i></div>
                                         </div>
                                       </div>
                                     </td>
                           
-                                    <td class="text-center" id="btn-sat-ves-{{ forloop.counter }}">
+                                    <td class="text-center" id="btn-sat-aft-{{ forloop.counter }}">
                                       <div class="openModalBtn">
-                                        <div data-id="sat-ves-{{ forloop.counter }}" class="btn-group-toggle" data-toggle="buttons">
-                                          <div id="sat-ves-{{ forloop.counter }}"><i></i></div>
+                                        <div data-id="sat-aft-{{ forloop.counter }}" class="btn-group-toggle" data-toggle="buttons">
+                                          <div id="sat-aft-{{ forloop.counter }}"><i></i></div>
                                         </div>
                                       </div>
                                     </td>
                                   </tr>
                                 {% endfor %}
                               {% else %}
-                                <td class="text-center align-middle" rowspan="{{ turno.noturnoAulas }}">{% trans "Noturno" %}</td>
-                                {% for horario in turno.noturno %}
+                                <td class="text-center align-middle" rowspan="{{ shift.nocturnal_classes }}">{% trans "Noturno" %}</td>
+                                {% for timeslot in shift.nocturnal %}
                                   <tr>
-                                    <td class="text-center hour-print align-middle">{{ horario.hour_start }} - {{ horario.hour_end }}</td>
+                                    <td class="text-center hour-print align-middle">{{ timeslot.hour_start }} - {{ timeslot.hour_end }}</td>
                           
-                                    <td class="text-center" id="btn-mon-not-{{ forloop.counter }}">
+                                    <td class="text-center" id="btn-mon-noc-{{ forloop.counter }}">
                                       <div class="openModalBtn">
-                                        <div data-id="mon-not-{{ forloop.counter }}" class="btn-group-toggle" data-toggle="buttons">
-                                          <div id="mon-not-{{ forloop.counter }}"><i></i></div>
+                                        <div data-id="mon-noc-{{ forloop.counter }}" class="btn-group-toggle" data-toggle="buttons">
+                                          <div id="mon-noc-{{ forloop.counter }}"><i></i></div>
                                         </div>
                                       </div>
                                     </td>
                           
-                                    <td class="text-center" id="btn-tue-not-{{ forloop.counter }}">
+                                    <td class="text-center" id="btn-tue-noc-{{ forloop.counter }}">
                                       <div class="openModalBtn">
-                                        <div data-id="tue-not-{{ forloop.counter }}" class="btn-group-toggle" data-toggle="buttons">
-                                          <div id="tue-not-{{ forloop.counter }}"><i></i></div>
+                                        <div data-id="tue-noc-{{ forloop.counter }}" class="btn-group-toggle" data-toggle="buttons">
+                                          <div id="tue-noc-{{ forloop.counter }}"><i></i></div>
                                         </div>
                                       </div>
                                     </td>
                           
-                                    <td class="text-center" id="btn-wed-not-{{ forloop.counter }}">
+                                    <td class="text-center" id="btn-wed-noc-{{ forloop.counter }}">
                                       <div class="openModalBtn">
-                                        <div data-id="wed-not-{{ forloop.counter }}" class="btn-group-toggle" data-toggle="buttons">
-                                          <div id="wed-not-{{ forloop.counter }}"><i></i></div>
+                                        <div data-id="wed-noc-{{ forloop.counter }}" class="btn-group-toggle" data-toggle="buttons">
+                                          <div id="wed-noc-{{ forloop.counter }}"><i></i></div>
                                         </div>
                                       </div>
                                     </td>
                           
-                                    <td class="text-center" id="btn-thu-not-{{ forloop.counter }}">
+                                    <td class="text-center" id="btn-thu-noc-{{ forloop.counter }}">
                                       <div class="openModalBtn">
-                                        <div data-id="thu-not-{{ forloop.counter }}" class="btn-group-toggle" data-toggle="buttons">
-                                          <div id="thu-not-{{ forloop.counter }}"><i></i></div>
+                                        <div data-id="thu-noc-{{ forloop.counter }}" class="btn-group-toggle" data-toggle="buttons">
+                                          <div id="thu-noc-{{ forloop.counter }}"><i></i></div>
                                         </div>
                                       </div>
                                     </td>
                           
-                                    <td class="text-center" id="btn-fri-not-{{ forloop.counter }}">
+                                    <td class="text-center" id="btn-fri-noc-{{ forloop.counter }}">
                                       <div class="openModalBtn">
-                                        <div data-id="fri-not-{{ forloop.counter }}" class="btn-group-toggle" data-toggle="buttons">
-                                          <div id="fri-not-{{ forloop.counter }}"><i></i></div>
+                                        <div data-id="fri-noc-{{ forloop.counter }}" class="btn-group-toggle" data-toggle="buttons">
+                                          <div id="fri-noc-{{ forloop.counter }}"><i></i></div>
                                         </div>
                                       </div>
                                     </td>
                           
-                                    <td class="text-center" id="btn-sat-not-{{ forloop.counter }}">
+                                    <td class="text-center" id="btn-sat-noc-{{ forloop.counter }}">
                                       <div class="openModalBtn">
-                                        <div data-id="sat-not-{{ forloop.counter }}" class="btn-group-toggle" data-toggle="buttons">
-                                          <div id="sat-not-{{ forloop.counter }}"><i></i></div>
+                                        <div data-id="sat-noc-{{ forloop.counter }}" class="btn-group-toggle" data-toggle="buttons">
+                                          <div id="sat-noc-{{ forloop.counter }}"><i></i></div>
                                         </div>
                                       </div>
                                     </td>
@@ -296,11 +295,9 @@
             </div>
         </div>
     </div>
-    
     {% endif %}
-    
 {% endblock %}
 
 {% block endbody %}
-  <script src="{% static 'attribution_preference/js/attribution_preference.js' %}" work_regime='{{work_regime}}' work_disponibility='{{work_disponibility}}' work_courses='{{work_courses}}' data-lang={{LANGUAGE_CODE}}></script>
+  <script src="{% static 'attribution_preference/js/attribution_preference.js' %}" user_regime='{{ user_regime }}' user_disponibility_choosed='{{user_disponibility_choosed}}' user_courses_choosed='{{user_courses_choosed}}' data-lang={{LANGUAGE_CODE}}></script>
 {% endblock %}

@@ -1,46 +1,46 @@
 var lang = document.currentScript.getAttribute("data-lang");
-var work_regime = document.currentScript.getAttribute("work_regime");
-var work_disponibility = document.currentScript.getAttribute("work_disponibility");
-var work_courses = document.currentScript.getAttribute("work_courses");
+var user_regime = document.currentScript.getAttribute("user_regime");
+var user_disponibility_choosed = document.currentScript.getAttribute("user_disponibility_choosed");
+var user_courses_choosed = document.currentScript.getAttribute("user_courses_choosed");
 
-var work_disponibility_array = JSON.parse(work_disponibility.replace(/'/g, '"'));
-var work_courses_array = JSON.parse(work_courses.replace(/'/g, '"'));
+var user_disponibility_choosed_array = JSON.parse(user_disponibility_choosed.replace(/'/g, '"'));
+var user_courses_choosed_array = JSON.parse(user_courses_choosed.replace(/'/g, '"'));
 
-$('.'+ work_regime).css({
+$('.'+ user_regime).css({
     "background-color": "#507c75",
     "color": "white",
     "font-weight": 700
 })
 
-for(var i = 0; i < work_disponibility_array.length; i++) {
-    var elemento = work_disponibility_array[i];
-    var phrase = elemento.frase;
+for(var i = 0; i < user_disponibility_choosed_array.length; i++) {
+    var element = user_disponibility_choosed_array[i];
+    var id = element.id;
 
-    $('#btn-'+ phrase).css({
+    $('#btn-'+ id).css({
         "background-color": "#507c75",
     });
-    $("#" + phrase + " i").addClass("fas fa-check-circle check");
-    $('#'+ phrase).css({
+    $("#" + id + " i").addClass("fas fa-check-circle check");
+    $('#'+ id).css({
         "color": "white",
     });
 }
 
-for (var i = 0; i < work_courses_array.length; i++) {
-    var course = work_courses_array[i];
-    var sigla = course.sigla;
-    var nome = course.name_course;
-    var curso = course.course_area;
-    var turno = course.period;
-    var aulas = course.classes;
+for (var i = 0; i < user_courses_choosed_array.length; i++) {
+    var course = user_courses_choosed_array[i];
+    var acronym = course.acronym;
+    var name_course = course.name_course;
+    var course_area = course.course_area;
+    var period = course.period;
+    var classes = course.classes;
   
-    var newRow = '<tr>' +
-      '<td class="text-center">' + sigla + '</td>' +
-      '<td class="text-center">' + nome + '</td>' +
-      '<td class="text-center">' + curso + '</td>' +
-      '<td class="text-center">' + turno + '</td>' +
-      '<td class="text-center">' + aulas + '</td>' +
+    var new_row = '<tr>' +
+      '<td class="text-center">' + acronym + '</td>' +
+      '<td class="text-center">' + name_course + '</td>' +
+      '<td class="text-center">' + course_area + '</td>' +
+      '<td class="text-center">' + period + '</td>' +
+      '<td class="text-center">' + classes + '</td>' +
       '</tr>';
   
-    $('#courses-list').append(newRow);
+    $('#courses-list').append(new_row);
   }
 
