@@ -5,6 +5,7 @@ from course.models import Course
 from timetable.models import Timetable, Timeslot
 from user.models import User, Job
 from area.models import Area, Blockk
+from staff.models import Deadline
 from enums import enum
 import json
 import math
@@ -13,6 +14,65 @@ import datetime, time
 from django.db import transaction
 
 from django.utils.decorators import method_decorator
+
+def attribution_preference(request):
+    user = request.user
+    user_blocks = user.blocks.all()
+    stage_fpas = []
+    started_times = finished_times =  not_configured_times = configured_times = 0
+
+    for blockk in user_blocks:
+        status = ''
+        start_day = ''
+        start_time = ''
+        end_day = ''
+        end_time = ''
+        if Deadline.objects.filter(blockk=blockk, name='STARTFPADEADLINE').exists():
+            attribution_deadline = Deadline.objects.get(blockk=blockk, name='STARTFPADEADLINE')        
+            now = datetime.datetime.today()
+            if now > attribution_deadline.deadline_start and now < attribution_deadline.deadline_end:
+                start_day = attribution_deadline.deadline_start.strftime("%d/%m/%Y")
+                start_time = attribution_deadline.deadline_start.strftime("%H:%M:%S")
+                end_day = attribution_deadline.deadline_end.strftime("%d/%m/%Y")
+                end_time = attribution_deadline.deadline_end.strftime("%H:%M:%S")
+                status = 'started'
+                started_times += 1
+            elif now < attribution_deadline.deadline_start:            
+                start_day = attribution_deadline.deadline_start.strftime("%d/%m/%Y")
+                start_time = attribution_deadline.deadline_start.strftime("%H:%M:%S")
+                status = 'configured'
+                configured_times += 1
+            else:
+                end_day = attribution_deadline.deadline_end.strftime("%d/%m/%Y")
+                end_time = attribution_deadline.deadline_end.strftime("%H:%M:%S")
+                status = 'finished'
+                finished_times += 1
+        else:
+            status = 'not_configured'
+            not_configured_times += 1
+
+        blockk_stage_fpa = {
+            'blockk': blockk,
+            'status': status,
+            'start_day': start_day,
+            'start_time': start_time,
+            'end_day': end_day,
+            'end_time': end_time,
+        }
+        stage_fpas.append(blockk_stage_fpa)
+
+    data = {
+        'stage_fpas': stage_fpas,
+        'started_times': started_times,
+        'finished_times': finished_times,
+        'not_configured_times': not_configured_times,
+        'configured_times': configured_times,
+        'is_pair': len(stage_fpas) % 2 == 0
+    }
+
+    print(data)
+    
+    return render(request, 'attribution_preference/attribution_preference.html', data)
 
 
 def disponibility_attribution_preference(request):
@@ -249,47 +309,7 @@ def courses_attribution_preference(request):
 
         return render(request, 'attribution_preference/courses_attribution_preference.html', data)
 
-
-@transaction.atomic
-def save_disponiility_preference(user_timeslots, user_regime, user):
-    job = Job.objects.create(name_job=user_regime)
-    user.job = None
-    user.job = job
-    user.save()
-
-    if not Attribution_preference.objects.filter(user=user).exists():
-        Attribution_preference.objects.create(user=user)
-
-    if Preference_schedule.objects.filter(attribution_preference__user=user).exists():
-        Preference_schedule.objects.filter(attribution_preference__user=user).delete()
-
-    for timeslot in user_timeslots:
-        timeslot_begin_hour = timeslot["timeslot_begin_hour"]
-        day_of_week = timeslot["day_of_week"]
-
-        timeslot_object = Timeslot.objects.filter(hour_start=timeslot_begin_hour).first()
-
-        if day_of_week == 'mon':
-            day_object = enum.Day.monday.name
-        elif day_of_week == 'tue':
-            day_object = enum.Day.tuesday.name
-        elif day_of_week == 'wed':
-            day_object = enum.Day.wednesday.name
-        elif day_of_week == 'thu':
-            day_object = enum.Day.thursday.name
-        elif day_of_week == 'fri':
-            day_object = enum.Day.friday.name
-        else:
-            day_object = enum.Day.saturday.name
-
-        Preference_schedule.objects.create(
-            attribution_preference=Attribution_preference.objects.filter(user=user).first(),
-            timeslot=timeslot_object,
-            day=day_object
-        )
-
-
-def attribution_preference(request):
+def show_attribution_preference(request):
     work_courses = request.POST.getlist('timetable')
     timetable = []
 
@@ -390,10 +410,9 @@ def attribution_preference(request):
             timetable_object = {
                 'acronym': preference.timetable.course.acronym,
                 'name_course': preference.timetable.course.name_course,
-                'course_area': preference.timetable.course.area.name_area,  # Acessa o nome da área corretamente
+                'course_area': preference.timetable.course.area.name_area,
                 'period': shift_period,
-                'classes': day_combo.timeslots.count(), # feito pelo site
-                #'classes': preference.timetable.day_combo.count(), conta quando é feito direto pelo admin
+                'classes': day_combo.timeslots.count(), 
             }
             user_courses_traceback.append(timetable_object)
 
@@ -410,9 +429,46 @@ def attribution_preference(request):
             'user_courses_choosed': user_courses_traceback,
         }
 
-        print(data)
+        return render(request, 'attribution_preference/show_attribution_preference.html', data)
 
-        return render(request, 'attribution_preference/attribution_preference.html', data)
+@transaction.atomic
+def save_disponiility_preference(user_timeslots, user_regime, user):
+    job = Job.objects.create(name_job=user_regime)
+    user.job = None
+    user.job = job
+    user.save()
+
+    if not Attribution_preference.objects.filter(user=user).exists():
+        Attribution_preference.objects.create(user=user)
+
+    if Preference_schedule.objects.filter(attribution_preference__user=user).exists():
+        Preference_schedule.objects.filter(attribution_preference__user=user).delete()
+
+    for timeslot in user_timeslots:
+        timeslot_begin_hour = timeslot["timeslot_begin_hour"]
+        day_of_week = timeslot["day_of_week"]
+
+        timeslot_object = Timeslot.objects.filter(hour_start=timeslot_begin_hour).first()
+
+        if day_of_week == 'mon':
+            day_object = enum.Day.monday.name
+        elif day_of_week == 'tue':
+            day_object = enum.Day.tuesday.name
+        elif day_of_week == 'wed':
+            day_object = enum.Day.wednesday.name
+        elif day_of_week == 'thu':
+            day_object = enum.Day.thursday.name
+        elif day_of_week == 'fri':
+            day_object = enum.Day.friday.name
+        else:
+            day_object = enum.Day.saturday.name
+
+        Preference_schedule.objects.create(
+            attribution_preference=Attribution_preference.objects.filter(user=user).first(),
+            timeslot=timeslot_object,
+            day=day_object
+        )
+
 
 @transaction.atomic
 def save_courses_preference(work_courses, user):
