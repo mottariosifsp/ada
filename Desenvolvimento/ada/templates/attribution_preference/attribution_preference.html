@@ -5,6 +5,77 @@
 {% block head %}
     <link rel="stylesheet" href="{% static 'attribution_preference/css/courses.css' %}">
     <title>{% trans "FPA Usuário" %}</title>
+    <style>
+        .card-blockk {
+            width: 500px;
+            float: left;
+            margin-right: 30px;
+            margin-top: 30px;
+        }
+        .division {
+            margin-bottom: -10px;
+        }
+        .center {
+            left: 25%;
+        }
+        .card-blockk-disponibility {
+            margin-left: 30px;
+            margin-right: 30px;
+            margin-bottom: 20px;
+        }
+        .message-info-done {
+            background-color: greenyellow;
+            font-weight: 400;
+            padding: 5px 10px 5px 10px;
+            border-radius: 6px;
+        }
+        .message-info-not-done {
+            background-color: yellow;
+            font-weight: 400;
+            padding: 5px 10px 5px 10px;
+            border-radius: 6px;
+        }
+        .message-info-not-started {
+            background-color: blue;
+            font-weight: 400;
+            padding: 5px 10px 5px 10px;
+            border-radius: 6px;
+        }
+        .link {
+            color: blue;
+            text-decoration: underline;
+            font-style: italic;
+        }
+        .center-btn {
+            text-align: center;
+        }
+        .card-title {
+            font-weight: 400;
+        }
+        .overlay {
+            position: absolute;
+            margin-top: 25%;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 99; /* Z-index alto para ficar acima de outros objetos */
+            display:grid;
+            justify-content: center;
+            align-items: center;
+        }
+
+
+        /* Estilos para o modal */
+        .modal-div {
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
+            max-width: 500px;
+            z-index: 99999; /* Z-index mais alto para ficar acima dos cards */
+        }
+    </style>
 {% endblock %}
 
 {% block body %}
@@ -12,292 +83,308 @@
     <nav>
     <ol class="breadcrumb hidden-itens">
         <li class="breadcrumb-item"><a href="{% url 'home' %}"><i class="bi bi-house-door"></i></a></li>
-        <li class="breadcrumb-item active">{% trans "Preferência Atribuição" %}</li>
         <li class="breadcrumb-item active">{% trans "FPA Usuário" %}</li>
     </ol>
     </nav>
-
-    {% if not is_fpa_done %}
-    <div class="container">
-        <div id="card-no-fpa" class="card text-center centered-object">
-          <div class="card-body">
-            <h5 class="card-title">{% trans "Nenhum FPA relacionado ao usuário foi encontrado no sistema" %}</h5>
-            <hr>
-            <a href="{% url 'disponibility_attribution_preference' %}">
-              <button class="btn btn-success">{% trans "Comece o seu FPA" %}</button>
-            </a>
-          </div>
+    
+    {% if started_times > 0 and disponilibity_done == 'True' %}
+    <div class="float-right message-info-done">{% trans 'ENVIADO'%}</div>
+    <h5>{% trans 'Envio de Disponibilidade'%}:</h5>
+    <hr>
+        <div class="container">
+            <div class="card card-blockk-disponibility centered-object">
+                <div class="card-body">
+                    <h5 class="card-title">{% trans 'Disponibilidade Geral'%}</h5>
+                    <hr>
+                    <p><b>{% trans 'Situação' %}:</b> {% trans 'Você enviou sua preferência de horários. Agora pode atualizar ou enviar suas preferências em relação aos cursos abaixo' %}:</p>
+                    <a href="{% url 'disponibility_attribution_preference' %}">
+                        <button class="btn btn-success"><i class="fas fa-redo"></i> {% trans "Refaça seu FPA" %}</button>
+                    </a>
+                    <a onclick="fpa_blockk_animation()">
+                        <button class="btn btn-success"><i class="fas fa-share"></i> {% trans "Enviar Escolha Preferência de Cursos" %}</button>
+                    </a>
+                </div>
+            </div>
         </div>
-    </div>
-    {% else %}
-    <div class="container">
-        <div class="card centered-object">
-          <div class="card-body">
-            <h5 class="card-title">{% trans "Formulário de Preferência de Atividades - FPA (Anexo I - Resolução nº 109 de 4 de novembro de 2015)" %}</h5>
-            <hr>
-            <div class="table-responsive">
-                <table class="table table-bordered table-sm text-center">
-                <tr>
-                  <th colspan="6">{% trans "Identificação do Docente" %}</th>
-                </tr>
-                <tr>
-                  <th>{% trans "Docente" %}:</th>
-                  <td colspan="2">{{ request.user.get_full_name }}</td>
-                  <th>{% trans "Conhecido como" %}:</th>
-                  <td colspan="2">{{ request.user.first_name }}</td>
-                </tr>
-                <tr>
-                  <th>{% trans "Área" %}:</th>
-                  {% blocktrans with name_block_text=user.blocks.first.name_block %}
-                  <td colspan="2">{{ name_block_text }}</td>
-                  {% endblocktrans %}
-                  <th>{% trans "E-mail" %}:</th>
-                  <td colspan="2">{{ request.user.email }}</td>
-                </tr>
-                <tr>
-                  <th>{% trans "Prontuário" %}:</th>
-                  <td colspan="2">{% trans "CJ" %}{{ request.user.registration_id  }}</td>
-                  <th>{% trans "Celular" %}:</th>
-                  <td colspan="2">{{ request.user.cell_phone }}</td>
-                </tr>
-                <tr>
-                    <th>{% trans "Regime de trabalho" %}:</th>
-                    <td class="col-2 20">20 {% trans "horas" %}</td>
-                    <td class="col-2 40">40 {% trans "horas" %}</td>
-                    <td class="col-2 rde">{% trans "RDE" %}</td>
-                    <td class="col-2">{% trans "Substituto" %}</td>
-                    <td class="col-2">{% trans "Temporário" %}</td>
-                </tr>
-            </table>
-
-              
-            <table class="table table-bordered table-sm text-center">
-                <tr>
-                  <th colspan="6">{% trans "Disponibilidade de horário para atribuição de componentes curriculares" %}</th>
-                </tr>
-                <tr>
-                    <table class="regime table table-bordered table-sm text-center">
-                        <thead>
-                          <tr>
-                            <th class="col-1 text-center align-middle">{% trans "Período" %}</th>
-                            <th class="col-2 text-center align-middle">{% trans "Horários" %}</th>
-                            <th class=" text-center">{% trans "Segunda-Feira" %}</th>
-                            <th class=" text-center">{% trans "Terça-Feira" %}</th>
-                            <th class=" text-center">{% trans "Quarta-Feira" %}</th>
-                            <th class=" text-center">{% trans "Quinta-Feira" %}</th>
-                            <th class=" text-center">{% trans "Sexta-Feira" %}</th>
-                            <th class=" text-center">{% trans "Sábado" %}</th>
-                          </tr>
-                        </thead>
-                        <tbody class="block" id="timetable-courses">
-                            {% for i in "MVN" %}
-                              {% if i == "M" %}
-                                <td class="text-center align-middle" rowspan="{{ shift.morning_classes }}">{% trans "Matutino" %}</td>
-                                {% for timeslot in shift.morning %}
-                                  <tr>
-                                    <td class="text-center hour-print align-middle">{{ timeslot.hour_start }} - {{ timeslot.hour_end }}</td>
-                          
-                                    <td class="text-center" id="btn-mon-mat-{{ forloop.counter }}">
-                                      <div class="openModalBtn">
-                                        <div data-id="mon-mat-{{ forloop.counter }}" class="btn-group-toggle" data-toggle="buttons">
-                                          <div id="mon-mat-{{ forloop.counter }}"><i></i></div>
-                                        </div>
-                                      </div>
-                                    </td>
-                          
-                                    <td class="text-center" id="btn-tue-mat-{{ forloop.counter }}">
-                                      <div class="openModalBtn">
-                                        <div data-id="tue-mat-{{ forloop.counter }}" class="btn-group-toggle" data-toggle="buttons">
-                                          <div id="tue-mat-{{ forloop.counter }}"><i></i></div>
-                                        </div>
-                                      </div>
-                                    </td>
-                          
-                                    <td class="text-center" id="btn-wed-mat-{{ forloop.counter }}">
-                                      <div class="openModalBtn">
-                                        <div data-id="wed-mat-{{ forloop.counter }}" class="btn-group-toggle" data-toggle="buttons">
-                                          <div id="wed-mat-{{ forloop.counter }}"><i></i></div>
-                                        </div>
-                                      </div>
-                                    </td>
-                          
-                                    <td class="text-center" id="btn-thu-mat-{{ forloop.counter }}">
-                                      <div class="openModalBtn">
-                                        <div data-id="thu-mat-{{ forloop.counter }}" class="btn-group-toggle" data-toggle="buttons">
-                                          <div id="thu-mat-{{ forloop.counter }}"><i></i></div>
-                                        </div>
-                                      </div>
-                                    </td>
-                          
-                                    <td class="text-center" id="btn-fri-mat-{{ forloop.counter }}">
-                                      <div class="openModalBtn">
-                                        <div data-id="fri-mat-{{ forloop.counter }}" class="btn-group-toggle" data-toggle="buttons">
-                                          <div id="fri-mat-{{ forloop.counter }}"><i></i></div>
-                                        </div>
-                                      </div>
-                                    </td>
-                          
-                                    <td class="text-center" id="btn-sat-mat-{{ forloop.counter }}">
-                                      <div class="openModalBtn">
-                                        <div data-id="sat-mat-{{ forloop.counter }}" class="btn-group-toggle" data-toggle="buttons">
-                                          <div id="sat-mat-{{ forloop.counter }}"><i></i></div>
-                                        </div>
-                                      </div>
-                                    </td>
-                                  </tr>
-                                {% endfor %}
-                              {% elif i == "V" %}
-                                <td class="text-center align-middle" rowspan="{{ shift.afternoon_classes }}">{% trans "Vespertino" %}</td>
-                                {% for timeslot in shift.afternoon %}
-                                  <tr>
-                                    <td class="text-center hour-print align-middle">{{ timeslot.hour_start }} - {{ timeslot.hour_end }}</td>
-                          
-                                    <td class="text-center" id="btn-mon-ves-{{ forloop.counter }}">
-                                      <div class="openModalBtn">
-                                        <div data-id="mon-ves-{{ forloop.counter }}" class="btn-group-toggle" data-toggle="buttons">
-                                          <div id="mon-ves-{{ forloop.counter }}"><i></i></div>
-                                        </div>
-                                      </div>
-                                    </td>
-                          
-                                    <td class="text-center" id="btn-tue-ves-{{ forloop.counter }}">
-                                      <div class="openModalBtn">
-                                        <div data-id="tue-ves-{{ forloop.counter }}" class="btn-group-toggle" data-toggle="buttons">
-                                          <div id="tue-ves-{{ forloop.counter }}"><i></i></div>
-                                        </div>
-                                      </div>
-                                    </td>
-                          
-                                    <td class="text-center" id="btn-wed-ves-{{ forloop.counter }}">
-                                      <div class="openModalBtn">
-                                        <div data-id="wed-ves-{{ forloop.counter }}" class="btn-group-toggle" data-toggle="buttons">
-                                          <div id="wed-ves-{{ forloop.counter }}"><i></i></div>
-                                        </div>
-                                      </div>
-                                    </td>
-                          
-                                    <td class="text-center" id="btn-thu-ves-{{ forloop.counter }}">
-                                      <div class="openModalBtn">
-                                        <div data-id="thu-ves-{{ forloop.counter }}" class="btn-group-toggle" data-toggle="buttons">
-                                          <div id="thu-ves-{{ forloop.counter }}"><i></i></div>
-                                        </div>
-                                      </div>
-                                    </td>
-                          
-                                    <td class="text-center" id="btn-fri-ves-{{ forloop.counter }}">
-                                      <div class="openModalBtn">
-                                        <div data-id="fri-ves-{{ forloop.counter }}" class="btn-group-toggle" data-toggle="buttons">
-                                          <div id="fri-ves-{{ forloop.counter }}"><i></i></div>
-                                        </div>
-                                      </div>
-                                    </td>
-                          
-                                    <td class="text-center" id="btn-sat-ves-{{ forloop.counter }}">
-                                      <div class="openModalBtn">
-                                        <div data-id="sat-ves-{{ forloop.counter }}" class="btn-group-toggle" data-toggle="buttons">
-                                          <div id="sat-ves-{{ forloop.counter }}"><i></i></div>
-                                        </div>
-                                      </div>
-                                    </td>
-                                  </tr>
-                                {% endfor %}
-                              {% else %}
-                                <td class="text-center align-middle" rowspan="{{ shift.nocturnal_classes }}">{% trans "Noturno" %}</td>
-                                {% for timeslot in shift.nocturnal %}
-                                  <tr>
-                                    <td class="text-center hour-print align-middle">{{ timeslot.hour_start }} - {{ timeslot.hour_end }}</td>
-                          
-                                    <td class="text-center" id="btn-mon-not-{{ forloop.counter }}">
-                                      <div class="openModalBtn">
-                                        <div data-id="mon-not-{{ forloop.counter }}" class="btn-group-toggle" data-toggle="buttons">
-                                          <div id="mon-not-{{ forloop.counter }}"><i></i></div>
-                                        </div>
-                                      </div>
-                                    </td>
-                          
-                                    <td class="text-center" id="btn-tue-not-{{ forloop.counter }}">
-                                      <div class="openModalBtn">
-                                        <div data-id="tue-not-{{ forloop.counter }}" class="btn-group-toggle" data-toggle="buttons">
-                                          <div id="tue-not-{{ forloop.counter }}"><i></i></div>
-                                        </div>
-                                      </div>
-                                    </td>
-                          
-                                    <td class="text-center" id="btn-wed-not-{{ forloop.counter }}">
-                                      <div class="openModalBtn">
-                                        <div data-id="wed-not-{{ forloop.counter }}" class="btn-group-toggle" data-toggle="buttons">
-                                          <div id="wed-not-{{ forloop.counter }}"><i></i></div>
-                                        </div>
-                                      </div>
-                                    </td>
-                          
-                                    <td class="text-center" id="btn-thu-not-{{ forloop.counter }}">
-                                      <div class="openModalBtn">
-                                        <div data-id="thu-not-{{ forloop.counter }}" class="btn-group-toggle" data-toggle="buttons">
-                                          <div id="thu-not-{{ forloop.counter }}"><i></i></div>
-                                        </div>
-                                      </div>
-                                    </td>
-                          
-                                    <td class="text-center" id="btn-fri-not-{{ forloop.counter }}">
-                                      <div class="openModalBtn">
-                                        <div data-id="fri-not-{{ forloop.counter }}" class="btn-group-toggle" data-toggle="buttons">
-                                          <div id="fri-not-{{ forloop.counter }}"><i></i></div>
-                                        </div>
-                                      </div>
-                                    </td>
-                          
-                                    <td class="text-center" id="btn-sat-not-{{ forloop.counter }}">
-                                      <div class="openModalBtn">
-                                        <div data-id="sat-not-{{ forloop.counter }}" class="btn-group-toggle" data-toggle="buttons">
-                                          <div id="sat-not-{{ forloop.counter }}"><i></i></div>
-                                        </div>
-                                      </div>
-                                    </td>
-                                  </tr>
-                                {% endfor %}
-                              {% endif %}
-                            {% endfor %}
-                          </tbody>
-                    </table>
-                </tr>
-            </table>
-
-            <table class="table table-bordered table-sm text-center">
-                <tr>
-                    <th colspan="6">{% trans "Disciplinas escolhidas" %}</th>
-                </tr>
-                <table class="regime table table-bordered table-sm text-center">
-                    <thead>
-                        <th class="text-center">{% trans "Sigla" %}</th>
-                        <th class="text-center">{% trans "Nome" %}</th>
-                        <th class="text-center">{% trans "Disciplina" %}</th>
-                        <th class="text-center">{% trans "Período" %}</th>
-                        <th class="text-center">{% trans "Aulas" %}</th>
-                    </thead>
-                    <tbody id="courses-list">
-
-                    </tbody>
-                </table>
+    {% elif started_times > 0 %}
+    <div class="float-right message-info-not-done">{% trans 'NÃO ENVIADO'%}</div>
+    <h5>{% trans 'Envio de Disponibilidade'%}:</h5>
+    <hr>
+        <div class="container">
+            <div class="card card-blockk-disponibility centered-object">
+                <div class="card-body">
+                    <h5 class="card-title">{% trans 'Disponibilidade Geral'%}</h5>
+                    <hr>
+                    <p><b>{% trans 'Situação' %}:</b> {% trans 'Iniciou o envio de FPAs para o sistema. Primeiro envie sua disponibilidade geral abaixo e espere os próximos passos' %}:</p>
+                    <div class="center-btn">
+                        <a href="{% url 'disponibility_attribution_preference' %}">
+                            <button class="btn btn-success"><i class="fas fa-share"></i> {% trans "Enviar sua Preferência de Disponibilidade Geral" %}</button>
+                        </a>
+                    </div>
                     
-            </table>
+                </div>
             </div>
-            
-            <div class="row">
-              <div class="col-6 text-right">
+        </div>
+    {% else %}
+    <div class="float-right message-info-not-started">{% trans 'NÃO INICIOU'%}</div>
+    <h5>{% trans 'Envio de Disponibilidade'%}:</h5>
+    <hr>
+        <div class="container">
+            <div class="card card-blockk-disponibility centered-object">
+                <div class="card-body">
+                    <h5 class="card-title">{% trans 'Disponibilidade Geral'%}</h5>
+                    <hr>
+                    <p><b>{% trans 'Situação' %}:</b> {% trans 'Não possível enviar a disponilidade de horários do usuário' %}.</p>
+                    <p><b>{% trans 'Intruções' %}:</b> {% trans 'Espere até o dia que comece o envio de escolha de preferências (FPA) dos seu blocos' %}.</p>
+                </div>
+            </div>
+        </div>
+    {% endif %}
+    <h5 id="fpa-blockk">Envio de FPA para cada Bloco:</h5>
+    <hr class="division">
+    <div id="container" class="container">
+        {% for blockk in stage_fpas %}
+            {% if forloop.last %}
+                {% if is_pair %}
+                    {% if blockk.status == 'configured' %}
+                        <div class="card card-blockk centered-object">
+                            <div class="card-body">
+                                <div class="float-right message-info">{% trans 'CONFIGURADO'%}</div>
+                                <h5 class="card-title">{% trans 'Bloco'%}: {{blockk.blockk.name_block}}</h5>
+                                <hr>
+                                <p>
+                                    <b>{% trans 'Início' %}:</b> {{blockk.start_day}} {% trans 'ás' %} {{blockk.start_time}}
+                                </p>
+                                <p> 
+                                    <b>{% trans 'Fim' %}:</b> {{blockk.end_day}} {% trans 'ás' %} {{blockk.end_time}}
+                                </p>
+                                <p><b>{% trans 'Instruções' %}:</b> {% trans 'Espere até o dia configurado para o período de envio de FPAs' %}</p>
+                            </div>
+                        </div>
+                    {% elif blockk.status == 'not_configured' %}
+                        <div class="card card-blockk centered-object">
+                            <div class="card-body">
+                                <div class="float-right message-info">{% trans 'NÃO CONFIGURADO'%}</div>
+                                <h5 class="card-title">{% trans 'Bloco'%}: {{blockk.blockk.name_block}}</h5>
+                                <hr>
+                                <p>
+                                    <b>{% trans 'Início' %}:</b> -- {% trans 'ás' %} --
+                                </p>
+                                <p> 
+                                    <b>{% trans 'Fim' %}:</b> -- {% trans 'ás' %} --
+                                </p>
+                                <p><b>{% trans 'Instruções' %}:</b> {% trans 'Espere para que o administrador da área configure o período de envio de FPAs' %}</p>
+                            </div>
+                        </div>
+                    {% elif blockk.status == 'started' %}
+                        <div class="card card-blockk centered-object">
+                            <div class="card-body">
+                                <div class="float-right message-info">{% trans 'INICIADO'%}</div>
+                                <h5 class="card-title">{% trans 'Bloco'%}: {{blockk.blockk.name_block}}</h5>
+                                <hr>
+                                <p>
+                                    <b>{% trans 'Início' %}:</b> {{blockk.start_day}} {% trans 'ás' %} {{blockk.start_time}}
+                                </p>
+                                <p> 
+                                    <b>{% trans 'Fim' %}:</b> {{blockk.end_day}} {% trans 'ás' %} {{blockk.end_time}}
+                                </p>
+                                <a href="{% url 'disponibility_attribution_preference'  %}">
+                                    <button class="btn btn-success"><i class="fas fa-cog"></i> {% trans "Faça seu FPA" %}</button>
+                                </a>
+
+                                <a href="{% url 'disponibility_attribution_preference'  %}">
+                                    <button class="btn btn-success"><i class="fas fa-redo"></i> {% trans "Refaça seu FPA" %}</button>
+                                </a>
+                                <a href="{% url 'show_attribution_preference' blockk.blockk.registration_block_id %}">
+                                    <button class="btn btn-success"><i class="fas fa-download"></i> {% trans "Veja seu FPA" %}</button>
+                                </a>
+                            </div>
+                        </div>
+                    {% elif blockk.status == 'finished' %}
+                        <div class="card card-blockk centered-object">
+                            <div class="card-body">
+                                <div class="float-right message-info">{% trans 'FINALIZADA'%}</div>
+                                <h5 class="card-title">{% trans 'Bloco'%}: {{blockk.blockk.name_block}}</h5>
+                                <hr>
+                                <p><b>{% trans 'Fim' %}:</b> {{blockk.end_day}} {% trans 'ás' %} {{blockk.end_time}}</p>
+
+                                <!-- colocar um texto para caso nao tenha enviado e tenha terminado 
+                                <a href="{% url 'disponibility_attribution_preference'  %}">
+                                    <button class="btn btn-success"><i class="fas fa-cog"></i> {% trans "Faça seu FPA" %}</button>
+                                </a> -->
+
+                                <a href="{% url 'show_attribution_preference' blockk.blockk.registration_block_id %}">
+                                    <button class="btn btn-success"><i class="fas fa-download"></i> {% trans "Veja seu FPA" %}</button>
+                                </a>
+                            </div>
+                        </div>
+                    {% endif %}
+                {% else %}
+                    {% if blockk.status == 'configured' %}
+                        <div class="card card-blockk center centered-object">
+                            <div class="card-body">
+                                <div class="float-right message-info">{% trans 'CONFIGURADO'%}</div>
+                                <h5 class="card-title">{% trans 'Bloco'%}: {{blockk.blockk.name_block}}</h5>
+                                <hr>
+                                <p>
+                                    <b>{% trans 'Início' %}:</b> {{blockk.start_day}} {% trans 'ás' %} {{blockk.start_time}}  
+                                </p>
+                                <p>
+                                    <b>{% trans 'Fim' %}:</b> {{blockk.end_day}} {% trans 'ás' %} {{blockk.end_time}}
+                                </p>
+                                <p><b>{% trans 'Instruções' %}:</b> {% trans 'Espere até o dia configurado para o período de envio de FPAs' %}</p>
+                            </div>
+                        </div>
+                    {% elif blockk.status == 'not_configured' %}
+                        <div class="card card-blockk center centered-object">
+                            <div class="card-body">
+                                <div class="float-right message-info">{% trans 'NÃO CONFIGURADO'%}</div>
+                                <h5 class="card-title">{% trans 'Bloco'%}: {{blockk.blockk.name_block}}</h5>
+                                <hr>
+                                <p>
+                                    <b>{% trans 'Início' %}:</b> -- {% trans 'ás' %} --  
+                                </p>
+                                <p>
+                                    <b>{% trans 'Fim' %}:</b> -- {% trans 'ás' %} --
+                                </p>
+                                <p><b>{% trans 'Instruções' %}:</b> {% trans 'Espere para que o administrador da área configure o período de envio de FPAs' %}</p>
+                            </div>
+                        </div>
+                    {% elif blockk.status == 'started' %}
+                        <div class="card card-blockk center centered-object">
+                            <div class="card-body">
+                                <div class="float-right message-info">{% trans 'INICIADO'%}</div>
+                                <h5 class="card-title">{% trans 'Bloco'%}: {{blockk.blockk.name_block}}</h5>
+                                <hr>
+                                <p>
+                                    <b>{% trans 'Início' %}:</b> {{blockk.start_day}} {% trans 'ás' %} {{blockk.start_time}}  
+                                </p>
+                                <p>
+                                    <b>{% trans 'Fim' %}:</b> {{blockk.end_day}} {% trans 'ás' %} {{blockk.end_time}}
+                                </p>
+                                <a href="{% url 'disponibility_attribution_preference'  %}">
+                                    <button class="btn btn-success"><i class="fas fa-cog"></i> {% trans "Faça seu FPA" %}</button>
+                                </a>
+
+                                <a href="{% url 'disponibility_attribution_preference'  %}">
+                                    <button class="btn btn-success"><i class="fas fa-redo"></i> {% trans "Refaça seu FPA" %}</button>
+                                </a>
+                                <a href="{% url 'show_attribution_preference' blockk.blockk.registration_block_id %}">
+                                    <button class="btn btn-success"><i class="fas fa-download"></i> {% trans "Veja seu FPA" %}</button>
+                                </a>
+                            </div>
+                        </div>
+                    {% elif blockk.status == 'finished' %}
+                        <div class="card card-blockk center centered-object">
+                            <div class="card-body">
+                                <div class="float-right message-info">{% trans 'FINALIZADO'%}</div>
+                                <h5 class="card-title">{% trans 'Bloco'%}: {{blockk.blockk.name_block}}</h5>
+                                <hr>
+                                <p>
+                                    <b>{% trans 'Início' %}:</b> {{blockk.start_day}} {% trans 'ás' %} {{blockk.start_time}}  
+                                </p>
+                                <p>
+                                    <b>{% trans 'Fim' %}:</b> {{blockk.end_day}} {% trans 'ás' %} {{blockk.end_time}}
+                                </p>
+
+                                <a href="{% url 'show_attribution_preference' blockk.blockk.registration_block_id %}">
+                                    <button class="btn btn-success"><i class="fas fa-download"></i> {% trans "Veja seu FPA" %}</button>
+                                </a>
+                            </div>
+                        </div>
+                    {% endif %}
+                {% endif %}
+        {% else %}
+            {% if blockk.status == 'configured' %}
+                <div class="card card-blockk centered-object">
+                    <div class="card-body">
+                        <div class="float-right message-info">{% trans 'CONFIGURADO'%}</div>
+                        <h5 class="card-title">{% trans 'Bloco'%}: {{blockk.blockk.name_block}}</h5>
+                        <hr>
+                        <p>
+                            <b>{% trans 'Início' %}:</b> {{blockk.start_day}} {% trans 'ás' %} {{blockk.start_time}}
+                        </p>
+                        <p>
+                            <b>{% trans 'Fim' %}:</b> {{blockk.end_day}} {% trans 'ás' %} {{blockk.end_time}}
+                        </p>
+                        <p><b>{% trans 'Instruções' %}:</b> {% trans 'Espere até o dia configurado para o período de envio de FPAs' %}</p>
+                    </div>
+                </div>
+            {% elif blockk.status == 'not_configured' %}
+                <div class="card card-blockk centered-object">
+                    <div class="card-body">
+                        <div class="float-right message-info">{% trans 'NÃO CONFIGURADO'%}</div>
+                        <h5 class="card-title">{% trans 'Bloco'%}: {{blockk.blockk.name_block}}</h5>
+                        <hr>
+                        <p>
+                            <b>{% trans 'Início' %}:</b> -- {% trans 'ás' %} --
+                        </p> 
+                        <p>
+                            <b>{% trans 'Fim' %}:</b> -- {% trans 'ás' %} --
+                        </p>
+                        <p><b>{% trans 'Instruções' %}:</b> {% trans 'Espere para que o administrador da área configure o período de envio de FPAs' %}</p>
+                    </div>
+                </div>
+            {% elif blockk.status == 'started' %}
+                <div class="card card-blockk centered-object">
+                    <div class="card-body">
+                        <div class="float-right message-info">{% trans 'INICIADO'%}</div>
+                        <h5 class="card-title">{% trans 'Bloco'%}: {{blockk.blockk.name_block}}</h5>
+                        <hr>
+                        <p>
+                            <b>{% trans 'Início' %}:</b> {{blockk.start_day}} {% trans 'ás' %} {{blockk.start_time}}
+                        </p> 
+                        <p> 
+                            <b>{% trans 'Fim' %}:</b> {{blockk.end_day}} {% trans 'ás' %} {{blockk.end_time}}
+                        </p>
+                        <a href="{% url 'disponibility_attribution_preference'  %}">
+                            <button class="btn btn-success"><i class="fas fa-cog"></i> {% trans "Faça seu FPA" %}</button>
+                        </a>
+
+                        <a href="{% url 'disponibility_attribution_preference'  %}">
+                            <button class="btn btn-success"><i class="fas fa-redo"></i> {% trans "Refaça seu FPA" %}</button>
+                        </a>
+                        <a href="{% url 'show_attribution_preference' blockk.blockk.registration_block_id %}">
+                            <button class="btn btn-success"><i class="fas fa-download"></i> {% trans "Veja seu FPA" %}</button>
+                        </a>
+                    </div>
+                </div>
+            {% elif blockk.status == 'finished' %}
+                <div class="card card-blockk centered-object">
+                    <div class="card-body">
+                        <div class="float-right message-info">{% trans 'FINALIZADA'%}</div>
+                        <h5 class="card-title">{% trans 'Bloco'%}: {{blockk.blockk.name_block}}</h5>
+                        <hr>
+                        <p><b>{% trans 'Fim' %}:</b> {{blockk.end_day}} {% trans 'ás' %} {{blockk.end_time}}</p>
+
+                        <!-- colocar um texto para caso nao tenha enviado e tenha terminado 
+                        <a href="{% url 'disponibility_attribution_preference'  %}">
+                            <button class="btn btn-success"><i class="fas fa-cog"></i> {% trans "Faça seu FPA" %}</button>
+                        </a> -->
+
+                        <a href="{% url 'show_attribution_preference' blockk.blockk.registration_block_id %}">
+                            <button class="btn btn-success"><i class="fas fa-download"></i> {% trans "Veja seu FPA" %}</button>
+                        </a>
+                    </div>
+                </div>
+            {% endif %}
+        {% endif %}
+        {% endfor %}
+        <div class="overlay" style="display: none;">
+            <div class="modal-div">
+                <h3><i class="fas fa-lock"></i> {% trans "Sessão Bloqueada" %}</h3>
+                <ul>
+                    <li>{% trans "Antes de enviar sua preferênciade de atividades, você deve enviar sua escolha de disponibilidade geral" %}.</li>
+                </ul>
                 <a href="{% url 'disponibility_attribution_preference' %}">
-                  <button type="button" class="hidden-itens btn btn-info">{% trans "Refazer FPA" %}</button>
+                    <button class="w-100 btn btn-success"><i class="fas fa-share"></i> {% trans "Faça seu FPA" %}</button>
                 </a>
-              </div>
-              <div class="col-6">
-                <button type="button" onClick="window.print();" class="hidden-itens btn btn-success">{% trans "Imprimir PDF" %}</button>
-              </div>
             </div>
         </div>
     </div>
-    {% endif %}
+    
 {% endblock %}
 
 {% block endbody %}
-  <script src="{% static 'attribution_preference/js/attribution_preference.js' %}" user_regime='{{ user_regime }}' user_disponibility_choosed='{{user_disponibility_choosed}}' user_courses_choosed='{{user_courses_choosed}}' data-lang={{LANGUAGE_CODE}}></script>
+    <script src="{% static 'attribution_preference/js/index.js' %}" disponilibity_done='{{disponilibity_done}}' data-lang={{LANGUAGE_CODE}}></script>
 {% endblock %}

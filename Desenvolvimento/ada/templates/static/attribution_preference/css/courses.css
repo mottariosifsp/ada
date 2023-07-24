@@ -53,6 +53,51 @@ th {
   margin-top: -17px;
 }
 
+button.info-button {
+  margin-bottom: 5px;
+  float: right;
+}
+button.info-button{
+  margin-top: -5px;
+}
+button.info-button svg{
+  margin-bottom: 5px;
+}
+#info-input-message {
+  font-size: 14px;
+}
+#info-alert {
+display: none;
+border-radius: 8px;
+box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+padding: 20px;
+background-color: #f0f9ff;
+}
+
+#info-alert .table {
+border-radius: 20px;
+margin-bottom: 0; 
+}
+
+#info-alert .table tr td {
+padding: 10px;
+border-top: none;
+border-bottom: 1px solid #f0f9ff;
+}
+
+#info-alert .table tbody tr td:first-child {
+font-weight: bold;
+color: #11345b; 
+}
+
+.info-displine,
+.info-day,
+.info-start-and-end-hour,
+.info-class {
+font-size: 16px;
+color: #333;
+}
+
 @media print {  
     .hidden-itens {     
     display: none;
