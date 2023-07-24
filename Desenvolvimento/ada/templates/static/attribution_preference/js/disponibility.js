@@ -489,7 +489,7 @@ $(document).ready(function() {
         if(!limited_hours_passed) {
           $.ajax({
           type: 'post',
-          url: '/' + current_language + '/professor/preferencia-atribuicao/criar-fpa/editar-cursos/',
+          url: '/' + current_language + '/professor/preferencia-atribuicao/',
           data: {
             user_regime: user_regime,
             user_timeslots: json_data
@@ -500,7 +500,7 @@ $(document).ready(function() {
           success: function(response) {
             $('input[name="regime"]:checked').prop('checked', false);
             $('#error-alert-form').hide();
-            window.location.href = '/' + current_language + '/professor/preferencia-atribuicao/criar-fpa/editar-cursos/'
+            window.location.href = '/' + current_language + '/professor/preferencia-atribuicao'
           },
           error: function(xhr, status, error) {
             $('#error-message-form').text('Ocorreu um erro no envio de FPA.');

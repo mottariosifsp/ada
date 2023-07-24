@@ -61,13 +61,18 @@ def attribution_preference(request):
         }
         stage_fpas.append(blockk_stage_fpa)
 
+    disponilibity_done = 'False'
+    if Attribution_preference.objects.filter(user=user).exists():
+        disponilibity_done = 'True'
+
     data = {
         'stage_fpas': stage_fpas,
         'started_times': started_times,
         'finished_times': finished_times,
         'not_configured_times': not_configured_times,
         'configured_times': configured_times,
-        'is_pair': len(stage_fpas) % 2 == 0
+        'is_pair': len(stage_fpas) % 2 == 0,
+        'disponilibity_done': disponilibity_done
     }
 
     print(data)
