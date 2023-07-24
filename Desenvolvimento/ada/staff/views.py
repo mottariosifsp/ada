@@ -857,9 +857,11 @@ def queue_create(request):
                     usuarios_ordenados = User.objects.filter(is_professor=True, blocks=blockk).order_by(f'history__{campo}')
 
                 else:
-                    usuarios_ordenadados_pelo_certificado = User.objects.filter(is_professor=True, blocks=blockk);
-                    usuarios_ordenados = sorted(usuarios_ordenadados_pelo_certificado, key=calcular_pontuacao_total, reverse=True)
-                # Faz a soma dos academic degrees para cada usuário
+                    usuarios_ordenadados_pelo_certificado = User.objects.filter(is_professor=True, blocks=blockk)
+                    is_in_teacher_queue = False
+                    usuarios_ordenados = sorted(usuarios_ordenadados_pelo_certificado,
+                                                key=lambda usuario: calcular_pontuacao_total(usuario, is_in_teacher_queue),
+                                                reverse=True)
 
                 pontuacoes_usuarios = [];
                 for usuario in usuarios_ordenados:
