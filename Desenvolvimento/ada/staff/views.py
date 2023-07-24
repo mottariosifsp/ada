@@ -694,7 +694,8 @@ def get_string_campo(campo):
         'date_professor': 'Data como professor',
         'date_area': 'Data na área',
         'date_institute': 'Data no instituto',
-        'academic_degrees': 'Pontuação de titulação'
+        'academic_degrees': 'Pontuação de titulação',
+        '':''
     }
 
     return campos.get(campo, "campo")
@@ -725,9 +726,6 @@ def add_teacher_to_queue_backup(teacher, position_input, blockk):
 @login_required
 @user_passes_test(is_staff)
 def queue_show(request):
-    campo = get_selected_campo()
-    print("campo", campo)
-
     blockk = Blockk.objects.get(registration_block_id=request.GET.get('blockk'))
     teacher_positions = TeacherQueuePositionBackup.objects.filter(blockk=blockk).order_by('position').all()
 
@@ -747,7 +745,6 @@ def queue_show(request):
     data = {
         'resultados': resultados,
         'total_scores': total_scores,
-        'campo': get_string_campo(campo),
     }
 
     return render(request, 'staff/queue/queue_show.html', {'data': data})
@@ -835,8 +832,6 @@ def queue_create(request):
                         pontuacao_usuario = calcular_pontuacao_total(usuario, True)
                         pontuacoes_usuarios.append(pontuacao_usuario)
 
-            print("pontuacoes_usuarios", pontuacoes_usuarios);
-
             data = {
                 'resultados': final_list,
                 'campo': get_string_campo(campo),
@@ -878,8 +873,6 @@ def queue_create(request):
                 return render(request, 'staff/queue/queue_create.html', {'data': data})
 
             else:  # se o superadmin selecionou um critério que não tenha relação com nenhum atributo do histórico vai cair aqui
-                # fazer exception?
-
                 usuarios_ordenados = User.objects.filter(is_professor=True, blocks=blockk).order_by(
                     F('history__birth').asc(nulls_last=True))
 
@@ -909,7 +902,8 @@ def queue_create(request):
 
         data = {
             'resultados': usuarios_ordenados,
-            'campo': "",
+            'campo': get_string_campo("birth"),
+            'error_field': True,
             'total_score': pontuacoes_usuarios,
             'blockk': blockk
         }
