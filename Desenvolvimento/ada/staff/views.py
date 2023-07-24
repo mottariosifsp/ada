@@ -758,7 +758,7 @@ def queue_show(request):
 @login_required
 @user_passes_test(is_staff)
 def queue_create(request):
-    global tabela_data  # variável utilizada caso a fila já tenha sido definida pelo menos uma vez pelo admin
+    tabela_data = []  # variável utilizada caso a fila já tenha sido definida pelo menos uma vez pelo admin
 
     if request.method == 'POST':  # adiciona os professores no model TeacherQueuePosition
         tabela_data = json.loads(request.POST['tabela_data'])
@@ -790,7 +790,7 @@ def queue_create(request):
 
         return render(request, 'staff/queue/queue_create.html', {'data': data})
 
-    else:  # se a requisição não for POST e for GET sem ter passado a área, ou seja, sem ter atualização no filtro da área, vai cair aqui
+    else:
         blockk = request.GET.get('blockk')
         blockk = Blockk.objects.get(registration_block_id=request.GET.get('blockk'))
 
@@ -852,9 +852,10 @@ def queue_create(request):
             campo = get_selected_campo()
 
             if campo != "":
-
                 if (campo != "academic_degrees"):
-                    usuarios_ordenados = User.objects.filter(is_professor=True, blocks=blockk).order_by(f'history__{campo}')
+                    # usuarios_ordenados = User.objects.filter(is_professor=True, blocks=blockk).order_by(f'history__{campo}')
+                    usuarios_ordenados = User.objects.filter(is_professor=True, blocks=blockk).order_by(
+                        F(f'history__{campo}').asc(nulls_last=True))
 
                 else:
                     usuarios_ordenadados_pelo_certificado = User.objects.filter(is_professor=True, blocks=blockk)
@@ -867,16 +868,6 @@ def queue_create(request):
                 for usuario in usuarios_ordenados:
                     pontuacao_usuario = calcular_pontuacao_total(usuario, False)
                     pontuacoes_usuarios.append(pontuacao_usuario)
-
-
-                # for usuario in usuarios_ordenados:
-                #     print(
-                #         f"Usuário: {usuario.first_name} {usuario.last_name}, Pontuação total: {calcular_pontuacao_total(usuario)}")
-
-                    # scores =
-
-                # usuarios_somados = usuarios_ordenados.annotate(
-                #     total_score=Sum('history__academic_degrees__punctuation'))
 
                 print("pontuação", pontuacoes_usuarios)
 
@@ -896,6 +887,12 @@ def queue_create(request):
 
                 usuarios_somados = usuarios_ordenados.annotate(
                     total_score=Sum('history__academic_degrees__punctuation'))
+
+                pontuacoes_usuarios = [];
+                for usuario in final_list:
+                    pontuacao_usuario = calcular_pontuacao_total(usuario, True)
+                    pontuacoes_usuarios.append(pontuacao_usuario)
+
                 data = {
                     'resultados': usuarios_ordenados,
                     'campo': get_string_campo(campo),
@@ -903,7 +900,7 @@ def queue_create(request):
                     'blockk': blockk
                 }
 
-                return render(request, 'staff/queue/queue_create.htmll', {'data': data})
+                return render(request, 'staff/queue/queue_create.html', {'data': data})
 
         # se nenhum critério foi selecionado pelo adm e não tiver feito nenhuma lista manual vai cair aqui
         campo = get_selected_campo()
