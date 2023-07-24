@@ -62,7 +62,7 @@ def attribution_preference(request):
         stage_fpas.append(blockk_stage_fpa)
 
     disponilibity_done = 'False'
-    if Attribution_preference.objects.filter(user=user).exists():
+    if Preference_schedule.objects.filter(attribution_preference__user=user).exists():
         disponilibity_done = 'True'
 
     data = {
