@@ -94,8 +94,8 @@
                         <td>{{ user.history.date_professor|date:"Y-m-d" }}</td>
                         <td>{{ user.history.date_area|date:"Y-m-d" }}</td>
                         <td>{{ user.history.date_institute|date:"Y-m-d" }}</td>
-                        {% endif %} {% for userx in data.total_score %} {% if forloop.parentloop.counter0 == forloop.counter0 %}
-                        <td>{{ userx.total_score }}</td>
+                        {% endif %} {% for user_score in data.total_score %} {% if forloop.parentloop.counter0 == forloop.counter0 %}
+                        <td>{{ user_score }}</td>
                         {% endif %} {% endfor %}
                     </tr>
                     {% endwith %} {% endfor %}

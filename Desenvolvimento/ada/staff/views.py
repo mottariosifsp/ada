@@ -695,10 +695,22 @@ def get_string_campo(campo):
         'date_professor': 'Data como professor',
         'date_area': 'Data na área',
         'date_institute': 'Data no instituto',
-        'academic_degrees': 'Potuação de titulação'
+        'academic_degrees': 'Pontuação de titulação'
     }
 
     return campos.get(campo, "campo")
+
+def calcular_pontuacao_total(user, is_in_teacher_queue):
+    if is_in_teacher_queue:
+        if user.teacher.history and user.teacher.history.academic_degrees.exists():
+            return user.teacher.history.academic_degrees.aggregate(Sum('punctuation'))['punctuation__sum']
+        else:
+            return 0
+    else:
+        if user.history and user.history.academic_degrees.exists():
+            return user.history.academic_degrees.aggregate(Sum('punctuation'))['punctuation__sum']
+        else:
+            return 0
 
 def add_teacher_to_queue(teacher, position_input, blockk):
     position = position_input
@@ -782,7 +794,7 @@ def queue_create(request):
         blockk = request.GET.get('blockk')
         blockk = Blockk.objects.get(registration_block_id=request.GET.get('blockk'))
 
-        if TeacherQueuePositionBackup.objects.filter(blockk=blockk).exists():  # se já tiver uma tabela criada para a área selecionada
+        if TeacherQueuePositionBackup.objects.filter(blockk=blockk).exists():  # se já tiver uma fila de professores criada
             campo = get_selected_campo()
 
             teacher_positions = TeacherQueuePositionBackup.objects.filter(blockk=blockk).order_by('position')
@@ -818,10 +830,18 @@ def queue_create(request):
                             total_score = 0
                     user.total_score = total_score
                     usuarios_somados.append(user)
+
+                    pontuacoes_usuarios = [];
+                    for usuario in final_list:
+                        pontuacao_usuario = calcular_pontuacao_total(usuario, True)
+                        pontuacoes_usuarios.append(pontuacao_usuario)
+
+            print("pontuacoes_usuarios", pontuacoes_usuarios);
+
             data = {
                 'resultados': final_list,
                 'campo': get_string_campo(campo),
-                'total_score': usuarios_somados,
+                'total_score': pontuacoes_usuarios,
                 'blockk': blockk,
                 'recover_queue': True
             }
@@ -833,16 +853,35 @@ def queue_create(request):
 
             if campo != "":
 
-                usuarios_ordenados = User.objects.filter(is_professor=True, blocks=blockk).order_by(f'history__{campo}')
+                if (campo != "academic_degrees"):
+                    usuarios_ordenados = User.objects.filter(is_professor=True, blocks=blockk).order_by(f'history__{campo}')
 
+                else:
+                    usuarios_ordenadados_pelo_certificado = User.objects.filter(is_professor=True, blocks=blockk);
+                    usuarios_ordenados = sorted(usuarios_ordenadados_pelo_certificado, key=calcular_pontuacao_total, reverse=True)
                 # Faz a soma dos academic degrees para cada usuário
-                usuarios_somados = usuarios_ordenados.annotate(
-                    total_score=Sum('history__academic_degrees__punctuation'))
+
+                pontuacoes_usuarios = [];
+                for usuario in usuarios_ordenados:
+                    pontuacao_usuario = calcular_pontuacao_total(usuario, False)
+                    pontuacoes_usuarios.append(pontuacao_usuario)
+
+
+                # for usuario in usuarios_ordenados:
+                #     print(
+                #         f"Usuário: {usuario.first_name} {usuario.last_name}, Pontuação total: {calcular_pontuacao_total(usuario)}")
+
+                    # scores =
+
+                # usuarios_somados = usuarios_ordenados.annotate(
+                #     total_score=Sum('history__academic_degrees__punctuation'))
+
+                print("pontuação", pontuacoes_usuarios)
 
                 data = {
                     'resultados': usuarios_ordenados,
                     'campo': get_string_campo(campo),
-                    'total_score': usuarios_somados,
+                    'total_score': pontuacoes_usuarios,
                     'blockk': blockk
                 }
 
