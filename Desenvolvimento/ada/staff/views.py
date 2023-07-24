@@ -13,7 +13,6 @@ from django.contrib.auth.decorators import user_passes_test
 from django.contrib.auth import get_user_model
 from django.utils import timezone
 from timetable.models import Day_combo, Timeslot, Timetable, Timetable_user
-from .models import Deadline
 from area.models import Blockk, Area
 from classs.models import Classs
 from course.models import Course
@@ -853,7 +852,7 @@ def queue_create(request):
 
             if campo != "":
                 if (campo != "academic_degrees"):
-                    # usuarios_ordenados = User.objects.filter(is_professor=True, blocks=blockk).order_by(f'history__{campo}')
+
                     usuarios_ordenados = User.objects.filter(is_professor=True, blocks=blockk).order_by(
                         F(f'history__{campo}').asc(nulls_last=True))
 
@@ -869,8 +868,6 @@ def queue_create(request):
                     pontuacao_usuario = calcular_pontuacao_total(usuario, False)
                     pontuacoes_usuarios.append(pontuacao_usuario)
 
-                print("pontuação", pontuacoes_usuarios)
-
                 data = {
                     'resultados': usuarios_ordenados,
                     'campo': get_string_campo(campo),
@@ -883,38 +880,38 @@ def queue_create(request):
             else:  # se o superadmin selecionou um critério que não tenha relação com nenhum atributo do histórico vai cair aqui
                 # fazer exception?
 
-                usuarios_ordenados = User.objects.filter(is_professor=True, blocks=blockk).all()
-
-                usuarios_somados = usuarios_ordenados.annotate(
-                    total_score=Sum('history__academic_degrees__punctuation'))
+                usuarios_ordenados = User.objects.filter(is_professor=True, blocks=blockk).order_by(
+                    F('history__birth').asc(nulls_last=True))
 
                 pontuacoes_usuarios = [];
-                for usuario in final_list:
-                    pontuacao_usuario = calcular_pontuacao_total(usuario, True)
+                for usuario in usuarios_ordenados:
+                    pontuacao_usuario = calcular_pontuacao_total(usuario, False)
                     pontuacoes_usuarios.append(pontuacao_usuario)
 
                 data = {
                     'resultados': usuarios_ordenados,
-                    'campo': get_string_campo(campo),
-                    'total_score': usuarios_somados,
+                    'campo': get_string_campo("birth"),
+                    'error_field': True,
+                    'total_score': pontuacoes_usuarios,
                     'blockk': blockk
                 }
 
                 return render(request, 'staff/queue/queue_create.html', {'data': data})
 
         # se nenhum critério foi selecionado pelo adm e não tiver feito nenhuma lista manual vai cair aqui
-        campo = get_selected_campo()
+        usuarios_ordenados = User.objects.filter(is_professor=True, blocks=blockk).order_by(
+                                                F('history__birth').asc(nulls_last=True))
 
-        usuarios_ordenados = User.objects.all()
-        usuarios_somados = usuarios_ordenados.annotate(total_score=Sum('history__academic_degrees__punctuation'))
+        pontuacoes_usuarios = [];
+        for usuario in usuarios_ordenados:
+            pontuacao_usuario = calcular_pontuacao_total(usuario, False)
+            pontuacoes_usuarios.append(pontuacao_usuario)
 
         data = {
             'resultados': usuarios_ordenados,
-            'campo': get_string_campo(campo),
-            'total_score': usuarios_somados,
+            'campo': "",
+            'total_score': pontuacoes_usuarios,
             'blockk': blockk
         }
 
         return render(request, 'staff/queue/queue_create.html', {'data': data})
-
-    
