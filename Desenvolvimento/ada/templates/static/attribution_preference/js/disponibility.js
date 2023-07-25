@@ -95,19 +95,26 @@ $(document).ready(function() {
         checkboxes.filter('[id^="thu"]').length > max_quantity_cells - 1 ||
         checkboxes.filter('[id^="fri"]').length > max_quantity_cells - 1 ||
         checkboxes.filter('[id^="sat"]').length > max_quantity_cells - 1) {
-      limited_hours_passed = true;
-      $('#error-alert-form').text('A seleção da disponibilidade de horário não pode ultrapassar 8 horas de trabalho diárias.');
-      $('#error-alert-form').show();
-      window.scrollTo({
-        top: $('#error-alert-form').offset().top - $('.navbar').outerHeight() - 30,
-        behavior: 'smooth'
-      });
-    } else {
-      limited_hours_passed = false;
-      $('#error-alert-form').hide();
+      //limited_hours_passed = true;
+      var checkbox = document.getElementById(input_id);
+      if (checkbox) {
+        checkbox.checked = true;
+        checkbox.parentElement.classList.add("active");
+        checkbox.parentElement.parentElement.classList.add("active");
+      }
+      // $('#error-alert-form').text('A seleção da disponibilidade de horário não pode ultrapassar 8 horas de trabalho diárias.');
+      // $('#error-alert-form').show();
+      // window.scrollTo({
+      //   top: $('#error-alert-form').offset().top - $('.navbar').outerHeight() - 30,
+      //   behavior: 'smooth'
+      // });
     }
+    // } else {
+    //   limited_hours_passed = false;
+    //   $('#error-alert-form').hide();
+    // }
     console.log(checkboxes.length);
-
+    console.log(limited_hours_passed);
     var checkbox = document.getElementById(input_id);
 
     if (checkbox) {
