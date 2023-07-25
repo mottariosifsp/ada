@@ -137,6 +137,7 @@
             color: #174365;
         }
     </style>
+        <script src="{% static 'attribution_preference/js/index.js' %}" disponilibity_done='{{disponilibity_done}}' data-lang={{LANGUAGE_CODE}}></script>
 {% endblock %}
 
 {% block body %}
@@ -158,12 +159,19 @@
                     <h5 class="card-title">{% trans 'Disponibilidade Geral'%}</h5>
                     <hr>
                     <p><b>{% trans 'Situação' %}:</b> {% trans 'Você enviou sua preferência de horários. Agora pode atualizar ou enviar suas preferências em relação aos cursos abaixo' %}:</p>
-                    <a href="{% url 'disponibility_attribution_preference' %}">
-                        <button class="btn w-50 ada-btn-blue d-inline-block"><i class="fas fa-redo"></i> {% trans "Refaça seu FPA" %}</button>
-                    </a>
-                    <a onclick="fpa_blockk_animation()">
-                        <button class="btn ada-btn-sucess"><i class="fas fa-share"></i> {% trans "Enviar Escolha Preferência de Cursos" %}</button>
-                    </a>
+
+                    <div class="row">
+                        <div class="col-6">
+                            <a href="{% url 'disponibility_attribution_preference' %}">
+                                <button class="btn ada-btn-blue btn-block"><i class="fas fa-redo"></i> {% trans "Refaça seu FPA" %}</button>
+                            </a>
+                        </div>
+                        <div class="col-6">
+                            <a onclick="fpa_blockk_animation()" >
+                                <button class="btn ada-btn-blue-dark btn-block"><i class="fa-regular fa-eye"></i> {% trans "Próxima Etapa" %}</button>
+                            </a>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -249,20 +257,25 @@
                                 <p> 
                                     <b>{% trans 'Fim' %}:</b> {{blockk.end_day}} {% trans 'ás' %} {{blockk.end_time}}
                                 </p>
+                                
+                                {% if courses_done == 'False' %}
                                 <a href="{% url 'disponibility_attribution_preference'  %}">
                                     <button class="w-100 btn ada-btn-sucess"><i class="fas fa-check"></i> {% trans "Faça seu FPA" %}</button>
                                 </a>
-
-                                <div class="container mt-4">
-                                    <div class="d-flex">
-                                        <a href="{% url 'disponibility_attribution_preference'  %}" class="flex-fill pl-10 pr-10">
+                                {% else %}
+                                <div class="row">
+                                    <div class="col-6">
+                                        <a href="{% url 'disponibility_attribution_preference'  %}">
                                         <button class="btn ada-btn-blue btn-block"><i class="fas fa-redo"></i> {% trans "Refaça seu FPA" %}</button>
                                         </a>
-                                        <a href="{% url 'show_attribution_preference' blockk.blockk.registration_block_id %}" class="flex-fill ml-2 pl-10 pr-10">
+                                    </div>
+                                    <div class="col-6">
+                                        <a href="{% url 'show_attribution_preference' blockk.blockk.registration_block_id %}">
                                         <button class="btn ada-btn-blue-dark btn-block"><i class="fas fa-download"></i> {% trans "Veja seu FPA" %}</button>
                                         </a>
                                     </div>
                                 </div>
+                                {% endif %}
                                 
                             </div>
                         </div>
@@ -328,20 +341,24 @@
                                 <p>
                                     <b>{% trans 'Fim' %}:</b> {{blockk.end_day}} {% trans 'ás' %} {{blockk.end_time}}
                                 </p>
+                                {% if courses_done == 'False' %}
                                 <a href="{% url 'disponibility_attribution_preference'  %}">
                                     <button class="w-100 btn ada-btn-sucess"><i class="fas fa-check"></i> {% trans "Faça seu FPA" %}</button>
                                 </a>
-
-                                <div class="container mt-4">
-                                    <div class="d-flex">
-                                        <a href="{% url 'disponibility_attribution_preference'  %}" class="flex-fill pl-10 pr-10">
+                                {% else %}
+                                <div class="row">
+                                    <div class="col-6">
+                                        <a href="{% url 'disponibility_attribution_preference'  %}">
                                         <button class="btn ada-btn-blue btn-block"><i class="fas fa-redo"></i> {% trans "Refaça seu FPA" %}</button>
                                         </a>
-                                        <a href="{% url 'show_attribution_preference' blockk.blockk.registration_block_id %}" class="flex-fill ml-2 pl-10 pr-10">
+                                    </div>
+                                    <div class="col-6">
+                                        <a href="{% url 'show_attribution_preference' blockk.blockk.registration_block_id %}">
                                         <button class="btn ada-btn-blue-dark btn-block"><i class="fas fa-download"></i> {% trans "Veja seu FPA" %}</button>
                                         </a>
                                     </div>
                                 </div>
+                                {% endif %}
                                 
                             </div>
                         </div>
@@ -408,21 +425,24 @@
                         <p> 
                             <b>{% trans 'Fim' %}:</b> {{blockk.end_day}} {% trans 'ás' %} {{blockk.end_time}}
                         </p>
+                        {% if courses_done == 'False' %}
                         <a href="{% url 'disponibility_attribution_preference'  %}">
                             <button class="w-100 btn ada-btn-sucess"><i class="fas fa-check"></i> {% trans "Faça seu FPA" %}</button>
                         </a>
-
-                        <div class="container mt-4">
-                            <div class="d-flex">
-                                <a href="{% url 'disponibility_attribution_preference'  %}" class="flex-fill pl-10 pr-10">
+                        {% else %}
+                        <div class="row">
+                            <div class="col-6">
+                                <a href="{% url 'disponibility_attribution_preference'  %}">
                                 <button class="btn ada-btn-blue btn-block"><i class="fas fa-redo"></i> {% trans "Refaça seu FPA" %}</button>
                                 </a>
-                                <a href="{% url 'show_attribution_preference' blockk.blockk.registration_block_id %}" class="flex-fill ml-2 pl-10 pr-10">
+                            </div>
+                            <div class="col-6">
+                                <a href="{% url 'show_attribution_preference' blockk.blockk.registration_block_id %}">
                                 <button class="btn ada-btn-blue-dark btn-block"><i class="fas fa-download"></i> {% trans "Veja seu FPA" %}</button>
                                 </a>
                             </div>
                         </div>
-                        
+                        {% endif %}
                     </div>
                 </div>
             {% elif blockk.status == 'finished' %}
@@ -462,5 +482,4 @@
 {% endblock %}
 
 {% block endbody %}
-    <script src="{% static 'attribution_preference/js/index.js' %}" disponilibity_done='{{disponilibity_done}}' data-lang={{LANGUAGE_CODE}}></script>
 {% endblock %}

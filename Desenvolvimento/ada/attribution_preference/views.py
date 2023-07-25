@@ -16,6 +16,30 @@ from django.db import transaction
 from django.utils.decorators import method_decorator
 
 def attribution_preference(request):
+
+    user_regime = request.POST.get('user_regime')
+    user_timeslots = request.POST.getlist('user_timeslots')
+    json_data = [json.loads(item) for item in user_timeslots]
+
+    timeslots = []
+
+    for obj in json_data:
+        for item in obj:
+            timeslot_begin_hour = convert_string_to_datetime(item["timeslot_begin_hour"])
+            day_of_week = item["day_of_week"]
+
+            timeslot_preference = {
+                "timeslot_begin_hour": timeslot_begin_hour,
+                "day_of_week": day_of_week
+            }
+
+            timeslots.append(timeslot_preference)
+
+    if request.method == 'POST':
+        save_disponiility_preference(timeslots, user_regime, request.user)
+
+        return render(request, 'attribution_preference/courses_attribution_preference.html')
+        
     user = request.user
     user_blocks = user.blocks.all()
     stage_fpas = []
@@ -65,6 +89,10 @@ def attribution_preference(request):
     if Preference_schedule.objects.filter(attribution_preference__user=user).exists():
         disponilibity_done = 'True'
 
+    courses_done = 'False'
+    if Course_preference.objects.filter(attribution_preference__user=user).exists():
+        courses_done = 'True'
+
     data = {
         'stage_fpas': stage_fpas,
         'started_times': started_times,
@@ -72,7 +100,8 @@ def attribution_preference(request):
         'not_configured_times': not_configured_times,
         'configured_times': configured_times,
         'is_pair': len(stage_fpas) % 2 == 0,
-        'disponilibity_done': disponilibity_done
+        'disponilibity_done': disponilibity_done,
+        'courses_done': courses_done
     }
 
     print(data)

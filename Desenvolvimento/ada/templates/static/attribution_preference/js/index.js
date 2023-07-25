@@ -5,7 +5,7 @@ var lang = document.currentScript.getAttribute("data-lang");
 if(disponilibity_done == 'False') {
     $(document).ready(function() {
         $('.overlay').css('display', '');
-        $('#container div.card').prop('disabled', true);
+        $('#container *').prop('disabled', true);
         $('#container div.card').css('opacity', '0.4');
     });
 }
