@@ -98,6 +98,137 @@ font-size: 16px;
 color: #333;
 }
 
+.card-blockk {
+  width: 500px;
+  float: left;
+  margin-right: 30px;
+  margin-top: 30px;
+}
+.division {
+  margin-bottom: -10px;
+}
+.center {
+  left: 25%;
+}
+.card-blockk-disponibility {
+  margin-left: 30px;
+  margin-right: 30px;
+  margin-bottom: 20px;
+}
+.message-info-done {
+  background-color: #2B8D4C;
+  font-weight: 500;
+  padding: 5px 10px 5px 10px;
+  border-radius: 6px;
+  color: #173f25;
+}
+.message-info-not-done {
+  background-color: #FFDD95;
+  font-weight: 500;
+  padding: 5px 10px 5px 10px;
+  border-radius: 6px;
+  color: #664d15;
+}
+.message-info-not-configured{
+  background-color: #698FAC;
+  font-weight: 500;
+  padding: 5px 10px 5px 10px;
+  border-radius: 6px;
+  color: #c6e5ff;
+}
+.message-info-not-started {
+  background-color: #2B597C;
+  font-weight: 500;
+  padding: 5px 10px 5px 10px;
+  border-radius: 6px;
+  color: #cee6f9;
+}
+.link {
+  color: blue;
+  text-decoration: underline;
+  font-style: italic;
+}
+.center-btn {
+  text-align: center;
+}
+.card-title {
+  font-weight: 500;
+}
+
+.overlay {
+  position: absolute;
+  top: 80%;
+  left: 29%;
+  transform: trans(-50%, -50%);
+  z-index: 99;
+  display:grid;
+  justify-content: center;
+  align-items: center;
+}
+
+
+/* Estilos para o modal */
+.modal-div {
+  background-color: white;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
+  max-width: 500px;
+  z-index: 99;
+}
+body {background-color: #def2fc81;}
+
+/*btn green*/
+.ada-btn-sucess {
+  background-color: #147334;
+  border: #0d2131;
+  color: #dcffe8;
+}
+.ada-btn-sucess:hover {
+  background-color: #147334;
+  border: #0d2131;
+  color: #dcffe8;
+}
+.ada-btn-sucess:active {
+  background-color: #147334;
+  border: #0d2131;
+  color: #dcffe8;
+}
+
+/*btn blue dark*/
+.ada-btn-blue-dark {
+  background-color: #174365;
+  border: #0d2131;
+  color: #ddf0ff;
+}
+.ada-btn-blue-dark:hover {
+  background-color: #052d4b;
+  border: #072034;
+  color: #ddf0ff;
+}
+.ada-btn-blue-dark:active {
+  background-color: #174365;
+  border: #0d2131;
+  color: #ddf0ff;
+}
+
+/*btn blue ligth*/
+.ada-btn-blue {
+  background-color: #9FBBD1;
+  border: #5a8ab0;
+  color: #174365;
+}
+.ada-btn-blue:hover {
+  background-color: #9FBBD1;
+  border: #5a8ab0;
+  color: #174365;
+}
+.ada-btn-blue:active {
+  background-color: #9FBBD1;
+  border: #0d2131;
+  color: #174365;
+}
+
 @media print {  
     .hidden-itens {     
     display: none;

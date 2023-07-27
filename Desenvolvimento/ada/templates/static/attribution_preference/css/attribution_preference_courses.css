@@ -1,0 +1,68 @@
+.custom-border {
+  border-color: #2f7363;
+  border-top: 0px;
+  font-size: 19pt;
+  font-weight: bold;
+  color: #285f52;
+}
+
+.custom-border:focus, .custom-border:active {
+  border-color: #2f7363;
+  outline: #124136;
+}
+
+.custom-icon {
+  color: #2f7363;
+}
+
+#cel-hour {
+  font-size: 49.5pt;
+  font-weight: 600;
+  color: #2f7363;
+  align-items: center;
+}
+
+.min-cel {
+  color: #732f46;
+}
+
+.max-cel {
+  color: #2f3a73;
+}
+
+.cel, .cel-type {
+  font-size: 12pt;
+  color: #2f7363;
+}
+
+th {
+  color: #124136;;
+}
+
+.btn-notchecked, .btn-notchecked input {
+  background-color: #79b9aa;
+  color: white
+}
+.btn-notchecked:hover {
+  font-weight: 700;
+  color: white;
+}
+
+
+.regime {
+  margin-top: -17px;
+}
+
+@media print {  
+    .hidden-itens {     
+    display: none;
+  }
+
+  .title-page {
+    margin-top: -60px;
+  }
+
+  .hour-print {
+    font-size: 14px;
+  }
+}

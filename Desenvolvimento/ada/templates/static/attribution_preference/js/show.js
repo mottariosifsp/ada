@@ -6,6 +6,7 @@ var user_courses_choosed = document.currentScript.getAttribute("user_courses_cho
 var user_disponibility_choosed_array = JSON.parse(user_disponibility_choosed.replace(/'/g, '"'));
 var user_courses_choosed_array = JSON.parse(user_courses_choosed.replace(/'/g, '"'));
 
+
 $('.'+ user_regime).css({
     "background-color": "#507c75",
     "color": "white",
@@ -43,4 +44,5 @@ for (var i = 0; i < user_courses_choosed_array.length; i++) {
   
     $('#courses-list').append(new_row);
   }
+
 
