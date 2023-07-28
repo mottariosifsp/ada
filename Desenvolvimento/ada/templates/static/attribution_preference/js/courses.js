@@ -1,5 +1,5 @@
 var lang = document.currentScript.getAttribute("data-lang");
-var user_regime = document.currentScript.getAttribute("user_user_regime");
+var user_regime = document.currentScript.getAttribute("user_regime");
 
 var timetable_choosed = [];
 var buttons_clicked = [];
@@ -7,7 +7,7 @@ var buttons_clicked = [];
 var user_disponibility = JSON.parse(document.currentScript.getAttribute("user_disponibility").replace(/'/g, '"'));
 var user_courses = JSON.parse(document.currentScript.getAttribute("user_courses").replace(/'/g, '"'));
 var user_timetables = JSON.parse(document.currentScript.getAttribute("user_timetables").replace(/'/g, '"'));
-var user_blocks = JSON.parse(document.currentScript.getAttribute("user_blocks").replace(/'/g, '"'));
+var user_blocks = document.currentScript.getAttribute("user_blocks").replace(/'/g, '"');
 var user_areas = JSON.parse(document.currentScript.getAttribute("user_areas").replace(/'/g, '"'));
 
 var user_disponibility_obj = [];
@@ -65,22 +65,6 @@ for (var i = 0; i < user_timetables.length; i++) {
         classs: timetable_object.classs,
     };
     user_timetables_obj.push(timetable_item);
-}
-
-var user_blocks_obj = [];
-for (var i = 0; i < user_blocks.length; i++) {
-    var elemento = user_blocks[i];
-    var id = elemento.id;
-    var name_block = elemento.name;
-    var acronym = elemento.acronym;
-
-    var novo_objeto = {
-        id: id,
-        name_block: name_block,
-        acronym: acronym,
-    };
-
-    user_blocks_obj.push(novo_objeto);
 }
 
 var user_areas_obj = [];
@@ -168,7 +152,6 @@ $("#timetable-courses input").on("click", function () {
     $("#course-filter").val("");
 
     area_options();
-    block_options();
     timetables_options();
     $("#info-alert").hide();
     
@@ -220,18 +203,7 @@ function area_options() {
     }
 }
 
-function block_options() {
-    var block_datalist_options = document.getElementById("block-options");
-    block_datalist_options.innerHTML = "";
 
-    for (var i = 0; i < user_blocks_obj.length; i++) {
-        var block = user_blocks_obj[i];
-        var option = document.createElement("option");
-        option.value = block.acronym;
-        option.textContent = block.acronym + " | " + block.name_block;
-        block_datalist_options.appendChild(option);
-    }
-}
 
 function timetables_options() {
     var span_value = $("#cel-position").text();

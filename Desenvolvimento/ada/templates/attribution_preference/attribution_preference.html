@@ -7,7 +7,7 @@
     <title>{% trans "FPA Usuário" %}</title>
     <style>
         .card-blockk {
-            width: 500px;
+            width: 510px;
             float: left;
             margin-right: 30px;
             margin-top: 30px;
@@ -28,7 +28,7 @@
             font-weight: 500;
             padding: 5px 10px 5px 10px;
             border-radius: 6px;
-            color: #173f25;
+            color: #dcffe8;
         }
         .message-info-not-done {
             background-color: #FFDD95;
@@ -149,6 +149,7 @@
     </ol>
     </nav>
     
+    
     {% if started_times > 0 and disponilibity_done == 'True' %}
     <div class="float-right message-info-done"><i class="far fa-check-circle"></i> {% trans 'ENVIADO'%}</div>
     <h5>{% trans 'Envio de Disponibilidade'%}:</h5>
@@ -259,13 +260,13 @@
                                 </p>
                                 
                                 {% if courses_done == 'False' %}
-                                <a href="{% url 'disponibility_attribution_preference'  %}">
+                                <a href="{% url 'courses_attribution_preference' blockk.blockk.registration_block_id %}">
                                     <button class="w-100 btn ada-btn-sucess"><i class="fas fa-check"></i> {% trans "Faça seu FPA" %}</button>
                                 </a>
                                 {% else %}
                                 <div class="row">
                                     <div class="col-6">
-                                        <a href="{% url 'disponibility_attribution_preference'  %}">
+                                        <a href="{% url 'courses_attribution_preference' blockk.blockk.registration_block_id %}">
                                         <button class="btn ada-btn-blue btn-block"><i class="fas fa-redo"></i> {% trans "Refaça seu FPA" %}</button>
                                         </a>
                                     </div>
@@ -342,13 +343,13 @@
                                     <b>{% trans 'Fim' %}:</b> {{blockk.end_day}} {% trans 'ás' %} {{blockk.end_time}}
                                 </p>
                                 {% if courses_done == 'False' %}
-                                <a href="{% url 'disponibility_attribution_preference'  %}">
+                                <a href="{% url 'courses_attribution_preference' blockk.blockk.registration_block_id %}">
                                     <button class="w-100 btn ada-btn-sucess"><i class="fas fa-check"></i> {% trans "Faça seu FPA" %}</button>
                                 </a>
                                 {% else %}
                                 <div class="row">
                                     <div class="col-6">
-                                        <a href="{% url 'disponibility_attribution_preference'  %}">
+                                        <a href="{% url 'courses_attribution_preference' blockk.blockk.registration_block_id %}">
                                         <button class="btn ada-btn-blue btn-block"><i class="fas fa-redo"></i> {% trans "Refaça seu FPA" %}</button>
                                         </a>
                                     </div>
@@ -426,13 +427,13 @@
                             <b>{% trans 'Fim' %}:</b> {{blockk.end_day}} {% trans 'ás' %} {{blockk.end_time}}
                         </p>
                         {% if courses_done == 'False' %}
-                        <a href="{% url 'disponibility_attribution_preference'  %}">
+                        <a href="{% url 'courses_attribution_preference' blockk.blockk.registration_block_id %}">
                             <button class="w-100 btn ada-btn-sucess"><i class="fas fa-check"></i> {% trans "Faça seu FPA" %}</button>
                         </a>
                         {% else %}
                         <div class="row">
                             <div class="col-6">
-                                <a href="{% url 'disponibility_attribution_preference'  %}">
+                                <a href="{% url 'courses_attribution_preference' blockk.blockk.registration_block_id %}">
                                 <button class="btn ada-btn-blue btn-block"><i class="fas fa-redo"></i> {% trans "Refaça seu FPA" %}</button>
                                 </a>
                             </div>
@@ -474,7 +475,7 @@
                 <li>{% trans "Antes de enviar sua preferênciade de atividades, você deve enviar sua escolha de disponibilidade geral" %}.</li>
             </ul>
             <a href="{% url 'disponibility_attribution_preference' %}">
-                <button class="w-100 btn ada-btn-blue-dark"><i class="fas fa-share"></i> {% trans "Faça seu FPA" %}</button>
+                <button class="w-100 btn ada-btn-blue-dark"><i class="fas fa-share"></i> {% trans "Escolha sua preferência de disponibilidade" %}</button>
             </a>
         </div>
     </div>

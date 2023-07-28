@@ -21,12 +21,11 @@
   <section class="section dashboard">
     <h1 class="title-page">{% trans "Declaração de disponibilidade" %}</h1>
     <nav>
-      <ol class="breadcrumb">
+    <ol class="breadcrumb hidden-itens">
         <li class="breadcrumb-item"><a href="{% url 'home' %}"><i class="bi bi-house-door"></i></a></li>
-        <li class="breadcrumb-item active">{% trans "Preferência Atribuição" %}</li>
-        <li class="breadcrumb-item active" aria-current="page">{% trans "Criar FPA" %}</li>
-        <li class="breadcrumb-item active" aria-current="page">{% trans "Editar Disponibilidade" %}</li>
-      </ol>
+        <li class="breadcrumb-item"><a href="{% url 'attribution_preference' %}">{% trans "FPA Usuário" %}</a></li>
+        <li class="breadcrumb-item active">{% trans "Escolher Disponibilidade" %}</li>
+    </ol>
     </nav>
 
     <form id="send_disponibility_form" method="post">
@@ -367,5 +366,5 @@
 {% endblock %}
 
 {% block endbody %}
-  <script src="{% static 'attribution_preference/js/disponibility.js' %}" blocks='{{user_blocks}}' timetables='{{timetables}}' variation_minutes='{{variation_minutes}}' max_quantity_cells='{{max_quantity_cells}}' quantity_cells_3_hours='{{quantity_cells_3_hours}}' data-lang={{LANGUAGE_CODE}}></script>
+  <script src="{% static 'attribution_preference/js/disponibility.js' %}" blocks='{{user_blocks}}' user_regime="{{user_regime}}" user_disponibility="{{user_timeslot_table}}" timetables='{{timetables}}' variation_minutes='{{variation_minutes}}' max_quantity_cells='{{max_quantity_cells}}' quantity_cells_3_hours='{{quantity_cells_3_hours}}' data-lang={{LANGUAGE_CODE}}></script>
 {% endblock %}
