@@ -22,8 +22,6 @@ from django.db.models import F, Sum, Value
 
 from django.contrib.auth.decorators import login_required
 
-tabela_data = ""
-
 def is_staff(user):
     return user.is_staff
 
@@ -754,19 +752,19 @@ def queue_show(request):
 @login_required
 @user_passes_test(is_staff)
 def queue_create(request):
-    tabela_data = []  # variável utilizada caso a fila já tenha sido definida pelo menos uma vez pelo admin
+    table_data = []  # variável utilizada caso a fila já tenha sido definida pelo menos uma vez pelo admin
 
     if request.method == 'POST':  # adiciona os professores no model TeacherQueuePosition
-        tabela_data = json.loads(request.POST['tabela_data'])
+        table_data = json.loads(request.POST['table_data'])
 
         print(request.POST['blockk_id'])
 
         blockk = Blockk.objects.get(registration_block_id=request.POST['blockk_id'])
-        campo = get_selected_field()
+        field = get_selected_field()
 
-        for professorInQueue in tabela_data:
-            professor_registration_id = professorInQueue[1]
-            position = professorInQueue[0]
+        for professor_in_queue in table_data:
+            professor_registration_id = professor_in_queue[1]
+            position = professor_in_queue[0]
             professor = User.objects.get(registration_id=professor_registration_id)
 
             if TeacherQueuePositionBackup.objects.filter(teacher=professor, blockk=blockk).exists():
@@ -780,8 +778,8 @@ def queue_create(request):
                 add_teacher_to_queue(professor, position, blockk)
 
         data = {
-            'resultados': TeacherQueuePositionBackup.objects.select_related('teacher').order_by('position').all(),
-            'campo': get_string_field(campo),
+            'results': TeacherQueuePositionBackup.objects.select_related('teacher').order_by('position').all(),
+            'field': get_string_field(field),
         }
 
         return render(request, 'staff/queue/queue_create.html', {'data': data})
