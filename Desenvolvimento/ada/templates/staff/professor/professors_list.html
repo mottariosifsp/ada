@@ -50,8 +50,7 @@
                             <td>{{ professor.history.date_institute|date:"Y-m-d" }}</td>
                             <td>
                                 {% for academic_degree in professor.history.academic_degrees.all %}
-                                    <span>{{ academic_degree.name }} - Pontuação: {{ academic_degree.punctuation }}</span>
-                                    <br>
+                                    <span data-degree-name="{{ academic_degree.name }}" data-degree-punctuation="{{ academic_degree.punctuation }}">{{ academic_degree.name }}</span><br>
                                 {% endfor %}
                             </td>
                             <td>

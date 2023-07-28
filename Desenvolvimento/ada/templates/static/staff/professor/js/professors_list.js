@@ -16,11 +16,12 @@ $(document).ready(function() {
             academic_degrees: []
         };
 
-        row.find('td:eq(8)').find('span').each(function() {
-            var degreeInfo = $(this).text().trim().split(' - Pontuação: ');
+        row.find('td:eq(8)').find('span').each(function () {
+            var degreeName = $(this).data('degree-name');
+            var degreePunctuation = $(this).data('degree-punctuation');
             var degree = {
-                name: degreeInfo[0],
-                punctuation: degreeInfo[1]
+                name: degreeName,
+                punctuation: degreePunctuation
             };
             professorData.academic_degrees.push(degree);
         });
