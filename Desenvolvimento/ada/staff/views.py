@@ -757,8 +757,6 @@ def queue_create(request):
     if request.method == 'POST':  # adiciona os professores no model TeacherQueuePosition
         table_data = json.loads(request.POST['table_data'])
 
-        print(request.POST['blockk_id'])
-
         blockk = Blockk.objects.get(registration_block_id=request.POST['blockk_id'])
         field = get_selected_field()
 
@@ -867,8 +865,6 @@ def queue_create(request):
                     'total_score': scores_users,
                     'blockk': blockk
                 }
-
-                print("caiu aqui ooo")
 
                 return render(request, 'staff/queue/queue_create.html', {'data': data})
 
