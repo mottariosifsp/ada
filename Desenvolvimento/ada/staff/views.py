@@ -664,7 +664,7 @@ def number_to_day_enum(day_number):
 
 
 # Seleciona o campo marcado pelo administrador e verifica qual é o atributo correspondente no histórico dos usuários
-def get_selected_campo():
+def get_selected_field():
     if Criteria.objects.filter(is_select=True).exists():
         valor_numero = Criteria.objects.filter(is_select=True).values('number_criteria').first().get('number_criteria')
 
@@ -762,7 +762,7 @@ def queue_create(request):
         print(request.POST['blockk_id'])
 
         blockk = Blockk.objects.get(registration_block_id=request.POST['blockk_id'])
-        campo = get_selected_campo()
+        campo = get_selected_field()
 
         for professorInQueue in tabela_data:
             professor_registration_id = professorInQueue[1]
@@ -790,8 +790,9 @@ def queue_create(request):
         blockk = request.GET.get('blockk')
         blockk = Blockk.objects.get(registration_block_id=request.GET.get('blockk'))
 
-        if TeacherQueuePositionBackup.objects.filter(blockk=blockk).exists():  # se já tiver uma fila de professores criada
-            campo = get_selected_campo()
+        if TeacherQueuePositionBackup.objects.filter(
+                blockk=blockk).exists():  # se já tiver uma fila de professores criada
+            field = get_selected_field()
 
             teacher_positions = TeacherQueuePositionBackup.objects.filter(blockk=blockk).order_by('position')
 
@@ -805,37 +806,36 @@ def queue_create(request):
                         if user.blocks.filter(registration_block_id=blockk.registration_block_id).exists():
                             missing_users.append(user)
 
-                final_list = list(teacher_positions) + missing_users
-                usuarios_somados = []
+            final_list = list(teacher_positions) + missing_users
+            summed_users = []
 
-                for item in final_list:
-                    if isinstance(item, TeacherQueuePositionBackup):
-                        user = item.teacher
-                        if user is not None and user.history is not None:
-                            total_score = user.history.academic_degrees.aggregate(total_score=Sum('punctuation'))[
-                                'total_score']
-                        else:
-                            total_score = 0
+            for item in final_list:
+                if isinstance(item, TeacherQueuePositionBackup):
+                    user = item.teacher
+                    if user is not None and user.history is not None:
+                        total_score = user.history.academic_degrees.aggregate(total_score=Sum('punctuation'))[
+                            'total_score']
                     else:
-                        user = item
-                        if user is not None and user.history is not None:
+                        total_score = 0
+                else:
+                    user = item
+                    if user is not None and user.history is not None:
+                        total_score = user.history.academic_degrees.aggregate(total_score=Sum('punctuation'))[
+                            'total_score']
+                    else:
+                        total_score = 0
+                user.total_score = total_score
+                summed_users.append(user)
 
-                            total_score = user.history.academic_degrees.aggregate(total_score=Sum('punctuation'))[
-                                'total_score']
-                        else:
-                            total_score = 0
-                    user.total_score = total_score
-                    usuarios_somados.append(user)
-
-                    pontuacoes_usuarios = [];
-                    for usuario in final_list:
-                        pontuacao_usuario = calculate_total_score(usuario, True)
-                        pontuacoes_usuarios.append(pontuacao_usuario)
+            scores_users = []
+            for user in final_list:
+                user_score = calculate_total_score(user, True)
+                scores_users.append(user_score)
 
             data = {
-                'resultados': final_list,
-                'campo': get_string_field(campo),
-                'total_score': pontuacoes_usuarios,
+                'results': final_list,
+                'field': get_string_field(field),
+                'total_score': scores_users,
                 'blockk': blockk,
                 'recover_queue': True
             }
@@ -843,32 +843,34 @@ def queue_create(request):
             return render(request, 'staff/queue/queue_create.html', {'data': data})
 
         if Criteria.objects.filter(is_select=True).exists():
-            campo = get_selected_campo()
+            field = get_selected_field()
 
-            if campo != "":
-                if (campo != "academic_degrees"):
+            if field != "":
+                if field != "academic_degrees":
 
-                    usuarios_ordenados = User.objects.filter(is_professor=True, blocks=blockk).order_by(
-                        F(f'history__{campo}').asc(nulls_last=True))
+                    users_ordered = User.objects.filter(is_professor=True, blocks=blockk).order_by(
+                        F(f'history__{field}').asc(nulls_last=True))
 
                 else:
-                    usuarios_ordenadados_pelo_certificado = User.objects.filter(is_professor=True, blocks=blockk)
+                    users_ordered_by_certificate = User.objects.filter(is_professor=True, blocks=blockk)
                     is_in_teacher_queue = False
-                    usuarios_ordenados = sorted(usuarios_ordenadados_pelo_certificado,
-                                                key=lambda usuario: calculate_total_score(usuario, is_in_teacher_queue),
-                                                reverse=True)
+                    users_ordered = sorted(users_ordered_by_certificate,
+                                           key=lambda user: calculate_total_score(user, is_in_teacher_queue),
+                                           reverse=True)
 
-                pontuacoes_usuarios = [];
-                for usuario in usuarios_ordenados:
-                    pontuacao_usuario = calculate_total_score(usuario, False)
-                    pontuacoes_usuarios.append(pontuacao_usuario)
+                scores_users = []
+                for user in users_ordered:
+                    user_score = calculate_total_score(user, False)
+                    scores_users.append(user_score)
 
                 data = {
-                    'resultados': usuarios_ordenados,
-                    'campo': get_string_field(campo),
-                    'total_score': pontuacoes_usuarios,
+                    'results': users_ordered,
+                    'field': get_string_field(field),
+                    'total_score': scores_users,
                     'blockk': blockk
                 }
+
+                print("caiu aqui ooo")
 
                 return render(request, 'staff/queue/queue_create.html', {'data': data})
 
