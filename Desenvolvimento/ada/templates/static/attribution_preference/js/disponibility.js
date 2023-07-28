@@ -194,19 +194,26 @@ $(document).ready(function() {
         checkboxes.filter('[id^="thu"]').length > max_quantity_cells - 1 ||
         checkboxes.filter('[id^="fri"]').length > max_quantity_cells - 1 ||
         checkboxes.filter('[id^="sat"]').length > max_quantity_cells - 1) {
-      limited_hours_passed = true;
-      $('#error-alert-form').text('A seleção da disponibilidade de horário não pode ultrapassar 8 horas de trabalho diárias.');
-      $('#error-alert-form').show();
-      window.scrollTo({
-        top: $('#error-alert-form').offset().top - $('.navbar').outerHeight() - 30,
-        behavior: 'smooth'
-      });
-    } else {
-      limited_hours_passed = false;
-      $('#error-alert-form').hide();
+      //limited_hours_passed = true;
+      var checkbox = document.getElementById(input_id);
+      if (checkbox) {
+        checkbox.checked = true;
+        checkbox.parentElement.classList.add("active");
+        checkbox.parentElement.parentElement.classList.add("active");
+      }
+      // $('#error-alert-form').text('A seleção da disponibilidade de horário não pode ultrapassar 8 horas de trabalho diárias.');
+      // $('#error-alert-form').show();
+      // window.scrollTo({
+      //   top: $('#error-alert-form').offset().top - $('.navbar').outerHeight() - 30,
+      //   behavior: 'smooth'
+      // });
     }
+    // } else {
+    //   limited_hours_passed = false;
+    //   $('#error-alert-form').hide();
+    // }
     console.log(checkboxes.length);
-
+    console.log(limited_hours_passed);
     var checkbox = document.getElementById(input_id);
 
     if (checkbox) {
@@ -479,6 +486,276 @@ $(document).ready(function() {
             checkboxes_disable[i].parentElement.classList.remove("active");
             checkboxes_disable[i].parentElement.parentElement.classList.remove("active");
           }
+        }
+      }
+
+    // Quinta - mor
+    if (checkbox.id == "thu-mor-1") {
+        var checkboxes_disable = [];
+        checkboxes_disable[0] = document.getElementById("wed-noc-6");
+        checkboxes_disable[1] = document.getElementById("wed-noc-5");
+        checkboxes_disable[2] = document.getElementById("wed-noc-4");
+        checkboxes_disable[3] = document.getElementById("wed-noc-3");
+        for (var i = 0; i < checkboxes_disable.length; ++i) {
+          if (checkboxes_disable[i]) {
+            checkboxes_disable[i].checked = false;
+            checkboxes_disable[i].parentElement.classList.remove("active");
+            checkboxes_disable[i].parentElement.parentElement.classList.remove("active");
+          }
+        }
+      }
+
+      if (checkbox.id == "thu-mor-2") {
+        var checkboxes_disable = [];
+        checkboxes_disable[0] = document.getElementById("wed-noc-6");
+        checkboxes_disable[1] = document.getElementById("wed-noc-5");
+        checkboxes_disable[2] = document.getElementById("wed-noc-4");
+        for (var i = 0; i < checkboxes_disable.length; ++i) {
+          if (checkboxes_disable[i]) {
+            checkboxes_disable[i].checked = false;
+            checkboxes_disable[i].parentElement.classList.remove("active");
+            checkboxes_disable[i].parentElement.parentElement.classList.remove("active");
+          }
+        }
+      }
+
+      if (checkbox.id == "thu-mor-3") {
+        var checkboxes_disable = [];
+        checkboxes_disable[0] = document.getElementById("wed-noc-6");
+        checkboxes_disable[1] = document.getElementById("wed-noc-5");
+        for (var i = 0; i < checkboxes_disable.length; ++i) {
+          if (checkboxes_disable[i]) {
+            checkboxes_disable[i].checked = false;
+            checkboxes_disable[i].parentElement.classList.remove("active");
+            checkboxes_disable[i].parentElement.parentElement.classList.remove("active");
+          }
+        }
+      }
+
+      if (checkbox.id == "thu-mor-4") {
+        var checkbox_disable = document.getElementById("wed-noc-6");
+        if (checkbox_disable) {
+          checkbox_disable.checked = false;
+          var button = checkbox_disable.parentElement;
+          var label = button.parentElement;
+          button.classList.remove("active");
+          label.classList.remove("active");
+        }
+      }
+
+      // Quinta - noc
+      if (checkbox.id == "thu-noc-3") {
+        var checkbox_disable = document.getElementById("fri-mor-1");
+        if (checkbox_disable) {
+          checkbox_disable.checked = false;
+          var button = checkbox_disable.parentElement;
+          var label = button.parentElement;
+          button.classList.remove("active");
+          label.classList.remove("active");
+        }
+      }
+
+      if (checkbox.id == "thu-noc-4") {
+        var checkboxes_disable = [];
+        checkboxes_disable[0] = document.getElementById("fri-mor-1");
+        checkboxes_disable[1] = document.getElementById("fri-mor-2");
+        for (var i = 0; i < checkboxes_disable.length; ++i) {
+          if (checkboxes_disable[i]) {
+            checkboxes_disable[i].checked = false;
+            checkboxes_disable[i].parentElement.classList.remove("active");
+            checkboxes_disable[i].parentElement.parentElement.classList.remove("active");
+          }
+        }
+      }
+
+      if (checkbox.id == "thu-noc-5") {
+        var checkboxes_disable = [];
+        checkboxes_disable[0] = document.getElementById("fri-mor-1");
+        checkboxes_disable[1] = document.getElementById("fri-mor-2");
+        checkboxes_disable[2] = document.getElementById("fri-mor-3");
+        for (var i = 0; i < checkboxes_disable.length; ++i) {
+          if (checkboxes_disable[i]) {
+            checkboxes_disable[i].checked = false;
+            checkboxes_disable[i].parentElement.classList.remove("active");
+            checkboxes_disable[i].parentElement.parentElement.classList.remove("active");
+          }
+        }
+      }
+
+      if (checkbox.id == "thu-noc-6") {
+        var checkboxes_disable = [];
+        checkboxes_disable[0] = document.getElementById("fri-mor-1");
+        checkboxes_disable[1] = document.getElementById("fri-mor-2");
+        checkboxes_disable[2] = document.getElementById("fri-mor-3");
+        checkboxes_disable[3] = document.getElementById("fri-mor-4");
+        for (var i = 0; i < checkboxes_disable.length; ++i) {
+          if (checkboxes_disable[i]) {
+            checkboxes_disable[i].checked = false;
+            checkboxes_disable[i].parentElement.classList.remove("active");
+            checkboxes_disable[i].parentElement.parentElement.classList.remove("active");
+          }
+        }
+      }
+
+      // Sexta - mor
+      if (checkbox.id == "fri-mor-1") {
+        var checkboxes_disable = [];
+        checkboxes_disable[0] = document.getElementById("thu-noc-6");
+        checkboxes_disable[1] = document.getElementById("thu-noc-5");
+        checkboxes_disable[2] = document.getElementById("thu-noc-4");
+        checkboxes_disable[3] = document.getElementById("thu-noc-3");
+        for (var i = 0; i < checkboxes_disable.length; ++i) {
+          if (checkboxes_disable[i]) {
+            checkboxes_disable[i].checked = false;
+            checkboxes_disable[i].parentElement.classList.remove("active");
+            checkboxes_disable[i].parentElement.parentElement.classList.remove("active");
+          }
+        }
+      }
+
+      if (checkbox.id == "fri-mor-2") {
+        var checkboxes_disable = [];
+        checkboxes_disable[0] = document.getElementById("thu-noc-6");
+        checkboxes_disable[1] = document.getElementById("thu-noc-5");
+        checkboxes_disable[2] = document.getElementById("thu-noc-4");
+        for (var i = 0; i < checkboxes_disable.length; ++i) {
+          if (checkboxes_disable[i]) {
+            checkboxes_disable[i].checked = false;
+            checkboxes_disable[i].parentElement.classList.remove("active");
+            checkboxes_disable[i].parentElement.parentElement.classList.remove("active");
+          }
+        }
+      }
+
+      if (checkbox.id == "fri-mor-3") {
+        var checkboxes_disable = [];
+        checkboxes_disable[0] = document.getElementById("thu-noc-6");
+        checkboxes_disable[1] = document.getElementById("thu-noc-5");
+        for (var i = 0; i < checkboxes_disable.length; ++i) {
+          if (checkboxes_disable[i]) {
+            checkboxes_disable[i].checked = false;
+            checkboxes_disable[i].parentElement.classList.remove("active");
+            checkboxes_disable[i].parentElement.parentElement.classList.remove("active");
+          }
+        }
+      }
+
+      if (checkbox.id == "fri-mor-4") {
+        var checkbox_disable = document.getElementById("thu-noc-6");
+        if (checkbox_disable) {
+          checkbox_disable.checked = false;
+          var button = checkbox_disable.parentElement;
+          var label = button.parentElement;
+          button.classList.remove("active");
+          label.classList.remove("active");
+        }
+      }
+
+      // Sexta - noc
+      if (checkbox.id == "fri-noc-3") {
+        var checkbox_disable = document.getElementById("sat-mor-1");
+        if (checkbox_disable) {
+          checkbox_disable.checked = false;
+          var button = checkbox_disable.parentElement;
+          var label = button.parentElement;
+          button.classList.remove("active");
+          label.classList.remove("active");
+        }
+      }
+
+      if (checkbox.id == "fri-noc-4") {
+        var checkboxes_disable = [];
+        checkboxes_disable[0] = document.getElementById("sat-mor-1");
+        checkboxes_disable[1] = document.getElementById("sat-mor-2");
+        for (var i = 0; i < checkboxes_disable.length; ++i) {
+          if (checkboxes_disable[i]) {
+            checkboxes_disable[i].checked = false;
+            checkboxes_disable[i].parentElement.classList.remove("active");
+            checkboxes_disable[i].parentElement.parentElement.classList.remove("active");
+          }
+        }
+      }
+
+      if (checkbox.id == "fri-noc-5") {
+        var checkboxes_disable = [];
+        checkboxes_disable[0] = document.getElementById("sat-mor-1");
+        checkboxes_disable[1] = document.getElementById("sat-mor-2");
+        checkboxes_disable[2] = document.getElementById("sat-mor-3");
+        for (var i = 0; i < checkboxes_disable.length; ++i) {
+          if (checkboxes_disable[i]) {
+            checkboxes_disable[i].checked = false;
+            checkboxes_disable[i].parentElement.classList.remove("active");
+            checkboxes_disable[i].parentElement.parentElement.classList.remove("active");
+          }
+        }
+      }
+
+      if (checkbox.id == "fri-noc-6") {
+        var checkboxes_disable = [];
+        checkboxes_disable[0] = document.getElementById("sat-mor-1");
+        checkboxes_disable[1] = document.getElementById("sat-mor-2");
+        checkboxes_disable[2] = document.getElementById("sat-mor-3");
+        checkboxes_disable[3] = document.getElementById("sat-mor-4");
+        for (var i = 0; i < checkboxes_disable.length; ++i) {
+          if (checkboxes_disable[i]) {
+            checkboxes_disable[i].checked = false;
+            checkboxes_disable[i].parentElement.classList.remove("active");
+            checkboxes_disable[i].parentElement.parentElement.classList.remove("active");
+          }
+        }
+      }
+
+      // Sábado - mor
+      if (checkbox.id == "sat-mor-1") {
+        var checkboxes_disable = [];
+        checkboxes_disable[0] = document.getElementById("fri-noc-6");
+        checkboxes_disable[1] = document.getElementById("fri-noc-5");
+        checkboxes_disable[2] = document.getElementById("fri-noc-4");
+        checkboxes_disable[3] = document.getElementById("fri-noc-3");
+        for (var i = 0; i < checkboxes_disable.length; ++i) {
+          if (checkboxes_disable[i]) {
+            checkboxes_disable[i].checked = false;
+            checkboxes_disable[i].parentElement.classList.remove("active");
+            checkboxes_disable[i].parentElement.parentElement.classList.remove("active");
+          }
+        }
+      }
+
+      if (checkbox.id == "sat-mor-2") {
+        var checkboxes_disable = [];
+        checkboxes_disable[0] = document.getElementById("fri-noc-6");
+        checkboxes_disable[1] = document.getElementById("fri-noc-5");
+        checkboxes_disable[2] = document.getElementById("fri-noc-4");
+        for (var i = 0; i < checkboxes_disable.length; ++i) {
+          if (checkboxes_disable[i]) {
+            checkboxes_disable[i].checked = false;
+            checkboxes_disable[i].parentElement.classList.remove("active");
+            checkboxes_disable[i].parentElement.parentElement.classList.remove("active");
+          }
+        }
+      }
+
+      if (checkbox.id == "sat-mor-3") {
+        var checkboxes_disable = [];
+        checkboxes_disable[0] = document.getElementById("fri-noc-6");
+        checkboxes_disable[1] = document.getElementById("fri-noc-5");
+        for (var i = 0; i < checkboxes_disable.length; ++i) {
+          if (checkboxes_disable[i]) {
+            checkboxes_disable[i].checked = false;
+            checkboxes_disable[i].parentElement.classList.remove("active");
+            checkboxes_disable[i].parentElement.parentElement.classList.remove("active");
+          }
+        }
+      }
+
+      if (checkbox.id == "sat-mor-4") {
+        var checkbox_disable = document.getElementById("fri-noc-6");
+        if (checkbox_disable) {
+          checkbox_disable.checked = false;
+          var button = checkbox_disable.parentElement;
+          var label = button.parentElement;
+          button.classList.remove("active");
+          label.classList.remove("active");
         }
       }
     }

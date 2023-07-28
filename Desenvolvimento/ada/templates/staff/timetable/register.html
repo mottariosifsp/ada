@@ -40,7 +40,7 @@
               </tr>
               <tr class="header-days">
                 <!-- <th scope="col" class="align-middle">Período</th> -->
-                <th scope="col" class="align-middle">{% trans "Horário" %}</th>
+                <th scope="col" class="text-center" style="width: 7.6rem">{% trans "Horário" %}</th>
                 <th scope="col" class="text-center">{% trans "Segunda-feira" %}</th>
                 <th scope="col" class="text-center">{% trans "Terça-feira" %}</th>
                 <th scope="col" class="text-center">{% trans "Quarta-feira" %}</th>
@@ -51,9 +51,9 @@
             </thead>
             <tbody>
               <tr>
-                <!-- <td rowspan="2">$Vespertino</td> -->
-              {% for timeslot in timeslots.afternoon %} <!-- quantidade de linhas baseadas na quantidade de timeslots -->
-                <th scope="row">{{ timeslot.hour_start }} - {{ timeslot.hour_end }}</th>
+                <!-- <td rowspan="2">manhã</td> -->
+              {% for timeslot in timeslots.morning %} <!-- quantidade de linhas baseadas na quantidade de timeslots -->
+                <th scope="row" class="align-middle">{{ timeslot.hour_start|date:"H:i" }} - {{ timeslot.hour_end|date:"H:i" }}</th>
                 <!-- timeslot -->
                 {% for i in '012345'|make_list %}
                 <td rowspan="">
@@ -81,7 +81,7 @@
                 </tr>
                 <tr class="header-days">
                   <!-- <th scope="col" class="align-middle">Período</th> -->
-                  <th scope="col" class="align-middle">{% trans "Horário" %}</th>
+                  <th scope="col" class="text-center" style="width: 7.6rem">{% trans "Horário" %}</th>
                   <th scope="col" class="text-center">{% trans "Segunda-feira" %}</th>
                   <th scope="col" class="text-center">{% trans "Terça-feira" %}</th>
                   <th scope="col" class="text-center">{% trans "Quarta-feira" %}</th>
@@ -94,7 +94,7 @@
                 <tr>
                   <!-- <td rowspan="2">$Vespertino</td> -->
                 {% for timeslot in timeslots.afternoon %} <!-- quantidade de linhas baseadas na quantidade de timeslots -->
-                  <th scope="row">{{ timeslot.hour_start }} - {{ timeslot.hour_end }}</th>
+                  <th scope="row" class="align-middle">{{ timeslot.hour_start|date:"H:i" }} - {{ timeslot.hour_end|date:"H:i" }}</th>
                   <!-- timeslot -->
                   {% for i in '012345'|make_list %}
                   <td rowspan="">
@@ -122,7 +122,7 @@
                   </tr>
                   <tr class="header-days">
                     <!-- <th scope="col" class="align-middle">Período</th> -->
-                    <th scope="col" class="align-middle">{% trans "Horário" %}</th>
+                    <th scope="col" class="text-center" style="width: 7.6rem">{% trans "Horário" %}</th>
                     <th scope="col" class="text-center">{% trans "Segunda-feira" %}</th>
                     <th scope="col" class="text-center">{% trans "Terça-feira" %}</th>
                     <th scope="col" class="text-center">{% trans "Quarta-feira" %}</th>
@@ -134,8 +134,8 @@
                 <tbody>
                   <tr>
                     <!-- <td rowspan="2">$Vespertino</td> -->
-                  {% for timeslot in timeslots.afternoon %} <!-- quantidade de linhas baseadas na quantidade de timeslots -->
-                    <th scope="row">{{ timeslot.hour_start }} - {{ timeslot.hour_end }}</th>
+                  {% for timeslot in timeslots.night %} <!-- quantidade de linhas baseadas na quantidade de timeslots -->
+                    <th scope="row" class="align-middle">{{ timeslot.hour_start|date:"H:i" }} - {{ timeslot.hour_end|date:"H:i" }}</th>
                     <!-- timeslot -->
                     {% for i in '012345'|make_list %}
                     <td rowspan="">
