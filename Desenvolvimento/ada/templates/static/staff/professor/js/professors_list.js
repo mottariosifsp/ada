@@ -1,4 +1,3 @@
-
 $(document).ready(function() {
     let table = new DataTable('#professors_list', {
         responsive: true
@@ -13,9 +12,19 @@ $(document).ready(function() {
             date_campus: row.find('td:eq(4)').text(),
             date_professor: row.find('td:eq(5)').text(),
             date_area: row.find('td:eq(6)').text(),
-            date_institute: row.find('td:eq(7)').text()
+            date_institute: row.find('td:eq(7)').text(),
+            academic_degrees: []
         };
-    
+
+        row.find('td:eq(8)').find('span').each(function() {
+            var degreeInfo = $(this).text().trim().split(' - Pontuação: ');
+            var degree = {
+                name: degreeInfo[0],
+                punctuation: degreeInfo[1]
+            };
+            professorData.academic_degrees.push(degree);
+        });
+
         populateModal(professorData);
         $('#editProfessorModal').modal('show');
     });
@@ -29,6 +38,16 @@ $(document).ready(function() {
         $('#editProfessorModal').find('#date_professor').val(professorData.date_professor);
         $('#editProfessorModal').find('#date_area').val(professorData.date_area);
         $('#editProfessorModal').find('#date_institute').val(professorData.date_institute);
+
+        // limpa a lista
+        $('#currentAcademicDegreesList').empty();
+
+        // adiciona os diplomas do professor no modal
+        var academicDegreesList = $('#currentAcademicDegreesList');
+        for (var i = 0; i < professorData.academic_degrees.length; i++) {
+            var degree = professorData.academic_degrees[i];
+            academicDegreesList.append('<li class="list-group-item">' + degree.name + ' - Pontuação: ' + degree.punctuation + '</li>');
+        }
     }
 
     $('#saveUpdateBtn').click(function() {
@@ -39,7 +58,12 @@ $(document).ready(function() {
         var date_professor = $('#date_professor').val();
         var date_area = $('#date_area').val();
         var date_institute = $('#date_institute').val();
-        console.log("funcionou o botão")
+        var academicDegrees = [];
+
+        $('#currentAcademicDegreesList li').each(function () {
+            var academicDegree = $(this).text().trim();
+            academicDegrees.push(academicDegree);
+        });
         
         var data = {
             registration_id: registration_id,
@@ -48,9 +72,9 @@ $(document).ready(function() {
             date_campus: date_campus,
             date_professor: date_professor,
             date_area: date_area,
-            date_institute: date_institute
+            date_institute: date_institute,
+            academic_degrees: academicDegrees
         };
-        console.log("funcionou o data")
 
         let csrftoken = getCookie('csrftoken');
 
