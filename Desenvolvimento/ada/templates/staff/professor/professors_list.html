@@ -50,12 +50,14 @@
                             <td>{{ professor.history.date_institute|date:"Y-m-d" }}</td>
                             <td>
                                 {% for academic_degree in professor.history.academic_degrees.all %}
-                                    {% blocktrans with name_text=academic_degree.name %}
-                                        {{ name_text }}
-                                    {% endblocktrans %}
+                                    <span data-degree-name="{{ academic_degree.name }}" data-degree-punctuation="{{ academic_degree.punctuation }}">{{ academic_degree.name }}</span><br>
                                 {% endfor %}
                             </td>
-                            <td><button type="button" data-toggle="modal" data-target="#editProfessorModal" data-counter="{{ counter }}" class="btn btn-warning editProfessorBtn"><i class="bi bi-pencil"></i></button></td> <!-- remover e colocar link no nome -->
+                            <td>
+                                <button type="button" data-toggle="modal" data-target="#editProfessorModal"
+                                        data-counter="{{ counter }}" class="btn btn-warning editProfessorBtn"><i
+                                        class="bi bi-pencil"></i></button>
+                            </td>
                         </tr>
                 {% endfor %}
             </tbody>
@@ -106,6 +108,28 @@
                             <label for="date_institute">{% trans "Data do Instituto" %}</label>
                             <input type="date" class="form-control" id="date_institute">
                         </div>
+                        <div class="form-group">
+                            <label for="academic_degrees">{% trans "Diplomas do Usuário" %}</label>
+                            <ul id="currentAcademicDegreesList" class="list-group">
+                                {% for academic_degree in professor.history.academic_degrees.all %}
+                                    <li class="list-group-item">{{ academic_degree.name }} -
+                                        Pontuação: {{ academic_degree.punctuation }}</li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                        <div class="form-group">
+                            <label for="new_academic_degree">{% trans "Novo Diploma" %}</label>
+                            <select class="form-control" id="new_academic_degree">
+                                <option value="" selected disabled>{% trans "Selecione um diploma" %}</option>
+                                {% for academic_degree in academic_degrees %}
+                                    <option value="{{ academic_degree.id_academic_degree }}">{{ academic_degree.name }}
+                                        - Pontuação: {{ academic_degree.punctuation }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+
+                        <!-- Botão para adicionar novos campos do Academic Degree -->
+                        <button type="button" class="btn btn-primary" id="addAcademicDegreeBtn">{% trans "Adicionar Diploma" %}</button>
                     </form>
                 </div>
                 <div class="modal-footer">

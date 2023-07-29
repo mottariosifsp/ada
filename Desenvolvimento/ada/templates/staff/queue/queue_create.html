@@ -26,7 +26,7 @@
     <hr/>
     {% if data.recover_queue %}
         <div class="alert alert-success" role="alert">
-            Fila anterior recuperada, caso deseje manter-la, clique em enviar.
+            Fila anterior recuperada. Caso deseje mantê-la, clique em enviar.
         </div>
     {% endif %}
     <div class="container">
@@ -43,12 +43,12 @@
                 </div>
             </div>
             <div class="col m-0 p-0">
-                {% if data.campo != "" %}
+                {% if data.field != "" %}
                     <h5>{% trans "Critério definido pela direção" %}:</h5>
                     <div class="card">
                         <div class="card-body">
                             <div class="tipx{% if not data.error_field %} no-border{% endif %}">
-                                <h2>{{ data.campo }}</h2>
+                                <h2>{{ data.field }}</h2>
                                 {% if data.error_field %}
                                     <span class="tooltiptext">Nenhum critério foi escolhido ou não corresponde aos campos dos professores. Um critério padrão foi determinado.</span>
                                 {% endif %}
@@ -57,8 +57,6 @@
                     </div>
                 {% endif %}
             </div>
-
-
         </div>
         <div class="row">
             <div class="card">
@@ -80,7 +78,7 @@
                             </tr>
                             </thead>
                             <tbody>
-                            {% csrf_token %} {% for user in data.resultados %} {% with counter=forloop.counter0 %}
+                            {% csrf_token %} {% for user in data.results %} {% with counter=forloop.counter0 %}
                                 <tr>
                                     <td class="editable" data-column="position">{{ counter }}</td>
                                     {% if user.teacher %}
