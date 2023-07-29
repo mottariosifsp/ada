@@ -42,8 +42,6 @@ for (var i = 0; i < user_disponibility.length; i++) {
     cell_left_number = this_duration
     cell_type_choosed = 20;
     cell_situation = "not_checked"
-    // $('.checkbox input[type="checkbox"]').prop('checked', false);
-    // $('label.checkbox').removeClass('active');
   } else if (user_regime == '40') {
     const checkbox_element = document.querySelector('input[id="radio-40"]');
     checkbox_element.checked = true;
@@ -161,24 +159,6 @@ $(document).ready(function() {
     timeslots.length = 0;
     cell_left_number = 0;
   });
-
-  for (var i = 0; i < user_disponibility_obj.length; i++) {
-    var obj = user_disponibility_obj[i];
-    var obj_id = obj.id;
-    $("label[for='" + obj_id + "']")
-        .removeClass("disabled")
-        .removeClass("btn-notchecked");
-    $("label[for='" + obj_id + "']").css({
-        "font-weight": "700",
-        "color": "white",
-        "background-color": "#507c75",
-    });
-    $("#" + obj_id).prop("disabled", false);
-    $("#sub-" + obj_id).text("+");
-    $("#btn-" + obj_id)
-        .attr("data-toggle", "modal")
-        .attr("data-target", "#add-course-modal");
-}
 
   // Pegar dados dos checkboxes
   $('.checkbox').click(function() {
@@ -776,6 +756,7 @@ $(document).ready(function() {
       var button_is_checked = $('#' + input_id).prop('checked');
 
       if(button_is_checked) {
+        
         cell_left_number += 1;
         var [input_object, input_day] = input_val.split(',');
         var [timeslot_begin_hour, timeslot_end_hour] = input_object.split('-');
