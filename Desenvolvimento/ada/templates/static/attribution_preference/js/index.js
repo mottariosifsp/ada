@@ -19,4 +19,13 @@ function fpa_blockk_animation() {
     });
 }
 
+function fpa_disponibility_animation() {
+    window.scrollTo({
+        top: $("#disponibility-block").offset().top - $(".navbar").outerHeight() - 30,
+        behavior: "smooth",
+    });
+    $("#disponibility-block").css({
+        "border": "1px solid #507c75"
+    });
+}
 

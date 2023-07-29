@@ -18,13 +18,12 @@ from django.db import transaction
 from django.utils.decorators import method_decorator
 
 def attribution_preference(request):
+    # disponibility
     user_regime = request.POST.get('user_regime')
     user_timeslots = request.POST.getlist('user_timeslots')
     json_data = [json.loads(item) for item in user_timeslots]
-    message = ''
 
     timeslots = []
-
     for obj in json_data:
         for item in obj:
             timeslot_begin_hour = convert_string_to_datetime(item["timeslot_begin_hour"])
@@ -37,8 +36,21 @@ def attribution_preference(request):
 
             timeslots.append(timeslot_preference)
 
+
+    # courses
+    work_courses = request.POST.getlist('timetable')
+    timetable = []
+
+    for item in work_courses:
+        item_dict = json.loads(item)
+
+        timetable.append(item_dict)
+
     if request.method == 'POST':
-        save_disponiility_preference(timeslots, user_regime, request.user)        
+        if timeslots:
+            save_disponiility_preference(timeslots, user_regime, request.user)
+        elif timetable:
+            save_courses_preference(timetable, request.user)       
  
         return render(request, 'attribution_preference/courses_attribution_preference.html')
         
@@ -63,12 +75,16 @@ def attribution_preference(request):
                 end_time = attribution_deadline.deadline_end.strftime("%H:%M:%S")
                 status = 'started'
                 started_times += 1
-            elif now < attribution_deadline.deadline_start:            
+            elif now < attribution_deadline.deadline_start:        
                 start_day = attribution_deadline.deadline_start.strftime("%d/%m/%Y")
                 start_time = attribution_deadline.deadline_start.strftime("%H:%M:%S")
+                end_day = attribution_deadline.deadline_end.strftime("%d/%m/%Y")
+                end_time = attribution_deadline.deadline_end.strftime("%H:%M:%S")
                 status = 'configured'
                 configured_times += 1
             else:
+                start_day = attribution_deadline.deadline_start.strftime("%d/%m/%Y")
+                start_time = attribution_deadline.deadline_start.strftime("%H:%M:%S")
                 end_day = attribution_deadline.deadline_end.strftime("%d/%m/%Y")
                 end_time = attribution_deadline.deadline_end.strftime("%H:%M:%S")
                 status = 'finished'
@@ -77,6 +93,10 @@ def attribution_preference(request):
             status = 'not_configured'
             not_configured_times += 1
 
+        courses_done = 'False'
+        if Course_preference.objects.filter(blockk=blockk).exists():
+            courses_done = 'True'
+
         blockk_stage_fpa = {
             'blockk': blockk,
             'status': status,
@@ -84,16 +104,13 @@ def attribution_preference(request):
             'start_time': start_time,
             'end_day': end_day,
             'end_time': end_time,
+            'courses_done': courses_done
         }
         stage_fpas.append(blockk_stage_fpa)
 
     disponilibity_done = 'False'
     if Preference_schedule.objects.filter(attribution_preference__user=user).exists():
         disponilibity_done = 'True'
-
-    courses_done = 'False'
-    if Course_preference.objects.filter(attribution_preference__user=user).exists():
-        courses_done = 'True'
 
     data = {
         'stage_fpas': stage_fpas,
@@ -102,9 +119,10 @@ def attribution_preference(request):
         'not_configured_times': not_configured_times,
         'configured_times': configured_times,
         'is_pair': len(stage_fpas) % 2 == 0,
-        'disponilibity_done': disponilibity_done,
-        'courses_done': courses_done
+        'disponilibity_done': disponilibity_done
     }
+
+    print(data)
     
     return render(request, 'attribution_preference/attribution_preference.html', data)
 
@@ -205,11 +223,14 @@ def disponibility_attribution_preference(request):
             }
             user_timeslot_table.append(string)
 
-        if user_regime.name_job == "rde":
-            user_regime_choosed = user_regime
-            user_regime_choosed.name_job = '40'
-        else:
-            user_regime_choosed = user_regime
+
+    if user_regime is None:
+        user_regime_choosed = ''
+    elif user_regime.name_job == "rde":
+        user_regime_choosed = user_regime
+        user_regime_choosed.name_job = '40'
+    else:
+        user_regime_choosed = user_regime
 
     data = {
         'shift': shift,
@@ -539,10 +560,12 @@ def save_courses_preference(work_courses, user):
         for i, course in enumerate(courses, 1):
             id_timetable = int(course['id_timetable'])
             timetable = Timetable.objects.filter(id=id_timetable).first()
+            blockk = timetable.course.blockk
 
             Course_preference.objects.create(
                 attribution_preference=Attribution_preference.objects.filter(user=user).first(),
-                timetable=timetable
+                timetable=timetable,
+                blockk=blockk
             )
 
 def convert_string_to_datetime(hora_string):
