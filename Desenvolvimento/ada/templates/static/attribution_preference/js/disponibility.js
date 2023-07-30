@@ -14,26 +14,6 @@ var user_regime = document.currentScript.getAttribute("user_regime");
 var limited_hours_passed;
 var checkboxes = [];
 
-var user_disponibility_obj = [];
-for (var i = 0; i < user_disponibility.length; i++) {
-    var elemento = user_disponibility[i];
-    var id = elemento.id;
-    var position = elemento.position;
-    var type = elemento.type;
-    var day = elemento.day;
-    var timeslot_begin_hour = elemento.timeslot_begin_hour;
-
-    var novo_objeto = {
-        id: id, // mon-aft-3
-        position: position,
-        type: type,
-        day: day,
-        timeslot_begin_hour: timeslot_begin_hour, // 7:45:00
-    };
-
-    user_disponibility_obj.push(novo_objeto);
-}
-
   if (user_regime == '20') {
     const checkbox_element = document.querySelector('input[id="radio-20"]');
     checkbox_element.checked = true;
@@ -61,9 +41,8 @@ for (var i = 0; i < user_disponibility.length; i++) {
   }
 
 
-for (var i = 0; i < user_disponibility_obj.length; i++) {
-  
-  var obj = user_disponibility_obj[i];
+for (var i = 0; i < user_disponibility.length; i++) {
+  var obj = user_disponibility[i];
   var checked_id = obj.id;
   var checked_value = $('#' + checked_id).val();
 
@@ -106,8 +85,6 @@ $(document).ready(function() {
     $('.custom-icon').css('display', 'none');
     $('.cel-plus').css('display', 'none');
   }
-  
-
   //console.log("timeslot minutos", timeslot_minutes);
 
   $('input[name="regime"]').click(function() {
