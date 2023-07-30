@@ -88,12 +88,25 @@ for (var i = 0; i < user_disponibility_obj.length; i++) {
     button.classList.add("active");
     label.classList.add("active");
   }
+  if(cell_left_number < 0) {
+    $('.custom-icon').css('display', '');
+    $('.cel-plus').css('display', '');
+    $('.cel').css('display', 'none');
+  } else {
+    $('#cel-regime').text(cell_left_number);
+    $('.custom-icon').css('display', 'none');
+    $('.cel-plus').css('display', 'none');
+    $('.cel').css('display', '');
+  }
 }
 
 
 $(document).ready(function() {
-  $('.custom-icon').css('display', 'none');
-  $('.cel-plus').css('display', 'none');
+  if(cell_left_number > 0) {
+    $('.custom-icon').css('display', 'none');
+    $('.cel-plus').css('display', 'none');
+  }
+  
 
   //console.log("timeslot minutos", timeslot_minutes);
 

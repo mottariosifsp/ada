@@ -9,6 +9,9 @@ var user_courses = JSON.parse(document.currentScript.getAttribute("user_courses"
 var user_timetables = JSON.parse(document.currentScript.getAttribute("user_timetables").replace(/'/g, '"'));
 var user_blocks = document.currentScript.getAttribute("user_blocks").replace(/'/g, '"');
 var user_areas = JSON.parse(document.currentScript.getAttribute("user_areas").replace(/'/g, '"'));
+var user_courses_from_blockk = JSON.parse(document.currentScript.getAttribute("user_courses_from_blockk").replace(/'/g, '"'));
+var user_courses_from_fpa = JSON.parse(document.currentScript.getAttribute("user_courses_from_fpa").replace(/'/g, '"'));
+
 
 var user_disponibility_obj = [];
 for (var i = 0; i < user_disponibility.length; i++) {
@@ -142,6 +145,57 @@ for (var i = 0; i < user_disponibility_obj.length; i++) {
         .attr("data-target", "#add-course-modal");
 }
 
+if(user_courses_from_blockk.length > 0) {
+    for (var i = 0; i < user_courses_from_blockk.length; i++) {
+        var obj = user_courses_from_blockk[i];
+        var obj_id = obj.id;
+        var array_position_id = obj.position_id;
+
+        for (var y = 0; y < array_position_id.length; y++) {
+            var position = array_position_id[y].id;
+
+            $("#sub-" + position).text(user_courses_from_blockk[i].course_acronym);
+            $("#btn-" + position)
+                .attr("data-toggle", "none")
+                .attr("data-target", "#");
+            buttons_clicked.push(position);
+        }
+
+        global = {
+            id_timetable: user_courses_from_blockk[i].id,
+            position: array_position_id.map((objeto) => objeto.id.toString()),
+        };
+        timetable_choosed.push(global);
+        cell_left_number.time -= array_position_id.length
+        $('#cel-hour').text(cell_left_number.time)
+    }
+}
+
+if(user_courses_from_fpa.length > 0) {
+    for (var i = 0; i < user_courses_from_fpa.length; i++) {
+        var obj = user_courses_from_fpa[i];
+        var obj_id = obj.id;
+        var array_position_id = obj.position_id;
+
+        for (var y = 0; y < array_position_id.length; y++) {
+            var position = array_position_id[y].id;
+
+            $("#sub-" + position).text(user_courses_from_fpa[i].course_acronym);
+            $("#btn-" + position)
+                .attr("data-toggle", "none")
+                .attr("data-target", "#");
+            $("label[for='" + position + "']")
+                .addClass("disabled")
+                .addClass("btn-notchecked");
+            $("label[for='" + position + "']").css({
+                "font-weight": "700",
+                "color": "#00241c",
+                "background-color": "#507c75",
+            });
+        }
+    }
+}
+
 // Ao cliar no button
 $("#timetable-courses input").on("click", function () {
     var data_id = $(this).closest("div[data-id]").data("id");
@@ -162,7 +216,7 @@ $("#timetable-courses input").on("click", function () {
     if (updated_array) {
         var filtered_timetables = timetable_choosed.filter(function (t) {
             return t.position.includes(data_id);
-        });
+        });console.log(updated_array);console.log(timetable_choosed);
 
         filtered_timetables.forEach(function (timetable) {
             timetable.position.forEach(function (position) {

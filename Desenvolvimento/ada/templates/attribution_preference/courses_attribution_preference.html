@@ -441,8 +441,8 @@
           </div>
         </div>
       </div>
-      <button type="button" class="btn btn-primary float-right mt-4 mb-5" name="send-courses" id="send-courses">{% trans "Enviar" %}</button>
-      <a href="{% url 'disponibility_attribution_preference' %}"><button type="button"  class="btn btn-info float-left mt-4 mb-5 mr-2" ><i class="bi bi-arrow-left"></i> {% trans "Retornar Disponibilidade" %}</button></a>
+      <button type="button" class="btn btn-primary float-right mt-4 mb-5" name="send-courses" id="send-courses">{% trans "Enviar Disciplinas" %}</button>
+      <a href="{% url 'disponibility_attribution_preference' %}"><button type="button"  class="btn btn-info float-left mt-4 mb-5 mr-2" ><i class="fa fa-redo"></i> {% trans "Retornar a Preferência de Disponibilidade" %}</button></a>
     </form>
   </section>
 {% endblock %}
@@ -451,5 +451,5 @@
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
   <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-  <script src="{% static 'attribution_preference/js/courses.js' %}" data-lang='{{ LANGUAGE_CODE }}' user_regime='{{ user_regime }}' user_blocks='{{ user_blockk }}' user_areas='{{ user_areas }}' user_courses='{{ user_courses }}' user_timetables='{{ user_timetables }}' user_disponibility='{{ user_disponibility }}'></script>
+  <script src="{% static 'attribution_preference/js/courses.js' %}" data-lang='{{ LANGUAGE_CODE }}' user_courses_from_blockk="{{user_courses_from_blockk}}" user_courses_from_fpa="{{user_courses_from_fpa}}" user_regime='{{ user_regime }}' user_blocks='{{ user_blockk }}' user_areas='{{ user_areas }}' user_courses='{{ user_courses }}' user_timetables='{{ user_timetables }}' user_disponibility='{{ user_disponibility }}'></script>
 {% endblock %}
