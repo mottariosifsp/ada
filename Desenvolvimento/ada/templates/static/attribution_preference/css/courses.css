@@ -241,4 +241,8 @@ body {background-color: #def2fc81;}
   .hour-print {
     font-size: 14px;
   }
+
+  .openModalBtn{
+    color: #0d2131;
+  }
 }

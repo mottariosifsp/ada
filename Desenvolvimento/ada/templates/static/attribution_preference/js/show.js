@@ -33,6 +33,16 @@ for (var i = 0; i < user_courses_choosed_array.length; i++) {
     var course_area = course.course_area;
     var period = course.period;
     var classes = course.classes;
+    var id_positions = course.id_position;
+
+    for (var y = 0; y < id_positions.length; y++) {
+        var id_position = id_positions[y].id;
+        $("#" + id_position + " i").removeClass("fas fa-check-circle check");
+        $("#" + id_position).text(acronym);
+        $('#'+ id_position).css({
+            "font-weight": "600",
+        });
+    }
   
     var new_row = '<tr>' +
       '<td class="text-center">' + acronym + '</td>' +

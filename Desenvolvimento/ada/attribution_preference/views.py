@@ -447,8 +447,6 @@ def courses_attribution_preference(request, registration_block_id):
 
         courses_from_block.append(timetable_item)
 
-    print(courses_from_block)
-
     course_preferences_without_same_blockk = Course_preference.objects.exclude(blockk=blockk)
 
     for course_preference in course_preferences_without_same_blockk:
@@ -533,20 +531,10 @@ def courses_attribution_preference(request, registration_block_id):
 
     return render(request, 'attribution_preference/courses_attribution_preference.html', data)
 
-def show_attribution_preference(request):
-    work_courses = request.POST.getlist('timetable')
-    timetable = []
+def show_attribution_preference(request, registration_block_id):
+    blockk = Blockk.objects.get(registration_block_id=registration_block_id)
 
-    for item in work_courses:
-        item_dict = json.loads(item)
-
-        timetable.append(item_dict)
-
-    if request.method == 'POST':
-        save_courses_preference(timetable, request.user)
-
-        return render(request, 'attribution_preference/attribution_preference.html')
-    elif request.method == 'GET':
+    if request.method == 'GET':
         user = request.user
         
         if user.job is None:
@@ -616,8 +604,59 @@ def show_attribution_preference(request):
             user_timeslot_traceback.append(string)
 
         user_courses_traceback = []
-        user_courses = Course_preference.objects.filter(attribution_preference__user=request.user)
+        user_courses = Course_preference.objects.filter(blockk=blockk)
         for preference in user_courses:
+            timetable_object = preference.timetable
+            day_combo_objects = timetable_object.day_combo.all()
+            day_combo_data = []
+            id_position = []
+
+            for day_combo in day_combo_objects:
+                day = day_combo.day
+                timeslots = day_combo.timeslots.all()
+                timeslot_data = []
+                shift_type = None
+                shift_position = None
+                begin = ''
+
+                for timeslot in timeslots:
+                    timeslot_data.append({
+                        'timeslot_begin_hour': timeslot.hour_start.strftime('%H:%M:%S'),
+                        'timeslot_end_hour': timeslot.hour_end.strftime('%H:%M:%S'),
+                    })
+                    begin = timeslot.hour_start
+
+                    if begin >= datetime.time(7, 0, 0) and begin <= datetime.time(12, 0, 0):
+                        shift_type = 'mor'
+                        shift_position = next((i for i, slot in enumerate(shift['morning']) if slot.hour_start == begin), None)
+                    elif begin >= datetime.time(13, 0, 0) and begin < datetime.time(18, 0, 0):
+                        shift_type = 'aft'
+                        shift_position = next((i for i, slot in enumerate(shift['afternoon']) if slot.hour_start == begin),
+                                                None)
+                    elif begin >= datetime.time(18, 0, 0) and begin <= datetime.time(23, 0, 0):
+                        shift_type = 'noc'
+                        shift_position = next((i for i, slot in enumerate(shift['nocturnal']) if slot.hour_start == begin), None)
+
+                    if shift_position is not None:
+                        shift_position += 1
+
+                    if day == 'monday':
+                        day_of_week = 'mon'
+                    elif day == 'tuesday':
+                        day_of_week = 'tue'
+                    elif day == 'wednesday':
+                        day_of_week = 'wed'
+                    elif day == 'thursday':
+                        day_of_week = 'thu'
+                    elif day == 'friday':
+                        day_of_week = 'fri'
+                    else:
+                        day_of_week = 'sat'
+
+                    string = {
+                        'id': f'{day_of_week}-{shift_type}-{shift_position}'
+                    }
+                    id_position.append(string)
 
             shift_period = ''
             day_combo = preference.timetable.day_combo.first()
@@ -636,7 +675,8 @@ def show_attribution_preference(request):
                 'name_course': preference.timetable.course.name_course,
                 'course_area': preference.timetable.course.area.name_area,
                 'period': shift_period,
-                'classes': day_combo.timeslots.count(), 
+                'classes': day_combo.timeslots.count(),
+                'id_position': id_position
             }
             user_courses_traceback.append(timetable_object)
 
@@ -647,11 +687,14 @@ def show_attribution_preference(request):
 
         data = {
             'is_fpa_done': is_done,
+            'blockk': blockk,
             'shift': shift,
             'user_regime': user_regime,
             'user_disponibility_choosed': user_timeslot_traceback,
             'user_courses_choosed': user_courses_traceback,
         }
+
+        print(data)
 
         return render(request, 'attribution_preference/show_attribution_preference.html', data)
 
