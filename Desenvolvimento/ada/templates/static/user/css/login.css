@@ -8,23 +8,19 @@ body { background: linear-gradient(to right, #76DEC6 10%, #3F927E 60%); }
 .lang-icon { color: white; }
 
 /* Estilos para a seção de registro */
-section.register { border-radius: 30px; }
 
 /* Logo não logado */
 .logo-notlogged img { width: 150px; }
 
-/* Estilos para a classe "card" dentro da seção de registro */
-/* section.register .card {
-    position: fixed;
-    top: 55%;
-    left: 50%;
-    transform: trans(-50%, -50%);
-} */
+input {
+    border: none;
+    border-bottom: 1px solid #999;
+}
 
 /* Estilos para os botões personalizados */
 .custom-btn,
 .google-btn {
-    background-color: #3F927E;
+    background-color: #517ca7;
     color: #ffffff;
     border-radius: 4px;
     padding: 10px 20px;
@@ -35,13 +31,13 @@ section.register { border-radius: 30px; }
 
 /* Efeito de hover para os botões personalizados */
 .custom-btn:hover,
-.google-btn:hover { background-color: #2a5a4f; }
+.google-btn:hover { background-color: #535ba9; }
 
 /* Efeito quando o botão personalizado é clicado */
 .custom-btn:active,
 .google-btn:active {
-    background-color: #3F927E;
-    box-shadow: 0 0 10px #3F927E;
+    background-color: #535ba9;
+    box-shadow: 0 0 10px #535ba9;
 }
 
 /* Estilos específicos para o botão do Google */
@@ -54,6 +50,11 @@ section.register { border-radius: 30px; }
 .google-btn:active {
     background-color: #1590ff;
     box-shadow: 0 0 10px #1590ff;
+}
+
+.btn-language {
+    border: 1px solid #3F927E;
+    color: white;
 }
 
 /* Estilos para botões do tipo submit */
