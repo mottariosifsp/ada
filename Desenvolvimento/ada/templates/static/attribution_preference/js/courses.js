@@ -1,5 +1,5 @@
 var lang = document.currentScript.getAttribute("data-lang");
-var user_regime = document.currentScript.getAttribute("user_user_regime");
+var user_regime = document.currentScript.getAttribute("user_regime");
 
 var timetable_choosed = [];
 var buttons_clicked = [];
@@ -7,120 +7,10 @@ var buttons_clicked = [];
 var user_disponibility = JSON.parse(document.currentScript.getAttribute("user_disponibility").replace(/'/g, '"'));
 var user_courses = JSON.parse(document.currentScript.getAttribute("user_courses").replace(/'/g, '"'));
 var user_timetables = JSON.parse(document.currentScript.getAttribute("user_timetables").replace(/'/g, '"'));
-var user_blocks = JSON.parse(document.currentScript.getAttribute("user_blocks").replace(/'/g, '"'));
+var user_blocks = document.currentScript.getAttribute("user_blocks").replace(/'/g, '"');
 var user_areas = JSON.parse(document.currentScript.getAttribute("user_areas").replace(/'/g, '"'));
-
-var user_disponibility_obj = [];
-for (var i = 0; i < user_disponibility.length; i++) {
-    var elemento = user_disponibility[i];
-    var id = elemento.id;
-    var position = elemento.position;
-    var type = elemento.type;
-    var day = elemento.day;
-    var timeslot_begin_hour = elemento.timeslot_begin_hour;
-
-    var novo_objeto = {
-        id: id, // mon-aft-3
-        position: position,
-        type: type,
-        day: day,
-        timeslot_begin_hour: timeslot_begin_hour, // 7:45:00
-    };
-
-    user_disponibility_obj.push(novo_objeto);
-}
-
-var user_timetables_obj = [];
-for (var i = 0; i < user_timetables.length; i++) {
-    var timetable_object = user_timetables[i];
-    var timetable_id = timetable_object.id;
-    var day_combo_objects = timetable_object.day_combo;
-    var day_combo_data = [];
-
-    for (var j = 0; j < day_combo_objects.length; j++) {
-        var day_combo = day_combo_objects[j];
-        var day = day_combo.day;
-        var timeslots = day_combo.timeslots;
-        var timeslot_data = [];
-
-        for (var k = 0; k < timeslots.length; k++) {
-            var timeslot = timeslots[k];
-            timeslot_data.push({
-                timeslot_begin_hour: timeslot.timeslot_begin_hour,
-                timeslot_end_hour: timeslot.timeslot_end_hour,
-            });
-        }
-        day_combo_data.push({
-            day: day,
-            timeslots: timeslot_data,
-        });
-    }
-
-    var timetable_item = {
-        id: timetable_id,
-        day_combo: day_combo_data,
-        course_acronym: timetable_object.course_acronym,
-        course_id: timetable_object.course_id,
-        course_name: timetable_object.course_name,
-        classs: timetable_object.classs,
-    };
-    user_timetables_obj.push(timetable_item);
-}
-
-var user_blocks_obj = [];
-for (var i = 0; i < user_blocks.length; i++) {
-    var elemento = user_blocks[i];
-    var id = elemento.id;
-    var name_block = elemento.name;
-    var acronym = elemento.acronym;
-
-    var novo_objeto = {
-        id: id,
-        name_block: name_block,
-        acronym: acronym,
-    };
-
-    user_blocks_obj.push(novo_objeto);
-}
-
-var user_areas_obj = [];
-
-for (var i = 0; i < user_areas.length; i++) {
-    var elemento = user_areas[i];
-    var id = elemento.id;
-    var name_area = elemento.name;
-    var acronym = elemento.acronym;
-    var blocks = elemento.blocks;
-
-    var novo_objeto = {
-        id: id,
-        name_area: name_area,
-        acronym: acronym,
-        blocks: blocks,
-    };
-
-    user_areas_obj.push(novo_objeto);
-}
-
-var user_courses_obj = [];
-
-for (var i = 0; i < user_courses.length; i++) {
-    var elemento = user_courses[i];
-    var id = elemento.id;
-    var course_name = elemento.name;
-    var acronym = elemento.acronym;
-    var area = elemento.area;
-    var block = elemento.block;
-
-    var novo_objeto = {
-        id: id,
-        course_name: course_name,
-        acronym: acronym,
-        area: area,
-        block: block,
-    };
-    user_courses_obj.push(novo_objeto);
-}
+var user_courses_from_blockk = JSON.parse(document.currentScript.getAttribute("user_courses_from_blockk").replace(/'/g, '"'));
+var user_courses_from_fpa = JSON.parse(document.currentScript.getAttribute("user_courses_from_fpa").replace(/'/g, '"'));
 
 var cell_left_number = {
     time: 21,
@@ -140,8 +30,8 @@ if (user_regime == '20') {
 }
 $('#cel-hour').text('21')
 
-for (var i = 0; i < user_disponibility_obj.length; i++) {
-    var obj = user_disponibility_obj[i];
+for (var i = 0; i < user_disponibility.length; i++) {
+    var obj = user_disponibility[i];
     var obj_id = obj.id;
     $("label[for='" + obj_id + "']")
         .removeClass("disabled")
@@ -158,6 +48,57 @@ for (var i = 0; i < user_disponibility_obj.length; i++) {
         .attr("data-target", "#add-course-modal");
 }
 
+if(user_courses_from_blockk.length > 0) {
+    for (var i = 0; i < user_courses_from_blockk.length; i++) {
+        var obj = user_courses_from_blockk[i];
+        var obj_id = obj.id;
+        var array_position_id = obj.position_id;
+
+        for (var y = 0; y < array_position_id.length; y++) {
+            var position = array_position_id[y].id;
+
+            $("#sub-" + position).text(user_courses_from_blockk[i].course_acronym);
+            $("#btn-" + position)
+                .attr("data-toggle", "none")
+                .attr("data-target", "#");
+            buttons_clicked.push(position);
+        }
+
+        global = {
+            id_timetable: user_courses_from_blockk[i].id,
+            position: array_position_id.map((objeto) => objeto.id.toString()),
+        };
+        timetable_choosed.push(global);
+        cell_left_number.time -= array_position_id.length
+        $('#cel-hour').text(cell_left_number.time)
+    }
+}
+
+if(user_courses_from_fpa.length > 0) {
+    for (var i = 0; i < user_courses_from_fpa.length; i++) {
+        var obj = user_courses_from_fpa[i];
+        var obj_id = obj.id;
+        var array_position_id = obj.position_id;
+
+        for (var y = 0; y < array_position_id.length; y++) {
+            var position = array_position_id[y].id;
+
+            $("#sub-" + position).text(user_courses_from_fpa[i].course_acronym);
+            $("#btn-" + position)
+                .attr("data-toggle", "none")
+                .attr("data-target", "#");
+            $("label[for='" + position + "']")
+                .addClass("disabled")
+                .addClass("btn-notchecked");
+            $("label[for='" + position + "']").css({
+                "font-weight": "700",
+                "color": "#00241c",
+                "background-color": "#507c75",
+            });
+        }
+    }
+}
+
 // Ao cliar no button
 $("#timetable-courses input").on("click", function () {
     var data_id = $(this).closest("div[data-id]").data("id");
@@ -168,7 +109,6 @@ $("#timetable-courses input").on("click", function () {
     $("#course-filter").val("");
 
     area_options();
-    block_options();
     timetables_options();
     $("#info-alert").hide();
     
@@ -179,7 +119,7 @@ $("#timetable-courses input").on("click", function () {
     if (updated_array) {
         var filtered_timetables = timetable_choosed.filter(function (t) {
             return t.position.includes(data_id);
-        });
+        });console.log(updated_array);console.log(timetable_choosed);
 
         filtered_timetables.forEach(function (timetable) {
             timetable.position.forEach(function (position) {
@@ -211,8 +151,8 @@ function area_options() {
     var area_datalist_options = document.getElementById("area-options");
     area_datalist_options.innerHTML = "";
 
-    for (var i = 0; i < user_areas_obj.length; i++) {
-        var area = user_areas_obj[i];
+    for (var i = 0; i < user_areas.length; i++) {
+        var area = user_areas[i];
         var option = document.createElement("option");
         option.value = area.acronym;
         option.textContent = area.acronym + " | " + area.name_area;
@@ -220,27 +160,14 @@ function area_options() {
     }
 }
 
-function block_options() {
-    var block_datalist_options = document.getElementById("block-options");
-    block_datalist_options.innerHTML = "";
-
-    for (var i = 0; i < user_blocks_obj.length; i++) {
-        var block = user_blocks_obj[i];
-        var option = document.createElement("option");
-        option.value = block.acronym;
-        option.textContent = block.acronym + " | " + block.name_block;
-        block_datalist_options.appendChild(option);
-    }
-}
-
 function timetables_options() {
     var span_value = $("#cel-position").text();
 
-    var filtered_element = user_disponibility_obj.find(function (element) {
+    var filtered_element = user_disponibility.find(function (element) {
         return element.id === span_value;
     });
 
-    var filtered_timetables = user_timetables_obj.filter(function (timetable) {
+    var filtered_timetables = user_timetables.filter(function (timetable) {
         var day_combos = timetable.day_combo;
 
         for (var i = 0; i < day_combos.length; i++) {
@@ -295,7 +222,7 @@ function block_filter() {
 
     if (block_value == "") {
     } else {
-        var filtered_areas = user_areas_obj.filter(function (element) {
+        var filtered_areas = user_areas.filter(function (element) {
             return element.blocks.includes(block_id);
         });
 
@@ -312,7 +239,7 @@ function block_filter() {
         }
 
         var filtered_timetables = timatables_datalist_options.filter(function (timetable) {
-            return user_courses_obj.some(function (course) {
+            return user_courses.some(function (course) {
                 return course.block === block_id && course.id === timetable.course_id;
             });
         });
@@ -339,7 +266,7 @@ function area_filter() {
     var area_value = $("#area-filter").val();
     var block_value = $("#block-filter").val();
 
-    var area_id = user_areas_obj.find(area => area.acronym === area_value)?.id;
+    var area_id = user_areas.find(area => area.acronym === area_value)?.id;
     var block_id = user_blocks_obj.find(block => block.acronym === block_value)?.id;
     $("#course-filter").val("");
 
@@ -351,7 +278,7 @@ function area_filter() {
     } else {
         if (block_value == "") {
             var filtered_timetables = timatables_datalist_options.filter(function (timetable) {
-                return user_courses_obj.some(function (course) {
+                return user_courses.some(function (course) {
                     return course.area === area_id && course.id === timetable.course_id;
                 });
             });
@@ -385,7 +312,7 @@ function area_filter() {
             }
         } else {
             var filtered_timetables = timatables_datalist_options.filter(function (timetable) {
-                return user_courses_obj.some(function (course) {
+                return user_courses.some(function (course) {
                     return course.block === block_id && course.area === area_id && course.id === timetable.course_id;
                 });
             });
@@ -466,7 +393,7 @@ $(document).ready(function () {
         var timetable_id = timatables_datalist_options.find(timetable => timetable.course_acronym === timetable_acronym)?.id;
         var grade_position = $("#cel-position").text(); //mon-mor-1 mon-mor-2 mon-mor-3
 
-        var filtered_timetable = user_timetables_obj.filter(function (timetable_item) {
+        var filtered_timetable = user_timetables.filter(function (timetable_item) {
             return timetable_item.id === timetable_id;
         });
 
@@ -510,7 +437,7 @@ $(document).ready(function () {
                         timeslots.forEach(function(timeslot) {
                             var timeslot_begin_hour = timeslot.timeslot_begin_hour;
                         
-                            var filtered_disponibility = user_disponibility_obj.filter(function(disponibility) {
+                            var filtered_disponibility = user_disponibility.filter(function(disponibility) {
                               return disponibility.day === get_full_day_of_week(day) && disponibility.timeslot_begin_hour === timeslot_begin_hour;
                             });
                         
@@ -558,7 +485,7 @@ $(document).ready(function () {
                         timeslots.forEach(function (timeslot) {
                             var timeslot_begin_hour = timeslot.timeslot_begin_hour;
 
-                            var filtered_disponibility = user_disponibility_obj.filter(function (disponibility) {
+                            var filtered_disponibility = user_disponibility.filter(function (disponibility) {
                                 return disponibility.day === get_full_day_of_week(day) && disponibility.timeslot_begin_hour === timeslot_begin_hour;
                             });
 

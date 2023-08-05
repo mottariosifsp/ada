@@ -5,20 +5,6 @@ document.querySelector('form').addEventListener('submit', function(event) {
     
     var usernameInput = document.getElementById("yourUsername");
     var passwordInput = document.getElementById("yourPassword");
-    
-     /* Validação de user
-    var username = yourUsername.value;
-    var password = yourPassword.value;
-    if (username === 'sp1' && password === 'ada') {
-        this.submit();
-    } else {
-        document.getElementById('loginError').style.display = 'block';
-        document.getElementById("yourUsername").value = "";
-        document.getElementById("yourPassword").value = "";
-        document.getElementById('passwordError').style.display = 'none';
-        document.getElementById('usernameError').style.display = 'none';
-    }
-    */
 
     if (usernameInput.checkValidity() === false) {
         usernameInput.classList.add("is-invalid");

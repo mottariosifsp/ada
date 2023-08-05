@@ -2,7 +2,7 @@ var lang = document.currentScript.getAttribute('data-lang');
 
 var texto
 var table
-var tabelaData
+var table_data
 
 var urlLang = 'pt-BR'
   // if(lang == 'en') {
@@ -40,16 +40,15 @@ $(document).ready(function() {
 
 $('#enviar-tabela').click(function() {
   if (confirm('Deseja realmente enviar a tabela?')) {
-  var tabelaData =  $('#queue').DataTable().data().toArray();
+  var table_data =  $('#queue').DataTable().data().toArray();
   var blockk_id = $('#blockk-id').attr('value');
-  console.log(tabelaData);
   var csrftoken = getCookie('csrftoken');
 
   $.ajax({
     url: '/staff/detalhes-bloco/criar-fila',
     method: 'POST',
     data: {
-      'tabela_data': JSON.stringify(tabelaData),
+      'table_data': JSON.stringify(table_data),
       'blockk_id': blockk_id,
     },
     headers: {

@@ -9,13 +9,82 @@ var user_timetables = document.currentScript.getAttribute('timetables');
 var timeslot_minutes = document.currentScript.getAttribute('variation_minutes');
 var max_quantity_cells = document.currentScript.getAttribute('max_quantity_cells');
 var cells_3_hours = document.currentScript.getAttribute('quantity_cells_3_hours');
+var user_disponibility = JSON.parse(document.currentScript.getAttribute("user_disponibility").replace(/'/g, '"'));
+var user_regime = document.currentScript.getAttribute("user_regime");
 var limited_hours_passed;
 var checkboxes = [];
 
-$(document).ready(function() {
-  $('.custom-icon').css('display', 'none');
-  $('.cel-plus').css('display', 'none');
+  if (user_regime == '20') {
+    const checkbox_element = document.querySelector('input[id="radio-20"]');
+    checkbox_element.checked = true;
+    var this_duration = 12*60/timeslot_minutes;
+    $('#cel-regime').text(this_duration);
+    cell_left_number = this_duration
+    cell_type_choosed = 20;
+    cell_situation = "not_checked"
+  } else if (user_regime == '40') {
+    const checkbox_element = document.querySelector('input[id="radio-40"]');
+    checkbox_element.checked = true;
+    var this_duration = 24*60/timeslot_minutes;
+    $('#cel-regime').text(this_duration);
+    cell_left_number = this_duration
+    cell_type_choosed = 40;
+    cell_situation = "not_checked"
+  } else if (user_regime == 'rde'){
+    const checkbox_element = document.querySelector('input[id="rde"]');
+    checkbox_element.checked = true;
+    var this_duration = 24*60/timeslot_minutes;
+    $('#cel-regime').text(this_duration);
+    cell_left_number = this_duration
+    cell_type_choosed = 40;
+    cell_situation = "not_checked"
+  }
 
+
+for (var i = 0; i < user_disponibility.length; i++) {
+  var obj = user_disponibility[i];
+  var checked_id = obj.id;
+  var checked_value = $('#' + checked_id).val();
+
+  update_cell_left_number(false);
+  var [checked_object, checked_day] = checked_value.split(',');
+  var [timeslot_begin_hour, timeslot_end_hour] = checked_object.split('-');
+  var lesson = {
+    id: checked_id,
+    timeslot_begin_hour: timeslot_begin_hour,
+    timeslot_end_hour: timeslot_end_hour,
+    day_of_week: checked_day,
+  };
+
+  checkboxes.push(lesson.id)
+  timeslots.push(lesson)
+
+  var checkbox = document.getElementById(checked_id);
+  if (checkbox) {
+    checkbox.checked = true;
+    var button = checkbox.parentElement;
+    var label = button.parentElement;
+    button.classList.add("active");
+    label.classList.add("active");
+  }
+  if(cell_left_number < 0) {
+    $('.custom-icon').css('display', '');
+    $('.cel-plus').css('display', '');
+    $('.cel').css('display', 'none');
+  } else {
+    $('#cel-regime').text(cell_left_number);
+    $('.custom-icon').css('display', 'none');
+    $('.cel-plus').css('display', 'none');
+    $('.cel').css('display', '');
+  }
+}
+
+
+$(document).ready(function() {
+  if(cell_left_number > 0) {
+    $('.custom-icon').css('display', 'none');
+    $('.cel-plus').css('display', 'none');
+  }
   //console.log("timeslot minutos", timeslot_minutes);
 
   $('input[name="regime"]').click(function() {
@@ -670,7 +739,6 @@ $(document).ready(function() {
     //   }
     // }
 
-
     if(cell_left_number == 0 && cell_type_choosed == 0) {
       block_options();
     } else {
@@ -678,6 +746,7 @@ $(document).ready(function() {
       var button_is_checked = $('#' + input_id).prop('checked');
 
       if(button_is_checked) {
+        
         cell_left_number += 1;
         var [input_object, input_day] = input_val.split(',');
         var [timeslot_begin_hour, timeslot_end_hour] = input_object.split('-');
@@ -753,7 +822,7 @@ $(document).ready(function() {
       }
     }
   });
-
+  
   // Enviar formulário inteiro
   $('#send-disponibility').click(function() {
     var user_regime =  $('input[name="regime"]:checked').val();
@@ -1002,6 +1071,8 @@ function put_in_checked(value) {
       timeslot_end_hour: timeslot_end_hour,
       day_of_week: checked_day,
     };
+
+    checkboxes.push(lesson.id)
 
     timeslots.push(lesson)
 
