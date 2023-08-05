@@ -32,9 +32,9 @@ $(document).ready(function() {
       $('.form-control').on('focus', function() {
         $(this).css('border-color', '#80bdff');
       });
-      $('.form-control').on('blur', function() {
-        $(this).css('border-color', '#ced4da');
-      });
+      // $('.form-control').on('blur', function() {
+      //   $(this).css('border-color', '#ced4da');
+      // });
       $(this).css('border', '1px solid #ced4da');
     }else{
       $(this).attr('course-id', course);
