@@ -7,133 +7,25 @@
     <link rel="stylesheet" href="{% static 'user/css/login.css' %}">
     <title>{% trans "Acessar conta" %}</title>
     <style>
-
-.expand-button {
-        color: white;
-        padding: 10px 20px;
-        border: none;
-        border-radius: 5px;
-        font-size: 16px;
-        cursor: pointer;
-        transition: all 0.3s ease-in-out;
-    }
-
-        body { 
-        background: linear-gradient(to top right, #3F927E, #2c436e);
-        margin: 0;
-        padding: 0;
-    }
-
-        @import url('https://fonts.googleapis.com/css2?family=Raleway&display=swap');
-        @import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@500&family=Raleway&display=swap');
-        
-        input.form-control {
-        border: none;
-        border-bottom: 1px solid #999;
-        padding: 7px 37px;
-        box-sizing: border-box;
-    }
-
-    section {
-        top: 500px !important;
-        border-radius: 40px;
-    }
-
-    label {
-        position: absolute;
-        left: 7%;
-    }
-
-    .logo-notlogged {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        height: 100%; /* Certifique-se de que ele ocupe a altura total do pai */
-    }
-
-    /* Restante do estilo para o parágrafo */
-    .modern-font {
-        padding: 20px 40px 0px 40px;
-        font-family: 'Raleway', sans-serif;
-        font-size: 14px; /* Tamanho da fonte */
-        line-height: 1.5;
-        color: white;
-    }
-
-    .register .ada-logo-login {
-        border-radius: 20px 0px 0px 20px;
-        box-shadow: 0 8px 15px rgba(0, 0, 0, 0.311);
-    }
-
-    .register {
-        display: flex; /* Torna o container de registro um flex container */
-        justify-content: center; /* Alinha horizontalmente ao centro */
-        align-items: center; /* Alinha verticalmente ao centro */
-        height: 75vh;
-        padding-left: 15%;
-        padding-right: 12%;
-        background-size: cover;
-        border-radius: 30px !important;
-        
-    }
-
-    .card {
-        padding: 40px 0px 0px 0px;
-        border-radius: 0;
-        border: none;
-        box-shadow: 0 8px 15px rgba(0, 0, 0, 0.311);
-    }
-
-    .ada-logo-login {
-        height: 500px;
-        padding: 40px;
-        background-size: cover;
-        background-image: url("{% static 'images/login_back.jpg' %}");
-        
-    }
-
-    #form-login {
-        margin-left: 30px;
-        margin-right: 30px;
-    }
-
-    .inputs {
-        margin-left: -14px;
-        height: 500px;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-    }
-
-    .card-title {
-        font-family: 'Josefin Sans', sans-serif;
-        font-weight: bolder;
-        margin-bottom: 60px;
-    }
-
-    .form-group input:focus ~ .form-label {
-        transform: translateY(-120%);
-        font-size: 12px;
-        color: #555;
-    }
-
-    i, input{
-        color: #002119;
-    }
+        .ada-logo-login {
+    height: 500px;
+    padding: 40px;
+    background-size: cover;
+    background-image: url("../static/images/login_back.jpg");
+}
     </style>
 {% endblock %}
+
 {% block body %}
 <section class="section register d-flex align-items-center justify-content-center">
     <div class="row">
-        <div class="col-12 col-md-6 ada-logo-login">
+        <div class="col-12 col-lg-6 ada-logo-login">
             <div class="logo-notlogged text-center d-flex align-items-center justify-content-center">
                 <img class="center" src="{% static 'images/logo_bg.png' %}" alt="">
                 <p class="modern-font">{% trans "Dê um" %} <b>'click'</b> {% trans "na praticidade: a nossa plataforma torna a atribuição de aulas uma lição fácil"%}!</p>
             </div>
         </div>
-        <div class="col-12 col-md-6 ">
+        <div class="col-12 col-lg-6 ">
             <div class="card inputs">
                 <div class="card-body">
                     <div class="pt-4 pb-2">
@@ -143,9 +35,12 @@
                         {% csrf_token %}
 
                         {% if form.non_field_errors %}
-                            <div id="loginError" class="col-12 alert alert-danger alert-dismissible fade show">
-                                {% trans "Usuário ou senha incorretos" %}.
-                            </div>
+                        <div id="loginError" class="alert alert-danger alert-dismissible fade show w-100">
+                            <i class="fas fa-exclamation-circle mr-2"></i> {% trans "Usuário ou senha incorretos" %}.
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
                         {% endif %}
 
                         <div class="col-12">

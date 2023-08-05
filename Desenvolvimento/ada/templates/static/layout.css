@@ -1,4 +1,3 @@
-/* Importação da fonte Montserrat do Google Fonts */
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,200;0,500;1,100;1,200&display=swap');
 
 body {background-color: #def2fc81;}
@@ -6,6 +5,20 @@ body {background-color: #def2fc81;}
 h1, h2, h3, h4 {color:#2b544b}
 
 h5, h6 {color:#2e675a}
+
+.btn-language {
+    border: 1px solid #044134;
+    color: white;
+}
+
+.btn-language:hover {
+    color: white;
+}
+
+html {
+  width: 100%;
+  height: 100%;
+}
 
 li.breadcrumb-item a {
     color: #2a5a4f;
@@ -50,8 +63,6 @@ margin-left: 0.5em;
 vertical-align: middle;
 }
 
-text-footer
-/* Definições de estilo para links */
 a:not(.title) {
     text-decoration: none;
     color: currentColor;
@@ -64,7 +75,6 @@ a:not(.title):hover {
 
 .dropdown-login { margin-right: 10px; }
 
-/* Definições de estilo para itens de navegação */
 .container.base {
     margin-top: 80px;
 }
@@ -120,8 +130,6 @@ div#navbarToggler ul.navbar-nav > li:nth-of-type(-n+4) a.nav-link:hover {
     font-weight: bold;
 }
 
-/* Definições de estilo para ícones */
-
 .language-icon {width: 5%;}
 
 li.language-icon-notlogged, div.language-icon-notlogged {width: 8%}
@@ -142,8 +150,6 @@ img.lang-icon, img.user-photo {width: 100%;}
 
 #sidebar-icon {display: none;}
 
-/* Definições de estilo para itens de dropdown */
-
 .top-right {
     position: absolute;
     top: 0;
@@ -151,8 +157,6 @@ img.lang-icon, img.user-photo {width: 100%;}
 }
 
 .dropdown-item:focus, .dropdown-item:active {background-color: #4eae9880;}
-
-/* Definições de estilos para sidebar */
 
 .navbar-modal.modal-body a:hover {
     text-decoration: none;
@@ -220,7 +224,6 @@ button.close:focus, button.close:active {box-shadow: none;}
     text-align: center;
 }
 
-/* Definições de estilo para media queries */
 @media (max-width: 1600px) {
     li.language-icon {width: 7%;}
     
