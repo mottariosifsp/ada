@@ -1,0 +1,64 @@
+.my-custom-scrollbar {
+    overflow-y: scroll;
+    height: 252px;
+}
+
+.my-custom-scrollbar {
+    position: relative;
+    overflow: auto;
+}
+
+.my-custom-scrollbar thead {
+    position: sticky;
+    top: 0;
+    z-index: 1;
+    background-color: #333;
+    color: #fff;
+}
+
+.my-custom-scrollbar thead th {
+    position: sticky;
+    top: 0;
+}
+
+/* For Webkit browsers (Chrome, Safari, Opera) */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background-color: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: #888;
+    border-radius: 1px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background-color: #555;
+}
+
+/* For Firefox */
+/* Add the "-moz" prefix for Firefox */
+/* You can customize the colors and other properties as needed */
+/* Please note that Firefox does not support border-radius for scrollbars */
+
+/* Track */
+scrollbar {
+    width: 8px;
+    background-color: #f1f1f1;
+}
+
+scrollbar-track {
+    background-color: #f1f1f1;
+}
+
+/* Handle */
+scrollbar-thumb {
+    background-color: #888;
+}
+
+scrollbar-thumb:hover {
+    background-color: #555;
+}
