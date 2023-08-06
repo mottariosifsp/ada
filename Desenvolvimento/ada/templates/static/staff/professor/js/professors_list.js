@@ -9,9 +9,9 @@ $(document).ready(function () {
     function addAcademicDegreeField() {
         var field = `
     <li class="list-group-item">
-        <input type="text" class="form-control academic-degree-name mb-2" placeholder="Nome do diploma">
-        <input type="number" class="form-control academic-degree-punctuation mb-2" placeholder="Pontuação">
-        <button type="button" class="btn btn-danger deleteClassBtn btn-remove-academic-degree"><i class="bi bi-trash"></i></button>
+        <input type="text" class="form-control academic-degree-name" placeholder="Nome do diploma">
+        <input type="number" class="form-control academic-degree-punctuation" placeholder="Pontuação">
+        <button type="button" class="btn btn-danger btn-remove-academic-degree">Remover</button>
     </li>
     `;
 
@@ -102,9 +102,9 @@ $(document).ready(function () {
         for (var i = 0; i < professorData.academic_degrees.length; i++) {
             var degree = professorData.academic_degrees[i];
             var listItem = $('<li class="list-group-item">' +
-                '<input type="text" class="form-control academic-degree-name mb-2" value="' + degree.name + '" placeholder="Nome do diploma">' +
-                '<input type="number" class="form-control academic-degree-punctuation mb-2" value="' + degree.punctuation + '" placeholder="Pontuação">' +
-                '<button type="button" class="btn btn-danger deleteClassBtn btn-remove-academic-degree"><i class="bi bi-trash"></i></button>' +
+                '<input type="text" class="form-control academic-degree-name" value="' + degree.name + '" placeholder="Nome do diploma">' +
+                '<input type="number" class="form-control academic-degree-punctuation" value="' + degree.punctuation + '" placeholder="Pontuação">' +
+                '<button type="button" class="btn btn-danger btn-remove-academic-degree">Remover</button>' +
                 '</li>');
 
             academicDegreesList.append(listItem);
