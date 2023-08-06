@@ -120,6 +120,11 @@ class AcademicDegree(models.Model):
     name = models.CharField(_('name'), max_length=90, unique=True)
     punctuation = models.IntegerField()
 
+    @classmethod
+    def clean_up_unused_degrees(cls):
+        unused_academic_degrees = cls.objects.filter(history__isnull=True)
+        unused_academic_degrees.delete()
+
     def clean(self):
         super().clean()
         convert_to_uppercase(self, 'name')

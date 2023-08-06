@@ -202,9 +202,11 @@ def update_save(request):
                     academic_degree, created = AcademicDegree.objects.get_or_create(name=name, punctuation=punctuation)
                     user.history.academic_degrees.add(academic_degree)
 
+            AcademicDegree.clean_up_unused_degrees()
             user.save()
             return JsonResponse({'message': 'Histórico criado com sucesso.'})
 
+        AcademicDegree.clean_up_unused_degrees()
         return JsonResponse({'message': 'Alterações salvas com sucesso.'})
 
 # class views
