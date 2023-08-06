@@ -161,7 +161,6 @@ def professors_list(request):
 @user_passes_test(is_staff)
 def update_save(request):
     if request.method == 'POST':
-        print(request.POST)  # Verifique se os dados estão sendo recebidos corretamente na view
         registration_id = request.POST.get('registration_id')
         birth = request.POST.get('birth')
         date_career = request.POST.get('date_career')
@@ -170,7 +169,6 @@ def update_save(request):
         date_area = request.POST.get('date_area')
         date_institute = request.POST.get('date_institute')
         academic_degrees_json = request.POST.get('academic_degrees')
-        print("SOU EU", academic_degrees_json)
 
         User = get_user_model()
         user = User.objects.get(registration_id=registration_id)
@@ -209,9 +207,7 @@ def update_save(request):
 
         return JsonResponse({'message': 'Alterações salvas com sucesso.'})
 
-
 # class views
-
 @login_required
 @user_passes_test(is_staff)
 def classes_list(request):

@@ -3,6 +3,9 @@ $(document).ready(function () {
         responsive: true
     });
 
+    var academicDegrees = [];
+    var academicDegreesList = $("#currentAcademicDegreesList");
+
     function addAcademicDegreeField() {
         var field = `
     <li class="list-group-item">
@@ -13,24 +16,23 @@ $(document).ready(function () {
     `;
 
         $("#currentAcademicDegreesList").append(field);
-
-
         updateAcademicDegreesData();
     }
 
     function updateAcademicDegreesData() {
-  var academicDegrees = [];
+        var academicDegrees = [];
+
         $("#currentAcademicDegreesList li").each(function () {
             var degreeName = $(this).find(".academic-degree-name").val();
             var degreePunctuation = $(this).find(".academic-degree-punctuation").val();
 
             if (degreeName !== undefined && degreeName.trim() !== "" &&
                 degreePunctuation !== undefined && degreePunctuation.trim() !== "") {
-                academicDegrees.push({ name: degreeName, punctuation: degreePunctuation });
+                academicDegrees.push({name: degreeName, punctuation: degreePunctuation});
             }
         });
+
         $("#academicDegreesData").val(JSON.stringify(academicDegrees));
-              console.log("academic", academicDegrees);
     }
 
     $(document).on("click", ".btn-remove-academic-degree", function () {
@@ -75,9 +77,7 @@ $(document).ready(function () {
             var degreeName = $(this).data('degree-name');
             var degreePunctuation = $(this).data('degree-punctuation');
             var degree = {
-                degreeid: degreeId,
-                name: degreeName,
-                punctuation: degreePunctuation
+                degreeid: degreeId, name: degreeName, punctuation: degreePunctuation
             };
             professorData.academic_degrees.push(degree);
         });
@@ -99,23 +99,34 @@ $(document).ready(function () {
         $("#currentAcademicDegreesList").empty();
 
         // adiciona os diplomas do professor no modal
-        var academicDegreesList = $("#currentAcademicDegreesList");
         for (var i = 0; i < professorData.academic_degrees.length; i++) {
             var degree = professorData.academic_degrees[i];
             var listItem = $('<li class="list-group-item">' +
-                '<span class="academic-degree-name" contenteditable="true">' + degree.name + '</span> - Pontuação: ' +
-                '<span class="academic-degree-punctuation" contenteditable="true">' + degree.punctuation + '</span>' +
+                '<input type="text" class="form-control academic-degree-name" value="' + degree.name + '" placeholder="Nome do diploma">' +
+                '<input type="number" class="form-control academic-degree-punctuation" value="' + degree.punctuation + '" placeholder="Pontuação">' +
+                '<button type="button" class="btn btn-danger btn-remove-academic-degree">Remover</button>' +
                 '</li>');
-
-            var removeButton = $('<button type="button" class="btn btn-danger btn-remove-academic-degree" data-id="' + degree.degreeid + '">Remover</button>');
-            listItem.append(removeButton);
 
             academicDegreesList.append(listItem);
         }
     }
 
-    $('#saveUpdateBtn').click(function () {
+    $("#saveUpdateBtn").click(function () {
         updateAcademicDegreesData();
+
+        var academicDegrees = [];
+        $("#currentAcademicDegreesList li").each(function () {
+            var degreeName = $(this).find(".academic-degree-name").text();
+            var degreePunctuation = $(this).find(".academic-degree-punctuation").text();
+
+            if (degreeName !== undefined && degreeName.trim() !== "" &&
+                degreePunctuation !== undefined && degreePunctuation.trim() !== "") {
+                academicDegrees.push({name: degreeName, punctuation: degreePunctuation});
+            }
+        });
+
+        updateAcademicDegreesData(academicDegrees);
+
         var registration_id = $('#registration_id').val();
         var birth = $('#birth').val();
         var date_career = $('#date_career').val();
@@ -141,24 +152,20 @@ $(document).ready(function () {
 
         let csrftoken = getCookie('csrftoken');
 
-        // Enviar dados para o servidor via requisição AJAX
         $.ajax({
-            method: 'POST',
-            url: '/staff/alteracoes-salvas/',
-            data: data,
-            headers: {
+            method: 'POST', url: '/staff/alteracoes-salvas/', data: data, headers: {
                 'X-CSRFToken': csrftoken
-            },
-            success: function (response) {
+            }, success: function (response) {
                 location.reload();
                 console.log(response);
                 $('#editProfessorModal').modal('hide');
-            },
-            error: function (xhr, status, error) {
+            }, error: function (xhr, status, error) {
                 console.log(error);
             }
         });
+
     });
+
 });
 
 function getCookie(name) {

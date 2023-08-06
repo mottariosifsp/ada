@@ -103,7 +103,6 @@ class History(models.Model):
         self.date_institute = date_institute
 
         if academic_degrees is not None:
-            # Crie e associe os objetos AcademicDegree corretamente
             academic_degrees_objs = []
             for degree_data in academic_degrees:
                 name = degree_data['name']
@@ -111,7 +110,6 @@ class History(models.Model):
                 academic_degree, _ = AcademicDegree.objects.get_or_create(name=name, punctuation=punctuation)
                 academic_degrees_objs.append(academic_degree)
 
-            # Limpe a relação ManyToMany atual e adicione os novos objetos AcademicDegree
             self.academic_degrees.clear()
             self.academic_degrees.add(*academic_degrees_objs)
 
