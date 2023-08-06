@@ -7,7 +7,6 @@ from django.utils.translation import gettext_lazy as _
 from area.models import Blockk, Area
 from common.validator.validator import convert_to_uppercase
 
-
 # Métodos de gerenciamento de usuário
 class UserManager(BaseUserManager):
     use_in_migrations = True
@@ -93,14 +92,29 @@ class History(models.Model):
 
     def __str__(self):
         return str(self.id_history)
-    
-    def update_history(self, birth, date_career, date_campus, date_professor, date_area, date_institute):
+
+    def update_history(self, birth, date_career, date_campus, date_professor, date_area, date_institute,
+                       academic_degrees=None):
         self.birth = birth
         self.date_career = date_career
         self.date_campus = date_campus
         self.date_professor = date_professor
         self.date_area = date_area
         self.date_institute = date_institute
+
+        if academic_degrees is not None:
+            # Crie e associe os objetos AcademicDegree corretamente
+            academic_degrees_objs = []
+            for degree_data in academic_degrees:
+                name = degree_data['name']
+                punctuation = int(degree_data['punctuation'])
+                academic_degree, _ = AcademicDegree.objects.get_or_create(name=name, punctuation=punctuation)
+                academic_degrees_objs.append(academic_degree)
+
+            # Limpe a relação ManyToMany atual e adicione os novos objetos AcademicDegree
+            self.academic_degrees.clear()
+            self.academic_degrees.add(*academic_degrees_objs)
+
         self.save()
 
 class AcademicDegree(models.Model):

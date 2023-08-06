@@ -16,7 +16,7 @@ from timetable.models import Day_combo, Timeslot, Timetable, Timetable_user
 from area.models import Blockk, Area
 from classs.models import Classs
 from course.models import Course
-from user.models import User, History
+from user.models import User, History, AcademicDegree
 from .models import Deadline, Criteria
 from django.db.models import F, Sum, Value
 
@@ -156,11 +156,12 @@ def professors_list(request):
     professors = User.objects.filter(is_superuser=False)
     return render(request, 'staff/professor/professors_list.html', {'professors': professors})
 
+
 @login_required
 @user_passes_test(is_staff)
 def update_save(request):
     if request.method == 'POST':
-        print("funcionou o if")
+        print(request.POST)  # Verifique se os dados estão sendo recebidos corretamente na view
         registration_id = request.POST.get('registration_id')
         birth = request.POST.get('birth')
         date_career = request.POST.get('date_career')
@@ -168,21 +169,41 @@ def update_save(request):
         date_professor = request.POST.get('date_professor')
         date_area = request.POST.get('date_area')
         date_institute = request.POST.get('date_institute')
-        print(birth)
+        academic_degrees_json = request.POST.get('academic_degrees')
+        print("SOU EU", academic_degrees_json)
 
         User = get_user_model()
         user = User.objects.get(registration_id=registration_id)
         history = user.history
-        print("funcionou o get user")
+
         if history is not None:
+            academic_degrees = []
+            if academic_degrees_json:
+                academic_degrees = json.loads(academic_degrees_json)
+                for degree_data in academic_degrees:
+                    name = degree_data['name']
+                    punctuation = degree_data['punctuation']
+                    academic_degree, created = AcademicDegree.objects.get_or_create(name=name, punctuation=punctuation)
+                    history.academic_degrees.add(academic_degree)
+
             history.update_history(birth=birth, date_career=date_career, date_campus=date_campus,
-                                   date_professor=date_professor, date_area=date_area, date_institute=date_institute)
+                                   date_professor=date_professor, date_area=date_area, date_institute=date_institute,
+                                   academic_degrees=academic_degrees)
+
             history.save()
-            print("funcionou o history")
         else:
             user.history = History.objects.create(birth=birth, date_career=date_career, date_campus=date_campus,
                                                   date_professor=date_professor, date_area=date_area,
                                                   date_institute=date_institute)
+            academic_degrees = []
+            if academic_degrees_json:
+                academic_degrees = json.loads(academic_degrees_json)
+                for degree_data in academic_degrees:
+                    name = degree_data['name']
+                    punctuation = degree_data['punctuation']
+                    academic_degree, created = AcademicDegree.objects.get_or_create(name=name, punctuation=punctuation)
+                    user.history.academic_degrees.add(academic_degree)
+
             user.save()
             return JsonResponse({'message': 'Histórico criado com sucesso.'})
 
