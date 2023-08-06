@@ -6,69 +6,70 @@
     {{ block.super }}
     <title>{% trans "Professores" %}</title>
     <link rel="stylesheet" href="{% static 'staff/professor/css/professors_list.css' %}">
-    <script src="{% static 'staff/professor/js/professors_list.js' %}" data-lang={{LANGUAGE_CODE}}></script>
+    <script src="{% static 'staff/professor/js/professors_list.js' %}" data-lang={{ LANGUAGE_CODE }}></script>
 {% endblock %}
 
 {% block body %}
     {{ block.super }}
     <h1 class="title-page">{% trans "Professores" %}</h1>
     <nav>
-      <ol class="breadcrumb">
-        <li class="breadcrumb-item"><a href="{% url 'home' %}"><i class="bi bi-house-door"></i></a></li>
-        <li class="breadcrumb-item active" aria-current="page">{% trans "Configurar Lista de Professores" %}</li>
-        <li class="breadcrumb-item active">{% trans "Professores" %}</li>
-      </ol>
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="{% url 'home' %}"><i class="bi bi-house-door"></i></a></li>
+            <li class="breadcrumb-item active" aria-current="page">{% trans "Configurar Lista de Professores" %}</li>
+            <li class="breadcrumb-item active">{% trans "Professores" %}</li>
+        </ol>
     </nav>
     <div class="tabela">
         <table class="table table-bordered editable" id="professors_list">
             <thead>
-                <tr>
-                    <th scope="col">{% trans "Registro" %}</th>
-                    <th scope="col">{% trans "Nome" %}</th>
-                    <th scope="col">{% trans "Data de Nascimento" %}</th>
-                    <th scope="col">{% trans "Data de Carreira" %}</th>
-                    <th scope="col">{% trans "Data no Campus" %}</th>
-                    <th scope="col">{% trans "Data como Professor" %}</th>
-                    <th scope="col">{% trans "Data na Área" %}</th>
-                    <th scope="col">{% trans "Data no Instituto" %}</th>
-                    <th scope="col">{% trans "Diploma Pontuação" %}</th>
-                    <th scope="col">{% trans "Ações" %}</th>
-                </tr>
+            <tr>
+                <th scope="col">{% trans "Registro" %}</th>
+                <th scope="col">{% trans "Nome" %}</th>
+                <th scope="col">{% trans "Data de Nascimento" %}</th>
+                <th scope="col">{% trans "Data de Carreira" %}</th>
+                <th scope="col">{% trans "Data no Campus" %}</th>
+                <th scope="col">{% trans "Data como Professor" %}</th>
+                <th scope="col">{% trans "Data na Área" %}</th>
+                <th scope="col">{% trans "Data no Instituto" %}</th>
+                <th scope="col">{% trans "Diploma Pontuação" %}</th>
+                <th scope="col">{% trans "Ações" %}</th>
+            </tr>
             </thead>
             <tbody>
-                {% csrf_token %}
-                {% for professor in professors %}
-                    <!-- Lista -->
-                        <tr>
-                            <td>{{ professor.registration_id }}</td>
-                            <td>{{ professor.get_full_name }}</td>
-                            <td>{{ professor.history.birth|date:"Y-m-d" }}</td>
-                            <td>{{ professor.history.date_career|date:"Y-m-d" }}</td>
-                            <td>{{ professor.history.date_campus|date:"Y-m-d" }}</td>
-                            <td>{{ professor.history.date_professor|date:"Y-m-d" }}</td>
-                            <td>{{ professor.history.date_area|date:"Y-m-d" }}</td>
-                            <td>{{ professor.history.date_institute|date:"Y-m-d" }}</td>
-                            <td>
-                                {% for academic_degree in professor.history.academic_degrees.all %}
-                                    <span data-degree-id="{{ academic_degree.id_academic_degree }}"
-                                          data-degree-name="{{ academic_degree.name }}"
-                                          data-degree-punctuation="{{ academic_degree.punctuation }}">{{ academic_degree.name }}</span>
-                                    <br>
-                                {% endfor %}
-                            </td>
-                            <td>
-                                <button type="button" data-toggle="modal" data-target="#editProfessorModal"
-                                        data-counter="{{ counter }}" class="btn btn-warning editProfessorBtn"><i
-                                        class="bi bi-pencil"></i></button>
-                            </td>
-                        </tr>
-                {% endfor %}
+            {% csrf_token %}
+            {% for professor in professors %}
+                <!-- Lista -->
+                <tr>
+                    <td>{{ professor.registration_id }}</td>
+                    <td>{{ professor.get_full_name }}</td>
+                    <td>{{ professor.history.birth|date:"Y-m-d" }}</td>
+                    <td>{{ professor.history.date_career|date:"Y-m-d" }}</td>
+                    <td>{{ professor.history.date_campus|date:"Y-m-d" }}</td>
+                    <td>{{ professor.history.date_professor|date:"Y-m-d" }}</td>
+                    <td>{{ professor.history.date_area|date:"Y-m-d" }}</td>
+                    <td>{{ professor.history.date_institute|date:"Y-m-d" }}</td>
+                    <td>
+                        {% for academic_degree in professor.history.academic_degrees.all %}
+                            <span data-degree-id="{{ academic_degree.id_academic_degree }}"
+                                  data-degree-name="{{ academic_degree.name }}"
+                                  data-degree-punctuation="{{ academic_degree.punctuation }}">{{ academic_degree.name }}</span>
+                            <br>
+                        {% endfor %}
+                    </td>
+                    <td>
+                        <button type="button" data-toggle="modal" data-target="#editProfessorModal"
+                                data-counter="{{ counter }}" class="btn btn-warning editProfessorBtn"><i
+                                class="bi bi-pencil"></i></button>
+                    </td>
+                </tr>
+            {% endfor %}
             </tbody>
         </table>
     </div>
 
     <!-- Modal para edição de professor -->
-    <div class="modal fade" id="editProfessorModal" tabindex="-1" role="dialog" aria-labelledby="editProfessorModalLabel" aria-hidden="true">
+    <div class="modal fade" id="editProfessorModal" tabindex="-1" role="dialog"
+         aria-labelledby="editProfessorModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
