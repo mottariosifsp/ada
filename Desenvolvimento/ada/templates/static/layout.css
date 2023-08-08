@@ -88,15 +88,6 @@ nav.navbar-nav {
     padding: 0px;
 }
 
-nav.navbar-nav {
-    z-index: 1000;
-    background-color: #3F927E;
-    color: #f9fefd;
-    box-shadow: 0px 2px 8px #2a5a4f;
-    font-family: 'Montserrat', sans-serif;
-    padding: 0px;
-}
-
 div#navbarToggler ul.navbar-nav > li.nav-item, .navbar-modal ul.navbar-nav > li.nav-item {
     transition: all .1s ease;
     cursor: pointer;
@@ -109,18 +100,37 @@ div#navbarToggler a.nav-link.title {
 div#navbarToggler a.nav-link.title:hover {
     margin-top: 2px;
 }
+nav.navbar-nav {
+    z-index: 1000;
+    background: linear-gradient(to top right, #3F927E, #2c436e);
+    color: #f9fefd;
+    box-shadow: 0px 2px 8px #2a5a4f;
+    font-family: 'Montserrat', sans-serif;
+    padding: 0px;
+}
 
 div#navbarToggler ul.navbar-nav > li.nav-item:nth-of-type(-n+4):hover {
     border-radius: 5px;
-    border: 0.1px solid #2a5a4f;
-    background-color: #2a5a4f;
+    border: 0.1px solid #213b5f;
+    background-color: #213b5f;
     margin-top: 8px;
     margin-bottom: 8px;
 }
+
+div#navbarToggler ul.navbar-nav > li.nav-item:hover {
+    border-radius: 5px;
+    border: 0.1px solid #213b5f;
+    background-color: #213b5f;
+}
+
+div#navbarToggler li.nav-item button:hover {
+    border: 1px solid #3F927E;
+}
+
 .navbar-modal ul.navbar-nav > li.nav-item:nth-of-type(-n+4):hover {
     border-radius: 5px;
-    border: 0.1px solid #2a5a4f;
-    background-color: #2a5a4f;
+    border: 0.1px solid #213b5f;
+    background-color: #213b5f;
     margin-top: 8px;
     margin-bottom: 8px;
 }
