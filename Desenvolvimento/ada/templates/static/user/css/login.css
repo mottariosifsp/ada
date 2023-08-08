@@ -136,7 +136,7 @@ label {
     height: 500px;
     padding: 40px;
     background-size: cover;
-    background-image: url("../static/images/login_back.jpg");
+    background-image: url("/templates/static/images/login_back.jpg");
 }
 
 #form-login {

@@ -7,12 +7,7 @@
     <link rel="stylesheet" href="{% static 'user/css/login.css' %}">
     <title>{% trans "Acessar conta" %}</title>
     <style>
-        .ada-logo-login {
-    height: 500px;
-    padding: 40px;
-    background-size: cover;
-    background-image: url("../static/images/login_back.jpg");
-}
+        .ada-logo-login {background-image: url("{% static '/images/login_back.jpg' %}");}
     </style>
 {% endblock %}
 

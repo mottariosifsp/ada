@@ -85,22 +85,44 @@ nav.navbar-nav {
     color: #f9fefd;
     box-shadow: 0px 2px 8px #2a5a4f;
     font-family: 'Montserrat', sans-serif;
+    padding: 0px;
+}
+
+nav.navbar-nav {
+    z-index: 1000;
+    background-color: #3F927E;
+    color: #f9fefd;
+    box-shadow: 0px 2px 8px #2a5a4f;
+    font-family: 'Montserrat', sans-serif;
+    padding: 0px;
 }
 
 div#navbarToggler ul.navbar-nav > li.nav-item, .navbar-modal ul.navbar-nav > li.nav-item {
-    padding: 5px 0;
     transition: all .1s ease;
     cursor: pointer;
 }
 
-div#navbarToggler ul.navbar-nav > li.nav-item:hover, .navbar-modal ul.navbar-nav > li.nav-item:hover {
+div#navbarToggler a.nav-link.title {
+    margin-top: 4px;
+}
+
+div#navbarToggler a.nav-link.title:hover {
+    margin-top: 2px;
+}
+
+div#navbarToggler ul.navbar-nav > li.nav-item:nth-of-type(-n+4):hover {
     border-radius: 5px;
     border: 0.1px solid #2a5a4f;
     background-color: #2a5a4f;
-    margin-top: 2px;
-    padding-top: 0px;
-    margin-bottom: 2px;
-    padding-bottom: 0px;
+    margin-top: 8px;
+    margin-bottom: 8px;
+}
+.navbar-modal ul.navbar-nav > li.nav-item:nth-of-type(-n+4):hover {
+    border-radius: 5px;
+    border: 0.1px solid #2a5a4f;
+    background-color: #2a5a4f;
+    margin-top: 8px;
+    margin-bottom: 8px;
 }
 
 .nav-brand {

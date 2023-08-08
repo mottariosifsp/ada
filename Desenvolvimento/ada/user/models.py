@@ -70,6 +70,12 @@ class User(AbstractBaseUser, PermissionsMixin):
     def get_short_name(self):
         return self.first_name
 
+    def get_first_name_and_last_initial(self):
+        last_name_parts = self.last_name.split()  # Dividir o sobrenome em palavras
+        last_name_last_word = last_name_parts[-1] if last_name_parts else ''
+        last_name_initial = last_name_last_word[0] if last_name_last_word else ''
+        return f"{self.first_name} {last_name_initial}."
+
     def email_user(self, subject, message, from_email=None, **kwargs):
         send_mail(subject, message, from_email, [self.email], **kwargs)
 
