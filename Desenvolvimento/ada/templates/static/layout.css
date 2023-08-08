@@ -109,12 +109,12 @@ nav.navbar-nav {
     padding: 0px;
 }
 
-div#navbarToggler ul.navbar-nav > li.nav-item:nth-of-type(-n+4):hover {
+div#navbarToggler ul.navbar-nav > li.word-topic:hover {
     border-radius: 5px;
     border: 0.1px solid #213b5f;
     background-color: #213b5f;
-    margin-top: 8px;
-    margin-bottom: 8px;
+    margin-top: 2px;
+    margin-bottom: 2px;
 }
 
 div#navbarToggler ul.navbar-nav > li.nav-item:hover {
@@ -125,14 +125,6 @@ div#navbarToggler ul.navbar-nav > li.nav-item:hover {
 
 div#navbarToggler li.nav-item button:hover {
     border: 1px solid #3F927E;
-}
-
-.navbar-modal ul.navbar-nav > li.nav-item:nth-of-type(-n+4):hover {
-    border-radius: 5px;
-    border: 0.1px solid #213b5f;
-    background-color: #213b5f;
-    margin-top: 8px;
-    margin-bottom: 8px;
 }
 
 .nav-brand {
@@ -200,7 +192,7 @@ img.lang-icon, img.user-photo {width: 100%;}
 }
 
 .navbar-modal .modal-line:not(:first-child):hover, .modal-footer .row .col a:hover {
-    background-color: #2a5a4f;
+    background-color: #213b5f;
     border-radius: 10px;
     transition: all 0.5;
 }
@@ -217,7 +209,7 @@ img.lang-icon, img.user-photo {width: 100%;}
 
 .navbar-modal.modal.fade:not(.show).left .modal-dialog {transform: transX(-100%);}
 
-.navbar-modal .modal-content {background-color: #3F927E;}
+.navbar-modal .modal-content {background: linear-gradient(to top right, #3F927E, #2c436e);}
 
 .navbar-modal .modal-header {
     padding-bottom: 13px;

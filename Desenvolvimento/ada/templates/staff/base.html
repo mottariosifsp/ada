@@ -22,7 +22,7 @@
     {% if not user.is_authenticated %} <!-- navbar que aparece no login -->
     <nav class="navbar">
       <div class="nav-item dropdown language-icon-notlogged top-right justify-content-end">
-        <a class="nav-link dropdown-toggle" href="#navbarDropdownLangLogin" id="navbarDropdownLangLogin" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownLangLogin" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           {% get_current_language as LANGUAGE_CODE %}
           <button class="btn btn-language" readonly>{% if LANGUAGE_CODE == 'en' %}EN{% else %}PT{% endif %}</button>
         </a>
@@ -63,10 +63,10 @@
       </div>
       <div class="collapse navbar-collapse justify-content-end" id="navbarToggler">
         <ul class="navbar-nav mx-auto ">
-          <li class="nav-item "><a class="nav-link title" href="{% url 'professors_list' %}">{% trans "Professores" %}</a></li>
-          <li class="nav-item "><a class="nav-link title" href="{% url 'classes_list' %}">{% trans "Turma" %}</a></li>
-          <li class="nav-item "><a class="nav-link title" href="{% url 'blocks_list' %}">{% trans "Bloco" %}</a></li>
-          <li class="nav-item "><a class="nav-link title" href="{% url 'timetables' %}">{% trans "Grade" %}</a></li>
+          <li class="nav-item word-topic"><a class="nav-link title" href="{% url 'professors_list' %}">{% trans "Professores" %}</a></li>
+          <li class="nav-item word-topic"><a class="nav-link title" href="{% url 'classes_list' %}">{% trans "Turma" %}</a></li>
+          <li class="nav-item word-topic"><a class="nav-link title" href="{% url 'blocks_list' %}">{% trans "Bloco" %}</a></li>
+          <li class="nav-item word-topic"><a class="nav-link title" href="{% url 'timetables' %}">{% trans "Grade" %}</a></li>
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownLangLogin" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               {% get_current_language as LANGUAGE_CODE %}
