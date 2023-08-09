@@ -1,5 +1,5 @@
 body {
-    background: linear-gradient(to top right, #3F927E, #2c436e);
+    /*background: linear-gradient(to top right, #3F927E, #2c436e);*/
     margin: 0;
     padding: 0;
     color: white;
@@ -24,7 +24,7 @@ body {
 }
 
 .element {
-    color: white;
+    color: #000000;
     align-items: flex-start;
     font-size: 1.5rem;
     text-transform: uppercase;
