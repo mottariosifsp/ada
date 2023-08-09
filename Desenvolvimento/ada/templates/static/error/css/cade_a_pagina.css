@@ -1,0 +1,92 @@
+body {
+    background: linear-gradient(to top right, #3F927E, #2c436e);
+    margin: 0;
+    padding: 0;
+    color: white;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    display: flex;
+}
+
+
+style > svg#freepik_stories-questions:not(.animated) .animable {
+    opacity: 0;
+}
+
+svg#freepik_stories-questions.animated #freepik--background-simple--inject-33 {
+    animation: 1s 1 forwards linear fadeIn, 1.5s Infinite linear wind;
+    animation-delay: 0s, 1s;
+}
+
+svg#freepik_stories-questions.animated #freepik--question-marks-2--inject-33 {
+    animation: 1.9s 1 forwards ease-in slideDown, 1.5s Infinite linear floating;
+    animation-delay: 0s, 1.9s;
+}
+
+svg#freepik_stories-questions.animated #freepik--question-mark-1--inject-33 {
+    animation: 1.8s 1 forwards ease-in slideUp;
+    animation-delay: 0s;
+}
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+@keyframes wind {
+    0% {
+        transform: rotate(0deg);
+    }
+    25% {
+        transform: rotate(1deg);
+    }
+    75% {
+        transform: rotate(-1deg);
+    }
+}
+
+@keyframes slideDown {
+    0% {
+        opacity: 0;
+        transform: translateY(-30px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes floating {
+    0% {
+        opacity: 1;
+        transform: translateY(0px);
+    }
+    50% {
+        transform: translateY(-10px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0px);
+    }
+}
+
+@keyframes slideUp {
+    0% {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    100% {
+        opacity: 1;
+        transform: inherit;
+    }
+}
+
+.animator-hidden {
+    display: none;
+}
+
