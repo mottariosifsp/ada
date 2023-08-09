@@ -30,7 +30,8 @@ SECRET_KEY = str(os.getenv("SECRET_KEY"))
 DEBUG = True
 
 ALLOWED_HOSTS = []
-CSRF_TRUSTED_ORIGINS=['https://gusttavosoares-zany-palm-tree-95pjqq9x5vr2x6wv-8000.preview.app.github.dev']
+CSRF_TRUSTED_ORIGINS=['https://gusttavosoares-zany-palm-tree-95pjqq9x5vr2x6wv-8000.preview.app.github.dev',
+                      'https://localhost:8000']
 # Application definition    
 
 INSTALLED_APPS = [
