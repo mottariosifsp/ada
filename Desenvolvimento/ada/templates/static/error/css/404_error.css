@@ -3,8 +3,44 @@ body {
     margin: 0;
     padding: 0;
     color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: #f0f0f0;
 }
 
+.container {
+    margin-top: -5%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.container-inside {
+    flex-direction: column;
+    justify-content: center;
+    display: flex;
+
+}
+
+.element {
+    color: white;
+    align-items: flex-start;
+    font-size: 1.5rem;
+    text-transform: uppercase;
+}
+
+.error-message {
+    font-family: 'Josefin Sans', sans-serif;
+    font-weight: bolder;
+}
+
+.svg {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    left: 10%;
+}
 
 style > svg#freepik_stories-questions:not(.animated) .animable {
     opacity: 0;
