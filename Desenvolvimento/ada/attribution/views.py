@@ -527,6 +527,11 @@ def attribution_detail(request):
     timetables_user = Timetable_user.objects.filter(timetable__in=timetables).all()
 
     timetables_professor = []
+
+    morning_timestlots = timeslots_all.filter(hour_start__lt=datetime.time(12, 0, 0))
+    afternoon_timestlots = timeslots_all.filter(hour_start__gte=datetime.time(12, 0, 0), hour_start__lt=datetime.time(18, 0, 0))
+    night_timestlots = timeslots_all.filter(hour_start__gte=datetime.time(18, 0, 0))
+
     
     for timetable_user in timetables_user:
         day_combos = timetable_user.timetable.day_combo.all()
@@ -551,10 +556,13 @@ def attribution_detail(request):
                 }
                 timetables_professor.append(timetable_professor)
     timetables_professor_json = json.dumps(timetables_professor, ensure_ascii=False).encode('utf8').decode()
-    # print(timetables_professor_json)
+    print(timetables_professor_json)
 
     data = {
         'timeslots': timeslots_all,
+        'morning_timeslots': morning_timestlots,
+        'afternoon_timeslots': afternoon_timestlots,
+        'night_timeslots': night_timestlots,
         'timetables_professor': timetables_professor_json,
         'classs': classs
     }

@@ -11,6 +11,22 @@ $.each(timetables_user, function(index, value) {
 });
 
 $(document).ready(function() {
-  console.log(tametables_user)
+  // console.log(tametables_user)
+  
+  $('.header-table').closest('table').find('.header-days').hide();
+  $('.header-table').closest('table').find('tbody').hide();
 
+  $('.header-table').click(function() {
+    $(this).find('.icon-minimize').text('-');
+    $(this).closest('table').find('.header-days').toggle();
+    $(this).closest('table').find('tbody').toggle();
+    if ( $(this).closest('table').find('.header-days').is(":visible")) {
+      $('html, body').animate({
+        scrollTop: $(this).closest('table').offset().top - 100
+      }, 600);
+      
+    }else{
+      $(this).find('.icon-minimize').text('+');
+    }
+  });
 });
