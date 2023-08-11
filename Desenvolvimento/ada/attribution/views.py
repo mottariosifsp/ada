@@ -97,8 +97,11 @@ def attribution(request):
     return render(request, 'attribution/attribution.html')
 
 def timestup(professor, blockk):
-    professor_to_end_queue(professor)
-    start_attribution(blockk)
+    if TeacherQueuePosition.objects.count() > 1:
+        professor_to_end_queue(professor)
+        start_attribution(blockk)
+    else:
+        Deadline.objects.filter(blockk=blockk, name='STARTASSIGNMENTDEADLINE').update(deadline_end=datetime.datetime.now())
 
 def start_attribution(blockk):
     if TeacherQueuePosition.objects.filter(blockk=blockk).exists():
