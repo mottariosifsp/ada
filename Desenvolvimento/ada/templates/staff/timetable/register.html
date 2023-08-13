@@ -30,7 +30,7 @@
       
       <!-- limpar -->
       <h1><span id="selected_class" class="d-flex justify-content-center">{{ request.GET.class }}</span></h1>
-      <div class="container">
+      <div class="container" style="padding-bottom: 1rem;">
         <form id="course_select">
           {% csrf_token %}
           <table class="table" id="timetable_table">
