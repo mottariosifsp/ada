@@ -22,6 +22,8 @@ from django.db.models import F, Sum, Value
 
 from django.contrib.auth.decorators import login_required
 
+from common.date_utils import day_to_number
+
 def is_staff(user):
     return user.is_staff
 
@@ -434,29 +436,30 @@ def edit_timetable(request):
 
         timetable_complete = []
 
-        for day in range(Timeslot.objects.all().count()):
-            list_day = []
-            for timeslot in range(7):
-                list_day.append('')
-            timetable_complete.append(list_day)
-
         for timetable in timetables:
-            for day_combo in timetable.day_combo.all():
-                for timeslot in day_combo.timeslots.all():
-                    timetable_complete[timeslot.position-1][enum_to_day_number(day_combo.day)+1] = timetable.course.name_course
+            day_combos = timetable.day_combo.all()
+            for day_combo in day_combos:
+                day = day_to_number(day_combo.day)
+                timeslots = day_combo.timeslots.all()
 
-        for i, row in enumerate(timetable_complete):
-            for j, col in enumerate(row):
-                if j == 0:
-                    col = str(timeslots[i].hour_start) + " - " + str(timeslots[i].hour_end)
-                    timetable_complete[i][j] = col
+                for timeslot in timeslots:
+
+                    position = timeslot.position
+                    timetable_professor = {
+                        "cord": f'{position}-{day}',
+                        "course": timetable.course.name_course,
+                        "acronym": timetable.course.acronym,
+                    }
+                    timetable_complete.append(timetable_professor)
+
+        timetable_complete_json = json.dumps(timetable_complete, ensure_ascii=False).encode('utf8').decode()
 
         print(timetable_complete)
-        print(selected_courses)
+        # print(selected_courses)
         data = {
             'courses': selected_courses,
             'timeslots': Timeslot.objects.all().order_by('hour_start'),
-            'timetable': timetable_complete,
+            'timetable': timetable_complete_json,
             'classs': selected_class,
         }
         return render(request, 'staff/timetable/edit_timetable.html', data)
@@ -464,14 +467,25 @@ def edit_timetable(request):
     elif request.method == 'POST':
         message = ""
         selected_courses = json.loads(request.POST.get('selected_courses'))
-        print(f'cursos selecionados {selected_courses}')
-        selected_courses.pop(0)
+        
         try:
-            selected_class = Classs.objects.get(registration_class_id__icontains=(request.GET.get('class')))
+            selected_class = Classs.objects.get(registration_class_id__exact=(request.POST.get('selected_class')))
         except Classs.DoesNotExist:
             message = "Selecione uma turma válida"
             return JsonResponse({'erro': True, 'mensagem': message})   
-         
+        
+
+        for day_week in selected_courses:
+            for course_name in day_week:
+                if(course_name == ''):
+                    continue
+                try:
+                    course = Course.objects.get(registration_course_id=course_name)
+                    course_name=course
+                except Course.DoesNotExist:
+                    message = "Selecione uma disciplina válida"
+                    return JsonResponse({'erro': True, 'mensagem': message})
+
         timetable_combo_saver(selected_courses, selected_class)
 
         return JsonResponse({'erro': False, 'mensagem': message})
@@ -487,28 +501,27 @@ def show_timetable(request):
 
         timetable_complete = []
 
-        for day in range(Timeslot.objects.all().count()):
-            list_day = []
-            for timeslot in range(7):
-                list_day.append('')
-            timetable_complete.append(list_day)
-
         for timetable in timetables:
-            for day_combo in timetable.day_combo.all():
-                for timeslot in day_combo.timeslots.all():
-                    timetable_complete[timeslot.position-1][enum_to_day_number(day_combo.day)+1] = timetable.course.name_course
+            day_combos = timetable.day_combo.all()
+            for day_combo in day_combos:
+                day = day_to_number(day_combo.day)
+                timeslots = day_combo.timeslots.all()
 
-        for i, row in enumerate(timetable_complete):
-            for j, col in enumerate(row):
-                if j == 0:
-                    col = str(timeslots[i].hour_start) + " - " + str(timeslots[i].hour_end)
-                    timetable_complete[i][j] = col
+                for timeslot in timeslots:
 
-        print(timetable_complete)
+                    position = timeslot.position
+                    timetable_professor = {
+                        "cord": f'{position}-{day}',
+                        "course": timetable.course.name_course,
+                        "acronym": timetable.course.acronym,
+                    }
+                    timetable_complete.append(timetable_professor)
+
+        timetable_complete_json = json.dumps(timetable_complete, ensure_ascii=False).encode('utf8').decode()
 
         data = {
             'timeslots': Timeslot.objects.all().order_by('hour_start'),
-            'timetables': timetable_complete,
+            'timetables': timetable_complete_json,
             'classs': selected_class,
         }
 
