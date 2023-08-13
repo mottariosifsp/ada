@@ -1,0 +1,17 @@
+.header-table:hover{
+    opacity: 0.9;
+    cursor: pointer;
+}
+
+.form-control:focus{
+    border-color: #80bdff;
+    box-shadow: 0 0 0 0.0rem rgba(0,123,255,.25);
+}
+
+td{
+    width: calc((100% - 7.7rem) / 6) !important;  /* 6 columns excluding the first column */
+}
+
+.container{
+    padding-bottom: 1rem;
+}

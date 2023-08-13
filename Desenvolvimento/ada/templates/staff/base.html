@@ -19,11 +19,12 @@
     {% endblock %}
   </head>
   <body>
-    {% if not user.is_authenticated %}
+    {% if not user.is_authenticated %} <!-- navbar que aparece no login -->
     <nav class="navbar">
       <div class="nav-item dropdown language-icon-notlogged top-right justify-content-end">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownLangLogin" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          <img class="lang-icon" src="{% static 'images/language_icon.png' %}" alt="change of language icon">
+          {% get_current_language as LANGUAGE_CODE %}
+          <button class="btn btn-language" readonly>{% if LANGUAGE_CODE == 'en' %}EN{% else %}PT{% endif %}</button>
         </a>
         <div class="dropdown-menu dropdown-menu-right dropdown-login" aria-labelledby="navbarDropdownLangLogin">
           {% get_current_language as LANGUAGE_CODE %}
@@ -48,13 +49,12 @@
         </div>
       </div>
     </nav>
-    {% else %}
+    {% else %} <!-- navbar staff -->
     <nav class="navbar navbar-nav navbar-expand-lg fixed-top navbar-dark nav-color">
       <div class="d-flex justify-content-between align-items-center w-100">
         <div class="nav-brand mr-auto">
           <a class="logo" href="{% url 'home' %}">
-            <img class="ada-logo" src="{% static 'images/logo_ADA.png' %}" alt="logo do site ADA">
-            <span>| Atribuição de Aulas</span>
+            <img class="ada-logo" src="{% static 'images/logo_bg.png' %}" alt="logo do site ADA">
           </a>
         </div>
         <div id="sidebar-icon" data-toggle="modal" data-target="#myModal">
@@ -63,13 +63,14 @@
       </div>
       <div class="collapse navbar-collapse justify-content-end" id="navbarToggler">
         <ul class="navbar-nav mx-auto ">
-          <li class="nav-item"><a class="nav-link title" href="{% url 'professors_list' %}">{% trans "Professores" %}</a></li>
-          <li class="nav-item"><a class="nav-link title" href="{% url 'classes_list' %}">{% trans "Turma" %}</a></li>
-          <li class="nav-item"><a class="nav-link title" href="{% url 'blocks_list' %}">{% trans "Bloco" %}</a></li>
-          <li class="nav-item"><a class="nav-link title" href="{% url 'timetables' %}">{% trans "Grade" %}</a></li>
-          <li class="nav-item dropdown language-icon">
-            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownLang" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              <img class="lang-icon" src="{% static 'images/language_icon.png' %}" alt="change of language icon">
+          <li class="nav-item word-topic"><a class="nav-link title" href="{% url 'professors_list' %}">{% trans "Professores" %}</a></li>
+          <li class="nav-item word-topic"><a class="nav-link title" href="{% url 'classes_list' %}">{% trans "Turma" %}</a></li>
+          <li class="nav-item word-topic"><a class="nav-link title" href="{% url 'blocks_list' %}">{% trans "Bloco" %}</a></li>
+          <li class="nav-item word-topic"><a class="nav-link title" href="{% url 'timetables' %}">{% trans "Grade" %}</a></li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownLangLogin" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              {% get_current_language as LANGUAGE_CODE %}
+              <button class="btn btn-language" readonly>{% if LANGUAGE_CODE == 'en' %}EN{% else %}PT{% endif %}</button>
             </a>
             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownLang">
               {% get_current_language as LANGUAGE_CODE %}
@@ -93,9 +94,9 @@
               {% endfor %}
             </div>
           </li>
-          <li class="nav-item dropdown profile-icon">
-            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownPerfil" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              <img class="user-photo rounded-circle"  src="{% static 'images/profile_photo.png' %}" alt="user's photo">
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownLangLogin" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <button class="btn btn-language" readonly>{{ request.user.get_first_name_and_last_initial }}</button>
             </a>
             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownPerfil">
               <a class="dropdown-item disabled" href="#">{{ request.user.get_full_name }}</a>
@@ -113,8 +114,7 @@
           <div class="modal-content">
             <div class="modal-header">
               <a class="logo" href="{% url 'home' %}">
-                <img class="ada-logo" src="{% static 'images/logo_ADA.png' %}" alt="logo do site ADA">
-                <span>| Atribuição de Aulas</span>
+                <img class="ada-logo" src="{% static 'images/logo_bg.png' %}" alt="logo do site ADA">
               </a>
               <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
                 <span class="hide-sidebar" aria-hidden="true">&times;</span>
@@ -123,7 +123,6 @@
             <div class="modal-body">
               <div class="modal-line profile-icon">
                 <a class="d-flex align-items-center justify-content-start" href="#">
-                  <img class="user-photo rounded-circle" src="{% static 'images/profile_photo.png' %}" alt="user's photo">
                   <span class="user-name">{{ request.user.get_full_name }}</span>
                 </a>
               </div>
@@ -165,11 +164,6 @@
                   <a class="dropdown-item" data-toggle="modal" data-target="#logoutModal">
                     <i class="bi bi-box-arrow-right"></i> {% trans "Sair" %}
                   </a>
-                </div>
-              </div>
-              <div class="col">
-                <div class="container">
-                  <span class="text-footer">© 2023 Mottarios. {% trans "Todos os direitos reservados" %}.</span>
                 </div>
               </div>
             </div>

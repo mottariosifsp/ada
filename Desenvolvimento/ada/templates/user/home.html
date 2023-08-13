@@ -6,30 +6,120 @@
     <title>{% trans "Home Usuário" %}</title>
     <link rel="stylesheet" href="{% static 'staff/attribution/css/attribution_configuration_index.css' %}">
     <script src="{% static 'user/js/home.js' %}" data-lang={{ LANGUAGE_CODE }}></script>
+    <style>
+
+.hover-button {
+    display: inline-block;
+    position: relative;
+    background-color: #3498db;
+    color: white;
+    padding: 15px 30px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: transform 0.3s, box-shadow 0.3s;
+    overflow: hidden;
+}
+
+.hover-button:hover {
+    transform: scale(1.1);
+    box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.2);
+}
+
+
+
+.hover-button:hover .gif-container {
+    display: block;
+    animation: scaleUp 0.3s ease forwards;
+}
+
+i, h1, h3 {
+    color: white;
+}
+
+.btn-blue:hover {
+    color: white;
+}
+
+@keyframes scaleUp {
+    from {
+        transform: translate(-50%, -50%) scale(0);
+    }
+    to {
+        transform: translate(0%) scale(1);
+    }
+}
+
+.btn-blue {
+    border-radius: 17px;
+    background-color: #3F927E;
+    border: #0b5122;
+    color: white;
+}
+
+.container {
+    height: 75vh;
+    padding-top: 10%;
+}
+
+.btn-language {
+    border: 1px solid #3F927E;
+    color: white;
+}
+
+    </style>
 {% endblock %} 
 
 {% block body %}
-<div class="d-flex align-items-center justify-content-center" style="height: 75vh;">
+<div cclass="container align-items-center justify-content-center">
     <div class="text-center">
         <h1>{% trans "Olá, bem-vindo(a) à ADA" %}.</h1>
         <h3>{% trans "Você quer acessar o sistema como" %}: </h3>
         <div class="row mt-5">
             {% if request.user.is_professor or request.user.is_superuser%}
-            <div class="col">
-                <button type="button" id="to-professor" url="/professor/" class="btn btn-outline-primary btn-lg rounded-pill btn-block">{% trans "Professor" %}</button>
+            <div class="col-12 mt-2">
+                <button type="button" id="to-professor" url="/professor/" class="btn btn-blue btn-lg btn-block hover-button">
+                    <span class="button-text"><i class="fas fa-chalkboard-teacher"></i> {% trans "Professor" %}</span>
+                </button>
             </div>
             {% endif %}
             {% if request.user.is_staff or request.user.is_superuser%}
-            <div class="col">
-                <button type="button" id="to-staff" url="/staff/" class="btn btn-outline-warning btn-lg rounded-pill btn-block">{% trans "Staff" %}</button>
+            <div class="col-12 mt-2">
+                <button type="button" id="to-staff" url="/staff/"  class="btn btn-blue btn-lg btn-block hover-button">
+                    <span class="button-text"><i class="fas fa-users"></i> {% trans "Staff" %}</span>
+                    
+                </button>
             </div>
             {% endif %}
             {% if request.user.is_superuser %}
-            <div class="col">
-                <button type="button" id="to-admin" url="/admin/" class="btn btn-outline-danger btn-lg rounded-pill btn-block">{% trans "Administrador" %}</button>
+            <div class="col-12 mt-2">
+                <button type="button" id="to-admin" url="/admin/"  class="btn btn-blue btn-lg btn-block hover-button">
+                    <span class="button-text"><i class="fas fa-user-cog"></i> {% trans "Administrador" %}</span>
+                </button>
             </div>
             {% endif %}
         </div>
     </div>
 </div>
+
+{% endblock %}
+
+{% block endbody %}
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        var buttons = document.querySelectorAll('.hover-button');
+
+        var buttonCount = buttons.length;
+
+        buttons.forEach(function(button) {
+            var parentDiv = button.parentElement; // Obtém a div pai do botão
+
+            if (buttonCount == 2) {
+                parentDiv.classList.add('col-lg-6');
+            } else if (buttonCount == 3) {
+                parentDiv.classList.add('col-md-4');
+            }
+        });
+    });
+</script>
 {% endblock %}

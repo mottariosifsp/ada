@@ -3,60 +3,77 @@
 {% load static %}
 
 {% block head %}
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.0/font/bootstrap-icons.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <link rel="stylesheet" href="{% static 'user/css/login.css' %}">
-    <title>{% trans "Login" %}</title>
+    <title>{% trans "Acessar conta" %}</title>
+    <style>
+        .ada-logo-login {background-image: url("{% static '/images/login_back.jpg' %}");}
+    </style>
 {% endblock %}
 
 {% block body %}
-<section class="section register min-vh-75 d-flex flex-column align-items-center justify-content-center py-4">
-    <div class="container">
-        <div class="d-flex justify-content-center py-4">
-            <div class="logo-notlogged">
-            <img src="{% static 'images/logo_favicon-withoutbg.png' %}" alt="">
+<section class="section register d-flex align-items-center justify-content-center">
+    <div class="row">
+        <div class="col-12 col-lg-6 ada-logo-login">
+            <div class="logo-notlogged text-center d-flex align-items-center justify-content-center">
+                <img class="center" src="{% static 'images/logo_bg.png' %}" alt="">
+                <p class="modern-font">{% trans "Dê um" %} <b>'click'</b> {% trans "na praticidade: a nossa plataforma torna a atribuição de aulas uma lição fácil"%}!</p>
             </div>
-        </div> 
-        <div class="row justify-content-center">
-            <div class="col-lg-4 col-md-6 d-flex flex-column align-items-center justify-content-center">
-                <div class="card mb-3">
-                    <div class="card-body">
-                        <div class="pt-4 pb-2">
-                            <h5 class="card-title text-center pb-0 fs-4">{% trans "Entre com a sua conta" %}</h5>
-                            <p class="text-center small">{% trans "Insira o seu prontuário e a sua senha" %}</p>
+        </div>
+        <div class="col-12 col-lg-6 ">
+            <div class="card inputs">
+                <div class="card-body">
+                    <div class="pt-4 pb-2">
+                        <h2 class="card-title text-center">{% trans "Acessar Conta" %}</h2>
+                    </div>
+                    <form class="row" id="form-login" method="post" action="{% url 'login' %}" novalidate>
+                        {% csrf_token %}
+
+                        {% if form.non_field_errors %}
+                        <div id="loginError" class="alert alert-danger alert-dismissible fade show w-100">
+                            <i class="fas fa-exclamation-circle mr-2"></i> {% trans "Usuário ou senha incorretos" %}.
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
                         </div>
-                        <form class="row g-3 " id="form-login" method="post" action="{% url 'login' %}" novalidate>
-                            {% csrf_token %}
-                            
-                            {% if form.non_field_errors %}
-                                <div id="loginError" class="col-12 alert alert-danger alert-dismissible fade show">{% trans "Usuário ou senha incorretos" %}.</div>
-                            {% endif %}
-                        
-                            <div class="col-12">
-                                <label for="yourUsername" class="form-label">{% trans "Prontuário" %}:</label>
-                                <div class="input-group has-validation">
-                                    <span class="input-group-text" id="inputGroupPrepend">{% trans "CJ" %}</span>
-                                    <input type="text" name="username" class="form-control" maxlength='9'id="yourUsername" required>
-                                    <div id="usernameError" class="invalid-feedback">{% trans "Por favor, insira o seu prontuário" %}.</div>
+                        {% endif %}
+
+                        <div class="col-12">
+                            <div class="form-group has-validation">
+                                <!-- <div class="input-filled">{% trans 'Prontuário'%}</div> -->
+                                <label for="yourUsername" class="form-label mt-2 {% if request.POST.username %}input-filled{% endif %}">
+                                    <i class="fa fa-user"></i>
+                                </label>
+                                <input type="text" name="username" class="form-control" maxlength='9' id="yourUsername" required placeholder="Prontuário" />
+                                <div id="usernameError" class="invalid-feedback">
+                                    {% trans "Por favor, insira o seu prontuário" %}.
                                 </div>
                             </div>
+                        </div>
                         
-                            <div class="col-12">
-                                <label for="yourPassword" class="pt-1 form-label">{% trans "Senha" %}:</label>
-                                <input type="password" name="password" class="form-control" id="yourPassword" required>
-                                <div id="passwordError" class="invalid-feedback">{% trans "Por favor, insira a sua senha" %}.</div>
+                        <div class="col-12">
+                            <div class="form-group has-validation">
+                                <!-- <div class="input-filled">{% trans 'Senha'%}</div> -->
+                                <label for="yourPassword" class="mt-2 form-label {% if request.POST.password %}input-filled{% endif %}">
+                                    <i class="fa fa-lock"></i>
+                                </label>
+                                <input type="password" name="password" class="form-control" id="yourPassword" required placeholder="Senha" />
+                                <div id="passwordError" class="invalid-feedback">
+                                    {% trans "Por favor, insira a sua senha" %}.
+                                </div>
                             </div>
+                        </div>
 
-                            <div class="col-12">
-                                <button class="custom-btn w-100" type="submit"><b>{% trans "Entrar" %}</b></button>
-                                <input type="hidden" name="next" value="{{ next }}">
-                            </div>
-                            <!--
-                            <div class="col-12">
-                                <button class="google-btn w-100" type="submit"><i class="bi bi-google"></i> {% trans "Entre com"%}<b> Google</b></button>
-                            </div>
-                            -->
-                        </form>
-                    </div>
+                        <div class="col-12">
+                            <button class="custom-btn w-100 expand-button" type="submit"><b>{% trans "Entrar" %}</b></button>
+                            <input type="hidden" name="next" value="{{ next }}">
+                        </div>
+                        <!--
+                        <div class="col-12">
+                            <button class="google-btn w-100" type="submit"><i class="bi bi-google"></i> {% trans "Entre com" %}<b> Google</b></button>
+                        </div>
+                        -->
+                    </form>
                 </div>
             </div>
         </div>
@@ -70,4 +87,5 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.10.2/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0/js/bootstrap.min.js"></script>
     <script src="{% static 'user/js/login.js' %}"></script>
+    <script src="vendor/jquery/jquery.min.js"></script>
 {% endblock %}

@@ -24,6 +24,8 @@ from attribution_preference.models import Course_preference, Attribution_prefere
 
 from django.utils.decorators import method_decorator
 
+from common.date_utils import day_to_number
+
 def attribution(request):
     
     # cancel_all_tasks()
@@ -97,8 +99,11 @@ def attribution(request):
     return render(request, 'attribution/attribution.html')
 
 def timestup(professor, blockk):
-    professor_to_end_queue(professor)
-    start_attribution(blockk)
+    if TeacherQueuePosition.objects.count() > 1:
+        professor_to_end_queue(professor)
+        start_attribution(blockk)
+    else:
+        Deadline.objects.filter(blockk=blockk, name='STARTASSIGNMENTDEADLINE').update(deadline_end=datetime.datetime.now())
 
 def start_attribution(blockk):
     if TeacherQueuePosition.objects.filter(blockk=blockk).exists():
@@ -548,7 +553,6 @@ def attribution_detail(request):
                 }
                 timetables_professor.append(timetable_professor)
     timetables_professor_json = json.dumps(timetables_professor, ensure_ascii=False).encode('utf8').decode()
-    # print(timetables_professor_json)
 
     data = {
         'timeslots': timeslots_all,
@@ -564,13 +568,3 @@ def remove_professors_without_preference(blockk):
             professor_in_queue.delete()
     return
 
-def day_to_number(day):
-    number = {
-        'monday': 1,
-        'tuesday': 2,
-        'wednesday': 3,
-        'thursday': 4,
-        'friday': 5,
-        'saturday': 6,
-    }
-    return number[day]

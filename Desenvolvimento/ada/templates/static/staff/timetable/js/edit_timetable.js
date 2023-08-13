@@ -1,8 +1,61 @@
+var timetables_complete = document.currentScript.getAttribute("timetables-complete");
+var timetables_complete = JSON.parse(timetables_complete);
+
+$('.header-table').closest('table').find('.header-days').hide();
+$('.header-table').closest('table').find('tbody').hide();
+
 window.addEventListener('pageshow', function (event) {
   hide_loading()
 });
 
+$.each(timetables_complete, function(index, value) {
+  $("#cel-"+value.cord).val(value.acronym);
+  console.log("#cel-"+value.cord);
+  add_course_id("#cel-"+value.cord);
+  $("#cel-"+value.cord).closest('table').find('.header-days').show();
+  $("#cel-"+value.cord).closest('table').find('tbody').show();
+});
+
 $(document).ready(function () {
+
+  $('.header-table').click(function() {
+    $(this).find('.icon-minimize').text('-');
+    $(this).closest('table').find('.header-days').toggle();
+    $(this).closest('table').find('tbody').toggle();
+    if ( $(this).closest('table').find('.header-days').is(":visible")) {
+      $('html, body').animate({
+        scrollTop: $(this).closest('table').offset().top - 100
+      }, 600);
+      
+    }else{
+      $(this).find('.icon-minimize').text('+');
+    }
+  });
+
+  $('.course-input').on('input', function() {
+    var course = $(this).val();
+    var list_name = $(this).attr('list');
+    var selectedOption = $('#'+list_name+' option').filter(function() {
+      return $(this).val() === course;
+    });
+    if(selectedOption.attr('course-id') != undefined){
+      $(this).attr('course-id', selectedOption.attr('course-id'));
+      $('.form-control').on('focus', function() {
+        $(this).css('border-color', '#80bdff');
+      });
+      // $('.form-control').on('blur', function() {
+      //   $(this).css('border-color', '#ced4da');
+      // });
+      $(this).css('border', '1px solid #ced4da');
+    }else{
+      $(this).attr('course-id', course);
+      if(course == ""){
+        $(this).css('border', '1px solid #ced4da');
+      }else{
+        $(this).css('border', '1px solid rgb(255, 0, 0,0.3)');
+      }
+    }
+  });
 
   if ($('#selected_class').text() == "") {
     $('#course_select').css('opacity', '0.5');
@@ -10,16 +63,8 @@ $(document).ready(function () {
     $('#course_select').css('filter', 'grayscale(100%)');
   }
 
-  var courses_selected = [];
-
-  $("#test_button").click(function () {
-    for (let index = 0; index < 6; index++) {
-      courses_selected[index] = $('.datalist' + index).map(function () {
-        return $(this).val();
-      }).get();
-    }
-    console.log($('#'));
-  });
+  // var courses_selected = [];
+  // });
 
   $("#submit_timetable").click(function () {
     show_loading();
@@ -28,14 +73,13 @@ $(document).ready(function () {
 
     for (let index = 0; index < 6; index++) {
       selected_courses[index] = $('.datalist' + index).map(function () {
-        let value = $(this).val().trim(); // Remover espaços em branco antes e depois
-        console.log(value);
-        return value;
+        if($(this).attr('course-id') == undefined){
+          return '';
+        }else{
+          return $(this).attr('course-id');
+        }
       }).get();
     }
-
-    console.log("for acabado");
-    alert($("#selected_class").text());
 
     let csrftoken = getCookie('csrftoken');
     $.ajax({
@@ -91,4 +135,29 @@ function show_loading() {
 function hide_loading() {
   $('body').css('opacity', '1');
   $('.spinner-border').hide();
+}
+
+function add_course_id(element){
+  var course = $(element).val();
+  var list_name = $(element).attr('list');
+  var selectedOption = $('#'+list_name+' option').filter(function() {
+    return $(element).val() === course;
+  });
+  if(selectedOption.attr('course-id') != undefined){
+    $(element).attr('course-id', selectedOption.attr('course-id'));
+    $('.form-control').on('focus', function() {
+      $(element).css('border-color', '#80bdff');
+    });
+    // $('.form-control').on('blur', function() {
+    //   $(this).css('border-color', '#ced4da');
+    // });
+    $(element).css('border', '1px solid #ced4da');
+  }else{
+    $(element).attr('course-id', course);
+    if(course == ""){
+      $(element).css('border', '1px solid #ced4da');
+    }else{
+      $(element).css('border', '1px solid rgb(255, 0, 0,0.3)');
+    }
+  }
 }

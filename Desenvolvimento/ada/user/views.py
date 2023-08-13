@@ -30,3 +30,12 @@ def signup(request):
 def logout_view(request):
     logout(request)
     return redirect('login')
+
+def error404(request):
+    return render(request, 'error/404.html')
+
+# def handler500(request):
+#     return HttpResponseServerError(render(request, 'error/500.html'))
+
+def error500(request):
+    return render(request, 'error/500.html')

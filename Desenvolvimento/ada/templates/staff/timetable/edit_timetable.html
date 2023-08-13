@@ -4,20 +4,32 @@
 
 {% block head %}
     {{ block.super }}
-      <title>{% trans "Criar Grade" %}</title>
-      <script src="{% static 'staff/timetable/js/edit_timetable.js' %}" data-lang={{ LANGUAGE_CODE }}></script>
+    <title>{% trans "Criar Grade" %}</title>
+    <link rel="stylesheet" href="{% static 'staff/timetable/css/edit_timetable.css' %}">
 {% endblock %}
 
 {% block body %}
   {{ block.super }}
-  <h1><span id="selected_class" class="d-flex justify-content-center">{{ request.GET.class }}</span></h1>
+  <h1 class="title-page">{% trans "Editar grade horária" %}</h1>
+  <nav>
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item"><a href="{% url 'home' %}"><i class="bi bi-house-door"></i></a></li>
+      <li class="breadcrumb-item active" aria-current="page">{% trans "Configurar Grades Horárias" %}</li>
+      <li class="breadcrumb-item active"><a href="{% url 'timetables' %}">{% trans "Grades Horárias" %}</a></li>
+      <li class="breadcrumb-item active">{% trans "Editar" %} {{ request.GET.class }}</li>
+    </ol>
+  </nav>  <h1><span id="selected_class" class="d-flex justify-content-center">{{ request.GET.class }}</span></h1>
 <div class="container">
   <form id="course_select">
     {% csrf_token %}
     <table class="table" id="timetable_table">
       <thead class="thead-dark">
         <tr>
-          <th scope="col" class="align-middle">{% trans "Horário" %}</th>
+          <th colspan='7' class="text-center header-table"><span class="ml-1 icon-minimize" style='float: left;'> + </span>Matutino</th>
+        </tr>
+        <tr class="header-days">
+          <!-- <th scope="col" class="align-middle">Período</th> -->
+          <th scope="col" class="text-center" style="width: 7.6rem">{% trans "Horário" %}</th>
           <th scope="col" class="text-center">{% trans "Segunda-feira" %}</th>
           <th scope="col" class="text-center">{% trans "Terça-feira" %}</th>
           <th scope="col" class="text-center">{% trans "Quarta-feira" %}</th>
@@ -27,31 +39,118 @@
         </tr>
       </thead>
       <tbody>
-        {% for row in timetable %}
-        <tr class="text-center">
-            {% for field in row %} 
-            {% if forloop.counter == 1 %}
-            {% blocktrans with field_text=field %}
-            <th scope="row">{{ field_text }}</th>
-            {% endblocktrans %}
-            {% else %}
-            <td rowspan="">
-                <input list="courses{{ forloop.counter0 }}" value="{{ field }}" name="course" class="form-control datalist{{ forloop.counter0 }}" autocomplete="off">
-                <datalist id="courses{{ forloop.counter0 }}">
-                    {% for course in courses %}
-                        {% blocktrans with name_course_text=course.name_course %}
-                            <option class="dropdown-item-class" value="{{ name_course_text }}">
-                        {% endblocktrans %}
-                    {% endfor %}
-                </datalist>
-            </td>
-            {% endif %} 
-            {% endfor %}
-        {% endfor %}
-        
+        {% for timeslot in timeslots|slice:":6" %}
+            <tr>
+              {% with timeslot_counter=forloop.counter %}                     
+                <th scope="row" class="align-middle text-center">{{ timeslot.hour_start|date:"H:i" }} - {{ timeslot.hour_end|date:"H:i" }}</th>
+                      {% for cell in "012345" %}
+                      <!-- blocktrans? batatinha -->
+                      <td rowspan="">
+                        <input list="courses{{ cell }}" id="cel-{{ timeslot_counter }}-{{ forloop.counter }}" name="course" class="form-control datalist{{cell}} course-input" autocomplete="off" style="text-align: center;" course-id>
+                        <datalist id="courses{{ cell }}">
+                          {% for course in courses %}
+                          <option class="dropdown-item-class" 
+                            {% blocktrans with name_course_text=course.acronym %}
+                              value="{{ name_course_text }}" 
+                            {% endblocktrans %}
+                            course-id={{course.registration_course_id}}>{{course.name_course}}
+                          </option>
+                          {% endfor %}
+                        </datalist>
+                      </td>
+                      {% endfor %}
+                {% endwith %}
+            </tr>
+          {% endfor %}        
       </tbody>
     </table>
+    <table class="table" id="timetable_table">
+      <thead class="thead-dark">
+        <tr>
+          <th colspan='7' class="text-center header-table"><span class="ml-1 icon-minimize" style='float: left;'> + </span>Vespertino</th>
+        </tr>
+        <tr class="header-days">
+          <!-- <th scope="col" class="align-middle">Período</th> -->
+          <th scope="col" class="text-center" style="width: 7.6rem">{% trans "Horário" %}</th>
+          <th scope="col" class="text-center">{% trans "Segunda-feira" %}</th>
+          <th scope="col" class="text-center">{% trans "Terça-feira" %}</th>
+          <th scope="col" class="text-center">{% trans "Quarta-feira" %}</th>
+          <th scope="col" class="text-center">{% trans "Quinta-feira" %}</th>
+          <th scope="col" class="text-center">{% trans "Sexta-feira" %}</th>
+          <th scope="col" class="text-center">{% trans "Sábado" %}</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for timeslot in timeslots|slice:"6:12" %}
+            <tr>
+              {% with timeslot_counter=forloop.counter|add:6 %}                     
+                <th scope="row" class="align-middle text-center">{{ timeslot.hour_start|date:"H:i" }} - {{ timeslot.hour_end|date:"H:i" }}</th>
+                      {% for cell in "012345" %}
+                      <!-- blocktrans? batatinha -->
+                      <td rowspan="">
+                        <input list="courses{{ cell }}" id="cel-{{ timeslot_counter }}-{{ forloop.counter }}" name="course" class="form-control datalist{{cell}} course-input" autocomplete="off" style="text-align: center;" course-id>
+                        <datalist id="courses{{ cell }}">
+                          {% for course in courses %}
+                          <option class="dropdown-item-class" 
+                            {% blocktrans with name_course_text=course.acronym %}
+                              value="{{ name_course_text }}" 
+                            {% endblocktrans %}
+                            course-id={{course.registration_course_id}}>{{course.name_course}}
+                          </option>
+                          {% endfor %}
+                        </datalist>
+                      </td>
+                      {% endfor %}
+                {% endwith %}
+            </tr>
+          {% endfor %}        
+      </tbody>
+    </table>
+    <table class="table" id="timetable_table">
+      <thead class="thead-dark">
+        <tr>
+          <th colspan='7' class="text-center header-table"><span class="ml-1 icon-minimize" style='float: left;'> + </span>Noturno</th>
+        </tr>
+        <tr class="header-days">
+          <!-- <th scope="col" class="align-middle">Período</th> -->
+          <th scope="col" class="text-center" style="width: 7.6rem">{% trans "Horário" %}</th>
+          <th scope="col" class="text-center">{% trans "Segunda-feira" %}</th>
+          <th scope="col" class="text-center">{% trans "Terça-feira" %}</th>
+          <th scope="col" class="text-center">{% trans "Quarta-feira" %}</th>
+          <th scope="col" class="text-center">{% trans "Quinta-feira" %}</th>
+          <th scope="col" class="text-center">{% trans "Sexta-feira" %}</th>
+          <th scope="col" class="text-center">{% trans "Sábado" %}</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for timeslot in timeslots|slice:"12:" %}
+            <tr>
+              {% with timeslot_counter=forloop.counter|add:6 %}                     
+                <th scope="row" class="align-middle text-center">{{ timeslot.hour_start|date:"H:i" }} - {{ timeslot.hour_end|date:"H:i" }}</th>
+                      {% for cell in "012345" %}
+                      <!-- blocktrans? batatinha -->
+                      <td rowspan="">
+                        <input list="courses{{ cell }}" id="cel-{{ timeslot_counter }}-{{ forloop.counter }}" name="course" class="form-control datalist{{cell}} course-input" autocomplete="off" style="text-align: center;" course-id>
+                        <datalist id="courses{{ cell }}">
+                          {% for course in courses %}
+                          <option class="dropdown-item-class" 
+                            {% blocktrans with name_course_text=course.acronym %}
+                              value="{{ name_course_text }}" 
+                            {% endblocktrans %}
+                            course-id={{course.registration_course_id}}>{{course.name_course}}
+                          </option>
+                          {% endfor %}
+                        </datalist>
+                      </td>
+                      {% endfor %}
+                {% endwith %}
+            </tr>
+          {% endfor %}        
+      </tbody>
+    </table>
+  
     <button type="button" class="btn btn-primary btn-block form-group" id="submit_timetable">{% trans "Enviar" %}</button>
   </form>
 </div>
+<script src="{% static 'staff/timetable/js/edit_timetable.js' %}" data-lang={{ LANGUAGE_CODE }} timetables-complete="{{ timetable }}"></script>
 {% endblock %}
