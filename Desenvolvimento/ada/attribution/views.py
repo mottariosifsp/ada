@@ -24,6 +24,8 @@ from attribution_preference.models import Course_preference, Attribution_prefere
 
 from django.utils.decorators import method_decorator
 
+from common.date_utils import day_to_number
+
 def attribution(request):
     
     # cancel_all_tasks()
@@ -527,11 +529,6 @@ def attribution_detail(request):
     timetables_user = Timetable_user.objects.filter(timetable__in=timetables).all()
 
     timetables_professor = []
-
-    morning_timestlots = timeslots_all.filter(hour_start__lt=datetime.time(12, 0, 0))
-    afternoon_timestlots = timeslots_all.filter(hour_start__gte=datetime.time(12, 0, 0), hour_start__lt=datetime.time(18, 0, 0))
-    night_timestlots = timeslots_all.filter(hour_start__gte=datetime.time(18, 0, 0))
-
     
     for timetable_user in timetables_user:
         day_combos = timetable_user.timetable.day_combo.all()
@@ -556,13 +553,9 @@ def attribution_detail(request):
                 }
                 timetables_professor.append(timetable_professor)
     timetables_professor_json = json.dumps(timetables_professor, ensure_ascii=False).encode('utf8').decode()
-    print(timetables_professor_json)
 
     data = {
         'timeslots': timeslots_all,
-        'morning_timeslots': morning_timestlots,
-        'afternoon_timeslots': afternoon_timestlots,
-        'night_timeslots': night_timestlots,
         'timetables_professor': timetables_professor_json,
         'classs': classs
     }
@@ -575,13 +568,3 @@ def remove_professors_without_preference(blockk):
             professor_in_queue.delete()
     return
 
-def day_to_number(day):
-    number = {
-        'monday': 1,
-        'tuesday': 2,
-        'wednesday': 3,
-        'thursday': 4,
-        'friday': 5,
-        'saturday': 6,
-    }
-    return number[day]
