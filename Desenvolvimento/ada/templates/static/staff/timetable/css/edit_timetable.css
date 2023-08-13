@@ -25,3 +25,7 @@ input[name="course"]:hover::-webkit-calendar-picker-indicator {
     border-color: #80bdff;
     box-shadow: 0 0 0 0.0rem rgba(0,123,255,.25);
 }
+
+td{
+    width: calc((100% - 7.7rem) / 6) !important;  /* 6 columns excluding the first column */
+}
