@@ -117,14 +117,14 @@ div#navbarToggler ul.navbar-nav > li.word-topic:hover {
     margin-bottom: 2px;
 }
 
+.navbar-modal .modal-header {
+    padding: 8px;
+}
+
 div#navbarToggler ul.navbar-nav > li.nav-item:hover {
     border-radius: 5px;
     border: 0.1px solid #213b5f;
     background-color: #213b5f;
-}
-
-div#navbarToggler li.nav-item button:hover {
-    border: 1px solid #3F927E;
 }
 
 .nav-brand {
@@ -212,11 +212,10 @@ img.lang-icon, img.user-photo {width: 100%;}
 .navbar-modal .modal-content {background: linear-gradient(to top right, #3F927E, #2c436e);}
 
 .navbar-modal .modal-header {
-    padding-bottom: 13px;
-    border-bottom: 1px solid #2a5a4f;
+    border-bottom: 1px solid #5ec8af;
 }
 
-.navbar-modal .modal-footer {border-top: 1px solid #2a5a4f;}
+.navbar-modal .modal-footer {border-top: 1px solid #5ec8af;}
 
 .navbar-modal .hide-sidebar {
     color: white;
@@ -248,14 +247,13 @@ button.close:focus, button.close:active {box-shadow: none;}
     text-align: center;
 }
 
-@media (max-width: 1600px) {
-    li.language-icon {width: 7%;}
-    
-    li.profile-icon {
-        margin-left: 15px;
-        width: 6%;
-    }
+.btn-home {
+    padding: 10px 13px 10px 13px;
+    background: none;
+    border-radius: 3px;
+  }
 
+@media (max-width: 1600px) {
     div.language-icon-notlogged {width: 100px;}
 }
 
@@ -272,14 +270,17 @@ button.close:focus, button.close:active {box-shadow: none;}
     div.profile-icon {width: 30%;}
 }
 
+@media (min-width: 767px) and (max-width: 990px) {
+    .button-text {
+        font-size: 18px;
+    }
+}
 @media (max-width: 550px) {
     .modal-dialog {padding-right: 0;}
 
     .notlogged span {display: none;}
 
     .notlogged img {width: 45%;}
-
-    li.language-icon-notlogged{width: 25%;}
 }
 
 @media (min-width: 992px){

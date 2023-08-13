@@ -32,9 +32,9 @@
         </div>
       </div>
       <div class="nav-item dropdown language-icon-notlogged top-right justify-content-end">
-        <a class="nav-link dropdown-toggle" id="navbarDropdownLangLogin" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownLangLogin" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           {% get_current_language as LANGUAGE_CODE %}
-          <button class="btn btn-language" readonly>{% if LANGUAGE_CODE == 'en' %}EN{% else %}PT{% endif %}</button>
+          <button class="btn-home btn-language" readonly>{% if LANGUAGE_CODE == 'en' %}EN{% else %}PT{% endif %}</button>
         </a>
         <div class="dropdown-menu dropdown-menu-right dropdown-login" aria-labelledby="navbarDropdownLangLogin">
           {% get_current_language as LANGUAGE_CODE %}
