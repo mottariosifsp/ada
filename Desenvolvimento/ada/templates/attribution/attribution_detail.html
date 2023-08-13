@@ -11,6 +11,7 @@
 
 {% block body %} 
 {{ block.super }}
+<div class="container">
   <h1>{% trans "Grade horária da " %}{{ classs }}</h1>
   <div class="tabela">
       <table class="table table-bordered editable" id="blocks_list">
@@ -30,7 +31,7 @@
             </tr>
           </thead>
           <tbody>
-            {% for timeslot in morning_timeslots %}
+            {% for timeslot in timeslots|slice:":6" %}
             <tr>
               {% with timeslot_counter=forloop.counter %}                     
                 <th scope="row" class="align-middle text-center">{{ timeslot.hour_start|date:"H:i" }} - {{ timeslot.hour_end|date:"H:i" }}</th>
@@ -108,6 +109,7 @@
       </tbody>
     </table>
   </div>
-  <script src="{% static 'attribution/js/attribution_detail.js' %}" timetables-user="{{timetables_professor}}">
-
+</div>
+<script src="{% static 'attribution/js/attribution_detail.js' %}" timetables-user="{{timetables_professor}}">
 {% endblock %}
+
