@@ -501,28 +501,27 @@ def show_timetable(request):
 
         timetable_complete = []
 
-        for day in range(Timeslot.objects.all().count()):
-            list_day = []
-            for timeslot in range(7):
-                list_day.append('')
-            timetable_complete.append(list_day)
-
         for timetable in timetables:
-            for day_combo in timetable.day_combo.all():
-                for timeslot in day_combo.timeslots.all():
-                    timetable_complete[timeslot.position-1][enum_to_day_number(day_combo.day)+1] = timetable.course.name_course
+            day_combos = timetable.day_combo.all()
+            for day_combo in day_combos:
+                day = day_to_number(day_combo.day)
+                timeslots = day_combo.timeslots.all()
 
-        for i, row in enumerate(timetable_complete):
-            for j, col in enumerate(row):
-                if j == 0:
-                    col = str(timeslots[i].hour_start) + " - " + str(timeslots[i].hour_end)
-                    timetable_complete[i][j] = col
+                for timeslot in timeslots:
 
-        print(timetable_complete)
+                    position = timeslot.position
+                    timetable_professor = {
+                        "cord": f'{position}-{day}',
+                        "course": timetable.course.name_course,
+                        "acronym": timetable.course.acronym,
+                    }
+                    timetable_complete.append(timetable_professor)
+
+        timetable_complete_json = json.dumps(timetable_complete, ensure_ascii=False).encode('utf8').decode()
 
         data = {
             'timeslots': Timeslot.objects.all().order_by('hour_start'),
-            'timetables': timetable_complete,
+            'timetables': timetable_complete_json,
             'classs': selected_class,
         }
 
