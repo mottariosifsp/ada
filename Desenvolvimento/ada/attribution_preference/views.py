@@ -1,6 +1,7 @@
 from django.shortcuts import render
 
 from .models import Attribution_preference, Preference_schedule, Course_preference
+from django.shortcuts import get_object_or_404
 from course.models import Course
 from timetable.models import Timetable, Timeslot
 from user.models import User, Job
@@ -8,7 +9,7 @@ from area.models import Area, Blockk
 from staff.models import Deadline
 from enums import enum
 from django.utils import timezone
-from datetime import timedelta
+from datetime import datetime, timedelta
 import json
 import math
 import re
@@ -56,71 +57,74 @@ def attribution_preference(request):
         
     user = request.user
     user_blocks = user.blocks.all()
-    stage_fpas = []
-    started_times = finished_times =  not_configured_times = configured_times = 0
 
-    for blockk in user_blocks:
-        status = ''
-        start_day = ''
-        start_time = ''
-        end_day = ''
-        end_time = ''
-        if Deadline.objects.filter(blockk=blockk, name='STARTFPADEADLINE').exists():
-            attribution_deadline = Deadline.objects.get(blockk=blockk, name='STARTFPADEADLINE')        
-            now = datetime.datetime.today()
-            if now > attribution_deadline.deadline_start and now < attribution_deadline.deadline_end:
-                start_day = attribution_deadline.deadline_start.strftime("%d/%m/%Y")
-                start_time = attribution_deadline.deadline_start.strftime("%H:%M:%S")
-                end_day = attribution_deadline.deadline_end.strftime("%d/%m/%Y")
-                end_time = attribution_deadline.deadline_end.strftime("%H:%M:%S")
-                status = 'started'
-                started_times += 1
-            elif now < attribution_deadline.deadline_start:        
-                start_day = attribution_deadline.deadline_start.strftime("%d/%m/%Y")
-                start_time = attribution_deadline.deadline_start.strftime("%H:%M:%S")
-                end_day = attribution_deadline.deadline_end.strftime("%d/%m/%Y")
-                end_time = attribution_deadline.deadline_end.strftime("%H:%M:%S")
-                status = 'configured'
-                configured_times += 1
-            else:
-                start_day = attribution_deadline.deadline_start.strftime("%d/%m/%Y")
-                start_time = attribution_deadline.deadline_start.strftime("%H:%M:%S")
-                end_day = attribution_deadline.deadline_end.strftime("%d/%m/%Y")
-                end_time = attribution_deadline.deadline_end.strftime("%H:%M:%S")
-                status = 'finished'
-                finished_times += 1
+    status = ''
+    start_day = ''
+    start_time = ''
+    end_day = ''
+    end_time = ''
+    try:
+        attribution_deadline = get_object_or_404(Deadline, name='STARTFPADEADLINE')
+        now = datetime.datetime.today()
+        if now > attribution_deadline.deadline_start and now < attribution_deadline.deadline_end:
+            start_day = attribution_deadline.deadline_start.strftime("%d/%m/%Y")
+            start_time = attribution_deadline.deadline_start.strftime("%H:%M")
+            end_day = attribution_deadline.deadline_end.strftime("%d/%m/%Y")
+            end_time = attribution_deadline.deadline_end.strftime("%H:%M")
+            status = 'started'
+        elif now < attribution_deadline.deadline_start:        
+            start_day = attribution_deadline.deadline_start.strftime("%d/%m/%Y")
+            start_time = attribution_deadline.deadline_start.strftime("%H:%M")
+            end_day = attribution_deadline.deadline_end.strftime("%d/%m/%Y")
+            end_time = attribution_deadline.deadline_end.strftime("%H:%M")
+            status = 'configured'
         else:
-            status = 'not_configured'
-            not_configured_times += 1
+            start_day = attribution_deadline.deadline_start.strftime("%d/%m/%Y")
+            start_time = attribution_deadline.deadline_start.strftime("%H:%M")
+            end_day = attribution_deadline.deadline_end.strftime("%d/%m/%Y")
+            end_time = attribution_deadline.deadline_end.strftime("%H:%M")
+            status = 'finished'   
+    except:
+        status = 'not_configured'
 
-        courses_done = 'False'
-        if Course_preference.objects.filter(blockk=blockk).exists():
-            courses_done = 'True'
-
-        blockk_stage_fpa = {
-            'blockk': blockk,
-            'status': status,
-            'start_day': start_day,
-            'start_time': start_time,
-            'end_day': end_day,
-            'end_time': end_time,
-            'courses_done': courses_done
-        }
-        stage_fpas.append(blockk_stage_fpa)
+    courses_done = 'False'
+    if Course_preference.objects.filter(attribution_preference__user=user).exists():
+        courses_done = 'True'
 
     disponilibity_done = 'False'
     if Preference_schedule.objects.filter(attribution_preference__user=user).exists():
         disponilibity_done = 'True'
 
-    data = {
-        'stage_fpas': stage_fpas,
-        'started_times': started_times,
-        'finished_times': finished_times,
-        'not_configured_times': not_configured_times,
-        'configured_times': configured_times,
-        'is_pair': len(stage_fpas) % 2 == 0,
-        'disponilibity_done': disponilibity_done
+    days = hours = minutes = 0
+    if Deadline.objects.filter(name='STARTFPADEADLINE').exists():
+        attriution_deadline = Deadline.objects.get(name='STARTFPADEADLINE')  
+        target_datetime = attribution_deadline.deadline_end
+        current_datetime = timezone.now()
+
+
+        time_left = target_datetime - current_datetime
+        days = time_left.days
+        hours, remainder = divmod(time_left.seconds, 3600)
+        minutes, seconds = divmod(remainder, 60)
+
+    context = {
+        'days': days,
+        'hours': hours,
+        'minutes': minutes,
     }
+
+    data = {
+        'status_fpa': status,
+        'start_day': start_day,
+        'start_time': start_time,
+        'end_day': end_day,
+        'end_time': end_time,
+        'disponilibity_done': disponilibity_done,
+        'courses_done': courses_done,
+        'context': context
+    }
+
+    print(data)
     
     return render(request, 'attribution_preference/attribution_preference.html', data)
 
