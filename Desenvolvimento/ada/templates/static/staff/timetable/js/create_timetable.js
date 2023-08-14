@@ -69,7 +69,6 @@ $(document).ready(function() {
     }
 
     console.log("for acabado");
-    alert($("#selected_class").text());
     
     let csrftoken = getCookie('csrftoken');
       $.ajax({
