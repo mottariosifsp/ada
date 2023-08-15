@@ -189,7 +189,7 @@ LOGGING = {
         'custom_handler': {
             'level': 'ERROR',
             'class': 'logging.FileHandler',
-            'filename': Path.home() / 'Documents' / 'logs' / 'error.log',
+            'filename': Path.home() / 'Documents' / 'logs' / 'error.log', # TODO - mudar caminho
             'formatter': 'custom',
         },
     },

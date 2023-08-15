@@ -33,6 +33,7 @@ body {
 .error-message {
     font-family: 'Josefin Sans', sans-serif;
     font-weight: bolder;
+    font-size: 28px;
 }
 
 .svg {
