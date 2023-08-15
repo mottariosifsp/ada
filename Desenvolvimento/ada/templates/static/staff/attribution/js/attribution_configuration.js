@@ -27,7 +27,6 @@ $("document").ready(function () {
 
      // Salvar os valores dos campos de entrada no localStorage ao sair da página
      $("#edit-queue-button").click(function () {
-        alert('teste');
         // Salvar os valores dos campos "startFPADeadline" e "endFPADeadline" no localStorage
         var startFPADeadlineValue = document.getElementById('startFPADeadline').value;
         localStorage.setItem('startFPADeadline', startFPADeadlineValue);
@@ -44,7 +43,6 @@ $("document").ready(function () {
     });
 
     $("#submit-button").click(function () {
-        alert('teste');
         localStorage.clear();
     });
 });

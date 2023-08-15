@@ -5,41 +5,113 @@
 
 <title>{% trans "Perfil" %}</title>
 <script src="{% static 'staff/attribution/js/attribution_configuration_confirm.js' %}"></script>
+<link rel="stylesheet" href="{% static 'professor/css/profile.css' %}">
 
 {% endblock %} 
 {% block body %}
 
 <div class="container pt-5">
-   <h2>{{professor.get_full_name_camel_case}}</h2>
+   <h1>{{professor.get_full_name_camel_case}}</h1>
    <hr>
    <h5>{% trans "Sua atribuição" %}</h5>
    <div class="card">
       <div class="card-body">
-         <table class="table table-bordered text-center">
-            <thead>
-              <tr>
-                <th scope="col" style="width: 14%">{% trans "Horário" %}</th>
-                <th scope="col">{% trans "Segunda-feira" %}</th>
-                <th scope="col">{% trans "Terça-feira" %}</th>
-                <th scope="col">{% trans "Quarta-feira" %}</th>
-                <th scope="col">{% trans "Quinta-feira" %}</th>
-                <th scope="col">{% trans "Sexta-feira" %}</th>
-                <th scope="col">{% trans "Sábado" %}</th>
-              </tr>
-            </thead>
-            <tbody>
-                  {% for timeslot in timeslots %}
+         <div class="tabela">
+            <table class="table table-bordered editable" id="blocks_list">
+                <thead class="thead-dark">
+                  <tr>
+                    <th colspan='7' class="text-center header-table"><span class="ml-1 icon-minimize" style='float: left;'> + </span>Matutino</th>
+                  </tr>
+                  <tr class="header-days">
+                    <!-- <th scope="col" class="align-middle">Período</th> -->
+                    <th scope="col" class="text-center" style="width: 7.7rem">{% trans "Horário" %}</th>
+                    <th scope="col" class="text-center">{% trans "Segunda-feira" %}</th>
+                    <th scope="col" class="text-center">{% trans "Terça-feira" %}</th>
+                    <th scope="col" class="text-center">{% trans "Quarta-feira" %}</th>
+                    <th scope="col" class="text-center">{% trans "Quinta-feira" %}</th>
+                    <th scope="col" class="text-center">{% trans "Sexta-feira" %}</th>
+                    <th scope="col" class="text-center">{% trans "Sábado" %}</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {% for timeslot in timeslots|slice:":6" %}
+                  <tr>
+                    {% with timeslot_counter=forloop.counter %}                     
+                      <th scope="row" class="align-middle text-center">{{ timeslot.hour_start|date:"H:i" }} - {{ timeslot.hour_end|date:"H:i" }}</th>
+                            {% for cell in "012345" %}
+                            <!-- blocktrans? batatinha -->
+                               <td class="text-center p-2" id="cel-{{ timeslot_counter }}-{{ forloop.counter }}">{{ cell.content }}</td>
+                            {% endfor %}
+                      {% endwith %}
+                  </tr>
+                {% endfor %}         
+                </tbody>
+              </table>
+            </div>
+            <div class="tabela">
+              <table class="table table-bordered editable" id="blocks_list">
+                  <thead class="thead-dark">
                     <tr>
-                        {% with timeslot_counter=forloop.counter %}                     
-                           <th scope="row" class="p-2">{{ timeslot.hour_start }} - {{timeslot.hour_end}}</th>
+                      <th colspan='7' class="text-center header-table"><span class="ml-1 icon-minimize" style='float: left;'> + </span>Vespertino</th>
+                    </tr>
+                    <tr class="header-days">
+                      <!-- <th scope="col" class="align-middle">Período</th> -->
+                      <th scope="col" class="text-center" style="width: 7.7rem">{% trans "Horário" %}</th>
+                      <th scope="col" class="text-center">{% trans "Segunda-feira" %}</th>
+                      <th scope="col" class="text-center">{% trans "Terça-feira" %}</th>
+                      <th scope="col" class="text-center">{% trans "Quarta-feira" %}</th>
+                      <th scope="col" class="text-center">{% trans "Quinta-feira" %}</th>
+                      <th scope="col" class="text-center">{% trans "Sexta-feira" %}</th>
+                      <th scope="col" class="text-center">{% trans "Sábado" %}</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {% for timeslot in timeslots|slice:"6:12" %}
+                    <tr>
+                      {% with timeslot_counter=forloop.counter|add:6 %}                     
+                        <th scope="row" class="align-middle text-center">{{ timeslot.hour_start|date:"H:i" }} - {{ timeslot.hour_end|date:"H:i" }}</th>
                               {% for cell in "012345" %}
+                              <!-- blocktrans? batatinha -->
                                  <td class="text-center p-2" id="cel-{{ timeslot_counter }}-{{ forloop.counter }}">{{ cell.content }}</td>
                               {% endfor %}
                         {% endwith %}
                     </tr>
-                  {% endfor %}                
-            </tbody>
-          </table>
+                  {% endfor %}         
+                  </tbody>
+                </table>
+              </div>
+              <div class="tabela">
+                <table class="table table-bordered editable" id="blocks_list">
+                    <thead class="thead-dark">
+                      <tr>
+                        <th colspan='7' class="text-center header-table"><span class="ml-1 icon-minimize" style='float: left;'> + </span>Noturno</th>
+                      </tr>
+                      <tr class="header-days">
+                        <!-- <th scope="col" class="align-middle">Período</th> -->
+                        <th scope="col" class="text-center" style="width: 7.7rem">{% trans "Horário" %}</th>
+                        <th scope="col" class="text-center">{% trans "Segunda-feira" %}</th>
+                        <th scope="col" class="text-center">{% trans "Terça-feira" %}</th>
+                        <th scope="col" class="text-center">{% trans "Quarta-feira" %}</th>
+                        <th scope="col" class="text-center">{% trans "Quinta-feira" %}</th>
+                        <th scope="col" class="text-center">{% trans "Sexta-feira" %}</th>
+                        <th scope="col" class="text-center">{% trans "Sábado" %}</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {% for timeslot in timeslots|slice:"12:" %}
+                      <tr>
+                        {% with timeslot_counter=forloop.counter|add:12 %}                     
+                          <th scope="row" class="align-middle text-center">{{ timeslot.hour_start|date:"H:i" }} - {{ timeslot.hour_end|date:"H:i" }}</th>
+                                {% for cell in "012345" %}
+                                <!-- blocktrans? batatinha -->
+                                   <td class="align-middle text-center p-2" id="cel-{{ timeslot_counter }}-{{ forloop.counter }}">{{ cell.content }}</td>
+                                {% endfor %}
+                          {% endwith %}
+                      </tr>
+                    {% endfor %}         
+                    </tbody>
+                  </table>
+                </div>
           
       </div>
    </div>
