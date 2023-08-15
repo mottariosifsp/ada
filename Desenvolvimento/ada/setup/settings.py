@@ -13,6 +13,7 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 from pathlib import Path, os
 from dotenv import load_dotenv
 from decouple import config
+import logging
 
 load_dotenv()
 
@@ -181,3 +182,27 @@ LOGOUT_REDIRECT_URL = '/user/sair'
 # EMAIL_PORT = config('EMAIL_PORT')
 # EMAIL_HOST = config('EMAIL_HOST')
 
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'handlers': {
+        'custom_handler': {
+            'level': 'ERROR',
+            'class': 'logging.FileHandler',
+            'filename': Path.home() / 'Documents' / 'logs' / 'error.log',
+            'formatter': 'custom',
+        },
+    },
+    'formatters': {
+        'custom': {
+            'format': '%(asctime)s - %(message)s',
+        },
+    },
+    'loggers': {
+        'custom_logger': {
+            'handlers': ['custom_handler'],
+            'level': 'ERROR',
+            'propagate': False,
+        },
+    },
+}
