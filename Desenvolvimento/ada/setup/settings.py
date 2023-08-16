@@ -14,6 +14,7 @@ from pathlib import Path, os
 from dotenv import load_dotenv
 from decouple import config
 import logging
+from django.conf import settings
 
 load_dotenv()
 
@@ -189,7 +190,7 @@ LOGGING = {
         'custom_handler': {
             'level': 'ERROR',
             'class': 'logging.FileHandler',
-            'filename': Path.home() / 'Documents' / 'logs' / 'error.log', # TODO - mudar caminho
+            'filename': settings.BASE_DIR / 'error.log', # TODO - mudar caminho
             'formatter': 'custom',
         },
     },
