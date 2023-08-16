@@ -1,5 +1,5 @@
 body {
-    background: linear-gradient(to top right, #3F927E, #2c436e);
+    /*background: linear-gradient(to top right, #3F927E, #2c436e);*/
     margin: 0;
     padding: 0;
     color: white;
@@ -41,6 +41,24 @@ body {
     width: 100%;
     height: 100%;
     left: 10%;
+}
+
+/* Cor do botão de linguagens */
+.change-color {
+    border: 1px solid #044134;
+    color: #000000;
+}
+
+nav .nav-link {
+    color: #000000;
+}
+
+nav .nav-link:hover {
+    color: #000000;
+}
+
+.change-color:hover {
+    color: #000000;
 }
 
 style > svg#freepik_stories-questions:not(.animated) .animable {
@@ -122,14 +140,5 @@ svg#freepik_stories-questions.animated #freepik--question-mark-1--inject-33 {
 .animator-hidden {
     display: none;
 }
-
-/*.lang-icon {*/
-/*    color: #ad0000;*/
-/*}*/
-
-/*.btn-language {*/
-/*    border: 1px solid #3F927E;*/
-/*    color: #ae00c9;*/
-/*}*/
 
 
