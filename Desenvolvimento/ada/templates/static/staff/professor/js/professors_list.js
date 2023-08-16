@@ -136,9 +136,6 @@ $(document).ready(function () {
         var date_institute = $('#date_institute').val();
         var academic_degrees = allacademicDegrees;
 
-        console.log("Iniciando loop each");
-        console.log(academic_degrees);
-
         var data = {
             registration_id: registration_id,
             birth: birth,
