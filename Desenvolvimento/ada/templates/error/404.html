@@ -12,7 +12,16 @@
 
 
 {% block body %}
+
+    <!-- Cor de fundo diferente quando está logado ou não -->
+    <body style="background: {% if user.is_authenticated %}white
+        {% else %}linear-gradient(to top right, #3F927E, #2c436e){% endif %};
+            color: {% if user.is_authenticated %}black{% else %}white{% endif %};">
+
         <div class="container-inside">
+        {% if not user.is_authenticated %}
+            <img src="{% static 'images/logo_bg.png' %}" alt="logo ada">
+        {% endif %}
             <p class="element error-message text-center">Não encontramos a página que você tentou acessar.</p>
             <a href="{% url 'home' %}" class="btn btn-primary">Voltar ao início</a>
         </div>

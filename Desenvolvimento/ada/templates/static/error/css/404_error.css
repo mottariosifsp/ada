@@ -1,5 +1,5 @@
 body {
-    /*background: linear-gradient(to top right, #3F927E, #2c436e);*/
+    background: linear-gradient(to top right, #3F927E, #2c436e);
     margin: 0;
     padding: 0;
     color: white;
@@ -43,23 +43,12 @@ body {
     left: 10%;
 }
 
+img {
+    margin-bottom: 12px;
+}
+
 /* Cor do botão de linguagens */
-.change-color {
-    border: 1px solid #044134;
-    color: #000000;
-}
 
-nav .nav-link {
-    color: #000000;
-}
-
-nav .nav-link:hover {
-    color: #000000;
-}
-
-.change-color:hover {
-    color: #000000;
-}
 
 style > svg#freepik_stories-questions:not(.animated) .animable {
     opacity: 0;
