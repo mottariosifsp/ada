@@ -25,7 +25,7 @@ body {
 }
 
 .element {
-    color: #020202;
+    color: #ffffff;
     align-items: flex-start;
     font-size: 1.5rem;
     text-transform: uppercase;
@@ -48,131 +48,37 @@ img {
     margin-bottom: 12px;
 }
 
-style > svg#freepik_stories-computer-troubleshooting:not(.animated) .animable {
+a.custom-btn {
+  background-color: #0d2f4d;
+  color: #ffffff;
+  transition: background-color 0.5s ease-in-out;
+  font-size: 23px;
+}
+.custom-btn:hover {
+  background-color: #376c9d;
+}
+
+.text-black {
+    color: black;
+}
+
+.text-white {
+    color: white;
+}
+
+
+svg#freepik_stories-computer-troubleshooting:not(.animated) .animable {
     opacity: 0;
 }
 
-svg#freepik_stories-computer-troubleshooting.animated #freepik--background-simple--inject-4 {
-    animation: 0.7s 1 forwards ease-in slideLeft;
-    animation-delay: 0s;
-}
-
-svg#freepik_stories-computer-troubleshooting.animated #freepik--Plant--inject-4 {
-    animation: 1s 1 forwards cubic-bezier(.36, -0.01, .5, 1.38) lightSpeedLeft;
-    animation-delay: 0s;
-}
-
-svg#freepik_stories-computer-troubleshooting.animated #freepik--Tools--inject-4 {
-    animation: 1s 1 forwards cubic-bezier(.36, -0.01, .5, 1.38) zoomIn;
-    animation-delay: 0s;
-}
-
-svg#freepik_stories-computer-troubleshooting.animated #freepik--Device--inject-4 {
-    animation: 1s 1 forwards cubic-bezier(.36, -0.01, .5, 1.38) slideRight;
-    animation-delay: 0s;
-}
-
-svg#freepik_stories-computer-troubleshooting.animated #freepik--Floor--inject-4 {
-    animation: 1s 1 forwards cubic-bezier(.36, -0.01, .5, 1.38) slideUp;
-    animation-delay: 0s;
-}
-
-svg#freepik_stories-computer-troubleshooting.animated #freepik--Character--inject-4 {
-    animation: 1s 1 forwards cubic-bezier(.36, -0.01, .5, 1.38) lightSpeedLeft;
-    animation-delay: 0s;
-}
-
-svg#freepik_stories-computer-troubleshooting.animated #freepik--Smoke--inject-4 {
-    animation: 1s 1 forwards cubic-bezier(.36, -0.01, .5, 1.38) slideRight;
-    animation-delay: 0s;
-}
-
-svg#freepik_stories-computer-troubleshooting.animated #freepik--Screws--inject-4 {
-    animation: 1s 1 forwards cubic-bezier(.36, -0.01, .5, 1.38) slideUp;
-    animation-delay: 0s;
-}
-
 svg#freepik_stories-computer-troubleshooting.animated #freepik--gear-2--inject-4 {
-    animation: 1.3s 1 forwards cubic-bezier(.36, -0.01, .5, 1.38) zoomOut, 1.5s Infinite linear wind;
-    animation-delay: 0s, 1.3s;
+    animation: 3s Infinite linear wind;
+    animation-delay: 0s;
 }
 
 svg#freepik_stories-computer-troubleshooting.animated #freepik--gears-1--inject-4 {
-    animation: 1s 1 forwards cubic-bezier(.36, -0.01, .5, 1.38) slideUp, 1.5s Infinite linear wind;
+    animation: 1s 1 forwards cubic-bezier(.36, -0.01, .5, 1.38) zoomIn, 3s Infinite linear floating;
     animation-delay: 0s, 1s;
-}
-
-@keyframes slideLeft {
-    0% {
-        opacity: 0;
-        transform: translateX(-30px);
-    }
-    100% {
-        opacity: 1;
-        transform: translateX(0);
-    }
-}
-
-@keyframes lightSpeedLeft {
-    from {
-        transform: translate3d(-50%, 0, 0) skewX(20deg);
-        opacity: 0;
-    }
-    60% {
-        transform: skewX(-10deg);
-        opacity: 1;
-    }
-    80% {
-        transform: skewX(2deg);
-    }
-    to {
-        opacity: 1;
-        transform: translate3d(0, 0, 0);
-    }
-}
-
-@keyframes zoomIn {
-    0% {
-        opacity: 0;
-        transform: scale(0.5);
-    }
-    100% {
-        opacity: 1;
-        transform: scale(1);
-    }
-}
-
-@keyframes slideRight {
-    0% {
-        opacity: 0;
-        transform: translateX(30px);
-    }
-    100% {
-        opacity: 1;
-        transform: translateX(0);
-    }
-}
-
-@keyframes slideUp {
-    0% {
-        opacity: 0;
-        transform: translateY(30px);
-    }
-    100% {
-        opacity: 1;
-        transform: inherit;
-    }
-}
-
-@keyframes zoomOut {
-    0% {
-        opacity: 0;
-        transform: scale(1.5);
-    }
-    100% {
-        opacity: 1;
-        transform: scale(1);
-    }
 }
 
 @keyframes wind {
@@ -187,6 +93,32 @@ svg#freepik_stories-computer-troubleshooting.animated #freepik--gears-1--inject-
     }
 }
 
+@keyframes zoomIn {
+    0% {
+        opacity: 0;
+        transform: scale(0.5);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+@keyframes floating {
+    0% {
+        opacity: 1;
+        transform: translateY(0px);
+    }
+    50% {
+        transform: translateY(-10px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0px);
+    }
+}
+
 .animator-hidden {
     display: none;
 }
+
