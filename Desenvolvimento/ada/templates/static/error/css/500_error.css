@@ -1,19 +1,20 @@
 body {
-    /*background: linear-gradient(to top right, #3F927E, #2c436e);*/
+    background: linear-gradient(to top right, #3F927E, #2c436e);
     margin: 0;
     padding: 0;
     color: white;
-    display: flex;
     justify-content: center;
     align-items: center;
-    min-height: 100vh;
-    background-color: #f0f0f0;
+    background-color: #ffffff;
 }
 
-.container {
-    margin-top: -5%;
+.container.base {
     display: flex;
-    justify-content: space-between;
+    position: absolute;
+    margin: -2% 2% 0 2%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
 
 .container-inside {
@@ -24,7 +25,7 @@ body {
 }
 
 .element {
-    color: #000000;
+    color: #020202;
     align-items: flex-start;
     font-size: 1.5rem;
     text-transform: uppercase;
@@ -42,6 +43,7 @@ body {
     height: 100%;
     left: 10%;
 }
+
 
 style > svg#freepik_stories-computer-troubleshooting:not(.animated) .animable {
     opacity: 0;
