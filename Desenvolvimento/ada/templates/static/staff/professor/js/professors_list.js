@@ -3,7 +3,7 @@ $(document).ready(function () {
         responsive: true
     });
 
-    var academicDegrees = [];
+    var allacademicDegrees = [];
     var academicDegreesList = $("#currentAcademicDegreesList");
 
   function addAcademicDegreeField() {
@@ -32,7 +32,7 @@ $(document).ready(function () {
             }
         });
 
-        $("#academicDegreesData").val(JSON.stringify(academicDegrees));
+        allacademicDegrees = JSON.stringify(academicDegrees);
     }
 
     $(document).on("click", ".btn-remove-academic-degree", function () {
@@ -134,7 +134,7 @@ $(document).ready(function () {
         var date_professor = $('#date_professor').val();
         var date_area = $('#date_area').val();
         var date_institute = $('#date_institute').val();
-        var academic_degrees = $('#academicDegreesData').val();
+        var academic_degrees = allacademicDegrees;
 
         console.log("Iniciando loop each");
         console.log(academic_degrees);
