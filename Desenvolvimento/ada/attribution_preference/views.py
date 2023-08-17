@@ -95,23 +95,27 @@ def attribution_preference(request):
     if Preference_schedule.objects.filter(attribution_preference__user=user).exists():
         disponilibity_done = 'True'
 
-    days = hours = minutes = 0
+    days = hours = minutes = seconds = 0
     if Deadline.objects.filter(name='STARTFPADEADLINE').exists():
         attriution_deadline = Deadline.objects.get(name='STARTFPADEADLINE')  
         target_datetime = attribution_deadline.deadline_end
         current_datetime = timezone.now()
 
-
         time_left = target_datetime - current_datetime
         days = time_left.days
         hours, remainder = divmod(time_left.seconds, 3600)
         minutes, seconds = divmod(remainder, 60)
+        
+        seconds_left = (days * 86400) + (hours * 3600) + (minutes * 60) + seconds
 
     context = {
         'days': days,
         'hours': hours,
         'minutes': minutes,
+        'seconds': seconds,
+        'seconds_left': seconds_left
     }
+
 
     data = {
         'status_fpa': status,
