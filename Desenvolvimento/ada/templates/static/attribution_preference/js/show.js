@@ -43,12 +43,22 @@ for (var i = 0; i < user_courses_choosed_array.length; i++) {
             "font-weight": "600",
         });
     }
+
+    period_language = period
+
+    if(period_language == 'morning' && lang == 'pt-br') {
+        period_language = 'matutino'
+    } else if(period_language == 'afternoon' && lang == 'pt-br') {
+        period_language = 'vespertino'
+    } else if(period_language == 'nocturnal' && lang == 'pt-br') {
+        period_language = 'noturno'
+    }
   
     var new_row = '<tr>' +
       '<td class="text-center">' + acronym + '</td>' +
       '<td class="text-center">' + name_course + '</td>' +
       '<td class="text-center">' + course_area + '</td>' +
-      '<td class="text-center">' + period + '</td>' +
+      '<td class="text-center">' + period_language + '</td>' +
       '<td class="text-center">' + classes + '</td>' +
       '</tr>';
   

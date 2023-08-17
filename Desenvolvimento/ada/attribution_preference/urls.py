@@ -3,7 +3,7 @@ from .views import attribution_preference, courses_attribution_preference, dispo
 
 urlpatterns = [
     path('editar-disponibilidade/', disponibility_attribution_preference, name='disponibility_attribution_preference'),
-    path('editar-cursos/<str:registration_block_id>/', courses_attribution_preference, name='courses_attribution_preference'),
-    path('mostrar/<str:registration_block_id>/', show_attribution_preference, name='show_attribution_preference'),
+    path('editar-cursos/', courses_attribution_preference, name='courses_attribution_preference'),
+    path('mostrar/', show_attribution_preference, name='show_attribution_preference'),
     path('', attribution_preference, name='attribution_preference'),
 ]

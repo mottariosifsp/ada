@@ -1,77 +1,101 @@
-
 var disponilibity_done = document.currentScript.getAttribute("disponilibity_done");
+var seconds = document.currentScript.getAttribute("seconds");
 var lang = document.currentScript.getAttribute("data-lang");
 
-if(disponilibity_done == 'False') {
+if (disponilibity_done == 'False') {
     $(document).ready(function() {
         $('.overlay').css('display', '');
         $('#container *').prop('disabled', true);
         $('#container div.card').css('opacity', '0.4');
     });
 }
-function normalizeTime(days, hours, minutes) {
-    while (minutes >= 60) {
-        hours++;
-        minutes -= 60;
-    }
 
-    while (hours >= 24) {
-        days++;
-        hours -= 24;
+function updateTimer() {
+    seconds--;
+  
+    if (seconds === 0) {
+        let minutes = parseInt(document.getElementById("cel-minute").textContent);
+        minutes--;
+        
+        if (minutes === 0) {
+            let hours = parseInt(document.getElementById("cel-hour").textContent);
+            hours--;
+    
+            if (hours === 0) {
+                let days = parseInt(document.getElementById("cel-day").textContent);
+                days--;
+    
+                if (days === 0) {
+                    window.location.reload();
+                }
+    
+                $('#cel-day').text(days);
+                hours = 24;
+            }
+    
+            $('#cel-hour').text(hours);
+            minutes = 60;
+        }
+    
+        $('#cel-minute').text(minutes);
+        seconds = 60;
+    } else {
+        setTimeout(updateTimer, 1000);
     }
-
-    while (minutes < 0) {
-        hours--;
-        minutes += 60;
-    }
-
-    while (hours < 0) {
-        days--;
-        hours += 24;
-    }
-
-    return { days, hours, minutes };
 }
-
-function updateCountdown() {
-    const countdownElements = {
-        days: document.getElementById('days'),
-        hours: document.getElementById('hours'),
-        minutes: document.getElementById('minutes')
-    };
-
-    const currentDate = new Date();
-    const targetDate = new Date(2023, 8, 31, 18, 0, 0); // Substitua com a sua data
-    const timeDifference = targetDate - currentDate;
-
-    const { days, hours, minutes } = normalizeTime(0, 0, Math.floor(timeDifference / (1000 * 60)));
-
-    countdownElements.days.textContent = days;
-    countdownElements.hours.textContent = hours;
-    countdownElements.minutes.textContent = minutes;
-
-    setTimeout(updateCountdown, 60000); // Agendando a atualização a cada minuto
-    alert()
-}
-
-updateCountdown();
+updateTimer();
 
 function open_case(value) {
-    
+    var buttonElement = document.querySelector(".button-" + value);
+    var isCaretDown = buttonElement.classList.contains('fa-caret-down');
     if(value == 1) {
-        $('.diponibility-case').css({
-            'display': 'block'
-        });
-        window.scrollTo({
-            top: $(".diponibility-case").offset().top - $(".navbar").outerHeight() - 30,
-            behavior: "smooth",
-        });
-        $('.button-1').removeClass('fa-caret-down').addClass('fa-sort-up');alert("h")
-
+        if (isCaretDown) {
+            $('.diponibility-case').css({
+                'display': 'block'
+            });
+            window.scrollTo({
+                top: $(".diponibility-case").offset().top - $(".navbar").outerHeight() - 30,
+                behavior: "smooth",
+            });
+            $('.button-' + value).removeClass('fa-caret-down').addClass('fa-sort-up');
+        } else {
+            $('.diponibility-case').css({
+                'display': 'none'
+            });
+            $('.button-' + value).removeClass('fa-sort-up').addClass('fa-caret-down');
+        }
     } else if(value == 2) {
-
+        if (isCaretDown) {
+            $('.courses-case').css({
+                'display': 'block'
+            });
+            window.scrollTo({
+                top: $(".diponibility-case").offset().top - $(".navbar").outerHeight() - 30,
+                behavior: "smooth",
+            });
+            $('.button-' + value).removeClass('fa-caret-down').addClass('fa-sort-up');
+        } else {
+            $('.courses-case').css({
+                'display': 'none'
+            });
+            $('.button-' + value).removeClass('fa-sort-up').addClass('fa-caret-down');
+        }
     } else {
-
+        if (isCaretDown) {
+            $('.final-case').css({
+                'display': 'block'
+            });
+            window.scrollTo({
+                top: $(".diponibility-case").offset().top - $(".navbar").outerHeight() - 30,
+                behavior: "smooth",
+            });
+            $('.button-' + value).removeClass('fa-caret-down').addClass('fa-sort-up');
+        } else {
+            $('.final-case').css({
+                'display': 'none'
+            });
+            $('.button-' + value).removeClass('fa-sort-up').addClass('fa-caret-down');
+        }
     }
 }
 
