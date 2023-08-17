@@ -39,6 +39,7 @@ function updateTimer() {
     
         $('#cel-minute').text(minutes);
         seconds = 60;
+        setTimeout(updateTimer, 1000);
     } else {
         setTimeout(updateTimer, 1000);
     }
