@@ -47,18 +47,14 @@
                   <td colspan="2">{{ request.user.first_name }}</td>
                 </tr>
                 <tr>
-                  <th>{% trans "Área" %}:</th>
-                  {% blocktrans with name_block_text=blockk %}
-                  <td colspan="2">{{ name_block_text }}</td>
-                  {% endblocktrans %}
-                  <th>{% trans "E-mail" %}:</th>
-                  <td colspan="2">{{ request.user.email }}</td>
-                </tr>
-                <tr>
                   <th>{% trans "Prontuário" %}:</th>
                   <td colspan="2">{{ request.user.registration_id  }}</td>
                   <th>{% trans "Celular" %}:</th>
                   <td colspan="2">{{ request.user.cell_phone }}</td>
+                </tr>
+                <tr>
+                  <th>{% trans "E-mail" %}:</th>
+                  <td colspan="6">{{ request.user.email }}</td>
                 </tr>
                 <tr>
                     <th>{% trans "Regime de trabalho" %}:</th>

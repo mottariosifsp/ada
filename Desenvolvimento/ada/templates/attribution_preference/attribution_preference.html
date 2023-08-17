@@ -107,8 +107,36 @@
         <div class="float-right message-info-blocked"><i class="fa-solid fa-lock"></i> {% trans 'AÇÃO BLOQUEADA'%}</div>
         <h5><i class="button-3 float-left fa-solid fa-caret-down p-1 ml-2 mr-2"></i>{% trans 'Preferência Escolhida'%}</h5>
     </div><hr>
+    {% elif status_fpa == 'finished' %}
+        <div>
+            <div class="float-right message-info-done"><i class="fa-solid fa-lock"></i> {% trans 'FINALIZADO'%}</div>
+            <h5><i class="button-3 float-left fa-solid fa-caret-down p-1 ml-2 mr-2"></i>{% trans 'Preferência de Disponibilidade'%}</h5>
+        </div><hr>
+        <div>
+            <div class="float-right message-info-done"><i class="fa-solid fa-lock"></i> {% trans 'FINALIZADO'%}</div>
+            <h5><i class="button-3 float-left fa-solid fa-caret-down p-1 ml-2 mr-2"></i>{% trans 'Preferência de Disciplinas'%}</h5>
+        </div><hr>
+        <div>
+            <div class="float-right message-info-done"><i class="fa-solid fa-lock"></i> {% trans 'FINALIZADO'%}</div>
+            <h5><i class="button-3 float-left fa-solid fa-caret-down p-1 ml-2 mr-2"></i>{% trans 'Preferência Escolhida'%}</h5>
+        </div><hr>
+
+        <div class="final-case">
+            <div class="card card-blockk-disponibility centered-object">
+                <div class="card-body">
+                    <h5 class="card-title">{% trans 'FPA Final'%}</h5>
+                    <hr>
+                    <p><b>{% trans 'Situação' %}:</b> {% trans 'Você finalizou seu FPA, nesta seção veja como ficou no final ou seja livre para mudar qualquer preferência' %}.</p>
+                    <div class="center-btn">
+                        <a href="{% url 'show_attribution_preference' %}">
+                            <button class="btn ada-btn-blue-dark btn-block"><i class="fas fa-pencil"></i> {% trans "Veja seu FPA Final" %}</button>
+                        </a>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
     {% else %}
-    <i class="fa-solid fa-sort-up"></i>
 
         {% if disponilibity_done == 'True' %}
         <div onclick="open_case(1)">
@@ -152,7 +180,7 @@
                     <p><b>{% trans 'Situação' %}:</b> {% trans 'Iniciou o envio de FPAs para o sistema. Primeiro envie sua disponibilidade geral abaixo e espere os próximos passos' %}:</p>
                     <div class="center-btn">
                         <a href="{% url 'disponibility_attribution_preference' %}">
-                            <button class="btn ada-btn-sucess"><i class="fas fa-share"></i> {% trans "Enviar sua Disponibilidade Geral" %}</button>
+                            <button class="btn ada-btn-blue-dark btn-block"><i class="fas fa-share"></i> {% trans "Enviar sua Disponibilidade Geral" %}</button>
                         </a>
                     </div>
                     
@@ -161,15 +189,82 @@
         </div>
         {% endif %}
 
-    <div onclick="open_case(2)">
-        <div class="float-right message-info-done"><i class="far fa-check-circle"></i> {% trans 'ENVIADO'%}</div>
-        <h5><i class="button-3 float-left fa-solid fa-caret-down p-1 ml-2 mr-2"></i>{% trans 'Preferência de Disciplinas'%}</h5>
-    </div><hr>
+        {% if disponilibity_done == 'False' %}
+            <div>
+                <div class="float-right message-info-blocked"><i class="fa-solid fa-lock"></i> {% trans 'AÇÃO BLOQUEADA'%}</div>
+                <h5><i class="button-2 float-left fa-solid fa-caret-down p-1 ml-2 mr-2"></i>{% trans 'Preferência de Disciplinas'%}</h5>
+            </div><hr>
+        {% elif courses_done == 'False' %}
+            <div onclick="open_case(2)">
+                <div class="float-right message-info-not-done"><i class="fas fa-clock"></i> {% trans 'AGUARDANDO ENVIO'%}</div>
+                <h5><i class="button-2 float-left fa-solid fa-sort-up p-1 ml-2 mr-2"></i>{% trans 'Preferência de Disciplinas'%}</h5>
+            </div><hr>
 
-    <div onclick="open_case(3)">
-        <div class="float-right message-info-done"><i class="far fa-check-circle"></i> {% trans 'ENVIADO'%}</div>
-        <h5><i class="button-3 float-left fa-solid fa-caret-down p-1 ml-2 mr-2"></i>{% trans 'Preferência Escolhida'%}</h5>
-    </div><hr>
+            <div class="courses-case">
+                <div class="card card-blockk-disponibility centered-object">
+                    <div class="card-body">
+                        <h5 class="card-title">{% trans 'Envio da Preferência de Disciplinas'%}</h5>
+                        <hr>
+                        <p><b>{% trans 'Situação' %}:</b> {% trans 'Você enviou sua disponibilidade, próximo passo é enviar com base na sua disponibilidade quais são suas preferências de disciplinas' %}.</p>
+                        <div class="center-btn">
+                            <a href="{% url 'courses_attribution_preference' %}">
+                                <button class="btn ada-btn-blue-dark btn-block"><i class="fas fa-share"></i> {% trans "Enviar sua Preferência de Disciplinas" %}</button>
+                            </a>
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
+        {% else %}
+            <div onclick="open_case(2)">
+                <div class="float-right message-info-done"><i class="far fa-check-circle"></i> {% trans 'ENVIADO'%}</div>
+                <h5><i class="button-2 float-left fa-solid fa-caret-down p-1 ml-2 mr-2"></i>{% trans 'Preferência de Disciplinas'%}</h5>
+            </div><hr>
+
+            <div class="courses-case" style="display: none;">
+                <div class="card card-blockk-disponibility centered-object">
+                    <div class="card-body">
+                        <h5 class="card-title">{% trans 'Envio da Preferência de Disciplinas'%}</h5>
+                        <hr>
+                        <p><b>{% trans 'Situação' %}:</b> {% trans 'Você enviou sua disponibilidade, próximo passo é enviar com base na sua disponibilidade quais são suas preferências de disciplinas' %}.</p>
+                        <div class="center-btn">
+                            <a href="{% url 'courses_attribution_preference' %}">
+                                <button class="btn ada-btn-warning btn-block"><i class="fas fa-pencil"></i> {% trans "Edite sua Preferência de Disciplinas" %}</button>
+                            </a>
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
+        {% endif %}
+
+        {% if disponilibity_done == 'True' and courses_done == 'True' %}
+            <div onclick="open_case(3)">
+                <div class="float-right message-info-done"><i class="far fa-check-circle"></i> {% trans 'FINALIZADO'%}</div>
+                <h5><i class="button-3 float-left fa-solid fa-caret-down p-1 ml-2 mr-2"></i>{% trans 'Preferência Escolhida'%}</h5>
+            </div><hr>
+
+            <div class="final-case">
+                <div class="card card-blockk-disponibility centered-object">
+                    <div class="card-body">
+                        <h5 class="card-title">{% trans 'FPA Final'%}</h5>
+                        <hr>
+                        <p><b>{% trans 'Situação' %}:</b> {% trans 'Você finalizou seu FPA, nesta seção veja como ficou no final ou seja livre para mudar qualquer preferência' %}.</p>
+                        <div class="center-btn">
+                            <a href="{% url 'show_attribution_preference' %}">
+                                <button class="btn ada-btn-blue-dark btn-block"><i class="fas fa-pencil"></i> {% trans "Veja seu FPA Final" %}</button>
+                            </a>
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
+        {% else %}
+        <div>
+            <div class="float-right message-info-blocked"><i class="fa-solid fa-lock"></i> {% trans 'AÇÃO BLOQUEADA'%}</div>
+            <h5><i class="button-2 float-left fa-solid fa-caret-down p-1 ml-2 mr-2"></i>{% trans 'Preferência Escolhida'%}</h5>
+        </div><hr>
+        {% endif %}
     {% endif %}
 <!--     
     {% if started_times > 0 and disponilibity_done == 'True' or finished_times > 0 and disponilibity_done == 'True' %}

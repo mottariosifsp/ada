@@ -57,19 +57,40 @@ function updateCountdown() {
 updateCountdown();
 
 function open_case(value) {
-    
+    var buttonElement = document.querySelector(".button-" + value);
+    var isCaretDown = buttonElement.classList.contains('fa-caret-down');
     if(value == 1) {
-        $('.diponibility-case').css({
-            'display': 'block'
-        });
-        window.scrollTo({
-            top: $(".diponibility-case").offset().top - $(".navbar").outerHeight() - 30,
-            behavior: "smooth",
-        });
-        $('.button-1').removeClass('fa-caret-down').addClass('fa-sort-up');alert("h")
-
+        if (isCaretDown) {
+            $('.diponibility-case').css({
+                'display': 'block'
+            });
+            window.scrollTo({
+                top: $(".diponibility-case").offset().top - $(".navbar").outerHeight() - 30,
+                behavior: "smooth",
+            });
+            $('.button-' + value).removeClass('fa-caret-down').addClass('fa-sort-up');
+        } else {
+            $('.diponibility-case').css({
+                'display': 'none'
+            });
+            $('.button-' + value).removeClass('fa-sort-up').addClass('fa-caret-down');
+        }
     } else if(value == 2) {
-
+        if (isCaretDown) {
+            $('.courses-case').css({
+                'display': 'block'
+            });
+            window.scrollTo({
+                top: $(".diponibility-case").offset().top - $(".navbar").outerHeight() - 30,
+                behavior: "smooth",
+            });
+            $('.button-' + value).removeClass('fa-caret-down').addClass('fa-sort-up');
+        } else {
+            $('.courses-case').css({
+                'display': 'none'
+            });
+            $('.button-' + value).removeClass('fa-sort-up').addClass('fa-caret-down');
+        }
     } else {
 
     }

@@ -10,7 +10,6 @@ var user_timetables = JSON.parse(document.currentScript.getAttribute("user_timet
 var user_blocks = document.currentScript.getAttribute("user_blocks").replace(/'/g, '"');
 var user_areas = JSON.parse(document.currentScript.getAttribute("user_areas").replace(/'/g, '"'));
 var user_courses_from_blockk = JSON.parse(document.currentScript.getAttribute("user_courses_from_blockk").replace(/'/g, '"'));
-var user_courses_from_fpa = JSON.parse(document.currentScript.getAttribute("user_courses_from_fpa").replace(/'/g, '"'));
 
 var cell_left_number = {
     time: 21,
@@ -74,30 +73,6 @@ if(user_courses_from_blockk.length > 0) {
     }
 }
 
-if(user_courses_from_fpa.length > 0) {
-    for (var i = 0; i < user_courses_from_fpa.length; i++) {
-        var obj = user_courses_from_fpa[i];
-        var obj_id = obj.id;
-        var array_position_id = obj.position_id;
-
-        for (var y = 0; y < array_position_id.length; y++) {
-            var position = array_position_id[y].id;
-
-            $("#sub-" + position).text(user_courses_from_fpa[i].course_acronym);
-            $("#btn-" + position)
-                .attr("data-toggle", "none")
-                .attr("data-target", "#");
-            $("label[for='" + position + "']")
-                .addClass("disabled")
-                .addClass("btn-notchecked");
-            $("label[for='" + position + "']").css({
-                "font-weight": "700",
-                "color": "#00241c",
-                "background-color": "#507c75",
-            });
-        }
-    }
-}
 
 // Ao cliar no button
 $("#timetable-courses input").on("click", function () {

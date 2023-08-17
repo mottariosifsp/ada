@@ -246,142 +246,170 @@ def disponibility_attribution_preference(request):
 
     return render(request, 'attribution_preference/disponibility_attribution_preference.html', data)
 
-def courses_attribution_preference(request, registration_block_id):
-    blockk = Blockk.objects.get(registration_block_id=registration_block_id)
+def courses_attribution_preference(request):
+    user_regime = request.POST.get('user_regime')
+    user_timeslots = request.POST.getlist('user_timeslots')
+    json_data = [json.loads(item) for item in user_timeslots]
 
-    user = request.user
+    timeslots = []
 
-    user_regime = user.job
-    courses = Course.objects.all()
+    for obj in json_data:
+        for item in obj:
+            timeslot_begin_hour = convert_string_to_datetime(item["timeslot_begin_hour"])
+            day_of_week = item["day_of_week"]
+
+            timeslot_preference = {
+                "timeslot_begin_hour": timeslot_begin_hour,
+                "day_of_week": day_of_week
+            }
+
+            timeslots.append(timeslot_preference)
+
+    if request.method == 'POST':
+        save_disponiility_preference(timeslots, user_regime, request.user)
+
+        return render(request, 'attribution_preference/courses_attribution_preference.html')
+    else:
+        user = request.user
+
+        user_regime = user.job
+        courses = Course.objects.all()
+        
+        user_area = []
+        for area in Area.objects.filter(blocks__in=user.blocks.all().distinct()).distinct():
+            area_obj = {
+                'id': area.registration_area_id,
+                'name': area.name_area,
+                'acronym': area.acronym,
+                'blocks': [block.registration_block_id for block in area.blocks.all()]
+            }
+            user_area.append(area_obj)
     
-    user_area = []
-    for area in Area.objects.filter(blocks=blockk).distinct():
-        area_obj = {
-            'id': area.registration_area_id,
-            'name': area.name_area,
-            'acronym': area.acronym,
-            'blocks': [block.registration_block_id for block in area.blocks.all()]
-        }
-        user_area.append(area_obj)
+        user_block = []
+        for block in user.blocks.all().distinct():
+            block_obj = {
+                'id': block.registration_block_id,
+                'name': block.name_block,
+                'acronym': block.acronym
+            }
+            user_block.append(block_obj)
 
-    user_timetable = []
-    for timetable_object in Timetable.objects.filter(course__blockk=blockk):
-        day_combo_objects = timetable_object.day_combo.all()
-        day_combo_data = []
+        user_timetable = []
+        for timetable_object in Timetable.objects.all():
+            day_combo_objects = timetable_object.day_combo.all()
+            day_combo_data = []
 
-        for day_combo in day_combo_objects:
-            day = day_combo.day
-            timeslots = day_combo.timeslots.all()
-            timeslot_data = []
+            for day_combo in day_combo_objects:
+                day = day_combo.day
+                timeslots = day_combo.timeslots.all()
+                timeslot_data = []
 
-            for timeslot in timeslots:
-                timeslot_data.append({
-                    'timeslot_begin_hour': timeslot.hour_start.strftime('%H:%M:%S'),
-                    'timeslot_end_hour': timeslot.hour_end.strftime('%H:%M:%S'),
+                for timeslot in timeslots:
+                    timeslot_data.append({
+                        'timeslot_begin_hour': timeslot.hour_start.strftime('%H:%M:%S'),
+                        'timeslot_end_hour': timeslot.hour_end.strftime('%H:%M:%S'),
+                    })
+
+                day_combo_data.append({
+                    'day': day,
+                    'timeslots': timeslot_data,
                 })
 
-            day_combo_data.append({
-                'day': day,
-                'timeslots': timeslot_data,
-            })
+            timetable_item = {
+                'id': timetable_object.id,
+                'day_combo': day_combo_data,
+                'course_acronym': timetable_object.course.acronym,
+                'course_name': timetable_object.course.name_course,
+                'course_id': timetable_object.course.registration_course_id,
+                'classs': timetable_object.classs.registration_class_id,
+            }
 
-        timetable_item = {
-            'id': timetable_object.id,
-            'day_combo': day_combo_data,
-            'course_acronym': timetable_object.course.acronym,
-            'course_name': timetable_object.course.name_course,
-            'course_id': timetable_object.course.registration_course_id,
-            'classs': timetable_object.classs.registration_class_id,
+            user_timetable.append(timetable_item)
+
+        user_courses = []
+        for course_object in Course.objects.all():
+            course_item = {
+                'id': course_object.registration_course_id,
+                'name': course_object.name_course,
+                'acronym': course_object.acronym,
+                'area': course_object.area.registration_area_id,
+                'block': course_object.blockk.registration_block_id
+            }
+            user_courses.append(course_item)
+
+        shift = {
+            'morning': [],
+            'morning_classes': 0,
+            'afternoon': [],
+            'afternoon_classes': 0,
+            'nocturnal': [],
+            'nocturnal_classes': 0
         }
 
-        user_timetable.append(timetable_item)
+        for timeslot in Timeslot.objects.all():
+            if timeslot.hour_start >= datetime.time(7, 0, 0) and timeslot.hour_end <= datetime.time(12, 0, 0):
+                shift['morning'].append(timeslot)
+            elif timeslot.hour_start >= datetime.time(13, 0, 0) and timeslot.hour_end <= datetime.time(18, 0, 0):
+                shift['afternoon'].append(timeslot)
+            elif timeslot.hour_start >= datetime.time(18, 0, 0) and timeslot.hour_end <= datetime.time(23, 0, 0):
+                shift['nocturnal'].append(timeslot)
 
-    user_courses = []
-    for course_object in Course.objects.filter(blockk=blockk):
-        course_item = {
-            'id': course_object.registration_course_id,
-            'name': course_object.name_course,
-            'acronym': course_object.acronym,
-            'area': course_object.area.registration_area_id,
-            'block': course_object.blockk.registration_block_id
-        }
-        user_courses.append(course_item)
+            shift['morning_classes'] = len(shift['morning']) + 1
+            shift['afternoon_classes'] = len(shift['afternoon']) + 1
+            shift['nocturnal_classes'] = len(shift['nocturnal']) + 1
 
-    shift = {
-        'morning': [],
-        'morning_classes': 0,
-        'afternoon': [],
-        'afternoon_classes': 0,
-        'nocturnal': [],
-        'nocturnal_classes': 0
-    }
+        user_timeslot_table = []
+        user_preference_schedules = Preference_schedule.objects.filter(attribution_preference__user=request.user)
+        for schedule in user_preference_schedules:
+            timeslot_begin_hour = (schedule.timeslot.hour_start)
 
-    for timeslot in Timeslot.objects.all():
-        if timeslot.hour_start >= datetime.time(7, 0, 0) and timeslot.hour_end <= datetime.time(12, 0, 0):
-            shift['morning'].append(timeslot)
-        elif timeslot.hour_start >= datetime.time(13, 0, 0) and timeslot.hour_end <= datetime.time(18, 0, 0):
-            shift['afternoon'].append(timeslot)
-        elif timeslot.hour_start >= datetime.time(18, 0, 0) and timeslot.hour_end <= datetime.time(23, 0, 0):
-            shift['nocturnal'].append(timeslot)
+            shift_type = None
+            shift_position = None
 
-        shift['morning_classes'] = len(shift['morning']) + 1
-        shift['afternoon_classes'] = len(shift['afternoon']) + 1
-        shift['nocturnal_classes'] = len(shift['nocturnal']) + 1
+            if timeslot_begin_hour >= datetime.time(7, 0, 0) and timeslot_begin_hour <= datetime.time(12, 0, 0):
+                shift_type = 'mor'
+                shift_position = next((i for i, slot in enumerate(shift['morning']) if slot.hour_start == timeslot_begin_hour), None)
+            elif timeslot_begin_hour >= datetime.time(13, 0, 0) and timeslot_begin_hour < datetime.time(18, 0, 0):
+                shift_type = 'aft'
+                shift_position = next((i for i, slot in enumerate(shift['afternoon']) if slot.hour_start == timeslot_begin_hour),
+                                     None)
+            elif timeslot_begin_hour >= datetime.time(18, 0, 0) and timeslot_begin_hour <= datetime.time(23, 0, 0):
+                shift_type = 'noc'
+                shift_position = next((i for i, slot in enumerate(shift['nocturnal']) if slot.hour_start == timeslot_begin_hour), None)
 
-    user_timeslot_table = []
-    user_preference_schedules = Preference_schedule.objects.filter(attribution_preference__user=request.user)
-    for schedule in user_preference_schedules:
-        timeslot_begin_hour = (schedule.timeslot.hour_start)
+            if shift_position is not None:
+                shift_position += 1
 
-        shift_type = None
-        shift_position = None
+            if schedule.day == 'monday':
+                shift_day = 'mon'
+            elif schedule.day == 'tuesday':
+                shift_day = 'tue'
+            elif schedule.day == 'wednesday':
+                shift_day = 'wed'
+            elif schedule.day == 'thursday':
+                shift_day = 'thu'
+            elif schedule.day == 'friday':
+                shift_day = 'fri'
+            else:
+                shift_day = 'sat'
 
-        if timeslot_begin_hour >= datetime.time(7, 0, 0) and timeslot_begin_hour <= datetime.time(12, 0, 0):
-            shift_type = 'mor'
-            shift_position = next((i for i, slot in enumerate(shift['morning']) if slot.hour_start == timeslot_begin_hour), None)
-        elif timeslot_begin_hour >= datetime.time(13, 0, 0) and timeslot_begin_hour < datetime.time(18, 0, 0):
-            shift_type = 'aft'
-            shift_position = next((i for i, slot in enumerate(shift['afternoon']) if slot.hour_start == timeslot_begin_hour),
-                                    None)
-        elif timeslot_begin_hour >= datetime.time(18, 0, 0) and timeslot_begin_hour <= datetime.time(23, 0, 0):
-            shift_type = 'noc'
-            shift_position = next((i for i, slot in enumerate(shift['nocturnal']) if slot.hour_start == timeslot_begin_hour), None)
-
-        if shift_position is not None:
-            shift_position += 1
-
-        if schedule.day == 'monday':
-            shift_day = 'mon'
-        elif schedule.day == 'tuesday':
-            shift_day = 'tue'
-        elif schedule.day == 'wednesday':
-            shift_day = 'wed'
-        elif schedule.day == 'thursday':
-            shift_day = 'thu'
-        elif schedule.day == 'friday':
-            shift_day = 'fri'
+            string = {
+                'id': f'{shift_day}-{shift_type}-{shift_position}',
+                'position': shift_position,
+                'type': shift_type,
+                'day': shift_day,
+                'timeslot_begin_hour': timeslot_begin_hour.strftime('%H:%M:%S'),
+            }
+            user_timeslot_table.append(string)
+        
+        if user_regime.name_job == "rde":
+            user_regime_choosed = user_regime
+            user_regime_choosed.name_job = '40'
         else:
-            shift_day = 'sat'
-
-        string = {
-            'id': f'{shift_day}-{shift_type}-{shift_position}',
-            'position': shift_position,
-            'type': shift_type,
-            'day': shift_day,
-            'timeslot_begin_hour': timeslot_begin_hour.strftime('%H:%M:%S'),
-        }
-        user_timeslot_table.append(string)
-    
-    if user_regime.name_job == "rde":
-        user_regime_choosed = user_regime
-        user_regime_choosed.name_job = '40'
-    else:
-        user_regime_choosed = user_regime
+            user_regime_choosed = user_regime
 
     courses_from_block = []
-    courses_from_fpa = []
-
-    course_preferences_with_blockk = Course_preference.objects.filter(blockk=blockk)
+    course_preferences_with_blockk = Course_preference.objects.filter(attribution_preference__user=request.user)
 
     for course_preference in course_preferences_with_blockk:
         timetable_object = course_preference.timetable
@@ -448,96 +476,22 @@ def courses_attribution_preference(request, registration_block_id):
             'course_acronym': timetable_object.course.acronym,
             'course_id': timetable_object.course.registration_course_id,
         }
-
         courses_from_block.append(timetable_item)
-
-    course_preferences_without_same_blockk = Course_preference.objects.exclude(blockk=blockk)
-
-    for course_preference in course_preferences_without_same_blockk:
-        timetable_object = course_preference.timetable
-        day_combo_objects = timetable_object.day_combo.all()
-        day_combo_data = []
-        user_timeslot_traceback = []
-
-        for day_combo in day_combo_objects:
-            day = day_combo.day
-            timeslots = day_combo.timeslots.all()
-            timeslot_data = []
-            shift_type = None
-            shift_position = None
-            begin = ''
-
-            for timeslot in timeslots:
-                timeslot_data.append({
-                    'timeslot_begin_hour': timeslot.hour_start.strftime('%H:%M:%S'),
-                    'timeslot_end_hour': timeslot.hour_end.strftime('%H:%M:%S'),
-                })
-                begin = timeslot.hour_start
-
-                if begin >= datetime.time(7, 0, 0) and begin <= datetime.time(12, 0, 0):
-                    shift_type = 'mor'
-                    shift_position = next((i for i, slot in enumerate(shift['morning']) if slot.hour_start == begin), None)
-                elif begin >= datetime.time(13, 0, 0) and begin < datetime.time(18, 0, 0):
-                    shift_type = 'aft'
-                    shift_position = next((i for i, slot in enumerate(shift['afternoon']) if slot.hour_start == begin),
-                                            None)
-                elif begin >= datetime.time(18, 0, 0) and begin <= datetime.time(23, 0, 0):
-                    shift_type = 'noc'
-                    shift_position = next((i for i, slot in enumerate(shift['nocturnal']) if slot.hour_start == begin), None)
-
-                if shift_position is not None:
-                    shift_position += 1
-
-                if day == 'monday':
-                    day_of_week = 'mon'
-                elif day == 'tuesday':
-                    day_of_week = 'tue'
-                elif day == 'wednesday':
-                    day_of_week = 'wed'
-                elif day == 'thursday':
-                    day_of_week = 'thu'
-                elif day == 'friday':
-                    day_of_week = 'fri'
-                else:
-                    day_of_week = 'sat'
-
-                string = {
-                    'id': f'{day_of_week}-{shift_type}-{shift_position}'
-                }
-                user_timeslot_traceback.append(string)
-
-            day_combo_data.append({
-                'day': day,
-                'timeslots': timeslot_data,
-            })
-
-        timetable_item = {
-            'id': timetable_object.id,
-            'position_id': user_timeslot_traceback,
-            'day_combo': day_combo_data,
-            'course_acronym': timetable_object.course.acronym,
-            'course_id': timetable_object.course.registration_course_id,
-        }
-
-        courses_from_fpa.append(timetable_item)
 
     data = {
         'user_regime': user_regime_choosed,
         'shift': shift,
         'user_disponibility': user_timeslot_table,
-        'user_blockk': blockk,
+        'user_blockk': user_block,
         'user_areas': user_area,
         'user_timetables': user_timetable,
         'user_courses': user_courses,
-        'user_courses_from_blockk': courses_from_block,
-        'user_courses_from_fpa': courses_from_fpa
+        'user_courses_from_blockk': courses_from_block
     }
 
     return render(request, 'attribution_preference/courses_attribution_preference.html', data)
 
-def show_attribution_preference(request, registration_block_id):
-    blockk = Blockk.objects.get(registration_block_id=registration_block_id)
-
+def show_attribution_preference(request):
     if request.method == 'GET':
         user = request.user
         
@@ -608,7 +562,7 @@ def show_attribution_preference(request, registration_block_id):
             user_timeslot_traceback.append(string)
 
         user_courses_traceback = []
-        user_courses = Course_preference.objects.filter(blockk=blockk)
+        user_courses = Course_preference.objects.filter(attribution_preference__user=request.user)
         for preference in user_courses:
             timetable_object = preference.timetable
             day_combo_objects = timetable_object.day_combo.all()
@@ -691,13 +645,11 @@ def show_attribution_preference(request, registration_block_id):
 
         data = {
             'is_fpa_done': is_done,
-            'blockk': blockk,
             'shift': shift,
             'user_regime': user_regime,
             'user_disponibility_choosed': user_timeslot_traceback,
             'user_courses_choosed': user_courses_traceback,
         }
-
         print(data)
 
         return render(request, 'attribution_preference/show_attribution_preference.html', data)

@@ -123,7 +123,6 @@ div#navbarToggler ul.navbar-nav > li.word-topic:hover {
 
 div#navbarToggler ul.navbar-nav > li.nav-item:hover {
     border-radius: 5px;
-    border: 0.1px solid #213b5f;
     background-color: #213b5f;
 }
 
@@ -160,12 +159,6 @@ li.language-icon-notlogged, div.language-icon-notlogged {width: 8%}
 
 div.language-icon-notlogged {
     padding: 10px;
-}
-
-.profile-icon {
-    margin-left: 15px;
-    width: 4%;
-    margin-top: 0px;
 }
 
 img.lang-icon, img.user-photo {width: 100%;}
