@@ -13,6 +13,8 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 from pathlib import Path, os
 from dotenv import load_dotenv
 from decouple import config
+import logging
+from django.conf import settings
 
 load_dotenv()
 
@@ -159,7 +161,7 @@ LOCALE_PATHS = (
     os.path.join(BASE_DIR, 'locale/'),
 )
 
-STATIC_ROOT = os.path.join(BASE_DIR, "static")
+STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
@@ -180,3 +182,28 @@ LOGOUT_REDIRECT_URL = '/user/sair'
 # EMAIL_USE_TLS = config('EMAIL_USE_TLS')
 # EMAIL_PORT = config('EMAIL_PORT')
 # EMAIL_HOST = config('EMAIL_HOST')
+
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'handlers': {
+        'custom_handler': {
+            'level': 'ERROR',
+            'class': 'logging.FileHandler',
+            'filename': settings.BASE_DIR / 'error.log', # TODO - mudar caminho
+            'formatter': 'custom',
+        },
+    },
+    'formatters': {
+        'custom': {
+            'format': '%(asctime)s - %(message)s',
+        },
+    },
+    'loggers': {
+        'custom_logger': {
+            'handlers': ['custom_handler'],
+            'level': 'ERROR',
+            'propagate': False,
+        },
+    },
+}

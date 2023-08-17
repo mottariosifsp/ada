@@ -156,34 +156,9 @@ $(document).ready(function() {
     var input_id = $(this).attr('for');
     var [input_day_of_week, input_period, input_timeslot] = input_id.split('-');
 
-    checkboxes = $('input[type="checkbox"]:checked').filter('[id^=' + input_day_of_week + ']');
-
-    if (checkboxes.filter('[id^="mon"]').length > max_quantity_cells - 1 ||
-        checkboxes.filter('[id^="tue"]').length > max_quantity_cells - 1 ||
-        checkboxes.filter('[id^="wed"]').length > max_quantity_cells - 1 ||
-        checkboxes.filter('[id^="thu"]').length > max_quantity_cells - 1 ||
-        checkboxes.filter('[id^="fri"]').length > max_quantity_cells - 1 ||
-        checkboxes.filter('[id^="sat"]').length > max_quantity_cells - 1) {
-      //limited_hours_passed = true;
-      var checkbox = document.getElementById(input_id);
-      if (checkbox) {
-        checkbox.checked = true;
-        checkbox.parentElement.classList.add("active");
-        checkbox.parentElement.parentElement.classList.add("active");
-      }
-      // $('#error-alert-form').text('A seleção da disponibilidade de horário não pode ultrapassar 8 horas de trabalho diárias.');
-      // $('#error-alert-form').show();
-      // window.scrollTo({
-      //   top: $('#error-alert-form').offset().top - $('.navbar').outerHeight() - 30,
-      //   behavior: 'smooth'
-      // });
-    }
-    // } else {
-    //   limited_hours_passed = false;
-    //   $('#error-alert-form').hide();
-    // }
+    eight_work_hours_rule(input_day_of_week);
     console.log(checkboxes.length);
-    console.log(limited_hours_passed);
+
     var checkbox = document.getElementById(input_id);
 
     if (checkbox) {
@@ -856,14 +831,7 @@ $(document).ready(function() {
               behavior: 'smooth'
             });
           }});
-          } else {
-            $('#error-message-form').text('Se certifique que a seleção de disponibilidade não ultrapassa 8 horas diárias de trabalho.');
-            $('#error-alert-form').show();
-            window.scrollTo({
-              top: $('#error-alert-form').offset().top - $('.navbar').outerHeight() - 30,
-              behavior: 'smooth'
-            });
-          }
+        }
       } else {
         $('#error-message-form').text('Por favor insira todas as células.');
         $('#error-alert-form').show();
@@ -897,6 +865,28 @@ $(document).ready(function() {
     return cookieValue;
   }
 });
+
+function eight_work_hours_rule(input_day_of_week) {
+  checkboxes = $('input[type="checkbox"]:checked').filter('[id^=' + input_day_of_week + ']');
+
+  if (checkboxes.filter('[id^="mon"]').length > max_quantity_cells - 1 ||
+      checkboxes.filter('[id^="tue"]').length > max_quantity_cells - 1 ||
+      checkboxes.filter('[id^="wed"]').length > max_quantity_cells - 1 ||
+      checkboxes.filter('[id^="thu"]').length > max_quantity_cells - 1 ||
+      checkboxes.filter('[id^="fri"]').length > max_quantity_cells - 1 ||
+      checkboxes.filter('[id^="sat"]').length > max_quantity_cells - 1) {
+    limited_hours_passed = true;
+    $('#error-alert-form').text('A seleção da disponibilidade de horário não pode ultrapassar 8 horas de trabalho diárias.');
+    $('#error-alert-form').show();
+    window.scrollTo({
+      top: $('#error-alert-form').offset().top - $('.navbar').outerHeight() - 30,
+      behavior: 'smooth'
+    });
+  } else {
+    limited_hours_passed = false;
+    $('#error-alert-form').hide();
+  }
+}
 
 function period_input(value) {
   var element = document.getElementById("period-" + value);

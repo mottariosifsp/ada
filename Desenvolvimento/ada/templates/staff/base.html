@@ -26,7 +26,7 @@
           {% get_current_language as LANGUAGE_CODE %}
           <button class="btn btn-language" readonly>{% if LANGUAGE_CODE == 'en' %}EN{% else %}PT{% endif %}</button>
         </a>
-        <div class="dropdown-menu dropdown-menu-right dropdown-login" aria-labelledby="navbarDropdownLangLogin">
+        <div class="dropdown-menu dropdown-menu-right dropdown-login " aria-labelledby="navbarDropdownLangLogin">
           {% get_current_language as LANGUAGE_CODE %}
           {% get_available_languages as LANGUAGES %}
           {% get_language_info_list for LANGUAGES as languages %}

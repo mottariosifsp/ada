@@ -1,30 +1,30 @@
 body {
-    /*background: linear-gradient(to top right, #3F927E, #2c436e);*/
+    background: linear-gradient(to top right, #3F927E, #2c436e);
     margin: 0;
     padding: 0;
     color: white;
-    display: flex;
     justify-content: center;
     align-items: center;
-    min-height: 100vh;
-    background-color: #f0f0f0;
+    background-color: #ffffff;
 }
 
-.container {
-    margin-top: -5%;
+.container.base {
     display: flex;
-    justify-content: space-between;
+    position: absolute;
+    margin: -2% 2% 0 2%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
 
 .container-inside {
     flex-direction: column;
     justify-content: center;
     display: flex;
-
 }
 
 .element {
-    color: #000000;
+    color: #f6f6f6;
     align-items: flex-start;
     font-size: 1.5rem;
     text-transform: uppercase;
@@ -33,6 +33,7 @@ body {
 .error-message {
     font-family: 'Josefin Sans', sans-serif;
     font-weight: bolder;
+    font-size: 28px;
 }
 
 .svg {
@@ -42,22 +43,45 @@ body {
     left: 10%;
 }
 
-style > svg#freepik_stories-questions:not(.animated) .animable {
+img {
+    margin-bottom: 12px;
+}
+
+.text-black {
+    color: black;
+}
+
+.text-white {
+    color: white;
+}
+
+a.custom-btn {
+  background-color: #0d2f4d;
+  color: #ffffff;
+  transition: background-color 0.5s ease-in-out;
+  font-size: 23px;
+}
+
+.custom-btn:hover {
+  background-color: #376c9d;
+}
+
+ svg#freepik_stories-questions:not(.animated) .animable {
     opacity: 0;
 }
 
-svg#freepik_stories-questions.animated #freepik--background-simple--inject-33 {
+svg#freepik_stories-questions.animated #freepik--background-simple--inject-2 {
     animation: 1s 1 forwards linear fadeIn, 1.5s Infinite linear wind;
     animation-delay: 0s, 1s;
 }
 
-svg#freepik_stories-questions.animated #freepik--question-marks-2--inject-33 {
+svg#freepik_stories-questions.animated #freepik--question-marks-2--inject-2 {
     animation: 1.9s 1 forwards ease-in slideDown, 1.5s Infinite linear floating;
     animation-delay: 0s, 1.9s;
 }
 
-svg#freepik_stories-questions.animated #freepik--question-mark-1--inject-33 {
-    animation: 1.8s 1 forwards ease-in slideUp;
+svg#freepik_stories-questions.animated #freepik--question-mark-1--inject-2 {
+    animation: 1.5s Infinite linear wind;
     animation-delay: 0s;
 }
 
@@ -107,18 +131,9 @@ svg#freepik_stories-questions.animated #freepik--question-mark-1--inject-33 {
     }
 }
 
-@keyframes slideUp {
-    0% {
-        opacity: 0;
-        transform: translateY(30px);
-    }
-    100% {
-        opacity: 1;
-        transform: inherit;
-    }
-}
-
 .animator-hidden {
     display: none;
 }
+
+
 
