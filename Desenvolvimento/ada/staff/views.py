@@ -86,10 +86,12 @@ def attribution_configuration_confirm(request):
         blockk = Blockk.objects.get(registration_block_id=request.POST.get('blockk'))
         Deadline.objects.filter(blockk=blockk).delete()  
 
-        startFPADeadline = datetime.strptime(request.POST.get('startFPADeadline'), '%Y-%m-%dT%H:%M')
-        endFPADeadline = datetime.strptime(request.POST.get('endFPADeadline'), '%Y-%m-%dT%H:%M')
-        startAssignmentDeadline = datetime.strptime(request.POST.get('startAssignmentDeadline'), '%Y-%m-%dT%H:%M')
-        endAssignmentDeadline = datetime.strptime(request.POST.get('endAssignmentDeadline'), '%Y-%m-%dT%H:%M')
+        date_format = "%Y-%m-%dT%H:%M"
+
+        startFPADeadline = datetime.strptime(request.POST.get('startFPADeadline'), date_format)
+        endFPADeadline = datetime.strptime(request.POST.get('endFPADeadline'), date_format)
+        startAssignmentDeadline = datetime.strptime(request.POST.get('startAssignmentDeadline'), date_format)
+        endAssignmentDeadline = datetime.strptime(request.POST.get('endAssignmentDeadline'), date_format)
 
         print(startFPADeadline)
 
