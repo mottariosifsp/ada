@@ -81,7 +81,21 @@ function open_case(value) {
             $('.button-' + value).removeClass('fa-sort-up').addClass('fa-caret-down');
         }
     } else {
-
+        if (isCaretDown) {
+            $('.final-case').css({
+                'display': 'block'
+            });
+            window.scrollTo({
+                top: $(".diponibility-case").offset().top - $(".navbar").outerHeight() - 30,
+                behavior: "smooth",
+            });
+            $('.button-' + value).removeClass('fa-caret-down').addClass('fa-sort-up');
+        } else {
+            $('.final-case').css({
+                'display': 'none'
+            });
+            $('.button-' + value).removeClass('fa-sort-up').addClass('fa-caret-down');
+        }
     }
 }
 
