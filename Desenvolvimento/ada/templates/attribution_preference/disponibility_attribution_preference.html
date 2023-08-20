@@ -96,7 +96,7 @@
                         <td class="text-center align-middle period" id='period-mor' rowspan='{{ shift.morning_classes }}' onclick="period_input('mor')">{% trans "Matutino" %}</td>
                         {% for timeslot in shift.morning %}
                           <tr>
-                            <td class="text-center align-middle" id='timeslot-mor-{{ forloop.counter }}' onclick="timeslot_input('mor-{{forloop.counter}}')">{{ timeslot.hour_start }} - {{ timeslot.hour_end }}</td>
+                            <td class="text-center align-middle" id='timeslot-mor-{{ forloop.counter }}' onclick="timeslot_input('mor-{{forloop.counter}}')">{{ timeslot.hour_start|date:"H:i" }} - {{ timeslot.hour_end|date:"H:i" }}</td>
       
                             <td class="text-center">
                               <div class="openModalBtn">
@@ -183,7 +183,7 @@
       
                         {% for timeslot in shift.afternoon %}
                           <tr>
-                            <td class="text-center align-middle" id='timeslot-aft-{{ forloop.counter }}' onclick="timeslot_input('aft-{{forloop.counter}}')">{{ timeslot.hour_start }} - {{ timeslot.hour_end }}</td>
+                            <td class="text-center align-middle" id='timeslot-aft-{{ forloop.counter }}' onclick="timeslot_input('aft-{{forloop.counter}}')">{{ timeslot.hour_start|date:"H:i" }} - {{ timeslot.hour_end|date:"H:i" }}</td>
       
                             <td class="text-center">
                               <div class="openModalBtn">
@@ -270,7 +270,7 @@
       
                         {% for timeslot in shift.nocturnal %}
                           <tr>
-                            <td class="text-center align-middle" id='timeslot-noc-{{ forloop.counter }}' onclick="timeslot_input('noc-{{forloop.counter}}')">{{ timeslot.hour_start }} - {{ timeslot.hour_end }}</td>
+                            <td class="text-center align-middle" id='timeslot-noc-{{ forloop.counter }}' onclick="timeslot_input('noc-{{forloop.counter}}')">{{ timeslot.hour_start|date:"H:i" }} - {{ timeslot.hour_end|date:"H:i" }}</td>
       
                             <td class="text-center">
                               <div class="openModalBtn">
