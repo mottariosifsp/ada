@@ -363,15 +363,32 @@ function check_checkboxes(checkboxes) {
 
 function eleven_hours_rule() {
 
-   var mon_noc = [];
    var tue_mor = [];
+   var wed_mor = [];
+   var thu_mor = [];
+   var fri_mor = [];
+   var sat_mor = [];
+
+   var mon_noc = [];
+   var tue_noc = [];
+   var wed_noc = [];
+   var thu_noc = [];
+   var fri_noc = [];
 
    for (var i = 1; i <= 4; ++i) {
      tue_mor.push(document.getElementById("tue-mor-" + i));
+     wed_mor.push(document.getElementById("wed-mor-" + i));
+     thu_mor.push(document.getElementById("thu-mor-" + i));
+     fri_mor.push(document.getElementById("fri-mor-" + i));
+     sat_mor.push(document.getElementById("sat-mor-" + i));
    }
 
    for (var i = 0; i < 4; ++i) {
      mon_noc.push(document.getElementById("mon-noc-" + (3+i)));
+     tue_noc.push(document.getElementById("tue-noc-" + (3+i)));
+     wed_noc.push(document.getElementById("wed-noc-" + (3+i)));
+     thu_noc.push(document.getElementById("thu-noc-" + (3+i)));
+     fri_noc.push(document.getElementById("fri-noc-" + (3+i)));
    }
 
    if (mon_noc[0].id == "mon-noc-3") {
@@ -394,6 +411,98 @@ function eleven_hours_rule() {
      var tue_mor1= [];
      tue_mor1.push(tue_mor[0].id, tue_mor[1].id, tue_mor[2].id, tue_mor[3].id);
      if (mon_noc[3] && mon_noc[3].checked == true && check_checkboxes(tue_mor1))
+       return true;
+   }
+   //
+   if (tue_noc[0].id == "tue-noc-3") {
+     if (tue_noc[0] && tue_noc[0].checked == true && wed_mor[0] && wed_mor[0].checked == true)
+       return true;
+   }
+   if (tue_noc[1].id == "tue-noc-4") {
+     var wed_mor1= [];
+     wed_mor1.push(wed_mor[0].id, wed_mor[1].id);
+     if (tue_noc[1] && tue_noc[1].checked == true && check_checkboxes(wed_mor1))
+       return true;
+   }
+   if (tue_noc[2].id == "tue-noc-5") {
+     var wed_mor1= [];
+     wed_mor1.push(wed_mor[0].id, wed_mor[1].id, wed_mor[2].id);
+     if (tue_noc[2] && tue_noc[2].checked == true && check_checkboxes(wed_mor1))
+       return true;
+   }
+   if (tue_noc[3].id == "tue-noc-6") {
+     var wed_mor1= [];
+     wed_mor1.push(wed_mor[0].id, wed_mor[1].id, wed_mor[2].id, wed_mor[3].id);
+     if (tue_noc[3] && tue_noc[3].checked == true && check_checkboxes(wed_mor1))
+       return true;
+   }
+   //
+   if (wed_noc[0].id == "wed-noc-3") {
+     if (wed_noc[0] && wed_noc[0].checked == true && thu_mor[0] && thu_mor[0].checked == true)
+       return true;
+   }
+   if (wed_noc[1].id == "wed-noc-4") {
+     var thu_mor1= [];
+     thu_mor1.push(thu_mor[0].id, thu_mor[1].id);
+     if (wed_noc[1] && wed_noc[1].checked == true && check_checkboxes(thu_mor1))
+       return true;
+   }
+   if (wed_noc[2].id == "wed-noc-5") {
+     var thu_mor1= [];
+     thu_mor1.push(thu_mor[0].id, thu_mor[1].id, thu_mor[2].id);
+     if (wed_noc[2] && wed_noc[2].checked == true && check_checkboxes(thu_mor1))
+       return true;
+   }
+   if (wed_noc[3].id == "wed-noc-6") {
+     var thu_mor1= [];
+     thu_mor1.push(thu_mor[0].id, thu_mor[1].id, thu_mor[2].id, thu_mor[3].id);
+     if (wed_noc[3] && wed_noc[3].checked == true && check_checkboxes(thu_mor1))
+       return true;
+   }
+   //
+   if (thu_noc[0].id == "thu-noc-3") {
+     if (thu_noc[0] && thu_noc[0].checked == true && fri_mor[0] && fri_mor[0].checked == true)
+       return true;
+   }
+   if (thu_noc[1].id == "thu-noc-4") {
+     var fri_mor1= [];
+     fri_mor1.push(fri_mor[0].id, fri_mor[1].id);
+     if (thu_noc[1] && thu_noc[1].checked == true && check_checkboxes(fri_mor1))
+       return true;
+   }
+   if (thu_noc[2].id == "thu-noc-5") {
+     var fri_mor1= [];
+     fri_mor1.push(fri_mor[0].id, fri_mor[1].id, fri_mor[2].id);
+     if (thu_noc[2] && thu_noc[2].checked == true && check_checkboxes(fri_mor1))
+       return true;
+   }
+   if (thu_noc[3].id == "thu-noc-6") {
+     var fri_mor1= [];
+     fri_mor1.push(fri_mor[0].id, fri_mor[1].id, fri_mor[2].id, fri_mor[3].id);
+     if (thu_noc[3] && thu_noc[3].checked == true && check_checkboxes(fri_mor1))
+       return true;
+   }
+   //
+   if (fri_noc[0].id == "fri-noc-3") {
+     if (fri_noc[0] && fri_noc[0].checked == true && sat_mor[0] && sat_mor[0].checked == true)
+       return true;
+   }
+   if (fri_noc[1].id == "fri-noc-4") {
+     var sat_mor1= [];
+     sat_mor1.push(sat_mor[0].id, sat_mor[1].id);
+     if (fri_noc[1] && fri_noc[1].checked == true && check_checkboxes(sat_mor1))
+       return true;
+   }
+   if (fri_noc[2].id == "fri-noc-5") {
+     var sat_mor1= [];
+     sat_mor1.push(sat_mor[0].id, sat_mor[1].id, sat_mor[2].id);
+     if (fri_noc[2] && fri_noc[2].checked == true && check_checkboxes(sat_mor1))
+       return true;
+   }
+   if (fri_noc[3].id == "fri-noc-6") {
+     var sat_mor1= [];
+     sat_mor1.push(sat_mor[0].id, sat_mor[1].id, sat_mor[2].id, sat_mor[3].id);
+     if (fri_noc[3] && fri_noc[3].checked == true && check_checkboxes(sat_mor1))
        return true;
    }
 }
