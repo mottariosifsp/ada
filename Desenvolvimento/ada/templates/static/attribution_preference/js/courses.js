@@ -48,7 +48,7 @@ for (var i = 0; i < user_disponibility.length; i++) {
 }
 
 if(user_courses_from_blockk.length > 0) {
-    for (var i = 0; i < user_courses_from_blockk.length; i++) {
+    for (var i = 0; i < user_courses_from_blockk.length; i++) { // colcoar primary na view
         var obj = user_courses_from_blockk[i];
         var obj_id = obj.id;
         var array_position_id = obj.position_id;
@@ -78,6 +78,7 @@ if(user_courses_from_blockk.length > 0) {
 $("#timetable-courses input").on("click", function () {
     var data_id = $(this).closest("div[data-id]").data("id");
     $("#cel-position").text(data_id).css("visibility", "hidden");
+
 
     $("#area-filter").val("");
     $("#block-filter").val("");

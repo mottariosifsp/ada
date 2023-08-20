@@ -398,7 +398,49 @@ def courses_attribution_preference(request):
                 shift_day = 'sat'
 
             string = {
-                'id': f'{shift_day}-{shift_type}-{shift_position}',
+                'id': f'{shift_day}-{shift_type}-{shift_position}-pri',
+                'position': shift_position,
+                'type': shift_type,
+                'day': shift_day,
+                'timeslot_begin_hour': timeslot_begin_hour.strftime('%H:%M:%S'),
+            }
+            user_timeslot_table.append(string)
+        
+        for schedule in user_preference_schedules:
+            timeslot_begin_hour = (schedule.timeslot.hour_start)
+
+            shift_type = None
+            shift_position = None
+
+            if timeslot_begin_hour >= datetime.time(7, 0, 0) and timeslot_begin_hour <= datetime.time(12, 0, 0):
+                shift_type = 'mor'
+                shift_position = next((i for i, slot in enumerate(shift['morning']) if slot.hour_start == timeslot_begin_hour), None)
+            elif timeslot_begin_hour >= datetime.time(13, 0, 0) and timeslot_begin_hour < datetime.time(18, 0, 0):
+                shift_type = 'aft'
+                shift_position = next((i for i, slot in enumerate(shift['afternoon']) if slot.hour_start == timeslot_begin_hour),
+                                     None)
+            elif timeslot_begin_hour >= datetime.time(18, 0, 0) and timeslot_begin_hour <= datetime.time(23, 0, 0):
+                shift_type = 'noc'
+                shift_position = next((i for i, slot in enumerate(shift['nocturnal']) if slot.hour_start == timeslot_begin_hour), None)
+
+            if shift_position is not None:
+                shift_position += 1
+
+            if schedule.day == 'monday':
+                shift_day = 'mon'
+            elif schedule.day == 'tuesday':
+                shift_day = 'tue'
+            elif schedule.day == 'wednesday':
+                shift_day = 'wed'
+            elif schedule.day == 'thursday':
+                shift_day = 'thu'
+            elif schedule.day == 'friday':
+                shift_day = 'fri'
+            else:
+                shift_day = 'sat'
+
+            string = {
+                'id': f'{shift_day}-{shift_type}-{shift_position}-sec',
                 'position': shift_position,
                 'type': shift_type,
                 'day': shift_day,
@@ -492,6 +534,7 @@ def courses_attribution_preference(request):
         'user_courses': user_courses,
         'user_courses_from_blockk': courses_from_block
     }
+    print(data)
 
     return render(request, 'attribution_preference/courses_attribution_preference.html', data)
 

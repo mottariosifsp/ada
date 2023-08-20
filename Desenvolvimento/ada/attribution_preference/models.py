@@ -29,7 +29,7 @@ class Course_preference(models.Model): #disciplinas
     attribution_preference = models.ForeignKey('Attribution_preference', on_delete=models.CASCADE)
     timetable = models.ForeignKey('timetable.Timetable', on_delete=models.CASCADE)
     blockk = models.ForeignKey(Blockk, on_delete=models.CASCADE)
-    # priority = models.CharField(_('priority'), choices=[(s.name, s.value) for s in enum.Priority], max_length=45)
+    priority = models.CharField(_('priority'), choices=[(s.name, s.value) for s in enum.Priority], max_length=45)
     
     class Meta:
         verbose_name = _('course_preference')
