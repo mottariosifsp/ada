@@ -137,8 +137,7 @@
             </div>
         </div>
     {% else %}
-
-        {% if disponilibity_done == 'True' %}
+        {% if disponilibity_done == 'True' and courses_done == 'False'%}
         <div onclick="open_case(1)">
             <div class="float-right message-info-done"><i class="far fa-check-circle"></i> {% trans 'ENVIADO'%}</div>
             <h5><i class="button-1 float-left fa-solid fa-caret-down p-1 ml-2 mr-2"></i>{% trans 'Preferência de Disponibilidade'%}</h5>
@@ -160,6 +159,34 @@
                         <div class="col-6">
                             <a onclick="open_case(2)" >
                                 <button class="btn ada-btn-blue-dark btn-block"><i class="fa-regular fa-eye"></i> {% trans "Próxima Etapa" %}</button>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% elif courses_done == 'True' %}
+        <div onclick="open_case(1)">
+            <div class="float-right message-info-done"><i class="far fa-check-circle"></i> {% trans 'ENVIADO'%}</div>
+            <h5><i class="button-1 float-left fa-solid fa-caret-down p-1 ml-2 mr-2"></i>{% trans 'Preferência de Disponibilidade'%}</h5>
+        </div><hr>
+
+        <div class="diponibility-case" style="display: none;">
+            <div class="card card-blockk-disponibility centered-object">
+                <div class="card-body">
+                    <h5 class="card-title">{% trans 'Envio da Disponibilidade Geral'%}</h5>
+                    <hr>
+                    <p><b>{% trans 'Situação' %}:</b> {% trans 'Você enviou sua preferência de horários e disciplinas. Para controle de erros não é mais possível editar sua disponibilidade, caso queira será nescessário voltar a etapa e apagar qaulquer envio feito na segunda etapa' %}</p>
+
+                    <div class="row">
+                        <div class="col-6">
+                            <a href="{% url 'disponibility_attribution_preference' %}">
+                                <button class="btn ada-btn-warning btn-block"><i class="fas fa-trash"></i> {% trans "Recomeçar seu FPA pela disponibilidade" %}</button>
+                            </a>
+                        </div>
+                        <div class="col-6">
+                            <a onclick="open_case(3)" >
+                                <button class="btn ada-btn-blue-dark btn-block"><i class="fa-regular fa-eye"></i> {% trans "Etapa Final" %}</button>
                             </a>
                         </div>
                     </div>

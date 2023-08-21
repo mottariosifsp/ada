@@ -4,6 +4,9 @@
 
 {% block head %}
   <link rel="stylesheet" href="{% static 'attribution_preference/css/courses.css' %}">
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+  <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
   <title>{% trans "Envio FPA" %}</title>
 {% endblock %}
 
@@ -706,7 +709,7 @@
                     </div>
                     <div class="modal-footer">
                       <button type="button" class="btn btn-secondary" data-dismiss="modal">{% trans "Fechar" %}</button>
-                      <button type="button" class="btn btn-primary" data-dismiss="modal" name="add-course" id="add-course-button">{% trans "Adicionar" %}</button>
+                      <button type="button" class="btn btn-primary" name="add-course" id="add-course-button">{% trans "Adicionar" %}</button>
                     </div>
                   </div>
                 </div>
@@ -722,8 +725,5 @@
 {% endblock %}
 
 {% block endbody %}
-  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
-  <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
   <script src="{% static 'attribution_preference/js/courses.js' %}" data-lang='{{ LANGUAGE_CODE }}' user_courses_from_blockk="{{user_courses_from_blockk}}" user_courses_from_fpa="{{user_courses_from_fpa}}" user_regime='{{ user_regime }}' user_blocks='{{ user_blockk }}' user_areas='{{ user_areas }}' user_courses='{{ user_courses }}' user_timetables='{{ user_timetables }}' user_disponibility='{{ user_disponibility }}'></script>
 {% endblock %}

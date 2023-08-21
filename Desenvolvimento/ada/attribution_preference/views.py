@@ -137,6 +137,10 @@ def disponibility_attribution_preference(request):
     user = request.user
     user_blocks = user.blocks.all()
 
+    if Course_preference.objects.filter(attribution_preference__user=user).exists():
+        Course_preference.objects.filter(attribution_preference__user=user).delete()
+
+
     shift = {
         'morning': [],
         'morning_classes': 0,
