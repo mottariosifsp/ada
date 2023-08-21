@@ -399,6 +399,7 @@ def courses_attribution_preference(request):
 
             string = {
                 'id': f'{shift_day}-{shift_type}-{shift_position}-pri',
+                'priority': 'pri',
                 'position': shift_position,
                 'type': shift_type,
                 'day': shift_day,
@@ -441,6 +442,7 @@ def courses_attribution_preference(request):
 
             string = {
                 'id': f'{shift_day}-{shift_type}-{shift_position}-sec',
+                'priority': 'sec',
                 'position': shift_position,
                 'type': shift_type,
                 'day': shift_day,
@@ -472,6 +474,8 @@ def courses_attribution_preference(request):
             begin = ''
 
             for timeslot in timeslots:
+                priority = course_preference.priority
+                
                 timeslot_data.append({
                     'timeslot_begin_hour': timeslot.hour_start.strftime('%H:%M:%S'),
                     'timeslot_end_hour': timeslot.hour_end.strftime('%H:%M:%S'),
@@ -505,8 +509,13 @@ def courses_attribution_preference(request):
                 else:
                     day_of_week = 'sat'
 
+                if priority == 'primary':
+                    priority = 'pri'
+                else:
+                    priority = 'sec'
+
                 string = {
-                    'id': f'{day_of_week}-{shift_type}-{shift_position}'
+                    'id': f'{day_of_week}-{shift_type}-{shift_position}-{priority}'
                 }
                 user_timeslot_traceback.append(string)
 
@@ -750,10 +759,17 @@ def save_courses_preference(work_courses, user):
             id_timetable = int(course['id_timetable'])
             timetable = Timetable.objects.filter(id=id_timetable).first()
             blockk = timetable.course.blockk
+            position_priority = course['position'][0]
+            print(position_priority)
+            if position_priority[-3:] == 'pri':
+                priority = enum.Priority.primary.name
+            else:
+                priority = enum.Priority.secondary.name
 
             Course_preference.objects.create(
                 attribution_preference=Attribution_preference.objects.filter(user=user).first(),
                 timetable=timetable,
+                priority=priority,
                 blockk=blockk
             )
 

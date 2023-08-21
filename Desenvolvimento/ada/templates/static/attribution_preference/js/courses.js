@@ -4,6 +4,8 @@ var user_regime = document.currentScript.getAttribute("user_regime");
 var timetable_choosed = [];
 var buttons_clicked = [];
 
+var timetable_choosed_objects = []
+
 var user_disponibility = JSON.parse(document.currentScript.getAttribute("user_disponibility").replace(/'/g, '"'));
 var user_courses = JSON.parse(document.currentScript.getAttribute("user_courses").replace(/'/g, '"'));
 var user_timetables = JSON.parse(document.currentScript.getAttribute("user_timetables").replace(/'/g, '"'));
@@ -47,6 +49,15 @@ for (var i = 0; i < user_disponibility.length; i++) {
         .attr("data-target", "#add-course-modal");
 }
 
+$("div.primary").css({
+    "font-weight": "500",
+    "background-color":  "#2f7363",
+    "color": "white"
+});
+$('#secondary-timetable-courses').css({
+    'display': 'none'
+});
+
 if(user_courses_from_blockk.length > 0) {
     for (var i = 0; i < user_courses_from_blockk.length; i++) { // colcoar primary na view
         var obj = user_courses_from_blockk[i];
@@ -70,12 +81,59 @@ if(user_courses_from_blockk.length > 0) {
         timetable_choosed.push(global);
         cell_left_number.time -= array_position_id.length
         $('#cel-hour').text(cell_left_number.time)
+        timetable_choosed_objects.push(user_courses_from_blockk[i])
+        user_timetables = user_timetables.filter(timetable => timetable.id !== user_courses_from_blockk[i].id);
     }
 }
 
+function show_table(value) {
+    if(value == 1) {
+        $('#primary-timetable-courses').css({
+            'display': ''
+        });
+        $('#secondary-timetable-courses').css({
+            'display': 'none'
+        });
+        $("div.primary").css({
+            "font-weight": "500",
+            "background-color":  "#2f7363",
+            "color": "white"
+        });
+        $("div.secondary").css({
+            "font-weight": "",
+            "background-color":  "",
+            "color": ""
+        });
+        window.scrollTo({
+            top: $('#primary-timetable-courses').offset().top - $('.navbar').outerHeight() - 115,
+            behavior: 'smooth'
+          });
+    } else {
+        $('#secondary-timetable-courses').css({
+            'display': ''
+        });
+        $('#primary-timetable-courses').css({
+            'display': 'none'
+        });
+        $("div.secondary").css({
+            "font-weight": "500",
+            "background-color":  "#2f7363",
+            "color": "white"
+        });
+        $("div.primary").css({
+            "font-weight": "",
+            "background-color":  "",
+            "color": ""
+        });
+        window.scrollTo({
+            top: $('#secondary-timetable-courses').offset().top - $('.navbar').outerHeight() - 115,
+            behavior: 'smooth'
+          });
+    }
+}
 
 // Ao cliar no button
-$("#timetable-courses input").on("click", function () {
+$("#primary-timetable-courses input, #secondary-timetable-courses input").on("click", function (event) {
     var data_id = $(this).closest("div[data-id]").data("id");
     $("#cel-position").text(data_id).css("visibility", "hidden");
 
@@ -95,7 +153,8 @@ $("#timetable-courses input").on("click", function () {
     if (updated_array) {
         var filtered_timetables = timetable_choosed.filter(function (t) {
             return t.position.includes(data_id);
-        });console.log(updated_array);console.log(timetable_choosed);
+        });
+        event.preventDefault();
 
         filtered_timetables.forEach(function (timetable) {
             timetable.position.forEach(function (position) {
@@ -118,6 +177,12 @@ $("#timetable-courses input").on("click", function () {
         timetable_choosed = timetable_choosed.filter(function (t) {
             return !filtered_timetables.includes(t);
         });
+
+        obj = timetable_choosed_objects.filter(timetable => timetable.id == filtered_timetables[0].id_timetable)
+        user_timetables.push(obj[0])
+        timetable_choosed_objects = timetable_choosed_objects.filter(timetable => timetable.id !== filtered_timetables[0].id_timetable);
+
+        return false;
     }
 });
 
@@ -368,6 +433,7 @@ $(document).ready(function () {
         var timetable_acronym = $("#course-filter").val();
         var timetable_id = timatables_datalist_options.find(timetable => timetable.course_acronym === timetable_acronym)?.id;
         var grade_position = $("#cel-position").text(); //mon-mor-1 mon-mor-2 mon-mor-3
+        var priority = grade_position.substr(-3);
 
         var filtered_timetable = user_timetables.filter(function (timetable_item) {
             return timetable_item.id === timetable_id;
@@ -414,7 +480,7 @@ $(document).ready(function () {
                             var timeslot_begin_hour = timeslot.timeslot_begin_hour;
                         
                             var filtered_disponibility = user_disponibility.filter(function(disponibility) {
-                              return disponibility.day === get_full_day_of_week(day) && disponibility.timeslot_begin_hour === timeslot_begin_hour;
+                              return disponibility.day === get_full_day_of_week(day) && disponibility.timeslot_begin_hour === timeslot_begin_hour && priority == disponibility.priority;
                             });
                         
                             var ids = filtered_disponibility.map(function(disponibility) {
@@ -462,7 +528,7 @@ $(document).ready(function () {
                             var timeslot_begin_hour = timeslot.timeslot_begin_hour;
 
                             var filtered_disponibility = user_disponibility.filter(function (disponibility) {
-                                return disponibility.day === get_full_day_of_week(day) && disponibility.timeslot_begin_hour === timeslot_begin_hour;
+                                return disponibility.day === get_full_day_of_week(day) && disponibility.timeslot_begin_hour === timeslot_begin_hour && priority == disponibility.priority;
                             });
 
                             var ids = filtered_disponibility.map(function (disponibility) {
@@ -472,7 +538,7 @@ $(document).ready(function () {
                             if (!is_repetead && !is_missing && !max_cel) {
                                 ids.forEach(function (id) {
                                     if (!buttons_clicked.includes(id)) {
-                                        $("#sub-" + id).text(filtered_timetable[0].course_acronym);
+                                        $("#sub-" + id).text(filtered_timetable[0].course_acronym);                                        
                                         id_array.push(id);
                                         $("#btn-" + id)
                                             .attr("data-toggle", "none")
@@ -480,8 +546,7 @@ $(document).ready(function () {
                                         buttons_clicked.push(id);
                                     }
                                 });
-                            }
-                            
+                            }                            
                         });
                     }
                     $("#modal-" + grade_position)
@@ -496,6 +561,8 @@ $(document).ready(function () {
                         timetable_choosed.push(global);
                         cell_left_number.time -= id_array.length
                         $('#cel-hour').text(cell_left_number.time)
+                        timetable_choosed_objects.push(filtered_timetable[0])
+                        user_timetables = user_timetables.filter(timetable => timetable.id !== filtered_timetable[0].id);
                     }
 
                     $("#course-filter").val("");
@@ -547,6 +614,7 @@ $(document).ready(function () {
     $("#send-courses").on("click", function () {
         let csrftoken = get_cookie("csrftoken");
         var json_data = JSON.stringify(timetable_choosed);
+        console.log(json_data)
 
         if (timetable_choosed.length != 0) {
             if(cell_left_number.type == '20h') {
@@ -575,7 +643,7 @@ $(document).ready(function () {
                         },
                     });
                 } else {
-                    $("#error-message-form").text("Quantidade de células minímas para seu FPA segundo seu regim é 8 células.");
+                    $("#error-message-form").text("Quantidade de células minímas para seu FPA segundo seu regime é 8 células.");
                     $("#error-alert-form").show();
                     window.scrollTo({
                         top: $("#error-alert-form").offset().top - $(".navbar").outerHeight() - 30,
@@ -608,7 +676,7 @@ $(document).ready(function () {
                         },
                     });
                 } else {
-                    $("#error-message-form").text("Quantidade de células minímas para seu FPA segundo seu regim é 12 células.");
+                    $("#error-message-form").text("Quantidade de células minímas para seu FPA segundo seu regime é 12 células.");
                     $("#error-alert-form").show();
                     window.scrollTo({
                         top: $("#error-alert-form").offset().top - $(".navbar").outerHeight() - 30,

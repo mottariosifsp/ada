@@ -234,7 +234,35 @@ body {background-color: #def2fc81;}
 .card-title {
   font-weight: 500;
 }
+.btn-priority {
+  border: 1px solid #2f7363;
+  color: #2f7363;
+  padding: 5px;
+}
 
+.btn-priority:hover {
+  background-color:  #2f7363;
+  color: white;
+  font-weight: 500;
+}
+
+.btn-priority:active {
+  background-color:  #2f7363;
+  color: white;
+}
+
+.btn-priority:first-child {
+  margin-right: -5px;
+  border-radius: 5px 0 0 5px;
+  padding-left: 35px;
+  padding-right: 35px;
+}
+
+.btn-priority:not(:first-child) {
+  border-radius: 0 5px 5px 0;
+  padding-left: 30px;
+  padding-right: 30px;
+}
 
 .overlay {
   position: absolute;
