@@ -643,7 +643,7 @@
                                 </svg>
                               </button>
                               <div class="input-group">
-                                <input list="block-options" id="block-filter" placeholder="--" class="form-control mb-4" onChange="block_filter()"> <!-- HAKUN4MATAT4 -->
+                                <input list="block-options" id="block-filter" placeholder="--" class="form-control mb-4"> <!-- HAKUN4MATAT4 -->
                                 <datalist id="block-options">
                                 </datalist>
                               </div>
@@ -660,7 +660,7 @@
                                 </svg>
                               </button>
                               <div class="input-group">
-                                <input list="area-options" id="area-filter" placeholder="--" class="form-control mb-4" onChange="area_filter()"> <!-- HAKUN4MATAT4 -->
+                                <input list="area-options" id="area-filter" placeholder="--" class="form-control mb-4"> <!-- HAKUN4MATAT4 -->
                                 <datalist id="area-options">
                                 </datalist>
                               </div>
@@ -670,7 +670,7 @@
                         <div class="form-group">
                           <label for="class-filter" class="form-label">{% trans "Disciplinas" %}</label>
                           <div class="input-group">
-                            <input list="course-options" autocomplete="off" id="course-filter" class="form-control w-100" placeholder="{% trans Selecione %}" onChange="course_apresentation()">
+                            <input list="course-options" autocomplete="off" id="course-filter" class="form-control w-100" placeholder="{% trans Selecione %}">
                             {% blocktrans with name_course_text=course.name_course acronym_text=course.acronym %}
                               <datalist id="course-options">
                                 

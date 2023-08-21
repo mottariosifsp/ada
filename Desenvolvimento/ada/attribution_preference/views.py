@@ -475,7 +475,7 @@ def courses_attribution_preference(request):
 
             for timeslot in timeslots:
                 priority = course_preference.priority
-                
+
                 timeslot_data.append({
                     'timeslot_begin_hour': timeslot.hour_start.strftime('%H:%M:%S'),
                     'timeslot_end_hour': timeslot.hour_end.strftime('%H:%M:%S'),
@@ -529,7 +529,9 @@ def courses_attribution_preference(request):
             'position_id': user_timeslot_traceback,
             'day_combo': day_combo_data,
             'course_acronym': timetable_object.course.acronym,
+            'course_name': timetable_object.course.name_course,
             'course_id': timetable_object.course.registration_course_id,
+            'classs': timetable_object.classs.registration_class_id,
         }
         courses_from_block.append(timetable_item)
 
