@@ -58,6 +58,45 @@ $(document).ready(function () {
 
     });
 
+    function addClassesNotAllowedField() {
+        var field = `
+        <li class="list-group-item">
+            <input type="text" class="form-control class-name mb-2" placeholder="Nome da classe">
+            <input type="number" class="form-control class-level mb-2" placeholder="Nível da classe">
+            <button type="button" class="btn btn-danger deleteClassBtn btn-remove-class"><i class="bi bi-trash"></i></button>
+        </li>
+        `;
+    
+        $("#currentClassesNotAllowedList").append(field);
+        updateClassesNotAllowedData();
+    }
+    
+    function updateClassesNotAllowedData() {
+        var classesNotAllowed = [];
+    
+        $("#currentClassesNotAllowedList li").each(function () {
+            var className = $(this).find(".class-name").val();
+            var classLevel = $(this).find(".class-level").val();
+    
+            if (className !== undefined && className.trim() !== "" &&
+                classLevel !== undefined && classLevel.trim() !== "") {
+                classesNotAllowed.push({ name: className, level: classLevel });
+            }
+        });
+    
+        allClassesNotAllowed = JSON.stringify(classesNotAllowed);
+    }
+    
+    $(document).on("click", ".btn-remove-class", function () {
+        $(this).closest("li").remove();
+        updateClassesNotAllowedData();
+    });
+    
+    $("#addNotAllowedClassBtn").on("click", function () {
+        addClassesNotAllowedField();
+    });
+    
+
     $('.btn-warning').click(function () {
         var row = $(this).closest('tr');
         var professorData = {

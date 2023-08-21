@@ -32,6 +32,7 @@
                 <th scope="col">{% trans "Data na Área" %}</th>
                 <th scope="col">{% trans "Data no Instituto" %}</th>
                 <th scope="col">{% trans "Diploma Pontuação" %}</th>
+                <th scope="col">{% trans "Aulas Bloqueadas" %}</th>
                 <th scope="col">{% trans "Ações" %}</th>
             </tr>
             </thead>
@@ -53,6 +54,13 @@
                             <span data-degree-id="{{ academic_degree.id_academic_degree }}"
                                   data-degree-name="{{ academic_degree.name }}"
                                   data-degree-punctuation="{{ academic_degree.punctuation }}">{{ academic_degree.name }}</span>
+                            <br>
+                        {% endfor %}
+                    </td>
+                    <td>
+                        {% for blocked_class in professor.history.blocked_classes.all %}
+                            <span data-degree-id="{{ blocked_class.id_class }}"
+                                  data-degree-name="{{ blocked_class.name }}">{{ blocked_class.name }}</span>
                             <br>
                         {% endfor %}
                     </td>
