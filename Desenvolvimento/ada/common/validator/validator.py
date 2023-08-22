@@ -8,10 +8,8 @@ def validate_uppercase(value):
     
 # validação subir pro banco com maiúscula
 def convert_to_uppercase(model, *fields):
-    print("babyshark")
     for field in fields:
         field_value = getattr(model, field)
-        print(field)
         if field_value:
             setattr(model, field, str(field_value).upper())
     
