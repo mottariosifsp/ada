@@ -302,37 +302,40 @@ def courses_attribution_preference(request):
             }
             user_block.append(block_obj)
 
+        user_blocks_ids = [int(block['id']) for block in user_block]
+
         user_timetable = []
-        for timetable_object in Timetable.objects.all():
-            day_combo_objects = timetable_object.day_combo.all()
-            day_combo_data = []
+        for id_block in user_blocks_ids:
+            for timetable_object in Timetable.objects.filter(course__blockk=id_block):
+                day_combo_objects = timetable_object.day_combo.all()
+                day_combo_data = []
 
-            for day_combo in day_combo_objects:
-                day = day_combo.day
-                timeslots = day_combo.timeslots.all()
-                timeslot_data = []
+                for day_combo in day_combo_objects:
+                    day = day_combo.day
+                    timeslots = day_combo.timeslots.all()
+                    timeslot_data = []
 
-                for timeslot in timeslots:
-                    timeslot_data.append({
-                        'timeslot_begin_hour': timeslot.hour_start.strftime('%H:%M:%S'),
-                        'timeslot_end_hour': timeslot.hour_end.strftime('%H:%M:%S'),
+                    for timeslot in timeslots:
+                        timeslot_data.append({
+                            'timeslot_begin_hour': timeslot.hour_start.strftime('%H:%M:%S'),
+                            'timeslot_end_hour': timeslot.hour_end.strftime('%H:%M:%S'),
+                        })
+
+                    day_combo_data.append({
+                        'day': day,
+                        'timeslots': timeslot_data,
                     })
 
-                day_combo_data.append({
-                    'day': day,
-                    'timeslots': timeslot_data,
-                })
+                timetable_item = {
+                    'id': timetable_object.id,
+                    'day_combo': day_combo_data,
+                    'course_acronym': timetable_object.course.acronym,
+                    'course_name': timetable_object.course.name_course,
+                    'course_id': timetable_object.course.registration_course_id,
+                    'classs': timetable_object.classs.registration_class_id,
+                }
 
-            timetable_item = {
-                'id': timetable_object.id,
-                'day_combo': day_combo_data,
-                'course_acronym': timetable_object.course.acronym,
-                'course_name': timetable_object.course.name_course,
-                'course_id': timetable_object.course.registration_course_id,
-                'classs': timetable_object.classs.registration_class_id,
-            }
-
-            user_timetable.append(timetable_item)
+                user_timetable.append(timetable_item)
 
         user_courses = []
         for course_object in Course.objects.all():
