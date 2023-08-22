@@ -618,8 +618,48 @@ def show_attribution_preference(request):
             else:
                 day_of_week = 'sat'
 
+
             string = {
-                'id': f'{day_of_week}-{shift_type}-{shift_position}'
+                'id': f'{day_of_week}-{shift_type}-{shift_position}-pri'
+            }
+            user_timeslot_traceback.append(string)
+
+        for schedule in user_preference_schedules:
+            begin = (schedule.timeslot.hour_start)
+
+            shift_type = None
+            shift_position = None
+
+            if begin >= datetime.time(7, 0, 0) and begin <= datetime.time(12, 0, 0):
+                shift_type = 'mor'
+                shift_position = next((i for i, slot in enumerate(shift['morning']) if slot.hour_start == begin), None)
+            elif begin >= datetime.time(13, 0, 0) and begin < datetime.time(18, 0, 0):
+                shift_type = 'aft'
+                shift_position = next((i for i, slot in enumerate(shift['afternoon']) if slot.hour_start == begin),
+                                     None)
+            elif begin >= datetime.time(18, 0, 0) and begin <= datetime.time(23, 0, 0):
+                shift_type = 'noc'
+                shift_position = next((i for i, slot in enumerate(shift['nocturnal']) if slot.hour_start == begin), None)
+
+            if shift_position is not None:
+                shift_position += 1
+
+            if schedule.day == 'monday':
+                day_of_week = 'mon'
+            elif schedule.day == 'tuesday':
+                day_of_week = 'tue'
+            elif schedule.day == 'wednesday':
+                day_of_week = 'wed'
+            elif schedule.day == 'thursday':
+                day_of_week = 'thu'
+            elif schedule.day == 'friday':
+                day_of_week = 'fri'
+            else:
+                day_of_week = 'sat'
+
+
+            string = {
+                'id': f'{day_of_week}-{shift_type}-{shift_position}-sec'
             }
             user_timeslot_traceback.append(string)
 
@@ -630,6 +670,7 @@ def show_attribution_preference(request):
             day_combo_objects = timetable_object.day_combo.all()
             day_combo_data = []
             id_position = []
+            priority_attr = ''
 
             for day_combo in day_combo_objects:
                 day = day_combo.day
@@ -640,6 +681,8 @@ def show_attribution_preference(request):
                 begin = ''
 
                 for timeslot in timeslots:
+                    priority = preference.priority
+
                     timeslot_data.append({
                         'timeslot_begin_hour': timeslot.hour_start.strftime('%H:%M:%S'),
                         'timeslot_end_hour': timeslot.hour_end.strftime('%H:%M:%S'),
@@ -673,8 +716,15 @@ def show_attribution_preference(request):
                     else:
                         day_of_week = 'sat'
 
+                    if priority == 'primary':
+                        priority = 'pri'
+                        priority_attr = 'priority'
+                    else:
+                        priority = 'sec'
+                        priority_attr = 'secondary'
+
                     string = {
-                        'id': f'{day_of_week}-{shift_type}-{shift_position}'
+                        'id': f'{day_of_week}-{shift_type}-{shift_position}-{priority}'
                     }
                     id_position.append(string)
 
@@ -692,6 +742,7 @@ def show_attribution_preference(request):
 
             timetable_object = {
                 'acronym': preference.timetable.course.acronym,
+                'priority_attr': priority_attr,
                 'name_course': preference.timetable.course.name_course,
                 'course_area': preference.timetable.course.area.name_area,
                 'period': shift_period,
