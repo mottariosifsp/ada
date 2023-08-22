@@ -85,7 +85,6 @@ class UserModelTestCase(TestCase):
         self.assertEqual(list(updated_user.history.academic_degrees.all()),
                          [self.academic_degree_1, self.academic_degree_2])
 
-    #
     def verify_updated_history(self, new_history, update_academic_degrees):
         updated_history = History.objects.get(pk=self.history.pk)
         self.assertEqual(str(updated_history.birth), str(new_history.birth))
