@@ -61,26 +61,28 @@ button.info-button svg{
 }
 #info-alert {
 display: none;
-border-radius: 8px;
-box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+box-shadow: 2px 4px 6px rgba(0, 0, 0, 0.1);
 padding: 20px;
 background-color: #f0f9ff;
+border-radius: 10px;
 }
 
 #info-alert .table {
-border-radius: 20px;
 margin-bottom: 0; 
+background-color: #f0f9ff;
 }
 
 #info-alert .table tr td {
 padding: 10px;
 border-top: none;
-border-bottom: 1px solid #f0f9ff;
+border: 2px solid #2f736349;
 }
 
 #info-alert .table tbody tr td:first-child {
 font-weight: bold;
-color: #11345b; 
+background-color: #2f7363;
+color: #f0f9ff;
+border: 2px solid #3e9782;
 }
 
 .info-displine,
@@ -234,7 +236,35 @@ body {background-color: #def2fc81;}
 .card-title {
   font-weight: 500;
 }
+.btn-priority {
+  border: 1px solid #2f7363;
+  color: #2f7363;
+  padding: 5px;
+}
 
+.btn-priority:hover {
+  background-color:  #2f7363;
+  color: white;
+  font-weight: 500;
+}
+
+.btn-priority:active {
+  background-color:  #2f7363;
+  color: white;
+}
+
+.btn-priority:first-child {
+  margin-right: -5px;
+  border-radius: 5px 0 0 5px;
+  padding-left: 35px;
+  padding-right: 35px;
+}
+
+.btn-priority:not(:first-child) {
+  border-radius: 0 5px 5px 0;
+  padding-left: 30px;
+  padding-right: 30px;
+}
 
 .overlay {
   position: absolute;
