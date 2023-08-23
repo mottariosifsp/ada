@@ -8,8 +8,13 @@ from django.conf.urls import handler404, handler500
 handler404 = 'user.views.handler404'
 handler500 = 'user.views.handler500'
 
+admin_patterns = [
+    path('prazo/', include("admin_ada.urls")),
+    path('', admin.site.urls),
+]
+
 urlpatterns = [
-    path('admin/', admin.site.urls),
+    path('admin/',include(admin_patterns)),
     path('staff/', include("staff.urls")),
     path('professor/', include("professor.urls")),
     path('user/', include('user.urls')),
@@ -18,7 +23,7 @@ urlpatterns = [
 ]
 
 urlpatterns += i18n_patterns ( # quais sessões serão internacionalizadas
-    path('admin/', admin.site.urls),
+    path('admin/', include(admin_patterns)),
     path('staff/', include("staff.urls")),
     path('professor/', include("professor.urls")),
     path('user/', include('django.contrib.auth.urls')),
