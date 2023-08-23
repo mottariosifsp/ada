@@ -745,7 +745,9 @@
         "pk": 1,
         "fields": {
             "attribution_preference": 1,
-            "timetable": 16
+            "timetable": 16,
+            "priority": "PRIMARY",
+            "blockk": 1
         }
     },
     {
@@ -753,7 +755,9 @@
         "pk": 2,
         "fields": {
             "attribution_preference": 1,
-            "timetable": 11
+            "timetable": 11,
+            "priority": "PRIMARY",
+            "blockk": 1
         }
     },
     {
@@ -761,7 +765,9 @@
         "pk": 3,
         "fields": {
             "attribution_preference": 1,
-            "timetable": 31
+            "timetable": 31,
+            "priority": "PRIMARY",
+            "blockk": 1
         }
     },
     {
@@ -769,7 +775,9 @@
         "pk": 4,
         "fields": {
             "attribution_preference": 1,
-            "timetable": 33
+            "timetable": 33,
+            "priority": "SECONDARY",
+            "blockk": 1
         }
     },
     {
@@ -777,7 +785,9 @@
         "pk": 5,
         "fields": {
             "attribution_preference": 1,
-            "timetable": 41
+            "timetable": 41,
+            "priority": "SECONDARY",
+            "blockk": 1
         }
     },
     {
@@ -785,7 +795,9 @@
         "pk": 6,
         "fields": {
             "attribution_preference": 1,
-            "timetable": 47
+            "timetable": 47,
+            "priority": "SECONDARY",
+            "blockk": 1
         }
     },
     {
@@ -793,7 +805,9 @@
         "pk": 7,
         "fields": {
             "attribution_preference": 1,
-            "timetable": 12
+            "timetable": 12,
+            "priority": "PRIMARY",
+            "blockk": 1
         }
     },
     {
@@ -801,7 +815,9 @@
         "pk": 8,
         "fields": {
             "attribution_preference": 1,
-            "timetable": 18
+            "timetable": 18,
+            "priority": "PRIMARY",
+            "blockk": 1
         }
     },
     {
@@ -809,7 +825,9 @@
         "pk": 9,
         "fields": {
             "attribution_preference": 2,
-            "timetable": 46
+            "timetable": 46,
+            "priority": "PRIMARY",
+            "blockk": 1
         }
     },
     {
@@ -817,7 +835,9 @@
         "pk": 10,
         "fields": {
             "attribution_preference": 2,
-            "timetable": 42
+            "timetable": 42,
+            "priority": "PRIMARY",
+            "blockk": 1
         }
     },
     {
@@ -825,7 +845,9 @@
         "pk": 11,
         "fields": {
             "attribution_preference": 2,
-            "timetable": 25
+            "timetable": 25,
+            "priority": "PRIMARY",
+            "blockk": 1
         }
     },
     {
@@ -833,7 +855,9 @@
         "pk": 12,
         "fields": {
             "attribution_preference": 2,
-            "timetable": 50
+            "timetable": 50,
+            "priority": "PRIMARY",
+            "blockk": 1
         }
     },
     {
@@ -841,7 +865,9 @@
         "pk": 13,
         "fields": {
             "attribution_preference": 2,
-            "timetable": 51
+            "timetable": 51,
+            "priority": "PRIMARY",
+            "blockk": 1
         }
     },
     {
@@ -849,7 +875,9 @@
         "pk": 14,
         "fields": {
             "attribution_preference": 2,
-            "timetable": 55
+            "timetable": 55,
+            "priority": "PRIMARY",
+            "blockk": 1
         }
     },
     {
@@ -857,7 +885,9 @@
         "pk": 15,
         "fields": {
             "attribution_preference": 2,
-            "timetable": 54
+            "timetable": 54,
+            "priority": "PRIMARY",
+            "blockk": 1
         }
     },
     {
@@ -865,7 +895,9 @@
         "pk": 16,
         "fields": {
             "attribution_preference": 3,
-            "timetable": 46
+            "timetable": 46,
+            "priority": "PRIMARY",
+            "blockk": 1
         }
     },
     {
@@ -873,7 +905,9 @@
         "pk": 17,
         "fields": {
             "attribution_preference": 3,
-            "timetable": 42
+            "timetable": 42,
+            "priority": "PRIMARY",
+            "blockk": 1
         }
     },
     {
@@ -881,7 +915,9 @@
         "pk": 18,
         "fields": {
             "attribution_preference": 3,
-            "timetable": 50
+            "timetable": 50,
+            "priority": "PRIMARY",
+            "blockk": 1
         }
     },
     {
@@ -889,7 +925,9 @@
         "pk": 19,
         "fields": {
             "attribution_preference": 3,
-            "timetable": 49
+            "timetable": 49,
+            "priority": "PRIMARY",
+            "blockk": 1
         }
     }
 ]
