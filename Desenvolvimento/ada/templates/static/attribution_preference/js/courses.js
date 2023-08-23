@@ -4,10 +4,12 @@ var user_regime = document.currentScript.getAttribute("user_regime");
 var timetable_choosed = [];
 var buttons_clicked = [];
 
+var timetable_choosed_objects = []
+
 var user_disponibility = JSON.parse(document.currentScript.getAttribute("user_disponibility").replace(/'/g, '"'));
 var user_courses = JSON.parse(document.currentScript.getAttribute("user_courses").replace(/'/g, '"'));
 var user_timetables = JSON.parse(document.currentScript.getAttribute("user_timetables").replace(/'/g, '"'));
-var user_blocks = document.currentScript.getAttribute("user_blocks").replace(/'/g, '"');
+var user_blocks = JSON.parse(document.currentScript.getAttribute("user_blocks").replace(/'/g, '"'));
 var user_areas = JSON.parse(document.currentScript.getAttribute("user_areas").replace(/'/g, '"'));
 var user_courses_from_blockk = JSON.parse(document.currentScript.getAttribute("user_courses_from_blockk").replace(/'/g, '"'));
 
@@ -47,8 +49,17 @@ for (var i = 0; i < user_disponibility.length; i++) {
         .attr("data-target", "#add-course-modal");
 }
 
+$("div.primary").css({
+    "font-weight": "500",
+    "background-color":  "#2f7363",
+    "color": "white"
+});
+$('#secondary-timetable-courses').css({
+    'display': 'none'
+});
+
 if(user_courses_from_blockk.length > 0) {
-    for (var i = 0; i < user_courses_from_blockk.length; i++) {
+    for (var i = 0; i < user_courses_from_blockk.length; i++) { // colcoar primary na view
         var obj = user_courses_from_blockk[i];
         var obj_id = obj.id;
         var array_position_id = obj.position_id;
@@ -70,14 +81,62 @@ if(user_courses_from_blockk.length > 0) {
         timetable_choosed.push(global);
         cell_left_number.time -= array_position_id.length
         $('#cel-hour').text(cell_left_number.time)
+        timetable_choosed_objects.push(user_courses_from_blockk[i])
+        user_timetables = user_timetables.filter(timetable => timetable.id !== user_courses_from_blockk[i].id);
     }
 }
 
+function show_table(value) {
+    if(value == 1) {
+        $('#primary-timetable-courses').css({
+            'display': ''
+        });
+        $('#secondary-timetable-courses').css({
+            'display': 'none'
+        });
+        $("div.primary").css({
+            "font-weight": "500",
+            "background-color":  "#2f7363",
+            "color": "white"
+        });
+        $("div.secondary").css({
+            "font-weight": "",
+            "background-color":  "",
+            "color": ""
+        });
+        window.scrollTo({
+            top: $('#primary-timetable-courses').offset().top - $('.navbar').outerHeight() - 115,
+            behavior: 'smooth'
+          });
+    } else {
+        $('#secondary-timetable-courses').css({
+            'display': ''
+        });
+        $('#primary-timetable-courses').css({
+            'display': 'none'
+        });
+        $("div.secondary").css({
+            "font-weight": "500",
+            "background-color":  "#2f7363",
+            "color": "white"
+        });
+        $("div.primary").css({
+            "font-weight": "",
+            "background-color":  "",
+            "color": ""
+        });
+        window.scrollTo({
+            top: $('#secondary-timetable-courses').offset().top - $('.navbar').outerHeight() - 115,
+            behavior: 'smooth'
+          });
+    }
+}
 
 // Ao cliar no button
-$("#timetable-courses input").on("click", function () {
+$("#primary-timetable-courses input, #secondary-timetable-courses input").on("click", function (event) {
     var data_id = $(this).closest("div[data-id]").data("id");
     $("#cel-position").text(data_id).css("visibility", "hidden");
+
 
     $("#area-filter").val("");
     $("#block-filter").val("");
@@ -85,7 +144,10 @@ $("#timetable-courses input").on("click", function () {
 
     area_options();
     timetables_options();
+    block_options();
     $("#info-alert").hide();
+    $("#error-alert").hide();
+    $("#info-input-alert").hide();
     
 
     var updated_array = buttons_clicked.some(function (dict) {
@@ -94,7 +156,8 @@ $("#timetable-courses input").on("click", function () {
     if (updated_array) {
         var filtered_timetables = timetable_choosed.filter(function (t) {
             return t.position.includes(data_id);
-        });console.log(updated_array);console.log(timetable_choosed);
+        });
+        event.preventDefault();
 
         filtered_timetables.forEach(function (timetable) {
             timetable.position.forEach(function (position) {
@@ -117,10 +180,33 @@ $("#timetable-courses input").on("click", function () {
         timetable_choosed = timetable_choosed.filter(function (t) {
             return !filtered_timetables.includes(t);
         });
+
+        obj = timetable_choosed_objects.filter(timetable => timetable.id == filtered_timetables[0].id_timetable)
+        user_timetables.push(obj[0])
+        timetable_choosed_objects = timetable_choosed_objects.filter(timetable => timetable.id !== filtered_timetables[0].id_timetable);
+
+        return false;
+    } else {
+        $('.modal-backdrop').css({'display':''})
+        $('#add-course-modal').modal('show');
     }
 });
 
 timatables_datalist_options = []
+
+
+function block_options() {
+    var block_datalist_options = document.getElementById("block-options");
+    block_datalist_options.innerHTML = "";
+
+    for (var i = 0; i < user_blocks.length; i++) {
+        var block = user_blocks[i];
+        var option = document.createElement("option");
+        option.value = block.name;
+        option.textContent = block.acronym + " - " + block.name;
+        block_datalist_options.appendChild(option);
+    }
+}
 
 function area_options() {
     var area_datalist_options = document.getElementById("area-options");
@@ -129,8 +215,8 @@ function area_options() {
     for (var i = 0; i < user_areas.length; i++) {
         var area = user_areas[i];
         var option = document.createElement("option");
-        option.value = area.acronym;
-        option.textContent = area.acronym + " | " + area.name_area;
+        option.value = area.name;
+        option.textContent = area.acronym + " - " + area.name;
         area_datalist_options.appendChild(option);
     }
 }
@@ -177,15 +263,15 @@ function timetables_options() {
         $("#course-filter").prop("disabled", false);
         var timetable = filtered_timetables[i];
         var option = document.createElement("option");
-        option.value = timetable.course_acronym;
-        option.textContent = timetable.course_name + " | " + timetable.classs;
+        option.value = timetable.course_name;
+        option.textContent = timetable.course_acronym + " - " + timetable.course_name;
         timetable_datalist_options.appendChild(option);
     }
 }
 
-function block_filter() {
-    var block_value = $("#block-filter").val();
-    var block_id = user_blocks_obj.find(block => block.acronym === block_value)?.id;
+$("#block-filter").on("input", function() {
+    var block_value = $(this).val();
+    var block_id = user_blocks.find(block => block.name === block_value)?.id;
 
     $("#area-filter").val("");
     $("#course-filter").val("");
@@ -193,171 +279,236 @@ function block_filter() {
     area_options();
     timetables_options();
     $("#info-alert").hide();
+    $("#error-alert").hide();
+    $("#info-input-alert").hide();
     
-
-    if (block_value == "") {
-    } else {
-        var filtered_areas = user_areas.filter(function (element) {
-            return element.blocks.includes(block_id);
-        });
-
-        var area_datalist_options = document.getElementById("area-options");
-        area_datalist_options.innerHTML = "";
-
-        for (var i = 0; i < filtered_areas.length; i++) {
-            var area = filtered_areas[i];
-
-            var option = document.createElement("option");
-            option.value = area.acronym;
-            option.textContent = area.acronym + " | " + area.name_area;
-            area_datalist_options.appendChild(option);
-        }
-
-        var filtered_timetables = timatables_datalist_options.filter(function (timetable) {
-            return user_courses.some(function (course) {
-                return course.block === block_id && course.id === timetable.course_id;
+    if(block_id) {
+        if (block_value == "") {
+        } else {
+            var filtered_areas = user_areas.filter(function (element) {
+                return element.blocks.includes(block_id);
             });
-        });
-
-        var course_datalist_options = document.getElementById("course-options");
-        course_datalist_options.innerHTML = "";
-
-        for (var i = 0; i < filtered_timetables.length; i++) {
-            $("#course-filter").prop("disabled", false);
-            var timetable = filtered_timetables[i];
-            var option = document.createElement("option");
-            option.value = timetable.acronym;
-            option.textContent = timetable.course_name + " | " + timetable.classs;
-            course_datalist_options.appendChild(option);
+    
+            var area_datalist_options = document.getElementById("area-options");
+            area_datalist_options.innerHTML = "";
+    
+            for (var i = 0; i < filtered_areas.length; i++) {
+                var area = filtered_areas[i];
+    
+                var option = document.createElement("option");
+                option.value = area.name;
+                option.textContent = area.acronym + " - " + area.name;
+                area_datalist_options.appendChild(option);
+            }
+    
+            var filtered_timetables = timatables_datalist_options.filter(function (timetable) {
+                return user_courses.some(function (course) {
+                    return course.block === block_id && course.id === timetable.course_id;
+                });
+            });
+    
+            var course_datalist_options = document.getElementById("course-options");
+            course_datalist_options.innerHTML = "";
+    
+            for (var i = 0; i < filtered_timetables.length; i++) {
+                $("#course-filter").prop("disabled", false);
+                var timetable = filtered_timetables[i];
+                var option = document.createElement("option");
+                option.value = timetable.course_name;
+                option.textContent = timetable.course_acronym + " - " + timetable.course_name;
+                course_datalist_options.appendChild(option);
+            }
+    
+            if (filtered_timetables.length == 0) {
+                $("#course-filter").val("Nenhuma disciplina disponível neste horário.");
+                $("#course-filter").prop("disabled", true);
+            }
         }
-
-        if (filtered_timetables.length == 0) {
-            $("#course-filter").val("Nenhuma disciplina disponível neste horário.");
-            $("#course-filter").prop("disabled", true);
-        }
+        this.style.borderColor = "";
+    } else {
+        this.style.borderColor = "red";
+        
     }
-}
-function area_filter() {
-    var area_value = $("#area-filter").val();
+});
+
+$("#block-filter").on("blur", function() {
+    isInputSelected = false;
+    
+    if ($(this).val() === "") {
+        this.style.borderColor = "";
+    }
+});
+
+$("#area-filter").on("blur", function() {
+    isInputSelected = false;
+    
+    if ($(this).val() === "") {
+        this.style.borderColor = "";
+    }
+});
+
+$("#course-filter").on("blur", function() {
+    isInputSelected = false;
+
+    if ($(this).val() === "") {
+        this.style.borderColor = "";
+    }
+});
+
+$("#area-filter").on("input", function() {
+    var area_value = $(this).val();
     var block_value = $("#block-filter").val();
 
-    var area_id = user_areas.find(area => area.acronym === area_value)?.id;
-    var block_id = user_blocks_obj.find(block => block.acronym === block_value)?.id;
+    $("#info-alert").hide();
+    $("#error-alert").hide();
+    $("#info-input-alert").hide();
+
+    var area_id = user_areas.find(area => area.name === area_value)?.id;
+    var block_id = user_blocks.find(block => block.name === block_value)?.id;
     $("#course-filter").val("");
 
     block_options();
     timetables_options();
-    $("#info-alert").hide();
 
-    if (area_value == "") {
-    } else {
-        if (block_value == "") {
-            var filtered_timetables = timatables_datalist_options.filter(function (timetable) {
-                return user_courses.some(function (course) {
-                    return course.area === area_id && course.id === timetable.course_id;
-                });
-            });
-
-            var course_datalist_options = document.getElementById("course-options");
-            course_datalist_options.innerHTML = "";
-
-            for (var i = 0; i < filtered_timetables.length; i++) {
-                $("#course-filter").prop("disabled", false);
-                var timetable = filtered_timetables[i];
-                var option = document.createElement("option");
-                option.value = timetable.course_name;
-                option.textContent = timetable.course_name + " | " + timetable.classs;
-                course_datalist_options.appendChild(option);
-            }
-
-            if (filtered_timetables.length == 0) {
-                $("#course-filter").val("Nenhuma disciplina disponível neste horário.");
-                $("#course-filter").prop("disabled", true);
-            }
-
-            var block_datalist_options = document.getElementById("block-options");
-            block_datalist_options.innerHTML = "";
-
-            for (var i = 0; i < user_blocks_obj.length; i++) {
-                var block = user_blocks_obj[i];
-                var option = document.createElement("option");
-                option.value = block.name_block;
-                option.textContent = block.acronym + " | " + block.name_block;
-                block_datalist_options.appendChild(option);
-            }
+    if(area_id) {
+        if (area_value == "") {
         } else {
-            var filtered_timetables = timatables_datalist_options.filter(function (timetable) {
-                return user_courses.some(function (course) {
-                    return course.block === block_id && course.area === area_id && course.id === timetable.course_id;
+            if (block_value == "") {
+                var filtered_timetables = timatables_datalist_options.filter(function (timetable) {
+                    return user_courses.some(function (course) {
+                        return course.area === area_id && course.id === timetable.course_id;
+                    });
                 });
-            });
 
-            var course_datalist_options = document.getElementById("course-options");
-            course_datalist_options.innerHTML = "";
+                var area_obj = user_areas.filter(function (element) {
+                    return element.id == area_id;
+                });
 
-            for (var i = 0; i < filtered_timetables.length; i++) {
-                $("#course-filter").prop("disabled", false);
-                var timetable = filtered_timetables[i];
-                var option = document.createElement("option");
-                option.value = timetable.course_name;
-                option.textContent = timetable.course_name + " | " + timetable.classs;
-                course_datalist_options.appendChild(option);
-            }
+                var block_to_area = user_blocks.filter(function (element) {
+                    return area_obj[0].blocks.includes(element.id);
+                });
 
-            if (filtered_timetables.length == 0) {
-                $("#course-filter").val("Nenhuma disciplina disponível neste horário.");
-                $("#course-filter").prop("disabled", true);
-            }
-        }
-    }
-}
-
-function course_apresentation() {
+                var course_datalist_options = document.getElementById("course-options");
+                course_datalist_options.innerHTML = "";
     
-    var course_value = $("#course-filter").val();
-    var course_id = timatables_datalist_options.find(timetable => timetable.course_acronym === course_value)?.id;
-    $("#info-alert").hide();
-  
-    var filtered_timetable = timatables_datalist_options.filter(function(timetable) {
-      return timetable.id == course_id;
-    });
-
-    var discipline_name;
-    var classs;
-    var day;
-    var timeslot_begin_hour;
-    var timeslot_end_hour;
-
-    filtered_timetable.forEach(function(timetable) {
-        discipline_name = timetable.course_name
-        classs = timetable.classs
-        timetable.day_combo.forEach(function(day_combo) {
-            day = get_all_day(get_full_day_of_week(day_combo.day));
-            var timeslots = day_combo.timeslots;
-            var day_combo_size = timeslots.length
-            var count = 0
-    
-            timeslots.forEach(function(timeslot) {
-                if(count == 0) {
-                    timeslot_begin_hour = timeslot.timeslot_begin_hour;
-                } else if(count == day_combo_size - 1) {
-                    timeslot_end_hour = timeslot.timeslot_end_hour;
+                for (var i = 0; i < filtered_timetables.length; i++) {
+                    $("#course-filter").prop("disabled", false);
+                    var timetable = filtered_timetables[i];
+                    var option = document.createElement("option");
+                    option.value = timetable.course_name;
+                    option.textContent = timetable.course_acronym + " - " + timetable.course_name;
+                    course_datalist_options.appendChild(option);
                 }
-                count += 1;
-            });
-        });
-    });
+    
+                if (filtered_timetables.length == 0) {
+                    $("#course-filter").val("Nenhuma disciplina disponível neste horário.");
+                    $("#course-filter").prop("disabled", true);
+                }
+    
+                var block_datalist_options = document.getElementById("block-options");
+                block_datalist_options.innerHTML = "";
+    
+                for (var i = 0; i < block_to_area.length; i++) {
+                    var block = block_to_area[i];
+                    var option = document.createElement("option");
+                    option.value = block.name;
+                    option.textContent = block.acronym + " - " + block.name;
+                    block_datalist_options.appendChild(option);
+                }
+            } else {
+                var filtered_timetables = timatables_datalist_options.filter(function (timetable) {
+                    return user_courses.some(function (course) {
+                        return course.block === block_id && course.area === area_id && course.id === timetable.course_id;
+                    });
+                });
+    
+                var course_datalist_options = document.getElementById("course-options");
+                course_datalist_options.innerHTML = "";
+    
+                for (var i = 0; i < filtered_timetables.length; i++) {
+                    $("#course-filter").prop("disabled", false);
+                    var timetable = filtered_timetables[i];
+                    var option = document.createElement("option");
+                    option.value = timetable.course_name;
+                    option.textContent = timetable.course_acronym + " - " + timetable.course_name;
+                    course_datalist_options.appendChild(option);
+                }
+    
+                if (filtered_timetables.length == 0) {
+                    $("#course-filter").val("Nenhuma disciplina disponível neste horário.");
+                    $("#course-filter").prop("disabled", true);
+                }
+            }
+        } 
+        this.style.borderColor = "";
+    } else {
+        this.style.borderColor = "red";
+    }
+});
 
-    $(".info-displine").text(discipline_name);
-    $(".info-day").text(day);
-    $(".info-start-and-end-hour").text(timeslot_begin_hour + " até " + timeslot_end_hour);
-    $(".info-class").text(classs);
-  
-    $("#info-alert").show();
-    if (isNaN(course_id) || course_value == '') {
-        $("#info-alert").hide();
-      }
-  }
+$("#course-filter").on("input", function() {
+    var course_value = $(this).val();
+    var course_id = timatables_datalist_options.find(timetable => timetable.course_name === course_value)?.id;
+    $("#info-alert").hide();
+    $("#error-alert").hide();
+    $("#info-input-alert").hide();
+
+    if(course_id) {
+        var filtered_timetable = timatables_datalist_options.filter(function(timetable) {
+            return timetable.id == course_id;
+          });
+      
+          var discipline_name;
+          var classs;
+          var day;
+          var timeslot_begin_hour;
+          var timeslot_end_hour;
+      
+          filtered_timetable.forEach(function(timetable) {
+            console.log(timetable)
+              discipline_name = timetable.course_acronym
+              classs = timetable.classs
+              timetable.day_combo.forEach(function(day_combo) {
+                  day = get_all_day(get_full_day_of_week(day_combo.day));
+                  var timeslots = day_combo.timeslots;
+                  var day_combo_size = timeslots.length
+                  var count = 0
+          
+                  timeslots.forEach(function(timeslot) {
+                      if(count == 0) {
+                          timeslot_begin_hour = timeslot.timeslot_begin_hour;
+                      } else if(count == day_combo_size - 1) {
+                          timeslot_end_hour = timeslot.timeslot_end_hour;
+                      }
+                      count += 1;
+                  });
+                  if(!timeslot_end_hour) {
+                    timeslots.forEach(function(timeslot) {
+                        timeslot_end_hour = timeslot.timeslot_end_hour;
+
+                    });
+                  }
+              });
+          });
+
+          
+      
+          $(".info-displine").text(discipline_name);
+          $(".info-day").text(day);
+          $(".info-start-hour").text(timeslot_begin_hour.slice(0, -3));
+          $(".info-end-hour").text(timeslot_end_hour.slice(0, -3));
+          $(".info-class").text(classs);
+        
+          $("#info-alert").show();
+          if (isNaN(course_id) || course_value == '') {
+              $("#info-alert").hide();
+            }
+        this.style.borderColor = "";
+    } else {
+        this.style.borderColor = "red";
+    }
+
+});
 
 // Mapea na grade
 
@@ -365,8 +516,9 @@ function course_apresentation() {
 $(document).ready(function () {
     $("#add-course-button").on("click", function () {
         var timetable_acronym = $("#course-filter").val();
-        var timetable_id = timatables_datalist_options.find(timetable => timetable.course_acronym === timetable_acronym)?.id;
+        var timetable_id = timatables_datalist_options.find(timetable => timetable.course_name === timetable_acronym)?.id;
         var grade_position = $("#cel-position").text(); //mon-mor-1 mon-mor-2 mon-mor-3
+        var priority = grade_position.substr(-3);
 
         var filtered_timetable = user_timetables.filter(function (timetable_item) {
             return timetable_item.id === timetable_id;
@@ -413,7 +565,7 @@ $(document).ready(function () {
                             var timeslot_begin_hour = timeslot.timeslot_begin_hour;
                         
                             var filtered_disponibility = user_disponibility.filter(function(disponibility) {
-                              return disponibility.day === get_full_day_of_week(day) && disponibility.timeslot_begin_hour === timeslot_begin_hour;
+                              return disponibility.day === get_full_day_of_week(day) && disponibility.timeslot_begin_hour === timeslot_begin_hour && priority == disponibility.priority;
                             });
                         
                             var ids = filtered_disponibility.map(function(disponibility) {
@@ -461,7 +613,7 @@ $(document).ready(function () {
                             var timeslot_begin_hour = timeslot.timeslot_begin_hour;
 
                             var filtered_disponibility = user_disponibility.filter(function (disponibility) {
-                                return disponibility.day === get_full_day_of_week(day) && disponibility.timeslot_begin_hour === timeslot_begin_hour;
+                                return disponibility.day === get_full_day_of_week(day) && disponibility.timeslot_begin_hour === timeslot_begin_hour && priority == disponibility.priority;
                             });
 
                             var ids = filtered_disponibility.map(function (disponibility) {
@@ -471,7 +623,7 @@ $(document).ready(function () {
                             if (!is_repetead && !is_missing && !max_cel) {
                                 ids.forEach(function (id) {
                                     if (!buttons_clicked.includes(id)) {
-                                        $("#sub-" + id).text(filtered_timetable[0].course_acronym);
+                                        $("#sub-" + id).text(filtered_timetable[0].course_acronym);                                        
                                         id_array.push(id);
                                         $("#btn-" + id)
                                             .attr("data-toggle", "none")
@@ -479,8 +631,7 @@ $(document).ready(function () {
                                         buttons_clicked.push(id);
                                     }
                                 });
-                            }
-                            
+                            }                            
                         });
                     }
                     $("#modal-" + grade_position)
@@ -495,6 +646,8 @@ $(document).ready(function () {
                         timetable_choosed.push(global);
                         cell_left_number.time -= id_array.length
                         $('#cel-hour').text(cell_left_number.time)
+                        timetable_choosed_objects.push(filtered_timetable[0])
+                        user_timetables = user_timetables.filter(timetable => timetable.id !== filtered_timetable[0].id);
                     }
 
                     $("#course-filter").val("");
@@ -530,7 +683,8 @@ $(document).ready(function () {
                         });
                     }
                     $("#info-alert").hide();
-                    
+                    $('.modal-backdrop').css({'display':'none'})
+                    $('#add-course-modal').modal('hide');
                 },
                 error: function (xhr, textStatus, errorThrown) {
                     $("#error-message").text("Erro ao tentar adicionar uma disciplina.");
@@ -574,7 +728,7 @@ $(document).ready(function () {
                         },
                     });
                 } else {
-                    $("#error-message-form").text("Quantidade de células minímas para seu FPA segundo seu regim é 8 células.");
+                    $("#error-message-form").text("Quantidade de células minímas para seu FPA segundo seu regime é 8 células.");
                     $("#error-alert-form").show();
                     window.scrollTo({
                         top: $("#error-alert-form").offset().top - $(".navbar").outerHeight() - 30,
@@ -607,7 +761,7 @@ $(document).ready(function () {
                         },
                     });
                 } else {
-                    $("#error-message-form").text("Quantidade de células minímas para seu FPA segundo seu regim é 12 células.");
+                    $("#error-message-form").text("Quantidade de células minímas para seu FPA segundo seu regime é 12 células.");
                     $("#error-alert-form").show();
                     window.scrollTo({
                         top: $("#error-alert-form").offset().top - $(".navbar").outerHeight() - 30,
