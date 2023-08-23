@@ -246,6 +246,28 @@ button.close:focus, button.close:active {box-shadow: none;}
     border-radius: 3px;
   }
 
+ /* footer */
+
+ .footer{
+    background-color: #366b76;
+    color:white;
+    
+    .about-company{
+      i{font-size: 25px;}
+      a{
+        color:white;
+        transition: color .2s;
+        &:hover{color:#4180CB}
+      }
+    } 
+
+    .location{
+      i{font-size: 18px;}
+    }
+
+    .copyright p{border-top:1px solid rgba(255,255,255,.1);} 
+  }
+
 @media (max-width: 1600px) {
     div.language-icon-notlogged {width: 100px;}
 }

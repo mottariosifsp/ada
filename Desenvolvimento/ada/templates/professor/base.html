@@ -179,6 +179,38 @@
 
         {% endblock %}
     </div>
+
+    <div class="mt-5 pt-4 pb-2 footer">
+      <div class="container">
+        <div class="row ">
+          <div class="col-lg-2 col-xs-12 about-company mt-3">
+            <div class="nav-brand mr-auto">
+              <a class="logo" href="{% url 'home' %}">
+                <img class="w-100" src="{% static 'images/logo_bg.png' %}" alt="logo do site ADA">
+              </a>
+            </div>
+          </div>
+          <div class="col-lg-6 col-xs-12 links align-middle">
+              <h4 class="mt-lg-0 mt-sm-4">Links</h4>
+              <a class="mr-2 footer-link"><span>{% trans "Sobre nós"%}</span></a>
+              <a class="mr-2 footer-link"><span>d</span></a>
+              <a class="mr-2 footer-link"><span>{% trans "Ajuda"%}</span></a>
+              <div class="row">
+                <div class="col copyright">
+                  <p class=""><small class="text-white-50">© 2023 Mottarios. {% trans "Todos Direitos Reservados"%}.</small></p>
+                </div>
+              </div>
+          </div>
+          <div class="col-lg-4 col-xs-12 location">
+            <h4 class="mt-lg-0 mt-sm-4">{% trans "Mais informações"%}</h4>
+            <i class="mr-1 fa-brands fa-youtube"></i></a>
+            <a href="mailto:endereco_de_email@gmail.com?subject=Assunto%20do%20Email&body=Corpo%20do%20Email"><p><i class="fa-regular fa-envelope"></i> @hsdf.com</p></a>
+          </div>
+        </div>
+        
+      </div>
+      </div>
+
     <!-- Logout modal -->
     <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="confirmLogoutModalLabel" aria-hidden="true">
       <div class="modal-dialog modal-dialog-centered" role="document">
@@ -221,6 +253,7 @@
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <!-- <script src="//code.jivosite.com/widget/4hreSJFMcy" async></script> -->
     {% block endbody %}
 
     {% endblock %}

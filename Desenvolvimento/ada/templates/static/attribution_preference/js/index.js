@@ -13,19 +13,19 @@ if (disponilibity_done == 'False') {
 function updateTimer() {
     seconds--;
   
-    if (seconds == 0) {
+    if (seconds <= 0) {
         let minutes = parseInt(document.getElementById("cel-minute").textContent);
         minutes--;
         
-        if (minutes == 0) {
+        if (minutes <= 0) {
             let hours = parseInt(document.getElementById("cel-hour").textContent);
             hours--;
     
-            if (hours == 0) {
+            if (hours <= 0) {
                 let days = parseInt(document.getElementById("cel-day").textContent);
                 days--;
     
-                if (days == 0) {
+                if (days <= 0) {
                     window.location.reload();
                 }
     
