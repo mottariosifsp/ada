@@ -97,7 +97,7 @@ def attribution_preference(request):
 
     days = hours = minutes = 0
     if Deadline.objects.filter(name='STARTFPADEADLINE').exists():
-        attriution_deadline = Deadline.objects.get(name='STARTFPADEADLINE')  
+        attribution_deadline = Deadline.objects.filter(name='STARTFPADEADLINE').first()
         target_datetime = attribution_deadline.deadline_end
         current_datetime = timezone.now()
 
