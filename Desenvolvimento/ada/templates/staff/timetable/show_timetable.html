@@ -30,12 +30,11 @@
     </a>
     <h1 class="text-center">{{ request.GET.class }}</h1>
     <!-- limpar -->
+    <button class="collapsible"><span class="ml-1 icon-minimize" style='float: left;'> + </span> Matutino </button>
+    <div class="content_collapsible">
     <div class="tabela">
       <table class="table table-bordered editable" id="blocks_list">
           <thead class="thead-dark">
-            <tr>
-              <th colspan='7' class="text-center header-table"><span class="ml-1 icon-minimize" style='float: left;'> + </span>Matutino</th>
-            </tr>
             <tr class="header-days">
               <!-- <th scope="col" class="align-middle">Período</th> -->
               <th scope="col" class="text-center" style="width: 7.7rem">{% trans "Horário" %}</th>
@@ -62,12 +61,13 @@
           </tbody>
         </table>
       </div>
+      </div>
+      <br>
+      <button class="collapsible"><span class="ml-1 icon-minimize" style='float: left;'> + </span> Vespertino </button>
+    <div class="content_collapsible">
       <div class="tabela">
         <table class="table table-bordered editable" id="blocks_list">
             <thead class="thead-dark">
-              <tr>
-                <th colspan='7' class="text-center header-table"><span class="ml-1 icon-minimize" style='float: left;'> + </span>Vespertino</th>
-              </tr>
               <tr class="header-days">
                 <!-- <th scope="col" class="align-middle">Período</th> -->
                 <th scope="col" class="text-center" style="width: 7.7rem">{% trans "Horário" %}</th>
@@ -94,12 +94,13 @@
             </tbody>
           </table>
         </div>
+      </div>
+      <br>      
+      <button class="collapsible"><span class="ml-1 icon-minimize" style='float: left;'> + </span> Noturno </button>
+    <div class="content_collapsible">
         <div class="tabela">
           <table class="table table-bordered editable" id="blocks_list">
               <thead class="thead-dark">
-                <tr>
-                  <th colspan='7' class="text-center header-table"><span class="ml-1 icon-minimize" style='float: left;'> + </span>Noturno</th>
-                </tr>
                 <tr class="header-days">
                   <!-- <th scope="col" class="align-middle">Período</th> -->
                   <th scope="col" class="text-center" style="width: 7.7rem">{% trans "Horário" %}</th>
@@ -127,5 +128,6 @@
             </table>
           </div>
         </div>
+      </div>
         <script src="{% static 'staff/timetable/js/show_timetable.js' %}" data-lang={{LANGUAGE_CODE}} timetables-complete="{{timetables}}"></script>
 {% endblock %}
