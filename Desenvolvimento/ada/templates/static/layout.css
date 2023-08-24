@@ -234,10 +234,28 @@ button.close:focus, button.close:active {box-shadow: none;}
 
 .lang-modal {width: 100%;}
 
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.container.base {
+    flex: 1;
+}
+
 .text-footer {
     color: white;
     font-size: 7px;
     text-align: center;
+}
+
+div.footer h4 {
+    color: rgba(255, 255, 255, 0.647);
+}
+
+.footer-link span:hover {
+    text-decoration: underline;
 }
 
 .btn-home {

@@ -14,6 +14,8 @@
     <link href="https://cdn.datatables.net/v/dt/jq-3.6.0/dt-1.13.4/rr-1.3.3/datatables.min.css" rel="stylesheet"/>
     <script src="https://cdn.datatables.net/v/dt/jq-3.6.0/dt-1.13.4/rr-1.3.3/datatables.min.js"></script>
     <script src="https://cdn.datatables.net/plug-ins/1.13.5/filtering/type-based/accent-neutralise.js"></script>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     {% block head %}
 
     {% endblock %}
@@ -177,35 +179,33 @@
 
         {% endblock %}
       </div>
-
-      <div class="mt-5 pt-4 pb-2 footer">
+      <div class="mt-5 pt-4 pb-5 footer fixed">
         <div class="container">
-          <div class="row">
-            <div class="col-lg-5 col-xs-12 about-company">
-              <h2>Heading</h2>
-              <p class="pr-5 text-white-50">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam ac ante mollis quam tristique convallis </p>
-              <p><a href="#"><i class="fa fa-facebook-square mr-1"></i></a><a href="#"><i class="fa fa-linkedin-square"></i></a></p>
+          <div class="row ">
+            <div class="col-lg-2 col-xs-12 about-company mt-4">
+              <div class="nav-brand mr-auto">
+                <a class="logo" id="backToTop">
+                  <img class="w-100" src="{% static 'images/logo_bg.png' %}" alt="logo do site ADA">
+                </a>
+              </div>
             </div>
-            <div class="col-lg-3 col-xs-12 links">
-              <h4 class="mt-lg-0 mt-sm-3">Links</h4>
-                <ul class="m-0 p-0">
-                  <li>- <a href="#">Lorem ipsum</a></li>
-                  <li>- <a href="#">Nam mauris velit</a></li>
-                  <li>- <a href="#">Etiam vitae mauris</a></li>
-                  <li>- <a href="#">Fusce scelerisque</a></li>
-                  <li>- <a href="#">Sed faucibus</a></li>
-                  <li>- <a href="#">Mauris efficitur nulla</a></li>
-                </ul>
+            <div class="col-lg-6 col-xs-12 links align-middle">
+                <h4 class="mt-lg-0 mt-sm-4">Links</h4>
+                <a href="" class="mr-2 footer-link"><span>{% trans "Sobre"%}</span></a>
+                <a href="" class="mr-2 footer-link"><span>{% trans "Contato"%}</span></a>
+                <a href="" class="mr-2 footer-link"><span>{% trans "Política de Privacidade"%}</span></a>
+                <a href="" class="mr-2 footer-link"><span>{% trans "Termos e Condições de Uso"%}</span></a>
+                <div class="row">
+                  <div class="col copyright">
+                    <p class=""><small class="text-white-50">© 2023 Mottarios. {% trans "Todos Direitos Reservados"%}.</small></p>
+                  </div>
+                </div>
             </div>
             <div class="col-lg-4 col-xs-12 location">
-              <h4 class="mt-lg-0 mt-sm-4">Location</h4>
-              <p>22, Lorem ipsum dolor, consectetur adipiscing</p>
-              <p><i class="fa fa-envelope-o mr-3"></i>info@hsdf.com</p>
-            </div>
-          </div>
-          <div class="row mt-5">
-            <div class="col copyright">
-              <p class=""><small class="text-white-50">© 2023. {% trans "Todos Direitos Reservados"%}.</small></p>
+              <h4 class="mt-lg-0 mt-sm-4">{% trans "Mais informações"%}</h4>
+              <a href="https://www.youtube.com/@Motta-Rios" target="_blank"><i class="mr-1 fa-brands fa-youtube"></i></a>
+              <a href="https://github.com/mottariosifsp" target="_blank"><i class="mr-1 fab fa-github"></i></a>
+              <a href="mailto:ada.ifsp@gmail.com?subject=[%FAQ%-%Dúvida%]&body=Corpo%20do%20Email" target="_blank"><p><i class="fa-regular fa-envelope"></i> ada.ifsp@gmail.com</p></a>
             </div>
           </div>
         </div>
@@ -247,6 +247,8 @@
       </div>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js" integrity="sha384-7og8luCpGnZn/Ms71Ycm3q8rW2t+jGvRJ9XtT7ieAM8WwhzODZvmmwyQEd/bYUTd" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <script src="//code.jivosite.com/widget/4hreSJFMcy" async></script>
+    <script src="{% static 'layout.js' %}"></script>
     {% block endbody %}
 
     {% endblock %}
