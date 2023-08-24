@@ -268,7 +268,7 @@
         {% if disponilibity_done == 'True' and courses_done == 'True' %}
             <div onclick="open_case(3)">
                 <div class="float-right message-info-done"><i class="far fa-check-circle"></i> {% trans 'FINALIZADO'%}</div>
-                <h5><i class="button-3 float-left fa-solid fa-caret-down p-1 ml-2 mr-2"></i>{% trans 'Preferência Escolhida'%}</h5>
+                <h5><i class="button-3 float-left fa-solid  fa-sort-up p-1 ml-2 mr-2"></i>{% trans 'Preferência Escolhida'%}</h5>
             </div><hr>
 
             <div class="final-case">
@@ -293,6 +293,7 @@
         </div><hr>
         {% endif %}
     {% endif %}
+
 {% endblock %}
 
 {% block endbody %}

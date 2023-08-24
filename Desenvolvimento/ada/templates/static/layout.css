@@ -234,16 +234,56 @@ button.close:focus, button.close:active {box-shadow: none;}
 
 .lang-modal {width: 100%;}
 
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.container.base {
+    flex: 1;
+}
+
 .text-footer {
     color: white;
     font-size: 7px;
     text-align: center;
 }
 
+div.footer h4 {
+    color: rgba(255, 255, 255, 0.647);
+}
+
+.footer-link span:hover {
+    text-decoration: underline;
+}
+
 .btn-home {
     padding: 10px 13px 10px 13px;
     background: none;
     border-radius: 3px;
+  }
+
+ /* footer */
+
+ .footer{
+    background-color: #366b76;
+    color:white;
+    
+    .about-company{
+      i{font-size: 25px;}
+      a{
+        color:white;
+        transition: color .2s;
+        &:hover{color:#4180CB}
+      }
+    } 
+
+    .location{
+      i{font-size: 18px;}
+    }
+
+    .copyright p{border-top:1px solid rgba(255,255,255,.1);} 
   }
 
 @media (max-width: 1600px) {
