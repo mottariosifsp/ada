@@ -16,7 +16,7 @@ from timetable.models import Day_combo, Timeslot, Timetable, Timetable_user
 from area.models import Blockk, Area
 from classs.models import Classs
 from course.models import Course
-from user.models import User, History, AcademicDegree
+from user.models import Proficiency, User, History, AcademicDegree
 from .models import Deadline, Criteria
 from django.db.models import F, Sum, Value
 
@@ -158,7 +158,9 @@ def save_deadline(data):
 @user_passes_test(is_staff)
 def professors_list(request):
     professors = User.objects.filter(is_superuser=False)
-    return render(request, 'staff/professor/professors_list.html', {'professors': professors})
+    courses = Course.objects.all()
+
+    return render(request, 'staff/professor/professors_list.html', {'professors': professors, 'courses': courses})
 
 
 @login_required
@@ -173,10 +175,19 @@ def update_save(request):
         date_area = request.POST.get('date_area')
         date_institute = request.POST.get('date_institute')
         academic_degrees_json = request.POST.get('academic_degrees')
+        blocked_courses = request.POST.getlist('blocked_courses[]')
+
+        print(blocked_courses)
 
         User = get_user_model()
         user = User.objects.get(registration_id=registration_id)
         history = user.history
+        print(blocked_courses)
+        if blocked_courses:
+            for blocked_course_id in blocked_courses:
+                course = Course.objects.get(registration_course_id=blocked_course_id)
+                a = Proficiency.objects.update_or_create(user=user, course=course, defaults={'is_competent': False})
+                print(a)
 
         if history is not None:
             academic_degrees = []

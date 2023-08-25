@@ -153,4 +153,4 @@ class Proficiency(models.Model):
     user = models.ForeignKey('user', on_delete=models.CASCADE, null=True)
 
     def __str__(self):
-        return self.name_proficiency
+        return f"{self.user.first_name} {self.user.last_name} - {self.course.name_course} - {'Habilitado' if self.is_competent else 'Não habilitado'}"

@@ -130,6 +130,35 @@
 
                         <button type="button" class="btn btn-primary" id="addAcademicDegreeBtn">Adicionar Diploma</button>
 
+                        <div class="form-group mt-6">
+                            <label for="searchInput" id="block-title">Matérias bloqueadas</label><br>
+                            <input type="text" id="blockedCourses" onkeyup="filterOptions()" placeholder="Pesquisar matéria">
+                            <select id="courseDropdown" multiple>
+                                {% for course in courses %}
+                                    <option value="{{ course.registration_course_id }}">{{ course.name_course }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                    
+                        <script>
+                            function filterOptions() {
+                                var input, filter, options, select, option, i;
+                                input = document.getElementById("searchInput");
+                                filter = input.value.toUpperCase();
+                                select = document.getElementById("courseDropdown");
+                                options = select.getElementsByTagName("option");
+                                
+                                for (i = 0; i < options.length; i++) {
+                                    option = options[i];
+                                    if (option.value.toUpperCase().indexOf(filter) > -1) {
+                                        option.style.display = "";
+                                    } else {
+                                        option.style.display = "none";
+                                    }
+                                }
+                            }
+                        </script>
+
                     </form>
                 </div>
                 <div class="modal-footer">

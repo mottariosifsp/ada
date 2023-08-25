@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import User, AcademicDegree, History
+from .models import Proficiency, User, AcademicDegree, History
 # Register your models here.
 
 class User_admin(admin.ModelAdmin):
@@ -10,3 +10,4 @@ class User_admin(admin.ModelAdmin):
 admin.site.register(User, User_admin)
 admin.site.register(AcademicDegree)
 admin.site.register(History)
+admin.site.register(Proficiency)

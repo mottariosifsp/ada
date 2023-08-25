@@ -166,6 +166,16 @@ $(document).ready(function () {
 
         updateAcademicDegreesData(academicDegrees);
 
+        var select = document.getElementById("courseDropdown");
+        var blockedCourses = [];
+        
+        for (var i = 0; i < select.options.length; i++) {
+            var option = select.options[i];
+            if (option.selected) {
+                blockedCourses.push(option.value);
+            }
+        }
+
         var registration_id = $('#registration_id').val();
         var birth = $('#birth').val();
         var date_career = $('#date_career').val();
@@ -174,6 +184,7 @@ $(document).ready(function () {
         var date_area = $('#date_area').val();
         var date_institute = $('#date_institute').val();
         var academic_degrees = allacademicDegrees;
+        var blocked_courses = blockedCourses;
 
         var data = {
             registration_id: registration_id,
@@ -183,7 +194,8 @@ $(document).ready(function () {
             date_professor: date_professor,
             date_area: date_area,
             date_institute: date_institute,
-            academic_degrees: academic_degrees
+            academic_degrees: academic_degrees,
+            blocked_courses: blocked_courses
         };
 
         let csrftoken = getCookie('csrftoken');
