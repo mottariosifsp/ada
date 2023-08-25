@@ -64,7 +64,7 @@ def attribution_preference(request):
     end_day = ''
     end_time = ''
     try:
-        attribution_deadline = get_object_or_404(Deadline, name='STARTFPADEADLINE')
+        attribution_deadline = get_object_or_404(Deadline, name='STARTFPADEADLINE').first()
         now = datetime.datetime.today()
         if now > attribution_deadline.deadline_start and now < attribution_deadline.deadline_end:
             start_day = attribution_deadline.deadline_start.strftime("%d/%m/%Y")
