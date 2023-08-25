@@ -1,3 +1,4 @@
+console.log("f")
 var lang = document.currentScript.getAttribute("data-lang");
 var user_regime = document.currentScript.getAttribute("user_regime");
 var user_disponibility_choosed = document.currentScript.getAttribute("user_disponibility_choosed");
@@ -28,8 +29,10 @@ for(var i = 0; i < user_disponibility_choosed_array.length; i++) {
 
 for (var i = 0; i < user_courses_choosed_array.length; i++) {
     var course = user_courses_choosed_array[i];
+    console.log(course)
     var acronym = course.acronym;
     var name_course = course.name_course;
+    var priority_attr = course.priority_attr;
     var course_area = course.course_area;
     var period = course.period;
     var classes = course.classes;
@@ -53,16 +56,26 @@ for (var i = 0; i < user_courses_choosed_array.length; i++) {
     } else if(period_language == 'nocturnal' && lang == 'pt-br') {
         period_language = 'noturno'
     }
+
+    if(priority_attr == 'priority' && lang == 'pt-br') {
+        priority_attr = 'prioritária'
+    } else if(priority_attr == 'secondary' && lang == 'pt-br') {
+        priority_attr = 'secundária'
+    }
   
     var new_row = '<tr>' +
-      '<td class="text-center">' + acronym + '</td>' +
-      '<td class="text-center">' + name_course + '</td>' +
-      '<td class="text-center">' + course_area + '</td>' +
-      '<td class="text-center">' + period_language + '</td>' +
-      '<td class="text-center">' + classes + '</td>' +
+      '<td class="text-center align-middle">' + acronym + '</td>' +
+      '<td class="text-center align-middle">' + name_course + '</td>' +
+      '<td class="text-center align-middle">' + course_area + '</td>' +
+      '<td class="text-center align-middle">' + primeiraLetraMaiuscula(priority_attr) + '</td>' +
+      '<td class="text-center align-middle">' + primeiraLetraMaiuscula(period_language) + '</td>' +
+      '<td class="text-center align-middle">' + classes + '</td>' +
       '</tr>';
   
     $('#courses-list').append(new_row);
   }
 
+  function primeiraLetraMaiuscula(str) {
+    return str.charAt(0).toUpperCase() + str.slice(1);
+  }
 

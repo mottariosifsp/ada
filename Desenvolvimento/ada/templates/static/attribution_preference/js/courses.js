@@ -465,7 +465,8 @@ $("#course-filter").on("input", function() {
           var timeslot_end_hour;
       
           filtered_timetable.forEach(function(timetable) {
-              discipline_name = timetable.course_name
+            console.log(timetable)
+              discipline_name = timetable.course_acronym
               classs = timetable.classs
               timetable.day_combo.forEach(function(day_combo) {
                   day = get_all_day(get_full_day_of_week(day_combo.day));
@@ -481,12 +482,21 @@ $("#course-filter").on("input", function() {
                       }
                       count += 1;
                   });
+                  if(!timeslot_end_hour) {
+                    timeslots.forEach(function(timeslot) {
+                        timeslot_end_hour = timeslot.timeslot_end_hour;
+
+                    });
+                  }
               });
           });
+
+          
       
           $(".info-displine").text(discipline_name);
           $(".info-day").text(day);
-          $(".info-start-and-end-hour").text(timeslot_begin_hour + " até " + timeslot_end_hour);
+          $(".info-start-hour").text(timeslot_begin_hour.slice(0, -3));
+          $(".info-end-hour").text(timeslot_end_hour.slice(0, -3));
           $(".info-class").text(classs);
         
           $("#info-alert").show();
@@ -497,7 +507,7 @@ $("#course-filter").on("input", function() {
     } else {
         this.style.borderColor = "red";
     }
-    
+
 });
 
 // Mapea na grade

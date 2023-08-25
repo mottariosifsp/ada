@@ -61,26 +61,28 @@ button.info-button svg{
 }
 #info-alert {
 display: none;
-border-radius: 8px;
-box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+box-shadow: 2px 4px 6px rgba(0, 0, 0, 0.1);
 padding: 20px;
 background-color: #f0f9ff;
+border-radius: 10px;
 }
 
 #info-alert .table {
-border-radius: 20px;
 margin-bottom: 0; 
+background-color: #f0f9ff;
 }
 
 #info-alert .table tr td {
 padding: 10px;
 border-top: none;
-border-bottom: 1px solid #f0f9ff;
+border: 2px solid #2f736349;
 }
 
 #info-alert .table tbody tr td:first-child {
 font-weight: bold;
-color: #11345b; 
+background-color: #2f7363;
+color: #f0f9ff;
+border: 2px solid #3e9782;
 }
 
 .info-displine,

@@ -18,8 +18,8 @@ class Timetable(models.Model):
     
 class Timeslot(models.Model):
     position = models.IntegerField(_('position'), null=True, blank=True)
-    hour_start = models.TimeField(_('hour start'))
-    hour_end = models.TimeField(_('hour end'))
+    hour_start = models.TimeField(_('hour start'), null=False)
+    hour_end = models.TimeField(_('hour end'), null=False)
     # area = models.ForeignKey('area.Area', on_delete=models.CASCADE, related_name='timeslot', null=True, blank=True)
 
     class Meta:

@@ -686,21 +686,25 @@
                             <table class="table table-sm table-info text-center">
                               <tbody>
                                 <tr>
-                                  <td>{% trans "Disciplina Escolhida" %}</td>
+                                  <td>{% trans "Sigla Disciplina" %}</td>
                                   <td class="info-displine"></td>
+                                </tr>
+                                <tr>
+                                  <td>{% trans "Turma e Parte" %}</td>
+                                  <td class="info-class"></td>
                                 </tr>
                                 <tr>
                                   <td>{% trans "Dia da Semana" %}</td>
                                   <td class="info-day"></td>
                                 </tr>
                                 <tr>
-                                  <td>{% trans "Início e Fim" %}</td>
-                                  <td class="info-start-and-end-hour"></td>
+                                  <td>{% trans "Horário Início" %}</td>
+                                  <td class="info-start-hour"></td>
                                 </tr>
                                 <tr>
-                                  <td>{% trans "Turma" %}</td>
-                                  <td class="info-class"></td>
-                                </tr>
+                                  <td>{% trans "Horário Fim" %}</td>
+                                  <td class="info-end-hour"></td>
+                                </tr>                               
                               </tbody>
                             </table>
                           </div>
@@ -709,7 +713,7 @@
                     </div>
                     <div class="modal-footer">
                       <button type="button" class="btn btn-secondary" data-dismiss="modal">{% trans "Fechar" %}</button>
-                      <button type="button" class="btn btn-primary" name="add-course" id="add-course-button">{% trans "Adicionar" %}</button>
+                      <button type="button" class="btn ada-btn-blue-dark" name="add-course" id="add-course-button">{% trans "Adicionar" %}</button>
                     </div>
                   </div>
                 </div>
