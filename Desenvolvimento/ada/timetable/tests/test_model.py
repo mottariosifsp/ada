@@ -60,13 +60,15 @@ def test_validate_interrupted_time_no_overlap(monkeypatch):
 
     validate_interrupted_time(Timeslot, value)
 
-# TODO - comentar
+
 def test_validate_interrupted_time_overlap(monkeypatch):
+    # Dados fictícios
     mock_objects = [
         Timeslot(hour_start=time(8, 30), hour_end=time(9, 30)),
         Timeslot(hour_start=time(9, 15), hour_end=time(10, 15))
     ]
 
+    # Retorna todos os objetos
     def mock_all():
         return mock_objects
 
@@ -74,6 +76,7 @@ def test_validate_interrupted_time_overlap(monkeypatch):
 
     value = Timeslot(hour_start=time(9, 0), hour_end=time(10, 0))
 
+    # Deve lançar exceção, pois o horário está sobrepondo um já existente
     with pytest.raises(ValidationError) as exc_info:
         validate_interrupted_time(Timeslot, value)
 
@@ -91,9 +94,27 @@ def test_validate_interrupted_time_same_time(monkeypatch):
 
     monkeypatch.setattr(Timeslot.objects, 'all', mock_all)
 
+    # Deve lançar exceção, pois o horário é igual ao que tem no banco fictícios
     value = Timeslot(hour_start=time(9, 0), hour_end=time(10, 0))
 
     with pytest.raises(ValidationError) as exc_info:
         validate_interrupted_time(Timeslot, value)
 
     assert "O horário é o mesmo a outro horário existente." in str(exc_info.value)
+
+# Teste quando os horário estão corretos
+def test_validate_interrupted_time_different_time_and_no_overlap(monkeypatch):
+    mock_objects = [
+        Timeslot(hour_start=time(9, 0), hour_end=time(10, 0)),
+        Timeslot(hour_start=time(10, 0), hour_end=time(11, 0))
+    ]
+
+    def mock_all():
+        return mock_objects
+
+    monkeypatch.setattr(Timeslot.objects, 'all', mock_all)
+
+    value = Timeslot(hour_start=time(12, 0), hour_end=time(1, 0))
+
+    validate_interrupted_time(Timeslot, value)
+
