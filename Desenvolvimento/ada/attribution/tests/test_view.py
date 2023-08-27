@@ -4,7 +4,7 @@ from django.test import RequestFactory
 from area.models import Area, Blockk
 from staff.models import Criteria, Deadline
 from attribution.models import TeacherQueuePosition
-from attribution.views import attribution, send_email, attribution_detail, email_test, validations, manual_attribution_save, validate_timetable, assign_timetable_professor, professor_to_end_queue, attribution_detail, remove_professors_without_preference
+from attribution.views import attribution, send_email, attribution_detail, email_test, validations, manual_attribution_save, validate_timetable, assign_timetable_professor, professor_to_end_queue, attribution_detail, remove_professors_without_preference, float_to_time
 from classs.models import Classs
 from area.models import Area, Blockk
 from user.models import User
@@ -15,6 +15,7 @@ from django.contrib.auth import get_user_model
 from django.core.mail import send_mail, EmailMessage
 from django.core.mail import EmailMessage
 import os
+from datetime import timedelta
 from unittest.mock import patch
 from unittest.mock import Mock, patch, MagicMock
 from timetable.models import Timetable, Timeslot, Timetable_user, Day_combo
@@ -238,4 +239,29 @@ def test_remove_professors_without_preference():
     assert not TeacherQueuePosition.objects.filter(teacher=user_without_preference,
                                                    blockk=your_blockk_instance).exists()
 
-    # assert TeacherQueuePosition.objects.filter(teacher=user_with_preference, blockk=your_blockk_instance).exists()
+    # assert TeacherQueuePosition.objects.filter(teacher=user_with_preference, blockk=your_blockk_instance).exists() ?
+
+
+def test_float_to_time_positive():
+    seconds = 3661  # 1 hora, 1 minuto e 1 segundo
+    result = float_to_time(seconds)
+    assert result.hour == 1
+    assert result.minute == 1
+    assert result.second == 1
+
+def test_float_to_time_zero():
+    seconds = 0
+    result = float_to_time(seconds)
+    assert result.hour == 0
+    assert result.minute == 0
+    assert result.second == 0
+
+def test_float_to_time_negative():
+    seconds = -3600  # -1 hora
+    result = float_to_time(seconds)
+    assert result.hour == 0
+    assert result.minute == 0
+    assert result.second == 0
+
+
+# manual_attribution
