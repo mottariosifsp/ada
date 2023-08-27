@@ -101,6 +101,7 @@ def attribution_preference(request):
         disponilibity_done = 'True'
 
     days = hours = minutes = seconds = 0
+    seconds_left = 0
     if Deadline.objects.filter(name='STARTFPADEADLINE').exists():
         attribution_deadline = Deadline.objects.filter(name='STARTFPADEADLINE').first()
         target_datetime = attribution_deadline.deadline_end

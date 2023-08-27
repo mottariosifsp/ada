@@ -7,6 +7,8 @@ from django.core import serializers
 
 from django.utils.decorators import method_decorator
 from timetable.models import Timeslot, Timetable_user
+from staff.models import Deadline
+from datetime import datetime, timedelta
 
 
 def is_not_staff(user):
@@ -17,6 +19,101 @@ def home(request):
 
     blockks = request.user.blocks.all()
     blockks_images = []
+
+    
+    status = 'not_configured'
+    period = {
+        'status': status,
+        'start_day': '',
+        'start_time': '',
+        'end_day': '',
+        'end_time': ''
+    }
+
+    def get_stage_status(stage_name):
+        deadlines = Deadline.objects.filter(name=stage_name)
+
+        if not deadlines.exists():
+            return 'not_configured'
+
+        now = datetime.today()
+        nearest_deadline = None
+        nearest_time_difference = timedelta(days=365)  # Set to a large value initially
+
+        for deadline in deadlines:
+            if deadline.deadline_start <= now <= deadline.deadline_end:                
+                return 'ongoing'
+            if now <= deadline.deadline_start:
+                time_difference = deadline.deadline_start - now                
+                if time_difference < nearest_time_difference:
+                    nearest_time_difference = time_difference
+                    nearest_deadline = deadline
+                
+
+        if nearest_deadline:
+            return 'configured_' + stage_name
+
+        return 'finished'
+
+    fpa_status = get_stage_status('STARTFPADEADLINE')
+    attribution_status = get_stage_status('STARTASSIGNMENTDEADLINE')
+    # enchange_status = get_stage_status('STARTENCHANGEDEADLINE')
+
+    if fpa_status == 'finished' and attribution_status == 'finished':
+        status = 'finished'
+
+    print(fpa_status, attribution_status)
+
+    if fpa_status == 'ongoing':
+        status = 'fpa'
+    elif attribution_status == 'ongoing':
+        status = 'attribution'
+    # elif enchange_status == 'ongoing':
+    #     status = 'enchange'
+
+    if fpa_status.startswith('configured_'):
+        status = fpa_status
+    elif attribution_status.startswith('configured_'):
+        status = attribution_status
+    # elif enchange_status.startswith('configured_'):
+    #     status = enchange_status
+
+    if status != 'not_configured' and status != 'finished':
+        if fpa_status == 'ongoing':
+            status = 'fpa'
+            fpa_deadline = Deadline.objects.filter(name='STARTFPADEADLINE').first()
+            if fpa_deadline:
+                period['start_day'] = fpa_deadline.deadline_start.strftime("%d/%m/%Y")
+                period['start_time'] = fpa_deadline.deadline_start.strftime("%H:%M")
+                period['end_day'] = fpa_deadline.deadline_end.strftime("%d/%m/%Y")
+                period['end_time'] = fpa_deadline.deadline_end.strftime("%H:%M")
+        elif attribution_status == 'ongoing':
+            status = 'attribution'
+            attribution_deadline = Deadline.objects.filter(name='STARTASSIGNMENTDEADLINE').first()
+            if attribution_deadline:
+                period['start_day'] = attribution_deadline.deadline_start.strftime("%d/%m/%Y")
+                period['start_time'] = attribution_deadline.deadline_start.strftime("%H:%M")
+                period['end_day'] = attribution_deadline.deadline_end.strftime("%d/%m/%Y")
+                period['end_time'] = attribution_deadline.deadline_end.strftime("%H:%M")
+        # elif enchange_status == 'ongoing':
+        #     status = 'enchange'
+        #     enchange_deadline = Deadline.objects.filter(name='STARTENCHANGEDEADLINE').first()
+        #     if enchange_deadline:
+        #         period['start_day'] = enchange_deadline.deadline_start.strftime("%d/%m/%Y")
+        #         period['start_time'] = enchange_deadline.deadline_start.strftime("%H:%M")
+        #         period['end_day'] = enchange_deadline.deadline_end.strftime("%d/%m/%Y")
+        #         period['end_time'] = enchange_deadline.deadline_end.strftime("%H:%M")
+        else:
+            stage_name = status.split('_')[1]
+            nearest_deadline = Deadline.objects.filter(name=stage_name).first()
+            if nearest_deadline:
+                period['status'] = status
+                period['start_day'] = nearest_deadline.deadline_start.strftime("%d/%m/%Y")
+                period['start_time'] = nearest_deadline.deadline_start.strftime("%H:%M")
+                period['end_day'] = nearest_deadline.deadline_end.strftime("%d/%m/%Y")
+                period['end_time'] = nearest_deadline.deadline_end.strftime("%H:%M")
+
+    period['status'] = status
 
     for blockk in blockks:
         blockk_images = {
@@ -36,9 +133,13 @@ def home(request):
         elif blockk.registration_block_id == "776292":
             blockk_images["image"] = "https://media.discordapp.net/attachments/1081682716531118151/1117348338254233680/image.png"
         blockks_images.append(blockk_images)
+        
     data = {
-        'blockks': blockks_images
+        'blockks': blockks_images,
+        'period': period
     }
+
+    print(data)
 
     return render(request, 'professor/home_professor.html', data)
 
