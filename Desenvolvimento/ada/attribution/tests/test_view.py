@@ -4,7 +4,7 @@ from django.test import RequestFactory
 from area.models import Area, Blockk
 from staff.models import Criteria, Deadline
 from attribution.models import TeacherQueuePosition
-from attribution.views import attribution, send_email, attribution_detail, email_test, validations, manual_attribution_save, validate_timetable, assign_timetable_professor, professor_to_end_queue, attribution_detail, remove_professors_without_preference, float_to_time
+from attribution.views import attribution, send_email, attribution_detail, email_test, validations, manual_attribution_save, validate_timetable, assign_timetable_professor, professor_to_end_queue, attribution_detail, remove_professors_without_preference, float_to_time, start_attribution
 from classs.models import Classs
 from area.models import Area, Blockk
 from user.models import User
@@ -20,6 +20,8 @@ from unittest.mock import patch
 from unittest.mock import Mock, patch, MagicMock
 from timetable.models import Timetable, Timeslot, Timetable_user, Day_combo
 from datetime import time
+from attribution_preference.models import Course_preference, Attribution_preference
+from django.utils import timezone
 
 User = get_user_model()
 
@@ -265,3 +267,79 @@ def test_float_to_time_negative():
 
 
 # manual_attribution
+
+# next_attribution
+
+# start_attribution
+# @pytest.mark.django_db
+# def test_start_attribution_with_professors_in_queue():
+#
+#     your_area_instance = Area.objects.create(
+#         registration_area_id='test_area',
+#         name_area='Test Area',
+#         acronym='TA',
+#         exchange_area=True,
+#         is_high_school=True
+#     )
+#
+#     # Crie objetos de teste necessários
+#     your_blockk_instance = Blockk.objects.create(
+#         registration_block_id='test_block',
+#         name_block='Test Block',
+#         acronym='TB'
+#     )
+#
+#     your_user_instance = User.objects.create(
+#         registration_id='12345',
+#         first_name='John',
+#         last_name='Doe',
+#         email='john@example.com',
+#         cell_phone='1234567890'
+#         # Preencha outros campos conforme necessário
+#     )
+#
+#     your_class_instance2 = Classs.objects.create(
+#         registration_class_id='test_class',
+#         period='Some Period',
+#         semester=1,
+#         area=your_area_instance
+#     )
+#
+#
+#     TeacherQueuePosition.objects.create(
+#         teacher=your_user_instance,
+#         position=0,
+#         blockk=your_blockk_instance
+#     )
+#
+#     attribution_preference = Attribution_preference.objects.create(user=your_user_instance)
+#     your_timetable_instance = Timetable.objects.create(classs=your_class_instance2)
+#
+#     Course_preference.objects.create(
+#         attribution_preference=attribution_preference,
+#         timetable=your_timetable_instance,
+#         blockk=your_blockk_instance
+#     )
+#
+#     start_attribution(your_blockk_instance)
+
+@pytest.mark.django_db
+def test_start_attribution_with_empty_queue():
+
+    your_blockk_instance = Blockk.objects.create(
+        registration_block_id='test_block',
+        name_block='Test Block',
+        acronym='TB'
+    )
+
+    Deadline.objects.create(
+        blockk=your_blockk_instance,
+        name='STARTASSIGNMENTDEADLINE',
+        deadline_start=timezone.now(),
+        deadline_end=timezone.now() + timezone.timedelta(hours=1) #uma hora após agora
+    )
+
+    start_attribution(your_blockk_instance)
+
+    deadline = Deadline.objects.get(blockk=your_blockk_instance, name='STARTASSIGNMENTDEADLINE')
+    assert deadline.deadline_end <= timezone.now()
