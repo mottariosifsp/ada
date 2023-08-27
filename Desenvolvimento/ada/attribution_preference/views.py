@@ -132,9 +132,6 @@ def attribution_preference(request):
         'courses_done': courses_done,
         'context': context
     }
-
-    print(data)
-    
     return render(request, 'attribution_preference/attribution_preference.html', data)
 
 
@@ -563,7 +560,6 @@ def courses_attribution_preference(request):
         'user_courses': user_courses,
         'user_courses_from_blockk': courses_from_block
     }
-    print(user_timetable)
 
     return render(request, 'attribution_preference/courses_attribution_preference.html', data)
 
@@ -777,7 +773,6 @@ def show_attribution_preference(request):
             'user_disponibility_choosed': user_timeslot_traceback,
             'user_courses_choosed': user_courses_traceback,
         }
-        print(data)
 
         return render(request, 'attribution_preference/show_attribution_preference.html', data)
 
@@ -831,7 +826,6 @@ def save_courses_preference(work_courses, user):
             timetable = Timetable.objects.filter(id=id_timetable).first()
             blockk = timetable.course.blockk
             position_priority = course['position'][0]
-            print(position_priority)
             if position_priority[-3:] == 'pri':
                 priority = enum.Priority.primary.name
             else:

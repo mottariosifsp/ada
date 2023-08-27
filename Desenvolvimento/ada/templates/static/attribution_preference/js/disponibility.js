@@ -102,7 +102,6 @@ $(document).ready(function() {
     $('.custom-icon').css('display', 'none');
     $('.cel-plus').css('display', 'none');
   }
-  //console.log("timeslot minutos", timeslot_minutes);
 
   $('input[name="regime"]').click(function() {
     $('#cel-regime').val('');
@@ -172,7 +171,6 @@ $(document).ready(function() {
 
     var input_id = $(this).attr('for');
     var [input_day_of_week, input_period, input_timeslot] = input_id.split('-');
-    console.log(eleven_hours_rule());
 
     if(cell_left_number == 0 && cell_type_choosed == 0) {
       block_options();

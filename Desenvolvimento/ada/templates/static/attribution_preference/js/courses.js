@@ -465,7 +465,6 @@ $("#course-filter").on("input", function() {
           var timeslot_end_hour;
       
           filtered_timetable.forEach(function(timetable) {
-            console.log(timetable)
               discipline_name = timetable.course_acronym
               classs = timetable.classs
               timetable.day_combo.forEach(function(day_combo) {
