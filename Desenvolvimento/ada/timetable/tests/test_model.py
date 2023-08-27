@@ -117,4 +117,3 @@ def test_validate_interrupted_time_different_time_and_no_overlap(monkeypatch):
     value = Timeslot(hour_start=time(12, 0), hour_end=time(1, 0))
 
     validate_interrupted_time(Timeslot, value)
-
