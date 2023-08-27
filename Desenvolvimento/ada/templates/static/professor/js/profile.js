@@ -1,16 +1,12 @@
 var timetables_complete = document.currentScript.getAttribute("timetables-professor");
 var timetables_complete  = JSON.parse(timetables_complete);
 
-$('.header-table').closest('table').find('.header-days').hide();
-$('.header-table').closest('table').find('tbody').hide();
-
 $.each(timetables_complete, function(index, value) {
 
-    $("#cel-"+value.cord).text(value.acronym);
+  $("#cel-"+value.cord).text(value.acronym);
 
-    $("#cel-"+value.cord).closest('table').find('.header-days').show();
-    $("#cel-"+value.cord).closest('table').find('tbody').show();
-
+  $("#cel-"+value.cord).closest('.content_collapsible').prev('.collapsible').addClass("default-open");
+  $("#cel-"+value.cord).closest('.content_collapsible').prev('.collapsible').addClass("active_collapse");
 });
 
 $(document).ready(function() {

@@ -603,7 +603,7 @@
                               <div class="openModalBtn">
                                 <div data-id="sat-noc-{{ forloop.counter }}-sec"  id="btn-sat-noc-{{ forloop.counter }}-sec" class="btn-group-toggle" data-toggle="buttons">
                                   <label class="btn w-100 btn-notchecked disabled checkbox" for="sat-noc-{{ forloop.counter }}-sec">
-                                    <input disabled type="checkbox" id="sat-noc-{{ forloop.counter }}-sec"
+                                    <input type="checkbox" id="sat-noc-{{ forloop.counter }}-sec"
                                       value="{{ timeslot.hour_start }}-{{ timeslot.hour_end }},sat"
                                       autocomplete="off" >
                                     <div id="sub-sat-noc-{{ forloop.counter }}-sec">--</div>
@@ -713,7 +713,7 @@
                     </div>
                     <div class="modal-footer">
                       <button type="button" class="btn btn-secondary" data-dismiss="modal">{% trans "Fechar" %}</button>
-                      <button type="button" class="btn ada-btn-blue-dark" name="add-course" id="add-course-button">{% trans "Adicionar" %}</button>
+                      <button type="button" data-dismiss="modal" class="btn ada-btn-blue-dark" name="add-course" id="add-course-button">{% trans "Adicionar" %}</button>
                     </div>
                   </div>
                 </div>

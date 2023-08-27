@@ -4,9 +4,8 @@
 {% block head %}
 
 <title>{% trans "Perfil" %}</title>
-<script src="{% static 'staff/attribution/js/attribution_configuration_confirm.js' %}"></script>
 <link rel="stylesheet" href="{% static 'professor/css/profile.css' %}">
-
+<link rel="stylesheet" href="{% static 'common/table_window/css/table_window.css' %}"/>
 {% endblock %} 
 {% block body %}
 
@@ -17,11 +16,10 @@
    <div class="card">
       <div class="card-body">
          <div class="tabela">
+          <button class="collapsible"><span class="ml-1 icon-minimize" style="float: left;"><i class="fa fa-chevron-down pull-right"></i></span>Matutino</button>
+          <div class="content_collapsible">
             <table class="table table-bordered editable" id="blocks_list">
-                <thead class="thead-dark">
-                  <tr>
-                    <th colspan='7' class="text-center header-table"><span class="ml-1 icon-minimize" style='float: left;'> + </span>Matutino</th>
-                  </tr>
+              <thead class="thead-dark">
                   <tr class="header-days">
                     <!-- <th scope="col" class="align-middle">Período</th> -->
                     <th scope="col" class="text-center" style="width: 7.7rem">{% trans "Horário" %}</th>
@@ -48,12 +46,13 @@
                 </tbody>
               </table>
             </div>
+          </div>
+          <br />
+          <button class="collapsible"><span class="ml-1 icon-minimize" style="float: left;"><i class="fa fa-chevron-down pull-right"></i></span>Vespertino</button>
+          <div class="content_collapsible">
             <div class="tabela">
               <table class="table table-bordered editable" id="blocks_list">
                   <thead class="thead-dark">
-                    <tr>
-                      <th colspan='7' class="text-center header-table"><span class="ml-1 icon-minimize" style='float: left;'> + </span>Vespertino</th>
-                    </tr>
                     <tr class="header-days">
                       <!-- <th scope="col" class="align-middle">Período</th> -->
                       <th scope="col" class="text-center" style="width: 7.7rem">{% trans "Horário" %}</th>
@@ -80,12 +79,13 @@
                   </tbody>
                 </table>
               </div>
+            </div>
+            <br />
+            <button class="collapsible"><span class="ml-1 icon-minimize" style="float: left;"><i class="fa fa-chevron-down pull-right"></i></span>Noturno</button>
+            <div class="content_collapsible">
               <div class="tabela">
                 <table class="table table-bordered editable" id="blocks_list">
                     <thead class="thead-dark">
-                      <tr>
-                        <th colspan='7' class="text-center header-table"><span class="ml-1 icon-minimize" style='float: left;'> + </span>Noturno</th>
-                      </tr>
                       <tr class="header-days">
                         <!-- <th scope="col" class="align-middle">Período</th> -->
                         <th scope="col" class="text-center" style="width: 7.7rem">{% trans "Horário" %}</th>
@@ -112,7 +112,7 @@
                     </tbody>
                   </table>
                 </div>
-          
+          </div>
       </div>
    </div>
 </div>
@@ -122,5 +122,6 @@
 {% block endbody %}
 
 <script src="{% static 'professor/js/profile.js' %}" timetables-professor='{{timetables_professor}}'></script>
+<script src="{% static 'common/table_window/js/table_window.js' %}"></script>
 
 {% endblock %}
