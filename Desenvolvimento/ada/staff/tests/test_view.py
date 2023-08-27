@@ -7,7 +7,7 @@ from django.urls import reverse
 from area.models import Blockk, Area
 from enum import Enum
 from staff.models import Deadline, Criteria
-from staff.views import attribution_configuration_confirm, create_timetable, edit_timetable, save_combo_day, timetable_combo_saver, get_selected_field, calculate_total_score
+from staff.views import attribution_configuration_confirm, create_timetable, edit_timetable, save_combo_day, timetable_combo_saver, get_selected_field, calculate_total_score, queue_create
 import time
 from unittest.mock import patch
 from django.test import RequestFactory
@@ -728,4 +728,72 @@ def test_get_selected_field_invalid_criteria():
     result = get_selected_field()
     assert result == ""
 
+@pytest.mark.django_db
+def test_queue_create_success():
+    factory = RequestFactory()
 
+    user = User.objects.create_user(first_name='Magali', email='Magali@email.com', password='testpassword')
+    request = factory.post('/detalhes-bloco/criar-fila', {
+        'blockk_id': 'blockk_id',
+        'table_data': json.dumps([
+            [0, 'monica'],
+            [1, 'cascão'],
+            [2, 'chico']
+
+        ]),
+    })
+    request.user = user
+
+    blockk = Blockk.objects.create(registration_block_id='blockk_id')
+
+    User.objects.create(registration_id='chico', first_name='Chico', email='chico@email.com', cell_phone='1234567890')
+    User.objects.create(registration_id='monica', first_name='Monica', email='monicao@email.com', cell_phone='7234567899')
+    User.objects.create(registration_id='cascão', first_name='Cascão', email='cascao@email.com', cell_phone='9876543210')
+
+    response = queue_create(request)
+
+    assert response.status_code == 200
+
+    assert TeacherQueuePositionBackup.objects.filter(teacher__registration_id='monica', blockk=blockk).exists()
+    assert TeacherQueuePositionBackup.objects.filter(teacher__registration_id='cascão', blockk=blockk).exists()
+    assert TeacherQueuePositionBackup.objects.filter(teacher__registration_id='chico', blockk=blockk).exists()
+
+    assert TeacherQueuePosition.objects.filter(teacher__registration_id='monica', blockk=blockk).exists()
+    assert TeacherQueuePosition.objects.filter(teacher__registration_id='cascão', blockk=blockk).exists()
+    assert TeacherQueuePosition.objects.filter(teacher__registration_id='chico', blockk=blockk).exists()
+
+
+    monica_position_backup = TeacherQueuePositionBackup.objects.get(teacher__registration_id='monica', blockk=blockk).position
+    chico_position_backup = TeacherQueuePositionBackup.objects.get(teacher__registration_id='chico', blockk=blockk).position
+    cascao_position_backup = TeacherQueuePositionBackup.objects.get(teacher__registration_id='cascão', blockk=blockk).position
+
+    monica_position = TeacherQueuePosition.objects.get(teacher__registration_id='monica', blockk=blockk).position
+    chico_position = TeacherQueuePosition.objects.get(teacher__registration_id='chico', blockk=blockk).position
+    cascao_position = TeacherQueuePosition.objects.get(teacher__registration_id='cascão', blockk=blockk).position
+
+
+    assert monica_position_backup == 0
+    assert cascao_position_backup == 1
+    assert chico_position_backup == 2
+
+    assert monica_position == 0
+    assert cascao_position == 1
+    assert chico_position == 2
+
+@pytest.mark.django_db
+def test_queue_create_failure_blockk_not_found():
+    factory = RequestFactory()
+
+    # Crie um usuário staff
+    staff_user = User.objects.create_user(first_name='Magali', email='Magali@email.com', password='testpassword')
+
+    request = factory.post('/detalhes-bloco/criar-fila/', {
+        'blockk_id': 'non_existing_id',
+        'table_data': json.dumps([
+            [1, 'prof1_registration_id'],
+        ]),
+    })
+    request.user = staff_user
+
+    with pytest.raises(Blockk.DoesNotExist):
+        response = queue_create(request)
