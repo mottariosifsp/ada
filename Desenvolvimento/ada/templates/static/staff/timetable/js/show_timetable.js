@@ -6,6 +6,7 @@ $.each(timetables_complete, function(index, value) {
   $("#cel-"+value.cord).text(value.acronym);
 
   $("#cel-"+value.cord).closest('.content_collapsible').prev('.collapsible').addClass("default-open");
+  $("#cel-"+value.cord).closest('.content_collapsible').prev('.collapsible').addClass("active_collapse");
 
 });
 

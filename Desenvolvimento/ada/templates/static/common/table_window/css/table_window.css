@@ -28,3 +28,11 @@
 button:focus {
     outline: none;
 }
+
+.fa {
+    transform: rotate(-90deg);
+    transition: .28s transform ease-in-out;
+}
+.active_collapse .fa {
+    transform: rotate(0deg);
+}

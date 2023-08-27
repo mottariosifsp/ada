@@ -6,6 +6,7 @@
     {{ block.super }}
     <title>{% trans "Criar Grade" %}</title>
     <link rel="stylesheet" href="{% static 'staff/timetable/css/edit_timetable.css' %}">
+    <link rel="stylesheet" href="{% static 'common/table_window/css/table_window.css' %}"/>
 {% endblock %}
 
 {% block body %}
@@ -22,11 +23,10 @@
 <div class="container">
   <form id="course_select">
     {% csrf_token %}
+    <button type="button" class="collapsible"><span class="ml-1 icon-minimize" style="float: left;"><i class="fa fa-chevron-down pull-right"></i></span>Matutino</button>
+    <div class="content_collapsible">
     <table class="table" id="timetable_table">
       <thead class="thead-dark">
-        <tr>
-          <th colspan='7' class="text-center header-table"><span class="ml-1 icon-minimize" style='float: left;'> + </span>Matutino</th>
-        </tr>
         <tr class="header-days">
           <!-- <th scope="col" class="align-middle">Período</th> -->
           <th scope="col" class="text-center" style="width: 7.6rem">{% trans "Horário" %}</th>
@@ -64,11 +64,12 @@
           {% endfor %}        
       </tbody>
     </table>
+  </div>
+  <br />
+  <button type="button"  class="collapsible"><span class="ml-1 icon-minimize" style="float: left;"><i class="fa fa-chevron-down pull-right"></i></span>Vespertino</button>
+  <div class="content_collapsible">
     <table class="table" id="timetable_table">
       <thead class="thead-dark">
-        <tr>
-          <th colspan='7' class="text-center header-table"><span class="ml-1 icon-minimize" style='float: left;'> + </span>Vespertino</th>
-        </tr>
         <tr class="header-days">
           <!-- <th scope="col" class="align-middle">Período</th> -->
           <th scope="col" class="text-center" style="width: 7.6rem">{% trans "Horário" %}</th>
@@ -106,11 +107,12 @@
           {% endfor %}        
       </tbody>
     </table>
+  </div>
+  <br />
+  <button type="button"  class="collapsible"><span class="ml-1 icon-minimize" style="float: left;"><i class="fa fa-chevron-down pull-right"></i></span>Noturno</button>
+  <div class="content_collapsible">
     <table class="table" id="timetable_table">
       <thead class="thead-dark">
-        <tr>
-          <th colspan='7' class="text-center header-table"><span class="ml-1 icon-minimize" style='float: left;'> + </span>Noturno</th>
-        </tr>
         <tr class="header-days">
           <!-- <th scope="col" class="align-middle">Período</th> -->
           <th scope="col" class="text-center" style="width: 7.6rem">{% trans "Horário" %}</th>
@@ -148,9 +150,10 @@
           {% endfor %}        
       </tbody>
     </table>
-  
+  </div>
+  <br>
     <button type="button" class="btn btn-primary btn-block form-group" id="submit_timetable">{% trans "Enviar" %}</button>
   </form>
-</div>
 <script src="{% static 'staff/timetable/js/edit_timetable.js' %}" data-lang={{ LANGUAGE_CODE }} timetables-complete="{{ timetable }}"></script>
+<script src="{% static 'common/table_window/js/table_window.js' %}"></script>
 {% endblock %}
