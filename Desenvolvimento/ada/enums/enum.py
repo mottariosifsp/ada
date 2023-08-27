@@ -16,3 +16,10 @@ class Day(Enum):
 class Priority(Enum):
     primary = 'PRIMARY'
     secondary = 'SECONDARY'
+    
+class Job(Enum):    
+    TWENTYHOURS = 'TWENTYHOURS'
+    FORTYHOURS = 'FORTYHOURS'
+    RDE = 'RDE'
+    TEMPORARY = 'TEMPORARY'
+    SUBSTITUTE = 'SUBSTITUTE'
