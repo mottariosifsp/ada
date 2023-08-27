@@ -4,7 +4,7 @@ from django.test import RequestFactory
 from area.models import Area, Blockk
 from staff.models import Criteria, Deadline
 from attribution.models import TeacherQueuePosition
-from attribution.views import attribution, send_email, attribution_detail, email_test, validations, manual_attribution_save, validate_timetable, assign_timetable_professor, professor_to_end_queue, attribution_detail, remove_professors_without_preference, float_to_time, start_attribution, create_cord
+from attribution.views import attribution, send_email, next_attribution, attribution_detail, email_test, validations, manual_attribution_save, validate_timetable, assign_timetable_professor, professor_to_end_queue, attribution_detail, remove_professors_without_preference, float_to_time, start_attribution, create_cord
 from classs.models import Classs
 from area.models import Area, Blockk
 from user.models import User
@@ -63,6 +63,7 @@ class MockProfessor:
         self.first_name = first_name
         self.email = email
 
+@pytest.mark.django_db
 def test_send_email():
     professor = MockProfessor('John', 'john@example.com')
 
@@ -79,6 +80,7 @@ def professor():
     return Mock()
 
 @patch('timetable.models.Timetable_user.objects')
+@pytest.mark.django_db
 def test_validations_with_no_existing_timetable_user(mock_objects, timetable, professor):
     mock_objects.filter.return_value.exists.return_value = False
     mock_objects.create.return_value = Timetable_user(user=None)
@@ -88,6 +90,7 @@ def test_validations_with_no_existing_timetable_user(mock_objects, timetable, pr
     assert result == True
 
 @patch('timetable.models.Timetable_user.objects')
+@pytest.mark.django_db
 def test_validations_with_existing_timetable_user_and_no_assigned_user(mock_objects, timetable, professor):
     mock_objects.filter.return_value.exists.return_value = True
     mock_objects.get.return_value = Timetable_user(user=None)
@@ -97,6 +100,7 @@ def test_validations_with_existing_timetable_user_and_no_assigned_user(mock_obje
     assert result == True
 
 @patch('timetable.models.Timetable_user.objects')
+@pytest.mark.django_db
 def test_validations_with_existing_timetable_user_and_assigned_user(mock_objects, timetable, professor):
     timetable_user_mock = Mock(spec=Timetable_user)
     timetable_user_mock.user = professor
@@ -124,6 +128,7 @@ def blockk():
 @patch('attribution.views.validate_timetable')
 @patch('attribution.views.assign_timetable_professor')
 @patch('attribution.views.professor_to_end_queue')
+@pytest.mark.django_db
 def test_manual_attribution_save_successful(mock_professor_to_end_queue, mock_assign_timetable_professor, mock_validate_timetable, mock_teacher_queue_position_objects, timetables, professor, blockk):
     mock_teacher_queue_position_objects.get.return_value.teacher.first_name = professor.first_name
     mock_teacher_queue_position_objects.get.return_value.teacher = professor
@@ -138,6 +143,7 @@ def test_manual_attribution_save_successful(mock_professor_to_end_queue, mock_as
     assert mock_professor_to_end_queue.called
 
 @patch('attribution.views.TeacherQueuePosition.objects')
+@pytest.mark.django_db
 def test_manual_attribution_save_invalid_teacher(mock_teacher_queue_position_objects, timetables, professor, blockk):
     mock_teacher_queue_position_objects.get.return_value.teacher.first_name = 'Another Professor'
     mock_teacher_queue_position_objects.get.return_value.teacher == professor
@@ -344,7 +350,55 @@ def test_start_attribution_with_empty_queue():
 
 # next_attribution
 
+@pytest.fixture
+def mock_assign_timetable_professor():
+    return Mock()
 
+@pytest.mark.django_db
+def test_next_attribution_no_primary_timetables(
+        mocker
+):
+
+    mock_timetables_preference = Mock()
+    mock_timetables_preference.filter.return_value = mock_timetables_preference
+    mock_timetables_preference.values_list.return_value = []
+
+    mock_next_professor_in_queue = Mock()
+    mock_next_professor_in_queue.teacher.first_name = "John"
+
+    mock_blockk = Mock()
+
+    mock_ids_to_timetables = mocker.patch("attribution.views.ids_to_timetables")
+    mock_ids_to_timetables.return_value = []
+
+    mock_create_cord = mocker.patch("attribution.views.create_cord")
+    mock_create_cord.return_value = []
+
+    mock_validate_timetable = mocker.patch("attribution.views.validate_timetable")
+    mock_validate_timetable.return_value = True
+
+    mock_assign_timetable_professor = mocker.patch("attribution.views.assign_timetable_professor")
+
+    mock_professor_to_end_queue = mocker.patch("attribution.views.professor_to_end_queue")
+
+    mock_cancel_scheduled_task = mocker.patch("attribution.views.cancel_scheduled_task")
+
+    mock_start_attribution = mocker.patch("attribution.views.start_attribution")
+
+    result = next_attribution(
+        mock_timetables_preference,
+        mock_next_professor_in_queue,
+        mock_blockk
+    )
+
+    assert mock_professor_to_end_queue.called
+    assert mock_next_professor_in_queue.delete.called
+    assert mock_cancel_scheduled_task.called
+    assert mock_start_attribution.called
+
+    assert result == mock_start_attribution.return_value
+
+# Teste unitário
 @pytest.mark.django_db
 def test_create_cord():
     # Crie objetos de teste necessários
