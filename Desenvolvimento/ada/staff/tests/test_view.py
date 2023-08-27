@@ -623,6 +623,46 @@ def test_edit_timetable_post_valid_data(client, user, class_instance, course_ins
     response_data = json.loads(response.content)
     assert response_data == {'erro': False, 'mensagem': ""}
 
+
+@pytest.mark.django_db
+def test_edit_timetable_post_invalid_class(client, user):
+    url = reverse('edit_timetable')
+
+    client.force_login(user)
+
+    data = {
+        'selected_class': 'invalid-class-id',
+        'selected_courses': json.dumps([['course-123']]),
+    }
+
+    request = RequestFactory().post(reverse('create_timetable'), data=data)
+    request.user = user
+    response = edit_timetable(request)
+
+    assert response.status_code == 200
+    response_data = json.loads(response.content)
+    assert response_data == {'erro': True, 'mensagem': 'Selecione uma turma válida'}
+
+
+@pytest.mark.django_db
+def test_edit_timetable_post_invalid_course(client, user, class_instance):
+    url = reverse('edit_timetable')
+
+    client.force_login(user)
+
+    data = {
+        'selected_class': class_instance.registration_class_id,
+        'selected_courses': json.dumps([['invalid-course-id']]),
+    }
+
+    request = RequestFactory().post(reverse('create_timetable'), data=data)
+    request.user = user
+    response = edit_timetable(request)
+
+    assert response.status_code == 200
+    response_data = json.loads(response.content)
+    assert response_data == {'erro': True, 'mensagem': 'Selecione uma disciplina válida'}
+
 # Testes show timetable
 
 
