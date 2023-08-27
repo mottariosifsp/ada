@@ -1,7 +1,14 @@
 $(document).ready(function () {
     let table = new DataTable('#professors_list', {
-        responsive: true
+        responsive: true,
+        columnDefs: [
+            {
+                targets: [2, 3, 4, 5, 6, 7],
+                render: DataTable.render.datetime('DD/MM/YYYY')
+            }
+        ]     
     });
+    
 
     var allacademicDegrees = [];
     var academicDegreesList = $("#currentAcademicDegreesList");
@@ -58,20 +65,21 @@ $(document).ready(function () {
 
     });
 
+
     $('.btn-warning').click(function () {
         var row = $(this).closest('tr');
         var professorData = {
             registration_id: row.find('td:eq(0)').text(),
             first_name: row.find('td:eq(1)').text(),
-            birth: row.find('td:eq(2)').text(),
-            date_career: row.find('td:eq(3)').text(),
-            date_campus: row.find('td:eq(4)').text(),
-            date_professor: row.find('td:eq(5)').text(),
-            date_area: row.find('td:eq(6)').text(),
-            date_institute: row.find('td:eq(7)').text(),
+            birth: fomatDate(row.find('td:eq(2)').text()),
+            date_career: fomatDate(row.find('td:eq(3)').text()),
+            date_campus: fomatDate(row.find('td:eq(4)').text()),
+            date_professor: fomatDate(row.find('td:eq(5)').text()),
+            date_area: fomatDate(row.find('td:eq(6)').text()),
+            date_institute: fomatDate(row.find('td:eq(7)').text()),
             academic_degrees: []
         };
-
+        console.log(professorData);
         row.find('td:eq(8)').find('span').each(function () {
             var degreeId = $(this).data('degree-id')
             var degreeName = $(this).data('degree-name');
@@ -85,6 +93,12 @@ $(document).ready(function () {
         populateModal(professorData);
         $('#editProfessorModal').modal('show');
     });
+
+    function fomatDate(date) {
+        var parts = date.split('/');
+        var formattedDate = parts[2] + '-' + parts[1] + '-' + parts[0];
+        return formattedDate;
+    }
 
     function populateModal(professorData) {
         $('#editProfessorModal').find('#registration_id').val(professorData.registration_id);
