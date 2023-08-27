@@ -7,16 +7,15 @@ from django.urls import reverse
 from area.models import Blockk, Area
 from enums import enum
 from staff.models import Deadline
-from staff.views import attribution_configuration_confirm, show_current_deadline
+from staff.views import attribution_configuration_confirm, show_current_deadline, create_timetable
 import time
 from unittest.mock import patch
 from django.test import RequestFactory
 from django.utils import timezone
 from classs.models import Classs
 from course.models import Course
-#from faker import Faker
-from timetable.models import Timetable, Day_combo
-
+# from faker import Faker
+from timetable.models import Timetable, Day_combo, Timeslot
 
 @pytest.fixture
 def user():
@@ -26,8 +25,6 @@ def user():
         password='password',
         is_staff=True
     )
-
-
 
 # Usuário precisa estar logado para não ser uma requição 302 (redirect)
 @pytest.fixture
@@ -44,8 +41,6 @@ def client_logged_in(user, client):
 
     client.login(username=user_instance.registration_id, password='testpass')
     return client
-
-
 
 @pytest.fixture
 def blockk():
@@ -80,6 +75,7 @@ def test_attribution_configuration_confirm(client_logged_in, blockk, deadlines):
 
     assert response.status_code == 200  # Verifica se a resposta é bem-sucedida
 
+# Não existe?
 # @pytest.mark.django_db
 # def test_show_current_deadline():
 #     # Crie instâncias de Deadline para os testes
@@ -113,7 +109,7 @@ def user(client):
 
 @pytest.mark.django_db
 def test_update_save_with_existing_history(user, client):
-    # Create an existing history for the user
+
     history = History.objects.create(
         birth='1990-01-01',
         date_career='2020-01-01',
@@ -158,10 +154,10 @@ def test_update_save_without_existing_history(user, client):
     user.refresh_from_db()  # Refresh the user instance to get the updated history
     assert user.history is not None
 
-# Test cleanup of unused academic degrees
+
 @pytest.mark.django_db
 def test_update_save_cleanup(user, client):
-    # Create an unused academic degree
+
     academic_degree = AcademicDegree.objects.create(name='MSc', punctuation=3.5)
 
     data = {
@@ -179,7 +175,6 @@ def test_update_save_cleanup(user, client):
     assert response.status_code == 200
     assert not AcademicDegree.objects.filter(pk=academic_degree.pk).exists()
 
-# Test user without staff access
 @pytest.mark.django_db
 def test_update_save_no_access(client):
     # Create a non-staff user
@@ -357,7 +352,8 @@ def test_classes_list(user, client):
 def block_instance(django_db_setup):
     return Blockk.objects.create(
         registration_block_id='block-123',
-        name_block='Test Block'
+        name_block='Test Block',
+        acronym='TB',
     )
 
 @pytest.fixture
@@ -380,41 +376,184 @@ def class_instance(django_db_setup, area_instance):
     )
 
 
+# @pytest.fixture
+# def timetable_instance(django_db_setup, class_instance):
+#     return Timetable.objects.create(
+#         classs=class_instance,
+#         day='Monday',
+#         start_time='08:00',
+#         end_time='10:00'
+#     )
+#
+#
+# @pytest.fixture
+# def timetable_instance(django_db_setup, class_instance):
+#     return Timetable.objects.create(classs=class_instance)
+#
+# @pytest.fixture
+# def timeslot_instance(django_db_setup):
+#     return Timeslot.objects.create(hour_start='08:00', hour_end='10:00')
+#
+# @pytest.fixture
+# def day_combo_instance(django_db_setup, timeslot_instance):
+#     return Day_combo.objects.create(day=Day.MONDAY.name)
+#
+# @pytest.fixture
+# def timetable_user_instance(django_db_setup, timetable_instance, user):
+#     return Timetable_user.objects.create(timetable=timetable_instance, user=user)
+#
+#
+# @pytest.mark.django_db
+# def test_timetables_view(user, block_instance, area_instance, class_instance, timetable_instance, client):
+#     client.force_login(user)
+#     url = reverse('timetables')
+#
+#     response = client.get(url)
+#     assert response.status_code == 200
+#
+#     assert 'timetables' in response.context
+#     assert 'user_blocks' in response.context
+#     assert 'classes' in response.context
+
+
+# @pytest.fixture
+# def class_instance(django_db_setup):
+#     return Classs.objects.create(
+#         registration_class_id='class-123',
+#         period='MORNING',
+#         semester=1,
+#         area_id=1
+#     )
+
 @pytest.fixture
-def timetable_instance(django_db_setup, class_instance):
-    return Timetable.objects.create(
-        classs=class_instance,
-        day='Monday',
-        start_time='08:00',
-        end_time='10:00'
+def course_instance(django_db_setup, area_instance, block_instance):
+    return Course.objects.create(
+        registration_course_id='course-123',
+        name_course='Test Course',
+        acronym='TC',
+        area=area_instance,
+        blockk=block_instance
     )
-
-
-@pytest.fixture
-def timetable_instance(django_db_setup, class_instance):
-    return Timetable.objects.create(classs=class_instance)
 
 @pytest.fixture
 def timeslot_instance(django_db_setup):
-    return Timeslot.objects.create(hour_start='08:00', hour_end='10:00')
+    return Timeslot.objects.create(
+        position=1,
+        hour_start='08:00:00',
+        hour_end='10:00:00'
+    )
 
-@pytest.fixture
-def day_combo_instance(django_db_setup, timeslot_instance):
-    return Day_combo.objects.create(day=Day.MONDAY.name)
+#
+@pytest.mark.django_db
+def test_create_timetable_get_new_timetable_render(user, class_instance, client):
+    response = client.get(reverse('create_timetable'), {'class': class_instance.registration_class_id})
+    assert response.status_code == 200
+    # assert 'selected_courses' in response.context
+    assert 'timeslots' in response.context
+    assert 'classs' in response.context
+    assert 'courses' in response.context
+#
+#
+@pytest.mark.django_db
+def test_create_timetable_get_existing_timetable_redirect(user, class_instance, client):
 
-@pytest.fixture
-def timetable_user_instance(django_db_setup, timetable_instance, user):
-    return Timetable_user.objects.create(timetable=timetable_instance, user=user)
+    timetable = Timetable.objects.create(classs=class_instance)
+
+
+    url = reverse('create_timetable') + f'?class={class_instance.registration_class_id}'
+    response = client.get(url)
+
+    assert response.status_code == 302
+    assert response.url == reverse('edit_timetable') + f'?classs={class_instance.registration_class_id}'
 
 
 @pytest.mark.django_db
-def test_timetables_view(user, block_instance, area_instance, class_instance, timetable_instance, client):
-    client.force_login(user)
-    url = reverse('timetables')
+def test_create_timetable_post_valid_courses(user, class_instance, course_instance, timeslot_instance):
 
-    response = client.get(url)
+    selected_courses = [
+        {'course-123': timeslot_instance.hour_start + '-' + timeslot_instance.hour_end},
+    ]
+    data = {
+        'selected_class': class_instance.registration_class_id,
+        'selected_courses': json.dumps(selected_courses),
+    }
+
+
+    request = RequestFactory().post(reverse('create_timetable'), data=data)
+    request.user = user
+    response = create_timetable(request)
+
+
     assert response.status_code == 200
+    response_data = json.loads(response.content)
+    assert response_data == {'erro': False, 'mensagem': ''}
 
-    assert 'timetables' in response.context
-    assert 'user_blocks' in response.context
-    assert 'classes' in response.context
+
+@pytest.mark.django_db
+def test_create_timetable_post_valid_courses(user, class_instance, course_instance, timeslot_instance, mocker):
+
+    data = {
+        'selected_class': class_instance.registration_class_id,
+        'selected_courses': json.dumps([['course-123']]),
+    }
+
+    request = RequestFactory().post(reverse('create_timetable'), data=data)
+    request.user = user
+    response = create_timetable(request)
+
+    assert response.status_code == 200
+    response_data = json.loads(response.content)
+    assert response_data == {'erro': False, 'mensagem': ''}
+
+@pytest.mark.django_db
+def test_create_timetable_post_invalid_class(user, mocker):
+
+    data = {
+        'selected_class': 'invalid-class-id',  # Classe inválida
+        'selected_courses': json.dumps([['course-123']]),
+    }
+
+    request = RequestFactory().post(reverse('create_timetable'), data=data)
+    request.user = user
+    response = create_timetable(request)
+
+    assert response.status_code == 200
+    response_data = json.loads(response.content)
+    assert response_data == {'erro': True, 'mensagem': 'Selecione uma turma válida'}
+
+@pytest.mark.django_db
+def test_create_timetable_post_invalid_course(user, class_instance, mocker):
+    # dados fictícios
+    data = {
+        'selected_class': class_instance.registration_class_id,
+        'selected_courses': json.dumps([['invalid-course-id']]),  # Curso inválido
+    }
+
+    # Simulando requisição post
+    request = RequestFactory().post(reverse('create_timetable'), data=data)
+    request.user = user
+    response = create_timetable(request)
+
+    assert response.status_code == 200
+    response_data = json.loads(response.content)
+    assert response_data == {'erro': True, 'mensagem': 'Selecione uma disciplina válida'}
+
+
+# Testes edit timetable
+
+
+# Testes show timetable
+
+
+# Testes enum_to_day_number timetable
+
+
+# Testes timetable_combo_saver timetable
+
+
+# Testes calculate_total_score timetable
+
+
+# Testes queue_create timetable
+
+
