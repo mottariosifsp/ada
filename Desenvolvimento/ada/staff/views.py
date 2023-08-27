@@ -113,31 +113,6 @@ def attribution_configuration_confirm(request):
         return render(request, 'staff/attribution/attribution_configuration_confirm.html', data)
     return render(request, 'staff/attribution/attribution_configuration_confirm.html')
 
-# Essa view está sendo usada?
-# Não existe o arquivo do return
-def show_current_deadline(request):
-    deadlines = Deadline.objects.all()
-    now = timezone.now()
-
-    if (deadlines.get(name="startFPADeadline").deadline_start <= now and deadlines.get(
-            name="startFPADeadline").deadline_end >= now):
-        actualDeadline = "FPA"
-    elif (deadlines.get(name="startAssignmentDeadline").deadline_start <= now and deadlines.get(
-            name="startAssignmentDeadline").deadline_end >= now):
-        actualDeadline = "Assignment"
-    elif (deadlines.get(name="startExchangeDeadline").deadline_start <= now and deadlines.get(
-            name="startExchangeDeadline").deadline_end >= now):
-        actualDeadline = "Exchange"
-    else:
-        actualDeadline = "none"
-
-    data = {
-        'actualDeadline': actualDeadline
-    }
-
-    return render(request, 'staff/deadline/show_current_deadline.html', data)
-
-
 @transaction.atomic
 def save_deadline(data):
     Deadline.objects.create(

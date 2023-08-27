@@ -7,7 +7,7 @@ from django.urls import reverse
 from area.models import Blockk, Area
 from enum import Enum
 from staff.models import Deadline, Criteria
-from staff.views import attribution_configuration_confirm, show_current_deadline, create_timetable, edit_timetable, save_combo_day, timetable_combo_saver, get_selected_field, calculate_total_score
+from staff.views import attribution_configuration_confirm, create_timetable, edit_timetable, save_combo_day, timetable_combo_saver, get_selected_field, calculate_total_score
 import time
 from unittest.mock import patch
 from django.test import RequestFactory
@@ -84,31 +84,6 @@ def test_attribution_configuration_confirm(client_logged_in, blockk, deadlines):
     })
 
     assert response.status_code == 200  # Verifica se a resposta é bem-sucedida
-
-# Não existe?
-# @pytest.mark.django_db
-# def test_show_current_deadline():
-#     # Crie instâncias de Deadline para os testes
-#     start_fpa = Deadline.objects.create(name="startFPADeadline", deadline_start=timezone.now(), deadline_end=timezone.now() + timezone.timedelta(hours=1))
-#     start_assignment = Deadline.objects.create(name="startAssignmentDeadline", deadline_start=timezone.now() - timezone.timedelta(hours=1), deadline_end=timezone.now() + timezone.timedelta(hours=1))
-#     start_exchange = Deadline.objects.create(name="startExchangeDeadline", deadline_start=timezone.now() - timezone.timedelta(hours=2), deadline_end=timezone.now() - timezone.timedelta(hours=1))
-#
-#     factory = RequestFactory()
-#     request = factory.get(reverse('show_current_deadline'))
-#
-#     response = show_current_deadline(request)
-#
-#     assert response.status_code == 200
-#
-#     # Verifique se o contexto da resposta contém a chave 'actualDeadline'
-#     assert 'actualDeadline' in response.context
-#
-#     # Verifique se a resposta renderiza o template correto
-#     assert 'staff/deadline/show_current_deadline.html' in response.template_name
-#
-#     # Verifique se o contexto contém o valor correto para 'actualDeadline'
-#     assert response.context['actualDeadline'] == "FPA"
-
 
 @pytest.fixture
 def user(client):
