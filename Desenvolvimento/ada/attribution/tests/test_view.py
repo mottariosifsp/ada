@@ -4,7 +4,7 @@ from django.test import RequestFactory
 from area.models import Area, Blockk
 from staff.models import Criteria, Deadline
 from attribution.models import TeacherQueuePosition
-from attribution.views import attribution, send_email, attribution_detail, email_test, validations, manual_attribution_save, validate_timetable, assign_timetable_professor, professor_to_end_queue, attribution_detail
+from attribution.views import attribution, send_email, attribution_detail, email_test, validations, manual_attribution_save, validate_timetable, assign_timetable_professor, professor_to_end_queue, attribution_detail, remove_professors_without_preference
 from classs.models import Classs
 from area.models import Area, Blockk
 from user.models import User
@@ -158,7 +158,7 @@ def test_manual_attribution_save_invalid_teacher(mock_teacher_queue_position_obj
 
 @pytest.mark.django_db
 def test_attribution_detail_sucess(rf):
-    # Crie objetos de teste necessários
+
     your_area_instance = Area.objects.create(
         registration_area_id='test_area',
         name_area='Test Area',
@@ -170,7 +170,7 @@ def test_attribution_detail_sucess(rf):
     your_class_instance = Classs.objects.create(
         registration_class_id='test_class',
         period='Some Period',
-        semester=1,  # Defina um valor adequado para o semester
+        semester=1,
         area=your_area_instance
     )
 
@@ -178,32 +178,64 @@ def test_attribution_detail_sucess(rf):
 
     your_timeslot_instance = Timeslot.objects.create(
         position=1,
-        hour_start='08:00',  # Hora e minuto
-        hour_end='09:00'  # Hora e minuto
+        hour_start='08:00',
+        hour_end='09:00'
     )
 
-    your_day_combo_instance = Day_combo.objects.create(day='monday')  # Substitua 'Segunda' pelo valor desejado
+    your_day_combo_instance = Day_combo.objects.create(day='monday')
 
     your_course_instance = Course.objects.create(
         registration_course_id='test_course',
         name_course='Test Course',
         acronym='TC',
         area=your_area_instance,
-        blockk=None  # Deixe esse campo como None se ele não for necessário
+        blockk=None
     )
 
     your_timetable_instance.course = your_course_instance
     your_timetable_instance.save()
 
-    # Agora, crie o objeto Timetable_user e associe o day_combo apropriado
-    timetable_user = Timetable_user.objects.create(timetable=your_timetable_instance)
-    timetable_user.timetable.day_combo.add(your_day_combo_instance)  # Adicione o dia combo apropriado
 
-    # Crie uma instância de RequestFactory e faça uma solicitação GET para a view
+    timetable_user = Timetable_user.objects.create(timetable=your_timetable_instance)
+    timetable_user.timetable.day_combo.add(your_day_combo_instance)
+
     request = rf.get(reverse('attribution:attribution_detail'), {'class': your_class_instance.registration_class_id})
 
     response = attribution_detail(request)
 
-    # Verifique se a resposta tem status code 200
     assert response.status_code == 200
 
+@pytest.mark.django_db
+def test_remove_professors_without_preference():
+
+    your_blockk_instance = Blockk.objects.create(
+        registration_block_id='test_blockk',
+        name_block='Test Blockk',
+        acronym='TB'
+    )
+
+    user_with_preference = User.objects.create_user(
+        registration_id='123456789',
+        first_name='UserWithPreference',
+        email='userwithpreference@example.com',
+        cell_phone='1234567890',
+        is_professor=True
+    )
+    user_without_preference = User.objects.create_user(
+        registration_id='987654321',
+        first_name='UserWithoutPreference',
+        email='userwithoutpreference@example.com',
+        cell_phone='9876543210',
+        is_professor=True
+    )
+
+    TeacherQueuePosition.objects.create(teacher=user_with_preference, position=1, blockk=your_blockk_instance)
+    TeacherQueuePosition.objects.create(teacher=user_without_preference, position=2, blockk=your_blockk_instance)
+
+    remove_professors_without_preference(your_blockk_instance)
+
+    # usuário sem preferência foi removido da fila
+    assert not TeacherQueuePosition.objects.filter(teacher=user_without_preference,
+                                                   blockk=your_blockk_instance).exists()
+
+    # assert TeacherQueuePosition.objects.filter(teacher=user_with_preference, blockk=your_blockk_instance).exists()
