@@ -6,8 +6,8 @@ from django.contrib.auth import get_user_model
 from django.urls import reverse
 from area.models import Blockk, Area
 from enum import Enum
-from staff.models import Deadline
-from staff.views import attribution_configuration_confirm, show_current_deadline, create_timetable, edit_timetable, save_combo_day, timetable_combo_saver
+from staff.models import Deadline, Criteria
+from staff.views import attribution_configuration_confirm, show_current_deadline, create_timetable, edit_timetable, save_combo_day, timetable_combo_saver, get_selected_field, calculate_total_score
 import time
 from unittest.mock import patch
 from django.test import RequestFactory
@@ -18,7 +18,10 @@ from course.models import Course
 from timetable.models import Timetable, Day_combo, Timeslot
 from django.urls import resolve
 from django.db import transaction
-import factory
+import factory # cria vários registros fictícios automaticamente
+from django.db.models import Sum
+from datetime import date
+from attribution.models import TeacherQueuePosition, TeacherQueuePositionBackup
 
 
 
@@ -742,7 +745,21 @@ def test_timetable_combo_saver_empty_timetable(class_instance):
     assert day_combos.count() == 0  # Nenhum objeto Day_combo deve ter sido criado
     assert timetables.count() == 0  # Nenhum objeto Timetable deve ter sido criado
 
-# Testes calculate_total_score timetable
+# Teste get_selected field - unitário
+@pytest.mark.django_db
+def test_get_selected_field_valid_criteria():
+    criteria = Criteria.objects.create(is_select=True, number_criteria=1, name_criteria="Nome do Critério")
+
+    result = get_selected_field()
+    assert result == "birth"
+
+@pytest.mark.django_db
+def test_get_selected_field_invalid_criteria():
+    criteria = Criteria.objects.create(is_select=True, number_criteria=10, name_criteria="Nome Inválido")
+
+    result = get_selected_field()
+    assert result == ""
+
 
 
 # Testes queue_create timetable
