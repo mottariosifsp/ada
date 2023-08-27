@@ -7,7 +7,7 @@ from django.urls import reverse
 from area.models import Blockk, Area
 from enum import Enum
 from staff.models import Deadline
-from staff.views import attribution_configuration_confirm, show_current_deadline, create_timetable, edit_timetable
+from staff.views import attribution_configuration_confirm, show_current_deadline, create_timetable, edit_timetable, save_combo_day, timetable_combo_saver
 import time
 from unittest.mock import patch
 from django.test import RequestFactory
@@ -17,6 +17,9 @@ from course.models import Course
 # from faker import Faker
 from timetable.models import Timetable, Day_combo, Timeslot
 from django.urls import resolve
+from django.db import transaction
+import factory
+
 
 
 
@@ -663,14 +666,81 @@ def test_edit_timetable_post_invalid_course(client, user, class_instance):
     response_data = json.loads(response.content)
     assert response_data == {'erro': True, 'mensagem': 'Selecione uma disciplina válida'}
 
-# Testes show timetable
-
-
-# Testes enum_to_day_number timetable
-
 
 # Testes timetable_combo_saver timetable
+@pytest.mark.django_db
+def test_save_combo_day_existing_day_combo(course_instance, class_instance, timeslot_instance):
+    with transaction.atomic(): # evita que os outros testes influencie nesse
 
+        day_combo = Day_combo.objects.create(day='MONDAY')
+        day_combo.timeslots.add(timeslot_instance)
+
+        save_combo_day('MONDAY', [timeslot_instance], course_instance, class_instance)
+
+    assert Timetable.objects.filter(course=course_instance, classs=class_instance).exists()
+
+@pytest.mark.django_db
+def test_save_combo_day_new_day_combo(course_instance, class_instance, timeslot_instance):
+    with transaction.atomic():
+
+        save_combo_day('MONDAY', [timeslot_instance], course_instance, class_instance)
+
+    assert Timetable.objects.filter(course=course_instance, classs=class_instance).exists()
+
+# Testes timetable_combo_saver - unitário
+class TimeslotFactory(factory.django.DjangoModelFactory):
+    class Meta:
+        model = Timeslot
+
+    position = factory.Sequence(lambda n: n)
+    hour_start = '08:00:00'
+    hour_end = '10:00:00'
+
+@pytest.mark.django_db
+def test_timetable_combo_saver_multiple_courses(course_instance, class_instance):
+    timeslot_instance_1 = TimeslotFactory()
+    timeslot_instance_2 = TimeslotFactory()
+
+    # Criar cursos
+    course_instance_1 = Course.objects.create(registration_course_id='course-321', area=class_instance.area)
+    course_instance_2 = Course.objects.create(registration_course_id='course-654', area=class_instance.area)
+
+    timetable = [
+        [course_instance_1.registration_course_id, None],
+        [course_instance_2.registration_course_id, course_instance_1.registration_course_id],
+    ]
+
+    timetable_combo_saver(timetable, class_instance)
+
+    day_combos = Day_combo.objects.all()
+    timetables = Timetable.objects.filter(classs=class_instance)
+
+    # salvado course-321 no dia monday, nos horários [0]
+    # [0]
+    # salvado course-654 no dia tuesday, nos horários [0]
+    # [1]
+    # salvado course-654 no dia tuesday, nos horários [1]
+    # ?????????
+
+    assert day_combos.count() == 3
+    assert timetables.count() == 2
+
+@pytest.mark.django_db
+def test_timetable_combo_saver_empty_timetable(class_instance):
+    timetable = [
+        ['', '', ''],
+        ['', '', ''],
+    ]
+
+    # Chame a função timetable_combo_saver
+    timetable_combo_saver(timetable, class_instance)
+
+    # Verifique se nenhum objeto Day_combo ou Timetable foi criado
+    day_combos = Day_combo.objects.all()
+    timetables = Timetable.objects.filter(classs=class_instance)
+
+    assert day_combos.count() == 0  # Nenhum objeto Day_combo deve ter sido criado
+    assert timetables.count() == 0  # Nenhum objeto Timetable deve ter sido criado
 
 # Testes calculate_total_score timetable
 
