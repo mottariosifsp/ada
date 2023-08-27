@@ -601,6 +601,27 @@ def test_create_timetable_valid_data(client, user, class_instance, course_instan
 
 # Testes edit timetable
 
+@pytest.mark.django_db
+def test_edit_timetable_post_valid_data(client, user, class_instance, course_instance, timeslot_instance):
+    url = reverse('edit_timetable')
+    selected_class = class_instance
+    selected_class.registration_class_id = 'class-123'
+    selected_class.save()
+
+    client.force_login(user)
+
+    data = {
+        'selected_class': selected_class.registration_class_id,
+        'selected_courses': json.dumps([['course-123']]),
+    }
+
+    request = RequestFactory().post(reverse('create_timetable'), data=data)
+    request.user = user
+    response = edit_timetable(request)
+
+    assert response.status_code == 200
+    response_data = json.loads(response.content)
+    assert response_data == {'erro': False, 'mensagem': ""}
 
 # Testes show timetable
 
