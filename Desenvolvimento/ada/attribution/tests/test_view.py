@@ -4,7 +4,7 @@ from django.test import RequestFactory
 from area.models import Area, Blockk
 from staff.models import Criteria, Deadline
 from attribution.models import TeacherQueuePosition
-from attribution.views import attribution, send_email, attribution_detail, email_test, validations, manual_attribution_save, validate_timetable, assign_timetable_professor, professor_to_end_queue, attribution_detail, remove_professors_without_preference, float_to_time, start_attribution
+from attribution.views import attribution, send_email, attribution_detail, email_test, validations, manual_attribution_save, validate_timetable, assign_timetable_professor, professor_to_end_queue, attribution_detail, remove_professors_without_preference, float_to_time, start_attribution, create_cord
 from classs.models import Classs
 from area.models import Area, Blockk
 from user.models import User
@@ -265,11 +265,6 @@ def test_float_to_time_negative():
     assert result.minute == 0
     assert result.second == 0
 
-
-# manual_attribution
-
-# next_attribution
-
 # start_attribution
 # @pytest.mark.django_db
 # def test_start_attribution_with_professors_in_queue():
@@ -343,3 +338,46 @@ def test_start_attribution_with_empty_queue():
 
     deadline = Deadline.objects.get(blockk=your_blockk_instance, name='STARTASSIGNMENTDEADLINE')
     assert deadline.deadline_end <= timezone.now()
+
+
+# manual_attribution
+
+# next_attribution
+
+
+@pytest.mark.django_db
+def test_create_cord():
+    # Crie objetos de teste necessários
+
+    your_area_instance = Area.objects.create(
+        registration_area_id='test_area',
+        name_area='Test Area',
+        acronym='TA',
+        exchange_area=True,
+        is_high_school=True
+    )
+
+    your_class_instance = Classs.objects.create(
+        registration_class_id='test_class',
+        period='Some Period',
+        semester=1,
+        area=your_area_instance
+    )
+
+    timetable = Timetable.objects.create(classs=your_class_instance)
+
+    day_combo_1 = Day_combo.objects.create(day='Segunda')
+    day_combo_2 = Day_combo.objects.create(day='Terça')
+
+    timeslot_1 = Timeslot.objects.create(position=1, hour_start=time(8, 0), hour_end=time(9, 0))
+    timeslot_2 = Timeslot.objects.create(position=2, hour_start=time(9, 0), hour_end=time(10, 0))
+
+    day_combo_1.timeslots.set([timeslot_1, timeslot_2])
+    day_combo_2.timeslots.set([timeslot_1])
+
+    timetable.day_combo.set([day_combo_1, day_combo_2])
+
+    cords = create_cord(timetable)
+
+    expected_cords = ['1-Segunda', '2-Segunda', '1-Terça']
+    assert cords == expected_cords
