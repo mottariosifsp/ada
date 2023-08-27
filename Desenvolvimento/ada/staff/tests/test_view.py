@@ -5,9 +5,9 @@ from user.models import User, History, AcademicDegree
 from django.contrib.auth import get_user_model
 from django.urls import reverse
 from area.models import Blockk, Area
-from enums import enum
+from enum import Enum
 from staff.models import Deadline
-from staff.views import attribution_configuration_confirm, show_current_deadline, create_timetable
+from staff.views import attribution_configuration_confirm, show_current_deadline, create_timetable, edit_timetable
 import time
 from unittest.mock import patch
 from django.test import RequestFactory
@@ -16,6 +16,9 @@ from classs.models import Classs
 from course.models import Course
 # from faker import Faker
 from timetable.models import Timetable, Day_combo, Timeslot
+from django.urls import resolve
+
+
 
 @pytest.fixture
 def user():
@@ -394,9 +397,17 @@ def class_instance(django_db_setup, area_instance):
 # def timeslot_instance(django_db_setup):
 #     return Timeslot.objects.create(hour_start='08:00', hour_end='10:00')
 #
-# @pytest.fixture
-# def day_combo_instance(django_db_setup, timeslot_instance):
-#     return Day_combo.objects.create(day=Day.MONDAY.name)
+
+class Day(Enum):
+    monday = 'MONDAY'
+    tuesday = 'TUESDAY'
+    wednesday = 'WEDNESDAY'
+    thursday = 'THURSDAY'
+    friday = 'FRIDAY'
+    saturday = 'SATURDAY'
+@pytest.fixture
+def day_combo_instance(django_db_setup, timeslot_instance):
+    return Day_combo.objects.create(day=Day.monday.value)
 #
 # @pytest.fixture
 # def timetable_user_instance(django_db_setup, timetable_instance, user):
@@ -538,6 +549,55 @@ def test_create_timetable_post_invalid_course(user, class_instance, mocker):
     response_data = json.loads(response.content)
     assert response_data == {'erro': True, 'mensagem': 'Selecione uma disciplina válida'}
 
+@pytest.fixture
+def timetable_instance(django_db_setup, class_instance, course_instance, day_combo_instance, timeslot_instance):
+    timetable = Timetable.objects.create(classs=class_instance, course=course_instance)
+    day_combo = Day_combo.objects.create(day_combo_id=2, day='monday')
+    # day_combo.timeslots.add(timeslot_instance)
+    day_combo_instance.timeslots.add(timeslot_instance)
+    timetable.day_combo.add(day_combo)
+    return timetable
+@pytest.mark.django_db
+def test_edit_timetable_get_render(user, class_instance, course_instance, timetable_instance):
+    request = RequestFactory().get(reverse('edit_timetable') + f'?class={class_instance.registration_class_id}')
+    request.user = user
+    response = edit_timetable(request)
+
+    assert response.status_code == 200
+    assert 'courses' in response.content.decode('utf-8')
+    assert 'timetable' in response.content.decode('utf-8')
+
+@pytest.mark.django_db
+def test_create_timetable_invalid_class(client, user, course_instance):
+    data = {
+        'selected_class': 'invalid-class-id',
+        'selected_courses': json.dumps([['course-123']]),
+    }
+
+    request = RequestFactory().post(reverse('create_timetable'), data=data)
+    request.user = user
+    response = create_timetable(request)
+
+    assert response.status_code == 200
+    response_data = json.loads(response.content)
+    assert response_data['erro'] is True
+    assert response_data['mensagem'] == 'Selecione uma turma válida'
+
+
+@pytest.mark.django_db
+def test_create_timetable_valid_data(client, user, class_instance, course_instance, timeslot_instance):
+    data = {
+        'selected_class': class_instance.registration_class_id,
+        'selected_courses': json.dumps([['course-123']]),
+    }
+
+    request = RequestFactory().post(reverse('create_timetable'), data=data)
+    request.user = user
+    response = create_timetable(request)
+
+    assert response.status_code == 200
+    response_data = json.loads(response.content)
+    assert response_data == {'erro': False, 'mensagem': ""}
 
 # Testes edit timetable
 
