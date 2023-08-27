@@ -35,12 +35,12 @@ class UserManager(BaseUserManager):
         return self._create_user(email, password, **extra_fields)
 
 class User(AbstractBaseUser, PermissionsMixin):
-    registration_id = models.CharField(_('registration id'), max_length=9, unique=True)
-    first_name = models.CharField(_('first name'), max_length=60)
-    last_name = models.CharField(_('last name'), max_length=160)
-    email = models.EmailField(_('email address'), max_length=160, unique=True)
-    telephone = models.CharField(_('telephone'), max_length=11, null=True, blank=True)
-    cell_phone = models.CharField(_('cell phone'), max_length=14)
+    registration_id = models.CharField(_('registration id'), max_length=9, unique=True, null=False, blank=False)
+    first_name = models.CharField(_('first name'), max_length=60, null=False, blank=False)
+    last_name = models.CharField(_('last name'), max_length=200, null=False, blank=False)
+    email = models.EmailField(_('email address'), max_length=256, unique=True, null=False, blank=False)
+    telephone = models.CharField(_('telephone'), max_length=11, null=True, blank=True, unique=True)
+    cell_phone = models.CharField(_('cell phone'), max_length=14, unique=True, null=False, blank=False)
     date_joined = models.DateTimeField(_('date joined'), auto_now_add=True)
     is_superuser = models.BooleanField(_('superuser status'), default=False)
     is_staff = models.BooleanField(_('staff status'), default=True)
@@ -87,12 +87,12 @@ class User(AbstractBaseUser, PermissionsMixin):
 
 class History(models.Model):
     id_history = models.AutoField(primary_key=True) 
-    birth = models.DateField(_('birth'))
-    date_career = models.DateField(_('date career'))
-    date_campus = models.DateField(_('date campus'))
-    date_professor = models.DateField(_('date professor'))
-    date_area = models.DateField(_('date area'))
-    date_institute = models.DateField(_('date institute'))
+    birth = models.DateField(_('birth'), null=False, blank=False)
+    date_career = models.DateField(_('date career'), null=False, blank=False)
+    date_campus = models.DateField(_('date campus'), null=False, blank=False)
+    date_professor = models.DateField(_('date professor'), null=False, blank=False)
+    date_area = models.DateField(_('date area'), null=False, blank=False)
+    date_institute = models.DateField(_('date institute'), null=False, blank=False)
     academic_degrees = models.ManyToManyField('AcademicDegree', blank=True)
     # blocks = models.ManyToManyField('area.Blockk', blank=True, related_name='history_blocks')
 
@@ -123,7 +123,7 @@ class History(models.Model):
 
 class AcademicDegree(models.Model):
     id_academic_degree = models.AutoField(primary_key=True)
-    name = models.CharField(_('name'), max_length=90, unique=True)
+    name = models.CharField(_('name'), max_length=256, unique=True, null=False, blank=False)
     punctuation = models.IntegerField()
 
     @classmethod
@@ -137,7 +137,7 @@ class AcademicDegree(models.Model):
 
 class Job(models.Model):
     id_job = models.AutoField(primary_key=True)
-    name_job = models.CharField(_('name job'), max_length=160, unique=False)
+    name_job = models.CharField(_('name job'), max_length=256, unique=False, null=False, blank=False)
 
     def __str__(self):
         return self.name_job
@@ -149,7 +149,7 @@ class Job(models.Model):
 class Proficiency(models.Model):
     id_proficiency = models.AutoField(primary_key=True)
     is_competent = models.BooleanField(_('is competent'), default=True)
-    course = models.ForeignKey('course.Course', max_length=255, on_delete=models.CASCADE, null=True)
+    course = models.ForeignKey('course.Course', on_delete=models.CASCADE, null=True)
     user = models.ForeignKey('user', on_delete=models.CASCADE, null=True)
 
     def __str__(self):
