@@ -4,10 +4,12 @@ from django.test import RequestFactory
 from area.models import Area, Blockk
 from staff.models import Criteria, Deadline
 from attribution.models import TeacherQueuePosition
-from attribution.views import attribution, send_email, email_test, validations, manual_attribution_save, validate_timetable, assign_timetable_professor, professor_to_end_queue
-
+from attribution.views import attribution, send_email, attribution_detail, email_test, validations, manual_attribution_save, validate_timetable, assign_timetable_professor, professor_to_end_queue, attribution_detail
+from classs.models import Classs
+from area.models import Area, Blockk
 from user.models import User
 from django.test import Client
+from course.models import Course
 from django.urls import reverse
 from django.contrib.auth import get_user_model
 from django.core.mail import send_mail, EmailMessage
@@ -15,7 +17,8 @@ from django.core.mail import EmailMessage
 import os
 from unittest.mock import patch
 from unittest.mock import Mock, patch, MagicMock
-from timetable.models import Timetable, Timetable_user
+from timetable.models import Timetable, Timeslot, Timetable_user, Day_combo
+from datetime import time
 
 User = get_user_model()
 
@@ -151,3 +154,56 @@ def test_manual_attribution_save_invalid_teacher(mock_teacher_queue_position_obj
 #     assert isinstance(result, list)
 #     assert len(result) == 2
 #     assert mock_teacher_queue_position_objects.filter.called
+
+
+@pytest.mark.django_db
+def test_attribution_detail_sucess(rf):
+    # Crie objetos de teste necessários
+    your_area_instance = Area.objects.create(
+        registration_area_id='test_area',
+        name_area='Test Area',
+        acronym='TA',
+        exchange_area=True,
+        is_high_school=True
+    )
+
+    your_class_instance = Classs.objects.create(
+        registration_class_id='test_class',
+        period='Some Period',
+        semester=1,  # Defina um valor adequado para o semester
+        area=your_area_instance
+    )
+
+    your_timetable_instance = Timetable.objects.create(classs=your_class_instance)
+
+    your_timeslot_instance = Timeslot.objects.create(
+        position=1,
+        hour_start='08:00',  # Hora e minuto
+        hour_end='09:00'  # Hora e minuto
+    )
+
+    your_day_combo_instance = Day_combo.objects.create(day='monday')  # Substitua 'Segunda' pelo valor desejado
+
+    your_course_instance = Course.objects.create(
+        registration_course_id='test_course',
+        name_course='Test Course',
+        acronym='TC',
+        area=your_area_instance,
+        blockk=None  # Deixe esse campo como None se ele não for necessário
+    )
+
+    your_timetable_instance.course = your_course_instance
+    your_timetable_instance.save()
+
+    # Agora, crie o objeto Timetable_user e associe o day_combo apropriado
+    timetable_user = Timetable_user.objects.create(timetable=your_timetable_instance)
+    timetable_user.timetable.day_combo.add(your_day_combo_instance)  # Adicione o dia combo apropriado
+
+    # Crie uma instância de RequestFactory e faça uma solicitação GET para a view
+    request = rf.get(reverse('attribution:attribution_detail'), {'class': your_class_instance.registration_class_id})
+
+    response = attribution_detail(request)
+
+    # Verifique se a resposta tem status code 200
+    assert response.status_code == 200
+
