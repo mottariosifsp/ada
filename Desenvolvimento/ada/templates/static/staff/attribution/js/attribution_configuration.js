@@ -48,7 +48,7 @@ $("document").ready(function () {
 });
 
 function error_message(message) {
-    $("#error-message-form").text(message);
+    $("#error-messages-form").text(message);
     $("#error-alert-form").show();
     window.scrollTo({
         top: $("#error-alert-form").offset().top - $(".navbar").outerHeight() - 30,

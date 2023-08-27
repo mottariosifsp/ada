@@ -272,7 +272,7 @@ $(document).ready(function() {
                 window.location.href = '/' + current_language + '/professor/preferencia-atribuicao'
               },
               error: function (xhr, status, error) {
-                $('#error-message-form').text('Ocorreu um erro no envio de FPA.');
+                $('#error-messages-form').text('Ocorreu um erro no envio de FPA.');
                 $('#error-alert-form').show();
                 window.scrollTo({
                   top: $('#error-alert-form').offset().top - $('.navbar').outerHeight() - 30,
@@ -297,7 +297,7 @@ $(document).ready(function() {
             });
           }
       } else {
-        $('#error-message-form').text('Por favor insira todas as células.');
+        $('#error-messages-form').text('Por favor insira todas as células.');
         $('#error-alert-form').show();
         window.scrollTo({
           top: $('#error-alert-form').offset().top - $('.navbar').outerHeight() - 30,
@@ -305,7 +305,7 @@ $(document).ready(function() {
         });
       }
     } else {
-      $('#error-message-form').text('Insira as informações pedidas em cada seção.');
+      $('#error-messages-form').text('Insira as informações pedidas em cada seção.');
       $('#error-alert-form').show();
       window.scrollTo({
         top: $('#error-alert-form').offset().top - $('.navbar').outerHeight() - 30,
@@ -522,7 +522,7 @@ function period_input(value) {
   } else {
     if(cell_left_number == 0 && cell_type_choosed == 0) {
       block_options();
-      $('#error-message-form').text('Insira o regime de trabalho acrescestar sua disponibilidade.');
+      $('#error-messages-form').text('Insira o regime de trabalho acrescestar sua disponibilidade.');
     } else {
       $('#period-' + value).css({
         "background-color": "#507c75",
@@ -558,7 +558,7 @@ function timeslot_input(value) {
   } else {
     if(cell_left_number == 0 && cell_type_choosed == 0) {
       block_options();
-      $('#error-message-form').text('Insira o regime de trabalho acrescestar sua disponibilidade.');
+      $('#error-messages-form').text('Insira o regime de trabalho acrescestar sua disponibilidade.');
     } else {
       $('#timeslot-' + value).css({
         "background-color": "#507c75",
@@ -593,7 +593,7 @@ function day_of_week_input(value) {
   } else {
     if(cell_left_number == 0 && cell_type_choosed == 0) {
       block_options();
-      $('#error-message-form').text('Insira o regime de trabalho acrescestar sua disponibilidade.');
+      $('#error-messages-form').text('Insira o regime de trabalho acrescestar sua disponibilidade.');
     } else {
       $('#day_of_week-' + value).css({
         "background-color": "#507c75",
@@ -613,7 +613,7 @@ function block_options() {
   $('label[for^="mon-"]').add('label[for^="tue-"]').add('label[for^="wed-"]').add('label[for^="thu-"]').add('label[for^="fri-"]').add('label[for^="sat-"]').addClass('disabled').attr('aria-disabled', 'true');
   $('input[type="checkbox"][id^="mon-"]').add('input[type="checkbox"][id^="tue-"]').add('input[type="checkbox"][id^="wed-"]').add('input[type="checkbox"][id^="thu-"]').add('input[type="checkbox"][id^="fri-"]').add('input[type="checkbox"][id^="sat-"]').prop('disabled', true);
 
-  $('#error-message-form').text('Insira o regime de trabalho antes de continuar.');
+  $('#error-messages-form').text('Insira o regime de trabalho antes de continuar.');
   $('#error-alert-form').show();
   window.scrollTo({
     top: $('#error-alert-form').offset().top - $('.navbar').outerHeight() - 30,

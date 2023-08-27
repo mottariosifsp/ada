@@ -208,10 +208,10 @@ def update_save(request):
 
             AcademicDegree.clean_up_unused_degrees()
             user.save()
-            return JsonResponse({'message': 'Histórico criado com sucesso.'})
+            return JsonResponse({'messages': 'Histórico criado com sucesso.'})
 
         AcademicDegree.clean_up_unused_degrees()
-        return JsonResponse({'message': 'Alterações salvas com sucesso.'})
+        return JsonResponse({'messages': 'Alterações salvas com sucesso.'})
 
 # class views
 @login_required
@@ -246,9 +246,9 @@ def classes_list_saved(request):
             classs = Classs.objects.create(registration_class_id=registration_class_id, period=period,
                                            semester=semester, area=area)
             classs.save()
-            return JsonResponse({'message': 'Turma salva com sucesso.'})
+            return JsonResponse({'messages': 'Turma salva com sucesso.'})
 
-        return JsonResponse({'message': 'Alterações salvas com sucesso.'})
+        return JsonResponse({'messages': 'Alterações salvas com sucesso.'})
 
 @login_required
 @user_passes_test(is_staff)
@@ -265,7 +265,7 @@ def class_create(request):
         classs = Classs.objects.create(registration_class_id=registration_class_id, period=period, semester=semester, area=area)
         classs.save()
 
-        return JsonResponse({'message': 'Turma criada com sucesso.'})
+        return JsonResponse({'messages': 'Turma criada com sucesso.'})
     
 @login_required
 @user_passes_test(is_staff)
@@ -278,9 +278,9 @@ def class_delete(request):
         try:
             classs = Classs.objects.get(id=class_id)
             classs.delete()
-            return JsonResponse({'message': 'Turma deletada com sucesso!'})
+            return JsonResponse({'messages': 'Turma deletada com sucesso!'})
         except Course.DoesNotExist:
-            return JsonResponse({'message': 'A turma não existe.'}, status=404)
+            return JsonResponse({'messages': 'A turma não existe.'}, status=404)
 
 
 # block views
@@ -322,7 +322,7 @@ def course_create(request):
         course = Course.objects.create(registration_course_id=registration_course_id, name_course=name_course, acronym=acronym, area=area, blockk=blockk)
         course.save()
 
-        return JsonResponse({'message': 'Disciplina criada com sucesso.'})
+        return JsonResponse({'messages': 'Disciplina criada com sucesso.'})
 
 @login_required
 @user_passes_test(is_staff)
@@ -336,7 +336,7 @@ def course_update_save(request):
         course = Course.objects.get(id=course_id)
         course.update_course(registration_course_id=registration_course_id, name_course=name_course, acronym=acronym)
 
-        return JsonResponse({'message': 'Disciplina atualizada com sucesso.'})
+        return JsonResponse({'messages': 'Disciplina atualizada com sucesso.'})
 
 @login_required
 @user_passes_test(is_staff)
@@ -346,9 +346,9 @@ def course_delete(request):
         try:
             course = Course.objects.get(id=course_id)
             course.delete()
-            return JsonResponse({'message': 'Disciplina deletado com sucesso.'})
+            return JsonResponse({'messages': 'Disciplina deletado com sucesso.'})
         except Course.DoesNotExist:
-            return JsonResponse({'message': 'O disciplina não existe.'}, status=404)
+            return JsonResponse({'messages': 'O disciplina não existe.'}, status=404)
 
 # timetable views
 

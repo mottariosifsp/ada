@@ -963,7 +963,7 @@ msgstr "Login"
 
 #: .\templates\registration\login.html:24
 msgid "Entre com a sua conta"
-msgstr "Enter with your account"
+msgstr "Enter with your accounts"
 
 #: .\templates\registration\login.html:25
 msgid "Insira o seu prontuário e a sua senha"

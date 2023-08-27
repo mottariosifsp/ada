@@ -20,6 +20,7 @@ urlpatterns = [
     path('user/', include('user.urls')),
     path('atribuicao/', include('attribution.urls', namespace='attribution')),
     path("", home, name="home"),
+    path("accounts/", include("allauth.urls")),
 ]
 
 urlpatterns += i18n_patterns ( # quais sessões serão internacionalizadas

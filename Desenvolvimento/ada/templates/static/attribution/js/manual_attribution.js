@@ -298,7 +298,7 @@ function timetables_options() {
 
 function block_filter() {
     $("#info-alert").hide();
-    $("#info-message-list").empty();
+    $("#info-messages-list").empty();
 
     var block_value = $("#block-filter").val();
     $("#area-filter").val("");
@@ -355,7 +355,7 @@ function area_filter() {
     $("#course-filter").val("");
 
     $("#info-alert").hide();
-    $("#info-message-list").empty();
+    $("#info-messages-list").empty();
 
     block_options();
     timetables_options();
@@ -467,7 +467,7 @@ function course_apresentation() {
 
     console.log(filtered_timetable)
   
-    $("#info-message-list").empty();
+    $("#info-messages-list").empty();
   
     filtered_timetable.forEach(function(timetable) {
       timetable.day_combo.forEach(function(dayCombo) {
@@ -484,7 +484,7 @@ function course_apresentation() {
             row.append("<td class='col-3 text-center align-middle'>" + timetable.course_acronym + "</td>");
             row.append("<td class='col-3 text-center align-middle'>" + timetable.classs + "</td>");
 
-          $("#info-message-list").append(row);
+          $("#info-messages-list").append(row);
         });
       });
     });
@@ -583,7 +583,7 @@ $(document).ready(function () {
 
                     if(willZeroOrNegative) {
                         max_cel = true
-                        $("#error-message-form").text("Você atingiu o máximo de células.");
+                        $("#error-messages-form").text("Você atingiu o máximo de células.");
                         $("#error-alert-form").show();
                         window.scrollTo({
                             top: $("#error-alert-form").offset().top - $(".navbar").outerHeight() - 30,
@@ -644,9 +644,9 @@ $(document).ready(function () {
                           return "<li>" + frase + "</li>";
                         }).join("");
 
-                        $("#warning-list-message").empty();
-                        $("#warning-list-message").html("<ul>" + lista_repetidas + "</ul>");
-                        $("#warning-alert-message").text("Erro: As seguintes disciplinas já estão adicionadas:");
+                        $("#warning-list-messages").empty();
+                        $("#warning-list-messages").html("<ul>" + lista_repetidas + "</ul>");
+                        $("#warning-alert-messages").text("Erro: As seguintes disciplinas já estão adicionadas:");
                         $("#warning-alert").show();
                         window.scrollTo({
                             top: $("#warning-alert").offset().top - $(".navbar").outerHeight() - 30,
@@ -659,9 +659,9 @@ $(document).ready(function () {
                             return "<li>" + frase + "</li>";
                           }).join("");
   
-                          $("#warning-list-message").empty();
-                          $("#warning-list-message").html("<ul>" + lista_courses + "</ul>");
-                          $("#warning-alert-message").text("Erro: os seguintes cursos não estão de acordo com a disponibilidade:");
+                          $("#warning-list-messages").empty();
+                          $("#warning-list-messages").html("<ul>" + lista_courses + "</ul>");
+                          $("#warning-alert-messages").text("Erro: os seguintes cursos não estão de acordo com a disponibilidade:");
                           $("#warning-alert").show();
                           window.scrollTo({
                             top: $("#warning-alert").offset().top - $(".navbar").outerHeight() - 30,
@@ -669,15 +669,15 @@ $(document).ready(function () {
                         });
                     }
                     $("#info-alert").hide();
-                    $("#info-message-list").empty();
+                    $("#info-messages-list").empty();
                 },
                 error: function (xhr, textStatus, errorThrown) {
-                    $("#error-message").text("Erro ao tentar adicionar uma disciplina.");
+                    $("#error-messages").text("Erro ao tentar adicionar uma disciplina.");
                     $("#error-alert").show();
                 },
             });
         } else {
-            $("#error-message").text("Selecione uma disciplina.");
+            $("#error-messages").text("Selecione uma disciplina.");
             $("#error-alert").show();
         }
     });
@@ -703,7 +703,7 @@ $(document).ready(function () {
                     window.location.href = response.redirect_url;
                 },
                 error: function (xhr, textStatus, errorThrown) {
-                    $("#error-message-form").text("Erro ao tentar suas preferências de disciplinas.");
+                    $("#error-messages-form").text("Erro ao tentar suas preferências de disciplinas.");
                     $("#error-alert-form").show();
                     window.scrollTo({
                         top: $("#error-alert-form").offset().top - $(".navbar").outerHeight() - 30,
@@ -712,7 +712,7 @@ $(document).ready(function () {
                 },
             });
         } else {
-            $("#error-message-form").text("Selecione suas disciplinas.");
+            $("#error-messages-form").text("Selecione suas disciplinas.");
             $("#error-alert-form").show();
             window.scrollTo({
                 top: $("#error-alert-form").offset().top - $(".navbar").outerHeight() - 30,
@@ -720,7 +720,7 @@ $(document).ready(function () {
             });
 
             $("#info-alert").hide();
-            $("#info-message-list").empty();
+            $("#info-messages-list").empty();
         }
     });
 

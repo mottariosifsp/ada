@@ -596,7 +596,7 @@ $(document).ready(function () {
 
                     if(will_zero_or_negative) {
                         max_cel = true
-                        $("#error-message-form").text("Você atingiu o máximo de células.");
+                        $("#error-messages-form").text("Você atingiu o máximo de células.");
                         $("#error-alert-form").show();
                         window.scrollTo({
                             top: $("#error-alert-form").offset().top - $(".navbar").outerHeight() - 30,
@@ -658,9 +658,9 @@ $(document).ready(function () {
                           return "<li>" + id + "</li>";
                         }).join("");
 
-                        $("#warning-list-message").empty();
-                        $("#warning-list-message").html("<ul>" + lists_repetead + "</ul>");
-                        $("#warning-alert-message").text("Erro: As seguintes disciplinas já estão adicionadas:");
+                        $("#warning-list-messages").empty();
+                        $("#warning-list-messages").html("<ul>" + lists_repetead + "</ul>");
+                        $("#warning-alert-messages").text("Erro: As seguintes disciplinas já estão adicionadas:");
                         $("#warning-alert").show();
                         window.scrollTo({
                             top: $("#warning-alert").offset().top - $(".navbar").outerHeight() - 30,
@@ -673,9 +673,9 @@ $(document).ready(function () {
                             return "<li>" + id + "</li>";
                           }).join("");
   
-                          $("#warning-list-message").empty();
-                          $("#warning-list-message").html("<ul>" + lists_courses + "</ul>");
-                          $("#warning-alert-message").text("Erro: os seguintes cursos não estão de acordo com a disponibilidade:");
+                          $("#warning-list-messages").empty();
+                          $("#warning-list-messages").html("<ul>" + lists_courses + "</ul>");
+                          $("#warning-alert-messages").text("Erro: os seguintes cursos não estão de acordo com a disponibilidade:");
                           $("#warning-alert").show();
                           window.scrollTo({
                             top: $("#warning-alert").offset().top - $(".navbar").outerHeight() - 30,
@@ -687,12 +687,12 @@ $(document).ready(function () {
                     $('#add-course-modal').modal('hide');
                 },
                 error: function (xhr, textStatus, errorThrown) {
-                    $("#error-message").text("Erro ao tentar adicionar uma disciplina.");
+                    $("#error-messages").text("Erro ao tentar adicionar uma disciplina.");
                     $("#error-alert").show();
                 },
             });
         } else {
-            $("#error-message").text("Selecione uma disciplina.");
+            $("#error-messages").text("Selecione uma disciplina.");
             $("#error-alert").show();
         }
     });
@@ -719,7 +719,7 @@ $(document).ready(function () {
                             window.location.href = "/" + lang + "/professor/preferencia-atribuicao/";
                         },
                         error: function (xhr, textStatus, errorThrown) {
-                            $("#error-message-form").text("Erro ao tentar suas preferências de disciplinas.");
+                            $("#error-messages-form").text("Erro ao tentar suas preferências de disciplinas.");
                             $("#error-alert-form").show();
                             window.scrollTo({
                                 top: $("#error-alert-form").offset().top - $(".navbar").outerHeight() - 30,
@@ -728,7 +728,7 @@ $(document).ready(function () {
                         },
                     });
                 } else {
-                    $("#error-message-form").text("Quantidade de células minímas para seu FPA segundo seu regime é 8 células.");
+                    $("#error-messages-form").text("Quantidade de células minímas para seu FPA segundo seu regime é 8 células.");
                     $("#error-alert-form").show();
                     window.scrollTo({
                         top: $("#error-alert-form").offset().top - $(".navbar").outerHeight() - 30,
@@ -752,7 +752,7 @@ $(document).ready(function () {
                             window.location.href = "/" + lang + "/professor/preferencia-atribuicao/";
                         },
                         error: function (xhr, textStatus, errorThrown) {
-                            $("#error-message-form").text("Erro ao tentar suas preferências de disciplinas.");
+                            $("#error-messages-form").text("Erro ao tentar suas preferências de disciplinas.");
                             $("#error-alert-form").show();
                             window.scrollTo({
                                 top: $("#error-alert-form").offset().top - $(".navbar").outerHeight() - 30,
@@ -761,7 +761,7 @@ $(document).ready(function () {
                         },
                     });
                 } else {
-                    $("#error-message-form").text("Quantidade de células minímas para seu FPA segundo seu regime é 12 células.");
+                    $("#error-messages-form").text("Quantidade de células minímas para seu FPA segundo seu regime é 12 células.");
                     $("#error-alert-form").show();
                     window.scrollTo({
                         top: $("#error-alert-form").offset().top - $(".navbar").outerHeight() - 30,
@@ -770,7 +770,7 @@ $(document).ready(function () {
                 }
             }
         } else {
-            $("#error-message-form").text("Selecione suas disciplinas.");
+            $("#error-messages-form").text("Selecione suas disciplinas.");
             $("#error-alert-form").show();
             window.scrollTo({
                 top: $("#error-alert-form").offset().top - $(".navbar").outerHeight() - 30,
@@ -822,15 +822,15 @@ function get_all_day(abreviation_day) {
 }
 
 function info_button(value) {
-    var infoMessage = $("#info-input-message").text();
+    var infoMessage = $("#info-input-messages").text();
 
-    $("#info-input-message").empty();
+    $("#info-input-messages").empty();
     if (value === 'block') {
         var word_to_search = 'Bloco';
-        $("#info-input-message").text("O filtro de Bloco serve para filtrar todas as disciplinas disponíveis apenas aquelas com o mesmo bloco pedido. Exemplo: Técnico - Aulas do técnico apenas.");
+        $("#info-input-messages").text("O filtro de Bloco serve para filtrar todas as disciplinas disponíveis apenas aquelas com o mesmo bloco pedido. Exemplo: Técnico - Aulas do técnico apenas.");
     } else if (value === 'area') {
         var word_to_search = 'Área';
-        $("#info-input-message").text("O filtro de Área serve para filtrar todas as disciplinas disponíveis apenas aquelas com a mesma área pedida. Exemplo: ADS - Aulas de análise e desenvolvimento de sistemas apenas.");
+        $("#info-input-messages").text("O filtro de Área serve para filtrar todas as disciplinas disponíveis apenas aquelas com a mesma área pedida. Exemplo: ADS - Aulas de análise e desenvolvimento de sistemas apenas.");
     }
 
     if ($("#info-input-alert").css("display") === "block" && infoMessage.indexOf(word_to_search) !== -1) {

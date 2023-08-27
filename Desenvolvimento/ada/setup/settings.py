@@ -32,7 +32,16 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['127.0.0.1']
 CSRF_TRUSTED_ORIGINS=['https://gusttavosoares-zany-palm-tree-95pjqq9x5vr2x6wv-8000.preview.app.github.dev']
-# Application definition    
+# Application definition
+
+SITE_ID = 2
+
+ACCOUNT_USERNAME_REQUIRED = False
+ACCOUNT_AUTHENTICATION_METHOD = 'email'  # Use 'email' para autenticação
+ACCOUNT_USER_MODEL_USERNAME_FIELD = None
+ACCOUNT_LOGOUT_ON_GET = True
+ACCOUNT_EMAIL_REQUIRED = True  # O e-mail é obrigatório
+# SOCIALACCOUNT_AUTO_SIGNUP = False
 
 INSTALLED_APPS = [
     "django.contrib.admin",
@@ -42,6 +51,11 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "user",
+    "django.contrib.sites",
+    "allauth",
+    "allauth.accounts",
+    "allauth.socialaccount",
+    "allauth.socialaccount.providers.google",
     "attribution_preference",
     "attribution",
     "exchange",
@@ -58,6 +72,17 @@ CELERY_ACCEPT_CONTENT = ["json"]
 CELERY_TASK_SERIALIZER = "json"
 CELERY_TASK_TRACK_STARTED = True
 CELERY_TIMEZONE = 'America/Sao_Paulo'
+
+SOCIALACCOUNT_PROVIDERS = {
+    "google": {
+        "SCOPE": [
+            "profile",
+            "email"
+        ],
+        "AUTH_PARAMS": {"access_type": "online"},
+        "REDIRECT_URI": "http://127.0.0.1:8000/accounts/google/login/callback/"
+    }
+}
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
@@ -181,6 +206,11 @@ LOGOUT_REDIRECT_URL = '/user/sair'
 # EMAIL_PORT = config('EMAIL_PORT')
 # EMAIL_HOST = config('EMAIL_HOST')
 
+AUTHENTICATION_BACKENDS = (
+    "django.contrib.auth.backends.ModelBackend",
+    "allauth.accounts.auth_backends.AuthenticationBackend"
+)
+
 LOGGING = {
     'version': 1,
     'disable_existing_loggers': False,
@@ -194,7 +224,7 @@ LOGGING = {
     },
     'formatters': {
         'custom': {
-            'format': '%(asctime)s - %(message)s',
+            'format': '%(asctime)s - %(messages)s',
         },
     },
     'loggers': {

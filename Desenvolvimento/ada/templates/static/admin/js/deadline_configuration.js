@@ -1,8 +1,8 @@
 $("document").ready(function () {
-    $("#error-message-form").hide();
+    $("#error-messages-form").hide();
     $("#submit-button").click(function (event) {
         event.preventDefault(); // Impede o envio padrão do formulário
-        $("#error-message-form").hide();
+        $("#error-messages-form").hide();
         
         let startFPA = $("#startFPADeadline").val();
         let endFPA = $("#endFPADeadline").val();
@@ -27,10 +27,10 @@ $("document").ready(function () {
 });
 
 function error_message(message) {
-    $("#error-message-form").text(message);
-    $("#error-message-form").show();
+    $("#error-messages-form").text(message);
+    $("#error-messages-form").show();
     window.scrollTo({
-        top: $("#error-message-form").offset().top,
+        top: $("#error-messages-form").offset().top,
         behavior: "smooth",
     });
 }
