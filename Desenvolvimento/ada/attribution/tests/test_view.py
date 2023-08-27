@@ -4,7 +4,7 @@ from django.test import RequestFactory
 from area.models import Area, Blockk
 from staff.models import Criteria, Deadline
 from attribution.models import TeacherQueuePosition
-from attribution.views import attribution, send_email, email_test
+from attribution.views import attribution, send_email, email_test, validations
 from user.models import User
 from django.test import Client
 from django.urls import reverse
@@ -13,6 +13,8 @@ from django.core.mail import send_mail, EmailMessage
 from django.core.mail import EmailMessage
 import os
 from unittest.mock import patch
+from unittest.mock import Mock
+from timetable.models import Timetable, Timetable_user
 
 User = get_user_model()
 
@@ -60,3 +62,40 @@ def test_send_email():
     with patch('django.core.mail.EmailMessage', MockEmailMessage):
         send_email(professor)
 
+
+@pytest.fixture
+def timetable():
+    return Mock(spec=Timetable)
+
+@pytest.fixture
+def professor():
+    return Mock()
+
+@patch('timetable.models.Timetable_user.objects')
+def test_validations_with_no_existing_timetable_user(mock_objects, timetable, professor):
+    mock_objects.filter.return_value.exists.return_value = False
+    mock_objects.create.return_value = Timetable_user(user=None)
+
+    result = validations(timetable, professor)
+
+    assert result == True
+
+@patch('timetable.models.Timetable_user.objects')
+def test_validations_with_existing_timetable_user_and_no_assigned_user(mock_objects, timetable, professor):
+    mock_objects.filter.return_value.exists.return_value = True
+    mock_objects.get.return_value = Timetable_user(user=None)
+
+    result = validations(timetable, professor)
+
+    assert result == True
+
+@patch('timetable.models.Timetable_user.objects')
+def test_validations_with_existing_timetable_user_and_assigned_user(mock_objects, timetable, professor):
+    timetable_user_mock = Mock(spec=Timetable_user)
+    timetable_user_mock.user = professor
+    mock_objects.filter.return_value.exists.return_value = True
+    mock_objects.get.return_value = timetable_user_mock
+
+    result = validations(timetable, professor)
+
+    assert result == False
