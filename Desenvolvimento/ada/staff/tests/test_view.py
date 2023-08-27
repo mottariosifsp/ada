@@ -21,6 +21,7 @@ from django.db import transaction
 import factory # cria vários registros fictícios automaticamente
 from django.db.models import Sum
 from datetime import date
+from pytest_django.asserts import assertRedirects
 from attribution.models import TeacherQueuePosition, TeacherQueuePositionBackup
 
 
@@ -206,7 +207,6 @@ def test_update_save_no_access(client):
     assert response.status_code == 302  # Should be a redirection to the login page
 
 
-
 @pytest.fixture
 def area():
     return Area.objects.create(
@@ -216,7 +216,6 @@ def area():
         exchange_area=True,
         is_high_school=True
     )
-
 
 @pytest.mark.django_db
 def test_classes_list(user, client):
@@ -495,11 +494,9 @@ def test_create_timetable_post_valid_courses(user, class_instance, course_instan
         'selected_courses': json.dumps(selected_courses),
     }
 
-
     request = RequestFactory().post(reverse('create_timetable'), data=data)
     request.user = user
     response = create_timetable(request)
-
 
     assert response.status_code == 200
     response_data = json.loads(response.content)
@@ -606,7 +603,6 @@ def test_create_timetable_valid_data(client, user, class_instance, course_instan
     assert response_data == {'erro': False, 'mensagem': ""}
 
 # Testes edit timetable
-
 @pytest.mark.django_db
 def test_edit_timetable_post_valid_data(client, user, class_instance, course_instance, timeslot_instance):
     url = reverse('edit_timetable')
@@ -735,10 +731,8 @@ def test_timetable_combo_saver_empty_timetable(class_instance):
         ['', '', ''],
     ]
 
-    # Chame a função timetable_combo_saver
     timetable_combo_saver(timetable, class_instance)
 
-    # Verifique se nenhum objeto Day_combo ou Timetable foi criado
     day_combos = Day_combo.objects.all()
     timetables = Timetable.objects.filter(classs=class_instance)
 
@@ -761,7 +755,5 @@ def test_get_selected_field_invalid_criteria():
     assert result == ""
 
 
-
-# Testes queue_create timetable
-
+# Testes queue_create
 
