@@ -50,8 +50,16 @@
                     <label class="form-check-label" for="radio-40">40 {% trans "horas" %}</label>
                   </div>
                   <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="radio" name="regime" id="rde" value="rde" required>
+                    <input class="form-check-input" type="radio" name="regime" id="rde" value="RDE" required>
                     <label class="form-check-label" for="rde"><abbr title="Regime de Dedicação Exclusiva">{% trans "RDE" %}</abbr></label>
+                  </div>
+                  <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="regime" id="temporario" value="Temporário" required>
+                    <label class="form-check-label" for="temporario">{% trans "Temporário" %}</abbr></label>
+                  </div>
+                  <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="regime" id="substituto" value="Substituto" required>
+                    <label class="form-check-label" for="substituto">{% trans "Substituto" %}</abbr></label>
                   </div>
                 </div>      
               </div>

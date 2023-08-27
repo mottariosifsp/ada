@@ -378,8 +378,23 @@ b {
   color:#085763
 }
 
-@media print {  
-    .hidden-itens {     
+.priority-cell {
+  background-color: #285f528d;
+  color: whitesmoke;
+}
+
+@media print {
+  .priority-cell {
+    color: #2b544b;
+    background-color: #507c75;
+  }
+
+  .choosed {
+    color: #085763;
+    background-color: #2b544b;
+  }
+  
+  .hidden-itens {     
     display: none;
   }
 
@@ -389,6 +404,10 @@ b {
 
   .hour-print {
     font-size: 14px;
+  }
+
+  div.footer {
+    display: none;
   }
 
   .openModalBtn{

@@ -18,12 +18,12 @@ var cell_left_number = {
     type: ''
 }
 
-if (user_regime == '20') {
+if (user_regime == '20' || user_regime == 'Temporário') {
     cell_left_number.type = '20h';
     $('#count-cel').css({
         'color': '#913f3f'
     })
-} else if (user_regime == '40' || user_regime == 'rde') {
+} else if (user_regime == '40' || user_regime == 'RDE' || user_regime == 'Substituto') {
     cell_left_number.type = '40h';
     $('#count-cel').css({
         'color': '#913f3f'
@@ -465,7 +465,6 @@ $("#course-filter").on("input", function() {
           var timeslot_end_hour;
       
           filtered_timetable.forEach(function(timetable) {
-            console.log(timetable)
               discipline_name = timetable.course_acronym
               classs = timetable.classs
               timetable.day_combo.forEach(function(day_combo) {
@@ -684,7 +683,7 @@ $(document).ready(function () {
                     }
                     $("#info-alert").hide();
                     $('.modal-backdrop').css({'display':'none'})
-                    $('#add-course-modal').modal('hide');
+                    // $('#add-course-modal').modal('hide');
                 },
                 error: function (xhr, textStatus, errorThrown) {
                     $("#error-message").text("Erro ao tentar adicionar uma disciplina.");

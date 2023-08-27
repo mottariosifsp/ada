@@ -1,4 +1,3 @@
-console.log("f")
 var lang = document.currentScript.getAttribute("data-lang");
 var user_regime = document.currentScript.getAttribute("user_regime");
 var user_disponibility_choosed = document.currentScript.getAttribute("user_disponibility_choosed");
@@ -9,27 +8,44 @@ var user_courses_choosed_array = JSON.parse(user_courses_choosed.replace(/'/g, '
 
 
 $('.'+ user_regime).css({
-    "background-color": "#507c75",
-    "color": "white",
+    "background-color": "#285f5236",
+    "color": "#507c75",
     "font-weight": 700
 })
+
+var tables_checked = {
+    mor_pri: false,
+    aft_pri: false,
+    noc_pri: false,
+    mor_sec: false,
+    aft_sec: false,
+    noc_sec: false,
+}
 
 for(var i = 0; i < user_disponibility_choosed_array.length; i++) {
     var element = user_disponibility_choosed_array[i];
     var id = element.id;
+    var idParts = id.split('-');
+    var time = idParts[1]; // mor, aft, noc
+    var priority = idParts[3]; // sec ou pri
 
     $('#btn-'+ id).css({
-        "background-color": "#507c75",
+        "background-color": "#285f5236",
     });
     $("#" + id + " i").addClass("fas fa-check-circle check");
     $('#'+ id).css({
-        "color": "white",
+        "color": "#507c75",
     });
+
+    var key = time + '_' + priority;
+    if (tables_checked.hasOwnProperty(key)) {
+        tables_checked[key] = true;
+    }
 }
+
 
 for (var i = 0; i < user_courses_choosed_array.length; i++) {
     var course = user_courses_choosed_array[i];
-    console.log(course)
     var acronym = course.acronym;
     var name_course = course.name_course;
     var priority_attr = course.priority_attr;
@@ -75,7 +91,38 @@ for (var i = 0; i < user_courses_choosed_array.length; i++) {
     $('#courses-list').append(new_row);
   }
 
-  function primeiraLetraMaiuscula(str) {
+function primeiraLetraMaiuscula(str) {
     return str.charAt(0).toUpperCase() + str.slice(1);
-  }
+}
+  
+if (!tables_checked.mor_pri) {
+    $('.mor-pri').css({
+        "display": "none",
+    });
+}
+if (!tables_checked.aft_pri) {
+    $('.aft-pri').css({
+        "display": "none",
+    });
+}
+if (!tables_checked.noc_pri) {
+    $('.noc-pri').css({
+        "display": "none",
+    });
+}
+if (!tables_checked.mor_sec) {
+    $('.mor-sec').css({
+        "display": "none",
+    });
+}
+if (!tables_checked.aft_sec) {
+    $('.aft-sec').css({
+        "display": "none",
+    });
+}
+if (!tables_checked.noc_sec) {
+    $('.noc-sec').css({
+        "display": "none",
+    });
+}
 
