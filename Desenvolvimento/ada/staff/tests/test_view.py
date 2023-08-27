@@ -23,8 +23,8 @@ from django.db.models import Sum
 from datetime import date
 from pytest_django.asserts import assertRedirects
 from attribution.models import TeacherQueuePosition, TeacherQueuePositionBackup
-
-
+from django.test import Client
+from mixer.backend.django import mixer
 
 
 @pytest.fixture
@@ -55,7 +55,6 @@ def client_logged_in(user, client):
 @pytest.fixture
 def blockk():
     return Blockk.objects.create(registration_block_id=1)
-
 
 @pytest.fixture
 def deadlines(blockk):
@@ -729,6 +728,4 @@ def test_get_selected_field_invalid_criteria():
     result = get_selected_field()
     assert result == ""
 
-
-# Testes queue_create
 
