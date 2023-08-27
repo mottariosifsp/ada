@@ -212,29 +212,6 @@ def attribution_configuration_confirm(request):
         return render(request, 'staff/attribution/attribution_configuration_confirm.html', data)
     return render(request, 'staff/attribution/attribution_configuration_confirm.html')
 
-def show_current_deadline(request):
-    deadlines = Deadline.objects.all()
-    now = timezone.now()
-
-    if (deadlines.get(name="startFPADeadline").deadline_start <= now and deadlines.get(
-            name="startFPADeadline").deadline_end >= now):
-        actualDeadline = "FPA"
-    elif (deadlines.get(name="startAssignmentDeadline").deadline_start <= now and deadlines.get(
-            name="startAssignmentDeadline").deadline_end >= now):
-        actualDeadline = "Assignment"
-    elif (deadlines.get(name="startExchangeDeadline").deadline_start <= now and deadlines.get(
-            name="startExchangeDeadline").deadline_end >= now):
-        actualDeadline = "Exchange"
-    else:
-        actualDeadline = "none"
-
-    data = {
-        'actualDeadline': actualDeadline
-    }
-
-    return render(request, 'staff/deadline/show_current_deadline.html', data)
-
-
 @transaction.atomic
 def save_deadline(data):
     Deadline.objects.create(
@@ -250,9 +227,7 @@ def save_deadline(data):
         blockk=data['user_block'],
     )
 
-
 # professor views
-
 @login_required
 @user_passes_test(is_staff)
 def professors_list(request):
@@ -324,6 +299,7 @@ def classes_list(request):
     ]
     return render(request, 'staff/classs/classes_list.html', {'classes': classes, 'periods': periods, 'areas': areas})
 
+# ERRO - TODO
 @login_required
 @user_passes_test(is_staff)
 def classes_list_saved(request):
@@ -349,6 +325,7 @@ def classes_list_saved(request):
 
         return JsonResponse({'message': 'Alterações salvas com sucesso.'})
 
+# Erro - TODO
 @login_required
 @user_passes_test(is_staff)
 def class_create(request):
@@ -365,7 +342,8 @@ def class_create(request):
         classs.save()
 
         return JsonResponse({'message': 'Turma criada com sucesso.'})
-    
+
+# Erro - TODO
 @login_required
 @user_passes_test(is_staff)
 def class_delete(request):
@@ -397,14 +375,11 @@ def block_detail(request, registration_block_id):
     blockk = Blockk.objects.get(registration_block_id=registration_block_id)
     area = blockk.areas.first()
     courses = Course.objects.filter(blockk=blockk)
-    print("Materia", courses)
     data = {'blockk': blockk, 'area': area, 'courses': courses}
 
     return render(request, 'staff/blockk/block_detail.html', data)
 
-
 # course views
-
 @login_required
 @user_passes_test(is_staff)
 def course_create(request):
