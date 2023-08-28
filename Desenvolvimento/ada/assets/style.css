@@ -1,18 +1,18 @@
 body {
   font-family: Helvetica, Arial, sans-serif;
-  font-size: 16px;
+  font-size: 12px;
   /* do not increase min-width as some may use split screens */
   min-width: 800px;
   color: #999;
 }
 
 h1 {
-  font-size: 32px;
+  font-size: 24px;
   color: black;
 }
 
 h2 {
-  font-size: 20px;
+  font-size: 16px;
   color: black;
 }
 
@@ -79,7 +79,7 @@ span.xpassed,
 #results-table {
   border: 1px solid #e6e6e6;
   color: #999;
-  font-size: 16px;
+  font-size: 12px;
   width: 100%;
 }
 #results-table th,
