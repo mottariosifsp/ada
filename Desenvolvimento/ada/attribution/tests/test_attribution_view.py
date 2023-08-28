@@ -4,7 +4,9 @@ from django.test import RequestFactory
 from area.models import Area, Blockk
 from staff.models import Criteria, Deadline
 from attribution.models import TeacherQueuePosition
-from attribution.views import attribution, send_email, next_attribution, attribution_detail, email_test, validations, manual_attribution_save, validate_timetable, assign_timetable_professor, professor_to_end_queue, attribution_detail, remove_professors_without_preference, float_to_time, start_attribution, create_cord
+from attribution.views import attribution, send_email, next_attribution, attribution_detail, email_test, validations, \
+    manual_attribution_save, validate_timetable, assign_timetable_professor, professor_to_end_queue, attribution_detail, \
+    remove_professors_without_preference, float_to_time, start_attribution, create_cord
 from classs.models import Classs
 from area.models import Area, Blockk
 from user.models import User
@@ -25,6 +27,7 @@ from django.utils import timezone
 
 User = get_user_model()
 
+
 @pytest.fixture
 def superuser():
     return User.objects.create_user(
@@ -34,6 +37,7 @@ def superuser():
         password='testpassword',
         is_superuser=True
     )
+
 
 @pytest.mark.django_db
 @patch('attribution.views.send_email')  # Usando patch para substituir temporariamente a função send_email
@@ -51,8 +55,8 @@ def test_email_test_view(mock_send_email, superuser, rf):
 
     assert mock_send_email.called  # Verifica se a função send_email foi chamada
     assert mock_send_email.call_count == 1  # Deve ter sido chamada apenas uma vez
-    assert mock_send_email.call_args[0][0] == superuser  # Verifica se o argumento passado para send_email é o superusuário
-
+    assert mock_send_email.call_args[0][
+               0] == superuser  # Verifica se o argumento passado para send_email é o superusuário
 
 
 class MockEmailMessage:
@@ -62,10 +66,12 @@ class MockEmailMessage:
     def send(self):
         pass
 
+
 class MockProfessor:
     def __init__(self, first_name, email):
         self.first_name = first_name
         self.email = email
+
 
 @pytest.mark.django_db
 def test_send_email():
@@ -83,9 +89,11 @@ def test_send_email():
 def timetable():
     return Mock(spec=Timetable)
 
+
 @pytest.fixture
 def professor():
     return Mock()
+
 
 @patch('timetable.models.Timetable_user.objects')
 @pytest.mark.django_db
@@ -100,6 +108,7 @@ def test_validations_with_no_existing_timetable_user(mock_objects, timetable, pr
     # Verifica se o resultado é True, indicando que as validações passaram
     assert result == True
 
+
 @patch('timetable.models.Timetable_user.objects')
 @pytest.mark.django_db
 def test_validations_with_existing_timetable_user_and_no_assigned_user(mock_objects, timetable, professor):
@@ -112,6 +121,7 @@ def test_validations_with_existing_timetable_user_and_no_assigned_user(mock_obje
 
     # Verifica se o resultado é True, indicando que as validações passaram
     assert result == True
+
 
 @patch('timetable.models.Timetable_user.objects')
 @pytest.mark.django_db
@@ -128,13 +138,16 @@ def test_validations_with_existing_timetable_user_and_assigned_user(mock_objects
     # Verifica se o resultado é False, indicando que as validações não passaram
     assert result == False
 
+
 @pytest.fixture
 def timetables():
     return [Mock(), Mock(), Mock()]
 
+
 @pytest.fixture
 def professor():
     return Mock()
+
 
 @pytest.fixture
 def blockk():
@@ -147,13 +160,13 @@ def blockk():
 @patch('attribution.views.professor_to_end_queue')
 @pytest.mark.django_db
 def test_manual_attribution_save_successful(
-    mock_professor_to_end_queue,
-    mock_assign_timetable_professor,
-    mock_validate_timetable,
-    mock_teacher_queue_position_objects,
-    timetables,
-    professor,
-    blockk
+        mock_professor_to_end_queue,
+        mock_assign_timetable_professor,
+        mock_validate_timetable,
+        mock_teacher_queue_position_objects,
+        timetables,
+        professor,
+        blockk
 ):  # Configuração de mock para testar atribuição manual bem-sucedida
 
     # Configura o mock para retornar o nome do professor corretamente
@@ -170,8 +183,10 @@ def test_manual_attribution_save_successful(
     # Verifica os resultados esperados
     assert result is None  # O resultado deve ser None para uma atribuição bem-sucedida
     assert mock_teacher_queue_position_objects.filter.called  # Deve ter sido chamado filter do mock
-    assert mock_assign_timetable_professor.call_count == len(timetables)  # Deve ter sido chamado assign_timetable_professor para cada horário
+    assert mock_assign_timetable_professor.call_count == len(
+        timetables)  # Deve ter sido chamado assign_timetable_professor para cada horário
     assert mock_professor_to_end_queue.called  # Deve ter sido chamado professor_to_end_queue
+
 
 @patch('attribution.views.TeacherQueuePosition.objects')
 @pytest.mark.django_db
@@ -187,6 +202,7 @@ def test_manual_attribution_save_invalid_teacher(mock_teacher_queue_position_obj
     result = manual_attribution_save(timetables, professor, blockk)
 
     assert result == False  # O resultado deve ser False para um professor inválido
+
 
 # @patch('attribution.views.TeacherQueuePosition.objects')
 # @patch('attribution.views.validate_timetable')
@@ -257,6 +273,7 @@ def test_attribution_detail_sucess(rf):
     response = attribution_detail(request)
 
     assert response.status_code == 200  # O código de resposta deve ser 200 (OK)
+
 
 @pytest.mark.django_db
 def test_remove_professors_without_preference():
@@ -356,7 +373,6 @@ def test_remove_professors_without_preference():
 
 @pytest.mark.django_db
 def test_start_attribution_with_empty_queue():
-
     blockk_instance = Blockk.objects.create(
         registration_block_id='test_block',
         name_block='Test Block',
@@ -367,7 +383,7 @@ def test_start_attribution_with_empty_queue():
         blockk=blockk_instance,
         name='STARTASSIGNMENTDEADLINE',
         deadline_start=timezone.now(),
-        deadline_end=timezone.now() + timezone.timedelta(hours=1) # uma hora após agora
+        deadline_end=timezone.now() + timezone.timedelta(hours=1)  # uma hora após agora
     )
 
     # Chama a função start_attribution() com a instância de Blockk criada
@@ -378,6 +394,7 @@ def test_start_attribution_with_empty_queue():
 
     # Verifica se o prazo de término é anterior ou igual ao horário atual
     assert deadline.deadline_end <= timezone.now()
+
 
 # manual_attribution
 
@@ -437,6 +454,7 @@ def test_next_attribution_no_primary_timetables(mocker):
     # Verifica se o resultado é o esperado
     assert result == mock_start_attribution.return_value
 
+
 #                   #
 #  Testes unitário  #
 #                   #
@@ -485,6 +503,7 @@ def test_create_cord():
     # Verifica se os cords gerados correspondem aos esperados
     assert cords == expected_cords
 
+
 def test_float_to_time_positive():
     # Teste para converter segundos em formato de tempo positivo
     seconds = 3661  # 1 hora, 1 minuto e 1 segundo
@@ -493,6 +512,7 @@ def test_float_to_time_positive():
     assert result.minute == 1  # Deve ser 1 minuto
     assert result.second == 1  # Deve ser 1 segundo
 
+
 def test_float_to_time_zero():
     # Teste para converter segundos em formato de tempo igual a zero
     seconds = 0
@@ -500,6 +520,7 @@ def test_float_to_time_zero():
     assert result.hour == 0  # Deve ser 0 horas
     assert result.minute == 0  # Deve ser 0 minutos
     assert result.second == 0  # Deve ser 0 segundos
+
 
 def test_float_to_time_negative():
     # Teste para converter segundos em formato de tempo negativo
