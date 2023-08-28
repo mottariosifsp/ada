@@ -319,57 +319,55 @@ def test_remove_professors_without_preference():
 
 
 # start_attribution
-# @pytest.mark.django_db
-# def test_start_attribution_with_professors_in_queue():
-#
-#     your_area_instance = Area.objects.create(
-#         registration_area_id='test_area',
-#         name_area='Test Area',
-#         acronym='TA',
-#         exchange_area=True,
-#         is_high_school=True
-#     )
-#
-#     # Crie objetos de teste necessários
-#     your_blockk_instance = Blockk.objects.create(
-#         registration_block_id='test_block',
-#         name_block='Test Block',
-#         acronym='TB'
-#     )
-#
-#     your_user_instance = User.objects.create(
-#         registration_id='12345',
-#         first_name='John',
-#         last_name='Doe',
-#         email='john@example.com',
-#         cell_phone='1234567890'
-#         # Preencha outros campos conforme necessário
-#     )
-#
-#     your_class_instance2 = Classs.objects.create(
-#         registration_class_id='test_class',
-#         period='Some Period',
-#         semester=1,
-#         area=your_area_instance
-#     )
-#
-#     TeacherQueuePosition.objects.create(
-#         teacher=your_user_instance,
-#         position=0,
-#         blockk=your_blockk_instance
-#     )
-#
-#     attribution_preference = Attribution_preference.objects.create(user=your_user_instance)
-#
-#     your_timetable_instance = Timetable.objects.create(classs=your_class_instance2)
-#
-#     Course_preference.objects.create(
-#         attribution_preference=attribution_preference,
-#         timetable=your_timetable_instance,
-#         blockk=your_blockk_instance
-#     )
-#
-#     start_attribution(your_blockk_instance)
+@pytest.mark.django_db
+def test_start_attribution_with_professors_in_queue():
+
+    area_instance = Area.objects.create(
+        registration_area_id='10129',
+        name_area='Informática',
+        acronym='INFO',
+        exchange_area=True,
+        is_high_school=True
+    )
+
+    blockk_instance = Blockk.objects.create(
+        registration_block_id='2320309',
+        name_block='D',
+        acronym='D'
+    )
+
+    user_instance = User.objects.create(
+        registration_id='SP1111111',
+        first_name='Cebolinha',
+        last_name='Cebola',
+        email='cebolinha@example.com',
+        cell_phone='94567890'
+    )
+
+    class_instance2 = Classs.objects.create(
+        registration_class_id='2921921',
+        period='Morning',
+        semester=1,
+        area=area_instance
+    )
+
+    TeacherQueuePosition.objects.create(
+        teacher=user_instance,
+        position=0,
+        blockk=blockk_instance
+    )
+
+    attribution_preference = Attribution_preference.objects.create(user=user_instance)
+
+    timetable_instance = Timetable.objects.create(classs=class_instance2)
+
+    Course_preference.objects.create(
+        attribution_preference=attribution_preference,
+        timetable=timetable_instance,
+        blockk=blockk_instance
+    )
+
+    start_attribution(blockk_instance)
 
 @pytest.mark.django_db
 def test_start_attribution_with_empty_queue():
