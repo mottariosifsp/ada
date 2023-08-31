@@ -301,10 +301,26 @@ $("#primary-timetable-courses input, #secondary-timetable-courses input").on("cl
         });
         console.log(type_discipline)
         
-
-        if(type_discipline.primary_choosed = 0){
-            $('div.btn-priority.secondary').css({'color': 'grey', 'background-color': 'white', 'border': '1px solid grey', 'font-weight': '400'})
-            $('i.secondary-item').css({'display': ''})
+        if(cell_left_number.type == '20h') {
+            if(type_discipline.primary_choosed >= 8) {                
+            } else {
+                $('div.btn-priority.secondary').css({'color': 'grey', 'background-color': 'white', 'border': '1px solid grey', 'font-weight': '400'})
+                $('i.secondary-item').css({'display': ''})
+            }
+        } else {
+            if(user_is_fgfcc == 'True') {
+                if(type_discipline.primary_choosed >= 8) {
+                } else {
+                    $('div.btn-priority.secondary').css({'color': 'grey', 'background-color': 'white', 'border': '1px solid grey', 'font-weight': '400'})
+                    $('i.secondary-item').css({'display': ''})
+                }
+            } else {
+                if(type_discipline.primary_choosed >= 12) {
+                } else {
+                    $('div.btn-priority.secondary').css({'color': 'grey', 'background-color': 'white', 'border': '1px solid grey', 'font-weight': '400'})
+                    $('i.secondary-item').css({'display': ''})
+                }
+            }
         }
 
         obj = timetable_choosed_objects.filter(timetable => timetable.id == filtered_timetables[0].id_timetable)
