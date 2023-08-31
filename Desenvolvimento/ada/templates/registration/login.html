@@ -1,4 +1,4 @@
-{% extends "staff/base.html" %}
+{% extends "user/base.html" %} 
 {% load i18n %}
 {% load static %}
 
@@ -31,7 +31,7 @@
 
                         {% if form.non_field_errors %}
                         <div id="loginError" class="alert alert-danger alert-dismissible fade show w-100">
-                            <i class="fas fa-exclamation-circle mr-2"></i> {% trans "Usuário ou senha incorretos" %}.
+                            <i class="fas fa-exclamation-circle mr-2"></i><b>{% trans "Erro" %}:</b> {% trans "Usuário ou senha incorretos" %}.
                             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>

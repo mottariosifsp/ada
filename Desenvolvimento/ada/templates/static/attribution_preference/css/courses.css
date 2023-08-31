@@ -16,7 +16,7 @@
 }
 
 #cel-hour, #cel-day, #cel-minute{
-  font-size: 51.5pt;
+  font-size: 50pt;
   font-weight: 600;
   color: #2f7363;
   align-items: center;
@@ -383,6 +383,19 @@ b {
   background-color: #285f528d;
   color: whitesmoke;
 }
+
+@media (max-width: 992px){
+  .column {
+    display: none;
+  }
+  .modal td {
+    font-size: 11pt;
+  }
+  td, td div {
+    font-size: 8pt;
+  }
+}
+
 
 @media print {
   .priority-cell {

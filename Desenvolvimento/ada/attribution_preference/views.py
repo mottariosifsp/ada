@@ -238,15 +238,21 @@ def disponibility_attribution_preference(request):
 
     if user_regime is None:
         user_regime_choosed = ''
-    elif user_regime.name_job == "RDE":
+    elif user_regime.name_job == "rde":
         user_regime_choosed = user_regime
         user_regime_choosed.name_job = 'RDE'
-    elif  user_regime.name_job == 'Temporário':
+    elif  user_regime.name_job == 'temporary':
         user_regime_choosed = user_regime
         user_regime_choosed.name_job = 'Temporário'
-    elif user_regime.name_job == 'Substituto':
+    elif user_regime.name_job == 'substitute':
         user_regime_choosed = user_regime
         user_regime_choosed.name_job = 'Substituto'
+    elif user_regime.name_job == 'twenty_hours':
+        user_regime_choosed = user_regime
+        user_regime_choosed.name_job = '20'
+    elif user_regime.name_job == 'forty_hours':
+        user_regime_choosed = user_regime
+        user_regime_choosed.name_job = '40'
     else:
         user_regime_choosed = user_regime
 
@@ -290,6 +296,9 @@ def courses_attribution_preference(request):
 
         user_regime = user.job
         courses = Course.objects.all()
+        user_is_fgfcc = False
+        # user_is_fgfcc = user.is_fgfcc
+
         
         user_area = []
         for area in Area.objects.filter(blocks__in=user.blocks.all().distinct()).distinct():
@@ -465,10 +474,10 @@ def courses_attribution_preference(request):
             }
             user_timeslot_table.append(string)
         
-        if user_regime.name_job == "RDE" or user_regime.name_job == "40" or user_regime.name_job == "Temporário":
+        if user_regime.name_job == "rde" or user_regime.name_job == "forty_hours" or user_regime.name_job == "temporary":
             user_regime_choosed = user_regime
             user_regime_choosed.name_job = '40'
-        elif user_regime.name_job == "20" or user_regime.name_job == "Substituto":
+        elif user_regime.name_job == "twenty_hours" or user_regime.name_job == "substitute":
             user_regime_choosed = user_regime
             user_regime_choosed.name_job = '20'
 
@@ -553,6 +562,7 @@ def courses_attribution_preference(request):
 
     data = {
         'user_regime': user_regime_choosed,
+        'user_is_fgfcc': user_is_fgfcc,
         'shift': shift,
         'user_disponibility': user_timeslot_table,
         'user_blockk': user_block,
@@ -779,9 +789,23 @@ def show_attribution_preference(request):
 
 @transaction.atomic
 def save_disponiility_preference(user_timeslots, user_regime, user):
-    job = Job.objects.create(name_job=user_regime)
-    user.job = None
-    user.job = job
+    if Job.objects.filter(user=user).exists():
+        job = User.objects.filter(id=user.id).first().job
+        User.objects.filter(id=user.id).update(job=None)
+        job.delete()
+
+    if(user_regime == 'RDE'):
+        name_job = Job.objects.create(name_job=enum.Job.rde.name)
+    elif(user_regime == 'Temporário'):
+        name_job = Job.objects.create(name_job=enum.Job.temporary.name)
+    elif(user_regime == 'Substituto'):
+        name_job = Job.objects.create(name_job=enum.Job.substitute.name)
+    elif(user_regime == '40'):
+        name_job = Job.objects.create(name_job=enum.Job.forty_hours.name)
+    else:
+        name_job = Job.objects.create(name_job=enum.Job.twenty_hours.name)
+
+    user.job = name_job
     user.save()
 
     if not Attribution_preference.objects.filter(user=user).exists():

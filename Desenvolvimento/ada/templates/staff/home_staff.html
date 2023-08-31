@@ -26,7 +26,7 @@
           <div>
             {% if period.status == 'not_configured' %}
             <p><div class="float-right message-info-not-configured">{% trans 'Não Configurado'%}</div><b>{% trans "Período" %}</b> </p>
-            <p class="home-begin"><div class=" float-right">{% trans 'Espere até que seja emitido pelo administrador as datas da atribuição' %}.</div><b>{% trans "Situação" %}</b> </p>
+            <p class="home-begin"><b>{% trans "Situação" %}</b> <div class="float-right text-center">{% trans 'Espere até que seja emitido pelo administrador as datas da atribuição' %}.</div></p>
             {% elif period.status == 'configured_STARTFPADEADLINE' %}
             <p><div class="float-right message-info-not-configured">{% trans 'Prazo configurado - FPA'%}</div> <b>{% trans "Período" %}</b> </p>
             <p class="home-begin"><div class=" float-right">{{period.start_day}} {% trans "ás" %} {{period.start_time}}</div><b>{% trans "Inicio" %}</b> </p>

@@ -4,6 +4,7 @@ from django.contrib.auth.models import PermissionsMixin
 from django.contrib.auth.base_user import AbstractBaseUser, BaseUserManager
 from django.dispatch import receiver
 from django.utils.translation import gettext_lazy as _
+from enums import enum
 from area.models import Blockk, Area
 from common.validator.validator import convert_to_uppercase
 
@@ -137,7 +138,7 @@ class AcademicDegree(models.Model):
 
 class Job(models.Model):
     id_job = models.AutoField(primary_key=True)
-    name_job = models.CharField(_('name job'), max_length=256, unique=False, null=False, blank=False)
+    name_job = models.CharField(_('name job'), choices=[(s.name, s.value) for s in enum.Job], max_length=45)
 
     def __str__(self):
         return self.name_job

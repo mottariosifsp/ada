@@ -295,7 +295,7 @@ $(document).ready(function() {
               }
             });
           } else {
-            $('#error-alert-form').text('A seleção da disponibilidade de horário não pode ultrapassar 8 horas de trabalho diárias.');
+            $('#error-message-form').text('A seleção da disponibilidade de horário não pode ultrapassar 8 horas de trabalho diárias.');
             $('#error-alert-form').show();
             window.scrollTo({
               top: $('#error-alert-form').offset().top - $('.navbar').outerHeight() - 30,
@@ -303,7 +303,7 @@ $(document).ready(function() {
             });
           }
         } else {
-          $('#error-alert-form').text('A seleção da disponibilidade deve permitir no mínimo 11 horas de intervalo entre a hora inicial do trabalho de um dia e a hora final de trabalho do dia seguinte.');
+          $('#error-message-form').text('A seleção da disponibilidade deve permitir no mínimo 11 horas de intervalo entre a hora inicial do trabalho de um dia e a hora final de trabalho do dia seguinte.');
             $('#error-alert-form').show();
             window.scrollTo({
               top: $('#error-alert-form').offset().top - $('.navbar').outerHeight() - 30,
@@ -739,4 +739,8 @@ function update_cell_left_number(button_is_checked) {
       }
     }
   }
+}
+
+function closeErrorAlert(id) {
+  $("#"+ id).hide();
 }

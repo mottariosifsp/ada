@@ -36,6 +36,23 @@ class Criteria(models.Model):
         super().clean()
         convert_to_uppercase(self, 'name_criteria')
 
+class Alert(models.Model):
+    name_alert = models.CharField(_('name alert'), max_length=90, null=False, blank=False)
+    created_by = models.ForeignKey('user.User', on_delete=models.CASCADE, null=True)
+    title = models.CharField(_('title'), max_length=90, null=False, blank=False,)
+    description = models.TextField(_('description'), null=True, blank=True, max_length=500)
+    alert_start = models.DateTimeField(_('alert start'))
+    alert_end = models.DateTimeField(_('alert end'))
+    blockk = models.ForeignKey('area.Blockk', on_delete=models.CASCADE, null=True)
+
+    class Meta:
+        verbose_name = _('alert')
+        verbose_name_plural = _('alerts')
+
+    def clean(self):
+        super().clean()
+        convert_to_uppercase(self, 'name')
+
 @receiver(models.signals.post_save, sender=Criteria)
 def on_change(sender, instance, **kwargs): 
     if instance.is_select:
