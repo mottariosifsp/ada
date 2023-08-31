@@ -95,7 +95,10 @@ def attribution_preference(request):
         status = 'not_configured'
 
     year_str = str(datetime.datetime.now().year)
-    year = year_str +"."+ semester
+    if Deadline.objects.filter(name='STARTFPADEADLINE').exists():
+        year = year_str +"."+ semester
+    else:
+        year = 'none'
 
     courses_done = 'False'
     if Course_preference.objects.filter(attribution_preference__user=user).exists():
