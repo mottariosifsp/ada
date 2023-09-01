@@ -6,6 +6,10 @@
     {{ block.super }}
     <title>{% trans "Turmas" %}</title>
     <link rel="stylesheet" href="{% static 'staff/classs/css/classes_list.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fomantic-ui/2.9.2/semantic.min.css" />
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/dataTables.semanticui.min.css" />
+    <link rel="stylesheet" href="https://datatables.net/release-datatables/extensions/FixedColumns/css/fixedColumns.bootstrap4.css" />
+    <link rel="stylesheet" href="https://datatables.net/release-datatables/media/css/dataTables.bootstrap4.css" />
     <script src="{% static 'staff/classs/js/classes_list.js' %}" data-lang={{LANGUAGE_CODE}}></script>
 {% endblock %}
 
