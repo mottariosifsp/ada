@@ -16,7 +16,7 @@ from timetable.models import Day_combo, Timeslot, Timetable, Timetable_user
 from area.models import Blockk, Area
 from classs.models import Classs
 from course.models import Course
-from user.models import User, History, AcademicDegree
+from user.models import AcademicDegreeHistory, User, History, AcademicDegree
 from .models import Deadline, Criteria
 from django.db.models import F, Sum, Value
 
@@ -160,6 +160,75 @@ def professors_list(request):
     professors = User.objects.filter(is_superuser=False)
     return render(request, 'staff/professor/professors_list.html', {'professors': professors})
 
+
+@login_required
+@user_passes_test(is_staff)
+def add_new_professor(request):
+    if request.method == 'POST':
+        registration_id = request.POST.get('add_registration_id')
+        first_name = request.POST.get('add_first_name')
+        last_name = request.POST.get('add_last_name')
+        email = request.POST.get('add_email')
+        telephone = request.POST.get('add_telephone')
+        celphone = request.POST.get('add_celphone')
+        birth = request.POST.get('add_birth')
+        date_career = request.POST.get('add_date_career')
+        date_campus = request.POST.get('add_date_campus')
+        date_professor = request.POST.get('add_date_professor')
+        date_area = request.POST.get('add_date_area')
+        date_institute = request.POST.get('add_date_institute')
+        job = request.POST.get('add_job')
+        academic_degrees_json = request.POST.get('add_academic_degrees')
+        blocks_json = request.POST.get('add_blocks')
+        is_professor = request.POST.get('add_is_professor') == 'true'
+        is_staff = request.POST.get('add_is_staff') == 'true'
+        is_fgfcc = request.POST.get('add_is_fgfcc') == 'true'   
+
+        new_user = User.objects.create(
+            registration_id=registration_id,
+            first_name=first_name,
+            last_name=last_name,
+            email=email,
+            telephone=telephone,
+            cell_phone=celphone,
+            # job=job,
+            is_professor=is_professor,
+            is_staff=is_staff,
+            is_fgfcc=is_fgfcc
+            )
+        
+        blocks = json.loads(blocks_json)
+        for block in blocks:
+            block_obj = Blockk.objects.get(name_block=block)
+            new_user.blocks.add(block_obj)
+        new_user.save()
+        
+        if new_user.history is not None:
+            academic_degrees = []
+            if academic_degrees_json:
+                academic_degrees = json.loads(academic_degrees_json)
+                for degree_data in academic_degrees:
+                    degree_obj = AcademicDegree.objects.get(name=degree_data)
+                    AcademicDegreeHistory.objects.create(history=history, academic_degree=degree_obj)
+
+            new_user.history.update_history(birth=birth, date_career=date_career, date_campus=date_campus,
+                                   date_professor=date_professor, date_area=date_area, date_institute=date_institute,
+                                   academic_degrees=academic_degrees)
+
+            new_user.history.save()
+        else:
+            new_user.history = History.objects.create(birth=birth, date_career=date_career, date_campus=date_campus,
+                                                  date_professor=date_professor, date_area=date_area,
+                                                  date_institute=date_institute)
+            academic_degrees = []
+            if academic_degrees_json:
+                academic_degrees = json.loads(academic_degrees_json)
+                for degree_data in academic_degrees:
+                    degree_obj = AcademicDegree.objects.get(name=degree_data)
+                    AcademicDegreeHistory.objects.create(history=new_user.history, academic_degree=degree_obj)
+
+            new_user.save()
+            return JsonResponse({'message': 'Histórico criado com sucesso.'})
 
 @login_required
 @user_passes_test(is_staff)
