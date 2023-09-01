@@ -158,7 +158,15 @@ def save_deadline(data):
 @user_passes_test(is_staff)
 def professors_list(request):
     professors = User.objects.filter(is_superuser=False)
-    return render(request, 'staff/professor/professors_list.html', {'professors': professors})
+    degrees = AcademicDegree.objects.all()
+    blockks = Blockk.objects.all()
+    data = {
+        'professors': professors,
+        'degrees': degrees,
+        'blockks': blockks
+    }
+
+    return render(request, 'staff/professor/professors_list.html', data)
 
 
 @login_required
