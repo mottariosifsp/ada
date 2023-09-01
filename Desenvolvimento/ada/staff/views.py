@@ -414,6 +414,7 @@ def block_detail(request, registration_block_id):
 @login_required
 @user_passes_test(is_staff)
 def course_create(request):
+    user_blocks = request.user.blocks.all()
     if request.method == 'POST':
         registration_course_id = request.POST.get('registration_course_id')
         name_course = request.POST.get('name_course')
@@ -423,11 +424,14 @@ def course_create(request):
 
         area = Area.objects.get(id=area_id)
         blockk = Blockk.objects.get(id=block_id)
+        if blockk in user_blocks:
 
-        course = Course.objects.create(registration_course_id=registration_course_id, name_course=name_course, acronym=acronym, area=area, blockk=blockk)
-        course.save()
+            course = Course.objects.create(registration_course_id=registration_course_id, name_course=name_course, acronym=acronym, area=area, blockk=blockk)
+            course.save()
 
-        return JsonResponse({'message': 'Disciplina criada com sucesso.'})
+            return JsonResponse({'message': 'Disciplina criada com sucesso.'})
+        else:
+            return JsonResponse({'message': 'Você não tem permissão para criar disciplinas nesse bloco.'})
 
 @login_required
 @user_passes_test(is_staff)
@@ -439,9 +443,14 @@ def course_update_save(request):
         acronym = request.POST.get('acronym')
 
         course = Course.objects.get(id=course_id)
-        course.update_course(registration_course_id=registration_course_id, name_course=name_course, acronym=acronym)
+        blockk = course.blockk
 
-        return JsonResponse({'message': 'Disciplina atualizada com sucesso.'})
+        if blockk in request.user.blocks.all():
+            course.update_course(registration_course_id=registration_course_id, name_course=name_course, acronym=acronym)
+
+            return JsonResponse({'message': 'Disciplina atualizada com sucesso.'})
+        else:
+            return JsonResponse({'message': 'Você não tem permissão para editar disciplinas nesse bloco.'})
 
 @login_required
 @user_passes_test(is_staff)
@@ -450,8 +459,11 @@ def course_delete(request):
         course_id = request.POST.get('id')
         try:
             course = Course.objects.get(id=course_id)
-            course.delete()
-            return JsonResponse({'message': 'Disciplina deletado com sucesso.'})
+            if course.blockk in request.user.blocks.all():
+                course.delete()
+                return JsonResponse({'message': 'Disciplina deletado com sucesso.'})
+            else:
+                return JsonResponse({'message': 'Você não tem permissão para deletar disciplinas nesse bloco.'})
         except Course.DoesNotExist:
             return JsonResponse({'message': 'O disciplina não existe.'}, status=404)
 
