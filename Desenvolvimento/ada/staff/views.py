@@ -394,11 +394,17 @@ def blocks_list(request):
 @login_required
 @user_passes_test(is_staff)
 def block_detail(request, registration_block_id):
+    user_blocks = request.user.blocks.all()
     blockk = Blockk.objects.get(registration_block_id=registration_block_id)
     area = blockk.areas.first()
     courses = Course.objects.filter(blockk=blockk)
     print("Materia", courses)
-    data = {'blockk': blockk, 'area': area, 'courses': courses}
+    data = {
+        'user_blocks': user_blocks,
+        'blockk': blockk, 
+        'area': area, 
+        'courses': courses
+    }
 
     return render(request, 'staff/blockk/block_detail.html', data)
 
