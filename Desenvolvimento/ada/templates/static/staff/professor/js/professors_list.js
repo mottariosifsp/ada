@@ -25,6 +25,9 @@ $(document).ready(function () {
     }
 
     $('#professors_list').DataTable({
+        "paging": false,
+        "scrollY": "400px",
+        "scrollCollapse": true,
         "scrollX": true,
         columnDefs: [
             {
