@@ -77,18 +77,20 @@
                             <td>{{ professor.history.date_area|date:"Y-m-d" }}</td>
                             <td>{{ professor.history.date_institute|date:"Y-m-d" }}</td>
                             <td class="text-center">
-                                {% if  professor.job == None %}
+                                {% if professor.job == None %}
                                 -
-                                {% elif professor.job == "RDE" %}
+                                {% elif "RDE" in professor.job.name_job %}
                                 RDE
-                                {% elif professor.job == "SUBSTITUTE" %}
+                                {% elif "SUBSTITUTE" in professor.job.name_job%}
                                 Substituto
-                                {% elif professor.job == "TEMPORARY" %}
+                                {% elif "TEMPORARY" in professor.job.name_job%}
                                 Temporário
-                                {% elif professor.job == "TWENTY_HOURS" %}
+                                {% elif  "TWENTY_HOURS" in professor.job.name_job%}
                                 20 Horas
-                                {% elif professor.job == "FORTY_HOURS" %}
+                                {% elif "FORTY_HOURS" in professor.job.name_job %}
                                 40 Horas
+                                {% else %}
+                                oier
                                 {% endif %}
                             </td>
                             <td>
