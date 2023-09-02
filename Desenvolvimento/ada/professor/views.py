@@ -3,13 +3,14 @@ from django.shortcuts import render
 from django.contrib.auth.decorators import user_passes_test
 from django.contrib.auth.decorators import login_required
 from django.core import serializers
-
+from django.contrib.auth import get_user_model
 
 from django.utils.decorators import method_decorator
 from timetable.models import Timeslot, Timetable_user, Timetable
 from area.models import Area
 from staff.models import Deadline
 from datetime import datetime, timedelta
+from classs.models import Classs
 
 from user.models import User
 from django.core.mail import send_mail, EmailMessage
@@ -213,16 +214,16 @@ def profile(request):
 
     return render(request, 'professor/profile.html', data)
 
+@login_required
 def assignments(request):
-    timetables = Timetable.objects.all()
-    user_blocks = []
-    if request.user.is_authenticated:
-        user_blocks = request.user.blocks.all()
+    user = request.user
 
-    user_areas = Area.objects.none()
-    for user_block in user_blocks:
-        area = Area.objects.filter(blocks=user_block)
-        user_areas = user_areas.union(area)
+    user_timetables = Timetable_user.objects.filter(user=user).values_list('timetable_id', flat=True)
+
+    user_classes = Classs.objects.filter(timetable__in=user_timetables)
+
+    # Pega todas as áreas das classes
+    user_areas = Area.objects.filter(classs__in=user_classes).distinct()
     print("Areasss", user_areas)
 
     return render(request, 'professor/assignments.html', {'user_areas': user_areas})
