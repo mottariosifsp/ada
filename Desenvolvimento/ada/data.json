@@ -4731,7 +4731,7 @@
         "pk": 1,
         "fields": {
             "position": 1,
-            "hour_start": "07:00:00",
+            "hour_start": "07:00:01",
             "hour_end": "07:45:00"
         }
     },
@@ -4758,7 +4758,7 @@
         "pk": 4,
         "fields": {
             "position": 4,
-            "hour_start": "09:30:00",
+            "hour_start": "09:30:01",
             "hour_end": "10:15:00"
         }
     },
@@ -4785,7 +4785,7 @@
         "pk": 7,
         "fields": {
             "position": 7,
-            "hour_start": "13:15:00",
+            "hour_start": "13:15:01",
             "hour_end": "14:00:00"
         }
     },
@@ -4812,7 +4812,7 @@
         "pk": 10,
         "fields": {
             "position": 10,
-            "hour_start": "15:45:00",
+            "hour_start": "15:45:01",
             "hour_end": "16:30:00"
         }
     },
@@ -4875,7 +4875,7 @@
         "pk": 22,
         "fields": {
             "position": 17,
-            "hour_start": "21:20:00",
+            "hour_start": "21:20:01",
             "hour_end": "22:05:00"
         }
     },

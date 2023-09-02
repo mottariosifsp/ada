@@ -11,6 +11,8 @@ import traceback
 from pathlib import Path
 from django.contrib.auth import logout
 from datetime import datetime
+import re
+from django import forms
 
 def login(request):
     if request.method == 'POST':
@@ -31,7 +33,41 @@ def home(request):
     
 
 def signup(request):
-    return render(request, 'registration/signup.html')
+    class RegistrationForm(forms.Form):
+        email = forms.EmailField(label='Email')
+        password = forms.CharField(widget=forms.PasswordInput, label='Senha')
+
+    if request.method == 'POST':
+        form = RegistrationForm(request.POST)
+        if form.is_valid():
+            email = form.cleaned_data['email']
+            password = form.cleaned_data['password']
+
+            if re.match(r'^[\w\.-]+@aluno\.ifsp\.edu\.br$', email):
+
+                if email and password:
+                    professor = User.objects.get(email=email)
+                    professor.is_active = True
+                    professor.save()
+                    print(professor)
+                    #login(request, user)
+                    return redirect('login')
+                else:
+                    print(f"Erro de autenticação: {email}, {password}")
+                    error_message = 'E-mail ou senha incorretos'
+                    return render(request, 'registration/signup.html', {'form': form, 'error_message': error_message})
+            else:
+                # Email incorreto
+                error_message = 'O email deve ser do tipo @aluno.ifsp.edu.br'
+                return render(request, 'registration/signup.html', {'form': form, 'error_message': error_message})
+        else:
+            # Formulário inválido
+            error_message = 'Formulário inválido'
+            return render(request, 'registration/signup.html', {'form': form, 'error_message': error_message})
+    else:
+        form = RegistrationForm()
+
+    return render(request, 'registration/signup.html', {'form': form})
 
 def logout_view(request):
     logout(request)
