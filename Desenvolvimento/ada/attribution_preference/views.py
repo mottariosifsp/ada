@@ -908,5 +908,5 @@ def convert_string_to_datetime(hora_string):
         elif indicator == 'a.m.' and hour == 12:
             hour = 0
 
-        return datetime.time(hour=hour, minute=minute, second=0)
+        return datetime.time(hour=hour, minute=minute, second=1)
 
