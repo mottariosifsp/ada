@@ -231,7 +231,7 @@ def save_deadline(data):
 @login_required
 @user_passes_test(is_staff)
 def professors_list(request):
-    professors = User.objects.filter(is_superuser=False)
+    professors = get_user_model().objects.filter(is_professor=True)
     return render(request, 'staff/professor/professors_list.html', {'professors': professors})
 
 
