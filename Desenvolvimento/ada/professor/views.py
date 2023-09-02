@@ -226,7 +226,30 @@ def assignments(request):
     user_areas = Area.objects.filter(classs__in=user_classes).distinct()
     print("Areasss", user_areas)
 
+
+    # for area in user_areas:
+    #     classes_da_area = Classs.objects.filter(area=area)
+    #
+    #     timetables_do_usuario = Timetable_user.objects.filter(user=user).values_list('timetable_id', flat=True)
+    #
+    #     classes_do_usuario = classes_da_area.filter(timetable__id__in=timetables_do_usuario)
+    #     print("classes do usuario", classes_do_usuario)
+
+
     return render(request, 'professor/assignments.html', {'user_areas': user_areas})
+
+@login_required
+def final_assignments_classs(request, area_name):
+    user = request.user
+    classes_da_area = Classs.objects.filter(area__name_area=area_name)
+
+    timetables_do_usuario = Timetable_user.objects.filter(user=user).values_list('timetable_id', flat=True)
+
+    classes_do_usuario = classes_da_area.filter(timetable__id__in=timetables_do_usuario)
+    print("classes do usuario", classes_do_usuario)
+
+    return render(request, 'professor/final_assignments_class_list.html')
+
 
 def day_to_number(day):
     number = {

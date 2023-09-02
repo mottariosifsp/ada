@@ -3,7 +3,7 @@
 {% load static %}
 
 {% block head %}
-    <title>{% trans "Atribuições Professor(a)" %}</title>
+    <title>{% trans "Área x" %}</title>
 {% endblock %}
 
 {% block body %}
@@ -13,13 +13,13 @@
     <ol class="breadcrumb hidden-itens">
         <li class="breadcrumb-item"><a href="{% url 'home' %}"><i class="bi bi-house-door"></i></a></li>
         <li class="breadcrumb-item active">{% trans "Atribuições" %}</li>
+        <li class="breadcrumb-item active">{% trans "Área" %}</li>
     </ol>
 </nav>
 
 <div class="area-container">
     {% for area in user_areas %}
-                <<a href="{% url 'final_assignments_classs' area_name=area.name_area %}" class="area-link">
-
+        <a href="#" class="area-link">
             <div class="area">
                 {% if area.name_area == "INFORMÁTICA" %}
                     <img src="{% static 'images/informatica.png' %}" alt="Ícone de Informática">
@@ -33,37 +33,5 @@
         </a>
     {% endfor %}
 </div>
-
-
-    <style>
-    .area-container {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: center;
-    }
-
-    .area {
-        text-align: center;
-        margin: 10px;
-        flex: 1;
-        display: flex;
-        flex-direction: column; /* Empilhar elementos verticalmente */
-        align-items: center; /* Centralizar elementos horizontalmente */
-    }
-
-    .area img {
-        width: 300px;
-        height: 300px;
-    }
-
-    .area-name {
-        margin-top: 5px;
-    }
-
-    .area-link {
-        text-decoration: none;
-        color: inherit;
-    }
-</style>
 
 {% endblock %}
