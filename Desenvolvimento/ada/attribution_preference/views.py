@@ -250,13 +250,13 @@ def disponibility_attribution_preference(request):
     elif user_regime.name_job == "rde":
         user_regime_choosed = user_regime
         user_regime_choosed.name_job = 'RDE'
-    elif  user_regime.name_job == 'temporary':
+    elif  user_regime.name_job == 'TEMPORARY':
         user_regime_choosed = user_regime
         user_regime_choosed.name_job = 'Temporário'
-    elif user_regime.name_job == 'substitute':
+    elif user_regime.name_job == 'SUBSTITUTE':
         user_regime_choosed = user_regime
         user_regime_choosed.name_job = 'Substituto'
-    elif user_regime.name_job == 'twenty_hours':
+    elif user_regime.name_job == 'TWENTY_HOURS':
         user_regime_choosed = user_regime
         user_regime_choosed.name_job = '20'
     elif user_regime.name_job == 'forty_hours':
@@ -273,7 +273,7 @@ def disponibility_attribution_preference(request):
         'quantity_cells_3_hours': quantity_cells_3_hours,
         'user_timeslot_table': user_timeslot_table,
         'user_regime': user_regime_choosed
-    }
+    }    
 
     return render(request, 'attribution_preference/disponibility_attribution_preference.html', data)
 
@@ -328,7 +328,7 @@ def courses_attribution_preference(request):
             }
             user_block.append(block_obj)
 
-        user_blocks_ids = [int(block['id']) for block in user_block]
+        user_blocks_ids = [block['id'] for block in user_block]
 
         user_timetable = []
         for id_block in user_blocks_ids:
@@ -483,12 +483,14 @@ def courses_attribution_preference(request):
             }
             user_timeslot_table.append(string)
         
-        if user_regime.name_job == "rde" or user_regime.name_job == "forty_hours" or user_regime.name_job == "temporary":
+        if user_regime.name_job == "RDE" or user_regime.name_job == "FORTY_HOURS" or user_regime.name_job == "TEMPORARY":
             user_regime_choosed = user_regime
             user_regime_choosed.name_job = '40'
-        elif user_regime.name_job == "twenty_hours" or user_regime.name_job == "substitute":
+        elif user_regime.name_job == "TWENTY_HOURS" or user_regime.name_job == "SUBSTITUTE":
             user_regime_choosed = user_regime
             user_regime_choosed.name_job = '20'
+        else:
+            user_regime_choosed = user_regime
 
     courses_from_block = []
     course_preferences_with_blockk = Course_preference.objects.filter(attribution_preference__user=request.user)

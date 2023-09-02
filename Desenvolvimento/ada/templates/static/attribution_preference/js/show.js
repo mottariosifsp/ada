@@ -1,5 +1,5 @@
 var lang = document.currentScript.getAttribute("data-lang");
-var user_regime = document.currentScript.getAttribute("user_regime");
+var user_regime = (document.currentScript.getAttribute("user_regime")).toLowerCase();
 var user_disponibility_choosed = document.currentScript.getAttribute("user_disponibility_choosed");
 var user_courses_choosed = document.currentScript.getAttribute("user_courses_choosed");
 
@@ -72,11 +72,16 @@ for (var i = 0; i < user_courses_choosed_array.length; i++) {
         period_language = 'noturno'
     }
 
+
     if(priority_attr == 'priority' && lang == 'pt-br') {
         priority_attr = 'prioritária'
-    } else if(priority_attr == 'secondary' && lang == 'pt-br') {
+    } else if(priority_attr == 'priority') {
+        priority_attr = 'primary'
+    }
+    if(priority_attr == 'secondary' && lang == 'pt-br') {
         priority_attr = 'secundária'
     }
+    
   
     var new_row = '<tr>' +
       '<td class="text-center align-middle">' + acronym + '</td>' +
