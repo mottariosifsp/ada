@@ -16,10 +16,10 @@ from timetable.models import Day_combo, Timeslot, Timetable, Timetable_user
 from area.models import Blockk, Area
 from classs.models import Classs
 from course.models import Course
-from user.models import AcademicDegreeHistory, User, History, AcademicDegree
+from user.models import AcademicDegreeHistory, User, History, AcademicDegree, Job
 from .models import Deadline, Criteria
 from django.db.models import F, Sum, Value
-from staff.models import Deadline
+from staff.models import Deadline, Alert
 from datetime import datetime, timedelta
 
 from django.contrib.auth.decorators import login_required
@@ -34,6 +34,35 @@ def is_staff(user):
 @login_required
 @user_passes_test(is_staff)
 def home(request):
+    if request.method == 'POST':
+        title = request.POST.get('title')
+        description = request.POST.get('description')
+        blockk_id = request.POST.get('block')
+        link = request.POST.get('link')
+        print(link)
+
+        if blockk_id:
+            name_alert = "ALERT"
+            blockk = Blockk.objects.get(id=blockk_id)
+        else:
+            name_alert = "LINK"
+            blockk = None
+            title = None
+
+        if link:
+            describe = link
+        else:
+            describe = description
+
+        Alert.objects.create(
+            name_alert=name_alert,
+            created_by=request.user,
+            title=title,
+            description=describe,
+            blockk=blockk,
+        )
+
+    user = request.user
     status = 'not_configured'
     period = {
         'status': status,
@@ -74,9 +103,6 @@ def home(request):
 
     if fpa_status == 'finished' and attribution_status == 'finished':
         status = 'finished'
-
-    print(fpa_status, attribution_status)
-
     if fpa_status == 'ongoing':
         status = 'fpa'
     elif attribution_status == 'ongoing':
@@ -127,8 +153,11 @@ def home(request):
                 period['end_time'] = nearest_deadline.deadline_end.strftime("%H:%M")
 
     period['status'] = status
+
+    user_blocks = user.blocks.all()
         
     data = {
+        'user_blocks': user_blocks,
         'period': period
     }
     return render(request, 'staff/home_staff.html', data)
@@ -265,6 +294,8 @@ def add_new_professor(request):
         is_professor = request.POST.get('add_is_professor') == 'true'
         is_staff = request.POST.get('add_is_staff') == 'true'
         is_fgfcc = request.POST.get('add_is_fgfcc') == 'true'   
+        
+        job_obj = Job(job).name
 
         new_user = User.objects.create(
             registration_id=registration_id,
@@ -273,7 +304,7 @@ def add_new_professor(request):
             email=email,
             telephone=telephone,
             cell_phone=celphone,
-            # job=job,
+            job=job_obj,
             is_professor=is_professor,
             is_staff=is_staff,
             is_fgfcc=is_fgfcc
@@ -335,15 +366,16 @@ def update_save(request):
         is_staff = request.POST.get('is_staff')  == 'true'
         is_fgfcc = request.POST.get('is_fgfcc')  == 'true'
 
-
+        
         # User = get_user_model()
+
         user = User.objects.get(registration_id=registration_id)
+        create_job(user, job)
         user.first_name = first_name
         user.last_name = last_name
         user.email = email
         user.telephone = telephone
         user.cell_phone = celphone
-        # user.job = job
         user.is_professor = is_professor
         user.is_staff = is_staff
         user.is_fgfcc = is_fgfcc
@@ -385,6 +417,26 @@ def update_save(request):
             return JsonResponse({'message': 'Histórico criado com sucesso.'})
 
         return JsonResponse({'message': 'Alterações salvas com sucesso.'})
+
+def create_job(user_regime, user):
+    if Job.objects.filter(user=user).exists():
+        job = User.objects.filter(id=user.id).first().job
+        User.objects.filter(id=user.id).update(job=None)
+        job.delete()
+
+    if(user_regime == 'RDE'):
+        name_job = Job.objects.create(name_job=enum.Job.RDE.name)
+    elif(user_regime == 'Temporário'):
+        name_job = Job.objects.create(name_job=enum.Job.TEMPORARY.name)
+    elif(user_regime == 'Substituto'):
+        name_job = Job.objects.create(name_job=enum.Job.SUBSTITUTE.name)
+    elif(user_regime == '40'):
+        name_job = Job.objects.create(name_job=enum.Job.FORTY_HOURS.name)
+    else:
+        name_job = Job.objects.create(name_job=enum.Job.TWENTY_HOURS.name)
+
+    user.job = name_job
+    user.save()
 
 # class views
 @login_required
@@ -643,6 +695,7 @@ def edit_timetable(request):
                         "cord": f'{position}-{day}',
                         "course": timetable.course.name_course,
                         "acronym": timetable.course.acronym,
+                        "id": timetable.course.registration_course_id,
                     }
                     timetable_complete.append(timetable_professor)
 

@@ -17,7 +17,14 @@ body{
     z-index: 90;
     transition: all 0.4s;
   }
+<<<<<<< HEAD
+  .big-text {
+    padding-top: 2px;
+      font-size:smaller;
+  }
+=======
   
+>>>>>>> 527f969931e9e2292f94744266717181f0b846aa
   .hover img {
     width: 100%;
     position: absolute;

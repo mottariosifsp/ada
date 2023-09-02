@@ -18,8 +18,8 @@ class Priority(Enum):
     secondary = 'SECONDARY'
 
 class Job(Enum):
-    twenty_hours = 'TWENTY_HOURS'
-    forty_hours = 'FORTY_HOURS'
-    rde = 'RDE'
-    temporary = 'TEMPORARY'
-    substitute = 'SUBSTITUTE'
+    TWENTY_HOURS = 'TWENTY_HOURS'
+    FORTY_HOURS = 'FORTY_HOURS'
+    RDE = 'RDE'
+    TEMPORARY = 'TEMPORARY'
+    SUBSTITUTE = 'SUBSTITUTE'

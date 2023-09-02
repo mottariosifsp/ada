@@ -54,7 +54,7 @@
                         <tr>
                             <td>{{ professor.first_name }}</td>
                             <td>{{ professor.last_name }}</td>
-                            <td >{{ professor.registration_id }}</td>
+                            <td>{{ professor.registration_id }}</td>
                             <td>{{ professor.email }}</td>
                             <td class="text-center">
                                 {% if professor.telephone == None %}
@@ -77,8 +77,18 @@
                             <td>{{ professor.history.date_area|date:"Y-m-d" }}</td>
                             <td>{{ professor.history.date_institute|date:"Y-m-d" }}</td>
                             <td class="text-center">
-                                {% if  professor.job == None %}-{% else %}
-                                {{ professor.job }}
+                                {% if  professor.job == None %}
+                                -
+                                {% elif professor.job == "RDE" %}
+                                RDE
+                                {% elif professor.job == "SUBSTITUTE" %}
+                                Substituto
+                                {% elif professor.job == "TEMPORARY" %}
+                                Temporário
+                                {% elif professor.job == "TWENTY_HOURS" %}
+                                20 Horas
+                                {% elif professor.job == "FORTY_HOURS" %}
+                                40 Horas
                                 {% endif %}
                             </td>
                             <td>
@@ -162,11 +172,11 @@
                     <div class="row">
                         <div class="col">
                             <label for="add_telephone">{% trans "Telefone" %}</label>
-                            <input type="tel" class="form-control" id="add_telephone" />
+                            <input type="text" data-js="telephone" class="form-control telephone-input" id="add_telephone" />
                         </div>
                         <div class="col">
                             <label for="add_celphone">{% trans "Celular" %}</label>
-                            <input type="tel" class="form-control" id="add_celphone" />
+                            <input type="text" data-js="celphone" class="form-control phone-input" id="add_celphone" />
                         </div>
                     </div>
                     <h3>{% trans "Histórico do professor" %}</h3>
@@ -319,11 +329,11 @@
                     <div class="row">
                         <div class="col">
                             <label for="telephone">{% trans "Telefone" %}</label>
-                            <input type="tel" class="form-control" id="telephone" />
+                            <input type="text" data-js="telephone" class="form-control telephone-input" id="telephone" />
                         </div>
                         <div class="col">
                             <label for="celphone">{% trans "Celular" %}</label>
-                            <input type="tel" class="form-control" id="celphone" />
+                            <input type="text" data-js="celphone" class="form-control phone-input" id="celphone" />
                         </div>
                     </div>
                     <h3>{% trans "Histórico do professor" %}</h3>
@@ -356,10 +366,10 @@
                         <select class="form-control" id="job">
                             <option hidden>{% trans "Defina um regime" %}</option>
                             <option value='RDE'>{% trans "RDE" %}</option>
-                            <option value='SUBSTITUE'>{% trans "Substituto" %}</option>
+                            <option value='SUBSTITUTE'>{% trans "Substituto" %}</option>
                             <option value='TEMPORARY'>{% trans "Temporário" %}</option>
-                            <option value='HOURS20'>{% trans "20 Horas" %}</option>
-                            <option value='HOURS40'>{% trans "40 Horas" %}</option>
+                            <option value='TWENTY_HOURS'>{% trans "20 Horas" %}</option>
+                            <option value='FORTY_HOURS'>{% trans "40 Horas" %}</option>
                         </select>
                     </div>
                     <label for="blocks" id="block-title">{% trans "Blocos do usuário" %}</label>

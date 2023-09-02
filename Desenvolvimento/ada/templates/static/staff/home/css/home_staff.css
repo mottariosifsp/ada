@@ -7,6 +7,11 @@
     transition: all 0.2s ease;
 }
 
+.big-text {
+    padding-top: 2px;
+      font-size:smaller;
+  }
+
 .redirect-button:hover {
     background-color: #329ee6;
     width: 16.5rem;

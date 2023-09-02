@@ -804,15 +804,15 @@ def save_disponiility_preference(user_timeslots, user_regime, user):
         job.delete()
 
     if(user_regime == 'RDE'):
-        name_job = Job.objects.create(name_job=enum.Job.rde.name)
+        name_job = Job.objects.create(name_job=enum.Job.RDE.name)
     elif(user_regime == 'Temporário'):
-        name_job = Job.objects.create(name_job=enum.Job.temporary.name)
+        name_job = Job.objects.create(name_job=enum.Job.TEMPORARY.name)
     elif(user_regime == 'Substituto'):
-        name_job = Job.objects.create(name_job=enum.Job.substitute.name)
+        name_job = Job.objects.create(name_job=enum.Job.SUBSTITUTE.name)
     elif(user_regime == '40'):
-        name_job = Job.objects.create(name_job=enum.Job.forty_hours.name)
+        name_job = Job.objects.create(name_job=enum.Job.FORTY_HOURS.name)
     else:
-        name_job = Job.objects.create(name_job=enum.Job.twenty_hours.name)
+        name_job = Job.objects.create(name_job=enum.Job.TWENTY_HOURS.name)
 
     user.job = name_job
     user.save()
