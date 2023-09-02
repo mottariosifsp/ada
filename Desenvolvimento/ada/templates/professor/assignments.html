@@ -16,4 +16,54 @@
     </ol>
     </nav>
 
+
+<div class="area-container">
+    {% for area in user_areas %}
+        <a href="#" class="area-link">
+            <div class="area">
+                {% if area.name_area == "INFORMÁTICA" %}
+                    <img src="{% static 'images/informatica.png' %}" alt="Ícone de Informática">
+                {% elif area.name_area == "TECNOLOGIA EM ANÁLISE E DESENVOLVIMENTO DE SISTEMAS" %}
+                    <img src="{% static 'images/tads.png' %}" alt="Ícone de TADS">
+                {% elif area.name_area == "DESENVOLVIMENTO DE SISTEMAS" %}
+                    <img src="{% static 'images/desenvolvimento-sist.png' %}" alt="Ícone de TADS">
+                {% endif %}
+                <span class="area-name">{{ area.name_area }}</span>
+            </div>
+        </a>
+    {% endfor %}
+</div>
+
+
+    <style>
+    .area-container {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .area {
+        text-align: center;
+        margin: 10px;
+        flex: 1;
+        display: flex;
+        flex-direction: column; /* Empilhar elementos verticalmente */
+        align-items: center; /* Centralizar elementos horizontalmente */
+    }
+
+    .area img {
+        width: 300px;
+        height: 300px;
+    }
+
+    .area-name {
+        margin-top: 5px;
+    }
+
+    .area-link {
+        text-decoration: none;
+        color: inherit;
+    }
+</style>
+
 {% endblock %}

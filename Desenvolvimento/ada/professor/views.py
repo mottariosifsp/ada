@@ -6,7 +6,8 @@ from django.core import serializers
 
 
 from django.utils.decorators import method_decorator
-from timetable.models import Timeslot, Timetable_user
+from timetable.models import Timeslot, Timetable_user, Timetable
+from area.models import Area
 from staff.models import Deadline
 from datetime import datetime, timedelta
 
@@ -213,8 +214,18 @@ def profile(request):
     return render(request, 'professor/profile.html', data)
 
 def assignments(request):
+    timetables = Timetable.objects.all()
+    user_blocks = []
+    if request.user.is_authenticated:
+        user_blocks = request.user.blocks.all()
 
-    return render(request, 'professor/assignments.html')
+    user_areas = Area.objects.none()
+    for user_block in user_blocks:
+        area = Area.objects.filter(blocks=user_block)
+        user_areas = user_areas.union(area)
+    print("Areasss", user_areas)
+
+    return render(request, 'professor/assignments.html', {'user_areas': user_areas})
 
 def day_to_number(day):
     number = {
