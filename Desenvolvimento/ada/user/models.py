@@ -49,7 +49,7 @@ class User(AbstractBaseUser, PermissionsMixin):
     is_fgfcc = models.BooleanField(_('fgfcc'), default=False)
     is_professor = models.BooleanField(_('professor'), default=False)
     history = models.ForeignKey('user.History', on_delete=models.CASCADE, blank=True, unique=True, null=True)
-    job = models.ForeignKey('Job', on_delete=models.CASCADE, null=True, blank=True)
+    job = models.CharField(_('job'), choices=[(s.name, s.value) for s in enum.Job], max_length=45, blank=True, null=True)
     blocks = models.ManyToManyField('area.Blockk', blank=True, related_name='user_blocks')
     objects = UserManager()
 
