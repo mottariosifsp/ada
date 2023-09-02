@@ -5,7 +5,7 @@ from django.urls import reverse
 from attribution.models import TeacherQueuePosition, TeacherQueuePositionBackup
 # from attribution import task
 from attribution.views import schedule_attributtion_deadline_staff
-from enums import enum
+from enums.enum import Job, Period, Day
 from django.db import transaction
 from django.http import JsonResponse
 from django.shortcuts import get_object_or_404, redirect, render
@@ -265,6 +265,8 @@ def add_new_professor(request):
         is_professor = request.POST.get('add_is_professor') == 'true'
         is_staff = request.POST.get('add_is_staff') == 'true'
         is_fgfcc = request.POST.get('add_is_fgfcc') == 'true'   
+        
+        job_obj = Job(job).name
 
         new_user = User.objects.create(
             registration_id=registration_id,
@@ -273,7 +275,7 @@ def add_new_professor(request):
             email=email,
             telephone=telephone,
             cell_phone=celphone,
-            # job=job,
+            job=job_obj,
             is_professor=is_professor,
             is_staff=is_staff,
             is_fgfcc=is_fgfcc
@@ -335,15 +337,17 @@ def update_save(request):
         is_staff = request.POST.get('is_staff')  == 'true'
         is_fgfcc = request.POST.get('is_fgfcc')  == 'true'
 
-
+        
         # User = get_user_model()
+        job_obj = Job(job).name
+
         user = User.objects.get(registration_id=registration_id)
         user.first_name = first_name
         user.last_name = last_name
         user.email = email
         user.telephone = telephone
         user.cell_phone = celphone
-        # user.job = job
+        user.job = job_obj
         user.is_professor = is_professor
         user.is_staff = is_staff
         user.is_fgfcc = is_fgfcc
@@ -394,7 +398,7 @@ def classes_list(request):
     areas = Area.objects.all()
     periods = [
         {'value': period.name, 'label': period.value}
-        for period in enum.Period
+        for period in Period
     ]
     return render(request, 'staff/classs/classes_list.html', {'classes': classes, 'periods': periods, 'areas': areas})
 
@@ -643,6 +647,7 @@ def edit_timetable(request):
                         "cord": f'{position}-{day}',
                         "course": timetable.course.name_course,
                         "acronym": timetable.course.acronym,
+                        "id": timetable.course.registration_course_id,
                     }
                     timetable_complete.append(timetable_professor)
 
@@ -876,12 +881,12 @@ def positions_to_timeslots(positions):
 
 def number_to_day_enum(day_number):
     day = (
-        enum.Day.monday.name,
-        enum.Day.tuesday.name,
-        enum.Day.wednesday.name,
-        enum.Day.thursday.name,
-        enum.Day.friday.name,
-        enum.Day.saturday.name,
+        Day.monday.name,
+        Day.tuesday.name,
+        Day.wednesday.name,
+        Day.thursday.name,
+        Day.friday.name,
+        Day.saturday.name,
     )
 
     return day[day_number]
