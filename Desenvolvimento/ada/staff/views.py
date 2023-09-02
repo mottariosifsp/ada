@@ -19,7 +19,7 @@ from course.models import Course
 from user.models import AcademicDegreeHistory, User, History, AcademicDegree, Job
 from .models import Deadline, Criteria
 from django.db.models import F, Sum, Value
-from staff.models import Deadline
+from staff.models import Deadline, Alert
 from datetime import datetime, timedelta
 
 from django.contrib.auth.decorators import login_required
@@ -34,6 +34,35 @@ def is_staff(user):
 @login_required
 @user_passes_test(is_staff)
 def home(request):
+    if request.method == 'POST':
+        title = request.POST.get('title')
+        description = request.POST.get('description')
+        blockk_id = request.POST.get('block')
+        link = request.POST.get('link')
+        print(link)
+
+        if blockk_id:
+            name_alert = "ALERT"
+            blockk = Blockk.objects.get(id=blockk_id)
+        else:
+            name_alert = "LINK"
+            blockk = None
+            title = None
+
+        if link:
+            describe = link
+        else:
+            describe = description
+
+        Alert.objects.create(
+            name_alert=name_alert,
+            created_by=request.user,
+            title=title,
+            description=describe,
+            blockk=blockk,
+        )
+
+    user = request.user
     status = 'not_configured'
     period = {
         'status': status,
@@ -74,9 +103,6 @@ def home(request):
 
     if fpa_status == 'finished' and attribution_status == 'finished':
         status = 'finished'
-
-    print(fpa_status, attribution_status)
-
     if fpa_status == 'ongoing':
         status = 'fpa'
     elif attribution_status == 'ongoing':
@@ -127,8 +153,11 @@ def home(request):
                 period['end_time'] = nearest_deadline.deadline_end.strftime("%H:%M")
 
     period['status'] = status
+
+    user_blocks = user.blocks.all()
         
     data = {
+        'user_blocks': user_blocks,
         'period': period
     }
     return render(request, 'staff/home_staff.html', data)

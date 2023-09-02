@@ -40,10 +40,8 @@ class Criteria(models.Model):
 class Alert(models.Model):
     name_alert = models.CharField(_('name alert'), max_length=90, null=False, blank=False)
     created_by = models.ForeignKey('user.User', on_delete=models.CASCADE, null=True)
-    title = models.CharField(_('title'), max_length=90, null=False, blank=False,)
-    description = models.TextField(_('description'), null=True, blank=True, max_length=500)
-    alert_start = models.DateTimeField(_('alert start'))
-    alert_end = models.DateTimeField(_('alert end'))
+    title = models.CharField(_('title'), max_length=45, null=True, blank=True)
+    description = models.TextField(_('description'), null=False, blank=False, max_length=500)
     blockk = models.ForeignKey('area.Blockk', on_delete=models.CASCADE, null=True)
 
     class Meta:

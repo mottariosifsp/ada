@@ -3,20 +3,28 @@
 {% load i18n %}
 {% block head %}
   <title>{% trans "Home Administrador" %}</title>
-  <script src="{% static 'staff/home/js/home_staff.js' %}"></script>
+  <script src="{% static 'staff/home/js/home_staff.js' %}" data-lang={{LANGUAGE_CODE}}></script>
   <link rel="stylesheet" href="{% static 'staff/home/css/home_staff.css' %}"></link>
 {% endblock %}
 
 {% block body %}
 
 <h1 class="title-page">{% trans "Home Staff" %}</h1>
-    <nav>
-    <ol class="breadcrumb hidden-itens">
-        <li class="breadcrumb-item active"><i class="mr-2 bi bi-house-door"></i> {% trans "Home" %}</li>
-    </ol>
-    </nav>
+<nav>
+<ol class="breadcrumb hidden-itens">
+    <li class="breadcrumb-item active"><i class="mr-2 bi bi-house-door"></i> {% trans "Home" %}</li>
+</ol>
+</nav>
 
 <div class="container">
+  <div id="error-alert" class="alert alert-danger" style="display: none;">
+    <button type="button" class="close" aria-label="Close" onclick="closeErrorAlert('error-alert')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+    <span class="fa fa-times-circle"></span>
+    <b>{% trans "Erro" %}:</b>
+    <span id="error-message"></span>                        
+  </div>
   <div class="row">
     <div class="mt-4 col-12 col-md-6">
       <div class="card info-card sales-card">
@@ -26,7 +34,7 @@
           <div>
             {% if period.status == 'not_configured' %}
             <p><div class="float-right message-info-not-configured">{% trans 'Não Configurado'%}</div><b>{% trans "Período" %}</b> </p>
-            <p class="home-begin"><b>{% trans "Situação" %}</b> <div class="float-right text-center">{% trans 'Espere até que seja emitido pelo administrador as datas da atribuição' %}.</div></p>
+            <p class="home-begin"><b>{% trans "Situação" %}</b><div class=" text-center big-text">{% trans 'Espere até que seja emitido pelo administrador as datas da atribuição' %}.</div> </p>
             {% elif period.status == 'configured_STARTFPADEADLINE' %}
             <p><div class="float-right message-info-not-configured">{% trans 'Prazo configurado - FPA'%}</div> <b>{% trans "Período" %}</b> </p>
             <p class="home-begin"><div class=" float-right">{{period.start_day}} {% trans "ás" %} {{period.start_time}}</div><b>{% trans "Inicio" %}</b> </p>
@@ -54,8 +62,9 @@
         <div class="card-body">
           <h4 class="card-title">{% trans "Alertas" %} <i class="fas fa-exclamation-triangle custom-icon"></i></h4>
           <hr class="my-0">
-          <div class="text-center">
-            
+          <div class="">
+            <p class="mt-2">{% trans "Nenhum alerta configurado para seus blocos" %}.</p>
+            <button type="button"  class="btn w-100 ada-btn-sucess" data-toggle="modal" data-target="#add-alert">{% trans "Adicionar Alerta" %}</button>
           </div>
         </div>
       </div>
@@ -66,8 +75,9 @@
         <div class="card-body">
           <h4 class="card-title">{% trans "Atualizações Legislação" %} <i class="far fa-file custom-icon"></i></h4>
           <hr>
-          <div class="text-center">
-            
+          <div>
+            <p class="mt-2">{% trans "Nenhum link da legislação configurado" %}.</p>
+            <button type="button"  class="btn w-100 ada-btn-sucess" data-toggle="modal" data-target="#add-link">{% trans "Adicionar Atualização" %}</button>
           </div>
         </div>
       </div>
@@ -76,11 +86,106 @@
           <h4 class="card-title">{% trans "Permutações para você" %} <i class="fas fa-exchange-alt custom-icon"></i></h4>
           <hr class="my-0">
           <div class="text-center">
-            
+            <p class="m-5 p-5"><b>{% trans "Permuta não foi habilitada" %}</b>.</p>
           </div>
         </div>
       </div>
     </div>
   </div>
+</div>
+
+<div class="modal center-modal fade my-custom-modal" id="add-alert" tabindex="-1" role="dialog" aria-labelledby="add-alert-label" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="add-alert-label">{% trans "Adicionar Alerta" %}</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div id="error-alert-modal" class="alert alert-danger" style="display: none;">
+          <button type="button" class="close" aria-label="Close" onclick="closeErrorAlert('error-alert-modal')">
+            <span aria-hidden="true">&times;</span>
+          </button>
+          <span class="fa fa-times-circle"></span>
+          <b>{% trans "Erro" %}:</b>
+          <span id="error-message-modal"></span>                        
+        </div>
+        <form id="add-alert-form" method="post">
+          {% csrf_token %}
+          <div class="form-group">
+            <label for="title-input" class="form-label"><b>{% trans "Título" %}</b></label>
+            <div class="input-group">
+              <input required id="title-input" type="text" maxlength="45" name="title" class="form-control w-100" placeholder="{% trans 'Ex: Prazo de Atribuição Estendido' %}">                           
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="comment-input" class="form-label"><b>{% trans "Descrição" %}</b></label>
+            <div class="input-group">
+              <input required id="comment-input" type="text" maxlength="90" name="description" class="form-control w-100" placeholder="{% trans 'Escreva aqui sua descrição' %}">                    
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="block" class="form-label"><b>{% trans "Bloco" %}</b></label>
+            <div class="input-group">
+              <select required class="w-100 form-control" name="block" id="block">
+                <option selected disabled>{% trans 'Selecione o bloco' %}</option>
+                {% for blockk in user_blocks %}
+                {% blocktrans with name_block_text=blockk.name_block id=blockk.id %}
+                    <option value="{{ id }}">{{ name_block_text }}</option>
+                {% endblocktrans %}
+                {% endfor %}
+            </select>                            
+            </div>
+          </div>
+        </form>
+
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">{% trans "Fechar" %}</button>
+        <button type="button" class="btn ada-btn-blue-dark" name="add-alert" id="add-alert-button">{% trans "Salvar" %}</button>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+<div class="modal center-modal fade my-custom-modal" id="add-link" tabindex="-1" role="dialog" aria-labelledby="add-link-label" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="add-link-label">{% trans "Adicionar Atualização" %}</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div id="error-link-modal" class="alert alert-danger" style="display: none;">
+          <button type="button" class="close" aria-label="Close" onclick="closeErrorAlert('error-link-modal')">
+            <span aria-hidden="true">&times;</span>
+          </button>
+          <span class="fa fa-times-circle"></span>
+          <b>{% trans "Erro" %}:</b>
+          <span id="error-message-link-modal"></span>                        
+        </div>
+        <form id="add-link-form" method="post">
+          {% csrf_token %}
+          <div class="form-group">
+            <label for="link-input" class="form-label"><b>{% trans "Link" %}</b></label>
+            <div class="input-group">
+              <input required id="link-input" type="text" maxlength="90" name="link" class="form-control w-100" placeholder="{% trans 'Insira a url do documento aqui' %}">                    
+            </div>
+          </div>
+        </form>
+
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">{% trans "Fechar" %}</button>
+        <button type="button" class="btn ada-btn-blue-dark" name="add-link" id="add-link-button">{% trans "Salvar" %}</button>
+      </div>
+    </div>
+  </div>
+</div>
 </div>
 {% endblock %}

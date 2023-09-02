@@ -89,7 +89,6 @@ if(user_courses_from_blockk.length > 0) {
         } else {
             type_discipline.secondary_choosed += count
         }
-        console.log(type_discipline)
 
 
         global = {
@@ -266,7 +265,6 @@ $("#primary-timetable-courses input, #secondary-timetable-courses input").on("cl
         });
         event.preventDefault();
 
-        console.log(type_discipline)
         type_priority_choosed = 0
 
         filtered_timetables.forEach(function (timetable) {
@@ -282,13 +280,11 @@ $("#primary-timetable-courses input, #secondary-timetable-courses input").on("cl
 
         $('#cel-hour').text(cell_left_number.time)
         priority = filtered_timetables[0].position[0].substr(-3);
-        console.log(type_priority_choosed)
         if(priority == 'pri') {
             type_discipline.primary_choosed -= type_priority_choosed
         } else {
             type_discipline.secondary_choosed -= type_priority_choosed
         }
-        console.log(type_discipline)
 
         buttons_clicked = buttons_clicked.filter(function (element) {
             return !filtered_timetables.some(function (timetable) {
@@ -299,7 +295,6 @@ $("#primary-timetable-courses input, #secondary-timetable-courses input").on("cl
         timetable_choosed = timetable_choosed.filter(function (t) {
             return !filtered_timetables.includes(t);
         });
-        console.log(type_discipline)
         
         if(cell_left_number.type == '20h') {
             if(type_discipline.primary_choosed >= 8) {                
@@ -664,7 +659,6 @@ $(document).ready(function () {
         var filtered_timetable = user_timetables.filter(function (timetable_item) {
             return timetable_item.id === timetable_id;
         });
-        console.log(type_discipline)
 
         var csrftoken = $("[name=csrfmiddlewaretoken]").val();
 
@@ -784,14 +778,12 @@ $(document).ready(function () {
                         id_timetable: filtered_timetable[0].id,
                         position: id_array,
                     };
-                    console.log(type_priority_choosed)
                     if (!is_repetead && !is_missing && !max_cel) {
                         if(priority == 'pri') {
                             type_discipline.primary_choosed += type_priority_choosed 
                         } else {
                             type_discipline.secondary_choosed += type_priority_choosed
                         }
-                        console.log(type_discipline)
                         timetable_choosed.push(global);
                         cell_left_number.time -= id_array.length
                         $('#cel-hour').text(cell_left_number.time)
