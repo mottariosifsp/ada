@@ -172,7 +172,7 @@ LOGIN_URL = "/user/login"
 LOGOUT_REDIRECT_URL = '/user/sair'
 
 #email_backend to console
-# EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+#EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 # DEFAULT_FROM_EMAIL = 'ada.ifsp@gmail.com'
 # EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 # EMAIL_HOST_USER = config('EMAIL_HOST_USER')

@@ -10,9 +10,43 @@ from timetable.models import Timeslot, Timetable_user
 from staff.models import Deadline
 from datetime import datetime, timedelta
 
+from user.models import User
+from django.core.mail import send_mail, EmailMessage
+
 
 def is_not_staff(user):
     return not user.is_staff
+
+def register(request):
+    professors_inactive = User.objects.filter(is_professor=True, is_active=False).all()
+
+    for professor in professors_inactive:
+        send_email(professor)
+
+
+def send_email(professor):
+    subject = 'Ação requerida: Cadastre-se'
+
+    nome = professor.first_name
+    email = professor.email
+
+    current_path = os.getcwd()
+    with open(current_path + '\\templates\static\email\professor_register_message.html', 'r', encoding='utf-8') as file:
+        message = file.read()
+        message = message.format(nome=nome)
+
+    email = EmailMessage(
+        subject,
+        message,
+        'ada.ifsp@gmail.com',
+        [email],
+    )
+
+    email.content_subtype = "html"
+
+    email.send()
+
+
 
 @login_required
 def home(request):
