@@ -13,11 +13,10 @@
     z-index: 90;
     transition: all 0.4s;
   }
-/* 
-  .home-begin {
-    padding-top: 1px;
-  } */
-  
+  .big-text {
+    padding-top: 2px;
+      font-size:smaller;
+  }
   .hover img {
     width: 100%;
     position: absolute;
