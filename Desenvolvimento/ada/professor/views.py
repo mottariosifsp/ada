@@ -212,6 +212,10 @@ def profile(request):
 
     return render(request, 'professor/profile.html', data)
 
+def final_assignment(request):
+
+    return render(request, 'professor/final_assignment.html')
+
 def day_to_number(day):
     number = {
         'monday': 1,
