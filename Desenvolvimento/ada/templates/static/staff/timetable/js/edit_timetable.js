@@ -7,9 +7,13 @@ window.addEventListener('pageshow', function (event) {
 });
 
 $.each(timetables_complete, function(index, value) {
+  console.log(value);
   $("#cel-"+value.cord).val(value.acronym);
+  $("#cel-"+value.cord).attr('course-id', value.id);
+  console.log()
   console.log("#cel-"+value.cord);
-  add_course_id("#cel-"+value.cord);
+  // add_course_id("#cel-"+value.cord);
+
 
   $("#cel-"+value.cord).closest('.content_collapsible').prev('.collapsible').addClass("default-open");
   $("#cel-"+value.cord).closest('.content_collapsible').prev('.collapsible').addClass("active_collapse");
