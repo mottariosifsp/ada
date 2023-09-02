@@ -6,6 +6,10 @@
     {{ block.super }}
     <title>{% trans "Turmas" %}</title>
     <link rel="stylesheet" href="{% static 'staff/classs/css/classes_list.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fomantic-ui/2.9.2/semantic.min.css" />
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/dataTables.semanticui.min.css" />
+    <link rel="stylesheet" href="https://datatables.net/release-datatables/extensions/FixedColumns/css/fixedColumns.bootstrap4.css" />
+    <link rel="stylesheet" href="https://datatables.net/release-datatables/media/css/dataTables.bootstrap4.css" />
     <script src="{% static 'staff/classs/js/classes_list.js' %}" data-lang={{LANGUAGE_CODE}}></script>
 {% endblock %}
 
@@ -19,39 +23,37 @@
         <li class="breadcrumb-item active">{% trans "Turmas" %}</li>
       </ol>
     </nav>
-    <button type="button" class="btn btn-success float-right createClassBtn" data-toggle="modal" data-target="#createClassModal"><i class="bi bi-plus"></i> {% trans "Criar Turma" %} </button>
-    <div class="tabela">
-        <table class="table table-bordered editable" id="classes_list">
-            <thead>
-                <tr>
-                    <th scope="col">{% trans "Registro" %}</th>
-                    <th scope="col">{% trans "Período" %}</th>
-                    <th scope="col">{% trans "Semestre" %}</th>
-                    <th scope="col">{% trans "Área" %}</th>
-                    <th scope="col">{% trans "Ação" %}</th>
-                </tr>
-            </thead>
-            <tbody>
-                {% csrf_token %}
-                {% for classs in classes %}
-                    <!-- Lista -->
-                    <tr>
-                        <td>{{ classs.registration_class_id }}</td>
-                        {% blocktrans with period_text=classs.period %}
-                        <td>{{ period_text }}</td>
-                        {% endblocktrans %}
-                        <td>{{ classs.semester }}</td>
-                        {% blocktrans with name_area_text=classs.area.name_area acronym_text=classs.area.acronym %}
-                        <td>{{ name_area_text }} ({{ acronym_text }})</td>
-                        {% endblocktrans %}
-                        <td><button type="button" data-toggle="modal" data-target="#editClassModal" data-counter="{{ counter }}" class="btn btn-warning editClassBtn"><i class="bi bi-pencil"></i></button>
-                            <button type="button" class="btn btn-danger deleteClassBtn" data-class-id="{{ classs.id }}" data-registration-class-id="{{ classs.registration_class_id }}"><i class="bi bi-trash"></i></button></td>
-                    </tr>
-                {% endfor %}
-            </tbody>
-        </table>
+    <div class="card">
+        <div class="card-body">
+            <div class="tabela">
+                <table class="table display editable" id="classes_list">
+                    <thead>
+                        <tr>
+                            <th scope="col">{% trans "Registro" %}</th>
+                            <th scope="col">{% trans "Período" %}</th>
+                            <th scope="col">{% trans "Semestre" %}</th>
+                            <th scope="col">{% trans "Área" %}</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% csrf_token %}
+                        {% for classs in classes %}
+                            <!-- Lista -->
+                            <tr>
+                                <td>{{ classs.registration_class_id }}</td>
+                                {% blocktrans with period_text=classs.period %}
+                                <td>{{ period_text }}</td>
+                                {% endblocktrans %}
+                                <td>{{ classs.semester }}</td>
+                                {% blocktrans with name_area_text=classs.area.name_area acronym_text=classs.area.acronym %}
+                                <td>{{ name_area_text }} ({{ acronym_text }})</td>
+                                {% endblocktrans %}
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
     </div>
-
     <!-- Modal criação turma -->
     <div class="modal fade" id="createClassModal" tabindex="-1" role="dialog" aria-labelledby="createClassModelLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
