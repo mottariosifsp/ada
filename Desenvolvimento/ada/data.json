@@ -1397,101 +1397,111 @@
     },
     {
         "model": "staff.deadline",
-        "pk": 1,
+        "pk": 11,
         "fields": {
             "name": "STARTFPADEADLINE",
-            "deadline_start": "2023-09-01T04:57:00",
-            "deadline_end": "2023-09-03T04:57:00",
+            "deadline_start": "2023-09-01T06:03:00",
+            "deadline_end": "2023-09-03T06:03:00",
+            "semester": "",
             "blockk": 1
         }
     },
     {
         "model": "staff.deadline",
-        "pk": 2,
+        "pk": 12,
         "fields": {
             "name": "STARTASSIGNMENTDEADLINE",
-            "deadline_start": "2023-09-05T04:57:00",
-            "deadline_end": "2023-09-06T04:57:00",
+            "deadline_start": "2023-09-05T06:03:00",
+            "deadline_end": "2023-09-06T06:03:00",
+            "semester": "",
             "blockk": 1
         }
     },
     {
         "model": "staff.deadline",
-        "pk": 3,
+        "pk": 13,
         "fields": {
             "name": "STARTFPADEADLINE",
-            "deadline_start": "2023-09-01T04:57:00",
-            "deadline_end": "2023-09-03T04:57:00",
+            "deadline_start": "2023-09-01T06:03:00",
+            "deadline_end": "2023-09-03T06:03:00",
+            "semester": "",
             "blockk": 2
         }
     },
     {
         "model": "staff.deadline",
-        "pk": 4,
+        "pk": 14,
         "fields": {
             "name": "STARTASSIGNMENTDEADLINE",
-            "deadline_start": "2023-09-05T04:57:00",
-            "deadline_end": "2023-09-06T04:57:00",
+            "deadline_start": "2023-09-05T06:03:00",
+            "deadline_end": "2023-09-06T06:03:00",
+            "semester": "",
             "blockk": 2
         }
     },
     {
         "model": "staff.deadline",
-        "pk": 5,
+        "pk": 15,
         "fields": {
             "name": "STARTFPADEADLINE",
-            "deadline_start": "2023-09-01T04:57:00",
-            "deadline_end": "2023-09-03T04:57:00",
+            "deadline_start": "2023-09-01T06:03:00",
+            "deadline_end": "2023-09-03T06:03:00",
+            "semester": "",
             "blockk": 3
         }
     },
     {
         "model": "staff.deadline",
-        "pk": 6,
+        "pk": 16,
         "fields": {
             "name": "STARTASSIGNMENTDEADLINE",
-            "deadline_start": "2023-09-05T04:57:00",
-            "deadline_end": "2023-09-06T04:57:00",
+            "deadline_start": "2023-09-05T06:03:00",
+            "deadline_end": "2023-09-06T06:03:00",
+            "semester": "",
             "blockk": 3
         }
     },
     {
         "model": "staff.deadline",
-        "pk": 7,
+        "pk": 17,
         "fields": {
             "name": "STARTFPADEADLINE",
-            "deadline_start": "2023-09-01T04:57:00",
-            "deadline_end": "2023-09-03T04:57:00",
+            "deadline_start": "2023-09-01T06:03:00",
+            "deadline_end": "2023-09-03T06:03:00",
+            "semester": "",
             "blockk": 4
         }
     },
     {
         "model": "staff.deadline",
-        "pk": 8,
+        "pk": 18,
         "fields": {
             "name": "STARTASSIGNMENTDEADLINE",
-            "deadline_start": "2023-09-05T04:57:00",
-            "deadline_end": "2023-09-06T04:57:00",
+            "deadline_start": "2023-09-05T06:03:00",
+            "deadline_end": "2023-09-06T06:03:00",
+            "semester": "",
             "blockk": 4
         }
     },
     {
         "model": "staff.deadline",
-        "pk": 9,
+        "pk": 19,
         "fields": {
             "name": "STARTFPADEADLINE",
-            "deadline_start": "2023-09-01T04:57:00",
-            "deadline_end": "2023-09-03T04:57:00",
+            "deadline_start": "2023-09-01T06:03:00",
+            "deadline_end": "2023-09-03T06:03:00",
+            "semester": "",
             "blockk": 5
         }
     },
     {
         "model": "staff.deadline",
-        "pk": 10,
+        "pk": 20,
         "fields": {
             "name": "STARTASSIGNMENTDEADLINE",
-            "deadline_start": "2023-09-05T04:57:00",
-            "deadline_end": "2023-09-06T04:57:00",
+            "deadline_start": "2023-09-05T06:03:00",
+            "deadline_end": "2023-09-06T06:03:00",
+            "semester": "",
             "blockk": 5
         }
     },
@@ -8404,20 +8414,21 @@
         "pk": 1,
         "fields": {
             "password": "pbkdf2_sha256$390000$UYztBMlrQEbdT4DuIfE4OQ$UsnwvKwMSYI1jHr9mrYoj6tQ2+NPeUaNRAEpQ+gFXwU=",
-            "last_login": "2023-08-31T14:20:03",
+            "last_login": "2023-09-02T05:55:44.168",
             "registration_id": "3045463",
             "first_name": "ISABELLA",
             "last_name": "VALERIO MAZARÁ",
             "email": "i.mazara@aluno.ifsp.edu.br",
-            "telephone": null,
+            "telephone": "(66)6666-6666",
             "cell_phone": "119999999999",
             "date_joined": "2023-08-31T14:19:52.157",
             "is_superuser": true,
             "is_staff": true,
             "is_active": true,
+            "is_fgfcc": false,
             "is_professor": true,
-            "history": null,
-            "job": null,
+            "history": 16,
+            "job": 194,
             "groups": [],
             "user_permissions": [],
             "blocks": [
@@ -8439,15 +8450,16 @@
             "first_name": "ANA PAULA",
             "last_name": "MOURA MESSIAS DE SOUZA",
             "email": "moura.a@aluno.ifsp.edu.br",
-            "telephone": null,
+            "telephone": "-",
             "cell_phone": "119999999998",
             "date_joined": "2023-09-01T05:10:47.168",
             "is_superuser": true,
             "is_staff": true,
             "is_active": true,
+            "is_fgfcc": false,
             "is_professor": true,
-            "history": null,
-            "job": null,
+            "history": 1,
+            "job": 136,
             "groups": [],
             "user_permissions": [],
             "blocks": [
@@ -8469,15 +8481,16 @@
             "first_name": "GUSTAVO",
             "last_name": "SANTOS COSTA SOARES",
             "email": "santos.soares@aluno.ifsp.edu.br",
-            "telephone": null,
+            "telephone": "(11)1111-1111",
             "cell_phone": "1199999999999",
             "date_joined": "2023-09-01T05:13:14.092",
             "is_superuser": true,
             "is_staff": true,
             "is_active": true,
+            "is_fgfcc": false,
             "is_professor": true,
-            "history": null,
-            "job": null,
+            "history": 14,
+            "job": 214,
             "groups": [],
             "user_permissions": [],
             "blocks": [
@@ -8499,15 +8512,16 @@
             "first_name": "JOSINEUDO",
             "last_name": "DAS CHAGAS ARRUDA",
             "email": "josineudo.c@aluno.ifsp.edu.br",
-            "telephone": null,
+            "telephone": "(16)2363-6261",
             "cell_phone": "119999999997",
             "date_joined": "2023-09-01T05:15:32.196",
             "is_superuser": true,
             "is_staff": true,
             "is_active": true,
+            "is_fgfcc": false,
             "is_professor": true,
-            "history": null,
-            "job": null,
+            "history": 17,
+            "job": 44,
             "groups": [],
             "user_permissions": [],
             "blocks": [
@@ -8529,15 +8543,16 @@
             "first_name": "PAULO KENJI",
             "last_name": "YOKOTA MUNEISCHI",
             "email": "paulo.muneischi@aluno.ifsp.edu.br",
-            "telephone": null,
+            "telephone": "(91)8299-1929",
             "cell_phone": "1199999999966",
             "date_joined": "2023-09-01T05:17:59.136",
             "is_superuser": true,
             "is_staff": true,
             "is_active": true,
+            "is_fgfcc": false,
             "is_professor": true,
-            "history": null,
-            "job": null,
+            "history": 19,
+            "job": 50,
             "groups": [],
             "user_permissions": [],
             "blocks": [
@@ -8554,20 +8569,21 @@
         "pk": 7,
         "fields": {
             "password": "pbkdf2_sha256$390000$YKGtI1FU3aQ0YGCS9ZbmOs$j+cqjhqPsjPW/9Eg/5mzG6DFh6XlDQhXuFhEnlq+MMo=",
-            "last_login": null,
+            "last_login": "2023-09-02T18:09:18.277",
             "registration_id": "D",
             "first_name": "D",
             "last_name": "D",
             "email": "d@aluno.ifsp.edu.br",
-            "telephone": null,
+            "telephone": "(77)7777-7777",
             "cell_phone": "1199999999995",
             "date_joined": "2023-09-01T05:19:13.491",
             "is_superuser": true,
             "is_staff": true,
             "is_active": true,
+            "is_fgfcc": false,
             "is_professor": true,
-            "history": null,
-            "job": null,
+            "history": 11,
+            "job": 212,
             "groups": [],
             "user_permissions": [],
             "blocks": [
@@ -8589,15 +8605,16 @@
             "first_name": "LEONARDO",
             "last_name": "ANDRADE MOTTA DE LIMA",
             "email": "leonardo.motta@ifsp.edu.br",
-            "telephone": null,
+            "telephone": "(18)2819-2982",
             "cell_phone": "+5511999999999",
             "date_joined": "2023-09-01T19:41:19.307",
             "is_superuser": false,
             "is_staff": true,
             "is_active": true,
+            "is_fgfcc": false,
             "is_professor": true,
-            "history": null,
-            "job": null,
+            "history": 18,
+            "job": 47,
             "groups": [],
             "user_permissions": [],
             "blocks": [
@@ -8615,15 +8632,16 @@
             "first_name": "GUSTAVO",
             "last_name": "FORTUNATO PUGA",
             "email": "gustavo.puga@ifsp.edu.br",
-            "telephone": null,
+            "telephone": "(12)1212-1212",
             "cell_phone": "+5511999999998",
             "date_joined": "2023-09-01T19:43:18.973",
             "is_superuser": false,
             "is_staff": false,
             "is_active": true,
+            "is_fgfcc": false,
             "is_professor": true,
-            "history": null,
-            "job": null,
+            "history": 15,
+            "job": 141,
             "groups": [],
             "user_permissions": [],
             "blocks": [
@@ -8641,15 +8659,16 @@
             "first_name": "BANCA",
             "last_name": "BANCA",
             "email": "banca@ifsp.edu.br",
-            "telephone": null,
-            "cell_phone": "+5511999999997",
+            "telephone": "",
+            "cell_phone": "(11)99999-0000",
             "date_joined": "2023-09-02T02:10:18.080",
             "is_superuser": false,
             "is_staff": false,
             "is_active": true,
+            "is_fgfcc": false,
             "is_professor": true,
-            "history": null,
-            "job": null,
+            "history": 9,
+            "job": 137,
             "groups": [],
             "user_permissions": [],
             "blocks": [
@@ -8667,15 +8686,16 @@
             "first_name": "TRIO 1",
             "last_name": "TESTE",
             "email": "trio1@ifsp.edu.br",
-            "telephone": null,
+            "telephone": "(85)5856-5868",
             "cell_phone": "+5511999999990",
             "date_joined": "2023-09-02T02:13:25.937",
             "is_superuser": true,
             "is_staff": true,
             "is_active": true,
+            "is_fgfcc": false,
             "is_professor": true,
-            "history": null,
-            "job": null,
+            "history": 23,
+            "job": 191,
             "groups": [],
             "user_permissions": [],
             "blocks": [
@@ -8693,15 +8713,16 @@
             "first_name": "TRIO 2",
             "last_name": "TESTE",
             "email": "trio2@ifsp.edu.br",
-            "telephone": null,
+            "telephone": "(28)3882-9229",
             "cell_phone": "+5511999999900",
             "date_joined": "2023-09-02T02:15:24.647",
             "is_superuser": true,
             "is_staff": true,
             "is_active": true,
+            "is_fgfcc": false,
             "is_professor": true,
-            "history": null,
-            "job": null,
+            "history": 22,
+            "job": 190,
             "groups": [],
             "user_permissions": [],
             "blocks": [
@@ -8723,15 +8744,16 @@
             "first_name": "TRIO 3",
             "last_name": "TESTE",
             "email": "trio3@ifsp.edu.br",
-            "telephone": null,
+            "telephone": "(28)2899-3828",
             "cell_phone": "+5511999999901",
             "date_joined": "2023-09-02T02:16:35.584",
             "is_superuser": true,
             "is_staff": true,
             "is_active": true,
+            "is_fgfcc": true,
             "is_professor": true,
-            "history": null,
-            "job": null,
+            "history": 20,
+            "job": 189,
             "groups": [],
             "user_permissions": [],
             "blocks": [
@@ -8750,15 +8772,16 @@
             "first_name": "DUPLO 1",
             "last_name": "TESTE",
             "email": "duplo1@ifsp.edu.br",
-            "telephone": null,
+            "telephone": "(55)5555-5555",
             "cell_phone": "+5511999999000",
             "date_joined": "2023-09-02T02:18:22.755",
             "is_superuser": false,
             "is_staff": true,
             "is_active": true,
+            "is_fgfcc": true,
             "is_professor": true,
-            "history": null,
-            "job": null,
+            "history": 12,
+            "job": 138,
             "groups": [],
             "user_permissions": [],
             "blocks": [
@@ -8776,15 +8799,16 @@
             "first_name": "DUPLO 2",
             "last_name": "TESTE",
             "email": "duplo2@ifsp.edu.br",
-            "telephone": null,
+            "telephone": "(33)3333-3333",
             "cell_phone": "+5511999999001",
             "date_joined": "2023-09-02T02:20:35.611",
             "is_superuser": false,
             "is_staff": true,
             "is_active": true,
+            "is_fgfcc": false,
             "is_professor": true,
-            "history": null,
-            "job": null,
+            "history": 13,
+            "job": 140,
             "groups": [],
             "user_permissions": [],
             "blocks": [
@@ -8804,15 +8828,16 @@
             "first_name": "BIS 1",
             "last_name": "TESTE",
             "email": "bis1@ifsp.edu.br",
-            "telephone": null,
+            "telephone": "(99)9999-9999",
             "cell_phone": "+5511999999002",
             "date_joined": "2023-09-02T02:22:36.123",
             "is_superuser": true,
             "is_staff": false,
             "is_active": true,
+            "is_fgfcc": false,
             "is_professor": true,
-            "history": null,
-            "job": null,
+            "history": 10,
+            "job": 139,
             "groups": [],
             "user_permissions": [],
             "blocks": [
@@ -8836,6 +8861,7 @@
             "is_superuser": true,
             "is_staff": true,
             "is_active": true,
+            "is_fgfcc": false,
             "is_professor": false,
             "history": null,
             "job": null,
@@ -8857,15 +8883,16 @@
             "first_name": "PROFESSOR 1",
             "last_name": "TESTE",
             "email": "professor1@ifsp.edu.br",
-            "telephone": null,
+            "telephone": "(64)6567-7686",
             "cell_phone": "+5511999999003",
             "date_joined": "2023-09-02T02:27:44.590",
             "is_superuser": false,
             "is_staff": false,
             "is_active": true,
+            "is_fgfcc": false,
             "is_professor": true,
-            "history": null,
-            "job": null,
+            "history": 29,
+            "job": 70,
             "groups": [],
             "user_permissions": [],
             "blocks": [
@@ -8883,15 +8910,16 @@
             "first_name": "PROFESSOR 2",
             "last_name": "TESTE",
             "email": "professor2@ifsp.edu.br",
-            "telephone": null,
+            "telephone": "(66)6666-6670",
             "cell_phone": "+5511999999004",
             "date_joined": "2023-09-02T02:35:51.187",
             "is_superuser": false,
             "is_staff": false,
             "is_active": true,
+            "is_fgfcc": false,
             "is_professor": true,
-            "history": null,
-            "job": null,
+            "history": 49,
+            "job": 113,
             "groups": [],
             "user_permissions": [],
             "blocks": [
@@ -8909,15 +8937,16 @@
             "first_name": "PROFESSOR 3",
             "last_name": "TESTE",
             "email": "professor3@ifsp.edu.br",
-            "telephone": null,
+            "telephone": "(89)6969-6898",
             "cell_phone": "+5511999999005",
             "date_joined": "2023-09-02T02:36:47.475",
             "is_superuser": false,
             "is_staff": false,
             "is_active": true,
+            "is_fgfcc": false,
             "is_professor": true,
-            "history": null,
-            "job": null,
+            "history": 63,
+            "job": 158,
             "groups": [],
             "user_permissions": [],
             "blocks": [
@@ -8935,15 +8964,16 @@
             "first_name": "PROFESSOR 4",
             "last_name": "TESTE",
             "email": "professor4@ifsp.edu.br",
-            "telephone": null,
+            "telephone": "(88)3929-3892",
             "cell_phone": "+551199999000",
             "date_joined": "2023-09-02T02:38:38.135",
             "is_superuser": false,
             "is_staff": false,
             "is_active": true,
+            "is_fgfcc": false,
             "is_professor": true,
-            "history": null,
-            "job": null,
+            "history": 43,
+            "job": 201,
             "groups": [],
             "user_permissions": [],
             "blocks": [
@@ -8961,15 +8991,16 @@
             "first_name": "PROFESSOR 5",
             "last_name": "TESTE",
             "email": "professor5@ifsp.edu.br",
-            "telephone": null,
+            "telephone": "(75)7575-7574",
             "cell_phone": "+551199999005",
             "date_joined": "2023-09-02T02:39:50.776",
             "is_superuser": false,
             "is_staff": false,
             "is_active": true,
+            "is_fgfcc": false,
             "is_professor": true,
-            "history": null,
-            "job": null,
+            "history": 28,
+            "job": 67,
             "groups": [],
             "user_permissions": [],
             "blocks": [
@@ -8987,15 +9018,16 @@
             "first_name": "PROFESSOR 6",
             "last_name": "TESTE",
             "email": "professor6@ifsp.edu.br",
-            "telephone": null,
+            "telephone": "(86)8686-6564",
             "cell_phone": "+5511999999007",
             "date_joined": "2023-09-02T02:40:59.960",
             "is_superuser": false,
             "is_staff": false,
             "is_active": true,
+            "is_fgfcc": false,
             "is_professor": true,
-            "history": null,
-            "job": null,
+            "history": 27,
+            "job": 202,
             "groups": [],
             "user_permissions": [],
             "blocks": [
@@ -9013,15 +9045,16 @@
             "first_name": "PROFESSOR 7",
             "last_name": "TESTE",
             "email": "professor7@ifsp.edu.br",
-            "telephone": null,
+            "telephone": "(29)8738-7983",
             "cell_phone": "+5511999999992",
             "date_joined": "2023-09-02T02:44:51.842",
             "is_superuser": false,
             "is_staff": false,
             "is_active": true,
+            "is_fgfcc": false,
             "is_professor": true,
-            "history": null,
-            "job": null,
+            "history": 26,
+            "job": 62,
             "groups": [],
             "user_permissions": [],
             "blocks": [
@@ -9039,15 +9072,16 @@
             "first_name": "PROFESSOR 8",
             "last_name": "TESTE",
             "email": "professor8@ifsp.edu.br",
-            "telephone": null,
+            "telephone": "(29)9382-9938",
             "cell_phone": "+5511999999906",
             "date_joined": "2023-09-02T02:45:53.751",
             "is_superuser": false,
             "is_staff": false,
             "is_active": true,
+            "is_fgfcc": false,
             "is_professor": true,
-            "history": null,
-            "job": null,
+            "history": 25,
+            "job": 200,
             "groups": [],
             "user_permissions": [],
             "blocks": [
@@ -9065,15 +9099,16 @@
             "first_name": "PROFESSOR 9",
             "last_name": "TESTE",
             "email": "professor9@ifsp.edu.br",
-            "telephone": null,
+            "telephone": "(98)4839-4839",
             "cell_phone": "+5511999999907",
             "date_joined": "2023-09-02T02:52:26.385",
             "is_superuser": false,
             "is_staff": false,
             "is_active": true,
+            "is_fgfcc": false,
             "is_professor": true,
-            "history": null,
-            "job": null,
+            "history": 24,
+            "job": 193,
             "groups": [],
             "user_permissions": [],
             "blocks": [
@@ -9091,15 +9126,16 @@
             "first_name": "PROFESSOR 10",
             "last_name": "TESTE",
             "email": "professor10@ifsp.edu.br",
-            "telephone": null,
+            "telephone": "(75)7688-6978",
             "cell_phone": "+5511999999909",
             "date_joined": "2023-09-02T02:56:01.063",
             "is_superuser": false,
             "is_staff": false,
             "is_active": true,
+            "is_fgfcc": false,
             "is_professor": true,
-            "history": null,
-            "job": null,
+            "history": 30,
+            "job": 72,
             "groups": [],
             "user_permissions": [],
             "blocks": [
@@ -9117,15 +9153,16 @@
             "first_name": "PROFESSOR 11",
             "last_name": "TESTE",
             "email": "professor11@ifsp.edu.br",
-            "telephone": null,
+            "telephone": "(87)8799-9987",
             "cell_phone": "+5511999999090",
             "date_joined": "2023-09-02T02:58:03.103",
             "is_superuser": false,
             "is_staff": false,
             "is_active": true,
+            "is_fgfcc": false,
             "is_professor": true,
-            "history": null,
-            "job": null,
+            "history": 31,
+            "job": 74,
             "groups": [],
             "user_permissions": [],
             "blocks": [
@@ -9143,15 +9180,16 @@
             "first_name": "PROFESSOR 12",
             "last_name": "TESTE",
             "email": "professor12@ifsp.edu.br",
-            "telephone": null,
+            "telephone": "(65)7687-6869",
             "cell_phone": "+5511999999080",
             "date_joined": "2023-09-02T02:59:13.194",
             "is_superuser": false,
             "is_staff": false,
             "is_active": true,
+            "is_fgfcc": false,
             "is_professor": true,
-            "history": null,
-            "job": null,
+            "history": 32,
+            "job": 76,
             "groups": [],
             "user_permissions": [],
             "blocks": [
@@ -9169,15 +9207,16 @@
             "first_name": "PROFESSOR 13",
             "last_name": "TESTE",
             "email": "professor13@ifsp.edu.br",
-            "telephone": null,
+            "telephone": "(66)6666-6661",
             "cell_phone": "+5511999999070",
             "date_joined": "2023-09-02T03:00:19.687",
             "is_superuser": false,
             "is_staff": false,
             "is_active": true,
+            "is_fgfcc": false,
             "is_professor": true,
-            "history": null,
-            "job": null,
+            "history": 34,
+            "job": 80,
             "groups": [],
             "user_permissions": [],
             "blocks": [
@@ -9195,15 +9234,16 @@
             "first_name": "PROFESSOR 14",
             "last_name": "TESTE",
             "email": "professor14@ifsp.edu.br",
-            "telephone": null,
+            "telephone": "(66)6666-6662",
             "cell_phone": "+5511999999988",
             "date_joined": "2023-09-02T03:01:20.240",
             "is_superuser": false,
             "is_staff": false,
             "is_active": true,
+            "is_fgfcc": false,
             "is_professor": true,
-            "history": null,
-            "job": null,
+            "history": 35,
+            "job": 197,
             "groups": [],
             "user_permissions": [],
             "blocks": [
@@ -9221,15 +9261,16 @@
             "first_name": "PROFESSOR 15",
             "last_name": "TESTE",
             "email": "professor15@ifsp.edu.br",
-            "telephone": null,
+            "telephone": "(87)8686-8979",
             "cell_phone": "+5511999999977",
             "date_joined": "2023-09-02T03:02:22.168",
             "is_superuser": false,
-            "is_staff": false,
+            "is_staff": true,
             "is_active": true,
+            "is_fgfcc": true,
             "is_professor": true,
-            "history": null,
-            "job": null,
+            "history": 38,
+            "job": 192,
             "groups": [],
             "user_permissions": [],
             "blocks": [
@@ -9247,15 +9288,16 @@
             "first_name": "PROFESSOR 16",
             "last_name": "TESTE",
             "email": "professor16@ifsp.edu.br",
-            "telephone": null,
+            "telephone": "(66)6666-6664",
             "cell_phone": "+5511999999966",
             "date_joined": "2023-09-02T03:03:40.796",
             "is_superuser": false,
             "is_staff": false,
             "is_active": true,
+            "is_fgfcc": false,
             "is_professor": true,
-            "history": null,
-            "job": null,
+            "history": 36,
+            "job": 196,
             "groups": [],
             "user_permissions": [],
             "blocks": [
@@ -9273,15 +9315,16 @@
             "first_name": "PROFESSOR 17",
             "last_name": "TESTE",
             "email": "professor17@ifsp.edu.br",
-            "telephone": null,
+            "telephone": "(66)6666-6665",
             "cell_phone": "+5511999999955",
             "date_joined": "2023-09-02T03:04:55.153",
             "is_superuser": false,
             "is_staff": false,
             "is_active": true,
+            "is_fgfcc": false,
             "is_professor": true,
-            "history": null,
-            "job": null,
+            "history": 37,
+            "job": 199,
             "groups": [],
             "user_permissions": [],
             "blocks": [
@@ -9299,15 +9342,16 @@
             "first_name": "PROFESSOR 18",
             "last_name": "TESTE",
             "email": "professor18@ifsp.edu.br",
-            "telephone": null,
+            "telephone": "(66)6666-6667",
             "cell_phone": "+5511999999944",
             "date_joined": "2023-09-02T03:05:49.706",
             "is_superuser": false,
             "is_staff": false,
             "is_active": true,
+            "is_fgfcc": false,
             "is_professor": true,
-            "history": null,
-            "job": null,
+            "history": 39,
+            "job": 195,
             "groups": [],
             "user_permissions": [],
             "blocks": [
@@ -9325,15 +9369,16 @@
             "first_name": "PROFESSOR 19",
             "last_name": "TESTE",
             "email": "professor19@ifsp.edu.br",
-            "telephone": null,
+            "telephone": "(66)6666-6669",
             "cell_phone": "+5511999999933",
             "date_joined": "2023-09-02T03:06:54.120",
             "is_superuser": false,
             "is_staff": false,
             "is_active": true,
+            "is_fgfcc": false,
             "is_professor": true,
-            "history": null,
-            "job": null,
+            "history": 44,
+            "job": 105,
             "groups": [],
             "user_permissions": [],
             "blocks": [
@@ -9351,15 +9396,16 @@
             "first_name": "PROFESSOR 20",
             "last_name": "TESTE",
             "email": "professor20@ifsp.edu.br",
-            "telephone": null,
+            "telephone": "(66)6666-6671",
             "cell_phone": "+5511999999922",
             "date_joined": "2023-09-02T03:08:32.558",
             "is_superuser": false,
             "is_staff": false,
             "is_active": true,
+            "is_fgfcc": false,
             "is_professor": true,
-            "history": null,
-            "job": null,
+            "history": 51,
+            "job": 198,
             "groups": [],
             "user_permissions": [],
             "blocks": [
@@ -9377,15 +9423,16 @@
             "first_name": "PROFESSOR 21",
             "last_name": "TESTE",
             "email": "professor21@ifsp.edu.br",
-            "telephone": null,
+            "telephone": "(66)6666-6672",
             "cell_phone": "+5511999999911",
             "date_joined": "2023-09-02T03:09:23.595",
             "is_superuser": false,
             "is_staff": false,
             "is_active": true,
+            "is_fgfcc": false,
             "is_professor": true,
-            "history": null,
-            "job": null,
+            "history": 53,
+            "job": 121,
             "groups": [],
             "user_permissions": [],
             "blocks": [
@@ -9403,15 +9450,16 @@
             "first_name": "PROFESSOR 22",
             "last_name": "TESTE",
             "email": "professor22@ifsp.edu.br",
-            "telephone": null,
+            "telephone": "(66)6666-6673",
             "cell_phone": "+5511999999033",
             "date_joined": "2023-09-02T03:12:57.870",
             "is_superuser": false,
             "is_staff": false,
             "is_active": true,
+            "is_fgfcc": false,
             "is_professor": true,
-            "history": null,
-            "job": null,
+            "history": 55,
+            "job": 203,
             "groups": [],
             "user_permissions": [],
             "blocks": [
@@ -9429,15 +9477,16 @@
             "first_name": "PROFESSOR 23",
             "last_name": "TESTE",
             "email": "professor23@ifsp.edu.br",
-            "telephone": null,
+            "telephone": "(66)6666-6674",
             "cell_phone": "+5511999999930",
             "date_joined": "2023-09-02T03:15:49.823",
             "is_superuser": false,
             "is_staff": false,
             "is_active": true,
+            "is_fgfcc": false,
             "is_professor": true,
-            "history": null,
-            "job": null,
+            "history": 57,
+            "job": 148,
             "groups": [],
             "user_permissions": [],
             "blocks": [
@@ -9455,15 +9504,16 @@
             "first_name": "PROFESSOR 24",
             "last_name": "TESTE",
             "email": "professor24@ifsp.edu.br",
-            "telephone": null,
+            "telephone": "(66)6666-6675",
             "cell_phone": "+5511999999920",
             "date_joined": "2023-09-02T03:17:23.677",
             "is_superuser": false,
             "is_staff": false,
             "is_active": true,
+            "is_fgfcc": false,
             "is_professor": true,
-            "history": null,
-            "job": null,
+            "history": 59,
+            "job": 152,
             "groups": [],
             "user_permissions": [],
             "blocks": [
@@ -9481,15 +9531,16 @@
             "first_name": "PROFESSOR 25",
             "last_name": "TESTE",
             "email": "professor25@ifsp.edu.br",
-            "telephone": null,
+            "telephone": "(66)6666-6676",
             "cell_phone": "+5511999999926",
             "date_joined": "2023-09-02T03:18:35.873",
             "is_superuser": false,
             "is_staff": false,
             "is_active": true,
+            "is_fgfcc": false,
             "is_professor": true,
-            "history": null,
-            "job": null,
+            "history": 62,
+            "job": 157,
             "groups": [],
             "user_permissions": [],
             "blocks": [
@@ -9507,15 +9558,16 @@
             "first_name": "PROFESSOR 26",
             "last_name": "TESTE",
             "email": "professor26@ifsp.edu.br",
-            "telephone": null,
+            "telephone": "(66)6666-6677",
             "cell_phone": "+5511999999928",
             "date_joined": "2023-09-02T03:28:27.570",
             "is_superuser": false,
             "is_staff": false,
             "is_active": true,
+            "is_fgfcc": false,
             "is_professor": true,
-            "history": null,
-            "job": null,
+            "history": 66,
+            "job": 170,
             "groups": [],
             "user_permissions": [],
             "blocks": [
@@ -9533,15 +9585,16 @@
             "first_name": "PROFESSOR 27",
             "last_name": "TESTE",
             "email": "professor27@ifsp.edu.br",
-            "telephone": null,
+            "telephone": "(66)6666-6685",
             "cell_phone": "+5511999999912",
             "date_joined": "2023-09-02T03:29:29.025",
             "is_superuser": false,
             "is_staff": false,
             "is_active": true,
+            "is_fgfcc": false,
             "is_professor": true,
-            "history": null,
-            "job": null,
+            "history": 68,
+            "job": 188,
             "groups": [],
             "user_permissions": [],
             "blocks": [
@@ -9559,15 +9612,16 @@
             "first_name": "PROFESSOR 28",
             "last_name": "TESTE",
             "email": "professor28@ifsp.edu.br",
-            "telephone": null,
+            "telephone": "(28)9929-3929",
             "cell_phone": "+5511999999924",
             "date_joined": "2023-09-02T03:30:33.608",
             "is_superuser": false,
             "is_staff": false,
             "is_active": true,
+            "is_fgfcc": false,
             "is_professor": true,
-            "history": null,
-            "job": null,
+            "history": 67,
+            "job": 187,
             "groups": [],
             "user_permissions": [],
             "blocks": [
@@ -9585,15 +9639,16 @@
             "first_name": "PROFESSOR 29",
             "last_name": "TESTE",
             "email": "professor29@ifsp.edu.br",
-            "telephone": null,
+            "telephone": "(82)8398-2993",
             "cell_phone": "+5511999999939",
             "date_joined": "2023-09-02T03:31:36.551",
             "is_superuser": false,
             "is_staff": false,
             "is_active": true,
+            "is_fgfcc": false,
             "is_professor": true,
-            "history": null,
-            "job": null,
+            "history": 64,
+            "job": 166,
             "groups": [],
             "user_permissions": [],
             "blocks": [
@@ -9611,15 +9666,16 @@
             "first_name": "PROFESSOR 30",
             "last_name": "TESTE",
             "email": "professor30@ifsp.edu.br",
-            "telephone": null,
+            "telephone": "(92)9939-2939",
             "cell_phone": "+5511999999449",
             "date_joined": "2023-09-02T03:32:34.085",
             "is_superuser": false,
             "is_staff": false,
             "is_active": true,
+            "is_fgfcc": false,
             "is_professor": true,
-            "history": null,
-            "job": null,
+            "history": 60,
+            "job": 153,
             "groups": [],
             "user_permissions": [],
             "blocks": [
@@ -9637,15 +9693,16 @@
             "first_name": "PROFESSOR 31",
             "last_name": "TESTE",
             "email": "professor31@ifsp.edu.br",
-            "telephone": null,
+            "telephone": "(83)8293-9892",
             "cell_phone": "+5511999999222",
             "date_joined": "2023-09-02T03:33:47.857",
             "is_superuser": false,
             "is_staff": false,
             "is_active": true,
+            "is_fgfcc": false,
             "is_professor": true,
-            "history": null,
-            "job": null,
+            "history": 58,
+            "job": 134,
             "groups": [],
             "user_permissions": [],
             "blocks": [
@@ -9663,15 +9720,16 @@
             "first_name": "PROFESSOR 32",
             "last_name": "TESTE",
             "email": "professor32@ifsp.edu.br",
-            "telephone": null,
+            "telephone": "(82)8299-1839",
             "cell_phone": "+5511999999919",
             "date_joined": "2023-09-02T03:36:21.621",
             "is_superuser": false,
             "is_staff": false,
             "is_active": true,
+            "is_fgfcc": false,
             "is_professor": true,
-            "history": null,
-            "job": null,
+            "history": 56,
+            "job": 213,
             "groups": [],
             "user_permissions": [],
             "blocks": [
@@ -9689,15 +9747,16 @@
             "first_name": "PROFESSOR 33",
             "last_name": "TESTE",
             "email": "professor33@ifsp.edu.br",
-            "telephone": null,
+            "telephone": "(96)9606-9696",
             "cell_phone": "+5511999999923",
             "date_joined": "2023-09-02T03:39:50.607",
             "is_superuser": false,
             "is_staff": false,
             "is_active": true,
+            "is_fgfcc": false,
             "is_professor": true,
-            "history": null,
-            "job": null,
+            "history": 54,
+            "job": 123,
             "groups": [],
             "user_permissions": [],
             "blocks": [
@@ -9715,15 +9774,16 @@
             "first_name": "PROFESSOR 34",
             "last_name": "TESTE",
             "email": "professor34@ifsp.edu.br",
-            "telephone": null,
+            "telephone": "(29)9392-9390",
             "cell_phone": "+5511999999223",
             "date_joined": "2023-09-02T03:41:04.260",
             "is_superuser": false,
             "is_staff": false,
             "is_active": true,
+            "is_fgfcc": false,
             "is_professor": true,
-            "history": null,
-            "job": null,
+            "history": 52,
+            "job": 205,
             "groups": [],
             "user_permissions": [],
             "blocks": [
@@ -9741,15 +9801,16 @@
             "first_name": "PROFESSOR 35",
             "last_name": "TESTE",
             "email": "professor35@ifsp.edu.br",
-            "telephone": null,
+            "telephone": "(83)8283-8383",
             "cell_phone": "+5511999999281",
             "date_joined": "2023-09-02T03:42:24.772",
             "is_superuser": false,
             "is_staff": false,
             "is_active": true,
+            "is_fgfcc": false,
             "is_professor": true,
-            "history": null,
-            "job": null,
+            "history": 50,
+            "job": 211,
             "groups": [],
             "user_permissions": [],
             "blocks": [
@@ -9767,15 +9828,16 @@
             "first_name": "PROFESSOR 36",
             "last_name": "TESTE",
             "email": "professor36@ifsp.edu.br",
-            "telephone": null,
+            "telephone": "(74)7828-8329",
             "cell_phone": "+5511999999282",
             "date_joined": "2023-09-02T03:43:37.012",
             "is_superuser": false,
             "is_staff": false,
             "is_active": true,
+            "is_fgfcc": false,
             "is_professor": true,
-            "history": null,
-            "job": null,
+            "history": 46,
+            "job": 207,
             "groups": [],
             "user_permissions": [],
             "blocks": [
@@ -9793,15 +9855,16 @@
             "first_name": "PROFESSOR 37",
             "last_name": "TESTE",
             "email": "professor37@ifsp.edu.br",
-            "telephone": null,
+            "telephone": "(39)8932-8298",
             "cell_phone": "+5511999992838",
             "date_joined": "2023-09-02T03:44:49.233",
             "is_superuser": false,
             "is_staff": false,
             "is_active": true,
+            "is_fgfcc": false,
             "is_professor": true,
-            "history": null,
-            "job": null,
+            "history": 45,
+            "job": 209,
             "groups": [],
             "user_permissions": [],
             "blocks": [
@@ -9819,15 +9882,16 @@
             "first_name": "PROFESSOR 38",
             "last_name": "TESTE",
             "email": "professor38@ifsp.edu.br",
-            "telephone": null,
-            "cell_phone": "+5511999992832",
+            "telephone": "(83)8939-8293",
+            "cell_phone": "(51)19999-9280",
             "date_joined": "2023-09-02T03:45:43.969",
             "is_superuser": false,
             "is_staff": false,
             "is_active": true,
+            "is_fgfcc": false,
             "is_professor": true,
-            "history": null,
-            "job": null,
+            "history": 42,
+            "job": 210,
             "groups": [],
             "user_permissions": [],
             "blocks": [
@@ -9845,15 +9909,16 @@
             "first_name": "PROFESSOR 39",
             "last_name": "TESTE",
             "email": "professor39@ifsp.edu.br",
-            "telephone": null,
-            "cell_phone": "+5511999999393",
+            "telephone": "(27)4927-8749",
+            "cell_phone": "(51)19999-9939",
             "date_joined": "2023-09-02T03:46:38.077",
             "is_superuser": false,
             "is_staff": false,
             "is_active": true,
+            "is_fgfcc": false,
             "is_professor": true,
-            "history": null,
-            "job": null,
+            "history": 41,
+            "job": 206,
             "groups": [],
             "user_permissions": [],
             "blocks": [
@@ -9871,20 +9936,2317 @@
             "first_name": "PROFESSOR 40",
             "last_name": "TESTE",
             "email": "professor40@ifsp.edu.br",
-            "telephone": null,
+            "telephone": "(92)9389-2938",
             "cell_phone": "+5511999929398",
             "date_joined": "2023-09-02T03:47:33.624",
             "is_superuser": false,
             "is_staff": false,
             "is_active": true,
+            "is_fgfcc": false,
             "is_professor": true,
-            "history": null,
-            "job": null,
+            "history": 40,
+            "job": 204,
             "groups": [],
             "user_permissions": [],
             "blocks": [
                 1
             ]
+        }
+    },
+    {
+        "model": "user.academicdegreehistory",
+        "pk": 1,
+        "fields": {
+            "history": 8,
+            "academic_degree": 5
+        }
+    },
+    {
+        "model": "user.academicdegreehistory",
+        "pk": 2,
+        "fields": {
+            "history": 8,
+            "academic_degree": 2
+        }
+    },
+    {
+        "model": "user.academicdegreehistory",
+        "pk": 26,
+        "fields": {
+            "history": 17,
+            "academic_degree": 6
+        }
+    },
+    {
+        "model": "user.academicdegreehistory",
+        "pk": 27,
+        "fields": {
+            "history": 18,
+            "academic_degree": 2
+        }
+    },
+    {
+        "model": "user.academicdegreehistory",
+        "pk": 28,
+        "fields": {
+            "history": 18,
+            "academic_degree": 4
+        }
+    },
+    {
+        "model": "user.academicdegreehistory",
+        "pk": 29,
+        "fields": {
+            "history": 18,
+            "academic_degree": 3
+        }
+    },
+    {
+        "model": "user.academicdegreehistory",
+        "pk": 30,
+        "fields": {
+            "history": 18,
+            "academic_degree": 5
+        }
+    },
+    {
+        "model": "user.academicdegreehistory",
+        "pk": 31,
+        "fields": {
+            "history": 19,
+            "academic_degree": 6
+        }
+    },
+    {
+        "model": "user.academicdegreehistory",
+        "pk": 45,
+        "fields": {
+            "history": 26,
+            "academic_degree": 4
+        }
+    },
+    {
+        "model": "user.academicdegreehistory",
+        "pk": 46,
+        "fields": {
+            "history": 26,
+            "academic_degree": 2
+        }
+    },
+    {
+        "model": "user.academicdegreehistory",
+        "pk": 47,
+        "fields": {
+            "history": 26,
+            "academic_degree": 1
+        }
+    },
+    {
+        "model": "user.academicdegreehistory",
+        "pk": 52,
+        "fields": {
+            "history": 28,
+            "academic_degree": 4
+        }
+    },
+    {
+        "model": "user.academicdegreehistory",
+        "pk": 53,
+        "fields": {
+            "history": 28,
+            "academic_degree": 5
+        }
+    },
+    {
+        "model": "user.academicdegreehistory",
+        "pk": 54,
+        "fields": {
+            "history": 28,
+            "academic_degree": 5
+        }
+    },
+    {
+        "model": "user.academicdegreehistory",
+        "pk": 55,
+        "fields": {
+            "history": 28,
+            "academic_degree": 6
+        }
+    },
+    {
+        "model": "user.academicdegreehistory",
+        "pk": 56,
+        "fields": {
+            "history": 28,
+            "academic_degree": 2
+        }
+    },
+    {
+        "model": "user.academicdegreehistory",
+        "pk": 57,
+        "fields": {
+            "history": 29,
+            "academic_degree": 4
+        }
+    },
+    {
+        "model": "user.academicdegreehistory",
+        "pk": 58,
+        "fields": {
+            "history": 29,
+            "academic_degree": 3
+        }
+    },
+    {
+        "model": "user.academicdegreehistory",
+        "pk": 59,
+        "fields": {
+            "history": 29,
+            "academic_degree": 6
+        }
+    },
+    {
+        "model": "user.academicdegreehistory",
+        "pk": 60,
+        "fields": {
+            "history": 29,
+            "academic_degree": 6
+        }
+    },
+    {
+        "model": "user.academicdegreehistory",
+        "pk": 61,
+        "fields": {
+            "history": 30,
+            "academic_degree": 2
+        }
+    },
+    {
+        "model": "user.academicdegreehistory",
+        "pk": 62,
+        "fields": {
+            "history": 30,
+            "academic_degree": 2
+        }
+    },
+    {
+        "model": "user.academicdegreehistory",
+        "pk": 63,
+        "fields": {
+            "history": 30,
+            "academic_degree": 3
+        }
+    },
+    {
+        "model": "user.academicdegreehistory",
+        "pk": 64,
+        "fields": {
+            "history": 31,
+            "academic_degree": 4
+        }
+    },
+    {
+        "model": "user.academicdegreehistory",
+        "pk": 65,
+        "fields": {
+            "history": 31,
+            "academic_degree": 4
+        }
+    },
+    {
+        "model": "user.academicdegreehistory",
+        "pk": 66,
+        "fields": {
+            "history": 31,
+            "academic_degree": 2
+        }
+    },
+    {
+        "model": "user.academicdegreehistory",
+        "pk": 67,
+        "fields": {
+            "history": 32,
+            "academic_degree": 4
+        }
+    },
+    {
+        "model": "user.academicdegreehistory",
+        "pk": 68,
+        "fields": {
+            "history": 32,
+            "academic_degree": 3
+        }
+    },
+    {
+        "model": "user.academicdegreehistory",
+        "pk": 69,
+        "fields": {
+            "history": 32,
+            "academic_degree": 2
+        }
+    },
+    {
+        "model": "user.academicdegreehistory",
+        "pk": 70,
+        "fields": {
+            "history": 34,
+            "academic_degree": 6
+        }
+    },
+    {
+        "model": "user.academicdegreehistory",
+        "pk": 71,
+        "fields": {
+            "history": 34,
+            "academic_degree": 4
+        }
+    },
+    {
+        "model": "user.academicdegreehistory",
+        "pk": 72,
+        "fields": {
+            "history": 34,
+            "academic_degree": 3
+        }
+    },
+    {
+        "model": "user.academicdegreehistory",
+        "pk": 73,
+        "fields": {
+            "history": 34,
+            "academic_degree": 2
+        }
+    },
+    {
+        "model": "user.academicdegreehistory",
+        "pk": 74,
+        "fields": {
+            "history": 34,
+            "academic_degree": 1
+        }
+    },
+    {
+        "model": "user.academicdegreehistory",
+        "pk": 103,
+        "fields": {
+            "history": 44,
+            "academic_degree": 3
+        }
+    },
+    {
+        "model": "user.academicdegreehistory",
+        "pk": 104,
+        "fields": {
+            "history": 44,
+            "academic_degree": 2
+        }
+    },
+    {
+        "model": "user.academicdegreehistory",
+        "pk": 105,
+        "fields": {
+            "history": 44,
+            "academic_degree": 1
+        }
+    },
+    {
+        "model": "user.academicdegreehistory",
+        "pk": 116,
+        "fields": {
+            "history": 49,
+            "academic_degree": 4
+        }
+    },
+    {
+        "model": "user.academicdegreehistory",
+        "pk": 117,
+        "fields": {
+            "history": 49,
+            "academic_degree": 2
+        }
+    },
+    {
+        "model": "user.academicdegreehistory",
+        "pk": 118,
+        "fields": {
+            "history": 49,
+            "academic_degree": 1
+        }
+    },
+    {
+        "model": "user.academicdegreehistory",
+        "pk": 127,
+        "fields": {
+            "history": 53,
+            "academic_degree": 6
+        }
+    },
+    {
+        "model": "user.academicdegreehistory",
+        "pk": 128,
+        "fields": {
+            "history": 53,
+            "academic_degree": 5
+        }
+    },
+    {
+        "model": "user.academicdegreehistory",
+        "pk": 129,
+        "fields": {
+            "history": 53,
+            "academic_degree": 3
+        }
+    },
+    {
+        "model": "user.academicdegreehistory",
+        "pk": 130,
+        "fields": {
+            "history": 53,
+            "academic_degree": 2
+        }
+    },
+    {
+        "model": "user.academicdegreehistory",
+        "pk": 131,
+        "fields": {
+            "history": 54,
+            "academic_degree": 4
+        }
+    },
+    {
+        "model": "user.academicdegreehistory",
+        "pk": 132,
+        "fields": {
+            "history": 54,
+            "academic_degree": 6
+        }
+    },
+    {
+        "model": "user.academicdegreehistory",
+        "pk": 133,
+        "fields": {
+            "history": 54,
+            "academic_degree": 6
+        }
+    },
+    {
+        "model": "user.academicdegreehistory",
+        "pk": 134,
+        "fields": {
+            "history": 54,
+            "academic_degree": 6
+        }
+    },
+    {
+        "model": "user.academicdegreehistory",
+        "pk": 146,
+        "fields": {
+            "history": 58,
+            "academic_degree": 4
+        }
+    },
+    {
+        "model": "user.academicdegreehistory",
+        "pk": 147,
+        "fields": {
+            "history": 58,
+            "academic_degree": 2
+        }
+    },
+    {
+        "model": "user.academicdegreehistory",
+        "pk": 148,
+        "fields": {
+            "history": 58,
+            "academic_degree": 6
+        }
+    },
+    {
+        "model": "user.academicdegreehistory",
+        "pk": 149,
+        "fields": {
+            "history": 58,
+            "academic_degree": 5
+        }
+    },
+    {
+        "model": "user.academicdegreehistory",
+        "pk": 151,
+        "fields": {
+            "history": 1,
+            "academic_degree": 6
+        }
+    },
+    {
+        "model": "user.academicdegreehistory",
+        "pk": 152,
+        "fields": {
+            "history": 9,
+            "academic_degree": 4
+        }
+    },
+    {
+        "model": "user.academicdegreehistory",
+        "pk": 153,
+        "fields": {
+            "history": 9,
+            "academic_degree": 3
+        }
+    },
+    {
+        "model": "user.academicdegreehistory",
+        "pk": 154,
+        "fields": {
+            "history": 9,
+            "academic_degree": 2
+        }
+    },
+    {
+        "model": "user.academicdegreehistory",
+        "pk": 155,
+        "fields": {
+            "history": 12,
+            "academic_degree": 5
+        }
+    },
+    {
+        "model": "user.academicdegreehistory",
+        "pk": 156,
+        "fields": {
+            "history": 12,
+            "academic_degree": 5
+        }
+    },
+    {
+        "model": "user.academicdegreehistory",
+        "pk": 157,
+        "fields": {
+            "history": 12,
+            "academic_degree": 2
+        }
+    },
+    {
+        "model": "user.academicdegreehistory",
+        "pk": 158,
+        "fields": {
+            "history": 12,
+            "academic_degree": 4
+        }
+    },
+    {
+        "model": "user.academicdegreehistory",
+        "pk": 159,
+        "fields": {
+            "history": 10,
+            "academic_degree": 1
+        }
+    },
+    {
+        "model": "user.academicdegreehistory",
+        "pk": 160,
+        "fields": {
+            "history": 10,
+            "academic_degree": 2
+        }
+    },
+    {
+        "model": "user.academicdegreehistory",
+        "pk": 161,
+        "fields": {
+            "history": 10,
+            "academic_degree": 3
+        }
+    },
+    {
+        "model": "user.academicdegreehistory",
+        "pk": 162,
+        "fields": {
+            "history": 13,
+            "academic_degree": 2
+        }
+    },
+    {
+        "model": "user.academicdegreehistory",
+        "pk": 163,
+        "fields": {
+            "history": 13,
+            "academic_degree": 5
+        }
+    },
+    {
+        "model": "user.academicdegreehistory",
+        "pk": 164,
+        "fields": {
+            "history": 13,
+            "academic_degree": 5
+        }
+    },
+    {
+        "model": "user.academicdegreehistory",
+        "pk": 165,
+        "fields": {
+            "history": 13,
+            "academic_degree": 6
+        }
+    },
+    {
+        "model": "user.academicdegreehistory",
+        "pk": 166,
+        "fields": {
+            "history": 15,
+            "academic_degree": 1
+        }
+    },
+    {
+        "model": "user.academicdegreehistory",
+        "pk": 167,
+        "fields": {
+            "history": 15,
+            "academic_degree": 2
+        }
+    },
+    {
+        "model": "user.academicdegreehistory",
+        "pk": 168,
+        "fields": {
+            "history": 15,
+            "academic_degree": 4
+        }
+    },
+    {
+        "model": "user.academicdegreehistory",
+        "pk": 169,
+        "fields": {
+            "history": 15,
+            "academic_degree": 5
+        }
+    },
+    {
+        "model": "user.academicdegreehistory",
+        "pk": 172,
+        "fields": {
+            "history": 57,
+            "academic_degree": 6
+        }
+    },
+    {
+        "model": "user.academicdegreehistory",
+        "pk": 173,
+        "fields": {
+            "history": 57,
+            "academic_degree": 3
+        }
+    },
+    {
+        "model": "user.academicdegreehistory",
+        "pk": 174,
+        "fields": {
+            "history": 57,
+            "academic_degree": 2
+        }
+    },
+    {
+        "model": "user.academicdegreehistory",
+        "pk": 175,
+        "fields": {
+            "history": 59,
+            "academic_degree": 6
+        }
+    },
+    {
+        "model": "user.academicdegreehistory",
+        "pk": 176,
+        "fields": {
+            "history": 59,
+            "academic_degree": 3
+        }
+    },
+    {
+        "model": "user.academicdegreehistory",
+        "pk": 177,
+        "fields": {
+            "history": 59,
+            "academic_degree": 2
+        }
+    },
+    {
+        "model": "user.academicdegreehistory",
+        "pk": 178,
+        "fields": {
+            "history": 60,
+            "academic_degree": 4
+        }
+    },
+    {
+        "model": "user.academicdegreehistory",
+        "pk": 179,
+        "fields": {
+            "history": 60,
+            "academic_degree": 2
+        }
+    },
+    {
+        "model": "user.academicdegreehistory",
+        "pk": 180,
+        "fields": {
+            "history": 60,
+            "academic_degree": 6
+        }
+    },
+    {
+        "model": "user.academicdegreehistory",
+        "pk": 181,
+        "fields": {
+            "history": 62,
+            "academic_degree": 4
+        }
+    },
+    {
+        "model": "user.academicdegreehistory",
+        "pk": 182,
+        "fields": {
+            "history": 62,
+            "academic_degree": 3
+        }
+    },
+    {
+        "model": "user.academicdegreehistory",
+        "pk": 183,
+        "fields": {
+            "history": 62,
+            "academic_degree": 2
+        }
+    },
+    {
+        "model": "user.academicdegreehistory",
+        "pk": 184,
+        "fields": {
+            "history": 62,
+            "academic_degree": 1
+        }
+    },
+    {
+        "model": "user.academicdegreehistory",
+        "pk": 185,
+        "fields": {
+            "history": 62,
+            "academic_degree": 5
+        }
+    },
+    {
+        "model": "user.academicdegreehistory",
+        "pk": 186,
+        "fields": {
+            "history": 62,
+            "academic_degree": 6
+        }
+    },
+    {
+        "model": "user.academicdegreehistory",
+        "pk": 187,
+        "fields": {
+            "history": 63,
+            "academic_degree": 4
+        }
+    },
+    {
+        "model": "user.academicdegreehistory",
+        "pk": 188,
+        "fields": {
+            "history": 63,
+            "academic_degree": 2
+        }
+    },
+    {
+        "model": "user.academicdegreehistory",
+        "pk": 189,
+        "fields": {
+            "history": 63,
+            "academic_degree": 5
+        }
+    },
+    {
+        "model": "user.academicdegreehistory",
+        "pk": 190,
+        "fields": {
+            "history": 63,
+            "academic_degree": 5
+        }
+    },
+    {
+        "model": "user.academicdegreehistory",
+        "pk": 191,
+        "fields": {
+            "history": 63,
+            "academic_degree": 6
+        }
+    },
+    {
+        "model": "user.academicdegreehistory",
+        "pk": 192,
+        "fields": {
+            "history": 64,
+            "academic_degree": 4
+        }
+    },
+    {
+        "model": "user.academicdegreehistory",
+        "pk": 193,
+        "fields": {
+            "history": 64,
+            "academic_degree": 2
+        }
+    },
+    {
+        "model": "user.academicdegreehistory",
+        "pk": 194,
+        "fields": {
+            "history": 64,
+            "academic_degree": 5
+        }
+    },
+    {
+        "model": "user.academicdegreehistory",
+        "pk": 195,
+        "fields": {
+            "history": 64,
+            "academic_degree": 6
+        }
+    },
+    {
+        "model": "user.academicdegreehistory",
+        "pk": 196,
+        "fields": {
+            "history": 66,
+            "academic_degree": 5
+        }
+    },
+    {
+        "model": "user.academicdegreehistory",
+        "pk": 197,
+        "fields": {
+            "history": 66,
+            "academic_degree": 6
+        }
+    },
+    {
+        "model": "user.academicdegreehistory",
+        "pk": 198,
+        "fields": {
+            "history": 66,
+            "academic_degree": 2
+        }
+    },
+    {
+        "model": "user.academicdegreehistory",
+        "pk": 199,
+        "fields": {
+            "history": 66,
+            "academic_degree": 1
+        }
+    },
+    {
+        "model": "user.academicdegreehistory",
+        "pk": 200,
+        "fields": {
+            "history": 67,
+            "academic_degree": 4
+        }
+    },
+    {
+        "model": "user.academicdegreehistory",
+        "pk": 201,
+        "fields": {
+            "history": 67,
+            "academic_degree": 3
+        }
+    },
+    {
+        "model": "user.academicdegreehistory",
+        "pk": 202,
+        "fields": {
+            "history": 67,
+            "academic_degree": 6
+        }
+    },
+    {
+        "model": "user.academicdegreehistory",
+        "pk": 203,
+        "fields": {
+            "history": 68,
+            "academic_degree": 4
+        }
+    },
+    {
+        "model": "user.academicdegreehistory",
+        "pk": 204,
+        "fields": {
+            "history": 68,
+            "academic_degree": 1
+        }
+    },
+    {
+        "model": "user.academicdegreehistory",
+        "pk": 205,
+        "fields": {
+            "history": 68,
+            "academic_degree": 2
+        }
+    },
+    {
+        "model": "user.academicdegreehistory",
+        "pk": 206,
+        "fields": {
+            "history": 20,
+            "academic_degree": 4
+        }
+    },
+    {
+        "model": "user.academicdegreehistory",
+        "pk": 207,
+        "fields": {
+            "history": 20,
+            "academic_degree": 2
+        }
+    },
+    {
+        "model": "user.academicdegreehistory",
+        "pk": 208,
+        "fields": {
+            "history": 20,
+            "academic_degree": 2
+        }
+    },
+    {
+        "model": "user.academicdegreehistory",
+        "pk": 209,
+        "fields": {
+            "history": 20,
+            "academic_degree": 1
+        }
+    },
+    {
+        "model": "user.academicdegreehistory",
+        "pk": 210,
+        "fields": {
+            "history": 22,
+            "academic_degree": 1
+        }
+    },
+    {
+        "model": "user.academicdegreehistory",
+        "pk": 211,
+        "fields": {
+            "history": 22,
+            "academic_degree": 2
+        }
+    },
+    {
+        "model": "user.academicdegreehistory",
+        "pk": 212,
+        "fields": {
+            "history": 22,
+            "academic_degree": 3
+        }
+    },
+    {
+        "model": "user.academicdegreehistory",
+        "pk": 213,
+        "fields": {
+            "history": 22,
+            "academic_degree": 6
+        }
+    },
+    {
+        "model": "user.academicdegreehistory",
+        "pk": 214,
+        "fields": {
+            "history": 23,
+            "academic_degree": 2
+        }
+    },
+    {
+        "model": "user.academicdegreehistory",
+        "pk": 215,
+        "fields": {
+            "history": 23,
+            "academic_degree": 3
+        }
+    },
+    {
+        "model": "user.academicdegreehistory",
+        "pk": 216,
+        "fields": {
+            "history": 23,
+            "academic_degree": 5
+        }
+    },
+    {
+        "model": "user.academicdegreehistory",
+        "pk": 217,
+        "fields": {
+            "history": 38,
+            "academic_degree": 3
+        }
+    },
+    {
+        "model": "user.academicdegreehistory",
+        "pk": 218,
+        "fields": {
+            "history": 38,
+            "academic_degree": 4
+        }
+    },
+    {
+        "model": "user.academicdegreehistory",
+        "pk": 219,
+        "fields": {
+            "history": 38,
+            "academic_degree": 4
+        }
+    },
+    {
+        "model": "user.academicdegreehistory",
+        "pk": 220,
+        "fields": {
+            "history": 38,
+            "academic_degree": 2
+        }
+    },
+    {
+        "model": "user.academicdegreehistory",
+        "pk": 221,
+        "fields": {
+            "history": 24,
+            "academic_degree": 2
+        }
+    },
+    {
+        "model": "user.academicdegreehistory",
+        "pk": 222,
+        "fields": {
+            "history": 24,
+            "academic_degree": 3
+        }
+    },
+    {
+        "model": "user.academicdegreehistory",
+        "pk": 223,
+        "fields": {
+            "history": 24,
+            "academic_degree": 4
+        }
+    },
+    {
+        "model": "user.academicdegreehistory",
+        "pk": 224,
+        "fields": {
+            "history": 16,
+            "academic_degree": 6
+        }
+    },
+    {
+        "model": "user.academicdegreehistory",
+        "pk": 225,
+        "fields": {
+            "history": 39,
+            "academic_degree": 4
+        }
+    },
+    {
+        "model": "user.academicdegreehistory",
+        "pk": 226,
+        "fields": {
+            "history": 36,
+            "academic_degree": 5
+        }
+    },
+    {
+        "model": "user.academicdegreehistory",
+        "pk": 227,
+        "fields": {
+            "history": 36,
+            "academic_degree": 3
+        }
+    },
+    {
+        "model": "user.academicdegreehistory",
+        "pk": 228,
+        "fields": {
+            "history": 36,
+            "academic_degree": 4
+        }
+    },
+    {
+        "model": "user.academicdegreehistory",
+        "pk": 229,
+        "fields": {
+            "history": 35,
+            "academic_degree": 6
+        }
+    },
+    {
+        "model": "user.academicdegreehistory",
+        "pk": 230,
+        "fields": {
+            "history": 35,
+            "academic_degree": 4
+        }
+    },
+    {
+        "model": "user.academicdegreehistory",
+        "pk": 231,
+        "fields": {
+            "history": 35,
+            "academic_degree": 2
+        }
+    },
+    {
+        "model": "user.academicdegreehistory",
+        "pk": 232,
+        "fields": {
+            "history": 51,
+            "academic_degree": 3
+        }
+    },
+    {
+        "model": "user.academicdegreehistory",
+        "pk": 233,
+        "fields": {
+            "history": 37,
+            "academic_degree": 4
+        }
+    },
+    {
+        "model": "user.academicdegreehistory",
+        "pk": 234,
+        "fields": {
+            "history": 37,
+            "academic_degree": 2
+        }
+    },
+    {
+        "model": "user.academicdegreehistory",
+        "pk": 235,
+        "fields": {
+            "history": 25,
+            "academic_degree": 2
+        }
+    },
+    {
+        "model": "user.academicdegreehistory",
+        "pk": 236,
+        "fields": {
+            "history": 25,
+            "academic_degree": 3
+        }
+    },
+    {
+        "model": "user.academicdegreehistory",
+        "pk": 237,
+        "fields": {
+            "history": 25,
+            "academic_degree": 4
+        }
+    },
+    {
+        "model": "user.academicdegreehistory",
+        "pk": 238,
+        "fields": {
+            "history": 43,
+            "academic_degree": 4
+        }
+    },
+    {
+        "model": "user.academicdegreehistory",
+        "pk": 239,
+        "fields": {
+            "history": 43,
+            "academic_degree": 2
+        }
+    },
+    {
+        "model": "user.academicdegreehistory",
+        "pk": 240,
+        "fields": {
+            "history": 43,
+            "academic_degree": 5
+        }
+    },
+    {
+        "model": "user.academicdegreehistory",
+        "pk": 241,
+        "fields": {
+            "history": 27,
+            "academic_degree": 4
+        }
+    },
+    {
+        "model": "user.academicdegreehistory",
+        "pk": 242,
+        "fields": {
+            "history": 27,
+            "academic_degree": 3
+        }
+    },
+    {
+        "model": "user.academicdegreehistory",
+        "pk": 243,
+        "fields": {
+            "history": 27,
+            "academic_degree": 1
+        }
+    },
+    {
+        "model": "user.academicdegreehistory",
+        "pk": 244,
+        "fields": {
+            "history": 27,
+            "academic_degree": 2
+        }
+    },
+    {
+        "model": "user.academicdegreehistory",
+        "pk": 245,
+        "fields": {
+            "history": 55,
+            "academic_degree": 6
+        }
+    },
+    {
+        "model": "user.academicdegreehistory",
+        "pk": 246,
+        "fields": {
+            "history": 55,
+            "academic_degree": 4
+        }
+    },
+    {
+        "model": "user.academicdegreehistory",
+        "pk": 247,
+        "fields": {
+            "history": 55,
+            "academic_degree": 2
+        }
+    },
+    {
+        "model": "user.academicdegreehistory",
+        "pk": 248,
+        "fields": {
+            "history": 55,
+            "academic_degree": 2
+        }
+    },
+    {
+        "model": "user.academicdegreehistory",
+        "pk": 249,
+        "fields": {
+            "history": 55,
+            "academic_degree": 2
+        }
+    },
+    {
+        "model": "user.academicdegreehistory",
+        "pk": 250,
+        "fields": {
+            "history": 55,
+            "academic_degree": 2
+        }
+    },
+    {
+        "model": "user.academicdegreehistory",
+        "pk": 251,
+        "fields": {
+            "history": 40,
+            "academic_degree": 6
+        }
+    },
+    {
+        "model": "user.academicdegreehistory",
+        "pk": 252,
+        "fields": {
+            "history": 40,
+            "academic_degree": 5
+        }
+    },
+    {
+        "model": "user.academicdegreehistory",
+        "pk": 253,
+        "fields": {
+            "history": 40,
+            "academic_degree": 2
+        }
+    },
+    {
+        "model": "user.academicdegreehistory",
+        "pk": 254,
+        "fields": {
+            "history": 40,
+            "academic_degree": 4
+        }
+    },
+    {
+        "model": "user.academicdegreehistory",
+        "pk": 255,
+        "fields": {
+            "history": 52,
+            "academic_degree": 4
+        }
+    },
+    {
+        "model": "user.academicdegreehistory",
+        "pk": 256,
+        "fields": {
+            "history": 52,
+            "academic_degree": 2
+        }
+    },
+    {
+        "model": "user.academicdegreehistory",
+        "pk": 257,
+        "fields": {
+            "history": 52,
+            "academic_degree": 6
+        }
+    },
+    {
+        "model": "user.academicdegreehistory",
+        "pk": 258,
+        "fields": {
+            "history": 52,
+            "academic_degree": 6
+        }
+    },
+    {
+        "model": "user.academicdegreehistory",
+        "pk": 259,
+        "fields": {
+            "history": 41,
+            "academic_degree": 4
+        }
+    },
+    {
+        "model": "user.academicdegreehistory",
+        "pk": 260,
+        "fields": {
+            "history": 41,
+            "academic_degree": 3
+        }
+    },
+    {
+        "model": "user.academicdegreehistory",
+        "pk": 261,
+        "fields": {
+            "history": 41,
+            "academic_degree": 1
+        }
+    },
+    {
+        "model": "user.academicdegreehistory",
+        "pk": 262,
+        "fields": {
+            "history": 46,
+            "academic_degree": 4
+        }
+    },
+    {
+        "model": "user.academicdegreehistory",
+        "pk": 263,
+        "fields": {
+            "history": 46,
+            "academic_degree": 2
+        }
+    },
+    {
+        "model": "user.academicdegreehistory",
+        "pk": 264,
+        "fields": {
+            "history": 46,
+            "academic_degree": 6
+        }
+    },
+    {
+        "model": "user.academicdegreehistory",
+        "pk": 265,
+        "fields": {
+            "history": 46,
+            "academic_degree": 6
+        }
+    },
+    {
+        "model": "user.academicdegreehistory",
+        "pk": 266,
+        "fields": {
+            "history": 46,
+            "academic_degree": 1
+        }
+    },
+    {
+        "model": "user.academicdegreehistory",
+        "pk": 272,
+        "fields": {
+            "history": 45,
+            "academic_degree": 4
+        }
+    },
+    {
+        "model": "user.academicdegreehistory",
+        "pk": 273,
+        "fields": {
+            "history": 45,
+            "academic_degree": 3
+        }
+    },
+    {
+        "model": "user.academicdegreehistory",
+        "pk": 274,
+        "fields": {
+            "history": 45,
+            "academic_degree": 6
+        }
+    },
+    {
+        "model": "user.academicdegreehistory",
+        "pk": 275,
+        "fields": {
+            "history": 45,
+            "academic_degree": 6
+        }
+    },
+    {
+        "model": "user.academicdegreehistory",
+        "pk": 276,
+        "fields": {
+            "history": 45,
+            "academic_degree": 6
+        }
+    },
+    {
+        "model": "user.academicdegreehistory",
+        "pk": 277,
+        "fields": {
+            "history": 42,
+            "academic_degree": 6
+        }
+    },
+    {
+        "model": "user.academicdegreehistory",
+        "pk": 278,
+        "fields": {
+            "history": 42,
+            "academic_degree": 6
+        }
+    },
+    {
+        "model": "user.academicdegreehistory",
+        "pk": 279,
+        "fields": {
+            "history": 42,
+            "academic_degree": 6
+        }
+    },
+    {
+        "model": "user.academicdegreehistory",
+        "pk": 280,
+        "fields": {
+            "history": 42,
+            "academic_degree": 4
+        }
+    },
+    {
+        "model": "user.academicdegreehistory",
+        "pk": 281,
+        "fields": {
+            "history": 42,
+            "academic_degree": 2
+        }
+    },
+    {
+        "model": "user.academicdegreehistory",
+        "pk": 282,
+        "fields": {
+            "history": 50,
+            "academic_degree": 4
+        }
+    },
+    {
+        "model": "user.academicdegreehistory",
+        "pk": 283,
+        "fields": {
+            "history": 50,
+            "academic_degree": 2
+        }
+    },
+    {
+        "model": "user.academicdegreehistory",
+        "pk": 284,
+        "fields": {
+            "history": 50,
+            "academic_degree": 6
+        }
+    },
+    {
+        "model": "user.academicdegreehistory",
+        "pk": 285,
+        "fields": {
+            "history": 11,
+            "academic_degree": 3
+        }
+    },
+    {
+        "model": "user.academicdegreehistory",
+        "pk": 286,
+        "fields": {
+            "history": 11,
+            "academic_degree": 2
+        }
+    },
+    {
+        "model": "user.academicdegreehistory",
+        "pk": 287,
+        "fields": {
+            "history": 56,
+            "academic_degree": 4
+        }
+    },
+    {
+        "model": "user.academicdegreehistory",
+        "pk": 288,
+        "fields": {
+            "history": 56,
+            "academic_degree": 2
+        }
+    },
+    {
+        "model": "user.academicdegreehistory",
+        "pk": 289,
+        "fields": {
+            "history": 56,
+            "academic_degree": 6
+        }
+    },
+    {
+        "model": "user.academicdegreehistory",
+        "pk": 290,
+        "fields": {
+            "history": 14,
+            "academic_degree": 6
+        }
+    },
+    {
+        "model": "user.history",
+        "pk": 1,
+        "fields": {
+            "birth": "2004-06-16",
+            "date_career": "2022-03-10",
+            "date_campus": "2020-02-01",
+            "date_professor": "2023-03-10",
+            "date_area": "2020-02-01",
+            "date_institute": "2020-02-01"
+        }
+    },
+    {
+        "model": "user.history",
+        "pk": 2,
+        "fields": {
+            "birth": "1980-04-16",
+            "date_career": "2000-01-30",
+            "date_campus": "2003-03-10",
+            "date_professor": "2002-03-10",
+            "date_area": "2003-03-10",
+            "date_institute": "2002-03-10"
+        }
+    },
+    {
+        "model": "user.history",
+        "pk": 3,
+        "fields": {
+            "birth": "1980-04-16",
+            "date_career": "2000-01-30",
+            "date_campus": "2003-03-10",
+            "date_professor": "2002-03-10",
+            "date_area": "2003-03-10",
+            "date_institute": "2002-03-10"
+        }
+    },
+    {
+        "model": "user.history",
+        "pk": 4,
+        "fields": {
+            "birth": "1980-04-16",
+            "date_career": "2000-01-30",
+            "date_campus": "2003-03-10",
+            "date_professor": "2002-03-10",
+            "date_area": "2003-03-10",
+            "date_institute": "2002-03-10"
+        }
+    },
+    {
+        "model": "user.history",
+        "pk": 5,
+        "fields": {
+            "birth": "1980-04-16",
+            "date_career": "2000-01-30",
+            "date_campus": "2003-03-10",
+            "date_professor": "2002-03-10",
+            "date_area": "2003-03-10",
+            "date_institute": "2002-03-10"
+        }
+    },
+    {
+        "model": "user.history",
+        "pk": 6,
+        "fields": {
+            "birth": "1980-04-16",
+            "date_career": "2000-01-30",
+            "date_campus": "2003-03-10",
+            "date_professor": "2002-03-10",
+            "date_area": "2003-03-10",
+            "date_institute": "2002-03-10"
+        }
+    },
+    {
+        "model": "user.history",
+        "pk": 7,
+        "fields": {
+            "birth": "1980-04-16",
+            "date_career": "2000-01-30",
+            "date_campus": "2003-03-10",
+            "date_professor": "2002-03-10",
+            "date_area": "2003-03-10",
+            "date_institute": "2002-03-10"
+        }
+    },
+    {
+        "model": "user.history",
+        "pk": 8,
+        "fields": {
+            "birth": "2009-09-09",
+            "date_career": "2009-09-09",
+            "date_campus": "2009-09-09",
+            "date_professor": "2009-09-09",
+            "date_area": "2009-09-09",
+            "date_institute": "2009-09-09"
+        }
+    },
+    {
+        "model": "user.history",
+        "pk": 9,
+        "fields": {
+            "birth": "1980-04-16",
+            "date_career": "2003-03-10",
+            "date_campus": "2003-03-10",
+            "date_professor": "2002-03-10",
+            "date_area": "2003-03-10",
+            "date_institute": "2003-03-10"
+        }
+    },
+    {
+        "model": "user.history",
+        "pk": 10,
+        "fields": {
+            "birth": "1970-07-13",
+            "date_career": "1988-09-10",
+            "date_campus": "1998-09-10",
+            "date_professor": "2004-03-10",
+            "date_area": "2004-03-10",
+            "date_institute": "2004-03-10"
+        }
+    },
+    {
+        "model": "user.history",
+        "pk": 11,
+        "fields": {
+            "birth": "1990-08-08",
+            "date_career": "2010-08-08",
+            "date_campus": "2010-08-08",
+            "date_professor": "2011-01-08",
+            "date_area": "2011-01-08",
+            "date_institute": "2011-01-08"
+        }
+    },
+    {
+        "model": "user.history",
+        "pk": 12,
+        "fields": {
+            "birth": "1970-02-22",
+            "date_career": "1990-01-01",
+            "date_campus": "1990-01-01",
+            "date_professor": "1990-01-01",
+            "date_area": "1990-01-01",
+            "date_institute": "1990-01-01"
+        }
+    },
+    {
+        "model": "user.history",
+        "pk": 13,
+        "fields": {
+            "birth": "1965-07-17",
+            "date_career": "1995-03-10",
+            "date_campus": "1995-03-10",
+            "date_professor": "1995-03-10",
+            "date_area": "1995-03-10",
+            "date_institute": "1995-03-10"
+        }
+    },
+    {
+        "model": "user.history",
+        "pk": 14,
+        "fields": {
+            "birth": "2004-05-26",
+            "date_career": "2022-03-01",
+            "date_campus": "2020-01-01",
+            "date_professor": "2022-03-01",
+            "date_area": "2020-03-01",
+            "date_institute": "2020-03-01"
+        }
+    },
+    {
+        "model": "user.history",
+        "pk": 15,
+        "fields": {
+            "birth": "1992-10-15",
+            "date_career": "2010-01-01",
+            "date_campus": "2022-03-10",
+            "date_professor": "2022-03-10",
+            "date_area": "2010-01-01",
+            "date_institute": "2010-01-01"
+        }
+    },
+    {
+        "model": "user.history",
+        "pk": 16,
+        "fields": {
+            "birth": "2005-04-02",
+            "date_career": "2022-03-10",
+            "date_campus": "2020-01-01",
+            "date_professor": "2022-03-10",
+            "date_area": "2020-01-01",
+            "date_institute": "2020-01-01"
+        }
+    },
+    {
+        "model": "user.history",
+        "pk": 17,
+        "fields": {
+            "birth": "2004-09-18",
+            "date_career": "2023-03-10",
+            "date_campus": "2020-01-01",
+            "date_professor": "2023-03-10",
+            "date_area": "2020-01-01",
+            "date_institute": "2020-01-01"
+        }
+    },
+    {
+        "model": "user.history",
+        "pk": 18,
+        "fields": {
+            "birth": "1985-01-11",
+            "date_career": "2000-01-01",
+            "date_campus": "2019-10-10",
+            "date_professor": "2003-03-01",
+            "date_area": "2000-01-01",
+            "date_institute": "2000-01-01"
+        }
+    },
+    {
+        "model": "user.history",
+        "pk": 19,
+        "fields": {
+            "birth": "2005-03-14",
+            "date_career": "2023-03-10",
+            "date_campus": "2020-01-01",
+            "date_professor": "2023-03-10",
+            "date_area": "2020-01-01",
+            "date_institute": "2020-01-01"
+        }
+    },
+    {
+        "model": "user.history",
+        "pk": 20,
+        "fields": {
+            "birth": "1980-02-02",
+            "date_career": "1996-04-01",
+            "date_campus": "2000-03-10",
+            "date_professor": "2002-03-10",
+            "date_area": "1996-04-01",
+            "date_institute": "1996-04-01"
+        }
+    },
+    {
+        "model": "user.history",
+        "pk": 21,
+        "fields": {
+            "birth": "1970-01-01",
+            "date_career": "1988-02-01",
+            "date_campus": "1992-03-10",
+            "date_professor": "1992-02-22",
+            "date_area": "1988-02-01",
+            "date_institute": "1992-02-22"
+        }
+    },
+    {
+        "model": "user.history",
+        "pk": 22,
+        "fields": {
+            "birth": "1970-01-01",
+            "date_career": "1988-02-01",
+            "date_campus": "1992-03-10",
+            "date_professor": "1992-02-22",
+            "date_area": "1988-02-01",
+            "date_institute": "1988-02-01"
+        }
+    },
+    {
+        "model": "user.history",
+        "pk": 23,
+        "fields": {
+            "birth": "1982-07-02",
+            "date_career": "1998-10-10",
+            "date_campus": "2001-09-10",
+            "date_professor": "2008-03-10",
+            "date_area": "2008-03-10",
+            "date_institute": "2008-03-10"
+        }
+    },
+    {
+        "model": "user.history",
+        "pk": 24,
+        "fields": {
+            "birth": "1972-03-29",
+            "date_career": "1990-02-01",
+            "date_campus": "2000-02-01",
+            "date_professor": "2000-02-01",
+            "date_area": "2000-02-01",
+            "date_institute": "2000-02-01"
+        }
+    },
+    {
+        "model": "user.history",
+        "pk": 25,
+        "fields": {
+            "birth": "1978-11-03",
+            "date_career": "1997-02-20",
+            "date_campus": "2000-03-10",
+            "date_professor": "2000-03-10",
+            "date_area": "2000-03-10",
+            "date_institute": "2000-03-10"
+        }
+    },
+    {
+        "model": "user.history",
+        "pk": 26,
+        "fields": {
+            "birth": "1980-06-24",
+            "date_career": "2000-05-20",
+            "date_campus": "2002-01-01",
+            "date_professor": "2002-01-01",
+            "date_area": "2002-01-01",
+            "date_institute": "2002-01-01"
+        }
+    },
+    {
+        "model": "user.history",
+        "pk": 27,
+        "fields": {
+            "birth": "1982-08-30",
+            "date_career": "2001-03-10",
+            "date_campus": "2001-03-10",
+            "date_professor": "2001-03-10",
+            "date_area": "2001-03-10",
+            "date_institute": "2001-03-10"
+        }
+    },
+    {
+        "model": "user.history",
+        "pk": 28,
+        "fields": {
+            "birth": "1988-03-31",
+            "date_career": "2009-09-10",
+            "date_campus": "2011-09-10",
+            "date_professor": "2009-09-10",
+            "date_area": "2009-09-10",
+            "date_institute": "2009-09-10"
+        }
+    },
+    {
+        "model": "user.history",
+        "pk": 29,
+        "fields": {
+            "birth": "1990-07-07",
+            "date_career": "2010-09-09",
+            "date_campus": "2020-03-10",
+            "date_professor": "2013-02-01",
+            "date_area": "2010-09-09",
+            "date_institute": "2010-09-09"
+        }
+    },
+    {
+        "model": "user.history",
+        "pk": 30,
+        "fields": {
+            "birth": "1987-08-08",
+            "date_career": "2004-09-10",
+            "date_campus": "2009-03-10",
+            "date_professor": "2007-03-10",
+            "date_area": "2004-09-10",
+            "date_institute": "2004-09-10"
+        }
+    },
+    {
+        "model": "user.history",
+        "pk": 31,
+        "fields": {
+            "birth": "1990-11-11",
+            "date_career": "2017-03-20",
+            "date_campus": "2021-05-06",
+            "date_professor": "2021-05-06",
+            "date_area": "2019-03-10",
+            "date_institute": "2019-03-10"
+        }
+    },
+    {
+        "model": "user.history",
+        "pk": 32,
+        "fields": {
+            "birth": "1989-08-08",
+            "date_career": "2013-06-26",
+            "date_campus": "2018-09-10",
+            "date_professor": "2015-03-01",
+            "date_area": "2013-06-26",
+            "date_institute": "2013-06-26"
+        }
+    },
+    {
+        "model": "user.history",
+        "pk": 33,
+        "fields": {
+            "birth": "1988-08-02",
+            "date_career": "2000-05-03",
+            "date_campus": "2000-09-02",
+            "date_professor": "2000-09-02",
+            "date_area": "2000-09-02",
+            "date_institute": "2000-09-02"
+        }
+    },
+    {
+        "model": "user.history",
+        "pk": 34,
+        "fields": {
+            "birth": "1988-08-02",
+            "date_career": "2000-05-03",
+            "date_campus": "2000-09-02",
+            "date_professor": "2000-09-02",
+            "date_area": "2000-09-02",
+            "date_institute": "2000-09-02"
+        }
+    },
+    {
+        "model": "user.history",
+        "pk": 35,
+        "fields": {
+            "birth": "1920-07-04",
+            "date_career": "1940-03-06",
+            "date_campus": "1941-06-29",
+            "date_professor": "1940-07-29",
+            "date_area": "1940-04-29",
+            "date_institute": "1940-04-29"
+        }
+    },
+    {
+        "model": "user.history",
+        "pk": 36,
+        "fields": {
+            "birth": "1950-07-04",
+            "date_career": "1970-07-04",
+            "date_campus": "1971-07-01",
+            "date_professor": "1971-07-01",
+            "date_area": "1970-07-04",
+            "date_institute": "1970-07-04"
+        }
+    },
+    {
+        "model": "user.history",
+        "pk": 37,
+        "fields": {
+            "birth": "1950-05-29",
+            "date_career": "1971-12-31",
+            "date_campus": "1971-12-31",
+            "date_professor": "1971-12-31",
+            "date_area": "1971-12-31",
+            "date_institute": "1971-12-31"
+        }
+    },
+    {
+        "model": "user.history",
+        "pk": 38,
+        "fields": {
+            "birth": "1970-05-04",
+            "date_career": "1988-03-20",
+            "date_campus": "2020-09-10",
+            "date_professor": "2000-03-10",
+            "date_area": "1988-03-20",
+            "date_institute": "1988-03-20"
+        }
+    },
+    {
+        "model": "user.history",
+        "pk": 39,
+        "fields": {
+            "birth": "1990-03-01",
+            "date_career": "1995-03-01",
+            "date_campus": "2000-04-01",
+            "date_professor": "2000-04-02",
+            "date_area": "1995-03-01",
+            "date_institute": "1995-03-01"
+        }
+    },
+    {
+        "model": "user.history",
+        "pk": 40,
+        "fields": {
+            "birth": "1989-10-20",
+            "date_career": "2008-01-01",
+            "date_campus": "2022-03-10",
+            "date_professor": "2019-03-10",
+            "date_area": "2012-01-01",
+            "date_institute": "2012-01-01"
+        }
+    },
+    {
+        "model": "user.history",
+        "pk": 41,
+        "fields": {
+            "birth": "1990-03-27",
+            "date_career": "2020-03-10",
+            "date_campus": "2020-03-10",
+            "date_professor": "2020-03-10",
+            "date_area": "2020-03-10",
+            "date_institute": "2020-03-10"
+        }
+    },
+    {
+        "model": "user.history",
+        "pk": 42,
+        "fields": {
+            "birth": "1986-09-19",
+            "date_career": "2003-09-20",
+            "date_campus": "2019-09-10",
+            "date_professor": "2010-04-10",
+            "date_area": "2005-05-05",
+            "date_institute": "2005-05-05"
+        }
+    },
+    {
+        "model": "user.history",
+        "pk": 43,
+        "fields": {
+            "birth": "1988-02-13",
+            "date_career": "2005-03-10",
+            "date_campus": "2007-09-10",
+            "date_professor": "2008-09-10",
+            "date_area": "2005-03-10",
+            "date_institute": "2005-03-10"
+        }
+    },
+    {
+        "model": "user.history",
+        "pk": 44,
+        "fields": {
+            "birth": "1955-09-29",
+            "date_career": "1975-10-28",
+            "date_campus": "1975-10-28",
+            "date_professor": "1975-10-28",
+            "date_area": "1975-10-28",
+            "date_institute": "1975-10-28"
+        }
+    },
+    {
+        "model": "user.history",
+        "pk": 45,
+        "fields": {
+            "birth": "1989-04-30",
+            "date_career": "2020-04-20",
+            "date_campus": "2022-09-10",
+            "date_professor": "2022-09-10",
+            "date_area": "2020-04-20",
+            "date_institute": "2020-04-20"
+        }
+    },
+    {
+        "model": "user.history",
+        "pk": 46,
+        "fields": {
+            "birth": "1991-07-18",
+            "date_career": "2001-03-10",
+            "date_campus": "2002-03-10",
+            "date_professor": "2004-09-10",
+            "date_area": "2001-03-10",
+            "date_institute": "2001-03-10"
+        }
+    },
+    {
+        "model": "user.history",
+        "pk": 47,
+        "fields": {
+            "birth": "1923-09-03",
+            "date_career": "1950-09-03",
+            "date_campus": "1950-09-03",
+            "date_professor": "1950-09-03",
+            "date_area": "1950-09-03",
+            "date_institute": "1950-09-03"
+        }
+    },
+    {
+        "model": "user.history",
+        "pk": 48,
+        "fields": {
+            "birth": "1923-09-03",
+            "date_career": "1950-09-03",
+            "date_campus": "1950-09-03",
+            "date_professor": "1950-09-03",
+            "date_area": "1950-09-03",
+            "date_institute": "1950-09-03"
+        }
+    },
+    {
+        "model": "user.history",
+        "pk": 49,
+        "fields": {
+            "birth": "1923-09-03",
+            "date_career": "1950-09-03",
+            "date_campus": "1950-09-03",
+            "date_professor": "1950-09-03",
+            "date_area": "1950-09-03",
+            "date_institute": "1950-09-03"
+        }
+    },
+    {
+        "model": "user.history",
+        "pk": 50,
+        "fields": {
+            "birth": "1991-01-02",
+            "date_career": "2001-10-10",
+            "date_campus": "2020-09-10",
+            "date_professor": "2020-09-10",
+            "date_area": "2011-05-30",
+            "date_institute": "2011-05-30"
+        }
+    },
+    {
+        "model": "user.history",
+        "pk": 51,
+        "fields": {
+            "birth": "1969-08-03",
+            "date_career": "1980-09-30",
+            "date_campus": "1980-09-30",
+            "date_professor": "1980-09-30",
+            "date_area": "1980-09-30",
+            "date_institute": "1980-09-30"
+        }
+    },
+    {
+        "model": "user.history",
+        "pk": 52,
+        "fields": {
+            "birth": "1992-02-29",
+            "date_career": "2010-03-10",
+            "date_campus": "2015-09-10",
+            "date_professor": "2014-09-10",
+            "date_area": "2010-03-10",
+            "date_institute": "2010-03-10"
+        }
+    },
+    {
+        "model": "user.history",
+        "pk": 53,
+        "fields": {
+            "birth": "1970-03-14",
+            "date_career": "1990-07-27",
+            "date_campus": "1990-07-27",
+            "date_professor": "1990-07-27",
+            "date_area": "1990-07-27",
+            "date_institute": "1990-07-27"
+        }
+    },
+    {
+        "model": "user.history",
+        "pk": 54,
+        "fields": {
+            "birth": "1989-09-09",
+            "date_career": "2015-08-18",
+            "date_campus": "2017-03-10",
+            "date_professor": "2015-09-10",
+            "date_area": "2015-08-18",
+            "date_institute": "2015-08-18"
+        }
+    },
+    {
+        "model": "user.history",
+        "pk": 55,
+        "fields": {
+            "birth": "1972-09-04",
+            "date_career": "2001-11-03",
+            "date_campus": "2001-11-03",
+            "date_professor": "2001-11-03",
+            "date_area": "1990-08-03",
+            "date_institute": "1990-08-03"
+        }
+    },
+    {
+        "model": "user.history",
+        "pk": 56,
+        "fields": {
+            "birth": "1993-08-08",
+            "date_career": "2015-02-28",
+            "date_campus": "2021-03-10",
+            "date_professor": "2021-03-10",
+            "date_area": "2015-02-28",
+            "date_institute": "2015-02-28"
+        }
+    },
+    {
+        "model": "user.history",
+        "pk": 57,
+        "fields": {
+            "birth": "1920-07-05",
+            "date_career": "1960-07-02",
+            "date_campus": "1960-07-02",
+            "date_professor": "1960-07-02",
+            "date_area": "1960-07-02",
+            "date_institute": "1960-07-02"
+        }
+    },
+    {
+        "model": "user.history",
+        "pk": 58,
+        "fields": {
+            "birth": "1990-09-23",
+            "date_career": "2008-03-31",
+            "date_campus": "2020-05-05",
+            "date_professor": "2020-05-05",
+            "date_area": "2008-03-31",
+            "date_institute": "2008-03-31"
+        }
+    },
+    {
+        "model": "user.history",
+        "pk": 59,
+        "fields": {
+            "birth": "1942-10-29",
+            "date_career": "1952-08-27",
+            "date_campus": "1952-08-27",
+            "date_professor": "1952-08-27",
+            "date_area": "1952-08-27",
+            "date_institute": "1952-08-27"
+        }
+    },
+    {
+        "model": "user.history",
+        "pk": 60,
+        "fields": {
+            "birth": "1991-02-02",
+            "date_career": "2011-09-09",
+            "date_campus": "2019-03-10",
+            "date_professor": "2019-03-10",
+            "date_area": "2011-09-09",
+            "date_institute": "2011-09-09"
+        }
+    },
+    {
+        "model": "user.history",
+        "pk": 61,
+        "fields": {
+            "birth": "1975-03-14",
+            "date_career": "2002-05-01",
+            "date_campus": "2002-05-01",
+            "date_professor": "2002-05-01",
+            "date_area": "2002-05-01",
+            "date_institute": "2002-05-01"
+        }
+    },
+    {
+        "model": "user.history",
+        "pk": 62,
+        "fields": {
+            "birth": "1975-03-14",
+            "date_career": "2002-05-01",
+            "date_campus": "2002-05-01",
+            "date_professor": "2002-05-01",
+            "date_area": "2002-05-01",
+            "date_institute": "2002-05-01"
+        }
+    },
+    {
+        "model": "user.history",
+        "pk": 63,
+        "fields": {
+            "birth": "1993-03-07",
+            "date_career": "2010-02-27",
+            "date_campus": "2019-03-10",
+            "date_professor": "2010-02-27",
+            "date_area": "2013-04-18",
+            "date_institute": "2013-04-18"
+        }
+    },
+    {
+        "model": "user.history",
+        "pk": 64,
+        "fields": {
+            "birth": "1992-08-31",
+            "date_career": "2010-03-03",
+            "date_campus": "2018-03-10",
+            "date_professor": "2012-05-20",
+            "date_area": "2010-03-03",
+            "date_institute": "2010-03-03"
+        }
+    },
+    {
+        "model": "user.history",
+        "pk": 65,
+        "fields": {
+            "birth": "1980-06-27",
+            "date_career": "2005-04-01",
+            "date_campus": "2005-04-01",
+            "date_professor": "2005-04-01",
+            "date_area": "2005-04-01",
+            "date_institute": "2005-04-01"
+        }
+    },
+    {
+        "model": "user.history",
+        "pk": 66,
+        "fields": {
+            "birth": "1980-06-27",
+            "date_career": "2005-04-01",
+            "date_campus": "2005-04-01",
+            "date_professor": "2005-04-01",
+            "date_area": "2005-04-01",
+            "date_institute": "2005-04-01"
+        }
+    },
+    {
+        "model": "user.history",
+        "pk": 67,
+        "fields": {
+            "birth": "1991-03-20",
+            "date_career": "2011-02-03",
+            "date_campus": "2019-03-10",
+            "date_professor": "2011-02-03",
+            "date_area": "2012-09-10",
+            "date_institute": "2012-09-10"
+        }
+    },
+    {
+        "model": "user.history",
+        "pk": 68,
+        "fields": {
+            "birth": "2004-04-01",
+            "date_career": "2019-03-29",
+            "date_campus": "2019-03-29",
+            "date_professor": "2019-03-29",
+            "date_area": "2019-03-29",
+            "date_institute": "2019-03-29"
         }
     },
     {
@@ -9933,6 +12295,398 @@
         "fields": {
             "name": "TÉCNICO",
             "punctuation": 1
+        }
+    },
+    {
+        "model": "user.job",
+        "pk": 15,
+        "fields": {
+            "name_job": "TWENTY_HOURS"
+        }
+    },
+    {
+        "model": "user.job",
+        "pk": 44,
+        "fields": {
+            "name_job": "TWENTY_HOURS"
+        }
+    },
+    {
+        "model": "user.job",
+        "pk": 47,
+        "fields": {
+            "name_job": "RDE"
+        }
+    },
+    {
+        "model": "user.job",
+        "pk": 50,
+        "fields": {
+            "name_job": "RDE"
+        }
+    },
+    {
+        "model": "user.job",
+        "pk": 62,
+        "fields": {
+            "name_job": "RDE"
+        }
+    },
+    {
+        "model": "user.job",
+        "pk": 67,
+        "fields": {
+            "name_job": "RDE"
+        }
+    },
+    {
+        "model": "user.job",
+        "pk": 70,
+        "fields": {
+            "name_job": "RDE"
+        }
+    },
+    {
+        "model": "user.job",
+        "pk": 72,
+        "fields": {
+            "name_job": "RDE"
+        }
+    },
+    {
+        "model": "user.job",
+        "pk": 74,
+        "fields": {
+            "name_job": "RDE"
+        }
+    },
+    {
+        "model": "user.job",
+        "pk": 76,
+        "fields": {
+            "name_job": "RDE"
+        }
+    },
+    {
+        "model": "user.job",
+        "pk": 80,
+        "fields": {
+            "name_job": "RDE"
+        }
+    },
+    {
+        "model": "user.job",
+        "pk": 105,
+        "fields": {
+            "name_job": "RDE"
+        }
+    },
+    {
+        "model": "user.job",
+        "pk": 113,
+        "fields": {
+            "name_job": "RDE"
+        }
+    },
+    {
+        "model": "user.job",
+        "pk": 121,
+        "fields": {
+            "name_job": "TWENTY_HOURS"
+        }
+    },
+    {
+        "model": "user.job",
+        "pk": 123,
+        "fields": {
+            "name_job": "RDE"
+        }
+    },
+    {
+        "model": "user.job",
+        "pk": 134,
+        "fields": {
+            "name_job": "RDE"
+        }
+    },
+    {
+        "model": "user.job",
+        "pk": 136,
+        "fields": {
+            "name_job": "FORTY_HOURS"
+        }
+    },
+    {
+        "model": "user.job",
+        "pk": 137,
+        "fields": {
+            "name_job": "RDE"
+        }
+    },
+    {
+        "model": "user.job",
+        "pk": 138,
+        "fields": {
+            "name_job": "RDE"
+        }
+    },
+    {
+        "model": "user.job",
+        "pk": 139,
+        "fields": {
+            "name_job": "RDE"
+        }
+    },
+    {
+        "model": "user.job",
+        "pk": 140,
+        "fields": {
+            "name_job": "RDE"
+        }
+    },
+    {
+        "model": "user.job",
+        "pk": 141,
+        "fields": {
+            "name_job": "SUBSTITUTE"
+        }
+    },
+    {
+        "model": "user.job",
+        "pk": 148,
+        "fields": {
+            "name_job": "SUBSTITUTE"
+        }
+    },
+    {
+        "model": "user.job",
+        "pk": 152,
+        "fields": {
+            "name_job": "TWENTY_HOURS"
+        }
+    },
+    {
+        "model": "user.job",
+        "pk": 153,
+        "fields": {
+            "name_job": "FORTY_HOURS"
+        }
+    },
+    {
+        "model": "user.job",
+        "pk": 157,
+        "fields": {
+            "name_job": "TEMPORARY"
+        }
+    },
+    {
+        "model": "user.job",
+        "pk": 158,
+        "fields": {
+            "name_job": "RDE"
+        }
+    },
+    {
+        "model": "user.job",
+        "pk": 166,
+        "fields": {
+            "name_job": "RDE"
+        }
+    },
+    {
+        "model": "user.job",
+        "pk": 170,
+        "fields": {
+            "name_job": "FORTY_HOURS"
+        }
+    },
+    {
+        "model": "user.job",
+        "pk": 187,
+        "fields": {
+            "name_job": "RDE"
+        }
+    },
+    {
+        "model": "user.job",
+        "pk": 188,
+        "fields": {
+            "name_job": "TEMPORARY"
+        }
+    },
+    {
+        "model": "user.job",
+        "pk": 189,
+        "fields": {
+            "name_job": "RDE"
+        }
+    },
+    {
+        "model": "user.job",
+        "pk": 190,
+        "fields": {
+            "name_job": "RDE"
+        }
+    },
+    {
+        "model": "user.job",
+        "pk": 191,
+        "fields": {
+            "name_job": "RDE"
+        }
+    },
+    {
+        "model": "user.job",
+        "pk": 192,
+        "fields": {
+            "name_job": "RDE"
+        }
+    },
+    {
+        "model": "user.job",
+        "pk": 193,
+        "fields": {
+            "name_job": "RDE"
+        }
+    },
+    {
+        "model": "user.job",
+        "pk": 194,
+        "fields": {
+            "name_job": "TEMPORARY"
+        }
+    },
+    {
+        "model": "user.job",
+        "pk": 195,
+        "fields": {
+            "name_job": "RDE"
+        }
+    },
+    {
+        "model": "user.job",
+        "pk": 196,
+        "fields": {
+            "name_job": "TEMPORARY"
+        }
+    },
+    {
+        "model": "user.job",
+        "pk": 197,
+        "fields": {
+            "name_job": "RDE"
+        }
+    },
+    {
+        "model": "user.job",
+        "pk": 198,
+        "fields": {
+            "name_job": "RDE"
+        }
+    },
+    {
+        "model": "user.job",
+        "pk": 199,
+        "fields": {
+            "name_job": "RDE"
+        }
+    },
+    {
+        "model": "user.job",
+        "pk": 200,
+        "fields": {
+            "name_job": "RDE"
+        }
+    },
+    {
+        "model": "user.job",
+        "pk": 201,
+        "fields": {
+            "name_job": "RDE"
+        }
+    },
+    {
+        "model": "user.job",
+        "pk": 202,
+        "fields": {
+            "name_job": "FORTY_HOURS"
+        }
+    },
+    {
+        "model": "user.job",
+        "pk": 203,
+        "fields": {
+            "name_job": "RDE"
+        }
+    },
+    {
+        "model": "user.job",
+        "pk": 204,
+        "fields": {
+            "name_job": "SUBSTITUTE"
+        }
+    },
+    {
+        "model": "user.job",
+        "pk": 205,
+        "fields": {
+            "name_job": "RDE"
+        }
+    },
+    {
+        "model": "user.job",
+        "pk": 206,
+        "fields": {
+            "name_job": "SUBSTITUTE"
+        }
+    },
+    {
+        "model": "user.job",
+        "pk": 207,
+        "fields": {
+            "name_job": "RDE"
+        }
+    },
+    {
+        "model": "user.job",
+        "pk": 209,
+        "fields": {
+            "name_job": "SUBSTITUTE"
+        }
+    },
+    {
+        "model": "user.job",
+        "pk": 210,
+        "fields": {
+            "name_job": "RDE"
+        }
+    },
+    {
+        "model": "user.job",
+        "pk": 211,
+        "fields": {
+            "name_job": "FORTY_HOURS"
+        }
+    },
+    {
+        "model": "user.job",
+        "pk": 212,
+        "fields": {
+            "name_job": "RDE"
+        }
+    },
+    {
+        "model": "user.job",
+        "pk": 213,
+        "fields": {
+            "name_job": "RDE"
+        }
+    },
+    {
+        "model": "user.job",
+        "pk": 214,
+        "fields": {
+            "name_job": "RDE"
         }
     }
 ]
