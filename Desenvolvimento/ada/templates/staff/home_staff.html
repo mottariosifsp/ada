@@ -9,51 +9,78 @@
 
 {% block body %}
 
-<h2>{% trans "Painel de controle" %}</h2>
-<h6>{% trans "Olá" %}, {{ request.user.first_name }}"! {% trans "Bem-vindo(a) ao painel de controle do sistema ADA" %}. </h6>
-<hr>
-<div class="d-flex">
-  <div class="card m-2 redirect-button" onclick="redirect('{% url  "attribution_configuration_index" %}')">
-    <div class="card-body d-flex flex-column justify-content-center align-items-center" style="padding-top: 0.5rem">
-      <div class="d-flex flex-column justify-content-center align-items-center" style="margin-top: -2rem;">
-        <i class="bi bi-list-check bi-lg" style="font-size: 6rem; margin-bottom: -20px;"></i>
-        <h5 class="card-title mt-0 mb-0" style="color: #ffffff;">{% trans "Atribuições" %}</h5>
+<h1 class="title-page">{% trans "Home Staff" %}</h1>
+    <nav>
+    <ol class="breadcrumb hidden-itens">
+        <li class="breadcrumb-item active"><i class="mr-2 bi bi-house-door"></i> {% trans "Home" %}</li>
+    </ol>
+    </nav>
+
+<div class="container">
+  <div class="row">
+    <div class="mt-4 col-12 col-md-6">
+      <div class="card info-card sales-card">
+        <div class="card-body">
+          <h4 class="card-title">{% trans "Prazos" %} <i class="far fa-calendar-alt custom-icon"></i></h4>
+          <hr>
+          <div>
+            {% if period.status == 'not_configured' %}
+            <p><div class="float-right message-info-not-configured">{% trans 'Não Configurado'%}</div><b>{% trans "Período" %}</b> </p>
+            <p class="home-begin"><b>{% trans "Situação" %}</b> <div class="float-right text-center">{% trans 'Espere até que seja emitido pelo administrador as datas da atribuição' %}.</div></p>
+            {% elif period.status == 'configured_STARTFPADEADLINE' %}
+            <p><div class="float-right message-info-not-configured">{% trans 'Prazo configurado - FPA'%}</div> <b>{% trans "Período" %}</b> </p>
+            <p class="home-begin"><div class=" float-right">{{period.start_day}} {% trans "ás" %} {{period.start_time}}</div><b>{% trans "Inicio" %}</b> </p>
+            <p class=""><div class=" float-right">{{period.end_day}} {% trans "ás" %} {{period.end_time}}</div><b>{% trans "Fim" %}</b></p>
+            {% elif period.status == 'configured_STARTASSIGNMENTDEADLINE' %}
+            <p><div class="float-right message-info-not-configured">{% trans 'Prazo configurado - Atribuição'%}</div> <b>{% trans "Período" %}</b> </p>
+            <p class="home-begin"><div class=" float-right">{{period.start_day}} {% trans "ás" %} {{period.start_time}}</div><b>{% trans "Inicio" %}</b> </p>
+            <p class=""><div class=" float-right">{{period.end_day}} {% trans "ás" %} {{period.end_time}}</div><b>{% trans "Fim" %}</b></p>
+            {% elif period.status == 'fpa' %}
+            <p><a href="{% url 'attribution_preference' %}"><div class="float-right message-info-not-configured">{% trans 'Formulário de Preferências'%}</div></a> <b>{% trans "Período" %}</b> </p>
+            <p class="home-begin"><div class="float-right">{{period.start_day}} {% trans "ás" %} {{period.start_time}}</div><b>{% trans "Inicio" %}</b> </p>
+            <p class=""><div class=" float-right">{{period.end_day}} {% trans "ás" %} {{period.end_time}}</div><b>{% trans "Fim" %}</b></p>
+            {% elif period.status == 'attribution' %}
+            <p><a href="{% url 'attribution' %}"><div class="float-right message-info-not-configured">{% trans 'Atribuição de Aulas'%}</div></a> <b>{% trans "Período" %}</b> </p>
+            <p><div class="float-right">{{period.start_day}} {% trans "ás" %} {{period.start_time}}</div><b>{% trans "Inicio" %}</b> </p>
+            <p class="home-begin"><div class=" float-right">{{period.end_day}} {% trans "ás" %} {{period.end_time}}</div><b>{% trans "Fim" %}</b></p>
+            {% else %}
+            <p><div class="float-right message-info-not-configured">{% trans 'Finalizado'%}</div> <b>{% trans "Período" %}</b> </p>
+            <p class="home-begin"><div class=" float-right">{% trans 'A atribuição de aulas terminou' %}, <i>{% trans 'até próxima atribuição' %}</i></div><b>{% trans "Situação" %}</b> </p>
+            {% endif%}
+          </div>
+        </div>
       </div>
-    </div>
+      <div class="mt-4 card info-card sales-card">
+        <div class="card-body">
+          <h4 class="card-title">{% trans "Alertas" %} <i class="fas fa-exclamation-triangle custom-icon"></i></h4>
+          <hr class="my-0">
+          <div class="text-center">
+            
+          </div>
+        </div>
+      </div>
     </div>
 
-    <div class="card m-2 redirect-button" onclick="redirect('{% url  "blocks_list" %}')">
-    <div class="card-body d-flex flex-column justify-content-center align-items-center" style="padding-top: 0.5rem">
-      <div class="d-flex flex-column justify-content-center align-items-center" style="margin-top: -2rem;">
-        <i class="bi bi-grid-fill bi-lg" style="font-size: 6rem; margin-bottom: -10px;"></i>
-        <h5 class="card-title mt-0 mb-0" style="color: #ffffff;">{% trans "Blocos" %}</h5>
+    <div class="col-12 col-md-6">
+      <div class="mt-4 card info-card sales-card">
+        <div class="card-body">
+          <h4 class="card-title">{% trans "Atualizações Legislação" %} <i class="far fa-file custom-icon"></i></h4>
+          <hr>
+          <div class="text-center">
+            
+          </div>
+        </div>
       </div>
-  </div>
-  </div>
-  <div class="card m-2 redirect-button" onclick="redirect('{% url "professors_list" %}')">
-    <div class="card-body d-flex flex-column justify-content-center align-items-center" style="padding-top: 0.5rem;">
-      <div class="d-flex flex-column justify-content-center align-items-center" style="margin-top: -2rem;">
-        <i class="bi bi-people-fill bi-lg" style="font-size: 6rem; margin-bottom: -10px;"></i>
-        <h5 class="card-title mt-0 mb-0" style="color: #ffffff;">{% trans "Professores" %}</h5>
+      <div class="mt-4 card info-card sales-card">
+        <div class="card-body">
+          <h4 class="card-title">{% trans "Permutações para você" %} <i class="fas fa-exchange-alt custom-icon"></i></h4>
+          <hr class="my-0">
+          <div class="text-center">
+            
+          </div>
+        </div>
       </div>
-  </div>
-  </div>
-  <div class="card m-2 redirect-button" onclick="redirect('{% url "classes_list" %}')">
-    <div class="card-body d-flex flex-column justify-content-center align-items-center" style="padding-top: 0.5rem">
-      <div class="d-flex flex-column justify-content-center align-items-center" style="margin-top: -2rem;">
-        <i class="bi bi-person-workspace bi-lg" style="font-size: 6rem; margin-bottom: -10px;"></i>
-        <h5 class="card-title mt-0 mb-0" style="color: #ffffff;">{% trans "Turmas" %}</h5>
-      </div>
-  </div>
-  </div>
-  
-  <div class="card m-2 redirect-button" onclick="redirect('{% url "timetables" %}')">
-    <div class="card-body d-flex flex-column justify-content-center align-items-center" style="padding-top: 1rem">
-      <div class="d-flex flex-column justify-content-center align-items-center" style="margin-top: -2rem;">
-        <i class="bi bi-calendar2-week bi-lg" style="font-size: 6rem; margin-bottom: -10px;"></i>
-        <h5 class="card-title mt-0 mb-0" style="color: #ffffff;">{% trans "Grade" %}</h5>
-      </div>
-  </div>
+    </div>
   </div>
 </div>
 {% endblock %}

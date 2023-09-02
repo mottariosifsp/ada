@@ -19,6 +19,8 @@ from course.models import Course
 from user.models import AcademicDegreeHistory, User, History, AcademicDegree
 from .models import Deadline, Criteria
 from django.db.models import F, Sum, Value
+from staff.models import Deadline
+from datetime import datetime, timedelta
 
 from django.contrib.auth.decorators import login_required
 
@@ -32,7 +34,104 @@ def is_staff(user):
 @login_required
 @user_passes_test(is_staff)
 def home(request):
-    return render(request, 'staff/home_staff.html')
+    status = 'not_configured'
+    period = {
+        'status': status,
+        'start_day': '',
+        'start_time': '',
+        'end_day': '',
+        'end_time': ''
+    }
+
+    def get_stage_status(stage_name):
+        deadlines = Deadline.objects.filter(name=stage_name)
+
+        if not deadlines.exists():
+            return 'not_configured'
+
+        now = datetime.today()
+        nearest_deadline = None
+        nearest_time_difference = timedelta(days=365)  # Set to a large value initially
+
+        for deadline in deadlines:
+            if deadline.deadline_start <= now <= deadline.deadline_end:                
+                return 'ongoing'
+            if now <= deadline.deadline_start:
+                time_difference = deadline.deadline_start - now                
+                if time_difference < nearest_time_difference:
+                    nearest_time_difference = time_difference
+                    nearest_deadline = deadline
+                
+
+        if nearest_deadline:
+            return 'configured_' + stage_name
+
+        return 'finished'
+
+    fpa_status = get_stage_status('STARTFPADEADLINE')
+    attribution_status = get_stage_status('STARTASSIGNMENTDEADLINE')
+    # enchange_status = get_stage_status('STARTENCHANGEDEADLINE')
+
+    if fpa_status == 'finished' and attribution_status == 'finished':
+        status = 'finished'
+
+    print(fpa_status, attribution_status)
+
+    if fpa_status == 'ongoing':
+        status = 'fpa'
+    elif attribution_status == 'ongoing':
+        status = 'attribution'
+    # elif enchange_status == 'ongoing':
+    #     status = 'enchange'
+
+    if fpa_status.startswith('configured_'):
+        status = fpa_status
+    elif attribution_status.startswith('configured_'):
+        status = attribution_status
+    # elif enchange_status.startswith('configured_'):
+    #     status = enchange_status
+
+    if status != 'not_configured' and status != 'finished':
+        if fpa_status == 'ongoing':
+            status = 'fpa'
+            fpa_deadline = Deadline.objects.filter(name='STARTFPADEADLINE').first()
+            if fpa_deadline:
+                period['start_day'] = fpa_deadline.deadline_start.strftime("%d/%m/%Y")
+                period['start_time'] = fpa_deadline.deadline_start.strftime("%H:%M")
+                period['end_day'] = fpa_deadline.deadline_end.strftime("%d/%m/%Y")
+                period['end_time'] = fpa_deadline.deadline_end.strftime("%H:%M")
+        elif attribution_status == 'ongoing':
+            status = 'attribution'
+            attribution_deadline = Deadline.objects.filter(name='STARTASSIGNMENTDEADLINE').first()
+            if attribution_deadline:
+                period['start_day'] = attribution_deadline.deadline_start.strftime("%d/%m/%Y")
+                period['start_time'] = attribution_deadline.deadline_start.strftime("%H:%M")
+                period['end_day'] = attribution_deadline.deadline_end.strftime("%d/%m/%Y")
+                period['end_time'] = attribution_deadline.deadline_end.strftime("%H:%M")
+        # elif enchange_status == 'ongoing':
+        #     status = 'enchange'
+        #     enchange_deadline = Deadline.objects.filter(name='STARTENCHANGEDEADLINE').first()
+        #     if enchange_deadline:
+        #         period['start_day'] = enchange_deadline.deadline_start.strftime("%d/%m/%Y")
+        #         period['start_time'] = enchange_deadline.deadline_start.strftime("%H:%M")
+        #         period['end_day'] = enchange_deadline.deadline_end.strftime("%d/%m/%Y")
+        #         period['end_time'] = enchange_deadline.deadline_end.strftime("%H:%M")
+        else:
+            stage_name = status.split('_')[1]
+            nearest_deadline = Deadline.objects.filter(name=stage_name).first()
+            if nearest_deadline:
+                period['status'] = status
+                period['start_day'] = nearest_deadline.deadline_start.strftime("%d/%m/%Y")
+                period['start_time'] = nearest_deadline.deadline_start.strftime("%H:%M")
+                period['end_day'] = nearest_deadline.deadline_end.strftime("%d/%m/%Y")
+                period['end_time'] = nearest_deadline.deadline_end.strftime("%H:%M")
+
+    period['status'] = status
+        
+    data = {
+        'period': period
+    }
+    return render(request, 'staff/home_staff.html', data)
 
 @login_required
 @user_passes_test(is_staff)
@@ -113,29 +212,6 @@ def attribution_configuration_confirm(request):
         return render(request, 'staff/attribution/attribution_configuration_confirm.html', data)
     return render(request, 'staff/attribution/attribution_configuration_confirm.html')
 
-def show_current_deadline(request):
-    deadlines = Deadline.objects.all()
-    now = timezone.now()
-
-    if (deadlines.get(name="startFPADeadline").deadline_start <= now and deadlines.get(
-            name="startFPADeadline").deadline_end >= now):
-        actualDeadline = "FPA"
-    elif (deadlines.get(name="startAssignmentDeadline").deadline_start <= now and deadlines.get(
-            name="startAssignmentDeadline").deadline_end >= now):
-        actualDeadline = "Assignment"
-    elif (deadlines.get(name="startExchangeDeadline").deadline_start <= now and deadlines.get(
-            name="startExchangeDeadline").deadline_end >= now):
-        actualDeadline = "Exchange"
-    else:
-        actualDeadline = "none"
-
-    data = {
-        'actualDeadline': actualDeadline
-    }
-
-    return render(request, 'staff/deadline/show_current_deadline.html', data)
-
-
 @transaction.atomic
 def save_deadline(data):
     Deadline.objects.create(
@@ -151,9 +227,7 @@ def save_deadline(data):
         blockk=data['user_block'],
     )
 
-
 # professor views
-
 @login_required
 @user_passes_test(is_staff)
 def professors_list(request):
@@ -324,6 +398,7 @@ def classes_list(request):
     ]
     return render(request, 'staff/classs/classes_list.html', {'classes': classes, 'periods': periods, 'areas': areas})
 
+# ERRO - TODO
 @login_required
 @user_passes_test(is_staff)
 def classes_list_saved(request):
@@ -349,6 +424,7 @@ def classes_list_saved(request):
 
         return JsonResponse({'message': 'Alterações salvas com sucesso.'})
 
+# Erro - TODO
 @login_required
 @user_passes_test(is_staff)
 def class_create(request):
@@ -365,7 +441,8 @@ def class_create(request):
         classs.save()
 
         return JsonResponse({'message': 'Turma criada com sucesso.'})
-    
+
+# Erro - TODO
 @login_required
 @user_passes_test(is_staff)
 def class_delete(request):
@@ -408,9 +485,7 @@ def block_detail(request, registration_block_id):
 
     return render(request, 'staff/blockk/block_detail.html', data)
 
-
 # course views
-
 @login_required
 @user_passes_test(is_staff)
 def course_create(request):

@@ -16,7 +16,7 @@
 }
 
 #cel-hour, #cel-day, #cel-minute{
-  font-size: 51.5pt;
+  font-size: 50pt;
   font-weight: 600;
   color: #2f7363;
   align-items: center;
@@ -225,6 +225,7 @@ body {background-color: #def2fc81;}
   border-radius: 6px;
   color: #cee6f9;
 }
+
 .link {
   color: blue;
   text-decoration: underline;
@@ -378,8 +379,36 @@ b {
   color:#085763
 }
 
-@media print {  
-    .hidden-itens {     
+.priority-cell {
+  background-color: #285f528d;
+  color: whitesmoke;
+}
+
+@media (max-width: 992px){
+  .column {
+    display: none;
+  }
+  .modal td {
+    font-size: 11pt;
+  }
+  td, td div {
+    font-size: 8pt;
+  }
+}
+
+
+@media print {
+  .priority-cell {
+    color: #2b544b;
+    background-color: #507c75;
+  }
+
+  .choosed {
+    color: #085763;
+    background-color: #2b544b;
+  }
+  
+  .hidden-itens {     
     display: none;
   }
 
@@ -389,6 +418,10 @@ b {
 
   .hour-print {
     font-size: 14px;
+  }
+
+  div.footer {
+    display: none;
   }
 
   .openModalBtn{

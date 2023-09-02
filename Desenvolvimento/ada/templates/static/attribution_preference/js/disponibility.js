@@ -31,13 +31,29 @@ var checkboxes = [];
     cell_left_number = this_duration
     cell_type_choosed = 40;
     cell_situation = "not_checked"
-  } else if (user_regime == 'rde'){
+  } else if (user_regime == 'RDE'){
     const checkbox_element = document.querySelector('input[id="rde"]');
     checkbox_element.checked = true;
     var this_duration = 24*60/timeslot_minutes;
     $('#cel-regime').text(this_duration);
     cell_left_number = this_duration
     cell_type_choosed = 40;
+    cell_situation = "not_checked"
+  } else if (user_regime == 'Temporário'){
+    const checkbox_element = document.querySelector('input[id="temporario"]');
+    checkbox_element.checked = true;
+    var this_duration = 24*60/timeslot_minutes;
+    $('#cel-regime').text(this_duration);
+    cell_left_number = this_duration
+    cell_type_choosed = 40;
+    cell_situation = "not_checked"
+  } else if (user_regime == 'Substituto') {
+    const checkbox_element = document.querySelector('input[id="substituto"]');
+    checkbox_element.checked = true;
+    var this_duration = 12*60/timeslot_minutes;
+    $('#cel-regime').text(this_duration);
+    cell_left_number = this_duration
+    cell_type_choosed = 20;
     cell_situation = "not_checked"
   }
 
@@ -86,12 +102,11 @@ $(document).ready(function() {
     $('.custom-icon').css('display', 'none');
     $('.cel-plus').css('display', 'none');
   }
-  //console.log("timeslot minutos", timeslot_minutes);
 
   $('input[name="regime"]').click(function() {
     $('#cel-regime').val('');
     var value = $(this).val();
-    if (value == 'rde' || value == '40') {
+    if (value == 'RDE' || value == '40' || value == 'Substituto' ) {
       var this_duration = 24*60/timeslot_minutes;
       $('#cel-regime').text(this_duration);
       cell_left_number = this_duration
@@ -100,7 +115,7 @@ $(document).ready(function() {
       $('.checkbox input[type="checkbox"]').prop('checked', false);
       $('label.checkbox').removeClass('active');
       timeslots = []
-    } else {
+    } else if (value == '20' || value == 'Temporário'){
       var this_duration = 12*60/timeslot_minutes;
       $('#cel-regime').text(this_duration);
       cell_left_number = this_duration
@@ -156,7 +171,6 @@ $(document).ready(function() {
 
     var input_id = $(this).attr('for');
     var [input_day_of_week, input_period, input_timeslot] = input_id.split('-');
-    console.log(eleven_hours_rule());
 
     if(cell_left_number == 0 && cell_type_choosed == 0) {
       block_options();
@@ -281,7 +295,7 @@ $(document).ready(function() {
               }
             });
           } else {
-            $('#error-alert-form').text('A seleção da disponibilidade de horário não pode ultrapassar 8 horas de trabalho diárias.');
+            $('#error-message-form').text('A seleção da disponibilidade de horário não pode ultrapassar 8 horas de trabalho diárias.');
             $('#error-alert-form').show();
             window.scrollTo({
               top: $('#error-alert-form').offset().top - $('.navbar').outerHeight() - 30,
@@ -289,7 +303,7 @@ $(document).ready(function() {
             });
           }
         } else {
-          $('#error-alert-form').text('A seleção da disponibilidade deve permitir no mínimo 11 horas de intervalo entre a hora inicial do trabalho de um dia e a hora final de trabalho do dia seguinte.');
+          $('#error-message-form').text('A seleção da disponibilidade deve permitir no mínimo 11 horas de intervalo entre a hora inicial do trabalho de um dia e a hora final de trabalho do dia seguinte.');
             $('#error-alert-form').show();
             window.scrollTo({
               top: $('#error-alert-form').offset().top - $('.navbar').outerHeight() - 30,
@@ -519,6 +533,14 @@ function period_input(value) {
       "color": "",
       "font-weight": ''
     })
+
+    for (var i = 1; i <= 6; i++) {
+      $('#timeslot-' + value + '-' + i).css({
+          "background-color": "",
+          "color": "",
+          "font-weight": ""
+      });
+  }
   } else {
     if(cell_left_number == 0 && cell_type_choosed == 0) {
       block_options();
@@ -717,4 +739,8 @@ function update_cell_left_number(button_is_checked) {
       }
     }
   }
+}
+
+function closeErrorAlert(id) {
+  $("#"+ id).hide();
 }

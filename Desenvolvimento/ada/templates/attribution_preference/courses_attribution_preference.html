@@ -25,12 +25,16 @@
     <form id="send-disponibility-form" method="post">
       {% csrf_token %}
       <div id="error-alert-form" class="alert alert-danger" style="display: none;">
-        <span id="error-message-form"></span>
+        <button type="button" class="close" aria-label="Close" onclick="closeErrorAlert('error-alert-form')">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        <span class="fa fa-times-circle"></span>
+        <b>{% trans "Erro" %}:</b> <span id="error-message-form"></span>        
       </div>
 
       <div class="row">
         <div class="col-xxl-4 col-md-6">
-          <div class="card info-card sales-card">
+          <div class="card mt-2 info-card sales-card">
             <div class="card-body">
               <h4 class="card-title">{% trans "Regime escolhido" %}:</h4>
               <hr class="my-0">
@@ -44,9 +48,10 @@
           </div>
         </div>
         <div class="col-xxl-4 col-md-6">
-          <div class="card info-card sales-card">
+          <div class="card mt-2 info-card sales-card">
             <div class="card-body">
-              <h4 class="card-title">{% trans "Células de horas restantes" %}:</h4>
+              <h4 class="card-title primary-item">{% trans "Células primárias restantes" %}:</h4>
+              <h4 class="card-title secondary-item" style="display: none;">{% trans "Células secundárias restantes" %}:</h4>
               <hr class="my-0">
               <div class="text-center" id="count-cel">
                 <span class="min-cel" id="cel-hour">--</span><span class="cel">{% trans "células" %}</span>
@@ -61,22 +66,28 @@
             <h4>{% trans "Disciplinas do Bloco" %}: {{ user_blockk.name_block }}</h4>
             <hr>
             <div id="warning-alert" class="alert alert-warning" style="display: none;">
+              <button type="button" class="close" aria-label="Close" onclick="closeErrorAlert('warning-alert')">
+                  <span aria-hidden="true">&times;</span>
+              </button>
+              <span class="fas fa-exclamation-circle"></span>
+              <b>{% trans "Aviso" %}:</b>
               <span id="warning-alert-message"></span>
               <div id="warning-list-message"></div>
+              
             </div>
 
             <div class="table-responsive">
               <table class="table table-bordered table-sm text-center">
                 <thead>
                   <tr>
-                    <th class="col-1 text-center align-middle">{% trans "Período" %}</th>
-                    <th class="col-2 text-center align-middle">{% trans "Horários" %}</th>
-                    <th class="text-center">{% trans "Segunda-Feira" %}</th>
-                    <th class="text-center">{% trans "Terça-Feira" %}</th>
-                    <th class="text-center">{% trans "Quarta-Feira" %}</th>
-                    <th class="text-center">{% trans "Quinta-Feira" %}</th>
-                    <th class="text-center">{% trans "Sexta-Feira" %}</th>
-                    <th class="text-center">{% trans "Sábado" %}</th>
+                    <th class="col-1 column text-center align-middle">{% trans "Período" %}</th>
+                    <th class="col-1 text-center align-middle">{% trans "Horários" %}</th>
+                    <th class="col-1 text-center align-middle">{% trans "Segunda-Feira" %}</th>
+                    <th class="col-1 text-center align-middle">{% trans "Terça-Feira" %}</th>
+                    <th class="col-1 text-center align-middle">{% trans "Quarta-Feira" %}</th>
+                    <th class="col-1 text-center align-middle">{% trans "Quinta-Feira" %}</th>
+                    <th class="col-1 text-center align-middle">{% trans "Sexta-Feira" %}</th>
+                    <th class="col-1 text-center align-middle">{% trans "Sábado" %}</th>
                   </tr>
                 </thead>
                 <h6>
@@ -87,13 +98,13 @@
                   {% trans 'Prioridade da Preferência' %}:
                 </h6>
                 <div class="mb-3 text-center">                  
-                  <div onclick="show_table(1)" class="btn primary btn-priority">Primária</div>
-                  <div onclick="show_table(2)" class="btn secondary btn-priority">Secundária</div>
+                  <div onclick="show_table(1)" class="btn primary btn-priority">{% trans "Primária" %}</div>
+                  <div onclick="show_table(2)" class="btn secondary btn-priority"><i class="secondary-item fas fa-lock"></i> {% trans "Secundária" %}</div>
                 </div>
                 <tbody class="block" id="primary-timetable-courses" >
                   {% for i in "MVN" %}
                     {% if i == "M" %}
-                      <td class="text-center align-middle" rowspan='{{ shift.morning_classes }}'>{% trans "Matutino" %}</td>
+                      <td class="text-center align-middle column" rowspan='{{ shift.morning_classes }}'>{% trans "Matutino" %}</td>
                       {% for timeslot in shift.morning %}
                         <tr>
                           <td class="text-center align-middle">{{ timeslot.hour_start|date:"H:i" }} - {{ timeslot.hour_end|date:"H:i" }}</td>
@@ -178,7 +189,7 @@
                         </tr>
                       {% endfor %}
                     {% elif i == "V" %}
-                      <td class="text-center align-middle" rowspan="{{ shift.afternoon_classes }}">{% trans "Vespertino" %}</td>
+                      <td class="text-center align-middle column" rowspan="{{ shift.afternoon_classes }}">{% trans "Vespertino" %}</td>
 
                       {% for timeslot in shift.afternoon %}
                         <tr>
@@ -265,7 +276,7 @@
 
                       {% endfor %}
                     {% else %}
-                      <td class="text-center align-middle" rowspan="{{ shift.nocturnal_classes }}">{% trans "Noturno" %}</td>
+                      <td class="text-center align-middle column" rowspan="{{ shift.nocturnal_classes }}">{% trans "Noturno" %}</td>
 
                       {% for timeslot in shift.nocturnal %}
                         <tr>
@@ -356,7 +367,7 @@
                   <tbody class="block" id="secondary-timetable-courses" >
                     {% for i in "MVN" %}
                       {% if i == "M" %}
-                        <td class="text-center align-middle" rowspan='{{ shift.morning_classes }}'>{% trans "Matutino" %}</td>
+                        <td class="text-center align-middle column" rowspan='{{ shift.morning_classes }}'>{% trans "Matutino" %}</td>
                         {% for timeslot in shift.morning %}
                           <tr>
                             <td class="text-center align-middle">{{ timeslot.hour_start|date:"H:i" }} - {{ timeslot.hour_end|date:"H:i" }}</td>
@@ -441,7 +452,7 @@
                           </tr>
                         {% endfor %}
                       {% elif i == "V" %}
-                        <td class="text-center align-middle" rowspan="{{ shift.afternoon_classes }}">{% trans "Vespertino" %}</td>
+                        <td class="text-center align-middle column" rowspan="{{ shift.afternoon_classes }}">{% trans "Vespertino" %}</td>
 
                         {% for timeslot in shift.afternoon %}
                           <tr>
@@ -528,7 +539,7 @@
 
                         {% endfor %}
                       {% else %}
-                        <td class="text-center align-middle" rowspan="{{ shift.nocturnal_classes }}">{% trans "Noturno" %}</td>
+                        <td class="text-center align-middle column" rowspan="{{ shift.nocturnal_classes }}">{% trans "Noturno" %}</td>
 
                         {% for timeslot in shift.nocturnal %}
                           <tr>
@@ -603,7 +614,7 @@
                               <div class="openModalBtn">
                                 <div data-id="sat-noc-{{ forloop.counter }}-sec"  id="btn-sat-noc-{{ forloop.counter }}-sec" class="btn-group-toggle" data-toggle="buttons">
                                   <label class="btn w-100 btn-notchecked disabled checkbox" for="sat-noc-{{ forloop.counter }}-sec">
-                                    <input disabled type="checkbox" id="sat-noc-{{ forloop.counter }}-sec"
+                                    <input type="checkbox" id="sat-noc-{{ forloop.counter }}-sec"
                                       value="{{ timeslot.hour_start }}-{{ timeslot.hour_end }},sat"
                                       autocomplete="off" >
                                     <div id="sub-sat-noc-{{ forloop.counter }}-sec">--</div>
@@ -628,10 +639,20 @@
                     </div>
                     <div class="modal-body">
                       <div id="error-alert" class="alert alert-danger" style="display: none;">
-                        <span id="error-message"></span>
+                        <button type="button" class="close" aria-label="Close" onclick="closeErrorAlert('error-alert')">
+                          <span aria-hidden="true">&times;</span>
+                        </button>
+                        <span class="fa fa-times-circle></span>
+                        <b>{% trans "Erro" %}:</b>
+                        <span id="error-message"></span>                        
                       </div>
                       <div id="info-input-alert" class="alert alert-info" style="display: none;">
-                        <span id="info-input-message"></span>
+                        <button type="button" class="close" aria-label="Close" onclick="closeErrorAlert('info-input-alert')">
+                          <span aria-hidden="true">&times;</span>
+                        </button>
+                        <span class="fas fa-info-circle"></span>
+                        <b>{% trans "Info" %}:</b>
+                        <span id="info-input-message"></span>                        
                       </div>
                       <form id="add-course-form" method="post">
                         {% csrf_token %}
@@ -713,7 +734,7 @@
                     </div>
                     <div class="modal-footer">
                       <button type="button" class="btn btn-secondary" data-dismiss="modal">{% trans "Fechar" %}</button>
-                      <button type="button" class="btn ada-btn-blue-dark" name="add-course" id="add-course-button">{% trans "Adicionar" %}</button>
+                      <button type="button" data-dismiss="modal" class="btn ada-btn-blue-dark" name="add-course" id="add-course-button">{% trans "Adicionar" %}</button>
                     </div>
                   </div>
                 </div>
@@ -722,12 +743,12 @@
           </div>
         </div>
       </div>
-      <button type="button" class="btn btn-primary float-right mt-4 mb-5" name="send-courses" id="send-courses">{% trans "Enviar Disciplinas" %}</button>
-      <a href="{% url 'disponibility_attribution_preference' %}"><button type="button"  class="btn btn-info float-left mt-4 mb-5 mr-2" ><i class="fa fa-redo"></i> {% trans "Retornar a Preferência de Disponibilidade" %}</button></a>
+      <button type="button" class="btn ada-btn-blue-dark float-right mt-4 mb-5" name="send-courses" id="send-courses">{% trans "Enviar Disciplinas" %}</button>
+      <a href="{% url 'disponibility_attribution_preference' %}"><button type="button"  class="btn ada-btn-blue float-left mt-4 mb-5 mr-2" ><i class="fa fa-redo"></i> {% trans "Retornar a Disponibilidade" %}</button></a>
     </form>
   </section>
 {% endblock %}
 
 {% block endbody %}
-  <script src="{% static 'attribution_preference/js/courses.js' %}" data-lang='{{ LANGUAGE_CODE }}' user_courses_from_blockk="{{user_courses_from_blockk}}" user_courses_from_fpa="{{user_courses_from_fpa}}" user_regime='{{ user_regime }}' user_blocks='{{ user_blockk }}' user_areas='{{ user_areas }}' user_courses='{{ user_courses }}' user_timetables='{{ user_timetables }}' user_disponibility='{{ user_disponibility }}'></script>
+  <script src="{% static 'attribution_preference/js/courses.js' %}" data-lang='{{ LANGUAGE_CODE }}' user_is_fgfcc='{{ user_is_fgfcc }}' user_courses_from_blockk="{{user_courses_from_blockk}}" user_courses_from_fpa="{{user_courses_from_fpa}}" user_regime='{{ user_regime }}' user_blocks='{{ user_blockk }}' user_areas='{{ user_areas }}' user_courses='{{ user_courses }}' user_timetables='{{ user_timetables }}' user_disponibility='{{ user_disponibility }}'></script>
 {% endblock %}

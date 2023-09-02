@@ -27,7 +27,7 @@ li.breadcrumb-item a {
 
 .modal-backdrop {
     opacity: 0.5;
-    background-color: #0000002d;
+    background-color: #0000006c;
 }
 .my-custom-modal .modal-backdrop {
     opacity: 0.5;
@@ -197,6 +197,133 @@ img.lang-icon, img.user-photo {width: 100%;}
     display: flex;
     flex-direction: column;
 }
+
+.message-info-done {
+    background-color: #2B8D4C;
+    font-weight: 500;
+    padding: 5px 10px 5px 10px;
+    border-radius: 6px;
+    color: #dcffe8;
+  }
+  .message-info-not-done {
+    background-color: #FFDD95;
+    font-weight: 500;
+    padding: 5px 10px 5px 10px;
+    border-radius: 6px;
+    color: #664d15;
+  }
+  .message-info-not-configured{
+    background-color: #698FAC;
+    font-weight: 500;
+    padding: 5px 10px 5px 10px;
+    border-radius: 6px;
+    color: #c6e5ff;
+  }
+  .message-info-not-started {
+    background-color: #2B597C;
+    font-weight: 500;
+    padding: 5px 10px 5px 10px;
+    border-radius: 6px;
+    color: #cee6f9;
+  }
+  .message-info-blocked {
+    background-color: #53636e;
+    font-weight: 500;
+    padding: 5px 10px 5px 10px;
+    border-radius: 6px;
+    color: #cee6f9;
+  }
+  /*btn green*/
+  .ada-btn-sucess {
+    background-color: #147334;
+    border: #0b5122;
+    color: #dcffe8;
+  }
+  .ada-btn-sucess:hover {
+    background-color: #147334;
+    border: #0b5122;
+    color: #dcffe8;
+  }
+  .ada-btn-sucess:active {
+    background-color: #147334;
+    border: #0b5122;
+    color: #dcffe8;
+  }
+  
+  /*btn yellow*/
+  .ada-btn-warning {
+    background-color: #FFDD95;
+    border: #664d15;
+    color: #664d15;
+  }
+  .ada-btn-warning:hover {
+    background-color: #FFDD95;
+    border: #4b380e;
+    color: #664d15;
+  }
+  .ada-btn-warning:active {
+    background-color: #FFDD95;
+    border: #4b380e;
+    color: #664d15;
+  }
+  
+  /*btn blue dark*/
+  .ada-btn-blue-dark {
+    background-color: #174365;
+    border: #0d2131;
+    color: #ddf0ff;
+  }
+  .ada-btn-blue-dark:hover {
+    background-color: #052d4b;
+    border: #072034;
+    color: #ddf0ff;
+  }
+  .ada-btn-blue-dark:active {
+    background-color: #174365;
+    border: #0d2131;
+    color: #ddf0ff;
+  }
+  div.alert b {
+    color: rgba(0, 0, 0, 0.636)!important;
+  }
+
+  b {
+    color:#085763
+  }
+  
+  /*btn GREY*/
+  .ada-btn-grey {
+    background-color: #3e4d59;
+    border: #3e4d59;
+    color: #ddf0ff;
+  }
+  .ada-btn-grey:hover {
+    background-color: #2a3741;
+    border: #2a3741;
+    color: #ddf0ff;
+  }
+  .ada-btn-grey:active {
+    background-color: #2a3741;
+    border: #2a3741;
+    color: #ddf0ff;
+  }
+  
+  /*btn blue ligth*/
+  .ada-btn-blue {
+    background-color: #9FBBD1;
+    border: #5a8ab0;
+    color: #174365;
+  }
+  .ada-btn-blue:hover {
+    background-color: #9FBBD1;
+    border: #5a8ab0;
+    color: #174365;
+  }
+  .ada-btn-blue:active {
+    background-color: #9FBBD1;
+    border: #0d2131;
+    color: #174365;
+  }
 
 .navbar-modal .modal-content {flex-grow: 1;}
 

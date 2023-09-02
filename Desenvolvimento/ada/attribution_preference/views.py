@@ -63,29 +63,42 @@ def attribution_preference(request):
     start_time = ''
     end_day = ''
     end_time = ''
+    
     try:
-        attribution_deadline = get_object_or_404(Deadline, name='STARTFPADEADLINE').first()
-        now = datetime.datetime.today()
-        if now > attribution_deadline.deadline_start and now < attribution_deadline.deadline_end:
-            start_day = attribution_deadline.deadline_start.strftime("%d/%m/%Y")
-            start_time = attribution_deadline.deadline_start.strftime("%H:%M")
-            end_day = attribution_deadline.deadline_end.strftime("%d/%m/%Y")
-            end_time = attribution_deadline.deadline_end.strftime("%H:%M")
-            status = 'started'
-        elif now < attribution_deadline.deadline_start:        
-            start_day = attribution_deadline.deadline_start.strftime("%d/%m/%Y")
-            start_time = attribution_deadline.deadline_start.strftime("%H:%M")
-            end_day = attribution_deadline.deadline_end.strftime("%d/%m/%Y")
-            end_time = attribution_deadline.deadline_end.strftime("%H:%M")
-            status = 'configured'
+        attribution_deadlines = Deadline.objects.filter(name='STARTFPADEADLINE')
+
+        if attribution_deadlines.exists():
+            now = datetime.datetime.today()
+            status = None
+
+            for attribution_deadline in attribution_deadlines:
+                if now < attribution_deadline.deadline_start:
+                    status = 'configured'
+                    break
+                elif now >= attribution_deadline.deadline_start and now <= attribution_deadline.deadline_end:
+                    status = 'started'
+                    semester = attribution_deadline.semester
+                    break
+                else:
+                    status = 'finished'
+                    break
+
+            if status:
+                start_day = attribution_deadline.deadline_start.strftime("%d/%m/%Y")
+                start_time = attribution_deadline.deadline_start.strftime("%H:%M")
+                end_day = attribution_deadline.deadline_end.strftime("%d/%m/%Y")
+                end_time = attribution_deadline.deadline_end.strftime("%H:%M")
         else:
-            start_day = attribution_deadline.deadline_start.strftime("%d/%m/%Y")
-            start_time = attribution_deadline.deadline_start.strftime("%H:%M")
-            end_day = attribution_deadline.deadline_end.strftime("%d/%m/%Y")
-            end_time = attribution_deadline.deadline_end.strftime("%H:%M")
-            status = 'finished'   
-    except:
+            status = 'not_configured'
+
+    except Deadline.DoesNotExist:
         status = 'not_configured'
+
+    year_str = str(datetime.datetime.now().year)
+    if Deadline.objects.filter(name='STARTFPADEADLINE').exists():
+        year = year_str +"."+ semester
+    else:
+        year = 'none'
 
     courses_done = 'False'
     if Course_preference.objects.filter(attribution_preference__user=user).exists():
@@ -96,6 +109,7 @@ def attribution_preference(request):
         disponilibity_done = 'True'
 
     days = hours = minutes = seconds = 0
+    seconds_left = 0
     if Deadline.objects.filter(name='STARTFPADEADLINE').exists():
         attribution_deadline = Deadline.objects.filter(name='STARTFPADEADLINE').first()
         target_datetime = attribution_deadline.deadline_end
@@ -108,7 +122,7 @@ def attribution_preference(request):
         
         seconds_left = (days * 86400) + (hours * 3600) + (minutes * 60) + seconds
 
-    context = {
+    context = {        
         'days': days,
         'hours': hours,
         'minutes': minutes,
@@ -118,6 +132,7 @@ def attribution_preference(request):
 
 
     data = {
+        'year': year,
         'status_fpa': status,
         'start_day': start_day,
         'start_time': start_time,
@@ -127,9 +142,6 @@ def attribution_preference(request):
         'courses_done': courses_done,
         'context': context
     }
-
-    print(data)
-    
     return render(request, 'attribution_preference/attribution_preference.html', data)
 
 
@@ -139,7 +151,6 @@ def disponibility_attribution_preference(request):
 
     if Course_preference.objects.filter(attribution_preference__user=user).exists():
         Course_preference.objects.filter(attribution_preference__user=user).delete()
-
 
     shift = {
         'morning': [],
@@ -238,6 +249,18 @@ def disponibility_attribution_preference(request):
         user_regime_choosed = ''
     elif user_regime.name_job == "rde":
         user_regime_choosed = user_regime
+        user_regime_choosed.name_job = 'RDE'
+    elif  user_regime.name_job == 'temporary':
+        user_regime_choosed = user_regime
+        user_regime_choosed.name_job = 'Temporário'
+    elif user_regime.name_job == 'substitute':
+        user_regime_choosed = user_regime
+        user_regime_choosed.name_job = 'Substituto'
+    elif user_regime.name_job == 'twenty_hours':
+        user_regime_choosed = user_regime
+        user_regime_choosed.name_job = '20'
+    elif user_regime.name_job == 'forty_hours':
+        user_regime_choosed = user_regime
         user_regime_choosed.name_job = '40'
     else:
         user_regime_choosed = user_regime
@@ -282,6 +305,9 @@ def courses_attribution_preference(request):
 
         user_regime = user.job
         courses = Course.objects.all()
+        user_is_fgfcc = False
+        # user_is_fgfcc = user.is_fgfcc
+
         
         user_area = []
         for area in Area.objects.filter(blocks__in=user.blocks.all().distinct()).distinct():
@@ -306,7 +332,7 @@ def courses_attribution_preference(request):
 
         user_timetable = []
         for id_block in user_blocks_ids:
-            for timetable_object in Timetable.objects.filter(course__blockk=id_block):
+            for timetable_object in Timetable.objects.filter(course__blockk__registration_block_id=id_block):
                 day_combo_objects = timetable_object.day_combo.all()
                 day_combo_data = []
 
@@ -457,11 +483,12 @@ def courses_attribution_preference(request):
             }
             user_timeslot_table.append(string)
         
-        if user_regime.name_job == "rde":
+        if user_regime.name_job == "rde" or user_regime.name_job == "forty_hours" or user_regime.name_job == "temporary":
             user_regime_choosed = user_regime
             user_regime_choosed.name_job = '40'
-        else:
+        elif user_regime.name_job == "twenty_hours" or user_regime.name_job == "substitute":
             user_regime_choosed = user_regime
+            user_regime_choosed.name_job = '20'
 
     courses_from_block = []
     course_preferences_with_blockk = Course_preference.objects.filter(attribution_preference__user=request.user)
@@ -544,6 +571,7 @@ def courses_attribution_preference(request):
 
     data = {
         'user_regime': user_regime_choosed,
+        'user_is_fgfcc': user_is_fgfcc,
         'shift': shift,
         'user_disponibility': user_timeslot_table,
         'user_blockk': user_block,
@@ -552,11 +580,10 @@ def courses_attribution_preference(request):
         'user_courses': user_courses,
         'user_courses_from_blockk': courses_from_block
     }
-    print(data)
 
     return render(request, 'attribution_preference/courses_attribution_preference.html', data)
 
-def show_attribution_preference(request):
+def show_attribution_preference(request, year):
     if request.method == 'GET':
         user = request.user
         
@@ -587,7 +614,7 @@ def show_attribution_preference(request):
             shift['nocturnal_classes'] = len(shift['nocturnal']) + 1
 
         user_timeslot_traceback = []
-        user_preference_schedules = Preference_schedule.objects.filter(attribution_preference__user=request.user)
+        user_preference_schedules = Preference_schedule.objects.filter(attribution_preference__user=request.user,attribution_preference__year=year)
         for schedule in user_preference_schedules:
             begin = (schedule.timeslot.hour_start)
 
@@ -667,7 +694,7 @@ def show_attribution_preference(request):
             user_timeslot_traceback.append(string)
 
         user_courses_traceback = []
-        user_courses = Course_preference.objects.filter(attribution_preference__user=request.user)
+        user_courses = Course_preference.objects.filter(attribution_preference__user=request.user,attribution_preference__year=year)
         for preference in user_courses:
             timetable_object = preference.timetable
             day_combo_objects = timetable_object.day_combo.all()
@@ -766,19 +793,50 @@ def show_attribution_preference(request):
             'user_disponibility_choosed': user_timeslot_traceback,
             'user_courses_choosed': user_courses_traceback,
         }
-        print(data)
 
         return render(request, 'attribution_preference/show_attribution_preference.html', data)
 
 @transaction.atomic
 def save_disponiility_preference(user_timeslots, user_regime, user):
-    job = Job.objects.create(name_job=user_regime)
-    user.job = None
-    user.job = job
+    if Job.objects.filter(user=user).exists():
+        job = User.objects.filter(id=user.id).first().job
+        User.objects.filter(id=user.id).update(job=None)
+        job.delete()
+
+    if(user_regime == 'RDE'):
+        name_job = Job.objects.create(name_job=enum.Job.rde.name)
+    elif(user_regime == 'Temporário'):
+        name_job = Job.objects.create(name_job=enum.Job.temporary.name)
+    elif(user_regime == 'Substituto'):
+        name_job = Job.objects.create(name_job=enum.Job.substitute.name)
+    elif(user_regime == '40'):
+        name_job = Job.objects.create(name_job=enum.Job.forty_hours.name)
+    else:
+        name_job = Job.objects.create(name_job=enum.Job.twenty_hours.name)
+
+    user.job = name_job
     user.save()
 
-    if not Attribution_preference.objects.filter(user=user).exists():
-        Attribution_preference.objects.create(user=user)
+    try:
+        attribution_deadlines = Deadline.objects.filter(name='STARTFPADEADLINE')
+
+        if attribution_deadlines.exists():
+            now = datetime.datetime.today()
+            status = None
+
+            for attribution_deadline in attribution_deadlines:
+                if now >= attribution_deadline.deadline_start and now <= attribution_deadline.deadline_end:
+                    semester = attribution_deadline.semester
+                    break
+    except Deadline.DoesNotExist:
+        Exception('Deadline does not exist')
+
+    year_str = str(datetime.datetime.now().year)
+
+    year = year_str +"."+ semester
+
+    if not Attribution_preference.objects.filter(user=user,year=year).exists():
+        Attribution_preference.objects.create(user=user,year=year)
 
     if Preference_schedule.objects.filter(attribution_preference__user=user).exists():
         Preference_schedule.objects.filter(attribution_preference__user=user).delete()
@@ -820,7 +878,6 @@ def save_courses_preference(work_courses, user):
             timetable = Timetable.objects.filter(id=id_timetable).first()
             blockk = timetable.course.blockk
             position_priority = course['position'][0]
-            print(position_priority)
             if position_priority[-3:] == 'pri':
                 priority = enum.Priority.primary.name
             else:

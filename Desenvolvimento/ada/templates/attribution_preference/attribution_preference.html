@@ -128,7 +128,7 @@
                     <hr>
                     <p><b>{% trans 'Situação' %}:</b> {% trans 'Você finalizou seu FPA, nesta seção veja como ficou no final ou seja livre para mudar qualquer preferência' %}.</p>
                     <div class="center-btn">
-                        <a href="{% url 'show_attribution_preference' %}">
+                        <a href="{% url 'show_attribution_preference' year %}">
                             <button class="btn ada-btn-blue-dark btn-block"><i class="fas fa-pencil"></i> {% trans "Veja seu FPA Final" %}</button>
                         </a>
                     </div>
@@ -278,7 +278,7 @@
                         <hr>
                         <p><b>{% trans 'Situação' %}:</b> {% trans 'Você finalizou seu FPA, nesta seção veja como ficou no final ou seja livre para mudar qualquer preferência' %}.</p>
                         <div class="center-btn">
-                            <a href="{% url 'show_attribution_preference' %}">
+                            <a href="{% url 'show_attribution_preference' year %}">
                                 <button class="btn ada-btn-blue-dark btn-block"><i class="fas fa-pencil"></i> {% trans "Veja seu FPA Final" %}</button>
                             </a>
                         </div>
@@ -292,8 +292,7 @@
             <h5><i class="button-2 float-left fa-solid fa-caret-down p-1 ml-2 mr-2"></i>{% trans 'Preferência Escolhida'%}</h5>
         </div><hr>
         {% endif %}
-    {% endif %}
-
+    {% endif %}   
 {% endblock %}
 
 {% block endbody %}

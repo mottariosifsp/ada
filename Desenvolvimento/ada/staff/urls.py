@@ -4,7 +4,6 @@ from .views import attribution_configuration, attribution_configuration_confirm,
 
 urlpatterns = [
     path("", home, name="home_staff"),
-    path("prazo/atual/", show_current_deadline, name="show_current_deadline"),
     path("professores/", professors_list, name="professors_list"),
     path("professor-adiciondo/", add_new_professor, name="add_new_professor"),
     path("alteracoes-salvas/", update_save, name="update_save"),
