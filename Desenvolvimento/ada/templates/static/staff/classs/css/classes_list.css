@@ -1,4 +1,9 @@
+body{
+    background-color: #def2fc81 !important;
+}
+
 tr:hover>td {
     background-color: #edecec;
     font-weight:500;
 }
+

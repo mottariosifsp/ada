@@ -1,10 +1,11 @@
 from django.urls import path
 from .views import attribution_configuration, attribution_configuration_confirm, attribution_configuration_index, class_create, class_delete, classes_list, classes_list_saved, create_timetable, edit_timetable, show_timetable, home,\
-      professors_list, timetables, update_save, blocks_list, block_detail, course_update_save, course_delete, course_create, queue_create, queue_show
+    professors_list, timetables, update_save, blocks_list, block_detail, course_update_save, course_delete, course_create, queue_create, queue_show, add_new_professor
 
 urlpatterns = [
     path("", home, name="home_staff"),
     path("professores/", professors_list, name="professors_list"),
+    path("professor-adiciondo/", add_new_professor, name="add_new_professor"),
     path("alteracoes-salvas/", update_save, name="update_save"),
     path("turmas/", classes_list, name="classes_list"),
     path("turmas/alteracoes-salvas/", classes_list_saved, name="classes_list_saved"),

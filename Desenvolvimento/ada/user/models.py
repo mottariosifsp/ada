@@ -4,6 +4,7 @@ from django.contrib.auth.models import PermissionsMixin
 from django.contrib.auth.base_user import AbstractBaseUser, BaseUserManager
 from django.dispatch import receiver
 from django.utils.translation import gettext_lazy as _
+from enums import enum
 from area.models import Blockk, Area
 from common.validator.validator import convert_to_uppercase
 
@@ -45,6 +46,7 @@ class User(AbstractBaseUser, PermissionsMixin):
     is_superuser = models.BooleanField(_('superuser status'), default=False)
     is_staff = models.BooleanField(_('staff status'), default=True)
     is_active = models.BooleanField(_('active'), default=True) #mudar depois
+    is_fgfcc = models.BooleanField(_('fgfcc'), default=False)
     is_professor = models.BooleanField(_('professor'), default=False)
     history = models.ForeignKey('user.History', on_delete=models.CASCADE, blank=True, unique=True, null=True)
     job = models.ForeignKey('Job', on_delete=models.CASCADE, null=True, blank=True)
@@ -85,6 +87,11 @@ class User(AbstractBaseUser, PermissionsMixin):
     def __str__(self):
         return str(self.first_name)        
 
+class AcademicDegreeHistory(models.Model):
+    history = models.ForeignKey('History', on_delete=models.CASCADE)
+    academic_degree = models.ForeignKey('AcademicDegree', on_delete=models.CASCADE)
+
+
 class History(models.Model):
     id_history = models.AutoField(primary_key=True) 
     birth = models.DateField(_('birth'), null=False, blank=False)
@@ -93,7 +100,7 @@ class History(models.Model):
     date_professor = models.DateField(_('date professor'), null=False, blank=False)
     date_area = models.DateField(_('date area'), null=False, blank=False)
     date_institute = models.DateField(_('date institute'), null=False, blank=False)
-    academic_degrees = models.ManyToManyField('AcademicDegree', blank=True)
+    academic_degrees = models.ManyToManyField('AcademicDegree', blank=True, through='AcademicDegreeHistory')
     # blocks = models.ManyToManyField('area.Blockk', blank=True, related_name='history_blocks')
 
     def __str__(self):
@@ -137,7 +144,7 @@ class AcademicDegree(models.Model):
 
 class Job(models.Model):
     id_job = models.AutoField(primary_key=True)
-    name_job = models.CharField(_('name job'), max_length=256, unique=False, null=False, blank=False)
+    name_job = models.CharField(_('name job'), choices=[(s.name, s.value) for s in enum.Job], max_length=45)
 
     def __str__(self):
         return self.name_job

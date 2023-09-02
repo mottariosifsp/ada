@@ -31,11 +31,15 @@
     <form id="send_disponibility_form" method="post">
       {% csrf_token %}
       <div id="error-alert-form" class="alert alert-danger" style="display: none;">
-        <span id="error-message-form"></span>
+        <button type="button" class="close" aria-label="Close" onclick="closeErrorAlert('error-alert-form')">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        <span class="fa fa-times-circle"></span>
+        <b>{% trans "Erro" %}:</b> <span id="error-message-form"></span>        
       </div>
       <div class="row">
         <div class="col-xxl-4 col-md-8">
-          <div class="card info-card sales-card">
+          <div class="card mt-2 info-card sales-card">
             <div class="card-body">
               <div id="work-regime">
                 <h4 class="card-title">{% trans "Regime de Trabalho" %}</h4>
@@ -67,7 +71,7 @@
           </div>
         </div>
         <div class="col-xxl-4 col-md-4">
-          <div class="card info-card sales-card">
+          <div class="card mt-2 info-card sales-card">
             <div class="card-body">
               <h4 class="card-title">{% trans "Células restantes" %} <i class="form-check-inline fas fa-check-circle custom-icon"></i></h4>
               <hr class="my-0">
@@ -367,8 +371,8 @@
           </div>
         </div>
       </div>
-      <button type="button" class="btn btn-primary float-right mt-4 mb-5" name="send-disponibility" id="send-disponibility">{% trans "Enviar Disponibilidade" %}</button>
-      <button type="button" class="btn btn-danger float-right mt-4 mb-5 mr-2" name="clean-fpa" id="clean-fpa">{% trans "Limpar Disponibilidade" %}</button>
+      <button type="button" class="btn ada-btn-blue-dark float-right mt-4 mb-5" name="send-disponibility" id="send-disponibility">{% trans "Enviar Disponibilidade" %}</button>
+      <button type="button" class="btn ada-btn-warning float-right mt-4 mb-5 mr-2" name="clean-fpa" id="clean-fpa">{% trans "Limpar Disponibilidade" %}</button>
     </form>
   </section>
 {% endblock %}

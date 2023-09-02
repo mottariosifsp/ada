@@ -1,3 +1,7 @@
+body{
+  background-color: #def2fc81 !important;
+}
+
 .hover {
     overflow: hidden;
     position: relative;
@@ -13,10 +17,6 @@
     z-index: 90;
     transition: all 0.4s;
   }
-/* 
-  .home-begin {
-    padding-top: 1px;
-  } */
   
   .hover img {
     width: 100%;

@@ -16,7 +16,7 @@ from timetable.models import Day_combo, Timeslot, Timetable, Timetable_user
 from area.models import Blockk, Area
 from classs.models import Classs
 from course.models import Course
-from user.models import User, History, AcademicDegree
+from user.models import AcademicDegreeHistory, User, History, AcademicDegree
 from .models import Deadline, Criteria
 from django.db.models import F, Sum, Value
 from staff.models import Deadline
@@ -232,39 +232,142 @@ def save_deadline(data):
 @user_passes_test(is_staff)
 def professors_list(request):
     professors = get_user_model().objects.filter(is_professor=True)
-    return render(request, 'staff/professor/professors_list.html', {'professors': professors})
+    degrees = AcademicDegree.objects.all()
+    blockks = Blockk.objects.all()
+    data = {
+        'professors': professors,
+        'degrees': degrees,
+        'blockks': blockks
+    }
 
+    return render(request, 'staff/professor/professors_list.html', data)
+
+
+@login_required
+@user_passes_test(is_staff)
+def add_new_professor(request):
+    if request.method == 'POST':
+        registration_id = request.POST.get('add_registration_id')
+        first_name = request.POST.get('add_first_name')
+        last_name = request.POST.get('add_last_name')
+        email = request.POST.get('add_email')
+        telephone = request.POST.get('add_telephone')
+        celphone = request.POST.get('add_celphone')
+        birth = request.POST.get('add_birth')
+        date_career = request.POST.get('add_date_career')
+        date_campus = request.POST.get('add_date_campus')
+        date_professor = request.POST.get('add_date_professor')
+        date_area = request.POST.get('add_date_area')
+        date_institute = request.POST.get('add_date_institute')
+        job = request.POST.get('add_job')
+        academic_degrees_json = request.POST.get('add_academic_degrees')
+        blocks_json = request.POST.get('add_blocks')
+        is_professor = request.POST.get('add_is_professor') == 'true'
+        is_staff = request.POST.get('add_is_staff') == 'true'
+        is_fgfcc = request.POST.get('add_is_fgfcc') == 'true'   
+
+        new_user = User.objects.create(
+            registration_id=registration_id,
+            first_name=first_name,
+            last_name=last_name,
+            email=email,
+            telephone=telephone,
+            cell_phone=celphone,
+            # job=job,
+            is_professor=is_professor,
+            is_staff=is_staff,
+            is_fgfcc=is_fgfcc
+            )
+        
+        blocks = json.loads(blocks_json)
+        for block in blocks:
+            block_obj = Blockk.objects.get(name_block=block)
+            new_user.blocks.add(block_obj)
+        new_user.save()
+        
+        if new_user.history is not None:
+            academic_degrees = []
+            if academic_degrees_json:
+                academic_degrees = json.loads(academic_degrees_json)
+                for degree_data in academic_degrees:
+                    degree_obj = AcademicDegree.objects.get(name=degree_data)
+                    AcademicDegreeHistory.objects.create(history=new_user.history, academic_degree=degree_obj)
+
+            new_user.history.update_history(birth=birth, date_career=date_career, date_campus=date_campus,
+                                   date_professor=date_professor, date_area=date_area, date_institute=date_institute,
+                                   academic_degrees=academic_degrees)
+
+            new_user.history.save()
+        else:
+            new_user.history = History.objects.create(birth=birth, date_career=date_career, date_campus=date_campus,
+                                                  date_professor=date_professor, date_area=date_area,
+                                                  date_institute=date_institute)
+            academic_degrees = []
+            if academic_degrees_json:
+                academic_degrees = json.loads(academic_degrees_json)
+                for degree_data in academic_degrees:
+                    degree_obj = AcademicDegree.objects.get(name=degree_data)
+                    AcademicDegreeHistory.objects.create(history=new_user.history, academic_degree=degree_obj)
+
+            new_user.save()
+            return JsonResponse({'message': 'Histórico criado com sucesso.'})
 
 @login_required
 @user_passes_test(is_staff)
 def update_save(request):
     if request.method == 'POST':
         registration_id = request.POST.get('registration_id')
+        first_name = request.POST.get('first_name')
+        last_name = request.POST.get('last_name')
+        email = request.POST.get('email')
+        telephone = request.POST.get('telephone')
+        celphone = request.POST.get('celphone')
         birth = request.POST.get('birth')
         date_career = request.POST.get('date_career')
         date_campus = request.POST.get('date_campus')
         date_professor = request.POST.get('date_professor')
         date_area = request.POST.get('date_area')
         date_institute = request.POST.get('date_institute')
+        job = request.POST.get('job')
         academic_degrees_json = request.POST.get('academic_degrees')
+        blocks_json = request.POST.get('blocks')
+        is_professor = request.POST.get('is_professor') == 'true'
+        is_staff = request.POST.get('is_staff')  == 'true'
+        is_fgfcc = request.POST.get('is_fgfcc')  == 'true'
 
-        User = get_user_model()
+
+        # User = get_user_model()
         user = User.objects.get(registration_id=registration_id)
-        history = user.history
+        user.first_name = first_name
+        user.last_name = last_name
+        user.email = email
+        user.telephone = telephone
+        user.cell_phone = celphone
+        # user.job = job
+        user.is_professor = is_professor
+        user.is_staff = is_staff
+        user.is_fgfcc = is_fgfcc
 
+        blocks = json.loads(blocks_json)
+        for block in blocks:
+            block_obj = Blockk.objects.get(name_block=block)
+            user.blocks.add(block_obj)
+        user.save()
+
+        history = user.history
+        
+        history.academic_degrees.clear()
         if history is not None:
             academic_degrees = []
             if academic_degrees_json:
                 academic_degrees = json.loads(academic_degrees_json)
                 for degree_data in academic_degrees:
-                    name = degree_data['name']
-                    punctuation = degree_data['punctuation']
-                    academic_degree, created = AcademicDegree.objects.get_or_create(name=name, punctuation=punctuation)
-                    history.academic_degrees.add(academic_degree)
+                    print('adicionando: ', degree_data, ' ao historico')
+                    degree_obj = AcademicDegree.objects.get(name=degree_data)
+                    AcademicDegreeHistory.objects.create(history=history, academic_degree=degree_obj)
 
             history.update_history(birth=birth, date_career=date_career, date_campus=date_campus,
-                                   date_professor=date_professor, date_area=date_area, date_institute=date_institute,
-                                   academic_degrees=academic_degrees)
+                                   date_professor=date_professor, date_area=date_area, date_institute=date_institute)
 
             history.save()
         else:
@@ -275,16 +378,12 @@ def update_save(request):
             if academic_degrees_json:
                 academic_degrees = json.loads(academic_degrees_json)
                 for degree_data in academic_degrees:
-                    name = degree_data['name']
-                    punctuation = degree_data['punctuation']
-                    academic_degree, created = AcademicDegree.objects.get_or_create(name=name, punctuation=punctuation)
-                    user.history.academic_degrees.add(academic_degree)
+                    degree_obj = AcademicDegree.objects.get(name=degree_data)
+                    history.academic_degrees.add(degree_obj)
 
-            AcademicDegree.clean_up_unused_degrees()
             user.save()
             return JsonResponse({'message': 'Histórico criado com sucesso.'})
 
-        AcademicDegree.clean_up_unused_degrees()
         return JsonResponse({'message': 'Alterações salvas com sucesso.'})
 
 # class views
@@ -372,10 +471,17 @@ def blocks_list(request):
 @login_required
 @user_passes_test(is_staff)
 def block_detail(request, registration_block_id):
+    user_blocks = request.user.blocks.all()
     blockk = Blockk.objects.get(registration_block_id=registration_block_id)
     area = blockk.areas.first()
     courses = Course.objects.filter(blockk=blockk)
-    data = {'blockk': blockk, 'area': area, 'courses': courses}
+    print("Materia", courses)
+    data = {
+        'user_blocks': user_blocks,
+        'blockk': blockk, 
+        'area': area, 
+        'courses': courses
+    }
 
     return render(request, 'staff/blockk/block_detail.html', data)
 
@@ -383,6 +489,7 @@ def block_detail(request, registration_block_id):
 @login_required
 @user_passes_test(is_staff)
 def course_create(request):
+    user_blocks = request.user.blocks.all()
     if request.method == 'POST':
         registration_course_id = request.POST.get('registration_course_id')
         name_course = request.POST.get('name_course')
@@ -392,11 +499,14 @@ def course_create(request):
 
         area = Area.objects.get(id=area_id)
         blockk = Blockk.objects.get(id=block_id)
+        if blockk in user_blocks:
 
-        course = Course.objects.create(registration_course_id=registration_course_id, name_course=name_course, acronym=acronym, area=area, blockk=blockk)
-        course.save()
+            course = Course.objects.create(registration_course_id=registration_course_id, name_course=name_course, acronym=acronym, area=area, blockk=blockk)
+            course.save()
 
-        return JsonResponse({'message': 'Disciplina criada com sucesso.'})
+            return JsonResponse({'message': 'Disciplina criada com sucesso.'})
+        else:
+            return JsonResponse({'message': 'Você não tem permissão para criar disciplinas nesse bloco.'})
 
 @login_required
 @user_passes_test(is_staff)
@@ -408,9 +518,14 @@ def course_update_save(request):
         acronym = request.POST.get('acronym')
 
         course = Course.objects.get(id=course_id)
-        course.update_course(registration_course_id=registration_course_id, name_course=name_course, acronym=acronym)
+        blockk = course.blockk
 
-        return JsonResponse({'message': 'Disciplina atualizada com sucesso.'})
+        if blockk in request.user.blocks.all():
+            course.update_course(registration_course_id=registration_course_id, name_course=name_course, acronym=acronym)
+
+            return JsonResponse({'message': 'Disciplina atualizada com sucesso.'})
+        else:
+            return JsonResponse({'message': 'Você não tem permissão para editar disciplinas nesse bloco.'})
 
 @login_required
 @user_passes_test(is_staff)
@@ -419,8 +534,11 @@ def course_delete(request):
         course_id = request.POST.get('id')
         try:
             course = Course.objects.get(id=course_id)
-            course.delete()
-            return JsonResponse({'message': 'Disciplina deletado com sucesso.'})
+            if course.blockk in request.user.blocks.all():
+                course.delete()
+                return JsonResponse({'message': 'Disciplina deletado com sucesso.'})
+            else:
+                return JsonResponse({'message': 'Você não tem permissão para deletar disciplinas nesse bloco.'})
         except Course.DoesNotExist:
             return JsonResponse({'message': 'O disciplina não existe.'}, status=404)
 

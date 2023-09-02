@@ -57,6 +57,10 @@ input {
     box-shadow: 0 0 10px #1590ff;
 }
 
+#loginError i, #loginError b{
+    color: rgb(94, 32, 32);
+}
+
 .btn-language {
     border: 1px solid #3F927E;
     color: white;
@@ -65,6 +69,7 @@ input {
 button[type="submit"] {
     margin-top: 20px;
 }
+
 
 .expand-button {
     color: white;

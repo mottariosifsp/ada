@@ -1,5 +1,6 @@
 var lang = document.currentScript.getAttribute("data-lang");
 var user_regime = document.currentScript.getAttribute("user_regime");
+var user_is_fgfcc = document.currentScript.getAttribute("user_is_fgfcc").replace(/'/g, '"');
 
 var timetable_choosed = [];
 var buttons_clicked = [];
@@ -16,6 +17,13 @@ var user_courses_from_blockk = JSON.parse(document.currentScript.getAttribute("u
 var cell_left_number = {
     time: 21,
     type: ''
+}
+
+var type_discipline = {
+    primary_max: 0,
+    secondary_max: 0,
+    primary_choosed: 0,
+    secondary_choosed: 0,
 }
 
 if (user_regime == '20' || user_regime == 'Temporário') {
@@ -63,16 +71,26 @@ if(user_courses_from_blockk.length > 0) {
         var obj = user_courses_from_blockk[i];
         var obj_id = obj.id;
         var array_position_id = obj.position_id;
+        var priority = array_position_id[0].id.substr(-3);
+        var count = 0
 
         for (var y = 0; y < array_position_id.length; y++) {
             var position = array_position_id[y].id;
-
+            count++
             $("#sub-" + position).text(user_courses_from_blockk[i].course_acronym);
             $("#btn-" + position)
                 .attr("data-toggle", "none")
                 .attr("data-target", "#");
             buttons_clicked.push(position);
         }
+
+        if(priority == 'pri') {
+            type_discipline.primary_choosed += count
+        } else {
+            type_discipline.secondary_choosed += count
+        }
+        console.log(type_discipline)
+
 
         global = {
             id_timetable: user_courses_from_blockk[i].id,
@@ -108,29 +126,118 @@ function show_table(value) {
             top: $('#primary-timetable-courses').offset().top - $('.navbar').outerHeight() - 115,
             behavior: 'smooth'
           });
-    } else {
-        $('#secondary-timetable-courses').css({
+        if(type_discipline.primary_choosed <= 0){
+            $('div.btn-priority.secondary').css({'color': 'grey', 'background-color': 'white', 'border': '1px solid grey', 'font-weight': '400'})
+        }
+        if(cell_left_number.type == '20h') {
+            if(type_discipline.primary_choosed >= 8) {                
+            } else {
+                $('div.btn-priority.secondary').css({'color': 'grey', 'background-color': 'white', 'border': '1px solid grey', 'font-weight': '400'})
+            }
+        } else {
+            if(user_is_fgfcc == 'True') {
+                if(type_discipline.primary_choosed >= 8) {
+                } else {
+                    $('div.btn-priority.secondary').css({'color': 'grey', 'background-color': 'white', 'border': '1px solid grey', 'font-weight': '400'})
+                }
+            } else {
+                if(type_discipline.primary_choosed >= 12) {
+                } else {
+                    $('div.btn-priority.secondary').css({'color': 'grey', 'background-color': 'white', 'border': '1px solid grey', 'font-weight': '400'})
+                }
+            }            
+        }
+        $('h4.primary-item').css({'display': ''})
+        $('h4.secondary-item').css({'display': 'none'})
+        cell_left_number.time = 21 - type_discipline.primary_choosed
+        $('#cel-hour').text(cell_left_number.time)
+    } else {       
+        if(type_discipline.primary_choosed > 0) {
+            if(cell_left_number.type == '20h') {
+                if(type_discipline.primary_choosed >= 8) {                
+                } else {
+                    $("#warning-alert-message").text("Falta "+ (8 - type_discipline.primary_choosed) +" de células primárias minímas para continuar.");
+                    $("#warning-alert").show();
+                    window.scrollTo({
+                        top: $("#warning-alert").offset().top - $(".navbar").outerHeight() - 30,
+                        behavior: "smooth",
+                    });
+                    return false
+                }
+            } else {
+                if(user_is_fgfcc == 'True') {
+                    if(type_discipline.primary_choosed >= 8) {
+                    } else {
+                        $("#warning-alert-message").text("Falta "+ (8 - type_discipline.primary_choosed) +" de células primárias minímas para continuar.");
+                        $("#warning-alert").show();
+                        window.scrollTo({
+                            top: $("#warning-alert").offset().top - $(".navbar").outerHeight() - 30,
+                            behavior: "smooth",
+                        });
+                        return false
+                    }
+                } else {
+                    if(type_discipline.primary_choosed >= 12) {
+                    } else {
+                        $("#warning-alert-message").text("Falta "+ (12 - type_discipline.primary_choosed) +" de células primárias minímas para continuar.");
+                        $("#warning-alert").show();
+                        window.scrollTo({
+                            top: $("#warning-alert").offset().top - $(".navbar").outerHeight() - 30,
+                            behavior: "smooth",
+                        });
+                        return false
+                    }
+                }
+                
+            }
+            $('#secondary-timetable-courses').css({
             'display': ''
-        });
-        $('#primary-timetable-courses').css({
-            'display': 'none'
-        });
-        $("div.secondary").css({
-            "font-weight": "500",
-            "background-color":  "#2f7363",
-            "color": "white"
-        });
-        $("div.primary").css({
-            "font-weight": "",
-            "background-color":  "",
-            "color": ""
-        });
-        window.scrollTo({
-            top: $('#secondary-timetable-courses').offset().top - $('.navbar').outerHeight() - 115,
-            behavior: 'smooth'
-          });
+            });
+            $('#primary-timetable-courses').css({
+                'display': 'none'
+            });
+            $("div.secondary").css({
+                "font-weight": "500",
+                "background-color":  "#2f7363",
+                "color": "white"
+            });
+            $("div.primary").css({
+                "font-weight": "",
+                "background-color":  "",
+                "color": ""
+            });
+            window.scrollTo({
+                top: $('#secondary-timetable-courses').offset().top - $('.navbar').outerHeight() - 115,
+                behavior: 'smooth'
+            });
+            $('h4.primary-item').css({'display': 'none'})
+            $('h4.secondary-item').css({'display': ''})
+            cell_left_number.time = Math.floor(type_discipline.primary_choosed / 2)
+            $('#cel-hour').text(cell_left_number.time)
+        } else {
+            if(cell_left_number.type == '20h') {
+                $("#warning-alert-message").text("Insira a quantidade miníma de células primárias (8) antes de continuar.");
+            } else {
+                $("#warning-alert-message").text("Insira a quantidade miníma de células primárias (12) antes de continuar.");
+            }
+            
+            $("#warning-alert").show();
+            window.scrollTo({
+                top: $("#warning-alert").offset().top - $(".navbar").outerHeight() - 30,
+                behavior: "smooth",
+            });
+        }
+        
     }
 }
+
+if(type_discipline.primary_choosed > 0){
+    $('div.btn-priority.secondary').css({'color': '', 'background-color': '', 'border': '', 'font-weight': ''})
+    $('i.secondary-item').css({'display': 'none'})
+} else {
+    $('div.btn-priority.secondary').css({'color': 'grey', 'background-color': 'white', 'border': '1px solid grey', 'font-weight': '400'})
+}
+
 
 // Ao cliar no button
 $("#primary-timetable-courses input, #secondary-timetable-courses input").on("click", function (event) {
@@ -159,17 +266,29 @@ $("#primary-timetable-courses input, #secondary-timetable-courses input").on("cl
         });
         event.preventDefault();
 
+        console.log(type_discipline)
+        type_priority_choosed = 0
+
         filtered_timetables.forEach(function (timetable) {
             timetable.position.forEach(function (position) {
                 $("#sub-" + position).text("+");
                 $("#btn-" + position)
                     .attr("data-toggle", "modal")
                     .attr("data-target", "#add-course-modal");
-                cell_left_number.time += 1;
+                cell_left_number.time++;
+                type_priority_choosed++;
             });
         });
 
         $('#cel-hour').text(cell_left_number.time)
+        priority = filtered_timetables[0].position[0].substr(-3);
+        console.log(type_priority_choosed)
+        if(priority == 'pri') {
+            type_discipline.primary_choosed -= type_priority_choosed
+        } else {
+            type_discipline.secondary_choosed -= type_priority_choosed
+        }
+        console.log(type_discipline)
 
         buttons_clicked = buttons_clicked.filter(function (element) {
             return !filtered_timetables.some(function (timetable) {
@@ -180,6 +299,29 @@ $("#primary-timetable-courses input, #secondary-timetable-courses input").on("cl
         timetable_choosed = timetable_choosed.filter(function (t) {
             return !filtered_timetables.includes(t);
         });
+        console.log(type_discipline)
+        
+        if(cell_left_number.type == '20h') {
+            if(type_discipline.primary_choosed >= 8) {                
+            } else {
+                $('div.btn-priority.secondary').css({'color': 'grey', 'background-color': 'white', 'border': '1px solid grey', 'font-weight': '400'})
+                $('i.secondary-item').css({'display': ''})
+            }
+        } else {
+            if(user_is_fgfcc == 'True') {
+                if(type_discipline.primary_choosed >= 8) {
+                } else {
+                    $('div.btn-priority.secondary').css({'color': 'grey', 'background-color': 'white', 'border': '1px solid grey', 'font-weight': '400'})
+                    $('i.secondary-item').css({'display': ''})
+                }
+            } else {
+                if(type_discipline.primary_choosed >= 12) {
+                } else {
+                    $('div.btn-priority.secondary').css({'color': 'grey', 'background-color': 'white', 'border': '1px solid grey', 'font-weight': '400'})
+                    $('i.secondary-item').css({'display': ''})
+                }
+            }
+        }
 
         obj = timetable_choosed_objects.filter(timetable => timetable.id == filtered_timetables[0].id_timetable)
         user_timetables.push(obj[0])
@@ -522,6 +664,7 @@ $(document).ready(function () {
         var filtered_timetable = user_timetables.filter(function (timetable_item) {
             return timetable_item.id === timetable_id;
         });
+        console.log(type_discipline)
 
         var csrftoken = $("[name=csrfmiddlewaretoken]").val();
 
@@ -544,7 +687,7 @@ $(document).ready(function () {
                     var missing_courses = [];
                     var max_cel = false;
                     var length_ids = 0;
-
+                    var type_priority_choosed = 0
                     
                     function format_id(id) {
                         var split_parts = id.split("-");
@@ -573,6 +716,7 @@ $(document).ready(function () {
 
                             ids.forEach(function(id) {
                                 length_ids ++;
+                                type_priority_choosed++;
                                 if (buttons_clicked.includes(id)) {
                                   is_repetead = true;
                                   ids_repetead.push(format_id(id));
@@ -585,8 +729,7 @@ $(document).ready(function () {
                                     missing_courses.push(filtered_timetable[0].course_acronym);
                                 }
                                 missing_courses = [...new Set(missing_courses)];
-                            }
-                        
+                            }                       
                             
                         });
                     }
@@ -641,12 +784,51 @@ $(document).ready(function () {
                         id_timetable: filtered_timetable[0].id,
                         position: id_array,
                     };
+                    console.log(type_priority_choosed)
                     if (!is_repetead && !is_missing && !max_cel) {
+                        if(priority == 'pri') {
+                            type_discipline.primary_choosed += type_priority_choosed 
+                        } else {
+                            type_discipline.secondary_choosed += type_priority_choosed
+                        }
+                        console.log(type_discipline)
                         timetable_choosed.push(global);
                         cell_left_number.time -= id_array.length
                         $('#cel-hour').text(cell_left_number.time)
                         timetable_choosed_objects.push(filtered_timetable[0])
                         user_timetables = user_timetables.filter(timetable => timetable.id !== filtered_timetable[0].id);
+                        
+                    }
+
+                    if(type_discipline.primary_choosed > 0){
+                        if(cell_left_number.type == '20h') {
+                            if(type_discipline.primary_choosed >= 8) {                
+                            } else {
+                                return false
+                            }
+                        } else {
+                            if(user_is_fgfcc == 'True') {
+                                if(type_discipline.primary_choosed >= 8) {
+                                } else {
+                                    return false
+                                }
+                            } else {
+                                if(type_discipline.primary_choosed >= 12) {
+                                } else {
+                                    return false
+                                }
+                            }
+                        }
+                        if(priority == 'pri') {
+                            $('div.btn-priority.secondary').css({'color': '', 'background-color': '', 'border': '', 'font-weight': ''})
+                            $('i.secondary-item').css({'display': 'none'})
+                        } else {
+                            $("div.secondary").css({
+                                "font-weight": "500",
+                                "background-color":  "#2f7363",
+                                "color": "white"
+                            });
+                        }                        
                     }
 
                     $("#course-filter").val("");
@@ -659,7 +841,7 @@ $(document).ready(function () {
 
                         $("#warning-list-message").empty();
                         $("#warning-list-message").html("<ul>" + lists_repetead + "</ul>");
-                        $("#warning-alert-message").text("Erro: As seguintes disciplinas já estão adicionadas:");
+                        $("#warning-alert-message").text("As seguintes disciplinas já estão adicionadas:");
                         $("#warning-alert").show();
                         window.scrollTo({
                             top: $("#warning-alert").offset().top - $(".navbar").outerHeight() - 30,
@@ -674,7 +856,7 @@ $(document).ready(function () {
   
                           $("#warning-list-message").empty();
                           $("#warning-list-message").html("<ul>" + lists_courses + "</ul>");
-                          $("#warning-alert-message").text("Erro: os seguintes cursos não estão de acordo com a disponibilidade:");
+                          $("#warning-alert-message").text("Os seguintes cursos não estão de acordo com a disponibilidade:");
                           $("#warning-alert").show();
                           window.scrollTo({
                             top: $("#warning-alert").offset().top - $(".navbar").outerHeight() - 30,
@@ -686,21 +868,38 @@ $(document).ready(function () {
                     // $('#add-course-modal').modal('hide');
                 },
                 error: function (xhr, textStatus, errorThrown) {
-                    $("#error-message").text("Erro ao tentar adicionar uma disciplina.");
-                    $("#error-alert").show();
+                    $("#error-message-form").text("Erro ao tentar adicionar a disciplina.");
+                    $("#error-alert-form").show();
+                    window.scrollTo({
+                        top: $("#error-alert-form").offset().top - $(".navbar").outerHeight() - 30,
+                        behavior: "smooth",
+                    });
                 },
             });
         } else {
-            $("#error-message").text("Selecione uma disciplina.");
-            $("#error-alert").show();
+            $("#error-message-form").text("Selecione uma disciplina.");
+            $("#error-alert-form").show();
+            window.scrollTo({
+                top: $("#error-alert-form").offset().top - $(".navbar").outerHeight() - 30,
+                behavior: "smooth",
+            });
         }
     });
-
     $("#send-courses").on("click", function () {
         let csrftoken = get_cookie("csrftoken");
         var json_data = JSON.stringify(timetable_choosed);
 
         if (timetable_choosed.length != 0) {
+            if(type_discipline.secondary_choosed == 0) {
+                $("#warning-alert-message").text("Você não selecionou nenhuma disciplina secundária. Conforme o escolhido, você deve inserir " + Math.floor(type_discipline.primary_choosed/2) + " células secundárias.");
+                $("#warning-alert").show();                
+                show_table(2)
+                window.scrollTo({
+                    top: $("#warning-alert").offset().top - $(".navbar").outerHeight() - 30,
+                    behavior: "smooth",
+                });
+                return false;
+            }
             if(cell_left_number.type == '20h') {
                 if(cell_left_number.time <= 13) {
                     $.ajax({
@@ -837,5 +1036,9 @@ function info_button(value) {
     } else {
         $("#info-input-alert").show();
     }
+}
+
+function closeErrorAlert(id) {
+    $("#"+ id).hide();
 }
 

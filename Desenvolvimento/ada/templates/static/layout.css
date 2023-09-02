@@ -27,7 +27,7 @@ li.breadcrumb-item a {
 
 .modal-backdrop {
     opacity: 0.5;
-    background-color: #0000002d;
+    background-color: #0000006c;
 }
 .my-custom-modal .modal-backdrop {
     opacity: 0.5;
@@ -282,6 +282,9 @@ img.lang-icon, img.user-photo {width: 100%;}
     background-color: #174365;
     border: #0d2131;
     color: #ddf0ff;
+  }
+  div.alert b {
+    color: rgba(0, 0, 0, 0.636)!important;
   }
 
   b {
