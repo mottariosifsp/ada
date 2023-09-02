@@ -91,11 +91,18 @@ $(document).ready(function () {
     $('#createProfessorModal').on('hidden.bs.modal', function () {
         $(".currentBlocksList").empty();
         $(".blockInput").val("");
+        for (let i = 0; i < allblocks.length; i++) {
+            addOption(allblocks[i]);
+        }
         allblocks = [];
+                
     });
     $('#editProfessorModal').on('hidden.bs.modal', function () {
         $(".currentBlocksList").empty();
         $(".blockInput").val("");
+        for (let i = 0; i < allblocks.length; i++) {
+            addOption(allblocks[i]);
+        }
         allblocks = [];
     });
 
