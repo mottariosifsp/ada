@@ -14,7 +14,7 @@ class Criteria_admin(admin.ModelAdmin):
 admin.site.register(Criteria, Criteria_admin)
 
 class Alert_admin(admin.ModelAdmin):
-    list_display = ('name_alert','created_by','title','description','alert_start','alert_end')
+    list_display = ('name_alert','created_by','title','description')
     search_fields = ('name_alert',)
 
 admin.site.register(Alert, Alert_admin)

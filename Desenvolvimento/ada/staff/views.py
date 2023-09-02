@@ -5,7 +5,7 @@ from django.urls import reverse
 from attribution.models import TeacherQueuePosition, TeacherQueuePositionBackup
 # from attribution import task
 from attribution.views import schedule_attributtion_deadline_staff
-from enums.enum import Job, Period, Day
+from enums import enum
 from django.db import transaction
 from django.http import JsonResponse
 from django.shortcuts import get_object_or_404, redirect, render
@@ -16,10 +16,10 @@ from timetable.models import Day_combo, Timeslot, Timetable, Timetable_user
 from area.models import Blockk, Area
 from classs.models import Classs
 from course.models import Course
-from user.models import AcademicDegreeHistory, User, History, AcademicDegree
+from user.models import AcademicDegreeHistory, User, History, AcademicDegree, Job
 from .models import Deadline, Criteria
 from django.db.models import F, Sum, Value
-from staff.models import Deadline
+from staff.models import Deadline, Alert
 from datetime import datetime, timedelta
 
 from django.contrib.auth.decorators import login_required
@@ -34,6 +34,35 @@ def is_staff(user):
 @login_required
 @user_passes_test(is_staff)
 def home(request):
+    if request.method == 'POST':
+        title = request.POST.get('title')
+        description = request.POST.get('description')
+        blockk_id = request.POST.get('block')
+        link = request.POST.get('link')
+        print(link)
+
+        if blockk_id:
+            name_alert = "ALERT"
+            blockk = Blockk.objects.get(id=blockk_id)
+        else:
+            name_alert = "LINK"
+            blockk = None
+            title = None
+
+        if link:
+            describe = link
+        else:
+            describe = description
+
+        Alert.objects.create(
+            name_alert=name_alert,
+            created_by=request.user,
+            title=title,
+            description=describe,
+            blockk=blockk,
+        )
+
+    user = request.user
     status = 'not_configured'
     period = {
         'status': status,
@@ -74,9 +103,6 @@ def home(request):
 
     if fpa_status == 'finished' and attribution_status == 'finished':
         status = 'finished'
-
-    print(fpa_status, attribution_status)
-
     if fpa_status == 'ongoing':
         status = 'fpa'
     elif attribution_status == 'ongoing':
@@ -127,8 +153,11 @@ def home(request):
                 period['end_time'] = nearest_deadline.deadline_end.strftime("%H:%M")
 
     period['status'] = status
+
+    user_blocks = user.blocks.all()
         
     data = {
+        'user_blocks': user_blocks,
         'period': period
     }
     return render(request, 'staff/home_staff.html', data)
@@ -266,7 +295,6 @@ def add_new_professor(request):
         is_staff = request.POST.get('add_is_staff') == 'true'
         is_fgfcc = request.POST.get('add_is_fgfcc') == 'true'   
         
-        job_obj = Job(job).name
 
         new_user = User.objects.create(
             registration_id=registration_id,
@@ -275,11 +303,13 @@ def add_new_professor(request):
             email=email,
             telephone=telephone,
             cell_phone=celphone,
-            job=job_obj,
             is_professor=is_professor,
             is_staff=is_staff,
             is_fgfcc=is_fgfcc
             )
+        
+        create_job(job, new_user)
+        
         
         blocks = json.loads(blocks_json)
         for block in blocks:
@@ -339,15 +369,14 @@ def update_save(request):
 
         
         # User = get_user_model()
-        job_obj = Job(job).name
 
         user = User.objects.get(registration_id=registration_id)
+        create_job(job, user)
         user.first_name = first_name
         user.last_name = last_name
         user.email = email
         user.telephone = telephone
         user.cell_phone = celphone
-        user.job = job_obj
         user.is_professor = is_professor
         user.is_staff = is_staff
         user.is_fgfcc = is_fgfcc
@@ -359,10 +388,10 @@ def update_save(request):
         user.save()
 
         history = user.history
-        
-        history.academic_degrees.clear()
         if history is not None:
             academic_degrees = []
+            history.academic_degrees.clear()
+
             if academic_degrees_json:
                 academic_degrees = json.loads(academic_degrees_json)
                 for degree_data in academic_degrees:
@@ -390,6 +419,26 @@ def update_save(request):
 
         return JsonResponse({'message': 'Alterações salvas com sucesso.'})
 
+def create_job(user_regime, user):
+    if Job.objects.filter(user=user).exists():
+        job = User.objects.filter(id=user.id).first().job
+        User.objects.filter(id=user.id).update(job=None)
+        job.delete()
+
+    if(user_regime == 'RDE'):
+        name_job = Job.objects.create(name_job=enum.Job.RDE.name)
+    elif(user_regime == 'Temporário'):
+        name_job = Job.objects.create(name_job=enum.Job.TEMPORARY.name)
+    elif(user_regime == 'Substituto'):
+        name_job = Job.objects.create(name_job=enum.Job.SUBSTITUTE.name)
+    elif(user_regime == '40'):
+        name_job = Job.objects.create(name_job=enum.Job.FORTY_HOURS.name)
+    else:
+        name_job = Job.objects.create(name_job=enum.Job.TWENTY_HOURS.name)
+
+    user.job = name_job
+    user.save()
+
 # class views
 @login_required
 @user_passes_test(is_staff)
@@ -398,7 +447,7 @@ def classes_list(request):
     areas = Area.objects.all()
     periods = [
         {'value': period.name, 'label': period.value}
-        for period in Period
+        for period in enum.Period
     ]
     return render(request, 'staff/classs/classes_list.html', {'classes': classes, 'periods': periods, 'areas': areas})
 
@@ -881,12 +930,12 @@ def positions_to_timeslots(positions):
 
 def number_to_day_enum(day_number):
     day = (
-        Day.monday.name,
-        Day.tuesday.name,
-        Day.wednesday.name,
-        Day.thursday.name,
-        Day.friday.name,
-        Day.saturday.name,
+        enum.Day.monday.name,
+        enum.Day.tuesday.name,
+        enum.Day.wednesday.name,
+        enum.Day.thursday.name,
+        enum.Day.friday.name,
+        enum.Day.saturday.name,
     )
 
     return day[day_number]
