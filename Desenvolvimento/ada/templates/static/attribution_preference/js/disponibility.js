@@ -295,7 +295,12 @@ $(document).ready(function() {
               }
             });
           } else {
-            $('#error-message-form').text('A seleção da disponibilidade de horário não pode ultrapassar 8 horas de trabalho diárias.');
+            if(lang == 'pt-br' || lang == '') {
+              $('#error-message-form').text('A seleção da disponibilidade de horário não pode ultrapassar 8 horas de trabalho diárias.');
+            } else {
+              $('#error-message-form').text('The selection of time availability cannot exceed 8 hours of work per day.');
+            }
+            
             $('#error-alert-form').show();
             window.scrollTo({
               top: $('#error-alert-form').offset().top - $('.navbar').outerHeight() - 30,
