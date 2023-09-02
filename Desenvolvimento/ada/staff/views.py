@@ -295,7 +295,6 @@ def add_new_professor(request):
         is_staff = request.POST.get('add_is_staff') == 'true'
         is_fgfcc = request.POST.get('add_is_fgfcc') == 'true'   
         
-        job_obj = Job(job).name
 
         new_user = User.objects.create(
             registration_id=registration_id,
@@ -304,11 +303,13 @@ def add_new_professor(request):
             email=email,
             telephone=telephone,
             cell_phone=celphone,
-            job=job_obj,
             is_professor=is_professor,
             is_staff=is_staff,
             is_fgfcc=is_fgfcc
             )
+        
+        create_job(job, new_user)
+        
         
         blocks = json.loads(blocks_json)
         for block in blocks:
@@ -370,7 +371,7 @@ def update_save(request):
         # User = get_user_model()
 
         user = User.objects.get(registration_id=registration_id)
-        create_job(user, job)
+        create_job(job, user)
         user.first_name = first_name
         user.last_name = last_name
         user.email = email
@@ -387,10 +388,10 @@ def update_save(request):
         user.save()
 
         history = user.history
-        
-        history.academic_degrees.clear()
         if history is not None:
             academic_degrees = []
+            history.academic_degrees.clear()
+
             if academic_degrees_json:
                 academic_degrees = json.loads(academic_degrees_json)
                 for degree_data in academic_degrees:
