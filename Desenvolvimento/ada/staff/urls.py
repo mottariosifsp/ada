@@ -1,6 +1,6 @@
 from django.urls import path
 from .views import attribution_configuration, attribution_configuration_confirm, attribution_configuration_index, class_create, class_delete, classes_list, classes_list_saved, create_timetable, edit_timetable, show_timetable, home,\
-    show_current_deadline, professors_list, timetables, update_save, blocks_list, block_detail, course_update_save, course_delete, course_create, queue_create, queue_show, add_new_professor
+    professors_list, timetables, update_save, blocks_list, block_detail, course_update_save, course_delete, course_create, queue_create, queue_show, add_new_professor
 
 urlpatterns = [
     path("", home, name="home_staff"),

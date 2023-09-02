@@ -291,7 +291,7 @@ def add_new_professor(request):
                 academic_degrees = json.loads(academic_degrees_json)
                 for degree_data in academic_degrees:
                     degree_obj = AcademicDegree.objects.get(name=degree_data)
-                    AcademicDegreeHistory.objects.create(history=history, academic_degree=degree_obj)
+                    AcademicDegreeHistory.objects.create(history=new_user.history, academic_degree=degree_obj)
 
             new_user.history.update_history(birth=birth, date_career=date_career, date_campus=date_campus,
                                    date_professor=date_professor, date_area=date_area, date_institute=date_institute,
