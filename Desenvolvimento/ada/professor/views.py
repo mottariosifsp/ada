@@ -212,9 +212,9 @@ def profile(request):
 
     return render(request, 'professor/profile.html', data)
 
-def final_assignment(request):
+def assignments(request):
 
-    return render(request, 'professor/final_assignment.html')
+    return render(request, 'professor/assignments.html')
 
 def day_to_number(day):
     number = {
