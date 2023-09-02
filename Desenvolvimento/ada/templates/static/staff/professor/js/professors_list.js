@@ -1,5 +1,29 @@
 $(document).ready(function () { 
     
+    $('.phone-input').on('input', function() {
+        $(this).val(celphoneMask($(this).val()));
+    });
+    
+    function celphoneMask(phone) {
+        return phone.replace(/\D/g, '')
+                    .replace(/^(\d)/, '($1')
+                    .replace(/^(\(\d{2})(\d)/, '$1)$2')
+                    .replace(/(\d{5})(\d{1,4})/, '$1-$2')
+                    .replace(/(-\d{4})\d+?$/, '$1');
+    }
+
+    $('.telephone-input').on('input', function() {
+        $(this).val(telephoneMask($(this).val()));
+    });
+    
+    function telephoneMask(phone) {
+        return phone.replace(/\D/g, '')
+                    .replace(/^(\d)/, '($1')
+                    .replace(/^(\(\d{2})(\d)/, '$1)$2')
+                    .replace(/(\d{4})(\d{1,4})/, '$1-$2')
+                    .replace(/(-\d{4})\d+?$/, '$1');
+    }
+
     $('#professors_list').DataTable({
         "scrollX": true,
         columnDefs: [
@@ -268,12 +292,12 @@ $(document).ready(function () {
         $('#editProfessorModal').find('#first_name').val(professorData.first_name);
         $('#editProfessorModal').find('#last_name').val(professorData.last_name);
         $('#editProfessorModal').find('#email').val(professorData.email);
-        if (professorData.telephone.toString().includes('-')){
+        if (professorData.telephone == "None" || professorData.telephone == "null" || professorData.telephone == "undefined" || professorData.telephone == "") {
             $('#editProfessorModal').find('#telephone').val('');
         }else{
             $('#editProfessorModal').find('#telephone').val(professorData.telephone.replace(/\s/g, ""));
         }
-        if (professorData.celphone.toString().includes('-')){
+        if (professorData.celphone == "None" || professorData.celphone == "null" || professorData.celphone == "undefined" || professorData.celphone == "") {
             $('#editProfessorModal').find('#celphone').val('');
         }else{
             $('#editProfessorModal').find('#celphone').val(professorData.celphone.replace(/\s/g, ""));
@@ -283,9 +307,23 @@ $(document).ready(function () {
         $('#editProfessorModal').find('#date_campus').val(professorData.date_campus);
         $('#editProfessorModal').find('#date_professor').val(professorData.date_professor);
         $('#editProfessorModal').find('#date_area').val(professorData.date_area);
-        $('#editProfessorModal').find('#job').val(professorData.date_area);
-        $('#editProfessorModal').find('#date_institute').val(professorData.date_institute);
+        $('#editProfessorModal').find('#date_institute').val(professorData.date_area);
 
+        if(professorData.job == "None"){
+            $('#editProfessorModal').find('#job').val("");
+        }else if(professorData.job == "Substituto"){
+            $('#editProfessorModal').find('#job').val("SUBSTITUTE");
+        }else if(professorData.job == "Temporário"){
+            $('#editProfessorModal').find('#job').val("TEMPORARY");
+        }else if(professorData.job == "40 Horas"){
+            $('#editProfessorModal').find('#job').val("FORTY_HOURS");
+        }else if(professorData.job == "20 Horas"){
+            $('#editProfessorModal' ).find('#job').val("TWENTY_HOURS");
+        }else if(professorData.job == "RDE"){
+            $('#editProfessorModal').find('#job').val("RDE");
+        }else
+
+        $('#editProfessorModal').find('#date_institute').val(professorData.date_institute);
         $(".currentBlocksList").empty();
         $(".currentAcademicDegreesList").empty();
 
