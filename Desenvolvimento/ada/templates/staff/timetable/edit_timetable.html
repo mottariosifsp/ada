@@ -127,7 +127,7 @@
       <tbody>
         {% for timeslot in timeslots|slice:"12:" %}
             <tr>
-              {% with timeslot_counter=forloop.counter|add:6 %}                     
+              {% with timeslot_counter=forloop.counter|add:12 %}                     
                 <th scope="row" class="align-middle text-center">{{ timeslot.hour_start|date:"H:i" }} - {{ timeslot.hour_end|date:"H:i" }}</th>
                       {% for cell in "012345" %}
                       <!-- blocktrans? batatinha -->
