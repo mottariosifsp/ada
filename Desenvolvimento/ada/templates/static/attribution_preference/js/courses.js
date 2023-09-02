@@ -155,7 +155,12 @@ function show_table(value) {
             if(cell_left_number.type == '20h') {
                 if(type_discipline.primary_choosed >= 8) {                
                 } else {
-                    $("#warning-alert-message").text("Falta "+ (8 - type_discipline.primary_choosed) +" de células primárias minímas para continuar.");
+                    if(lang == 'pt-br' || lang == '') {
+                        $("#warning-alert-message").text("Falta "+ (8 - type_discipline.primary_choosed) +" de células primárias minímas para continuar.");
+                    } else {
+                        $("#warning-alert-message").text("Missing "+ (8 - type_discipline.primary_choosed) +" minimum primary cells to continue.");
+                    }
+                    
                     $("#warning-alert").show();
                     window.scrollTo({
                         top: $("#warning-alert").offset().top - $(".navbar").outerHeight() - 30,
@@ -167,7 +172,12 @@ function show_table(value) {
                 if(user_is_fgfcc == 'True') {
                     if(type_discipline.primary_choosed >= 8) {
                     } else {
-                        $("#warning-alert-message").text("Falta "+ (8 - type_discipline.primary_choosed) +" de células primárias minímas para continuar.");
+                        if(lang == 'pt-br' || lang == '') {
+                            $("#warning-alert-message").text("Falta "+ (8 - type_discipline.primary_choosed) +" de células primárias minímas para continuar.");
+                        } else {
+                            $("#warning-alert-message").text("Missing "+ (8 - type_discipline.primary_choosed) +" minimum primary cells to continue.");
+                        }
+                        
                         $("#warning-alert").show();
                         window.scrollTo({
                             top: $("#warning-alert").offset().top - $(".navbar").outerHeight() - 30,
@@ -178,7 +188,12 @@ function show_table(value) {
                 } else {
                     if(type_discipline.primary_choosed >= 12) {
                     } else {
-                        $("#warning-alert-message").text("Falta "+ (12 - type_discipline.primary_choosed) +" de células primárias minímas para continuar.");
+                        if(lang == 'pt-br' || lang == '') {
+                            $("#warning-alert-message").text("Falta "+ (12 - type_discipline.primary_choosed) +" de células primárias minímas para continuar.");
+                        } else {
+                            $("#warning-alert-message").text("Missing "+ (12 - type_discipline.primary_choosed) +" minimum primary cells to continue.");
+                        }
+                        
                         $("#warning-alert").show();
                         window.scrollTo({
                             top: $("#warning-alert").offset().top - $(".navbar").outerHeight() - 30,
@@ -215,9 +230,17 @@ function show_table(value) {
             $('#cel-hour').text(cell_left_number.time)
         } else {
             if(cell_left_number.type == '20h') {
-                $("#warning-alert-message").text("Insira a quantidade miníma de células primárias (8) antes de continuar.");
+                if(lang == 'pt-br' || lang == '') {
+                    $("#warning-alert-message").text("Insira a quantidade miníma de células primárias (8) antes de continuar.");
+                } else {
+                    $("#warning-alert-message").text("Enter the minimum number of primary cells (8) before continuing.");
+                }
             } else {
-                $("#warning-alert-message").text("Insira a quantidade miníma de células primárias (12) antes de continuar.");
+                if(lang == 'pt-br' || lang == '') {
+                    $("#warning-alert-message").text("Insira a quantidade miníma de células primárias (12) antes de continuar.");
+                } else {
+                    $("#warning-alert-message").text("Enter the minimum number of primary cells (12) before continuing.");
+                }
             }
             
             $("#warning-alert").show();
@@ -457,7 +480,11 @@ $("#block-filter").on("input", function() {
             }
     
             if (filtered_timetables.length == 0) {
-                $("#course-filter").val("Nenhuma disciplina disponível neste horário.");
+                if(lang == 'pt-br' || lang == '') {
+                    $("#course-filter").val("Nenhuma disciplina disponível neste horário.");
+                } else {
+                    $("#course-filter").val("No courses available at this time.");
+                }
                 $("#course-filter").prop("disabled", true);
             }
         }
@@ -538,7 +565,11 @@ $("#area-filter").on("input", function() {
                 }
     
                 if (filtered_timetables.length == 0) {
-                    $("#course-filter").val("Nenhuma disciplina disponível neste horário.");
+                    if(lang == 'pt-br' || lang == '') {
+                        $("#course-filter").val("Nenhuma disciplina disponível neste horário.");
+                    } else {
+                        $("#course-filter").val("No courses available at this time.");
+                    }
                     $("#course-filter").prop("disabled", true);
                 }
     
@@ -572,7 +603,11 @@ $("#area-filter").on("input", function() {
                 }
     
                 if (filtered_timetables.length == 0) {
-                    $("#course-filter").val("Nenhuma disciplina disponível neste horário.");
+                    if(lang == 'pt-br' || lang == '') {
+                        $("#course-filter").val("Nenhuma disciplina disponível neste horário.");
+                    } else {
+                        $("#course-filter").val("No courses available at this time.");
+                    }
                     $("#course-filter").prop("disabled", true);
                 }
             }
@@ -681,15 +716,24 @@ $(document).ready(function () {
                     var missing_courses = [];
                     var max_cel = false;
                     var length_ids = 0;
-                    var type_priority_choosed = 0
+                    var type_priority_choosed = 0                    
                     
                     function format_id(id) {
                         var split_parts = id.split("-");
                         var class_number = split_parts[2];
                         var day_of_week = get_all_day(split_parts[0]);
-                        var period = split_parts[1] === "mat" ? "Matutino" : split_parts[1] === "ves" ? "Vespertino" : "Noturno";
-                    
-                        return class_number + "º disciplina " + day_of_week + ", " + period;
+                        if(lang == 'pt-br' || lang == '') {
+                            var period = split_parts[1] == "mor" ? "Matutino" : split_parts[1] == "aft" ? "Vespertino" : "Noturno";
+                        } else {
+                            var period = split_parts[1] == "mor" ? "Morning" : split_parts[1] == "aft" ? "Afternoon" : "Nocturnal";
+                        }
+                
+
+                        if(lang == 'pt-br' || lang == '') {
+                            return class_number + "º aula " + day_of_week + ", " + period;
+                        } else {
+                            return class_number + "º timeslot " + day_of_week + ", " + period;
+                        }
                     }
 
                     for (var i = 0; i < day_combo_data.length; i++) {
@@ -732,7 +776,11 @@ $(document).ready(function () {
 
                     if(will_zero_or_negative) {
                         max_cel = true
-                        $("#error-message-form").text("Você atingiu o máximo de células.");
+                        if(lang == 'pt-br' || lang == '') {
+                            $("#error-message-form").text("Você atingiu o máximo de células.");
+                        } else {
+                            $("#error-message-form").text("You have reached the maximum number of cells.");
+                        }
                         $("#error-alert-form").show();
                         window.scrollTo({
                             top: $("#error-alert-form").offset().top - $(".navbar").outerHeight() - 30,
@@ -770,6 +818,7 @@ $(document).ready(function () {
                             }                            
                         });
                     }
+                    
                     $("#modal-" + grade_position)
                         .attr("data-toggle", "none")
                         .attr("data-target", "#");
@@ -789,7 +838,49 @@ $(document).ready(function () {
                         $('#cel-hour').text(cell_left_number.time)
                         timetable_choosed_objects.push(filtered_timetable[0])
                         user_timetables = user_timetables.filter(timetable => timetable.id !== filtered_timetable[0].id);
+                        $("#warning-alert").hide();
+                    }
+
+                    $("#course-filter").val("");
+                    $("#error-alert").hide();
+                    $("#warning-alert").hide();
+                    if (ids_repetead.length > 0) {                        
+                        var lists_repetead = ids_repetead.map(function(id) {
+                          return "<li>" + id + "</li>";
+                        }).join("");
+
+                        $("#warning-list-message").empty();
+                        $("#warning-list-message").html("<ul>" + lists_repetead + "</ul>");
+                        if(lang == 'pt-br' || lang == '') {
+                            $("#warning-alert-message").text("Os seguintes períodos já estão ocupados por outras matérias já escolhidas:");
+                        } else {
+                            $("#warning-alert-message").text("The following periods are already occupied by other subjects already chosen:");
+                        }
                         
+                        $("#warning-alert").show();
+                        window.scrollTo({
+                            top: $("#warning-alert").offset().top - $(".navbar").outerHeight() - 30,
+                            behavior: "smooth",
+                        });
+                    }
+                    
+                    if (missing_courses.length > 0) {
+                        var lists_courses = missing_courses.map(function(id) {
+                            return "<li>" + id + "</li>";
+                          }).join("");
+  
+                          $("#warning-list-message").empty();
+                          $("#warning-list-message").html("<ul>" + lists_courses + "</ul>");
+                          if(lang == 'pt-br' || lang == '') {
+                                $("#warning-alert-message").text("As seguintes disciplinas estão ultrapassando o escolhido na disponibilidade geral:");
+                            } else {
+                                $("#warning-alert-message").text("The following disciplines are surpassing the chosen one in general availability:");
+                            }
+                          $("#warning-alert").show();
+                          window.scrollTo({
+                            top: $("#warning-alert").offset().top - $(".navbar").outerHeight() - 30,
+                            behavior: "smooth",
+                        });
                     }
 
                     if(type_discipline.primary_choosed > 0){
@@ -823,44 +914,16 @@ $(document).ready(function () {
                         }                        
                     }
 
-                    $("#course-filter").val("");
-                    $("#error-alert").hide();
-                    $("#warning-alert").hide();
-                    if (ids_repetead.length > 0) {
-                        var lists_repetead = ids_repetead.map(function(id) {
-                          return "<li>" + id + "</li>";
-                        }).join("");
-
-                        $("#warning-list-message").empty();
-                        $("#warning-list-message").html("<ul>" + lists_repetead + "</ul>");
-                        $("#warning-alert-message").text("As seguintes disciplinas já estão adicionadas:");
-                        $("#warning-alert").show();
-                        window.scrollTo({
-                            top: $("#warning-alert").offset().top - $(".navbar").outerHeight() - 30,
-                            behavior: "smooth",
-                        });
-                    }
-                    
-                    if (missing_courses.length > 0) {
-                        var lists_courses = missing_courses.map(function(id) {
-                            return "<li>" + id + "</li>";
-                          }).join("");
-  
-                          $("#warning-list-message").empty();
-                          $("#warning-list-message").html("<ul>" + lists_courses + "</ul>");
-                          $("#warning-alert-message").text("Os seguintes cursos não estão de acordo com a disponibilidade:");
-                          $("#warning-alert").show();
-                          window.scrollTo({
-                            top: $("#warning-alert").offset().top - $(".navbar").outerHeight() - 30,
-                            behavior: "smooth",
-                        });
-                    }
                     $("#info-alert").hide();
                     $('.modal-backdrop').css({'display':'none'})
                     // $('#add-course-modal').modal('hide');
                 },
                 error: function (xhr, textStatus, errorThrown) {
-                    $("#error-message-form").text("Erro ao tentar adicionar a disciplina.");
+                    if(lang == 'pt-br' || lang == '') {
+                        $("#error-message-form").text("Erro ao tentar suas preferências de disciplinas.");
+                    } else {
+                        $("#error-message-form").text("Error trying your subject preferences.");
+                    }
                     $("#error-alert-form").show();
                     window.scrollTo({
                         top: $("#error-alert-form").offset().top - $(".navbar").outerHeight() - 30,
@@ -869,7 +932,11 @@ $(document).ready(function () {
                 },
             });
         } else {
-            $("#error-message-form").text("Selecione uma disciplina.");
+            if(lang == 'pt-br' || lang == '') {
+                $("#error-message-form").text("Por favor, selecione suas disciplinas.");
+            } else {
+                $("#error-message-form").text("Please select your subjects.");
+            }
             $("#error-alert-form").show();
             window.scrollTo({
                 top: $("#error-alert-form").offset().top - $(".navbar").outerHeight() - 30,
@@ -883,7 +950,12 @@ $(document).ready(function () {
 
         if (timetable_choosed.length != 0) {
             if(type_discipline.secondary_choosed == 0) {
-                $("#warning-alert-message").text("Você não selecionou nenhuma disciplina secundária. Conforme o escolhido, você deve inserir " + Math.floor(type_discipline.primary_choosed/2) + " células secundárias.");
+                if(lang == 'pt-br' || lang == '') {
+                    $("#warning-alert-message").text("Você não selecionou nenhuma disciplina secundária. Conforme o escolhido, você deve inserir " + Math.floor(type_discipline.primary_choosed/2) + " células secundárias.");
+                } else {
+                    $("#warning-alert-message").text("You have not selected any secondary disciplines. As chosen, you must insert " + Math.floor(type_discipline.primary_choosed/2) + " secondary cells.");
+                }
+                
                 $("#warning-alert").show();                
                 show_table(2)
                 window.scrollTo({
@@ -909,7 +981,11 @@ $(document).ready(function () {
                             window.location.href = "/" + lang + "/professor/preferencia-atribuicao/";
                         },
                         error: function (xhr, textStatus, errorThrown) {
-                            $("#error-message-form").text("Erro ao tentar suas preferências de disciplinas.");
+                            if(lang == 'pt-br' || lang == '') {
+                                $("#error-message-form").text("Erro ao tentar suas preferências de disciplinas.");
+                            } else {
+                                $("#error-message-form").text("Error trying your subject preferences.");
+                            }
                             $("#error-alert-form").show();
                             window.scrollTo({
                                 top: $("#error-alert-form").offset().top - $(".navbar").outerHeight() - 30,
@@ -918,7 +994,11 @@ $(document).ready(function () {
                         },
                     });
                 } else {
-                    $("#error-message-form").text("Quantidade de células minímas para seu FPA segundo seu regime é 8 células.");
+                    if(lang == 'pt-br' || lang == '') {
+                        $("#error-message-form").text("Quantidade de células minímas para seu FPA segundo seu regime é 8 células.");
+                    } else {
+                        $("#error-message-form").text("Minimum amount of cells for your FPA according to your regime is 8 cells.");
+                    }
                     $("#error-alert-form").show();
                     window.scrollTo({
                         top: $("#error-alert-form").offset().top - $(".navbar").outerHeight() - 30,
@@ -942,7 +1022,11 @@ $(document).ready(function () {
                             window.location.href = "/" + lang + "/professor/preferencia-atribuicao/";
                         },
                         error: function (xhr, textStatus, errorThrown) {
-                            $("#error-message-form").text("Erro ao tentar suas preferências de disciplinas.");
+                            if(lang == 'pt-br' || lang == '') {
+                                $("#error-message-form").text("Erro ao tentar suas preferências de disciplinas.");
+                            } else {
+                                $("#error-message-form").text("Error trying your subject preferences.");
+                            }
                             $("#error-alert-form").show();
                             window.scrollTo({
                                 top: $("#error-alert-form").offset().top - $(".navbar").outerHeight() - 30,
@@ -951,7 +1035,11 @@ $(document).ready(function () {
                         },
                     });
                 } else {
-                    $("#error-message-form").text("Quantidade de células minímas para seu FPA segundo seu regime é 12 células.");
+                    if(lang == 'pt-br' || lang == '') {
+                        $("#error-message-form").text("Quantidade de células minímas para seu FPA segundo seu regime é 12 células.");
+                    } else {
+                        $("#error-message-form").text("Minimum cell count for your FPA according to your regimen is 12 cells.");
+                    }
                     $("#error-alert-form").show();
                     window.scrollTo({
                         top: $("#error-alert-form").offset().top - $(".navbar").outerHeight() - 30,
@@ -960,7 +1048,11 @@ $(document).ready(function () {
                 }
             }
         } else {
-            $("#error-message-form").text("Selecione suas disciplinas.");
+            if(lang == 'pt-br' || lang == '') {
+                $("#error-message-form").text("Por favor, selecione suas disciplinas.");
+            } else {
+                $("#error-message-form").text("Please select your subjects.");
+            }
             $("#error-alert-form").show();
             window.scrollTo({
                 top: $("#error-alert-form").offset().top - $(".navbar").outerHeight() - 30,
@@ -999,16 +1091,31 @@ function get_full_day_of_week(short_day) {
 }
 
 function get_all_day(abreviation_day) {
-    const days = {
-      mon: "Segunda-feira",
-      tue: "Terça-feira",
-      wed: "Quarta-feira",
-      thu: "Quinta-feira",
-      fri: "Sexta-feira",
-      sat: "Sábado",
-    };
-  
-    return days[abreviation_day] || "Nenhum day correspondente";
+    if(lang == 'pt-br' || lang == '') {
+        var days = {
+            mon: "Segunda-feira",
+            tue: "Terça-feira",
+            wed: "Quarta-feira",
+            thu: "Quinta-feira",
+            fri: "Sexta-feira",
+            sat: "Sábado",
+          };
+    } else {
+        var days = {
+            mon: "Monday",
+            tue: "Tuesday",
+            wed: "Wednesday",
+            thu: "Thursday",
+            fri: "Friday",
+            sat: "Saturday",
+          };
+    }
+
+    if(lang == 'pt-br' || lang == '') {
+        return days[abreviation_day] || "Nenhum dia correspondente";
+    } else {
+        return days[abreviation_day] || "Any day corresponding";
+    }
 }
 
 function info_button(value) {
@@ -1017,10 +1124,20 @@ function info_button(value) {
     $("#info-input-message").empty();
     if (value === 'block') {
         var word_to_search = 'Bloco';
-        $("#info-input-message").text("O filtro de Bloco serve para filtrar todas as disciplinas disponíveis apenas aquelas com o mesmo bloco pedido. Exemplo: Técnico - Aulas do técnico apenas.");
+        if(lang == 'pt-br' || lang == '') {
+            $("#info-input-message").text("O filtro de Bloco serve para filtrar todas as disciplinas disponíveis apenas aquelas com o mesmo bloco pedido. Exemplo: Técnico - Aulas do técnico apenas.");
+        } else {
+            $("#info-input-message").text("The Block filter is used to filter all available disciplines, only those with the same requested block. Example: Technician - Technician classes only.");
+        }
+        
     } else if (value === 'area') {
         var word_to_search = 'Área';
-        $("#info-input-message").text("O filtro de Área serve para filtrar todas as disciplinas disponíveis apenas aquelas com a mesma área pedida. Exemplo: ADS - Aulas de análise e desenvolvimento de sistemas apenas.");
+        if(lang == 'pt-br' || lang == '') {
+            $("#info-input-message").text("O filtro de Área serve para filtrar todas as disciplinas disponíveis apenas aquelas com a mesma área pedida. Exemplo: ADS - Aulas de análise e desenvolvimento de sistemas apenas.");
+        } else {
+            $("#info-input-message").text("The Area filter is used to filter all available disciplines only those with the same requested area. Example: ADS - Systems analysis and development classes only."); 
+        }
+        
     }
 
     if ($("#info-input-alert").css("display") === "block" && infoMessage.indexOf(word_to_search) !== -1) {

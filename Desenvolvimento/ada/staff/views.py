@@ -425,16 +425,18 @@ def create_job(user_regime, user):
         User.objects.filter(id=user.id).update(job=None)
         job.delete()
 
+    print(user_regime)
+
     if(user_regime == 'RDE'):
         name_job = Job.objects.create(name_job=enum.Job.RDE.name)
-    elif(user_regime == 'Temporário'):
-        name_job = Job.objects.create(name_job=enum.Job.TEMPORARY.name)
-    elif(user_regime == 'Substituto'):
+    elif(user_regime == 'TWENTY_HOURS'):
+        name_job = Job.objects.create(name_job=enum.Job.TWENTY_HOURS.name)
+    elif(user_regime == 'SUBSTITUTE'):
         name_job = Job.objects.create(name_job=enum.Job.SUBSTITUTE.name)
-    elif(user_regime == '40'):
+    elif(user_regime == 'FORTY_HOURS'):
         name_job = Job.objects.create(name_job=enum.Job.FORTY_HOURS.name)
     else:
-        name_job = Job.objects.create(name_job=enum.Job.TWENTY_HOURS.name)
+        name_job = Job.objects.create(name_job=enum.Job.TEMPORARY.name)
 
     user.job = name_job
     user.save()
