@@ -9,7 +9,8 @@ class Deadline(models.Model):
     name = models.CharField(_('name'), max_length=90, null=False, blank=False)
     deadline_start = models.DateTimeField(_('deadline start'))
     deadline_end = models.DateTimeField(_('deadline end'))
-    semester = models.CharField(_('semester'), max_length=1, null=False, blank=False)
+    semester = models.CharField(_('semester'), max_length=1, null=True, blank=True)
+    year = models.IntegerField(_('year'), null=True, blank=True)
     blockk = models.ForeignKey('area.Blockk', on_delete=models.CASCADE, null=True)
 
     class Meta:
