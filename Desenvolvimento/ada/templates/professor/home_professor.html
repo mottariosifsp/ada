@@ -3,19 +3,20 @@
 {% load static %}
 
 {% block head %}
-    <title>{% trans "Home Professor(a)" %}</title>
+    <title>{% trans "Página inicial - Professor(a)" %}</title>
     <link rel="stylesheet" href="{% static 'professor/css/home_professor.css' %}">
     <script src="{% static 'professor/js/home_professor.js' %}" data-lang='{{ LANGUAGE_CODE }}'></script>
 {% endblock %}
 
 {% block body %}
 
-<h1 class="title-page">{% trans "Home Professor" %}</h1>
-    <nav>
-    <ol class="breadcrumb hidden-itens">
-        <li class="breadcrumb-item active"><i class="mr-2 bi bi-house-door"></i> {% trans "Home" %}</li>
-    </ol>
-    </nav>
+<h1 class="title-page mt-4">{% trans "Página inicial" %}</h1>
+<hr>
+<nav>
+<ol class="breadcrumb hidden-itens">
+    <li class="breadcrumb-item active"><i class="mr-2 bi bi-house-door"></i> {% trans "Home" %}</li>
+</ol>
+</nav>
 
 
 <div class="container">
@@ -31,19 +32,19 @@
             <p class="home-begin"><b>{% trans "Situação" %}</b> <div class=" text-center big-text">{% trans 'Espere até que seja emitido pelo administrador as datas da atribuição' %}.</div></p>
             {% elif period.status == 'configured_STARTFPADEADLINE' %}
             <p><div class="float-right message-info-not-configured">{% trans 'Prazo configurado - FPA'%}</div> <b>{% trans "Período" %}</b> </p>
-            <p class="home-begin"><div class=" float-right">{{period.start_day}} {% trans "às" %} {{period.start_time}}</div><b>{% trans "Inicio" %}</b> </p>
+            <p class="home-begin"><div class=" float-right">{{period.start_day}} {% trans "às" %} {{period.start_time}}</div><b>{% trans "Início" %}</b> </p>
             <p class=""><div class=" float-right">{{period.end_day}} {% trans "às" %} {{period.end_time}}</div><b>{% trans "Fim" %}</b></p>
             {% elif period.status == 'configured_STARTASSIGNMENTDEADLINE' %}
             <p><div class="float-right message-info-not-configured">{% trans 'Prazo configurado - Atribuição'%}</div> <b>{% trans "Período" %}</b> </p>
-            <p class="home-begin"><div class=" float-right">{{period.start_day}} {% trans "às" %} {{period.start_time}}</div><b>{% trans "Inicio" %}</b> </p>
+            <p class="home-begin"><div class=" float-right">{{period.start_day}} {% trans "às" %} {{period.start_time}}</div><b>{% trans "Início" %}</b> </p>
             <p class=""><div class=" float-right">{{period.end_day}} {% trans "às" %} {{period.end_time}}</div><b>{% trans "Fim" %}</b></p>
             {% elif period.status == 'fpa' %}
             <p><a href="{% url 'attribution_preference' %}"><div class="float-right message-info-not-configured">{% trans 'Formulário de Preferências'%}</div></a> <b>{% trans "Período" %}</b> </p>
-            <p class="home-begin"><div class="float-right">{{period.start_day}} {% trans "às" %} {{period.start_time}}</div><b>{% trans "Inicio" %}</b> </p>
+            <p class="home-begin"><div class="float-right">{{period.start_day}} {% trans "às" %} {{period.start_time}}</div><b>{% trans "Início" %}</b> </p>
             <p class=""><div class=" float-right">{{period.end_day}} {% trans "às" %} {{period.end_time}}</div><b>{% trans "Fim" %}</b></p>
             {% elif period.status == 'attribution' %}
             <p><a href="{% url 'attribution:attribution' %}"><div class="float-right message-info-not-configured">{% trans 'Atribuição de Aulas'%}</div></a> <b>{% trans "Período" %}</b> </p>
-            <p><div class="float-right">{{period.start_day}} {% trans "às" %} {{period.start_time}}</div><b>{% trans "Inicio" %}</b> </p>
+            <p><div class="float-right">{{period.start_day}} {% trans "às" %} {{period.start_time}}</div><b>{% trans "Início" %}</b> </p>
             <p class="home-begin"><div class=" float-right">{{period.end_day}} {% trans "às" %} {{period.end_time}}</div><b>{% trans "Fim" %}</b></p>
             {% else %}
             <p><div class="float-right message-info-not-configured">{% trans 'Finalizado'%}</div> <b>{% trans "Período" %}</b> </p>
