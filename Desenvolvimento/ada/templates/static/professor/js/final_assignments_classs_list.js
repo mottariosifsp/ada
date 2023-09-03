@@ -5,6 +5,9 @@ console.log("timetables_user", timetables_user);
 var timeslots = document.currentScript.getAttribute("timeslots");
 console.log("Timeslots", timeslots);
 
+var timetable_json = document.currentScript.getAttribute("timetable_json");
+console.log("timetable_json", timetable_json);
+
 var json_data = document.currentScript.getAttribute("jsonData");
 json_data = decodeURIComponent(JSON.parse('"' + json_data + '"'));
 console.log("Json data", JSON.parse(json_data));

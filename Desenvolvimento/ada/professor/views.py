@@ -244,9 +244,25 @@ def final_assignments_classs(request, name_block):
     print(f"Todas as áreas associadas ao bloco {name_block}", areas_associadas)
 
     all_classes = []
+    timetable_data = []
 
     for area in areas_associadas:
         classes_da_area = Classs.objects.filter(area=area)
+
+        timetables = Timetable.objects.filter(classs__in=classes_da_area).all()
+
+        for timetable in timetables:
+            timetable_dict = {
+                'course': {
+                    'id': timetable.course.registration_course_id,
+                    'name': timetable.course.name_course,
+                },
+                'classs': {
+                    'id': timetable.classs.registration_class_id,
+                    'class_area': timetable.classs.registration_class_id
+                }
+            }
+            timetable_data.append(timetable_dict)
 
         for classe in classes_da_area:
             all_classes.append({
@@ -257,7 +273,7 @@ def final_assignments_classs(request, name_block):
                 "registration_area_id": classe.area.registration_area_id,
             })
 
-        timetables = Timetable.objects.filter(classs__in=classes_da_area).all()
+
         print(f"Area {area}, timetable {timetables}")
         timeslots_all = Timeslot.objects.all()
         timetables_user = Timetable_user.objects.filter(
@@ -295,6 +311,8 @@ def final_assignments_classs(request, name_block):
     # print("timeslots", timeslots_all)
     # print("timetables_professor", timetables_professor_json)
     all_classes = json.dumps(all_classes)
+    timetable_json = json.dumps(timetable_data)
+    print("objeto itmetable", timetable_json )
     # print("JSON DATA2", json_data)
 
     python_data = all_classes
@@ -308,6 +326,7 @@ def final_assignments_classs(request, name_block):
         'json_data': python_data,
         'timeslots': timeslots_all,
         'timetables_professor': timetables_professor_json,
+        'timetable_json': timetable_json
     }
 
     return render(request, 'professor/final_assignments_class_list.html', data)
