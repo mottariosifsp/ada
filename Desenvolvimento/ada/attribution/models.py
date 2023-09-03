@@ -9,7 +9,7 @@ class TeacherQueuePosition(models.Model):
     position = models.IntegerField()
     blockk = models.ForeignKey(Blockk, on_delete=models.CASCADE)
 
-    def __str__(self):
+    def _str_(self):
         return f"{self.teacher} at position {self.position}"
 
     def clean(self):
@@ -21,7 +21,7 @@ class TeacherQueuePositionBackup(models.Model):
     position = models.IntegerField()
     blockk = models.ForeignKey(Blockk, on_delete=models.CASCADE)
 
-    def __str__(self):
+    def _str_(self):
         return f"{self.teacher} at position {self.position}"
 
     def clean(self):
@@ -36,5 +36,3 @@ def on_change(sender, instance, **kwargs):
         return False
     if old_instance.is_professor and not instance.is_professor:
         TeacherQueuePosition.objects.filter(teacher=instance).delete()
-
-

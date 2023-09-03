@@ -13,7 +13,7 @@ class Timetable(models.Model):
         verbose_name = _('timetable')
         verbose_name_plural = _('timetables')
         
-    def __str__(self):
+    def _str_(self):
         return str(self.course)
     
 class Timeslot(models.Model):
@@ -26,7 +26,7 @@ class Timeslot(models.Model):
         verbose_name = _('timeslot')
         verbose_name_plural = _('timeslots')
 
-    def __str__(self):
+    def _str_(self):
         return str(self.hour_start)
         
     def clean(self):
@@ -48,7 +48,7 @@ class Day_combo(models.Model):
         verbose_name = _('day_combo')
         verbose_name_plural = _('day_combos')
 
-    def __str__(self):
+    def _str_(self):
         return self.day
 
 class Timetable_user(models.Model):
@@ -59,5 +59,5 @@ class Timetable_user(models.Model):
         verbose_name = _('timetable_user')
         verbose_name_plural = _('timetable_users')
 
-    def __str__(self):
+    def _str_(self):
         return str(self.timetable.course)
