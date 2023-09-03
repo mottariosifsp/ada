@@ -11,7 +11,7 @@ class Attribution_preference(models.Model): #fpa
         verbose_name = _('attribution_preference')
         verbose_name_plural = _('attribution_preferences')
 
-    def __str__(self):
+    def _str_(self):
         return self.user.registration_id
 
 class Preference_schedule(models.Model): # preferencia de horário
@@ -23,7 +23,7 @@ class Preference_schedule(models.Model): # preferencia de horário
         verbose_name = _('preference_schedule')
         verbose_name_plural = _('preference_schedules')
 
-    def __str__(self):
+    def _str_(self):
         return self.day
 
 class Course_preference(models.Model): #disciplinas
@@ -36,5 +36,5 @@ class Course_preference(models.Model): #disciplinas
         verbose_name = _('course_preference')
         verbose_name_plural = _('course_preferences')
 
-    def __str__(self):
+    def _str_(self):
         return 'course_preference - '+str(self.id)

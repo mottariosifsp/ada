@@ -21,7 +21,7 @@ class Classs(models.Model):
             year = self.semester
         return year
 
-    def __str__(self):
+    def _str_(self):
         return self.registration_class_id
     
     def clean(self):

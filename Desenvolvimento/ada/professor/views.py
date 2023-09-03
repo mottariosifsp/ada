@@ -7,8 +7,8 @@ from django.contrib.auth import get_user_model
 
 from django.utils.decorators import method_decorator
 from timetable.models import Timeslot, Timetable_user, Timetable
+from staff.models import Deadline, Alert
 from area.models import Area, Blockk
-from staff.models import Deadline
 from datetime import datetime, timedelta
 from classs.models import Classs
 from course.models import Course
@@ -96,8 +96,6 @@ def home(request):
     if fpa_status == 'finished' and attribution_status == 'finished':
         status = 'finished'
 
-    print(fpa_status, attribution_status)
-
     if fpa_status == 'ongoing':
         status = 'fpa'
     elif attribution_status == 'ongoing':
@@ -148,6 +146,35 @@ def home(request):
                 period['end_time'] = nearest_deadline.deadline_end.strftime("%H:%M")
 
     period['status'] = status
+    user = request.user
+
+    user_blocks = user.blocks.all()
+
+    # escreva o codigo onde voce quer que o professor receba os alertas de seus blocos
+    user_alerts = []
+    for block in user_blocks:
+        alerts = Alert.objects.filter(name_alert='ALERT', blockk=block)
+        if alerts:
+            for alert in alerts:
+                alert = {
+                    'id': alert.id,
+                    'title': alert.title,
+                    'description': alert.description,
+                    'blockk': alert.blockk
+                }
+                user_alerts.append(alert)
+
+    links = Alert.objects.filter(name_alert='LINK')
+    user_links = []
+    for link in links:
+        link = {
+            'id': link.id,
+            'title': link.title,
+            'created_by': link.created_by,
+            'description': link.description
+        }
+        user_links.append(link)
+
 
     for blockk in blockks:
         blockk_images = {
@@ -174,7 +201,16 @@ def home(request):
                 "image"] = "https://media.discordapp.net/attachments/1081682716531118151/1117348338254233680/image.png"
         blockks_images.append(blockk_images)
 
+
+    count = {
+        'alerts': len(user_alerts),
+        'links': len(user_links)
+    }
+
     data = {
+        'count': count,
+        'alerts': user_alerts,
+        'links': user_links,
         'blockks': blockks_images,
         'period': period
     }

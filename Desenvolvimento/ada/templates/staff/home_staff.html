@@ -3,7 +3,7 @@
 {% load i18n %}
 {% block head %}
   <title>{% trans "Home Administrador" %}</title>
-  <script src="{% static 'staff/home/js/home_staff.js' %}" data-lang={{LANGUAGE_CODE}}></script>
+  <script src="{% static 'staff/home/js/home_staff.js' %}" data-lang='{{LANGUAGE_CODE}}' alert-count="{{count.alert}}" link-count="{{count.link}}"></script>
   <link rel="stylesheet" href="{% static 'staff/home/css/home_staff.css' %}"></link>
 {% endblock %}
 
@@ -36,23 +36,27 @@
             <p><div class="float-right message-info-not-configured">{% trans 'Não Configurado'%}</div><b>{% trans "Período" %}</b> </p>
             <p class="home-begin"><b>{% trans "Situação" %}</b><div class=" text-center big-text">{% trans 'Espere até que seja emitido pelo administrador as datas da atribuição' %}.</div> </p>
             {% elif period.status == 'configured_STARTFPADEADLINE' %}
-            <p><div class="float-right message-info-not-configured">{% trans 'Prazo configurado - FPA'%}</div> <b>{% trans "Período" %}</b> </p>
-            <p class="home-begin"><div class=" float-right">{{period.start_day}} {% trans "ás" %} {{period.start_time}}</div><b>{% trans "Inicio" %}</b> </p>
-            <p class=""><div class=" float-right">{{period.end_day}} {% trans "ás" %} {{period.end_time}}</div><b>{% trans "Fim" %}</b></p>
+            <p><div class="float-right message-info-not-started">{% trans 'Formulário de Preferências'%}</div> <b>{% trans "Período" %}</b> </p>
+            <p class="home-begin"><b>{% trans "Situação" %}</b> <i class="float-right">{% trans "Prazo configurado" %}</i></p>
+            <p class="home-begin"><div class=" float-right">{{period.start_day}} {% trans "às" %} {{period.start_time}}</div><b>{% trans "Inicio" %}</b> </p>
+            <p class=""><div class=" float-right">{{period.end_day}} {% trans "às" %} {{period.end_time}}</div><b>{% trans "Fim" %}</b></p>
             {% elif period.status == 'configured_STARTASSIGNMENTDEADLINE' %}
-            <p><div class="float-right message-info-not-configured">{% trans 'Prazo configurado - Atribuição'%}</div> <b>{% trans "Período" %}</b> </p>
-            <p class="home-begin"><div class=" float-right">{{period.start_day}} {% trans "ás" %} {{period.start_time}}</div><b>{% trans "Inicio" %}</b> </p>
-            <p class=""><div class=" float-right">{{period.end_day}} {% trans "ás" %} {{period.end_time}}</div><b>{% trans "Fim" %}</b></p>
+            <p><div class="float-right message-info-not-started">{% trans 'Atribuição de Aulas'%}</div> <b>{% trans "Período" %}</b> </p>
+            <p class="home-begin"><b>{% trans "Situação" %}</b> <i class="float-right">{% trans "Prazo configurado" %}</i></p>
+            <p class="home-begin"><div class=" float-right">{{period.start_day}} {% trans "às" %} {{period.start_time}}</div><b>{% trans "Inicio" %}</b> </p>
+            <p class=""><div class=" float-right">{{period.end_day}} {% trans "às" %} {{period.end_time}}</div><b>{% trans "Fim" %}</b></p>
             {% elif period.status == 'fpa' %}
-            <p><a href="{% url 'attribution_preference' %}"><div class="float-right message-info-not-configured">{% trans 'Formulário de Preferências'%}</div></a> <b>{% trans "Período" %}</b> </p>
-            <p class="home-begin"><div class="float-right">{{period.start_day}} {% trans "ás" %} {{period.start_time}}</div><b>{% trans "Inicio" %}</b> </p>
-            <p class=""><div class=" float-right">{{period.end_day}} {% trans "ás" %} {{period.end_time}}</div><b>{% trans "Fim" %}</b></p>
+            <p><a href="{% url 'attribution_preference' %}"><div class="float-right message-info-not-started-home">{% trans 'Formulário de Preferências'%}</div></a> <b>{% trans "Período" %}</b> </p>
+            <p class="home-begin"><b>{% trans "Situação" %}</b> <i class="float-right">{% trans "Iniciado" %}</i></p>
+            <p class="home-begin"><div class="float-right">{{period.start_day}} {% trans "às" %} {{period.start_time}}</div><b>{% trans "Inicio" %}</b> </p>
+            <p class=""><div class=" float-right">{{period.end_day}} {% trans "às" %} {{period.end_time}}</div><b>{% trans "Fim" %}</b></p>
             {% elif period.status == 'attribution' %}
-            <p><a href="{% url 'attribution' %}"><div class="float-right message-info-not-configured">{% trans 'Atribuição de Aulas'%}</div></a> <b>{% trans "Período" %}</b> </p>
-            <p><div class="float-right">{{period.start_day}} {% trans "ás" %} {{period.start_time}}</div><b>{% trans "Inicio" %}</b> </p>
-            <p class="home-begin"><div class=" float-right">{{period.end_day}} {% trans "ás" %} {{period.end_time}}</div><b>{% trans "Fim" %}</b></p>
+            <p><a href="{% url 'attribution_configuration_index' %}"><div class="float-right message-info-not-started-home">{% trans 'Atribuição de Aulas'%}</div></a> <b>{% trans "Período" %}</b> </p>
+            <p class="home-begin"><b>{% trans "Situação" %}</b> <i class="float-right">{% trans "Iniciado" %}</i></p>
+            <p><div class="float-right">{{period.start_day}} {% trans "às" %} {{period.start_time}}</div><b>{% trans "Inicio" %}</b> </p>
+            <p class="home-begin"><div class=" float-right">{{period.end_day}} {% trans "às" %} {{period.end_time}}</div><b>{% trans "Fim" %}</b></p>
             {% else %}
-            <p><div class="float-right message-info-not-configured">{% trans 'Finalizado'%}</div> <b>{% trans "Período" %}</b> </p>
+            <p><div class="float-right message-info-done">{% trans 'Finalizado'%}</div> <b>{% trans "Período" %}</b> </p>
             <p class="home-begin"><div class=" float-right">{% trans 'A atribuição de aulas terminou' %}, <i>{% trans 'até próxima atribuição' %}</i></div><b>{% trans "Situação" %}</b> </p>
             {% endif%}
           </div>
@@ -63,8 +67,33 @@
           <h4 class="card-title">{% trans "Alertas" %} <i class="fas fa-exclamation-triangle custom-icon"></i></h4>
           <hr class="my-0">
           <div class="">
-            <p class="mt-2">{% trans "Nenhum alerta configurado para seus blocos" %}.</p>
-            <button type="button"  class="btn w-100 ada-btn-sucess" data-toggle="modal" data-target="#add-alert">{% trans "Adicionar Alerta" %}</button>
+            <div class="no-alert">
+              {% if count.alerts == 0 %}
+              <p class="mt-2">{% trans "Nenhum alerta configurado para seus blocos" %}.</p>
+              {% endif %}
+            </div>
+            {% if count.alerts != 0 %}
+            <div class="alerts mt-3 mb-3 pb-4">
+              {% for alert in alerts %}
+              <div class="mr-3 ml-3 block p-2">
+                  <button type="button" class="btn float-right ada-btn-red trash-icon" onclick="mostrarAlerta('{{alert.id}}')">
+                  <i class="fas fa-trash"></i> 
+                </button>
+                {% with alert_title=alert.title alert_block_name=alert.blockk.name_block %}
+                  {% blocktrans %}
+                      <b class="title">{{ alert_title }} | {{ alert_block_name }}</b>
+                  {% endblocktrans %}
+                {% endwith %}                
+              </div>              
+              {% endfor %}
+            </div>     
+            {% else %}
+            <div class="alerts mt-3 mb-3 pb-4" style="display: none;"></div>
+            {% endif %}   
+            {% if count.alerts < user_blocks.count %}
+              <button type="button"  class="btn w-100 ada-btn-sucess" data-toggle="modal" data-target="#add-alert">{% trans "Adicionar Alerta" %}</button>
+            {% endif %}
+            
           </div>
         </div>
       </div>
@@ -76,22 +105,68 @@
           <h4 class="card-title">{% trans "Atualizações Legislação" %} <i class="far fa-file custom-icon"></i></h4>
           <hr>
           <div>
-            <p class="mt-2">{% trans "Nenhum link da legislação configurado" %}.</p>
-            <button type="button"  class="btn w-100 ada-btn-sucess" data-toggle="modal" data-target="#add-link">{% trans "Adicionar Atualização" %}</button>
+            <div class="no-alert">
+              {% if count.links == 0 %}
+              <p class="mt-2">{% trans "Nenhum link da legislação configurado" %}.</p>
+              {% endif %}
+            </div>
+            {% if count.links != 0 %}
+            <div class="links mt-3 mb-3 pb-4">
+              {% for link in links %}
+              <div class="mr-3 ml-3 block p-2">
+                <button type="button" class="btn float-right ada-btn-red trash-icon"  onclick="mostrarAlerta('{{link.id}}')">
+                  <i class="fas fa-trash"></i>
+                </button>
+                <a target="_blank" href="{{link.description}}" class="link">{{link.description}}</a>               
+              </div>              
+              {% endfor %}
+            </div>     
+            {% else %}
+            <div class="links mt-3 mb-3 pb-4" style="display: none;"></div>
+            {% endif %}
+            {% if count.links < 3 %}
+              <button type="button"  class="btn w-100 ada-btn-sucess" data-toggle="modal" data-target="#add-link">{% trans "Adicionar Atualização" %}</button>
+            {% endif %}
           </div>
         </div>
       </div>
-      <div class="mt-4 card info-card sales-card">
-        <div class="card-body">
+      <div class="mt-4 card info-card sales-card h-50">
+        <div class="card-body ">
           <h4 class="card-title">{% trans "Permutações para você" %} <i class="fas fa-exchange-alt custom-icon"></i></h4>
           <hr class="my-0">
           <div class="text-center">
-            <p class="m-5 p-5"><b>{% trans "Permuta não foi habilitada" %}</b>.</p>
+            {% if period.status == 'configured_STARTEXCHANGEDEADLINE' %}
+            <p class="m-5 p-4"><b>{% trans "Permutação ocorrendo" %}</b>.</p>
+            {% elif period.status == 'finished' %}
+            <p class="m-5 p-4"><b>{% trans "A atribuição terminou, todas permutas que foram pedidas foram resolvidas" %}</b>.</p>
+            {% else %}
+            <p class="m-5 p-4"><b>{% trans "Permuta não foi habilitada" %}</b>.</p>
+            {% endif %}
           </div>
         </div>
       </div>
     </div>
   </div>
+  {% if period.status == 'configured_STARTFPADEADLINE' or period.status == 'configured_STARTASSIGNMENTDEADLINE' or period.status == 'fpa' or period.status == 'attribution' %}
+  <div class="mt-4 card info-card sales-card h-50">
+    <div class="card-body ">
+      <h4 class="card-title">{% trans "Atividades a serem concluídas" %} <i class="fas fa-table custom-icon"></i></h4>
+      <hr class="my-0">
+      <div class="d-flex">
+        <div class="card m-2 w-100 message-info-not-started-home" onclick="redirect('{% url  "attribution_configuration_index" %}')">
+          <div class="card-body  d-flex flex-column justify-content-center align-items-center" style="padding-top: 0.5rem">
+            <div class="d-flex flex-column justify-content-center align-items-center" style="margin-top: -2rem;">
+              <i class="bi bi-list-check bi-lg" style="font-size: 6rem; margin-bottom: -20px;"></i>
+              <h5 class="card-title mt-0 mb-0" style="color: #ffffff;">{% trans "Organize as filas de atribuição dos seus blocos" %}</h5>
+            </div>
+          </div>
+        </div>      
+    </div>
+  </div>
+  </div>
+  {% endif%}
+
+  
 </div>
 
 <div class="modal center-modal fade my-custom-modal" id="add-alert" tabindex="-1" role="dialog" aria-labelledby="add-alert-label" aria-hidden="true">

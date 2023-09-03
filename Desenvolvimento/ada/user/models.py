@@ -40,7 +40,7 @@ class User(AbstractBaseUser, PermissionsMixin):
     first_name = models.CharField(_('first name'), max_length=60, null=False, blank=False)
     last_name = models.CharField(_('last name'), max_length=200, null=False, blank=False)
     email = models.EmailField(_('email address'), max_length=256, unique=True, null=False, blank=False)
-    telephone = models.CharField(_('telephone'), max_length=11, null=True, blank=True, unique=True)
+    telephone = models.CharField(_('telephone'), max_length=11, null=True, blank=True)
     cell_phone = models.CharField(_('cell phone'), max_length=14, unique=True, null=False, blank=False)
     date_joined = models.DateTimeField(_('date joined'), auto_now_add=True)
     is_superuser = models.BooleanField(_('superuser status'), default=False)
@@ -90,7 +90,6 @@ class User(AbstractBaseUser, PermissionsMixin):
 class AcademicDegreeHistory(models.Model):
     history = models.ForeignKey('History', on_delete=models.CASCADE)
     academic_degree = models.ForeignKey('AcademicDegree', on_delete=models.CASCADE)
-
 
 class History(models.Model):
     id_history = models.AutoField(primary_key=True) 
