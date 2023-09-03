@@ -36,5 +36,3 @@ def on_change(sender, instance, **kwargs):
         return False
     if old_instance.is_professor and not instance.is_professor:
         TeacherQueuePosition.objects.filter(teacher=instance).delete()
-
-
