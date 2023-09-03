@@ -531,13 +531,13 @@ def blocks_list(request):
 def block_detail(request, registration_block_id):
     user_blocks = request.user.blocks.all()
     blockk = Blockk.objects.get(registration_block_id=registration_block_id)
-    area = blockk.areas.first()
+    area = blockk.areas.values_list('name_area', flat=True)
     courses = Course.objects.filter(blockk=blockk)
     print("Materia", courses)
     data = {
         'user_blocks': user_blocks,
         'blockk': blockk, 
-        'area': area, 
+        'areas': list(area), 
         'courses': courses
     }
 
