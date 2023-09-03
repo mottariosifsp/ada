@@ -6,5 +6,5 @@ urlpatterns = [
     path("preferencia-atribuicao/", include("attribution_preference.urls")),
     path("perfil/", profile, name="profile"),
     path("atribuicoes/", assignments, name="assignments"),
-    path("atribuicoes/<str:area_name>/", final_assignments_classs, name="final_assignments_classs"),
+    path('atribuicoes/<str:name_block>/', final_assignments_classs, name='final_assignments_classs'),
 ]

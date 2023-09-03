@@ -42,7 +42,7 @@ td{
 
 .square {
   width: 200px;
-  height: 70px;
+  height: 100px;
   background-color: #3498db;
   margin: 10px;
   display: flex;

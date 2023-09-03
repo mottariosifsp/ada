@@ -20,9 +20,9 @@
 </nav>
 
 <div class="squares">
-  {% for class in user_classes %}
-    <div class="square" data-class-id="{{ class.id }}">
-      {{ class.registration_class_id }}
+  {% for area in areas %}
+    <div class="square" data-registration_area_id="{{ area.registration_area_id }}">
+      {{ area.name_area }}
     </div>
   {% endfor %}
 </div>
