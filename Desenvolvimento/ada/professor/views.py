@@ -3,7 +3,6 @@ from django.shortcuts import render
 from django.contrib.auth.decorators import user_passes_test
 from django.contrib.auth.decorators import login_required
 from django.core import serializers
-import json
 from django.contrib.auth import get_user_model
 
 from django.utils.decorators import method_decorator
@@ -20,6 +19,7 @@ from django.core.mail import send_mail, EmailMessage
 
 def is_not_staff(user):
     return not user.is_staff
+
 
 def register(request):
     professors_inactive = User.objects.filter(is_professor=True, is_active=False).all()
@@ -51,14 +51,11 @@ def send_email(professor):
     email.send()
 
 
-
 @login_required
 def home(request):
-
     blockks = request.user.blocks.all()
     blockks_images = []
 
-    
     status = 'not_configured'
     period = {
         'status': status,
@@ -79,14 +76,13 @@ def home(request):
         nearest_time_difference = timedelta(days=365)  # Set to a large value initially
 
         for deadline in deadlines:
-            if deadline.deadline_start <= now <= deadline.deadline_end:                
+            if deadline.deadline_start <= now <= deadline.deadline_end:
                 return 'ongoing'
             if now <= deadline.deadline_start:
-                time_difference = deadline.deadline_start - now                
+                time_difference = deadline.deadline_start - now
                 if time_difference < nearest_time_difference:
                     nearest_time_difference = time_difference
                     nearest_deadline = deadline
-                
 
         if nearest_deadline:
             return 'configured_' + stage_name
@@ -159,19 +155,25 @@ def home(request):
             "image": None
         }
         if blockk.registration_block_id == "721165":
-            blockk_images["image"] = "https://media.discordapp.net/attachments/1081682716531118151/1117328326533595207/OIG.png?width=473&height=473"
+            blockk_images[
+                "image"] = "https://media.discordapp.net/attachments/1081682716531118151/1117328326533595207/OIG.png?width=473&height=473"
         elif blockk.registration_block_id == "776291":
-            blockk_images["image"] = "https://media.discordapp.net/attachments/1081682716531118151/1117321570101248030/OIG.png?width=473&height=473"
+            blockk_images[
+                "image"] = "https://media.discordapp.net/attachments/1081682716531118151/1117321570101248030/OIG.png?width=473&height=473"
         elif blockk.registration_block_id == "776293":
-            blockk_images["image"] = "https://media.discordapp.net/attachments/1081682716531118151/1117321528380489789/OIG.png?width=473&height=473"
+            blockk_images[
+                "image"] = "https://media.discordapp.net/attachments/1081682716531118151/1117321528380489789/OIG.png?width=473&height=473"
         elif blockk.registration_block_id == "776294":
-            blockk_images["image"] = "https://media.discordapp.net/attachments/1081682716531118151/1116866399952961586/dan-cristian-padure-h3kuhYUCE9A-unsplash.jpg?width=710&height=473"
+            blockk_images[
+                "image"] = "https://media.discordapp.net/attachments/1081682716531118151/1116866399952961586/dan-cristian-padure-h3kuhYUCE9A-unsplash.jpg?width=710&height=473"
         elif blockk.registration_block_id == "776295":
-            blockk_images["image"] = "https://media.discordapp.net/attachments/1081682716531118151/1116866399671951441/roonz-nl-2xEQDxB0ss4-unsplash.jpg?width=842&height=473"
+            blockk_images[
+                "image"] = "https://media.discordapp.net/attachments/1081682716531118151/1116866399671951441/roonz-nl-2xEQDxB0ss4-unsplash.jpg?width=842&height=473"
         elif blockk.registration_block_id == "776292":
-            blockk_images["image"] = "https://media.discordapp.net/attachments/1081682716531118151/1117348338254233680/image.png"
+            blockk_images[
+                "image"] = "https://media.discordapp.net/attachments/1081682716531118151/1117348338254233680/image.png"
         blockks_images.append(blockk_images)
-        
+
     data = {
         'blockks': blockks_images,
         'period': period
@@ -181,14 +183,14 @@ def home(request):
 
     return render(request, 'professor/home_professor.html', data)
 
-def profile(request):
 
+def profile(request):
     professor = request.user
     timeslots_all = Timeslot.objects.all()
     timetables_user = Timetable_user.objects.filter(user=professor)
 
     timetables_professor = []
-    
+
     for timetable_user in timetables_user:
         day_combos = timetable_user.timetable.day_combo.all()
         for day_combo in day_combos:
@@ -196,7 +198,6 @@ def profile(request):
             timeslots = day_combo.timeslots.all()
 
             for timeslot in timeslots:
-
                 position = timeslot.position
 
                 timetable_professor = {
@@ -211,10 +212,11 @@ def profile(request):
     data = {
         'professor': professor,
         'timeslots': timeslots_all,
-        'timetables_professor': timetables_professor_json   
+        'timetables_professor': timetables_professor_json
     }
 
     return render(request, 'professor/profile.html', data)
+
 
 @login_required
 def assignments(request):
@@ -232,22 +234,34 @@ def assignments(request):
 
     return render(request, 'professor/assignments.html', {'user_blockks': user_blockks})
 
+
 @login_required
 def final_assignments_classs(request, name_block):
-    blockk_obj = Blockk.objects.get(name_block=name_block)
+    blockk = Blockk.objects.get(name_block=name_block)
+    print("BLOCO", blockk)
 
-    areas_associadas = blockk_obj.areas.all()
-    print("Todas as áreas associadas", areas_associadas)
+    areas_associadas = Area.objects.filter(blocks=blockk)
+    print(f"Todas as áreas associadas ao bloco {name_block}", areas_associadas)
 
-    all_classes = {}
+    all_classes = []
 
     for area in areas_associadas:
-        classes_da_area = Classs.objects.filter(area=area)  # Use filter() para obter todas as classes da área
+        classes_da_area = Classs.objects.filter(area=area)
+
+        for classe in classes_da_area:
+            all_classes.append({
+                "id": classe.id,
+                "registration_class_id": classe.registration_class_id,
+                "period": classe.period,
+                "semester": classe.semester,
+                "area_id": classe.area_id,
+            })
+
         timetables = Timetable.objects.filter(classs__in=classes_da_area).all()
-
-
+        print(f"Area {area}, timetable {timetables}")
         timeslots_all = Timeslot.objects.all()
-        timetables_user = Timetable_user.objects.filter(timetable__in=timetables).all()
+        timetables_user = Timetable_user.objects.filter(
+            timetable__in=timetables).all()  # vai buscar apenas da atribuição final definitiva
 
         timetables_professor = []
 
@@ -259,51 +273,45 @@ def final_assignments_classs(request, name_block):
 
                 if timetable_user.user is not None:
                     professor = timetable_user.user.first_name
+                    print("professor com nome", professor)
                 else:
                     professor = "-"
 
                 for timeslot in timeslots:
                     position = timeslot.position
-                    print(timetable_user.user)
+                    print("timetable user", timetable_user.user)
                     timetable_professor = {
                         "cord": f'{position}-{day}',
                         "course": timetable_user.timetable.course.name_course,
                         "acronym": timetable_user.timetable.course.acronym,
                         "professor": professor,
                     }
+                    print("professor passando dentro do loop", professor)
                     timetables_professor.append(timetable_professor)
-        timetables_professor_json = json.dumps(timetables_professor, ensure_ascii=False).encode('utf8').decode()
+                    # print("Timetable professorr",timetables_professor ) #Ok, só pega o professor D
+        timetables_professor_json = json.dumps(timetables_professor, ensure_ascii=False).encode(
+            'utf8').decode()  # junção de todos
 
+    # print("timeslots", timeslots_all)
+    # print("timetables_professor", timetables_professor_json)
+    all_classes = json.dumps(all_classes)
+    # print("JSON DATA2", json_data)
 
-        if area.name_area == 'DESENVOLVIMENTO DE SISTEMAS':
-            desenvolvimento_de_sistemas_data = list(classes_da_area.values())
+    python_data = json.loads(all_classes)
+    # print("python_data", python_data)
 
-
-    print("timeslots", timeslots_all)
-    print("timetables_professor", timetables_professor_json)
-    json_data = json.dumps(desenvolvimento_de_sistemas_data)
-    print("JSON DATA2", json_data)
-
-    python_data = json.loads(json_data)
-    print("python_data", python_data)
-
+    print("TIMESLOTs", timeslots_all)
+    # print("professores", all_professor)
 
     data = {
         'areas': areas_associadas,
         'json_data': python_data,
         'timeslots': timeslots_all,
         'timetables_professor': timetables_professor_json,
-        # 'professor': professor,
         # 'timeslots': timeslots_all,
         # 'timetables_professor': timetables_professor_json,
         # 'user_classes': classes_do_usuario
     }
-
-
-
-    # print("Json data", python_data)
-
-
 
     return render(request, 'professor/final_assignments_class_list.html', data)
 
@@ -311,7 +319,6 @@ def final_assignments_classs(request, name_block):
     #
     # classes_do_usuario = classes_da_area.filter(timetable__id__in=timetables_do_usuario)
     # print("classes do usuario", classes_do_usuario)
-
 
     ###
     # professor = request.user
@@ -339,8 +346,6 @@ def final_assignments_classs(request, name_block):
     #             timetables_professor.append(timetable_professor)
     # timetables_professor_json = json.dumps(timetables_professor, ensure_ascii=False).encode('utf8').decode()
     # print("timetable class filter", timetables_professor_json)
-
-
 
 
 def day_to_number(day):

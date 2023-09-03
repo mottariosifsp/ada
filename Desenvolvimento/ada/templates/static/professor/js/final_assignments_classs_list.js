@@ -3,7 +3,6 @@ var timetables_user = JSON.parse(timetables_user);
 console.log("timetables_user", timetables_user);
 
 var timeslots = document.currentScript.getAttribute("timeslots");
-
 console.log("Timeslots", timeslots);
 
 var json_data  = document.currentScript.getAttribute("jsonData");
@@ -44,7 +43,6 @@ $.each(timetables_user, function(index, value) {
 
 $(document).ready(function() {
   // console.log(tametables_user)
-
 
   $('.header-table').click(function() {
     $(this).find('.icon-minimize').text('-');
