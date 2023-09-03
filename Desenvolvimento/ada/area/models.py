@@ -15,7 +15,7 @@ class Area(models.Model):
         verbose_name_plural = _('areas')
 
 
-    def __str__(self):
+    def _str_(self):
         return self.name_area
 
     def get_blocks(self):
@@ -35,7 +35,7 @@ class Blockk(models.Model):
         verbose_name = _('blockk')
         verbose_name_plural = _('blocks')
 
-    def __str__(self):
+    def _str_(self):
         return self.name_block
     
     def clean(self):

@@ -6,7 +6,7 @@ from enums import enum
 class Classs(models.Model):
     registration_class_id = models.CharField(_('registration class id'), max_length=20, unique=True)
     period = models.CharField(_('period'), choices=[(s.name, s.value) for s in enum.Period], max_length=45)
-    semester = models.IntegerField(_('semester'), min_length=1, max_length=1, null=False, blank=False)
+    semester = models.IntegerField(_('semester')) 
     area = models.ForeignKey('area.Area', on_delete=models.CASCADE, null=True)
 
     class Meta:
@@ -21,7 +21,7 @@ class Classs(models.Model):
             year = self.semester
         return year
 
-    def __str__(self):
+    def _str_(self):
         return self.registration_class_id
     
     def clean(self):
