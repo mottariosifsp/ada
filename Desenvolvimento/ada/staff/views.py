@@ -451,7 +451,10 @@ def classes_list(request):
         {'value': period.name, 'label': period.value}
         for period in enum.Period
     ]
-    return render(request, 'staff/classs/classes_list.html', {'classes': classes, 'periods': periods, 'areas': areas})
+
+    has_permission = False
+    has_permission = set(request.user.blocks.all()) == set(Blockk.objects.all()) or request.user.is_superuser
+    return render(request, 'staff/classs/classes_list.html', {'classes': classes, 'periods': periods, 'areas': areas, 'has_permission': has_permission}) 
 
 # ERRO - TODO
 @login_required

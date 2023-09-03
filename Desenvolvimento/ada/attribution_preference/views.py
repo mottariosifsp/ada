@@ -844,10 +844,13 @@ def save_disponiility_preference(user_timeslots, user_regime, user):
         Preference_schedule.objects.filter(attribution_preference__user=user).delete()
 
     for timeslot in user_timeslots:
+        print(timeslot)
         timeslot_begin_hour = timeslot["timeslot_begin_hour"]
+        print(timeslot_begin_hour)
         day_of_week = timeslot["day_of_week"]
 
         timeslot_object = Timeslot.objects.filter(hour_start=timeslot_begin_hour).first()
+        print(timeslot_object)
 
         if day_of_week == 'mon':
             day_object = enum.Day.monday.name
@@ -908,5 +911,5 @@ def convert_string_to_datetime(hora_string):
         elif indicator == 'a.m.' and hour == 12:
             hour = 0
 
-        return datetime.time(hour=hour, minute=minute, second=0)
+        return datetime.time(hour=hour, minute=minute, second=1)
 
