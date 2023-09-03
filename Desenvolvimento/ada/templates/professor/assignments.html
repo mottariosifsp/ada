@@ -18,8 +18,7 @@
 
 <div class="area-container">
     {% for area in user_areas %}
-                <<a href="{% url 'final_assignments_classs' area_name=area.name_area %}" class="area-link">
-
+        <a href="{% url 'final_assignments_classs' area_name=area.name_area %}" class="area-link">
             <div class="area">
                 {% if area.name_area == "INFORMÁTICA" %}
                     <img src="{% static 'images/informatica.png' %}" alt="Ícone de Informática">

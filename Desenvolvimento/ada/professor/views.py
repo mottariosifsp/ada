@@ -3,6 +3,7 @@ from django.shortcuts import render
 from django.contrib.auth.decorators import user_passes_test
 from django.contrib.auth.decorators import login_required
 from django.core import serializers
+import json
 from django.contrib.auth import get_user_model
 
 from django.utils.decorators import method_decorator
@@ -11,6 +12,7 @@ from area.models import Area
 from staff.models import Deadline
 from datetime import datetime, timedelta
 from classs.models import Classs
+from course.models import Course
 
 from user.models import User
 from django.core.mail import send_mail, EmailMessage
@@ -226,16 +228,6 @@ def assignments(request):
     user_areas = Area.objects.filter(classs__in=user_classes).distinct()
     print("Areasss", user_areas)
 
-
-    # for area in user_areas:
-    #     classes_da_area = Classs.objects.filter(area=area)
-    #
-    #     timetables_do_usuario = Timetable_user.objects.filter(user=user).values_list('timetable_id', flat=True)
-    #
-    #     classes_do_usuario = classes_da_area.filter(timetable__id__in=timetables_do_usuario)
-    #     print("classes do usuario", classes_do_usuario)
-
-
     return render(request, 'professor/assignments.html', {'user_areas': user_areas})
 
 @login_required
@@ -248,7 +240,42 @@ def final_assignments_classs(request, area_name):
     classes_do_usuario = classes_da_area.filter(timetable__id__in=timetables_do_usuario)
     print("classes do usuario", classes_do_usuario)
 
-    return render(request, 'professor/final_assignments_class_list.html')
+
+    ###
+    professor = request.user
+    timeslots_all = Timeslot.objects.all()
+    timetables_user = Timetable_user.objects.filter(user=professor, timetable__classs=classes_do_usuario[0])
+
+    # timetables_user = Timetable_user.objects.filter(user=professor)
+
+    timetables_professor = []
+
+    for timetable_user in timetables_user:
+        day_combos = timetable_user.timetable.day_combo.all()
+        for day_combo in day_combos:
+            day = day_to_number(day_combo.day)
+            timeslots = day_combo.timeslots.all()
+
+            for timeslot in timeslots:
+                position = timeslot.position
+
+                timetable_professor = {
+                    "cord": f'{position}-{day}',
+                    "course": timetable_user.timetable.course.name_course,
+                    "acronym": timetable_user.timetable.course.acronym,
+                }
+                timetables_professor.append(timetable_professor)
+    timetables_professor_json = json.dumps(timetables_professor, ensure_ascii=False).encode('utf8').decode()
+    print("timetable class filter", timetables_professor_json)
+
+    data = {
+        'professor': professor,
+        'timeslots': timeslots_all,
+        'timetables_professor': timetables_professor_json,
+        'user_classes': classes_do_usuario
+    }
+
+    return render(request, 'professor/final_assignments_class_list.html', data)
 
 
 def day_to_number(day):
