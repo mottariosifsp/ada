@@ -236,10 +236,25 @@ def assignments(request):
 def final_assignments_classs(request, name_block):
     blockk_obj = Blockk.objects.get(name_block=name_block)
 
-    # Agora, você pode acessar todas as áreas associadas a esse bloco usando a relação 'blocks'
-    areas = blockk_obj.areas.all()
-    print("Todas as áreas associadas", areas)
-    # classes_da_area = Classs.objects.filter(area__name_area=area_name)
+    areas_associadas = blockk_obj.areas.all()
+    print("Todas as áreas associadas", areas_associadas)
+
+    all_classes = {}
+
+    for area in areas_associadas:
+
+        classes_da_area = Classs.objects.filter(area=area)
+
+
+        if area.name_area == 'DESENVOLVIMENTO DE SISTEMAS':
+            desenvolvimento_de_sistemas_data = list(classes_da_area.values())
+
+
+    json_data = json.dumps(desenvolvimento_de_sistemas_data, indent=4)
+    python_data = json.loads(json_data)
+
+
+    print("Json data", python_data)
 
     # timetables_do_usuario = Timetable_user.objects.filter(user=user).values_list('timetable_id', flat=True)
     #
@@ -275,7 +290,8 @@ def final_assignments_classs(request, name_block):
     # print("timetable class filter", timetables_professor_json)
 
     data = {
-        'areas': areas
+        'areas': areas_associadas,
+        'json_data': python_data,
         # 'professor': professor,
         # 'timeslots': timeslots_all,
         # 'timetables_professor': timetables_professor_json,
