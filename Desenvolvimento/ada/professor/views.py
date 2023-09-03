@@ -254,7 +254,7 @@ def final_assignments_classs(request, name_block):
                 "registration_class_id": classe.registration_class_id,
                 "period": classe.period,
                 "semester": classe.semester,
-                "area_id": classe.area_id,
+                "registration_area_id": classe.area.registration_area_id,
             })
 
         timetables = Timetable.objects.filter(classs__in=classes_da_area).all()
@@ -297,7 +297,7 @@ def final_assignments_classs(request, name_block):
     all_classes = json.dumps(all_classes)
     # print("JSON DATA2", json_data)
 
-    python_data = json.loads(all_classes)
+    python_data = all_classes
     # print("python_data", python_data)
 
     print("TIMESLOTs", timeslots_all)
@@ -308,9 +308,6 @@ def final_assignments_classs(request, name_block):
         'json_data': python_data,
         'timeslots': timeslots_all,
         'timetables_professor': timetables_professor_json,
-        # 'timeslots': timeslots_all,
-        # 'timetables_professor': timetables_professor_json,
-        # 'user_classes': classes_do_usuario
     }
 
     return render(request, 'professor/final_assignments_class_list.html', data)

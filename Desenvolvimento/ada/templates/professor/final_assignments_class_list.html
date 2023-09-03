@@ -27,13 +27,14 @@
   {% endfor %}
 </div>
 
-    <div id="rectangle-container">
-        {% for objeto in json_data %}
-            <div class="rectangle">
-                {{ objeto.registration_class_id }}
-            </div>
-        {% endfor %}
+<div id="rectangle-container" class="hidden">
+  {% for objeto in json_data %}
+    <div class="rectangle" data-registration_area_id="{{ objeto.registration_area_id }}">
+      {{ objeto.registration_class_id }}
     </div>
+  {% endfor %}
+</div>
+
 
 <div class="container pt-5">
    <h1>{{professor.get_full_name_camel_case}}</h1>
@@ -139,7 +140,7 @@
    </div>
 </div>
 
-
-<script src="{% static 'professor/js/final_assignments_classs_list.js' %}" timetables-user='{{timetables_professor}}' jsonData='{{ json_data }}' timeslots='{{ timeslots }}'></script>
+{#<div id="json-data" data-json-data="{{ json_data|escapejs }}"></div>#}
+<script src="{% static 'professor/js/final_assignments_classs_list.js' %}" timetables-user='{{timetables_professor}}' jsonData='{{ json_data|escapejs }}' timeslots='{{ timeslots }}'></script>
 <script src="{% static 'common/table_window/js/table_window.js' %}"></script>
 {% endblock %}

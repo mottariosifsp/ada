@@ -69,3 +69,7 @@ td{
     margin: 10px;
     display: inline-block;
 }
+
+.hidden {
+    display: none;
+}
