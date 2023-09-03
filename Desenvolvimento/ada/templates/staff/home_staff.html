@@ -37,20 +37,20 @@
             <p class="home-begin"><b>{% trans "Situação" %}</b><div class=" text-center big-text">{% trans 'Espere até que seja emitido pelo administrador as datas da atribuição' %}.</div> </p>
             {% elif period.status == 'configured_STARTFPADEADLINE' %}
             <p><div class="float-right message-info-not-configured">{% trans 'Prazo configurado - FPA'%}</div> <b>{% trans "Período" %}</b> </p>
-            <p class="home-begin"><div class=" float-right">{{period.start_day}} {% trans "ás" %} {{period.start_time}}</div><b>{% trans "Inicio" %}</b> </p>
-            <p class=""><div class=" float-right">{{period.end_day}} {% trans "ás" %} {{period.end_time}}</div><b>{% trans "Fim" %}</b></p>
+            <p class="home-begin"><div class=" float-right">{{period.start_day}} {% trans "às" %} {{period.start_time}}</div><b>{% trans "Inicio" %}</b> </p>
+            <p class=""><div class=" float-right">{{period.end_day}} {% trans "às" %} {{period.end_time}}</div><b>{% trans "Fim" %}</b></p>
             {% elif period.status == 'configured_STARTASSIGNMENTDEADLINE' %}
             <p><div class="float-right message-info-not-configured">{% trans 'Prazo configurado - Atribuição'%}</div> <b>{% trans "Período" %}</b> </p>
-            <p class="home-begin"><div class=" float-right">{{period.start_day}} {% trans "ás" %} {{period.start_time}}</div><b>{% trans "Inicio" %}</b> </p>
-            <p class=""><div class=" float-right">{{period.end_day}} {% trans "ás" %} {{period.end_time}}</div><b>{% trans "Fim" %}</b></p>
+            <p class="home-begin"><div class=" float-right">{{period.start_day}} {% trans "às" %} {{period.start_time}}</div><b>{% trans "Inicio" %}</b> </p>
+            <p class=""><div class=" float-right">{{period.end_day}} {% trans "às" %} {{period.end_time}}</div><b>{% trans "Fim" %}</b></p>
             {% elif period.status == 'fpa' %}
             <p><a href="{% url 'attribution_preference' %}"><div class="float-right message-info-not-configured">{% trans 'Formulário de Preferências'%}</div></a> <b>{% trans "Período" %}</b> </p>
-            <p class="home-begin"><div class="float-right">{{period.start_day}} {% trans "ás" %} {{period.start_time}}</div><b>{% trans "Inicio" %}</b> </p>
-            <p class=""><div class=" float-right">{{period.end_day}} {% trans "ás" %} {{period.end_time}}</div><b>{% trans "Fim" %}</b></p>
+            <p class="home-begin"><div class="float-right">{{period.start_day}} {% trans "às" %} {{period.start_time}}</div><b>{% trans "Inicio" %}</b> </p>
+            <p class=""><div class=" float-right">{{period.end_day}} {% trans "às" %} {{period.end_time}}</div><b>{% trans "Fim" %}</b></p>
             {% elif period.status == 'attribution' %}
             <p><a href="{% url 'attribution' %}"><div class="float-right message-info-not-configured">{% trans 'Atribuição de Aulas'%}</div></a> <b>{% trans "Período" %}</b> </p>
-            <p><div class="float-right">{{period.start_day}} {% trans "ás" %} {{period.start_time}}</div><b>{% trans "Inicio" %}</b> </p>
-            <p class="home-begin"><div class=" float-right">{{period.end_day}} {% trans "ás" %} {{period.end_time}}</div><b>{% trans "Fim" %}</b></p>
+            <p><div class="float-right">{{period.start_day}} {% trans "às" %} {{period.start_time}}</div><b>{% trans "Inicio" %}</b> </p>
+            <p class="home-begin"><div class=" float-right">{{period.end_day}} {% trans "às" %} {{period.end_time}}</div><b>{% trans "Fim" %}</b></p>
             {% else %}
             <p><div class="float-right message-info-not-configured">{% trans 'Finalizado'%}</div> <b>{% trans "Período" %}</b> </p>
             <p class="home-begin"><div class=" float-right">{% trans 'A atribuição de aulas terminou' %}, <i>{% trans 'até próxima atribuição' %}</i></div><b>{% trans "Situação" %}</b> </p>
