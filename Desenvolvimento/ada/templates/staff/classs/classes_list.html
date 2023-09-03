@@ -23,6 +23,13 @@
         <li class="breadcrumb-item active">{% trans "Turmas" %}</li>
       </ol>
     </nav>
+    {% if has_permission %}
+    <div class="row ml-auto">
+        <div class="ml-auto mr-3 mb-3">
+            <button type="button" class="btn btn-success float-right createClassBtn" data-toggle="modal" data-target="#createClassModal"><i class="bi bi-plus"></i> {% trans "Criar Turma" %} </button>
+        </div>
+    </div>
+    {% endif %}
     <div class="card">
         <div class="card-body">
             <div class="tabela">
@@ -33,6 +40,9 @@
                             <th scope="col">{% trans "Período" %}</th>
                             <th scope="col">{% trans "Semestre" %}</th>
                             <th scope="col">{% trans "Área" %}</th>
+                            {% if has_permission %}
+                            <th scope="col">{% trans "Ação" %}</th>
+                            {% endif %}
                         </tr>
                     </thead>
                     <tbody>
@@ -48,12 +58,18 @@
                                 {% blocktrans with name_area_text=classs.area.name_area acronym_text=classs.area.acronym %}
                                 <td>{{ name_area_text }} ({{ acronym_text }})</td>
                                 {% endblocktrans %}
+                                {% if has_permission %}
+                                    <td><button type="button" data-toggle="modal" data-target="#editClassModal" data-counter="{{ counter }}" class="btn btn-warning editClassBtn"><i class="bi bi-pencil"></i></button>
+                                        <button type="button" class="btn btn-danger deleteClassBtn" data-class-id="{{ classs.id }}" data-registration-class-id="{{ classs.registration_class_id }}"><i class="bi bi-trash"></i></button></td>
+                                </tr>
+                                {% endif %}
                         {% endfor %}
                     </tbody>
                 </table>
             </div>
         </div>
     </div>
+
     <!-- Modal criação turma -->
     <div class="modal fade" id="createClassModal" tabindex="-1" role="dialog" aria-labelledby="createClassModelLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">

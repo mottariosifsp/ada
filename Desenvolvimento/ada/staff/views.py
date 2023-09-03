@@ -487,7 +487,10 @@ def classes_list(request):
         {'value': period.name, 'label': period.value}
         for period in enum.Period
     ]
-    return render(request, 'staff/classs/classes_list.html', {'classes': classes, 'periods': periods, 'areas': areas})
+
+    has_permission = False
+    has_permission = set(request.user.blocks.all()) == set(Blockk.objects.all()) or request.user.is_superuser
+    return render(request, 'staff/classs/classes_list.html', {'classes': classes, 'periods': periods, 'areas': areas, 'has_permission': has_permission}) 
 
 # ERRO - TODO
 @login_required
@@ -564,13 +567,13 @@ def blocks_list(request):
 def block_detail(request, registration_block_id):
     user_blocks = request.user.blocks.all()
     blockk = Blockk.objects.get(registration_block_id=registration_block_id)
-    area = blockk.areas.first()
+    area = blockk.areas.values_list('name_area', flat=True)
     courses = Course.objects.filter(blockk=blockk)
     print("Materia", courses)
     data = {
         'user_blocks': user_blocks,
         'blockk': blockk, 
-        'area': area, 
+        'areas': list(area), 
         'courses': courses
     }
 

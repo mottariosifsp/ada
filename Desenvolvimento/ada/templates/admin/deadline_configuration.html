@@ -53,6 +53,22 @@
    <form action="{% url 'deadline_configuration_confirm' %}" method="POST" id="form">
    {% csrf_token %}
    <table>
+      <caption>
+         Semestral
+      </caption>
+        <tbody>
+          <tr class="model-area">
+             <th scope="row"><a href="/admin/staff/deadline/">Ano</a></th>
+             <td><input type="text" name="year" class="form-control" id="year" /></td>
+          </tr>
+          <tr class="model-area">
+            <th scope="row"><a href="/admin/staff/deadline/">Semestre</a></th>
+            <td><input type="number" min="1" max="2" name="semester" class="form-control" id="semester" /></td>
+            
+         </tr>
+       </tbody>
+    </table>
+   <table>
      <caption>
          Prazo para o envio de FPA
      </caption>

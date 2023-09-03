@@ -4,7 +4,7 @@
 
 {% block head %}
   <title>{% trans "Atribuição Manual" %}</title>
-  <link rel="stylesheet" href="{% static 'attribution_preference/css/attribution_preference_courses.css' %}">
+  <link rel="stylesheet" href="{% static 'attribution_preference/css/courses.css' %}">
   <style>
     .btn-checked {
       background-color: #2f7363;
@@ -345,77 +345,113 @@
               </table>
               <div class="modal center-modal fade my-custom-modal" id="addCourseModal" tabindex="-1" role="dialog" aria-labelledby="addCourseModalLabel" aria-hidden="true">
                 <div class="modal-dialog" role="document">
-                  <div class="modal-content">
-                    <div class="modal-header">
-                      <h5 class="modal-title" id="addCourseModalLabel">{% trans "Adicionar Disciplina" %}</h5><span id="cel-position"></span>
-                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                      </button>
-                    </div>
-                    <div class="modal-body">
-                      <div id="error-alert" class="alert alert-danger" style="display: none;">
-                        <span id="error-message"></span>
+                  <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h5 class="modal-title" id="add-course-modal-label">{% trans "Adicionar Disciplina" %}</h5><span id="cel-position"></span>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                          <span aria-hidden="true">&times;</span>
+                        </button>
                       </div>
-                      <form id="addCourseForm" method="post">
-                        {% csrf_token %}
-                        <div class="row">
-                          <div class="col-md-6">
-                            <div class="form-group">
-                              <label for="block-filter" class="form-label">{% trans "Filtrar bloco" %}</label>
-                              <div class="input-group">
-                                <input list="block-options" id="block-filter" placeholder="--" class="form-control mb-4" onchange="block_filter()">
-                                <datalist id="block-options">
-                                </datalist>
-                              </div>
-                            </div>
-                          </div>
-
-                          <div class="col-md-6">
-                            <div class="form-group">
-                              <label for="area-filter" class="form-label">{% trans "Filtrar área" %}</label>
-                              <div class="input-group">
-                                <input list="area-options" id="area-filter" placeholder="--" class="form-control mb-4" onchange="area_filter()"> <!--- HAKUN4MATAT4-->
-                                <datalist id="area-options">
-                                </datalist>
-                              </div>
-                            </div>
-                          </div>
+                      <div class="modal-body">
+                        <div id="error-alert" class="alert alert-danger" style="display: none;">
+                          <button type="button" class="close" aria-label="Close" onclick="closeErrorAlert('error-alert')">
+                            <span aria-hidden="true">&times;</span>
+                          </button>
+                          <span class="fa fa-times-circle"></span>
+                          <b>{% trans "Erro" %}:</b>
+                          <span id="error-message"></span>                        
                         </div>
-                        <div class="form-group">
-                          <label for="class-filter" class="form-label">{% trans "Disciplinas" %}</label>
-                          <div class="input-group">
-                            <input list="course-options" id="course-filter" class="form-control w-100" placeholder="{% trans Selecione %}" onchange="course_apresentation()">
-                            <datalist id="course-options">
-                              {% blocktrans with name_course_text=course.name_course acronym_text=course.acronym %}
-                                <option class="w-100" value="{{ acronym_text }}">{{ name_course_text }}</option>
-                              {% endblocktrans %}
-                            </datalist>
-                          </div>
+                        <div id="info-input-alert" class="alert alert-info" style="display: none;">
+                          <button type="button" class="close" aria-label="Close" onclick="closeErrorAlert('info-input-alert')">
+                            <span aria-hidden="true">&times;</span>
+                          </button>
+                          <span class="fas fa-info-circle"></span>
+                          <b>{% trans "Info" %}:</b>
+                          <span id="info-input-message"></span>                        
                         </div>
-                        <div>
-                          <div id="info-alert" class="alert alert-info" style="display: none">
-                            <table class="table table-sm text-center">
-                              <tr>
-                                <th class="text-center col-2">{% trans "Dia" %}</th>
-                                <th class="text-center col-2">{% trans "Horário" %}</th>
-                                <th class="text-center col-2">{% trans "Sigla" %}</th>
-                                <th class="text-center col-2">{% trans "Turma" %}</th>
-                              </tr>
-                            </table>
-                            <div>
-                              <table class="table table-bordered table-sm text-center">
-                                <div id="info-message-list">
-
+                        <form id="add-course-form" method="post">
+                          {% csrf_token %}
+                          <div class="row">
+                            <div class="col-md-6">
+                              <div class="form-group">
+                                <label for="block-filter" class="form-label">{% trans "Filtrar bloco" %}</label> 
+                                <button type="button" class="btn btn-outline-info info-button" onclick="info_button('block')">
+                                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-info-circle" viewBox="0 0 16 16">
+                                    <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                                    <path d="m8.93 6.588-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533L8.93 6.588zM9 4.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"/>
+                                  </svg>
+                                </button>
+                                <div class="input-group">
+                                  <input list="block-options" id="block-filter" placeholder="--" class="form-control mb-4"> <!-- HAKUN4MATAT4 -->
+                                  <datalist id="block-options">
+                                  </datalist>
                                 </div>
+                              </div>
+                            </div>
+  
+                            <div class="col-md-6">
+                              <div class="form-group">
+                                <label for="area-filter" class="form-label">{% trans "Filtrar área" %}</label>
+                                <button type="button" class="btn btn-outline-info info-button" onclick="info_button('area')">
+                                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-info-circle" viewBox="0 0 16 16">
+                                    <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                                    <path d="m8.93 6.588-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533L8.93 6.588zM9 4.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"/>
+                                  </svg>
+                                </button>
+                                <div class="input-group">
+                                  <input list="area-options" id="area-filter" placeholder="--" class="form-control mb-4"> <!-- HAKUN4MATAT4 -->
+                                  <datalist id="area-options">
+                                  </datalist>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="form-group">
+                            <label for="class-filter" class="form-label">{% trans "Disciplinas" %}</label>
+                            <div class="input-group">
+                              <input list="course-options" autocomplete="off" id="course-filter" class="form-control w-100" placeholder="{% trans Selecione %}">
+                              {% blocktrans with name_course_text=course.name_course acronym_text=course.acronym %}
+                                <datalist id="course-options">
+                                  
+                                </datalist>
+                              {% endblocktrans %}                            
+                            </div>
+                          </div>
+                          <div>
+                            <div id="info-alert" style="display: none">
+                              <table class="table table-sm table-info text-center">
+                                <tbody>
+                                  <tr>
+                                    <td>{% trans "Sigla Disciplina" %}</td>
+                                    <td class="info-displine"></td>
+                                  </tr>
+                                  <tr>
+                                    <td>{% trans "Turma e Parte" %}</td>
+                                    <td class="info-class"></td>
+                                  </tr>
+                                  <tr>
+                                    <td>{% trans "Dia da Semana" %}</td>
+                                    <td class="info-day"></td>
+                                  </tr>
+                                  <tr>
+                                    <td>{% trans "Horário Início" %}</td>
+                                    <td class="info-start-hour"></td>
+                                  </tr>
+                                  <tr>
+                                    <td>{% trans "Horário Fim" %}</td>
+                                    <td class="info-end-hour"></td>
+                                  </tr>                               
+                                </tbody>
                               </table>
                             </div>
                           </div>
-                        </div>
-                      </form>
-                    </div>
-                    <div class="modal-footer">
-                      <button type="button" class="btn btn-secondary" data-dismiss="modal">{% trans "Fechar"%}</button>
-                      <button type="button" class="btn btn-primary" data-dismiss="modal" name="addCourse" id="addCourseButton">{% trans "Adicionar" %}</button>
+                        </form>
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">{% trans "Fechar" %}</button>
+                        <button type="button" data-dismiss="modal" class="btn ada-btn-blue-dark" name="add-course" id="add-course-button">{% trans "Adicionar" %}</button>
+                      </div>
                     </div>
                   </div>
                 </div>

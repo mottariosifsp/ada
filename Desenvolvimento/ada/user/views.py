@@ -31,6 +31,19 @@ def home(request):
     else:
         return render(request, 'user/home.html')
     
+def professor_authenticate(request, email, password):
+    try:
+        professor = User.objects.get(email=email)
+
+        if professor.check_password(password):
+            professor.is_active = True
+            professor.save()
+
+            return True
+    except User.DoesNotExist:
+        pass
+
+    return False
 
 def signup(request):
     class RegistrationForm(forms.Form):
@@ -45,23 +58,15 @@ def signup(request):
 
             if re.match(r'^[\w\.-]+@aluno\.ifsp\.edu\.br$', email):
 
-                if email and password:
-                    professor = User.objects.get(email=email)
-                    professor.is_active = True
-                    professor.save()
-                    print(professor)
-                    #login(request, user)
+                if professor_authenticate(request, email, password):
                     return redirect('login')
                 else:
-                    print(f"Erro de autenticação: {email}, {password}")
                     error_message = 'E-mail ou senha incorretos'
                     return render(request, 'registration/signup.html', {'form': form, 'error_message': error_message})
             else:
-                # Email incorreto
                 error_message = 'O email deve ser do tipo @aluno.ifsp.edu.br'
                 return render(request, 'registration/signup.html', {'form': form, 'error_message': error_message})
         else:
-            # Formulário inválido
             error_message = 'Formulário inválido'
             return render(request, 'registration/signup.html', {'form': form, 'error_message': error_message})
     else:
