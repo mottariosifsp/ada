@@ -1,0 +1,6308 @@
+[
+    {
+        "model": "user.user",
+        "pk": 1,
+        "fields": {
+            "password": "pbkdf2_sha256$390000$UYztBMlrQEbdT4DuIfE4OQ$UsnwvKwMSYI1jHr9mrYoj6tQ2+NPeUaNRAEpQ+gFXwU=",
+            "last_login": "2023-09-03T17:15:53.724",
+            "registration_id": "3045463",
+            "first_name": "ISABELLA",
+            "last_name": "VALERIO MAZARÁ",
+            "email": "i.mazara@aluno.ifsp.edu.br",
+            "telephone": "(66)6666-6666",
+            "cell_phone": "119999999999",
+            "date_joined": "2023-08-31T14:19:52.157",
+            "is_superuser": true,
+            "is_staff": true,
+            "is_active": true,
+            "is_fgfcc": false,
+            "is_professor": true,
+            "history": 16,
+            "job": 282,
+            "groups": [],
+            "user_permissions": [],
+            "blocks": [
+                1,
+                2,
+                3,
+                4,
+                5
+            ]
+        }
+    },
+    {
+        "model": "user.user",
+        "pk": 59,
+        "fields": {
+            "password": "pbkdf2_sha256$390000$JYimdZjlED74EeBBsIhn9z$i6Oxgg333MChwnm79F4WR7+pLaRJABGRhL+yBXd4lnU=",
+            "last_login": "2023-09-03T16:43:23.321",
+            "registration_id": "SP8888888",
+            "first_name": "PROFESSOR 88",
+            "last_name": "TESTE 2",
+            "email": "profteste2@ifsp.edu.br",
+            "telephone": "-",
+            "cell_phone": "11999999929399",
+            "date_joined": "2023-09-03T04:02:22.985",
+            "is_superuser": false,
+            "is_staff": false,
+            "is_active": true,
+            "is_fgfcc": false,
+            "is_professor": true,
+            "history": 69,
+            "job": 280,
+            "groups": [],
+            "user_permissions": [],
+            "blocks": [
+                4,
+                5
+            ]
+        }
+    },
+    {
+        "model": "user.user",
+        "pk": 60,
+        "fields": {
+            "password": "pbkdf2_sha256$390000$3WYhWxq4O0VLpESjjGYdC7$2ZIoWv8sUYqw5NZzhexsjtm6emms7igmd0MzKUetAFU=",
+            "last_login": "2023-09-03T16:55:05.447",
+            "registration_id": "SP9999999",
+            "first_name": "PROFESSOR 99",
+            "last_name": "TESTE 2",
+            "email": "prof99@ifsp.edu.br",
+            "telephone": "(28)8318-9928",
+            "cell_phone": "11999999299309",
+            "date_joined": "2023-09-03T04:05:00.239",
+            "is_superuser": false,
+            "is_staff": false,
+            "is_active": true,
+            "is_fgfcc": false,
+            "is_professor": true,
+            "history": 73,
+            "job": 284,
+            "groups": [],
+            "user_permissions": [],
+            "blocks": [
+                4
+            ]
+        }
+    },
+    {
+        "model": "user.user",
+        "pk": 61,
+        "fields": {
+            "password": "pbkdf2_sha256$390000$1VQe867gmbvJvsZbc0HmjD$qZtYLsarKptQxUhr4bUd1lQMxNTKmowHdMdCGGJoKIw=",
+            "last_login": "2023-09-03T16:32:59.719",
+            "registration_id": "SP7777777",
+            "first_name": "PROFESSOR 77",
+            "last_name": "TESTE 2",
+            "email": "prof77@ifsp.edu.br",
+            "telephone": "(85)9848-4848",
+            "cell_phone": "11999999283782",
+            "date_joined": "2023-09-03T04:05:55.987",
+            "is_superuser": false,
+            "is_staff": false,
+            "is_active": true,
+            "is_fgfcc": false,
+            "is_professor": true,
+            "history": 72,
+            "job": 279,
+            "groups": [],
+            "user_permissions": [],
+            "blocks": [
+                4
+            ]
+        }
+    },
+    {
+        "model": "user.user",
+        "pk": 62,
+        "fields": {
+            "password": "pbkdf2_sha256$390000$jATKiPFI9UYSzbb9UvYGCa$6stUiSGLd+PNO7WwYqyUUQdFP2rboic0JEdx/wCuG+Y=",
+            "last_login": "2023-09-03T16:48:19.958",
+            "registration_id": "SP8989898",
+            "first_name": "PROFESSOR 89",
+            "last_name": "TESTE 2",
+            "email": "prof89@ifsp.edu.br",
+            "telephone": "(39)9392-9399",
+            "cell_phone": "11928929282939",
+            "date_joined": "2023-09-03T04:07:11.083",
+            "is_superuser": false,
+            "is_staff": false,
+            "is_active": true,
+            "is_fgfcc": false,
+            "is_professor": true,
+            "history": 70,
+            "job": 281,
+            "groups": [],
+            "user_permissions": [],
+            "blocks": [
+                5
+            ]
+        }
+    },
+    {
+        "model": "user.user",
+        "pk": 63,
+        "fields": {
+            "password": "pbkdf2_sha256$390000$XYOUdv2rOGlQOFxQURO2JC$gQqGe/DgmME87Le1HWTtxNZ9aOUnMfQyRLrN6NgiiTg=",
+            "last_login": "2023-09-03T17:04:21.237",
+            "registration_id": "SP9898989",
+            "first_name": "PROFESSOR 98",
+            "last_name": "TESTE 2",
+            "email": "prof98@ifsp.edu.br",
+            "telephone": "(92)9392-0902",
+            "cell_phone": "11928299382938",
+            "date_joined": "2023-09-03T04:08:07.085",
+            "is_superuser": false,
+            "is_staff": false,
+            "is_active": true,
+            "is_fgfcc": false,
+            "is_professor": true,
+            "history": 71,
+            "job": 283,
+            "groups": [],
+            "user_permissions": [],
+            "blocks": [
+                5
+            ]
+        }
+    },
+    {
+        "model": "user.academicdegreehistory",
+        "pk": 1,
+        "fields": {
+            "history": 8,
+            "academic_degree": 5
+        }
+    },
+    {
+        "model": "user.academicdegreehistory",
+        "pk": 2,
+        "fields": {
+            "history": 8,
+            "academic_degree": 2
+        }
+    },
+    {
+        "model": "user.academicdegreehistory",
+        "pk": 26,
+        "fields": {
+            "history": 17,
+            "academic_degree": 6
+        }
+    },
+    {
+        "model": "user.academicdegreehistory",
+        "pk": 27,
+        "fields": {
+            "history": 18,
+            "academic_degree": 2
+        }
+    },
+    {
+        "model": "user.academicdegreehistory",
+        "pk": 28,
+        "fields": {
+            "history": 18,
+            "academic_degree": 4
+        }
+    },
+    {
+        "model": "user.academicdegreehistory",
+        "pk": 29,
+        "fields": {
+            "history": 18,
+            "academic_degree": 3
+        }
+    },
+    {
+        "model": "user.academicdegreehistory",
+        "pk": 30,
+        "fields": {
+            "history": 18,
+            "academic_degree": 5
+        }
+    },
+    {
+        "model": "user.academicdegreehistory",
+        "pk": 31,
+        "fields": {
+            "history": 19,
+            "academic_degree": 6
+        }
+    },
+    {
+        "model": "user.academicdegreehistory",
+        "pk": 45,
+        "fields": {
+            "history": 26,
+            "academic_degree": 4
+        }
+    },
+    {
+        "model": "user.academicdegreehistory",
+        "pk": 46,
+        "fields": {
+            "history": 26,
+            "academic_degree": 2
+        }
+    },
+    {
+        "model": "user.academicdegreehistory",
+        "pk": 47,
+        "fields": {
+            "history": 26,
+            "academic_degree": 1
+        }
+    },
+    {
+        "model": "user.academicdegreehistory",
+        "pk": 52,
+        "fields": {
+            "history": 28,
+            "academic_degree": 4
+        }
+    },
+    {
+        "model": "user.academicdegreehistory",
+        "pk": 53,
+        "fields": {
+            "history": 28,
+            "academic_degree": 5
+        }
+    },
+    {
+        "model": "user.academicdegreehistory",
+        "pk": 54,
+        "fields": {
+            "history": 28,
+            "academic_degree": 5
+        }
+    },
+    {
+        "model": "user.academicdegreehistory",
+        "pk": 55,
+        "fields": {
+            "history": 28,
+            "academic_degree": 6
+        }
+    },
+    {
+        "model": "user.academicdegreehistory",
+        "pk": 56,
+        "fields": {
+            "history": 28,
+            "academic_degree": 2
+        }
+    },
+    {
+        "model": "user.academicdegreehistory",
+        "pk": 57,
+        "fields": {
+            "history": 29,
+            "academic_degree": 4
+        }
+    },
+    {
+        "model": "user.academicdegreehistory",
+        "pk": 58,
+        "fields": {
+            "history": 29,
+            "academic_degree": 3
+        }
+    },
+    {
+        "model": "user.academicdegreehistory",
+        "pk": 59,
+        "fields": {
+            "history": 29,
+            "academic_degree": 6
+        }
+    },
+    {
+        "model": "user.academicdegreehistory",
+        "pk": 60,
+        "fields": {
+            "history": 29,
+            "academic_degree": 6
+        }
+    },
+    {
+        "model": "user.academicdegreehistory",
+        "pk": 61,
+        "fields": {
+            "history": 30,
+            "academic_degree": 2
+        }
+    },
+    {
+        "model": "user.academicdegreehistory",
+        "pk": 62,
+        "fields": {
+            "history": 30,
+            "academic_degree": 2
+        }
+    },
+    {
+        "model": "user.academicdegreehistory",
+        "pk": 63,
+        "fields": {
+            "history": 30,
+            "academic_degree": 3
+        }
+    },
+    {
+        "model": "user.academicdegreehistory",
+        "pk": 64,
+        "fields": {
+            "history": 31,
+            "academic_degree": 4
+        }
+    },
+    {
+        "model": "user.academicdegreehistory",
+        "pk": 65,
+        "fields": {
+            "history": 31,
+            "academic_degree": 4
+        }
+    },
+    {
+        "model": "user.academicdegreehistory",
+        "pk": 66,
+        "fields": {
+            "history": 31,
+            "academic_degree": 2
+        }
+    },
+    {
+        "model": "user.academicdegreehistory",
+        "pk": 67,
+        "fields": {
+            "history": 32,
+            "academic_degree": 4
+        }
+    },
+    {
+        "model": "user.academicdegreehistory",
+        "pk": 68,
+        "fields": {
+            "history": 32,
+            "academic_degree": 3
+        }
+    },
+    {
+        "model": "user.academicdegreehistory",
+        "pk": 69,
+        "fields": {
+            "history": 32,
+            "academic_degree": 2
+        }
+    },
+    {
+        "model": "user.academicdegreehistory",
+        "pk": 70,
+        "fields": {
+            "history": 34,
+            "academic_degree": 6
+        }
+    },
+    {
+        "model": "user.academicdegreehistory",
+        "pk": 71,
+        "fields": {
+            "history": 34,
+            "academic_degree": 4
+        }
+    },
+    {
+        "model": "user.academicdegreehistory",
+        "pk": 72,
+        "fields": {
+            "history": 34,
+            "academic_degree": 3
+        }
+    },
+    {
+        "model": "user.academicdegreehistory",
+        "pk": 73,
+        "fields": {
+            "history": 34,
+            "academic_degree": 2
+        }
+    },
+    {
+        "model": "user.academicdegreehistory",
+        "pk": 74,
+        "fields": {
+            "history": 34,
+            "academic_degree": 1
+        }
+    },
+    {
+        "model": "user.academicdegreehistory",
+        "pk": 103,
+        "fields": {
+            "history": 44,
+            "academic_degree": 3
+        }
+    },
+    {
+        "model": "user.academicdegreehistory",
+        "pk": 104,
+        "fields": {
+            "history": 44,
+            "academic_degree": 2
+        }
+    },
+    {
+        "model": "user.academicdegreehistory",
+        "pk": 105,
+        "fields": {
+            "history": 44,
+            "academic_degree": 1
+        }
+    },
+    {
+        "model": "user.academicdegreehistory",
+        "pk": 116,
+        "fields": {
+            "history": 49,
+            "academic_degree": 4
+        }
+    },
+    {
+        "model": "user.academicdegreehistory",
+        "pk": 117,
+        "fields": {
+            "history": 49,
+            "academic_degree": 2
+        }
+    },
+    {
+        "model": "user.academicdegreehistory",
+        "pk": 118,
+        "fields": {
+            "history": 49,
+            "academic_degree": 1
+        }
+    },
+    {
+        "model": "user.academicdegreehistory",
+        "pk": 127,
+        "fields": {
+            "history": 53,
+            "academic_degree": 6
+        }
+    },
+    {
+        "model": "user.academicdegreehistory",
+        "pk": 128,
+        "fields": {
+            "history": 53,
+            "academic_degree": 5
+        }
+    },
+    {
+        "model": "user.academicdegreehistory",
+        "pk": 129,
+        "fields": {
+            "history": 53,
+            "academic_degree": 3
+        }
+    },
+    {
+        "model": "user.academicdegreehistory",
+        "pk": 130,
+        "fields": {
+            "history": 53,
+            "academic_degree": 2
+        }
+    },
+    {
+        "model": "user.academicdegreehistory",
+        "pk": 131,
+        "fields": {
+            "history": 54,
+            "academic_degree": 4
+        }
+    },
+    {
+        "model": "user.academicdegreehistory",
+        "pk": 132,
+        "fields": {
+            "history": 54,
+            "academic_degree": 6
+        }
+    },
+    {
+        "model": "user.academicdegreehistory",
+        "pk": 133,
+        "fields": {
+            "history": 54,
+            "academic_degree": 6
+        }
+    },
+    {
+        "model": "user.academicdegreehistory",
+        "pk": 134,
+        "fields": {
+            "history": 54,
+            "academic_degree": 6
+        }
+    },
+    {
+        "model": "user.academicdegreehistory",
+        "pk": 146,
+        "fields": {
+            "history": 58,
+            "academic_degree": 4
+        }
+    },
+    {
+        "model": "user.academicdegreehistory",
+        "pk": 147,
+        "fields": {
+            "history": 58,
+            "academic_degree": 2
+        }
+    },
+    {
+        "model": "user.academicdegreehistory",
+        "pk": 148,
+        "fields": {
+            "history": 58,
+            "academic_degree": 6
+        }
+    },
+    {
+        "model": "user.academicdegreehistory",
+        "pk": 149,
+        "fields": {
+            "history": 58,
+            "academic_degree": 5
+        }
+    },
+    {
+        "model": "user.academicdegreehistory",
+        "pk": 151,
+        "fields": {
+            "history": 1,
+            "academic_degree": 6
+        }
+    },
+    {
+        "model": "user.academicdegreehistory",
+        "pk": 152,
+        "fields": {
+            "history": 9,
+            "academic_degree": 4
+        }
+    },
+    {
+        "model": "user.academicdegreehistory",
+        "pk": 153,
+        "fields": {
+            "history": 9,
+            "academic_degree": 3
+        }
+    },
+    {
+        "model": "user.academicdegreehistory",
+        "pk": 154,
+        "fields": {
+            "history": 9,
+            "academic_degree": 2
+        }
+    },
+    {
+        "model": "user.academicdegreehistory",
+        "pk": 155,
+        "fields": {
+            "history": 12,
+            "academic_degree": 5
+        }
+    },
+    {
+        "model": "user.academicdegreehistory",
+        "pk": 156,
+        "fields": {
+            "history": 12,
+            "academic_degree": 5
+        }
+    },
+    {
+        "model": "user.academicdegreehistory",
+        "pk": 157,
+        "fields": {
+            "history": 12,
+            "academic_degree": 2
+        }
+    },
+    {
+        "model": "user.academicdegreehistory",
+        "pk": 158,
+        "fields": {
+            "history": 12,
+            "academic_degree": 4
+        }
+    },
+    {
+        "model": "user.academicdegreehistory",
+        "pk": 159,
+        "fields": {
+            "history": 10,
+            "academic_degree": 1
+        }
+    },
+    {
+        "model": "user.academicdegreehistory",
+        "pk": 160,
+        "fields": {
+            "history": 10,
+            "academic_degree": 2
+        }
+    },
+    {
+        "model": "user.academicdegreehistory",
+        "pk": 161,
+        "fields": {
+            "history": 10,
+            "academic_degree": 3
+        }
+    },
+    {
+        "model": "user.academicdegreehistory",
+        "pk": 162,
+        "fields": {
+            "history": 13,
+            "academic_degree": 2
+        }
+    },
+    {
+        "model": "user.academicdegreehistory",
+        "pk": 163,
+        "fields": {
+            "history": 13,
+            "academic_degree": 5
+        }
+    },
+    {
+        "model": "user.academicdegreehistory",
+        "pk": 164,
+        "fields": {
+            "history": 13,
+            "academic_degree": 5
+        }
+    },
+    {
+        "model": "user.academicdegreehistory",
+        "pk": 165,
+        "fields": {
+            "history": 13,
+            "academic_degree": 6
+        }
+    },
+    {
+        "model": "user.academicdegreehistory",
+        "pk": 166,
+        "fields": {
+            "history": 15,
+            "academic_degree": 1
+        }
+    },
+    {
+        "model": "user.academicdegreehistory",
+        "pk": 167,
+        "fields": {
+            "history": 15,
+            "academic_degree": 2
+        }
+    },
+    {
+        "model": "user.academicdegreehistory",
+        "pk": 168,
+        "fields": {
+            "history": 15,
+            "academic_degree": 4
+        }
+    },
+    {
+        "model": "user.academicdegreehistory",
+        "pk": 169,
+        "fields": {
+            "history": 15,
+            "academic_degree": 5
+        }
+    },
+    {
+        "model": "user.academicdegreehistory",
+        "pk": 172,
+        "fields": {
+            "history": 57,
+            "academic_degree": 6
+        }
+    },
+    {
+        "model": "user.academicdegreehistory",
+        "pk": 173,
+        "fields": {
+            "history": 57,
+            "academic_degree": 3
+        }
+    },
+    {
+        "model": "user.academicdegreehistory",
+        "pk": 174,
+        "fields": {
+            "history": 57,
+            "academic_degree": 2
+        }
+    },
+    {
+        "model": "user.academicdegreehistory",
+        "pk": 175,
+        "fields": {
+            "history": 59,
+            "academic_degree": 6
+        }
+    },
+    {
+        "model": "user.academicdegreehistory",
+        "pk": 176,
+        "fields": {
+            "history": 59,
+            "academic_degree": 3
+        }
+    },
+    {
+        "model": "user.academicdegreehistory",
+        "pk": 177,
+        "fields": {
+            "history": 59,
+            "academic_degree": 2
+        }
+    },
+    {
+        "model": "user.academicdegreehistory",
+        "pk": 178,
+        "fields": {
+            "history": 60,
+            "academic_degree": 4
+        }
+    },
+    {
+        "model": "user.academicdegreehistory",
+        "pk": 179,
+        "fields": {
+            "history": 60,
+            "academic_degree": 2
+        }
+    },
+    {
+        "model": "user.academicdegreehistory",
+        "pk": 180,
+        "fields": {
+            "history": 60,
+            "academic_degree": 6
+        }
+    },
+    {
+        "model": "user.academicdegreehistory",
+        "pk": 181,
+        "fields": {
+            "history": 62,
+            "academic_degree": 4
+        }
+    },
+    {
+        "model": "user.academicdegreehistory",
+        "pk": 182,
+        "fields": {
+            "history": 62,
+            "academic_degree": 3
+        }
+    },
+    {
+        "model": "user.academicdegreehistory",
+        "pk": 183,
+        "fields": {
+            "history": 62,
+            "academic_degree": 2
+        }
+    },
+    {
+        "model": "user.academicdegreehistory",
+        "pk": 184,
+        "fields": {
+            "history": 62,
+            "academic_degree": 1
+        }
+    },
+    {
+        "model": "user.academicdegreehistory",
+        "pk": 185,
+        "fields": {
+            "history": 62,
+            "academic_degree": 5
+        }
+    },
+    {
+        "model": "user.academicdegreehistory",
+        "pk": 186,
+        "fields": {
+            "history": 62,
+            "academic_degree": 6
+        }
+    },
+    {
+        "model": "user.academicdegreehistory",
+        "pk": 187,
+        "fields": {
+            "history": 63,
+            "academic_degree": 4
+        }
+    },
+    {
+        "model": "user.academicdegreehistory",
+        "pk": 188,
+        "fields": {
+            "history": 63,
+            "academic_degree": 2
+        }
+    },
+    {
+        "model": "user.academicdegreehistory",
+        "pk": 189,
+        "fields": {
+            "history": 63,
+            "academic_degree": 5
+        }
+    },
+    {
+        "model": "user.academicdegreehistory",
+        "pk": 190,
+        "fields": {
+            "history": 63,
+            "academic_degree": 5
+        }
+    },
+    {
+        "model": "user.academicdegreehistory",
+        "pk": 191,
+        "fields": {
+            "history": 63,
+            "academic_degree": 6
+        }
+    },
+    {
+        "model": "user.academicdegreehistory",
+        "pk": 192,
+        "fields": {
+            "history": 64,
+            "academic_degree": 4
+        }
+    },
+    {
+        "model": "user.academicdegreehistory",
+        "pk": 193,
+        "fields": {
+            "history": 64,
+            "academic_degree": 2
+        }
+    },
+    {
+        "model": "user.academicdegreehistory",
+        "pk": 194,
+        "fields": {
+            "history": 64,
+            "academic_degree": 5
+        }
+    },
+    {
+        "model": "user.academicdegreehistory",
+        "pk": 195,
+        "fields": {
+            "history": 64,
+            "academic_degree": 6
+        }
+    },
+    {
+        "model": "user.academicdegreehistory",
+        "pk": 196,
+        "fields": {
+            "history": 66,
+            "academic_degree": 5
+        }
+    },
+    {
+        "model": "user.academicdegreehistory",
+        "pk": 197,
+        "fields": {
+            "history": 66,
+            "academic_degree": 6
+        }
+    },
+    {
+        "model": "user.academicdegreehistory",
+        "pk": 198,
+        "fields": {
+            "history": 66,
+            "academic_degree": 2
+        }
+    },
+    {
+        "model": "user.academicdegreehistory",
+        "pk": 199,
+        "fields": {
+            "history": 66,
+            "academic_degree": 1
+        }
+    },
+    {
+        "model": "user.academicdegreehistory",
+        "pk": 200,
+        "fields": {
+            "history": 67,
+            "academic_degree": 4
+        }
+    },
+    {
+        "model": "user.academicdegreehistory",
+        "pk": 201,
+        "fields": {
+            "history": 67,
+            "academic_degree": 3
+        }
+    },
+    {
+        "model": "user.academicdegreehistory",
+        "pk": 202,
+        "fields": {
+            "history": 67,
+            "academic_degree": 6
+        }
+    },
+    {
+        "model": "user.academicdegreehistory",
+        "pk": 203,
+        "fields": {
+            "history": 68,
+            "academic_degree": 4
+        }
+    },
+    {
+        "model": "user.academicdegreehistory",
+        "pk": 204,
+        "fields": {
+            "history": 68,
+            "academic_degree": 1
+        }
+    },
+    {
+        "model": "user.academicdegreehistory",
+        "pk": 205,
+        "fields": {
+            "history": 68,
+            "academic_degree": 2
+        }
+    },
+    {
+        "model": "user.academicdegreehistory",
+        "pk": 206,
+        "fields": {
+            "history": 20,
+            "academic_degree": 4
+        }
+    },
+    {
+        "model": "user.academicdegreehistory",
+        "pk": 207,
+        "fields": {
+            "history": 20,
+            "academic_degree": 2
+        }
+    },
+    {
+        "model": "user.academicdegreehistory",
+        "pk": 208,
+        "fields": {
+            "history": 20,
+            "academic_degree": 2
+        }
+    },
+    {
+        "model": "user.academicdegreehistory",
+        "pk": 209,
+        "fields": {
+            "history": 20,
+            "academic_degree": 1
+        }
+    },
+    {
+        "model": "user.academicdegreehistory",
+        "pk": 210,
+        "fields": {
+            "history": 22,
+            "academic_degree": 1
+        }
+    },
+    {
+        "model": "user.academicdegreehistory",
+        "pk": 211,
+        "fields": {
+            "history": 22,
+            "academic_degree": 2
+        }
+    },
+    {
+        "model": "user.academicdegreehistory",
+        "pk": 212,
+        "fields": {
+            "history": 22,
+            "academic_degree": 3
+        }
+    },
+    {
+        "model": "user.academicdegreehistory",
+        "pk": 213,
+        "fields": {
+            "history": 22,
+            "academic_degree": 6
+        }
+    },
+    {
+        "model": "user.academicdegreehistory",
+        "pk": 214,
+        "fields": {
+            "history": 23,
+            "academic_degree": 2
+        }
+    },
+    {
+        "model": "user.academicdegreehistory",
+        "pk": 215,
+        "fields": {
+            "history": 23,
+            "academic_degree": 3
+        }
+    },
+    {
+        "model": "user.academicdegreehistory",
+        "pk": 216,
+        "fields": {
+            "history": 23,
+            "academic_degree": 5
+        }
+    },
+    {
+        "model": "user.academicdegreehistory",
+        "pk": 217,
+        "fields": {
+            "history": 38,
+            "academic_degree": 3
+        }
+    },
+    {
+        "model": "user.academicdegreehistory",
+        "pk": 218,
+        "fields": {
+            "history": 38,
+            "academic_degree": 4
+        }
+    },
+    {
+        "model": "user.academicdegreehistory",
+        "pk": 219,
+        "fields": {
+            "history": 38,
+            "academic_degree": 4
+        }
+    },
+    {
+        "model": "user.academicdegreehistory",
+        "pk": 220,
+        "fields": {
+            "history": 38,
+            "academic_degree": 2
+        }
+    },
+    {
+        "model": "user.academicdegreehistory",
+        "pk": 221,
+        "fields": {
+            "history": 24,
+            "academic_degree": 2
+        }
+    },
+    {
+        "model": "user.academicdegreehistory",
+        "pk": 222,
+        "fields": {
+            "history": 24,
+            "academic_degree": 3
+        }
+    },
+    {
+        "model": "user.academicdegreehistory",
+        "pk": 223,
+        "fields": {
+            "history": 24,
+            "academic_degree": 4
+        }
+    },
+    {
+        "model": "user.academicdegreehistory",
+        "pk": 224,
+        "fields": {
+            "history": 16,
+            "academic_degree": 6
+        }
+    },
+    {
+        "model": "user.academicdegreehistory",
+        "pk": 225,
+        "fields": {
+            "history": 39,
+            "academic_degree": 4
+        }
+    },
+    {
+        "model": "user.academicdegreehistory",
+        "pk": 226,
+        "fields": {
+            "history": 36,
+            "academic_degree": 5
+        }
+    },
+    {
+        "model": "user.academicdegreehistory",
+        "pk": 227,
+        "fields": {
+            "history": 36,
+            "academic_degree": 3
+        }
+    },
+    {
+        "model": "user.academicdegreehistory",
+        "pk": 228,
+        "fields": {
+            "history": 36,
+            "academic_degree": 4
+        }
+    },
+    {
+        "model": "user.academicdegreehistory",
+        "pk": 229,
+        "fields": {
+            "history": 35,
+            "academic_degree": 6
+        }
+    },
+    {
+        "model": "user.academicdegreehistory",
+        "pk": 230,
+        "fields": {
+            "history": 35,
+            "academic_degree": 4
+        }
+    },
+    {
+        "model": "user.academicdegreehistory",
+        "pk": 231,
+        "fields": {
+            "history": 35,
+            "academic_degree": 2
+        }
+    },
+    {
+        "model": "user.academicdegreehistory",
+        "pk": 232,
+        "fields": {
+            "history": 51,
+            "academic_degree": 3
+        }
+    },
+    {
+        "model": "user.academicdegreehistory",
+        "pk": 233,
+        "fields": {
+            "history": 37,
+            "academic_degree": 4
+        }
+    },
+    {
+        "model": "user.academicdegreehistory",
+        "pk": 234,
+        "fields": {
+            "history": 37,
+            "academic_degree": 2
+        }
+    },
+    {
+        "model": "user.academicdegreehistory",
+        "pk": 235,
+        "fields": {
+            "history": 25,
+            "academic_degree": 2
+        }
+    },
+    {
+        "model": "user.academicdegreehistory",
+        "pk": 236,
+        "fields": {
+            "history": 25,
+            "academic_degree": 3
+        }
+    },
+    {
+        "model": "user.academicdegreehistory",
+        "pk": 237,
+        "fields": {
+            "history": 25,
+            "academic_degree": 4
+        }
+    },
+    {
+        "model": "user.academicdegreehistory",
+        "pk": 238,
+        "fields": {
+            "history": 43,
+            "academic_degree": 4
+        }
+    },
+    {
+        "model": "user.academicdegreehistory",
+        "pk": 239,
+        "fields": {
+            "history": 43,
+            "academic_degree": 2
+        }
+    },
+    {
+        "model": "user.academicdegreehistory",
+        "pk": 240,
+        "fields": {
+            "history": 43,
+            "academic_degree": 5
+        }
+    },
+    {
+        "model": "user.academicdegreehistory",
+        "pk": 241,
+        "fields": {
+            "history": 27,
+            "academic_degree": 4
+        }
+    },
+    {
+        "model": "user.academicdegreehistory",
+        "pk": 242,
+        "fields": {
+            "history": 27,
+            "academic_degree": 3
+        }
+    },
+    {
+        "model": "user.academicdegreehistory",
+        "pk": 243,
+        "fields": {
+            "history": 27,
+            "academic_degree": 1
+        }
+    },
+    {
+        "model": "user.academicdegreehistory",
+        "pk": 244,
+        "fields": {
+            "history": 27,
+            "academic_degree": 2
+        }
+    },
+    {
+        "model": "user.academicdegreehistory",
+        "pk": 245,
+        "fields": {
+            "history": 55,
+            "academic_degree": 6
+        }
+    },
+    {
+        "model": "user.academicdegreehistory",
+        "pk": 246,
+        "fields": {
+            "history": 55,
+            "academic_degree": 4
+        }
+    },
+    {
+        "model": "user.academicdegreehistory",
+        "pk": 247,
+        "fields": {
+            "history": 55,
+            "academic_degree": 2
+        }
+    },
+    {
+        "model": "user.academicdegreehistory",
+        "pk": 248,
+        "fields": {
+            "history": 55,
+            "academic_degree": 2
+        }
+    },
+    {
+        "model": "user.academicdegreehistory",
+        "pk": 249,
+        "fields": {
+            "history": 55,
+            "academic_degree": 2
+        }
+    },
+    {
+        "model": "user.academicdegreehistory",
+        "pk": 250,
+        "fields": {
+            "history": 55,
+            "academic_degree": 2
+        }
+    },
+    {
+        "model": "user.academicdegreehistory",
+        "pk": 251,
+        "fields": {
+            "history": 40,
+            "academic_degree": 6
+        }
+    },
+    {
+        "model": "user.academicdegreehistory",
+        "pk": 252,
+        "fields": {
+            "history": 40,
+            "academic_degree": 5
+        }
+    },
+    {
+        "model": "user.academicdegreehistory",
+        "pk": 253,
+        "fields": {
+            "history": 40,
+            "academic_degree": 2
+        }
+    },
+    {
+        "model": "user.academicdegreehistory",
+        "pk": 254,
+        "fields": {
+            "history": 40,
+            "academic_degree": 4
+        }
+    },
+    {
+        "model": "user.academicdegreehistory",
+        "pk": 255,
+        "fields": {
+            "history": 52,
+            "academic_degree": 4
+        }
+    },
+    {
+        "model": "user.academicdegreehistory",
+        "pk": 256,
+        "fields": {
+            "history": 52,
+            "academic_degree": 2
+        }
+    },
+    {
+        "model": "user.academicdegreehistory",
+        "pk": 257,
+        "fields": {
+            "history": 52,
+            "academic_degree": 6
+        }
+    },
+    {
+        "model": "user.academicdegreehistory",
+        "pk": 258,
+        "fields": {
+            "history": 52,
+            "academic_degree": 6
+        }
+    },
+    {
+        "model": "user.academicdegreehistory",
+        "pk": 259,
+        "fields": {
+            "history": 41,
+            "academic_degree": 4
+        }
+    },
+    {
+        "model": "user.academicdegreehistory",
+        "pk": 260,
+        "fields": {
+            "history": 41,
+            "academic_degree": 3
+        }
+    },
+    {
+        "model": "user.academicdegreehistory",
+        "pk": 261,
+        "fields": {
+            "history": 41,
+            "academic_degree": 1
+        }
+    },
+    {
+        "model": "user.academicdegreehistory",
+        "pk": 262,
+        "fields": {
+            "history": 46,
+            "academic_degree": 4
+        }
+    },
+    {
+        "model": "user.academicdegreehistory",
+        "pk": 263,
+        "fields": {
+            "history": 46,
+            "academic_degree": 2
+        }
+    },
+    {
+        "model": "user.academicdegreehistory",
+        "pk": 264,
+        "fields": {
+            "history": 46,
+            "academic_degree": 6
+        }
+    },
+    {
+        "model": "user.academicdegreehistory",
+        "pk": 265,
+        "fields": {
+            "history": 46,
+            "academic_degree": 6
+        }
+    },
+    {
+        "model": "user.academicdegreehistory",
+        "pk": 266,
+        "fields": {
+            "history": 46,
+            "academic_degree": 1
+        }
+    },
+    {
+        "model": "user.academicdegreehistory",
+        "pk": 272,
+        "fields": {
+            "history": 45,
+            "academic_degree": 4
+        }
+    },
+    {
+        "model": "user.academicdegreehistory",
+        "pk": 273,
+        "fields": {
+            "history": 45,
+            "academic_degree": 3
+        }
+    },
+    {
+        "model": "user.academicdegreehistory",
+        "pk": 274,
+        "fields": {
+            "history": 45,
+            "academic_degree": 6
+        }
+    },
+    {
+        "model": "user.academicdegreehistory",
+        "pk": 275,
+        "fields": {
+            "history": 45,
+            "academic_degree": 6
+        }
+    },
+    {
+        "model": "user.academicdegreehistory",
+        "pk": 276,
+        "fields": {
+            "history": 45,
+            "academic_degree": 6
+        }
+    },
+    {
+        "model": "user.academicdegreehistory",
+        "pk": 277,
+        "fields": {
+            "history": 42,
+            "academic_degree": 6
+        }
+    },
+    {
+        "model": "user.academicdegreehistory",
+        "pk": 278,
+        "fields": {
+            "history": 42,
+            "academic_degree": 6
+        }
+    },
+    {
+        "model": "user.academicdegreehistory",
+        "pk": 279,
+        "fields": {
+            "history": 42,
+            "academic_degree": 6
+        }
+    },
+    {
+        "model": "user.academicdegreehistory",
+        "pk": 280,
+        "fields": {
+            "history": 42,
+            "academic_degree": 4
+        }
+    },
+    {
+        "model": "user.academicdegreehistory",
+        "pk": 281,
+        "fields": {
+            "history": 42,
+            "academic_degree": 2
+        }
+    },
+    {
+        "model": "user.academicdegreehistory",
+        "pk": 282,
+        "fields": {
+            "history": 50,
+            "academic_degree": 4
+        }
+    },
+    {
+        "model": "user.academicdegreehistory",
+        "pk": 283,
+        "fields": {
+            "history": 50,
+            "academic_degree": 2
+        }
+    },
+    {
+        "model": "user.academicdegreehistory",
+        "pk": 284,
+        "fields": {
+            "history": 50,
+            "academic_degree": 6
+        }
+    },
+    {
+        "model": "user.academicdegreehistory",
+        "pk": 285,
+        "fields": {
+            "history": 11,
+            "academic_degree": 3
+        }
+    },
+    {
+        "model": "user.academicdegreehistory",
+        "pk": 286,
+        "fields": {
+            "history": 11,
+            "academic_degree": 2
+        }
+    },
+    {
+        "model": "user.academicdegreehistory",
+        "pk": 287,
+        "fields": {
+            "history": 56,
+            "academic_degree": 4
+        }
+    },
+    {
+        "model": "user.academicdegreehistory",
+        "pk": 288,
+        "fields": {
+            "history": 56,
+            "academic_degree": 2
+        }
+    },
+    {
+        "model": "user.academicdegreehistory",
+        "pk": 289,
+        "fields": {
+            "history": 56,
+            "academic_degree": 6
+        }
+    },
+    {
+        "model": "user.academicdegreehistory",
+        "pk": 290,
+        "fields": {
+            "history": 14,
+            "academic_degree": 6
+        }
+    },
+    {
+        "model": "user.academicdegreehistory",
+        "pk": 291,
+        "fields": {
+            "history": 69,
+            "academic_degree": 4
+        }
+    },
+    {
+        "model": "user.academicdegreehistory",
+        "pk": 292,
+        "fields": {
+            "history": 69,
+            "academic_degree": 3
+        }
+    },
+    {
+        "model": "user.academicdegreehistory",
+        "pk": 295,
+        "fields": {
+            "history": 70,
+            "academic_degree": 4
+        }
+    },
+    {
+        "model": "user.academicdegreehistory",
+        "pk": 296,
+        "fields": {
+            "history": 70,
+            "academic_degree": 3
+        }
+    },
+    {
+        "model": "user.academicdegreehistory",
+        "pk": 297,
+        "fields": {
+            "history": 71,
+            "academic_degree": 4
+        }
+    },
+    {
+        "model": "user.academicdegreehistory",
+        "pk": 298,
+        "fields": {
+            "history": 71,
+            "academic_degree": 3
+        }
+    },
+    {
+        "model": "user.academicdegreehistory",
+        "pk": 301,
+        "fields": {
+            "history": 72,
+            "academic_degree": 4
+        }
+    },
+    {
+        "model": "user.academicdegreehistory",
+        "pk": 302,
+        "fields": {
+            "history": 72,
+            "academic_degree": 3
+        }
+    },
+    {
+        "model": "user.academicdegreehistory",
+        "pk": 303,
+        "fields": {
+            "history": 73,
+            "academic_degree": 4
+        }
+    },
+    {
+        "model": "user.academicdegreehistory",
+        "pk": 304,
+        "fields": {
+            "history": 73,
+            "academic_degree": 3
+        }
+    },
+    {
+        "model": "user.history",
+        "pk": 1,
+        "fields": {
+            "birth": "2004-06-16",
+            "date_career": "2022-03-10",
+            "date_campus": "2020-02-01",
+            "date_professor": "2023-03-10",
+            "date_area": "2020-02-01",
+            "date_institute": "2020-02-01"
+        }
+    },
+    {
+        "model": "user.history",
+        "pk": 2,
+        "fields": {
+            "birth": "1980-04-16",
+            "date_career": "2000-01-30",
+            "date_campus": "2003-03-10",
+            "date_professor": "2002-03-10",
+            "date_area": "2003-03-10",
+            "date_institute": "2002-03-10"
+        }
+    },
+    {
+        "model": "user.history",
+        "pk": 3,
+        "fields": {
+            "birth": "1980-04-16",
+            "date_career": "2000-01-30",
+            "date_campus": "2003-03-10",
+            "date_professor": "2002-03-10",
+            "date_area": "2003-03-10",
+            "date_institute": "2002-03-10"
+        }
+    },
+    {
+        "model": "user.history",
+        "pk": 4,
+        "fields": {
+            "birth": "1980-04-16",
+            "date_career": "2000-01-30",
+            "date_campus": "2003-03-10",
+            "date_professor": "2002-03-10",
+            "date_area": "2003-03-10",
+            "date_institute": "2002-03-10"
+        }
+    },
+    {
+        "model": "user.history",
+        "pk": 5,
+        "fields": {
+            "birth": "1980-04-16",
+            "date_career": "2000-01-30",
+            "date_campus": "2003-03-10",
+            "date_professor": "2002-03-10",
+            "date_area": "2003-03-10",
+            "date_institute": "2002-03-10"
+        }
+    },
+    {
+        "model": "user.history",
+        "pk": 6,
+        "fields": {
+            "birth": "1980-04-16",
+            "date_career": "2000-01-30",
+            "date_campus": "2003-03-10",
+            "date_professor": "2002-03-10",
+            "date_area": "2003-03-10",
+            "date_institute": "2002-03-10"
+        }
+    },
+    {
+        "model": "user.history",
+        "pk": 7,
+        "fields": {
+            "birth": "1980-04-16",
+            "date_career": "2000-01-30",
+            "date_campus": "2003-03-10",
+            "date_professor": "2002-03-10",
+            "date_area": "2003-03-10",
+            "date_institute": "2002-03-10"
+        }
+    },
+    {
+        "model": "user.history",
+        "pk": 8,
+        "fields": {
+            "birth": "2009-09-09",
+            "date_career": "2009-09-09",
+            "date_campus": "2009-09-09",
+            "date_professor": "2009-09-09",
+            "date_area": "2009-09-09",
+            "date_institute": "2009-09-09"
+        }
+    },
+    {
+        "model": "user.history",
+        "pk": 9,
+        "fields": {
+            "birth": "1980-04-16",
+            "date_career": "2003-03-10",
+            "date_campus": "2003-03-10",
+            "date_professor": "2002-03-10",
+            "date_area": "2003-03-10",
+            "date_institute": "2003-03-10"
+        }
+    },
+    {
+        "model": "user.history",
+        "pk": 10,
+        "fields": {
+            "birth": "1970-07-13",
+            "date_career": "1988-09-10",
+            "date_campus": "1998-09-10",
+            "date_professor": "2004-03-10",
+            "date_area": "2004-03-10",
+            "date_institute": "2004-03-10"
+        }
+    },
+    {
+        "model": "user.history",
+        "pk": 11,
+        "fields": {
+            "birth": "1990-08-08",
+            "date_career": "2010-08-08",
+            "date_campus": "2010-08-08",
+            "date_professor": "2011-01-08",
+            "date_area": "2011-01-08",
+            "date_institute": "2011-01-08"
+        }
+    },
+    {
+        "model": "user.history",
+        "pk": 12,
+        "fields": {
+            "birth": "1970-02-22",
+            "date_career": "1990-01-01",
+            "date_campus": "1990-01-01",
+            "date_professor": "1990-01-01",
+            "date_area": "1990-01-01",
+            "date_institute": "1990-01-01"
+        }
+    },
+    {
+        "model": "user.history",
+        "pk": 13,
+        "fields": {
+            "birth": "1965-07-17",
+            "date_career": "1995-03-10",
+            "date_campus": "1995-03-10",
+            "date_professor": "1995-03-10",
+            "date_area": "1995-03-10",
+            "date_institute": "1995-03-10"
+        }
+    },
+    {
+        "model": "user.history",
+        "pk": 14,
+        "fields": {
+            "birth": "2004-05-26",
+            "date_career": "2022-03-01",
+            "date_campus": "2020-01-01",
+            "date_professor": "2022-03-01",
+            "date_area": "2020-03-01",
+            "date_institute": "2020-03-01"
+        }
+    },
+    {
+        "model": "user.history",
+        "pk": 15,
+        "fields": {
+            "birth": "1992-10-15",
+            "date_career": "2010-01-01",
+            "date_campus": "2022-03-10",
+            "date_professor": "2022-03-10",
+            "date_area": "2010-01-01",
+            "date_institute": "2010-01-01"
+        }
+    },
+    {
+        "model": "user.history",
+        "pk": 16,
+        "fields": {
+            "birth": "2005-04-02",
+            "date_career": "2022-03-10",
+            "date_campus": "2020-01-01",
+            "date_professor": "2022-03-10",
+            "date_area": "2020-01-01",
+            "date_institute": "2020-01-01"
+        }
+    },
+    {
+        "model": "user.history",
+        "pk": 17,
+        "fields": {
+            "birth": "2004-09-18",
+            "date_career": "2023-03-10",
+            "date_campus": "2020-01-01",
+            "date_professor": "2023-03-10",
+            "date_area": "2020-01-01",
+            "date_institute": "2020-01-01"
+        }
+    },
+    {
+        "model": "user.history",
+        "pk": 18,
+        "fields": {
+            "birth": "1985-01-11",
+            "date_career": "2000-01-01",
+            "date_campus": "2019-10-10",
+            "date_professor": "2003-03-01",
+            "date_area": "2000-01-01",
+            "date_institute": "2000-01-01"
+        }
+    },
+    {
+        "model": "user.history",
+        "pk": 19,
+        "fields": {
+            "birth": "2005-03-14",
+            "date_career": "2023-03-10",
+            "date_campus": "2020-01-01",
+            "date_professor": "2023-03-10",
+            "date_area": "2020-01-01",
+            "date_institute": "2020-01-01"
+        }
+    },
+    {
+        "model": "user.history",
+        "pk": 20,
+        "fields": {
+            "birth": "1980-02-02",
+            "date_career": "1996-04-01",
+            "date_campus": "2000-03-10",
+            "date_professor": "2002-03-10",
+            "date_area": "1996-04-01",
+            "date_institute": "1996-04-01"
+        }
+    },
+    {
+        "model": "user.history",
+        "pk": 21,
+        "fields": {
+            "birth": "1970-01-01",
+            "date_career": "1988-02-01",
+            "date_campus": "1992-03-10",
+            "date_professor": "1992-02-22",
+            "date_area": "1988-02-01",
+            "date_institute": "1992-02-22"
+        }
+    },
+    {
+        "model": "user.history",
+        "pk": 22,
+        "fields": {
+            "birth": "1970-01-01",
+            "date_career": "1988-02-01",
+            "date_campus": "1992-03-10",
+            "date_professor": "1992-02-22",
+            "date_area": "1988-02-01",
+            "date_institute": "1988-02-01"
+        }
+    },
+    {
+        "model": "user.history",
+        "pk": 23,
+        "fields": {
+            "birth": "1982-07-02",
+            "date_career": "1998-10-10",
+            "date_campus": "2001-09-10",
+            "date_professor": "2008-03-10",
+            "date_area": "2008-03-10",
+            "date_institute": "2008-03-10"
+        }
+    },
+    {
+        "model": "user.history",
+        "pk": 24,
+        "fields": {
+            "birth": "1972-03-29",
+            "date_career": "1990-02-01",
+            "date_campus": "2000-02-01",
+            "date_professor": "2000-02-01",
+            "date_area": "2000-02-01",
+            "date_institute": "2000-02-01"
+        }
+    },
+    {
+        "model": "user.history",
+        "pk": 25,
+        "fields": {
+            "birth": "1978-11-03",
+            "date_career": "1997-02-20",
+            "date_campus": "2000-03-10",
+            "date_professor": "2000-03-10",
+            "date_area": "2000-03-10",
+            "date_institute": "2000-03-10"
+        }
+    },
+    {
+        "model": "user.history",
+        "pk": 26,
+        "fields": {
+            "birth": "1980-06-24",
+            "date_career": "2000-05-20",
+            "date_campus": "2002-01-01",
+            "date_professor": "2002-01-01",
+            "date_area": "2002-01-01",
+            "date_institute": "2002-01-01"
+        }
+    },
+    {
+        "model": "user.history",
+        "pk": 27,
+        "fields": {
+            "birth": "1982-08-30",
+            "date_career": "2001-03-10",
+            "date_campus": "2001-03-10",
+            "date_professor": "2001-03-10",
+            "date_area": "2001-03-10",
+            "date_institute": "2001-03-10"
+        }
+    },
+    {
+        "model": "user.history",
+        "pk": 28,
+        "fields": {
+            "birth": "1988-03-31",
+            "date_career": "2009-09-10",
+            "date_campus": "2011-09-10",
+            "date_professor": "2009-09-10",
+            "date_area": "2009-09-10",
+            "date_institute": "2009-09-10"
+        }
+    },
+    {
+        "model": "user.history",
+        "pk": 29,
+        "fields": {
+            "birth": "1990-07-07",
+            "date_career": "2010-09-09",
+            "date_campus": "2020-03-10",
+            "date_professor": "2013-02-01",
+            "date_area": "2010-09-09",
+            "date_institute": "2010-09-09"
+        }
+    },
+    {
+        "model": "user.history",
+        "pk": 30,
+        "fields": {
+            "birth": "1987-08-08",
+            "date_career": "2004-09-10",
+            "date_campus": "2009-03-10",
+            "date_professor": "2007-03-10",
+            "date_area": "2004-09-10",
+            "date_institute": "2004-09-10"
+        }
+    },
+    {
+        "model": "user.history",
+        "pk": 31,
+        "fields": {
+            "birth": "1990-11-11",
+            "date_career": "2017-03-20",
+            "date_campus": "2021-05-06",
+            "date_professor": "2021-05-06",
+            "date_area": "2019-03-10",
+            "date_institute": "2019-03-10"
+        }
+    },
+    {
+        "model": "user.history",
+        "pk": 32,
+        "fields": {
+            "birth": "1989-08-08",
+            "date_career": "2013-06-26",
+            "date_campus": "2018-09-10",
+            "date_professor": "2015-03-01",
+            "date_area": "2013-06-26",
+            "date_institute": "2013-06-26"
+        }
+    },
+    {
+        "model": "user.history",
+        "pk": 33,
+        "fields": {
+            "birth": "1988-08-02",
+            "date_career": "2000-05-03",
+            "date_campus": "2000-09-02",
+            "date_professor": "2000-09-02",
+            "date_area": "2000-09-02",
+            "date_institute": "2000-09-02"
+        }
+    },
+    {
+        "model": "user.history",
+        "pk": 34,
+        "fields": {
+            "birth": "1988-08-02",
+            "date_career": "2000-05-03",
+            "date_campus": "2000-09-02",
+            "date_professor": "2000-09-02",
+            "date_area": "2000-09-02",
+            "date_institute": "2000-09-02"
+        }
+    },
+    {
+        "model": "user.history",
+        "pk": 35,
+        "fields": {
+            "birth": "1920-07-04",
+            "date_career": "1940-03-06",
+            "date_campus": "1941-06-29",
+            "date_professor": "1940-07-29",
+            "date_area": "1940-04-29",
+            "date_institute": "1940-04-29"
+        }
+    },
+    {
+        "model": "user.history",
+        "pk": 36,
+        "fields": {
+            "birth": "1950-07-04",
+            "date_career": "1970-07-04",
+            "date_campus": "1971-07-01",
+            "date_professor": "1971-07-01",
+            "date_area": "1970-07-04",
+            "date_institute": "1970-07-04"
+        }
+    },
+    {
+        "model": "user.history",
+        "pk": 37,
+        "fields": {
+            "birth": "1950-05-29",
+            "date_career": "1971-12-31",
+            "date_campus": "1971-12-31",
+            "date_professor": "1971-12-31",
+            "date_area": "1971-12-31",
+            "date_institute": "1971-12-31"
+        }
+    },
+    {
+        "model": "user.history",
+        "pk": 38,
+        "fields": {
+            "birth": "1970-05-04",
+            "date_career": "1988-03-20",
+            "date_campus": "2020-09-10",
+            "date_professor": "2000-03-10",
+            "date_area": "1988-03-20",
+            "date_institute": "1988-03-20"
+        }
+    },
+    {
+        "model": "user.history",
+        "pk": 39,
+        "fields": {
+            "birth": "1990-03-01",
+            "date_career": "1995-03-01",
+            "date_campus": "2000-04-01",
+            "date_professor": "2000-04-02",
+            "date_area": "1995-03-01",
+            "date_institute": "1995-03-01"
+        }
+    },
+    {
+        "model": "user.history",
+        "pk": 40,
+        "fields": {
+            "birth": "1989-10-20",
+            "date_career": "2008-01-01",
+            "date_campus": "2022-03-10",
+            "date_professor": "2019-03-10",
+            "date_area": "2012-01-01",
+            "date_institute": "2012-01-01"
+        }
+    },
+    {
+        "model": "user.history",
+        "pk": 41,
+        "fields": {
+            "birth": "1990-03-27",
+            "date_career": "2020-03-10",
+            "date_campus": "2020-03-10",
+            "date_professor": "2020-03-10",
+            "date_area": "2020-03-10",
+            "date_institute": "2020-03-10"
+        }
+    },
+    {
+        "model": "user.history",
+        "pk": 42,
+        "fields": {
+            "birth": "1986-09-19",
+            "date_career": "2003-09-20",
+            "date_campus": "2019-09-10",
+            "date_professor": "2010-04-10",
+            "date_area": "2005-05-05",
+            "date_institute": "2005-05-05"
+        }
+    },
+    {
+        "model": "user.history",
+        "pk": 43,
+        "fields": {
+            "birth": "1988-02-13",
+            "date_career": "2005-03-10",
+            "date_campus": "2007-09-10",
+            "date_professor": "2008-09-10",
+            "date_area": "2005-03-10",
+            "date_institute": "2005-03-10"
+        }
+    },
+    {
+        "model": "user.history",
+        "pk": 44,
+        "fields": {
+            "birth": "1955-09-29",
+            "date_career": "1975-10-28",
+            "date_campus": "1975-10-28",
+            "date_professor": "1975-10-28",
+            "date_area": "1975-10-28",
+            "date_institute": "1975-10-28"
+        }
+    },
+    {
+        "model": "user.history",
+        "pk": 45,
+        "fields": {
+            "birth": "1989-04-30",
+            "date_career": "2020-04-20",
+            "date_campus": "2022-09-10",
+            "date_professor": "2022-09-10",
+            "date_area": "2020-04-20",
+            "date_institute": "2020-04-20"
+        }
+    },
+    {
+        "model": "user.history",
+        "pk": 46,
+        "fields": {
+            "birth": "1991-07-18",
+            "date_career": "2001-03-10",
+            "date_campus": "2002-03-10",
+            "date_professor": "2004-09-10",
+            "date_area": "2001-03-10",
+            "date_institute": "2001-03-10"
+        }
+    },
+    {
+        "model": "user.history",
+        "pk": 47,
+        "fields": {
+            "birth": "1923-09-03",
+            "date_career": "1950-09-03",
+            "date_campus": "1950-09-03",
+            "date_professor": "1950-09-03",
+            "date_area": "1950-09-03",
+            "date_institute": "1950-09-03"
+        }
+    },
+    {
+        "model": "user.history",
+        "pk": 48,
+        "fields": {
+            "birth": "1923-09-03",
+            "date_career": "1950-09-03",
+            "date_campus": "1950-09-03",
+            "date_professor": "1950-09-03",
+            "date_area": "1950-09-03",
+            "date_institute": "1950-09-03"
+        }
+    },
+    {
+        "model": "user.history",
+        "pk": 49,
+        "fields": {
+            "birth": "1923-09-03",
+            "date_career": "1950-09-03",
+            "date_campus": "1950-09-03",
+            "date_professor": "1950-09-03",
+            "date_area": "1950-09-03",
+            "date_institute": "1950-09-03"
+        }
+    },
+    {
+        "model": "user.history",
+        "pk": 50,
+        "fields": {
+            "birth": "1991-01-02",
+            "date_career": "2001-10-10",
+            "date_campus": "2020-09-10",
+            "date_professor": "2020-09-10",
+            "date_area": "2011-05-30",
+            "date_institute": "2011-05-30"
+        }
+    },
+    {
+        "model": "user.history",
+        "pk": 51,
+        "fields": {
+            "birth": "1969-08-03",
+            "date_career": "1980-09-30",
+            "date_campus": "1980-09-30",
+            "date_professor": "1980-09-30",
+            "date_area": "1980-09-30",
+            "date_institute": "1980-09-30"
+        }
+    },
+    {
+        "model": "user.history",
+        "pk": 52,
+        "fields": {
+            "birth": "1992-02-29",
+            "date_career": "2010-03-10",
+            "date_campus": "2015-09-10",
+            "date_professor": "2014-09-10",
+            "date_area": "2010-03-10",
+            "date_institute": "2010-03-10"
+        }
+    },
+    {
+        "model": "user.history",
+        "pk": 53,
+        "fields": {
+            "birth": "1970-03-14",
+            "date_career": "1990-07-27",
+            "date_campus": "1990-07-27",
+            "date_professor": "1990-07-27",
+            "date_area": "1990-07-27",
+            "date_institute": "1990-07-27"
+        }
+    },
+    {
+        "model": "user.history",
+        "pk": 54,
+        "fields": {
+            "birth": "1989-09-09",
+            "date_career": "2015-08-18",
+            "date_campus": "2017-03-10",
+            "date_professor": "2015-09-10",
+            "date_area": "2015-08-18",
+            "date_institute": "2015-08-18"
+        }
+    },
+    {
+        "model": "user.history",
+        "pk": 55,
+        "fields": {
+            "birth": "1972-09-04",
+            "date_career": "2001-11-03",
+            "date_campus": "2001-11-03",
+            "date_professor": "2001-11-03",
+            "date_area": "1990-08-03",
+            "date_institute": "1990-08-03"
+        }
+    },
+    {
+        "model": "user.history",
+        "pk": 56,
+        "fields": {
+            "birth": "1993-08-08",
+            "date_career": "2015-02-28",
+            "date_campus": "2021-03-10",
+            "date_professor": "2021-03-10",
+            "date_area": "2015-02-28",
+            "date_institute": "2015-02-28"
+        }
+    },
+    {
+        "model": "user.history",
+        "pk": 57,
+        "fields": {
+            "birth": "1920-07-05",
+            "date_career": "1960-07-02",
+            "date_campus": "1960-07-02",
+            "date_professor": "1960-07-02",
+            "date_area": "1960-07-02",
+            "date_institute": "1960-07-02"
+        }
+    },
+    {
+        "model": "user.history",
+        "pk": 58,
+        "fields": {
+            "birth": "1990-09-23",
+            "date_career": "2008-03-31",
+            "date_campus": "2020-05-05",
+            "date_professor": "2020-05-05",
+            "date_area": "2008-03-31",
+            "date_institute": "2008-03-31"
+        }
+    },
+    {
+        "model": "user.history",
+        "pk": 59,
+        "fields": {
+            "birth": "1942-10-29",
+            "date_career": "1952-08-27",
+            "date_campus": "1952-08-27",
+            "date_professor": "1952-08-27",
+            "date_area": "1952-08-27",
+            "date_institute": "1952-08-27"
+        }
+    },
+    {
+        "model": "user.history",
+        "pk": 60,
+        "fields": {
+            "birth": "1991-02-02",
+            "date_career": "2011-09-09",
+            "date_campus": "2019-03-10",
+            "date_professor": "2019-03-10",
+            "date_area": "2011-09-09",
+            "date_institute": "2011-09-09"
+        }
+    },
+    {
+        "model": "user.history",
+        "pk": 61,
+        "fields": {
+            "birth": "1975-03-14",
+            "date_career": "2002-05-01",
+            "date_campus": "2002-05-01",
+            "date_professor": "2002-05-01",
+            "date_area": "2002-05-01",
+            "date_institute": "2002-05-01"
+        }
+    },
+    {
+        "model": "user.history",
+        "pk": 62,
+        "fields": {
+            "birth": "1975-03-14",
+            "date_career": "2002-05-01",
+            "date_campus": "2002-05-01",
+            "date_professor": "2002-05-01",
+            "date_area": "2002-05-01",
+            "date_institute": "2002-05-01"
+        }
+    },
+    {
+        "model": "user.history",
+        "pk": 63,
+        "fields": {
+            "birth": "1993-03-07",
+            "date_career": "2010-02-27",
+            "date_campus": "2019-03-10",
+            "date_professor": "2010-02-27",
+            "date_area": "2013-04-18",
+            "date_institute": "2013-04-18"
+        }
+    },
+    {
+        "model": "user.history",
+        "pk": 64,
+        "fields": {
+            "birth": "1992-08-31",
+            "date_career": "2010-03-03",
+            "date_campus": "2018-03-10",
+            "date_professor": "2012-05-20",
+            "date_area": "2010-03-03",
+            "date_institute": "2010-03-03"
+        }
+    },
+    {
+        "model": "user.history",
+        "pk": 65,
+        "fields": {
+            "birth": "1980-06-27",
+            "date_career": "2005-04-01",
+            "date_campus": "2005-04-01",
+            "date_professor": "2005-04-01",
+            "date_area": "2005-04-01",
+            "date_institute": "2005-04-01"
+        }
+    },
+    {
+        "model": "user.history",
+        "pk": 66,
+        "fields": {
+            "birth": "1980-06-27",
+            "date_career": "2005-04-01",
+            "date_campus": "2005-04-01",
+            "date_professor": "2005-04-01",
+            "date_area": "2005-04-01",
+            "date_institute": "2005-04-01"
+        }
+    },
+    {
+        "model": "user.history",
+        "pk": 67,
+        "fields": {
+            "birth": "1991-03-20",
+            "date_career": "2011-02-03",
+            "date_campus": "2019-03-10",
+            "date_professor": "2011-02-03",
+            "date_area": "2012-09-10",
+            "date_institute": "2012-09-10"
+        }
+    },
+    {
+        "model": "user.history",
+        "pk": 68,
+        "fields": {
+            "birth": "2004-04-01",
+            "date_career": "2019-03-29",
+            "date_campus": "2019-03-29",
+            "date_professor": "2019-03-29",
+            "date_area": "2019-03-29",
+            "date_institute": "2019-03-29"
+        }
+    },
+    {
+        "model": "user.history",
+        "pk": 69,
+        "fields": {
+            "birth": "1980-03-03",
+            "date_career": "1998-02-02",
+            "date_campus": "2000-03-10",
+            "date_professor": "1998-02-02",
+            "date_area": "1998-02-02",
+            "date_institute": "1998-02-02"
+        }
+    },
+    {
+        "model": "user.history",
+        "pk": 70,
+        "fields": {
+            "birth": "1990-04-04",
+            "date_career": "2000-03-03",
+            "date_campus": "2004-09-10",
+            "date_professor": "2000-03-03",
+            "date_area": "2000-03-03",
+            "date_institute": "2004-03-03"
+        }
+    },
+    {
+        "model": "user.history",
+        "pk": 71,
+        "fields": {
+            "birth": "1978-05-09",
+            "date_career": "2002-03-10",
+            "date_campus": "2002-03-10",
+            "date_professor": "2002-03-10",
+            "date_area": "2002-03-10",
+            "date_institute": "2002-03-10"
+        }
+    },
+    {
+        "model": "user.history",
+        "pk": 72,
+        "fields": {
+            "birth": "1978-04-20",
+            "date_career": "1998-09-10",
+            "date_campus": "1998-09-10",
+            "date_professor": "1998-09-10",
+            "date_area": "1998-09-10",
+            "date_institute": "1998-09-10"
+        }
+    },
+    {
+        "model": "user.history",
+        "pk": 73,
+        "fields": {
+            "birth": "1979-06-04",
+            "date_career": "1998-03-10",
+            "date_campus": "1998-03-10",
+            "date_professor": "1998-03-10",
+            "date_area": "1998-03-10",
+            "date_institute": "1998-03-10"
+        }
+    },
+    {
+        "model": "user.academicdegree",
+        "pk": 1,
+        "fields": {
+            "name": "DOUTORADO",
+            "punctuation": 5
+        }
+    },
+    {
+        "model": "user.academicdegree",
+        "pk": 2,
+        "fields": {
+            "name": "MESTRADO",
+            "punctuation": 4
+        }
+    },
+    {
+        "model": "user.academicdegree",
+        "pk": 3,
+        "fields": {
+            "name": "LICENCIATURA",
+            "punctuation": 3
+        }
+    },
+    {
+        "model": "user.academicdegree",
+        "pk": 4,
+        "fields": {
+            "name": "BACHARELADO",
+            "punctuation": 2
+        }
+    },
+    {
+        "model": "user.academicdegree",
+        "pk": 5,
+        "fields": {
+            "name": "CURSO LATO SENSU",
+            "punctuation": 1
+        }
+    },
+    {
+        "model": "user.academicdegree",
+        "pk": 6,
+        "fields": {
+            "name": "TÉCNICO",
+            "punctuation": 1
+        }
+    },
+    {
+        "model": "user.job",
+        "pk": 15,
+        "fields": {
+            "name_job": "TWENTY_HOURS"
+        }
+    },
+    {
+        "model": "user.job",
+        "pk": 44,
+        "fields": {
+            "name_job": "TWENTY_HOURS"
+        }
+    },
+    {
+        "model": "user.job",
+        "pk": 47,
+        "fields": {
+            "name_job": "RDE"
+        }
+    },
+    {
+        "model": "user.job",
+        "pk": 50,
+        "fields": {
+            "name_job": "RDE"
+        }
+    },
+    {
+        "model": "user.job",
+        "pk": 136,
+        "fields": {
+            "name_job": "FORTY_HOURS"
+        }
+    },
+    {
+        "model": "user.job",
+        "pk": 137,
+        "fields": {
+            "name_job": "RDE"
+        }
+    },
+    {
+        "model": "user.job",
+        "pk": 138,
+        "fields": {
+            "name_job": "RDE"
+        }
+    },
+    {
+        "model": "user.job",
+        "pk": 139,
+        "fields": {
+            "name_job": "RDE"
+        }
+    },
+    {
+        "model": "user.job",
+        "pk": 140,
+        "fields": {
+            "name_job": "RDE"
+        }
+    },
+    {
+        "model": "user.job",
+        "pk": 141,
+        "fields": {
+            "name_job": "SUBSTITUTE"
+        }
+    },
+    {
+        "model": "user.job",
+        "pk": 189,
+        "fields": {
+            "name_job": "RDE"
+        }
+    },
+    {
+        "model": "user.job",
+        "pk": 190,
+        "fields": {
+            "name_job": "RDE"
+        }
+    },
+    {
+        "model": "user.job",
+        "pk": 199,
+        "fields": {
+            "name_job": "RDE"
+        }
+    },
+    {
+        "model": "user.job",
+        "pk": 212,
+        "fields": {
+            "name_job": "RDE"
+        }
+    },
+    {
+        "model": "user.job",
+        "pk": 214,
+        "fields": {
+            "name_job": "RDE"
+        }
+    },
+    {
+        "model": "user.job",
+        "pk": 217,
+        "fields": {
+            "name_job": "RDE"
+        }
+    },
+    {
+        "model": "user.job",
+        "pk": 219,
+        "fields": {
+            "name_job": "RDE"
+        }
+    },
+    {
+        "model": "user.job",
+        "pk": 220,
+        "fields": {
+            "name_job": "RDE"
+        }
+    },
+    {
+        "model": "user.job",
+        "pk": 221,
+        "fields": {
+            "name_job": "RDE"
+        }
+    },
+    {
+        "model": "user.job",
+        "pk": 222,
+        "fields": {
+            "name_job": "RDE"
+        }
+    },
+    {
+        "model": "user.job",
+        "pk": 223,
+        "fields": {
+            "name_job": "FORTY_HOURS"
+        }
+    },
+    {
+        "model": "user.job",
+        "pk": 224,
+        "fields": {
+            "name_job": "RDE"
+        }
+    },
+    {
+        "model": "user.job",
+        "pk": 225,
+        "fields": {
+            "name_job": "RDE"
+        }
+    },
+    {
+        "model": "user.job",
+        "pk": 226,
+        "fields": {
+            "name_job": "RDE"
+        }
+    },
+    {
+        "model": "user.job",
+        "pk": 227,
+        "fields": {
+            "name_job": "RDE"
+        }
+    },
+    {
+        "model": "user.job",
+        "pk": 228,
+        "fields": {
+            "name_job": "RDE"
+        }
+    },
+    {
+        "model": "user.job",
+        "pk": 229,
+        "fields": {
+            "name_job": "RDE"
+        }
+    },
+    {
+        "model": "user.job",
+        "pk": 230,
+        "fields": {
+            "name_job": "RDE"
+        }
+    },
+    {
+        "model": "user.job",
+        "pk": 231,
+        "fields": {
+            "name_job": "RDE"
+        }
+    },
+    {
+        "model": "user.job",
+        "pk": 232,
+        "fields": {
+            "name_job": "RDE"
+        }
+    },
+    {
+        "model": "user.job",
+        "pk": 233,
+        "fields": {
+            "name_job": "TEMPORARY"
+        }
+    },
+    {
+        "model": "user.job",
+        "pk": 234,
+        "fields": {
+            "name_job": "RDE"
+        }
+    },
+    {
+        "model": "user.job",
+        "pk": 235,
+        "fields": {
+            "name_job": "TWENTY_HOURS"
+        }
+    },
+    {
+        "model": "user.job",
+        "pk": 236,
+        "fields": {
+            "name_job": "RDE"
+        }
+    },
+    {
+        "model": "user.job",
+        "pk": 237,
+        "fields": {
+            "name_job": "RDE"
+        }
+    },
+    {
+        "model": "user.job",
+        "pk": 239,
+        "fields": {
+            "name_job": "RDE"
+        }
+    },
+    {
+        "model": "user.job",
+        "pk": 240,
+        "fields": {
+            "name_job": "RDE"
+        }
+    },
+    {
+        "model": "user.job",
+        "pk": 241,
+        "fields": {
+            "name_job": "RDE"
+        }
+    },
+    {
+        "model": "user.job",
+        "pk": 242,
+        "fields": {
+            "name_job": "RDE"
+        }
+    },
+    {
+        "model": "user.job",
+        "pk": 243,
+        "fields": {
+            "name_job": "TEMPORARY"
+        }
+    },
+    {
+        "model": "user.job",
+        "pk": 244,
+        "fields": {
+            "name_job": "RDE"
+        }
+    },
+    {
+        "model": "user.job",
+        "pk": 245,
+        "fields": {
+            "name_job": "TWENTY_HOURS"
+        }
+    },
+    {
+        "model": "user.job",
+        "pk": 246,
+        "fields": {
+            "name_job": "RDE"
+        }
+    },
+    {
+        "model": "user.job",
+        "pk": 247,
+        "fields": {
+            "name_job": "RDE"
+        }
+    },
+    {
+        "model": "user.job",
+        "pk": 248,
+        "fields": {
+            "name_job": "RDE"
+        }
+    },
+    {
+        "model": "user.job",
+        "pk": 249,
+        "fields": {
+            "name_job": "SUBSTITUTE"
+        }
+    },
+    {
+        "model": "user.job",
+        "pk": 250,
+        "fields": {
+            "name_job": "RDE"
+        }
+    },
+    {
+        "model": "user.job",
+        "pk": 251,
+        "fields": {
+            "name_job": "TEMPORARY"
+        }
+    },
+    {
+        "model": "user.job",
+        "pk": 252,
+        "fields": {
+            "name_job": "TWENTY_HOURS"
+        }
+    },
+    {
+        "model": "user.job",
+        "pk": 253,
+        "fields": {
+            "name_job": "RDE"
+        }
+    },
+    {
+        "model": "user.job",
+        "pk": 254,
+        "fields": {
+            "name_job": "TEMPORARY"
+        }
+    },
+    {
+        "model": "user.job",
+        "pk": 255,
+        "fields": {
+            "name_job": "RDE"
+        }
+    },
+    {
+        "model": "user.job",
+        "pk": 256,
+        "fields": {
+            "name_job": "FORTY_HOURS"
+        }
+    },
+    {
+        "model": "user.job",
+        "pk": 257,
+        "fields": {
+            "name_job": "TEMPORARY"
+        }
+    },
+    {
+        "model": "user.job",
+        "pk": 258,
+        "fields": {
+            "name_job": "RDE"
+        }
+    },
+    {
+        "model": "user.job",
+        "pk": 279,
+        "fields": {
+            "name_job": "RDE"
+        }
+    },
+    {
+        "model": "user.job",
+        "pk": 280,
+        "fields": {
+            "name_job": "RDE"
+        }
+    },
+    {
+        "model": "user.job",
+        "pk": 281,
+        "fields": {
+            "name_job": "SUBSTITUTE"
+        }
+    },
+    {
+        "model": "user.job",
+        "pk": 282,
+        "fields": {
+            "name_job": "FORTY_HOURS"
+        }
+    },
+    {
+        "model": "user.job",
+        "pk": 283,
+        "fields": {
+            "name_job": "FORTY_HOURS"
+        }
+    },
+    {
+        "model": "user.job",
+        "pk": 284,
+        "fields": {
+            "name_job": "RDE"
+        }
+    },
+    {
+        "model": "attribution_preference.attribution_preference",
+        "pk": 41,
+        "fields": {
+            "user": 61,
+            "year": "2023."
+        }
+    },
+    {
+        "model": "attribution_preference.attribution_preference",
+        "pk": 42,
+        "fields": {
+            "user": 59,
+            "year": "2023."
+        }
+    },
+    {
+        "model": "attribution_preference.attribution_preference",
+        "pk": 43,
+        "fields": {
+            "user": 62,
+            "year": "2023."
+        }
+    },
+    {
+        "model": "attribution_preference.attribution_preference",
+        "pk": 44,
+        "fields": {
+            "user": 1,
+            "year": "2023."
+        }
+    },
+    {
+        "model": "attribution_preference.attribution_preference",
+        "pk": 45,
+        "fields": {
+            "user": 63,
+            "year": "2023."
+        }
+    },
+    {
+        "model": "attribution_preference.attribution_preference",
+        "pk": 46,
+        "fields": {
+            "user": 60,
+            "year": "2023."
+        }
+    },
+    {
+        "model": "attribution_preference.preference_schedule",
+        "pk": 1480,
+        "fields": {
+            "attribution_preference": 41,
+            "timeslot": 1,
+            "day": "friday"
+        }
+    },
+    {
+        "model": "attribution_preference.preference_schedule",
+        "pk": 1481,
+        "fields": {
+            "attribution_preference": 41,
+            "timeslot": 2,
+            "day": "friday"
+        }
+    },
+    {
+        "model": "attribution_preference.preference_schedule",
+        "pk": 1482,
+        "fields": {
+            "attribution_preference": 41,
+            "timeslot": 3,
+            "day": "friday"
+        }
+    },
+    {
+        "model": "attribution_preference.preference_schedule",
+        "pk": 1483,
+        "fields": {
+            "attribution_preference": 41,
+            "timeslot": 4,
+            "day": "friday"
+        }
+    },
+    {
+        "model": "attribution_preference.preference_schedule",
+        "pk": 1484,
+        "fields": {
+            "attribution_preference": 41,
+            "timeslot": 5,
+            "day": "friday"
+        }
+    },
+    {
+        "model": "attribution_preference.preference_schedule",
+        "pk": 1485,
+        "fields": {
+            "attribution_preference": 41,
+            "timeslot": 6,
+            "day": "friday"
+        }
+    },
+    {
+        "model": "attribution_preference.preference_schedule",
+        "pk": 1486,
+        "fields": {
+            "attribution_preference": 41,
+            "timeslot": 9,
+            "day": "friday"
+        }
+    },
+    {
+        "model": "attribution_preference.preference_schedule",
+        "pk": 1487,
+        "fields": {
+            "attribution_preference": 41,
+            "timeslot": 10,
+            "day": "friday"
+        }
+    },
+    {
+        "model": "attribution_preference.preference_schedule",
+        "pk": 1488,
+        "fields": {
+            "attribution_preference": 41,
+            "timeslot": 11,
+            "day": "friday"
+        }
+    },
+    {
+        "model": "attribution_preference.preference_schedule",
+        "pk": 1489,
+        "fields": {
+            "attribution_preference": 41,
+            "timeslot": 12,
+            "day": "friday"
+        }
+    },
+    {
+        "model": "attribution_preference.preference_schedule",
+        "pk": 1490,
+        "fields": {
+            "attribution_preference": 41,
+            "timeslot": 1,
+            "day": "thursday"
+        }
+    },
+    {
+        "model": "attribution_preference.preference_schedule",
+        "pk": 1491,
+        "fields": {
+            "attribution_preference": 41,
+            "timeslot": 2,
+            "day": "thursday"
+        }
+    },
+    {
+        "model": "attribution_preference.preference_schedule",
+        "pk": 1492,
+        "fields": {
+            "attribution_preference": 41,
+            "timeslot": 3,
+            "day": "thursday"
+        }
+    },
+    {
+        "model": "attribution_preference.preference_schedule",
+        "pk": 1493,
+        "fields": {
+            "attribution_preference": 41,
+            "timeslot": 4,
+            "day": "thursday"
+        }
+    },
+    {
+        "model": "attribution_preference.preference_schedule",
+        "pk": 1494,
+        "fields": {
+            "attribution_preference": 41,
+            "timeslot": 5,
+            "day": "thursday"
+        }
+    },
+    {
+        "model": "attribution_preference.preference_schedule",
+        "pk": 1495,
+        "fields": {
+            "attribution_preference": 41,
+            "timeslot": 6,
+            "day": "thursday"
+        }
+    },
+    {
+        "model": "attribution_preference.preference_schedule",
+        "pk": 1496,
+        "fields": {
+            "attribution_preference": 41,
+            "timeslot": 9,
+            "day": "thursday"
+        }
+    },
+    {
+        "model": "attribution_preference.preference_schedule",
+        "pk": 1497,
+        "fields": {
+            "attribution_preference": 41,
+            "timeslot": 10,
+            "day": "thursday"
+        }
+    },
+    {
+        "model": "attribution_preference.preference_schedule",
+        "pk": 1498,
+        "fields": {
+            "attribution_preference": 41,
+            "timeslot": 11,
+            "day": "thursday"
+        }
+    },
+    {
+        "model": "attribution_preference.preference_schedule",
+        "pk": 1499,
+        "fields": {
+            "attribution_preference": 41,
+            "timeslot": 12,
+            "day": "thursday"
+        }
+    },
+    {
+        "model": "attribution_preference.preference_schedule",
+        "pk": 1500,
+        "fields": {
+            "attribution_preference": 41,
+            "timeslot": 1,
+            "day": "wednesday"
+        }
+    },
+    {
+        "model": "attribution_preference.preference_schedule",
+        "pk": 1501,
+        "fields": {
+            "attribution_preference": 41,
+            "timeslot": 2,
+            "day": "wednesday"
+        }
+    },
+    {
+        "model": "attribution_preference.preference_schedule",
+        "pk": 1502,
+        "fields": {
+            "attribution_preference": 41,
+            "timeslot": 3,
+            "day": "wednesday"
+        }
+    },
+    {
+        "model": "attribution_preference.preference_schedule",
+        "pk": 1503,
+        "fields": {
+            "attribution_preference": 41,
+            "timeslot": 4,
+            "day": "wednesday"
+        }
+    },
+    {
+        "model": "attribution_preference.preference_schedule",
+        "pk": 1504,
+        "fields": {
+            "attribution_preference": 41,
+            "timeslot": 5,
+            "day": "wednesday"
+        }
+    },
+    {
+        "model": "attribution_preference.preference_schedule",
+        "pk": 1505,
+        "fields": {
+            "attribution_preference": 41,
+            "timeslot": 6,
+            "day": "wednesday"
+        }
+    },
+    {
+        "model": "attribution_preference.preference_schedule",
+        "pk": 1506,
+        "fields": {
+            "attribution_preference": 41,
+            "timeslot": 9,
+            "day": "wednesday"
+        }
+    },
+    {
+        "model": "attribution_preference.preference_schedule",
+        "pk": 1507,
+        "fields": {
+            "attribution_preference": 41,
+            "timeslot": 10,
+            "day": "wednesday"
+        }
+    },
+    {
+        "model": "attribution_preference.preference_schedule",
+        "pk": 1508,
+        "fields": {
+            "attribution_preference": 41,
+            "timeslot": 11,
+            "day": "wednesday"
+        }
+    },
+    {
+        "model": "attribution_preference.preference_schedule",
+        "pk": 1509,
+        "fields": {
+            "attribution_preference": 41,
+            "timeslot": 12,
+            "day": "wednesday"
+        }
+    },
+    {
+        "model": "attribution_preference.preference_schedule",
+        "pk": 1510,
+        "fields": {
+            "attribution_preference": 41,
+            "timeslot": 1,
+            "day": "tuesday"
+        }
+    },
+    {
+        "model": "attribution_preference.preference_schedule",
+        "pk": 1511,
+        "fields": {
+            "attribution_preference": 41,
+            "timeslot": 2,
+            "day": "tuesday"
+        }
+    },
+    {
+        "model": "attribution_preference.preference_schedule",
+        "pk": 1512,
+        "fields": {
+            "attribution_preference": 41,
+            "timeslot": 3,
+            "day": "tuesday"
+        }
+    },
+    {
+        "model": "attribution_preference.preference_schedule",
+        "pk": 1513,
+        "fields": {
+            "attribution_preference": 41,
+            "timeslot": 4,
+            "day": "tuesday"
+        }
+    },
+    {
+        "model": "attribution_preference.preference_schedule",
+        "pk": 1514,
+        "fields": {
+            "attribution_preference": 41,
+            "timeslot": 5,
+            "day": "tuesday"
+        }
+    },
+    {
+        "model": "attribution_preference.preference_schedule",
+        "pk": 1515,
+        "fields": {
+            "attribution_preference": 41,
+            "timeslot": 6,
+            "day": "tuesday"
+        }
+    },
+    {
+        "model": "attribution_preference.preference_schedule",
+        "pk": 1516,
+        "fields": {
+            "attribution_preference": 41,
+            "timeslot": 8,
+            "day": "tuesday"
+        }
+    },
+    {
+        "model": "attribution_preference.preference_schedule",
+        "pk": 1517,
+        "fields": {
+            "attribution_preference": 41,
+            "timeslot": 9,
+            "day": "tuesday"
+        }
+    },
+    {
+        "model": "attribution_preference.preference_schedule",
+        "pk": 1518,
+        "fields": {
+            "attribution_preference": 41,
+            "timeslot": 10,
+            "day": "tuesday"
+        }
+    },
+    {
+        "model": "attribution_preference.preference_schedule",
+        "pk": 1519,
+        "fields": {
+            "attribution_preference": 41,
+            "timeslot": 1,
+            "day": "monday"
+        }
+    },
+    {
+        "model": "attribution_preference.preference_schedule",
+        "pk": 1520,
+        "fields": {
+            "attribution_preference": 41,
+            "timeslot": 2,
+            "day": "monday"
+        }
+    },
+    {
+        "model": "attribution_preference.preference_schedule",
+        "pk": 1521,
+        "fields": {
+            "attribution_preference": 41,
+            "timeslot": 3,
+            "day": "monday"
+        }
+    },
+    {
+        "model": "attribution_preference.preference_schedule",
+        "pk": 1522,
+        "fields": {
+            "attribution_preference": 41,
+            "timeslot": 4,
+            "day": "monday"
+        }
+    },
+    {
+        "model": "attribution_preference.preference_schedule",
+        "pk": 1523,
+        "fields": {
+            "attribution_preference": 41,
+            "timeslot": 5,
+            "day": "monday"
+        }
+    },
+    {
+        "model": "attribution_preference.preference_schedule",
+        "pk": 1524,
+        "fields": {
+            "attribution_preference": 41,
+            "timeslot": 6,
+            "day": "monday"
+        }
+    },
+    {
+        "model": "attribution_preference.preference_schedule",
+        "pk": 1525,
+        "fields": {
+            "attribution_preference": 41,
+            "timeslot": 8,
+            "day": "monday"
+        }
+    },
+    {
+        "model": "attribution_preference.preference_schedule",
+        "pk": 1526,
+        "fields": {
+            "attribution_preference": 41,
+            "timeslot": 9,
+            "day": "monday"
+        }
+    },
+    {
+        "model": "attribution_preference.preference_schedule",
+        "pk": 1527,
+        "fields": {
+            "attribution_preference": 41,
+            "timeslot": 10,
+            "day": "monday"
+        }
+    },
+    {
+        "model": "attribution_preference.preference_schedule",
+        "pk": 1528,
+        "fields": {
+            "attribution_preference": 41,
+            "timeslot": 7,
+            "day": "monday"
+        }
+    },
+    {
+        "model": "attribution_preference.preference_schedule",
+        "pk": 1529,
+        "fields": {
+            "attribution_preference": 41,
+            "timeslot": 7,
+            "day": "tuesday"
+        }
+    },
+    {
+        "model": "attribution_preference.preference_schedule",
+        "pk": 1530,
+        "fields": {
+            "attribution_preference": 42,
+            "timeslot": 18,
+            "day": "monday"
+        }
+    },
+    {
+        "model": "attribution_preference.preference_schedule",
+        "pk": 1531,
+        "fields": {
+            "attribution_preference": 42,
+            "timeslot": 19,
+            "day": "monday"
+        }
+    },
+    {
+        "model": "attribution_preference.preference_schedule",
+        "pk": 1532,
+        "fields": {
+            "attribution_preference": 42,
+            "timeslot": 20,
+            "day": "monday"
+        }
+    },
+    {
+        "model": "attribution_preference.preference_schedule",
+        "pk": 1533,
+        "fields": {
+            "attribution_preference": 42,
+            "timeslot": 21,
+            "day": "monday"
+        }
+    },
+    {
+        "model": "attribution_preference.preference_schedule",
+        "pk": 1534,
+        "fields": {
+            "attribution_preference": 42,
+            "timeslot": 22,
+            "day": "monday"
+        }
+    },
+    {
+        "model": "attribution_preference.preference_schedule",
+        "pk": 1535,
+        "fields": {
+            "attribution_preference": 42,
+            "timeslot": 23,
+            "day": "monday"
+        }
+    },
+    {
+        "model": "attribution_preference.preference_schedule",
+        "pk": 1536,
+        "fields": {
+            "attribution_preference": 42,
+            "timeslot": 18,
+            "day": "tuesday"
+        }
+    },
+    {
+        "model": "attribution_preference.preference_schedule",
+        "pk": 1537,
+        "fields": {
+            "attribution_preference": 42,
+            "timeslot": 19,
+            "day": "tuesday"
+        }
+    },
+    {
+        "model": "attribution_preference.preference_schedule",
+        "pk": 1538,
+        "fields": {
+            "attribution_preference": 42,
+            "timeslot": 20,
+            "day": "tuesday"
+        }
+    },
+    {
+        "model": "attribution_preference.preference_schedule",
+        "pk": 1539,
+        "fields": {
+            "attribution_preference": 42,
+            "timeslot": 21,
+            "day": "tuesday"
+        }
+    },
+    {
+        "model": "attribution_preference.preference_schedule",
+        "pk": 1540,
+        "fields": {
+            "attribution_preference": 42,
+            "timeslot": 22,
+            "day": "tuesday"
+        }
+    },
+    {
+        "model": "attribution_preference.preference_schedule",
+        "pk": 1541,
+        "fields": {
+            "attribution_preference": 42,
+            "timeslot": 23,
+            "day": "tuesday"
+        }
+    },
+    {
+        "model": "attribution_preference.preference_schedule",
+        "pk": 1542,
+        "fields": {
+            "attribution_preference": 42,
+            "timeslot": 18,
+            "day": "wednesday"
+        }
+    },
+    {
+        "model": "attribution_preference.preference_schedule",
+        "pk": 1543,
+        "fields": {
+            "attribution_preference": 42,
+            "timeslot": 19,
+            "day": "wednesday"
+        }
+    },
+    {
+        "model": "attribution_preference.preference_schedule",
+        "pk": 1544,
+        "fields": {
+            "attribution_preference": 42,
+            "timeslot": 20,
+            "day": "wednesday"
+        }
+    },
+    {
+        "model": "attribution_preference.preference_schedule",
+        "pk": 1545,
+        "fields": {
+            "attribution_preference": 42,
+            "timeslot": 21,
+            "day": "wednesday"
+        }
+    },
+    {
+        "model": "attribution_preference.preference_schedule",
+        "pk": 1546,
+        "fields": {
+            "attribution_preference": 42,
+            "timeslot": 22,
+            "day": "wednesday"
+        }
+    },
+    {
+        "model": "attribution_preference.preference_schedule",
+        "pk": 1547,
+        "fields": {
+            "attribution_preference": 42,
+            "timeslot": 23,
+            "day": "wednesday"
+        }
+    },
+    {
+        "model": "attribution_preference.preference_schedule",
+        "pk": 1548,
+        "fields": {
+            "attribution_preference": 42,
+            "timeslot": 18,
+            "day": "thursday"
+        }
+    },
+    {
+        "model": "attribution_preference.preference_schedule",
+        "pk": 1549,
+        "fields": {
+            "attribution_preference": 42,
+            "timeslot": 19,
+            "day": "thursday"
+        }
+    },
+    {
+        "model": "attribution_preference.preference_schedule",
+        "pk": 1550,
+        "fields": {
+            "attribution_preference": 42,
+            "timeslot": 20,
+            "day": "thursday"
+        }
+    },
+    {
+        "model": "attribution_preference.preference_schedule",
+        "pk": 1551,
+        "fields": {
+            "attribution_preference": 42,
+            "timeslot": 21,
+            "day": "thursday"
+        }
+    },
+    {
+        "model": "attribution_preference.preference_schedule",
+        "pk": 1552,
+        "fields": {
+            "attribution_preference": 42,
+            "timeslot": 22,
+            "day": "thursday"
+        }
+    },
+    {
+        "model": "attribution_preference.preference_schedule",
+        "pk": 1553,
+        "fields": {
+            "attribution_preference": 42,
+            "timeslot": 23,
+            "day": "thursday"
+        }
+    },
+    {
+        "model": "attribution_preference.preference_schedule",
+        "pk": 1554,
+        "fields": {
+            "attribution_preference": 42,
+            "timeslot": 18,
+            "day": "friday"
+        }
+    },
+    {
+        "model": "attribution_preference.preference_schedule",
+        "pk": 1555,
+        "fields": {
+            "attribution_preference": 42,
+            "timeslot": 19,
+            "day": "friday"
+        }
+    },
+    {
+        "model": "attribution_preference.preference_schedule",
+        "pk": 1556,
+        "fields": {
+            "attribution_preference": 42,
+            "timeslot": 20,
+            "day": "friday"
+        }
+    },
+    {
+        "model": "attribution_preference.preference_schedule",
+        "pk": 1557,
+        "fields": {
+            "attribution_preference": 42,
+            "timeslot": 21,
+            "day": "friday"
+        }
+    },
+    {
+        "model": "attribution_preference.preference_schedule",
+        "pk": 1558,
+        "fields": {
+            "attribution_preference": 42,
+            "timeslot": 22,
+            "day": "friday"
+        }
+    },
+    {
+        "model": "attribution_preference.preference_schedule",
+        "pk": 1559,
+        "fields": {
+            "attribution_preference": 42,
+            "timeslot": 23,
+            "day": "friday"
+        }
+    },
+    {
+        "model": "attribution_preference.preference_schedule",
+        "pk": 1560,
+        "fields": {
+            "attribution_preference": 42,
+            "timeslot": 9,
+            "day": "monday"
+        }
+    },
+    {
+        "model": "attribution_preference.preference_schedule",
+        "pk": 1561,
+        "fields": {
+            "attribution_preference": 42,
+            "timeslot": 9,
+            "day": "tuesday"
+        }
+    },
+    {
+        "model": "attribution_preference.preference_schedule",
+        "pk": 1562,
+        "fields": {
+            "attribution_preference": 42,
+            "timeslot": 9,
+            "day": "wednesday"
+        }
+    },
+    {
+        "model": "attribution_preference.preference_schedule",
+        "pk": 1563,
+        "fields": {
+            "attribution_preference": 42,
+            "timeslot": 9,
+            "day": "thursday"
+        }
+    },
+    {
+        "model": "attribution_preference.preference_schedule",
+        "pk": 1564,
+        "fields": {
+            "attribution_preference": 42,
+            "timeslot": 9,
+            "day": "friday"
+        }
+    },
+    {
+        "model": "attribution_preference.preference_schedule",
+        "pk": 1565,
+        "fields": {
+            "attribution_preference": 42,
+            "timeslot": 10,
+            "day": "monday"
+        }
+    },
+    {
+        "model": "attribution_preference.preference_schedule",
+        "pk": 1566,
+        "fields": {
+            "attribution_preference": 42,
+            "timeslot": 10,
+            "day": "tuesday"
+        }
+    },
+    {
+        "model": "attribution_preference.preference_schedule",
+        "pk": 1567,
+        "fields": {
+            "attribution_preference": 42,
+            "timeslot": 10,
+            "day": "wednesday"
+        }
+    },
+    {
+        "model": "attribution_preference.preference_schedule",
+        "pk": 1568,
+        "fields": {
+            "attribution_preference": 42,
+            "timeslot": 10,
+            "day": "thursday"
+        }
+    },
+    {
+        "model": "attribution_preference.preference_schedule",
+        "pk": 1569,
+        "fields": {
+            "attribution_preference": 42,
+            "timeslot": 10,
+            "day": "friday"
+        }
+    },
+    {
+        "model": "attribution_preference.preference_schedule",
+        "pk": 1570,
+        "fields": {
+            "attribution_preference": 42,
+            "timeslot": 11,
+            "day": "monday"
+        }
+    },
+    {
+        "model": "attribution_preference.preference_schedule",
+        "pk": 1571,
+        "fields": {
+            "attribution_preference": 42,
+            "timeslot": 11,
+            "day": "tuesday"
+        }
+    },
+    {
+        "model": "attribution_preference.preference_schedule",
+        "pk": 1572,
+        "fields": {
+            "attribution_preference": 42,
+            "timeslot": 11,
+            "day": "wednesday"
+        }
+    },
+    {
+        "model": "attribution_preference.preference_schedule",
+        "pk": 1573,
+        "fields": {
+            "attribution_preference": 42,
+            "timeslot": 11,
+            "day": "thursday"
+        }
+    },
+    {
+        "model": "attribution_preference.preference_schedule",
+        "pk": 1574,
+        "fields": {
+            "attribution_preference": 42,
+            "timeslot": 11,
+            "day": "friday"
+        }
+    },
+    {
+        "model": "attribution_preference.preference_schedule",
+        "pk": 1575,
+        "fields": {
+            "attribution_preference": 42,
+            "timeslot": 12,
+            "day": "monday"
+        }
+    },
+    {
+        "model": "attribution_preference.preference_schedule",
+        "pk": 1576,
+        "fields": {
+            "attribution_preference": 42,
+            "timeslot": 12,
+            "day": "tuesday"
+        }
+    },
+    {
+        "model": "attribution_preference.preference_schedule",
+        "pk": 1577,
+        "fields": {
+            "attribution_preference": 42,
+            "timeslot": 12,
+            "day": "wednesday"
+        }
+    },
+    {
+        "model": "attribution_preference.preference_schedule",
+        "pk": 1578,
+        "fields": {
+            "attribution_preference": 42,
+            "timeslot": 12,
+            "day": "thursday"
+        }
+    },
+    {
+        "model": "attribution_preference.preference_schedule",
+        "pk": 1579,
+        "fields": {
+            "attribution_preference": 42,
+            "timeslot": 12,
+            "day": "friday"
+        }
+    },
+    {
+        "model": "attribution_preference.preference_schedule",
+        "pk": 1580,
+        "fields": {
+            "attribution_preference": 43,
+            "timeslot": 9,
+            "day": "monday"
+        }
+    },
+    {
+        "model": "attribution_preference.preference_schedule",
+        "pk": 1581,
+        "fields": {
+            "attribution_preference": 43,
+            "timeslot": 9,
+            "day": "tuesday"
+        }
+    },
+    {
+        "model": "attribution_preference.preference_schedule",
+        "pk": 1582,
+        "fields": {
+            "attribution_preference": 43,
+            "timeslot": 9,
+            "day": "wednesday"
+        }
+    },
+    {
+        "model": "attribution_preference.preference_schedule",
+        "pk": 1583,
+        "fields": {
+            "attribution_preference": 43,
+            "timeslot": 9,
+            "day": "thursday"
+        }
+    },
+    {
+        "model": "attribution_preference.preference_schedule",
+        "pk": 1584,
+        "fields": {
+            "attribution_preference": 43,
+            "timeslot": 9,
+            "day": "friday"
+        }
+    },
+    {
+        "model": "attribution_preference.preference_schedule",
+        "pk": 1585,
+        "fields": {
+            "attribution_preference": 43,
+            "timeslot": 10,
+            "day": "monday"
+        }
+    },
+    {
+        "model": "attribution_preference.preference_schedule",
+        "pk": 1586,
+        "fields": {
+            "attribution_preference": 43,
+            "timeslot": 10,
+            "day": "tuesday"
+        }
+    },
+    {
+        "model": "attribution_preference.preference_schedule",
+        "pk": 1587,
+        "fields": {
+            "attribution_preference": 43,
+            "timeslot": 10,
+            "day": "wednesday"
+        }
+    },
+    {
+        "model": "attribution_preference.preference_schedule",
+        "pk": 1588,
+        "fields": {
+            "attribution_preference": 43,
+            "timeslot": 10,
+            "day": "thursday"
+        }
+    },
+    {
+        "model": "attribution_preference.preference_schedule",
+        "pk": 1589,
+        "fields": {
+            "attribution_preference": 43,
+            "timeslot": 10,
+            "day": "friday"
+        }
+    },
+    {
+        "model": "attribution_preference.preference_schedule",
+        "pk": 1590,
+        "fields": {
+            "attribution_preference": 43,
+            "timeslot": 11,
+            "day": "monday"
+        }
+    },
+    {
+        "model": "attribution_preference.preference_schedule",
+        "pk": 1591,
+        "fields": {
+            "attribution_preference": 43,
+            "timeslot": 11,
+            "day": "tuesday"
+        }
+    },
+    {
+        "model": "attribution_preference.preference_schedule",
+        "pk": 1592,
+        "fields": {
+            "attribution_preference": 43,
+            "timeslot": 11,
+            "day": "wednesday"
+        }
+    },
+    {
+        "model": "attribution_preference.preference_schedule",
+        "pk": 1593,
+        "fields": {
+            "attribution_preference": 43,
+            "timeslot": 11,
+            "day": "thursday"
+        }
+    },
+    {
+        "model": "attribution_preference.preference_schedule",
+        "pk": 1594,
+        "fields": {
+            "attribution_preference": 43,
+            "timeslot": 11,
+            "day": "friday"
+        }
+    },
+    {
+        "model": "attribution_preference.preference_schedule",
+        "pk": 1595,
+        "fields": {
+            "attribution_preference": 43,
+            "timeslot": 12,
+            "day": "monday"
+        }
+    },
+    {
+        "model": "attribution_preference.preference_schedule",
+        "pk": 1596,
+        "fields": {
+            "attribution_preference": 43,
+            "timeslot": 12,
+            "day": "tuesday"
+        }
+    },
+    {
+        "model": "attribution_preference.preference_schedule",
+        "pk": 1597,
+        "fields": {
+            "attribution_preference": 43,
+            "timeslot": 12,
+            "day": "wednesday"
+        }
+    },
+    {
+        "model": "attribution_preference.preference_schedule",
+        "pk": 1598,
+        "fields": {
+            "attribution_preference": 43,
+            "timeslot": 12,
+            "day": "thursday"
+        }
+    },
+    {
+        "model": "attribution_preference.preference_schedule",
+        "pk": 1599,
+        "fields": {
+            "attribution_preference": 43,
+            "timeslot": 12,
+            "day": "friday"
+        }
+    },
+    {
+        "model": "attribution_preference.preference_schedule",
+        "pk": 1600,
+        "fields": {
+            "attribution_preference": 43,
+            "timeslot": 1,
+            "day": "monday"
+        }
+    },
+    {
+        "model": "attribution_preference.preference_schedule",
+        "pk": 1601,
+        "fields": {
+            "attribution_preference": 43,
+            "timeslot": 1,
+            "day": "tuesday"
+        }
+    },
+    {
+        "model": "attribution_preference.preference_schedule",
+        "pk": 1602,
+        "fields": {
+            "attribution_preference": 43,
+            "timeslot": 1,
+            "day": "wednesday"
+        }
+    },
+    {
+        "model": "attribution_preference.preference_schedule",
+        "pk": 1603,
+        "fields": {
+            "attribution_preference": 43,
+            "timeslot": 1,
+            "day": "thursday"
+        }
+    },
+    {
+        "model": "attribution_preference.preference_schedule",
+        "pk": 1604,
+        "fields": {
+            "attribution_preference": 43,
+            "timeslot": 1,
+            "day": "friday"
+        }
+    },
+    {
+        "model": "attribution_preference.preference_schedule",
+        "pk": 1605,
+        "fields": {
+            "attribution_preference": 43,
+            "timeslot": 2,
+            "day": "monday"
+        }
+    },
+    {
+        "model": "attribution_preference.preference_schedule",
+        "pk": 1606,
+        "fields": {
+            "attribution_preference": 43,
+            "timeslot": 2,
+            "day": "tuesday"
+        }
+    },
+    {
+        "model": "attribution_preference.preference_schedule",
+        "pk": 1607,
+        "fields": {
+            "attribution_preference": 43,
+            "timeslot": 2,
+            "day": "wednesday"
+        }
+    },
+    {
+        "model": "attribution_preference.preference_schedule",
+        "pk": 1608,
+        "fields": {
+            "attribution_preference": 43,
+            "timeslot": 2,
+            "day": "thursday"
+        }
+    },
+    {
+        "model": "attribution_preference.preference_schedule",
+        "pk": 1609,
+        "fields": {
+            "attribution_preference": 43,
+            "timeslot": 2,
+            "day": "friday"
+        }
+    },
+    {
+        "model": "attribution_preference.preference_schedule",
+        "pk": 1610,
+        "fields": {
+            "attribution_preference": 43,
+            "timeslot": 3,
+            "day": "monday"
+        }
+    },
+    {
+        "model": "attribution_preference.preference_schedule",
+        "pk": 1611,
+        "fields": {
+            "attribution_preference": 43,
+            "timeslot": 3,
+            "day": "tuesday"
+        }
+    },
+    {
+        "model": "attribution_preference.preference_schedule",
+        "pk": 1612,
+        "fields": {
+            "attribution_preference": 43,
+            "timeslot": 3,
+            "day": "wednesday"
+        }
+    },
+    {
+        "model": "attribution_preference.preference_schedule",
+        "pk": 1613,
+        "fields": {
+            "attribution_preference": 43,
+            "timeslot": 3,
+            "day": "thursday"
+        }
+    },
+    {
+        "model": "attribution_preference.preference_schedule",
+        "pk": 1614,
+        "fields": {
+            "attribution_preference": 43,
+            "timeslot": 3,
+            "day": "friday"
+        }
+    },
+    {
+        "model": "attribution_preference.preference_schedule",
+        "pk": 1615,
+        "fields": {
+            "attribution_preference": 43,
+            "timeslot": 4,
+            "day": "monday"
+        }
+    },
+    {
+        "model": "attribution_preference.preference_schedule",
+        "pk": 1616,
+        "fields": {
+            "attribution_preference": 43,
+            "timeslot": 4,
+            "day": "tuesday"
+        }
+    },
+    {
+        "model": "attribution_preference.preference_schedule",
+        "pk": 1617,
+        "fields": {
+            "attribution_preference": 43,
+            "timeslot": 4,
+            "day": "wednesday"
+        }
+    },
+    {
+        "model": "attribution_preference.preference_schedule",
+        "pk": 1618,
+        "fields": {
+            "attribution_preference": 43,
+            "timeslot": 4,
+            "day": "thursday"
+        }
+    },
+    {
+        "model": "attribution_preference.preference_schedule",
+        "pk": 1619,
+        "fields": {
+            "attribution_preference": 43,
+            "timeslot": 4,
+            "day": "friday"
+        }
+    },
+    {
+        "model": "attribution_preference.preference_schedule",
+        "pk": 1620,
+        "fields": {
+            "attribution_preference": 43,
+            "timeslot": 5,
+            "day": "monday"
+        }
+    },
+    {
+        "model": "attribution_preference.preference_schedule",
+        "pk": 1621,
+        "fields": {
+            "attribution_preference": 43,
+            "timeslot": 5,
+            "day": "tuesday"
+        }
+    },
+    {
+        "model": "attribution_preference.preference_schedule",
+        "pk": 1622,
+        "fields": {
+            "attribution_preference": 43,
+            "timeslot": 5,
+            "day": "wednesday"
+        }
+    },
+    {
+        "model": "attribution_preference.preference_schedule",
+        "pk": 1623,
+        "fields": {
+            "attribution_preference": 43,
+            "timeslot": 5,
+            "day": "thursday"
+        }
+    },
+    {
+        "model": "attribution_preference.preference_schedule",
+        "pk": 1624,
+        "fields": {
+            "attribution_preference": 43,
+            "timeslot": 5,
+            "day": "friday"
+        }
+    },
+    {
+        "model": "attribution_preference.preference_schedule",
+        "pk": 1625,
+        "fields": {
+            "attribution_preference": 43,
+            "timeslot": 6,
+            "day": "monday"
+        }
+    },
+    {
+        "model": "attribution_preference.preference_schedule",
+        "pk": 1626,
+        "fields": {
+            "attribution_preference": 43,
+            "timeslot": 6,
+            "day": "tuesday"
+        }
+    },
+    {
+        "model": "attribution_preference.preference_schedule",
+        "pk": 1627,
+        "fields": {
+            "attribution_preference": 43,
+            "timeslot": 6,
+            "day": "wednesday"
+        }
+    },
+    {
+        "model": "attribution_preference.preference_schedule",
+        "pk": 1628,
+        "fields": {
+            "attribution_preference": 43,
+            "timeslot": 6,
+            "day": "thursday"
+        }
+    },
+    {
+        "model": "attribution_preference.preference_schedule",
+        "pk": 1629,
+        "fields": {
+            "attribution_preference": 43,
+            "timeslot": 6,
+            "day": "friday"
+        }
+    },
+    {
+        "model": "attribution_preference.preference_schedule",
+        "pk": 1630,
+        "fields": {
+            "attribution_preference": 44,
+            "timeslot": 9,
+            "day": "monday"
+        }
+    },
+    {
+        "model": "attribution_preference.preference_schedule",
+        "pk": 1631,
+        "fields": {
+            "attribution_preference": 44,
+            "timeslot": 9,
+            "day": "tuesday"
+        }
+    },
+    {
+        "model": "attribution_preference.preference_schedule",
+        "pk": 1632,
+        "fields": {
+            "attribution_preference": 44,
+            "timeslot": 9,
+            "day": "wednesday"
+        }
+    },
+    {
+        "model": "attribution_preference.preference_schedule",
+        "pk": 1633,
+        "fields": {
+            "attribution_preference": 44,
+            "timeslot": 9,
+            "day": "thursday"
+        }
+    },
+    {
+        "model": "attribution_preference.preference_schedule",
+        "pk": 1634,
+        "fields": {
+            "attribution_preference": 44,
+            "timeslot": 9,
+            "day": "friday"
+        }
+    },
+    {
+        "model": "attribution_preference.preference_schedule",
+        "pk": 1635,
+        "fields": {
+            "attribution_preference": 44,
+            "timeslot": 10,
+            "day": "monday"
+        }
+    },
+    {
+        "model": "attribution_preference.preference_schedule",
+        "pk": 1636,
+        "fields": {
+            "attribution_preference": 44,
+            "timeslot": 10,
+            "day": "tuesday"
+        }
+    },
+    {
+        "model": "attribution_preference.preference_schedule",
+        "pk": 1637,
+        "fields": {
+            "attribution_preference": 44,
+            "timeslot": 10,
+            "day": "wednesday"
+        }
+    },
+    {
+        "model": "attribution_preference.preference_schedule",
+        "pk": 1638,
+        "fields": {
+            "attribution_preference": 44,
+            "timeslot": 10,
+            "day": "thursday"
+        }
+    },
+    {
+        "model": "attribution_preference.preference_schedule",
+        "pk": 1639,
+        "fields": {
+            "attribution_preference": 44,
+            "timeslot": 10,
+            "day": "friday"
+        }
+    },
+    {
+        "model": "attribution_preference.preference_schedule",
+        "pk": 1640,
+        "fields": {
+            "attribution_preference": 44,
+            "timeslot": 11,
+            "day": "monday"
+        }
+    },
+    {
+        "model": "attribution_preference.preference_schedule",
+        "pk": 1641,
+        "fields": {
+            "attribution_preference": 44,
+            "timeslot": 11,
+            "day": "tuesday"
+        }
+    },
+    {
+        "model": "attribution_preference.preference_schedule",
+        "pk": 1642,
+        "fields": {
+            "attribution_preference": 44,
+            "timeslot": 11,
+            "day": "wednesday"
+        }
+    },
+    {
+        "model": "attribution_preference.preference_schedule",
+        "pk": 1643,
+        "fields": {
+            "attribution_preference": 44,
+            "timeslot": 11,
+            "day": "thursday"
+        }
+    },
+    {
+        "model": "attribution_preference.preference_schedule",
+        "pk": 1644,
+        "fields": {
+            "attribution_preference": 44,
+            "timeslot": 11,
+            "day": "friday"
+        }
+    },
+    {
+        "model": "attribution_preference.preference_schedule",
+        "pk": 1645,
+        "fields": {
+            "attribution_preference": 44,
+            "timeslot": 12,
+            "day": "monday"
+        }
+    },
+    {
+        "model": "attribution_preference.preference_schedule",
+        "pk": 1646,
+        "fields": {
+            "attribution_preference": 44,
+            "timeslot": 12,
+            "day": "tuesday"
+        }
+    },
+    {
+        "model": "attribution_preference.preference_schedule",
+        "pk": 1647,
+        "fields": {
+            "attribution_preference": 44,
+            "timeslot": 12,
+            "day": "wednesday"
+        }
+    },
+    {
+        "model": "attribution_preference.preference_schedule",
+        "pk": 1648,
+        "fields": {
+            "attribution_preference": 44,
+            "timeslot": 12,
+            "day": "thursday"
+        }
+    },
+    {
+        "model": "attribution_preference.preference_schedule",
+        "pk": 1649,
+        "fields": {
+            "attribution_preference": 44,
+            "timeslot": 12,
+            "day": "friday"
+        }
+    },
+    {
+        "model": "attribution_preference.preference_schedule",
+        "pk": 1650,
+        "fields": {
+            "attribution_preference": 44,
+            "timeslot": 18,
+            "day": "monday"
+        }
+    },
+    {
+        "model": "attribution_preference.preference_schedule",
+        "pk": 1651,
+        "fields": {
+            "attribution_preference": 44,
+            "timeslot": 18,
+            "day": "tuesday"
+        }
+    },
+    {
+        "model": "attribution_preference.preference_schedule",
+        "pk": 1652,
+        "fields": {
+            "attribution_preference": 44,
+            "timeslot": 18,
+            "day": "wednesday"
+        }
+    },
+    {
+        "model": "attribution_preference.preference_schedule",
+        "pk": 1653,
+        "fields": {
+            "attribution_preference": 44,
+            "timeslot": 18,
+            "day": "thursday"
+        }
+    },
+    {
+        "model": "attribution_preference.preference_schedule",
+        "pk": 1654,
+        "fields": {
+            "attribution_preference": 44,
+            "timeslot": 18,
+            "day": "friday"
+        }
+    },
+    {
+        "model": "attribution_preference.preference_schedule",
+        "pk": 1655,
+        "fields": {
+            "attribution_preference": 44,
+            "timeslot": 19,
+            "day": "monday"
+        }
+    },
+    {
+        "model": "attribution_preference.preference_schedule",
+        "pk": 1656,
+        "fields": {
+            "attribution_preference": 44,
+            "timeslot": 19,
+            "day": "tuesday"
+        }
+    },
+    {
+        "model": "attribution_preference.preference_schedule",
+        "pk": 1657,
+        "fields": {
+            "attribution_preference": 44,
+            "timeslot": 19,
+            "day": "wednesday"
+        }
+    },
+    {
+        "model": "attribution_preference.preference_schedule",
+        "pk": 1658,
+        "fields": {
+            "attribution_preference": 44,
+            "timeslot": 19,
+            "day": "thursday"
+        }
+    },
+    {
+        "model": "attribution_preference.preference_schedule",
+        "pk": 1659,
+        "fields": {
+            "attribution_preference": 44,
+            "timeslot": 19,
+            "day": "friday"
+        }
+    },
+    {
+        "model": "attribution_preference.preference_schedule",
+        "pk": 1660,
+        "fields": {
+            "attribution_preference": 44,
+            "timeslot": 20,
+            "day": "monday"
+        }
+    },
+    {
+        "model": "attribution_preference.preference_schedule",
+        "pk": 1661,
+        "fields": {
+            "attribution_preference": 44,
+            "timeslot": 20,
+            "day": "tuesday"
+        }
+    },
+    {
+        "model": "attribution_preference.preference_schedule",
+        "pk": 1662,
+        "fields": {
+            "attribution_preference": 44,
+            "timeslot": 20,
+            "day": "wednesday"
+        }
+    },
+    {
+        "model": "attribution_preference.preference_schedule",
+        "pk": 1663,
+        "fields": {
+            "attribution_preference": 44,
+            "timeslot": 20,
+            "day": "thursday"
+        }
+    },
+    {
+        "model": "attribution_preference.preference_schedule",
+        "pk": 1664,
+        "fields": {
+            "attribution_preference": 44,
+            "timeslot": 20,
+            "day": "friday"
+        }
+    },
+    {
+        "model": "attribution_preference.preference_schedule",
+        "pk": 1665,
+        "fields": {
+            "attribution_preference": 44,
+            "timeslot": 21,
+            "day": "monday"
+        }
+    },
+    {
+        "model": "attribution_preference.preference_schedule",
+        "pk": 1666,
+        "fields": {
+            "attribution_preference": 44,
+            "timeslot": 21,
+            "day": "tuesday"
+        }
+    },
+    {
+        "model": "attribution_preference.preference_schedule",
+        "pk": 1667,
+        "fields": {
+            "attribution_preference": 44,
+            "timeslot": 21,
+            "day": "wednesday"
+        }
+    },
+    {
+        "model": "attribution_preference.preference_schedule",
+        "pk": 1668,
+        "fields": {
+            "attribution_preference": 44,
+            "timeslot": 21,
+            "day": "thursday"
+        }
+    },
+    {
+        "model": "attribution_preference.preference_schedule",
+        "pk": 1669,
+        "fields": {
+            "attribution_preference": 44,
+            "timeslot": 21,
+            "day": "friday"
+        }
+    },
+    {
+        "model": "attribution_preference.preference_schedule",
+        "pk": 1670,
+        "fields": {
+            "attribution_preference": 44,
+            "timeslot": 22,
+            "day": "monday"
+        }
+    },
+    {
+        "model": "attribution_preference.preference_schedule",
+        "pk": 1671,
+        "fields": {
+            "attribution_preference": 44,
+            "timeslot": 22,
+            "day": "tuesday"
+        }
+    },
+    {
+        "model": "attribution_preference.preference_schedule",
+        "pk": 1672,
+        "fields": {
+            "attribution_preference": 44,
+            "timeslot": 22,
+            "day": "wednesday"
+        }
+    },
+    {
+        "model": "attribution_preference.preference_schedule",
+        "pk": 1673,
+        "fields": {
+            "attribution_preference": 44,
+            "timeslot": 22,
+            "day": "thursday"
+        }
+    },
+    {
+        "model": "attribution_preference.preference_schedule",
+        "pk": 1674,
+        "fields": {
+            "attribution_preference": 44,
+            "timeslot": 22,
+            "day": "friday"
+        }
+    },
+    {
+        "model": "attribution_preference.preference_schedule",
+        "pk": 1675,
+        "fields": {
+            "attribution_preference": 44,
+            "timeslot": 23,
+            "day": "monday"
+        }
+    },
+    {
+        "model": "attribution_preference.preference_schedule",
+        "pk": 1676,
+        "fields": {
+            "attribution_preference": 44,
+            "timeslot": 23,
+            "day": "tuesday"
+        }
+    },
+    {
+        "model": "attribution_preference.preference_schedule",
+        "pk": 1677,
+        "fields": {
+            "attribution_preference": 44,
+            "timeslot": 23,
+            "day": "wednesday"
+        }
+    },
+    {
+        "model": "attribution_preference.preference_schedule",
+        "pk": 1678,
+        "fields": {
+            "attribution_preference": 44,
+            "timeslot": 23,
+            "day": "thursday"
+        }
+    },
+    {
+        "model": "attribution_preference.preference_schedule",
+        "pk": 1679,
+        "fields": {
+            "attribution_preference": 44,
+            "timeslot": 23,
+            "day": "friday"
+        }
+    },
+    {
+        "model": "attribution_preference.preference_schedule",
+        "pk": 1680,
+        "fields": {
+            "attribution_preference": 45,
+            "timeslot": 9,
+            "day": "monday"
+        }
+    },
+    {
+        "model": "attribution_preference.preference_schedule",
+        "pk": 1681,
+        "fields": {
+            "attribution_preference": 45,
+            "timeslot": 9,
+            "day": "tuesday"
+        }
+    },
+    {
+        "model": "attribution_preference.preference_schedule",
+        "pk": 1682,
+        "fields": {
+            "attribution_preference": 45,
+            "timeslot": 9,
+            "day": "wednesday"
+        }
+    },
+    {
+        "model": "attribution_preference.preference_schedule",
+        "pk": 1683,
+        "fields": {
+            "attribution_preference": 45,
+            "timeslot": 9,
+            "day": "thursday"
+        }
+    },
+    {
+        "model": "attribution_preference.preference_schedule",
+        "pk": 1684,
+        "fields": {
+            "attribution_preference": 45,
+            "timeslot": 9,
+            "day": "friday"
+        }
+    },
+    {
+        "model": "attribution_preference.preference_schedule",
+        "pk": 1685,
+        "fields": {
+            "attribution_preference": 45,
+            "timeslot": 10,
+            "day": "monday"
+        }
+    },
+    {
+        "model": "attribution_preference.preference_schedule",
+        "pk": 1686,
+        "fields": {
+            "attribution_preference": 45,
+            "timeslot": 10,
+            "day": "tuesday"
+        }
+    },
+    {
+        "model": "attribution_preference.preference_schedule",
+        "pk": 1687,
+        "fields": {
+            "attribution_preference": 45,
+            "timeslot": 10,
+            "day": "wednesday"
+        }
+    },
+    {
+        "model": "attribution_preference.preference_schedule",
+        "pk": 1688,
+        "fields": {
+            "attribution_preference": 45,
+            "timeslot": 10,
+            "day": "thursday"
+        }
+    },
+    {
+        "model": "attribution_preference.preference_schedule",
+        "pk": 1689,
+        "fields": {
+            "attribution_preference": 45,
+            "timeslot": 10,
+            "day": "friday"
+        }
+    },
+    {
+        "model": "attribution_preference.preference_schedule",
+        "pk": 1690,
+        "fields": {
+            "attribution_preference": 45,
+            "timeslot": 11,
+            "day": "monday"
+        }
+    },
+    {
+        "model": "attribution_preference.preference_schedule",
+        "pk": 1691,
+        "fields": {
+            "attribution_preference": 45,
+            "timeslot": 11,
+            "day": "tuesday"
+        }
+    },
+    {
+        "model": "attribution_preference.preference_schedule",
+        "pk": 1692,
+        "fields": {
+            "attribution_preference": 45,
+            "timeslot": 11,
+            "day": "wednesday"
+        }
+    },
+    {
+        "model": "attribution_preference.preference_schedule",
+        "pk": 1693,
+        "fields": {
+            "attribution_preference": 45,
+            "timeslot": 11,
+            "day": "thursday"
+        }
+    },
+    {
+        "model": "attribution_preference.preference_schedule",
+        "pk": 1694,
+        "fields": {
+            "attribution_preference": 45,
+            "timeslot": 11,
+            "day": "friday"
+        }
+    },
+    {
+        "model": "attribution_preference.preference_schedule",
+        "pk": 1695,
+        "fields": {
+            "attribution_preference": 45,
+            "timeslot": 12,
+            "day": "monday"
+        }
+    },
+    {
+        "model": "attribution_preference.preference_schedule",
+        "pk": 1696,
+        "fields": {
+            "attribution_preference": 45,
+            "timeslot": 12,
+            "day": "tuesday"
+        }
+    },
+    {
+        "model": "attribution_preference.preference_schedule",
+        "pk": 1697,
+        "fields": {
+            "attribution_preference": 45,
+            "timeslot": 12,
+            "day": "wednesday"
+        }
+    },
+    {
+        "model": "attribution_preference.preference_schedule",
+        "pk": 1698,
+        "fields": {
+            "attribution_preference": 45,
+            "timeslot": 12,
+            "day": "thursday"
+        }
+    },
+    {
+        "model": "attribution_preference.preference_schedule",
+        "pk": 1699,
+        "fields": {
+            "attribution_preference": 45,
+            "timeslot": 12,
+            "day": "friday"
+        }
+    },
+    {
+        "model": "attribution_preference.preference_schedule",
+        "pk": 1700,
+        "fields": {
+            "attribution_preference": 45,
+            "timeslot": 18,
+            "day": "monday"
+        }
+    },
+    {
+        "model": "attribution_preference.preference_schedule",
+        "pk": 1701,
+        "fields": {
+            "attribution_preference": 45,
+            "timeslot": 18,
+            "day": "tuesday"
+        }
+    },
+    {
+        "model": "attribution_preference.preference_schedule",
+        "pk": 1702,
+        "fields": {
+            "attribution_preference": 45,
+            "timeslot": 18,
+            "day": "wednesday"
+        }
+    },
+    {
+        "model": "attribution_preference.preference_schedule",
+        "pk": 1703,
+        "fields": {
+            "attribution_preference": 45,
+            "timeslot": 18,
+            "day": "thursday"
+        }
+    },
+    {
+        "model": "attribution_preference.preference_schedule",
+        "pk": 1704,
+        "fields": {
+            "attribution_preference": 45,
+            "timeslot": 18,
+            "day": "friday"
+        }
+    },
+    {
+        "model": "attribution_preference.preference_schedule",
+        "pk": 1705,
+        "fields": {
+            "attribution_preference": 45,
+            "timeslot": 19,
+            "day": "monday"
+        }
+    },
+    {
+        "model": "attribution_preference.preference_schedule",
+        "pk": 1706,
+        "fields": {
+            "attribution_preference": 45,
+            "timeslot": 19,
+            "day": "tuesday"
+        }
+    },
+    {
+        "model": "attribution_preference.preference_schedule",
+        "pk": 1707,
+        "fields": {
+            "attribution_preference": 45,
+            "timeslot": 19,
+            "day": "wednesday"
+        }
+    },
+    {
+        "model": "attribution_preference.preference_schedule",
+        "pk": 1708,
+        "fields": {
+            "attribution_preference": 45,
+            "timeslot": 19,
+            "day": "thursday"
+        }
+    },
+    {
+        "model": "attribution_preference.preference_schedule",
+        "pk": 1709,
+        "fields": {
+            "attribution_preference": 45,
+            "timeslot": 19,
+            "day": "friday"
+        }
+    },
+    {
+        "model": "attribution_preference.preference_schedule",
+        "pk": 1710,
+        "fields": {
+            "attribution_preference": 45,
+            "timeslot": 20,
+            "day": "monday"
+        }
+    },
+    {
+        "model": "attribution_preference.preference_schedule",
+        "pk": 1711,
+        "fields": {
+            "attribution_preference": 45,
+            "timeslot": 20,
+            "day": "tuesday"
+        }
+    },
+    {
+        "model": "attribution_preference.preference_schedule",
+        "pk": 1712,
+        "fields": {
+            "attribution_preference": 45,
+            "timeslot": 20,
+            "day": "wednesday"
+        }
+    },
+    {
+        "model": "attribution_preference.preference_schedule",
+        "pk": 1713,
+        "fields": {
+            "attribution_preference": 45,
+            "timeslot": 20,
+            "day": "thursday"
+        }
+    },
+    {
+        "model": "attribution_preference.preference_schedule",
+        "pk": 1714,
+        "fields": {
+            "attribution_preference": 45,
+            "timeslot": 20,
+            "day": "friday"
+        }
+    },
+    {
+        "model": "attribution_preference.preference_schedule",
+        "pk": 1715,
+        "fields": {
+            "attribution_preference": 45,
+            "timeslot": 21,
+            "day": "monday"
+        }
+    },
+    {
+        "model": "attribution_preference.preference_schedule",
+        "pk": 1716,
+        "fields": {
+            "attribution_preference": 45,
+            "timeslot": 21,
+            "day": "tuesday"
+        }
+    },
+    {
+        "model": "attribution_preference.preference_schedule",
+        "pk": 1717,
+        "fields": {
+            "attribution_preference": 45,
+            "timeslot": 21,
+            "day": "wednesday"
+        }
+    },
+    {
+        "model": "attribution_preference.preference_schedule",
+        "pk": 1718,
+        "fields": {
+            "attribution_preference": 45,
+            "timeslot": 21,
+            "day": "thursday"
+        }
+    },
+    {
+        "model": "attribution_preference.preference_schedule",
+        "pk": 1719,
+        "fields": {
+            "attribution_preference": 45,
+            "timeslot": 21,
+            "day": "friday"
+        }
+    },
+    {
+        "model": "attribution_preference.preference_schedule",
+        "pk": 1720,
+        "fields": {
+            "attribution_preference": 45,
+            "timeslot": 22,
+            "day": "monday"
+        }
+    },
+    {
+        "model": "attribution_preference.preference_schedule",
+        "pk": 1721,
+        "fields": {
+            "attribution_preference": 45,
+            "timeslot": 22,
+            "day": "tuesday"
+        }
+    },
+    {
+        "model": "attribution_preference.preference_schedule",
+        "pk": 1722,
+        "fields": {
+            "attribution_preference": 45,
+            "timeslot": 22,
+            "day": "wednesday"
+        }
+    },
+    {
+        "model": "attribution_preference.preference_schedule",
+        "pk": 1723,
+        "fields": {
+            "attribution_preference": 45,
+            "timeslot": 22,
+            "day": "thursday"
+        }
+    },
+    {
+        "model": "attribution_preference.preference_schedule",
+        "pk": 1724,
+        "fields": {
+            "attribution_preference": 45,
+            "timeslot": 22,
+            "day": "friday"
+        }
+    },
+    {
+        "model": "attribution_preference.preference_schedule",
+        "pk": 1725,
+        "fields": {
+            "attribution_preference": 45,
+            "timeslot": 23,
+            "day": "monday"
+        }
+    },
+    {
+        "model": "attribution_preference.preference_schedule",
+        "pk": 1726,
+        "fields": {
+            "attribution_preference": 45,
+            "timeslot": 23,
+            "day": "tuesday"
+        }
+    },
+    {
+        "model": "attribution_preference.preference_schedule",
+        "pk": 1727,
+        "fields": {
+            "attribution_preference": 45,
+            "timeslot": 23,
+            "day": "wednesday"
+        }
+    },
+    {
+        "model": "attribution_preference.preference_schedule",
+        "pk": 1728,
+        "fields": {
+            "attribution_preference": 45,
+            "timeslot": 23,
+            "day": "thursday"
+        }
+    },
+    {
+        "model": "attribution_preference.preference_schedule",
+        "pk": 1729,
+        "fields": {
+            "attribution_preference": 45,
+            "timeslot": 23,
+            "day": "friday"
+        }
+    },
+    {
+        "model": "attribution_preference.preference_schedule",
+        "pk": 1730,
+        "fields": {
+            "attribution_preference": 46,
+            "timeslot": 9,
+            "day": "monday"
+        }
+    },
+    {
+        "model": "attribution_preference.preference_schedule",
+        "pk": 1731,
+        "fields": {
+            "attribution_preference": 46,
+            "timeslot": 9,
+            "day": "tuesday"
+        }
+    },
+    {
+        "model": "attribution_preference.preference_schedule",
+        "pk": 1732,
+        "fields": {
+            "attribution_preference": 46,
+            "timeslot": 9,
+            "day": "wednesday"
+        }
+    },
+    {
+        "model": "attribution_preference.preference_schedule",
+        "pk": 1733,
+        "fields": {
+            "attribution_preference": 46,
+            "timeslot": 9,
+            "day": "thursday"
+        }
+    },
+    {
+        "model": "attribution_preference.preference_schedule",
+        "pk": 1734,
+        "fields": {
+            "attribution_preference": 46,
+            "timeslot": 9,
+            "day": "friday"
+        }
+    },
+    {
+        "model": "attribution_preference.preference_schedule",
+        "pk": 1735,
+        "fields": {
+            "attribution_preference": 46,
+            "timeslot": 10,
+            "day": "monday"
+        }
+    },
+    {
+        "model": "attribution_preference.preference_schedule",
+        "pk": 1736,
+        "fields": {
+            "attribution_preference": 46,
+            "timeslot": 10,
+            "day": "tuesday"
+        }
+    },
+    {
+        "model": "attribution_preference.preference_schedule",
+        "pk": 1737,
+        "fields": {
+            "attribution_preference": 46,
+            "timeslot": 10,
+            "day": "wednesday"
+        }
+    },
+    {
+        "model": "attribution_preference.preference_schedule",
+        "pk": 1738,
+        "fields": {
+            "attribution_preference": 46,
+            "timeslot": 10,
+            "day": "thursday"
+        }
+    },
+    {
+        "model": "attribution_preference.preference_schedule",
+        "pk": 1739,
+        "fields": {
+            "attribution_preference": 46,
+            "timeslot": 10,
+            "day": "friday"
+        }
+    },
+    {
+        "model": "attribution_preference.preference_schedule",
+        "pk": 1740,
+        "fields": {
+            "attribution_preference": 46,
+            "timeslot": 11,
+            "day": "monday"
+        }
+    },
+    {
+        "model": "attribution_preference.preference_schedule",
+        "pk": 1741,
+        "fields": {
+            "attribution_preference": 46,
+            "timeslot": 11,
+            "day": "tuesday"
+        }
+    },
+    {
+        "model": "attribution_preference.preference_schedule",
+        "pk": 1742,
+        "fields": {
+            "attribution_preference": 46,
+            "timeslot": 11,
+            "day": "wednesday"
+        }
+    },
+    {
+        "model": "attribution_preference.preference_schedule",
+        "pk": 1743,
+        "fields": {
+            "attribution_preference": 46,
+            "timeslot": 11,
+            "day": "thursday"
+        }
+    },
+    {
+        "model": "attribution_preference.preference_schedule",
+        "pk": 1744,
+        "fields": {
+            "attribution_preference": 46,
+            "timeslot": 11,
+            "day": "friday"
+        }
+    },
+    {
+        "model": "attribution_preference.preference_schedule",
+        "pk": 1745,
+        "fields": {
+            "attribution_preference": 46,
+            "timeslot": 12,
+            "day": "monday"
+        }
+    },
+    {
+        "model": "attribution_preference.preference_schedule",
+        "pk": 1746,
+        "fields": {
+            "attribution_preference": 46,
+            "timeslot": 12,
+            "day": "tuesday"
+        }
+    },
+    {
+        "model": "attribution_preference.preference_schedule",
+        "pk": 1747,
+        "fields": {
+            "attribution_preference": 46,
+            "timeslot": 12,
+            "day": "wednesday"
+        }
+    },
+    {
+        "model": "attribution_preference.preference_schedule",
+        "pk": 1748,
+        "fields": {
+            "attribution_preference": 46,
+            "timeslot": 12,
+            "day": "thursday"
+        }
+    },
+    {
+        "model": "attribution_preference.preference_schedule",
+        "pk": 1749,
+        "fields": {
+            "attribution_preference": 46,
+            "timeslot": 12,
+            "day": "friday"
+        }
+    },
+    {
+        "model": "attribution_preference.preference_schedule",
+        "pk": 1750,
+        "fields": {
+            "attribution_preference": 46,
+            "timeslot": 1,
+            "day": "monday"
+        }
+    },
+    {
+        "model": "attribution_preference.preference_schedule",
+        "pk": 1751,
+        "fields": {
+            "attribution_preference": 46,
+            "timeslot": 1,
+            "day": "tuesday"
+        }
+    },
+    {
+        "model": "attribution_preference.preference_schedule",
+        "pk": 1752,
+        "fields": {
+            "attribution_preference": 46,
+            "timeslot": 1,
+            "day": "wednesday"
+        }
+    },
+    {
+        "model": "attribution_preference.preference_schedule",
+        "pk": 1753,
+        "fields": {
+            "attribution_preference": 46,
+            "timeslot": 1,
+            "day": "thursday"
+        }
+    },
+    {
+        "model": "attribution_preference.preference_schedule",
+        "pk": 1754,
+        "fields": {
+            "attribution_preference": 46,
+            "timeslot": 1,
+            "day": "friday"
+        }
+    },
+    {
+        "model": "attribution_preference.preference_schedule",
+        "pk": 1755,
+        "fields": {
+            "attribution_preference": 46,
+            "timeslot": 2,
+            "day": "monday"
+        }
+    },
+    {
+        "model": "attribution_preference.preference_schedule",
+        "pk": 1756,
+        "fields": {
+            "attribution_preference": 46,
+            "timeslot": 2,
+            "day": "tuesday"
+        }
+    },
+    {
+        "model": "attribution_preference.preference_schedule",
+        "pk": 1757,
+        "fields": {
+            "attribution_preference": 46,
+            "timeslot": 2,
+            "day": "wednesday"
+        }
+    },
+    {
+        "model": "attribution_preference.preference_schedule",
+        "pk": 1758,
+        "fields": {
+            "attribution_preference": 46,
+            "timeslot": 2,
+            "day": "thursday"
+        }
+    },
+    {
+        "model": "attribution_preference.preference_schedule",
+        "pk": 1759,
+        "fields": {
+            "attribution_preference": 46,
+            "timeslot": 2,
+            "day": "friday"
+        }
+    },
+    {
+        "model": "attribution_preference.preference_schedule",
+        "pk": 1760,
+        "fields": {
+            "attribution_preference": 46,
+            "timeslot": 3,
+            "day": "monday"
+        }
+    },
+    {
+        "model": "attribution_preference.preference_schedule",
+        "pk": 1761,
+        "fields": {
+            "attribution_preference": 46,
+            "timeslot": 3,
+            "day": "tuesday"
+        }
+    },
+    {
+        "model": "attribution_preference.preference_schedule",
+        "pk": 1762,
+        "fields": {
+            "attribution_preference": 46,
+            "timeslot": 3,
+            "day": "wednesday"
+        }
+    },
+    {
+        "model": "attribution_preference.preference_schedule",
+        "pk": 1763,
+        "fields": {
+            "attribution_preference": 46,
+            "timeslot": 3,
+            "day": "thursday"
+        }
+    },
+    {
+        "model": "attribution_preference.preference_schedule",
+        "pk": 1764,
+        "fields": {
+            "attribution_preference": 46,
+            "timeslot": 3,
+            "day": "friday"
+        }
+    },
+    {
+        "model": "attribution_preference.preference_schedule",
+        "pk": 1765,
+        "fields": {
+            "attribution_preference": 46,
+            "timeslot": 4,
+            "day": "monday"
+        }
+    },
+    {
+        "model": "attribution_preference.preference_schedule",
+        "pk": 1766,
+        "fields": {
+            "attribution_preference": 46,
+            "timeslot": 4,
+            "day": "tuesday"
+        }
+    },
+    {
+        "model": "attribution_preference.preference_schedule",
+        "pk": 1767,
+        "fields": {
+            "attribution_preference": 46,
+            "timeslot": 4,
+            "day": "wednesday"
+        }
+    },
+    {
+        "model": "attribution_preference.preference_schedule",
+        "pk": 1768,
+        "fields": {
+            "attribution_preference": 46,
+            "timeslot": 4,
+            "day": "thursday"
+        }
+    },
+    {
+        "model": "attribution_preference.preference_schedule",
+        "pk": 1769,
+        "fields": {
+            "attribution_preference": 46,
+            "timeslot": 4,
+            "day": "friday"
+        }
+    },
+    {
+        "model": "attribution_preference.preference_schedule",
+        "pk": 1770,
+        "fields": {
+            "attribution_preference": 46,
+            "timeslot": 5,
+            "day": "monday"
+        }
+    },
+    {
+        "model": "attribution_preference.preference_schedule",
+        "pk": 1771,
+        "fields": {
+            "attribution_preference": 46,
+            "timeslot": 5,
+            "day": "tuesday"
+        }
+    },
+    {
+        "model": "attribution_preference.preference_schedule",
+        "pk": 1772,
+        "fields": {
+            "attribution_preference": 46,
+            "timeslot": 5,
+            "day": "wednesday"
+        }
+    },
+    {
+        "model": "attribution_preference.preference_schedule",
+        "pk": 1773,
+        "fields": {
+            "attribution_preference": 46,
+            "timeslot": 5,
+            "day": "thursday"
+        }
+    },
+    {
+        "model": "attribution_preference.preference_schedule",
+        "pk": 1774,
+        "fields": {
+            "attribution_preference": 46,
+            "timeslot": 5,
+            "day": "friday"
+        }
+    },
+    {
+        "model": "attribution_preference.preference_schedule",
+        "pk": 1775,
+        "fields": {
+            "attribution_preference": 46,
+            "timeslot": 6,
+            "day": "monday"
+        }
+    },
+    {
+        "model": "attribution_preference.preference_schedule",
+        "pk": 1776,
+        "fields": {
+            "attribution_preference": 46,
+            "timeslot": 6,
+            "day": "tuesday"
+        }
+    },
+    {
+        "model": "attribution_preference.preference_schedule",
+        "pk": 1777,
+        "fields": {
+            "attribution_preference": 46,
+            "timeslot": 6,
+            "day": "wednesday"
+        }
+    },
+    {
+        "model": "attribution_preference.preference_schedule",
+        "pk": 1778,
+        "fields": {
+            "attribution_preference": 46,
+            "timeslot": 6,
+            "day": "thursday"
+        }
+    },
+    {
+        "model": "attribution_preference.preference_schedule",
+        "pk": 1779,
+        "fields": {
+            "attribution_preference": 46,
+            "timeslot": 6,
+            "day": "friday"
+        }
+    },
+    {
+        "model": "attribution_preference.course_preference",
+        "pk": 306,
+        "fields": {
+            "attribution_preference": 41,
+            "timetable": 3,
+            "blockk": 4,
+            "priority": "primary"
+        }
+    },
+    {
+        "model": "attribution_preference.course_preference",
+        "pk": 307,
+        "fields": {
+            "attribution_preference": 41,
+            "timetable": 134,
+            "blockk": 4,
+            "priority": "primary"
+        }
+    },
+    {
+        "model": "attribution_preference.course_preference",
+        "pk": 308,
+        "fields": {
+            "attribution_preference": 41,
+            "timetable": 117,
+            "blockk": 4,
+            "priority": "primary"
+        }
+    },
+    {
+        "model": "attribution_preference.course_preference",
+        "pk": 309,
+        "fields": {
+            "attribution_preference": 41,
+            "timetable": 36,
+            "blockk": 4,
+            "priority": "primary"
+        }
+    },
+    {
+        "model": "attribution_preference.course_preference",
+        "pk": 310,
+        "fields": {
+            "attribution_preference": 41,
+            "timetable": 162,
+            "blockk": 4,
+            "priority": "primary"
+        }
+    },
+    {
+        "model": "attribution_preference.course_preference",
+        "pk": 311,
+        "fields": {
+            "attribution_preference": 41,
+            "timetable": 179,
+            "blockk": 4,
+            "priority": "primary"
+        }
+    },
+    {
+        "model": "attribution_preference.course_preference",
+        "pk": 312,
+        "fields": {
+            "attribution_preference": 41,
+            "timetable": 69,
+            "blockk": 4,
+            "priority": "primary"
+        }
+    },
+    {
+        "model": "attribution_preference.course_preference",
+        "pk": 313,
+        "fields": {
+            "attribution_preference": 41,
+            "timetable": 77,
+            "blockk": 4,
+            "priority": "primary"
+        }
+    },
+    {
+        "model": "attribution_preference.course_preference",
+        "pk": 314,
+        "fields": {
+            "attribution_preference": 41,
+            "timetable": 158,
+            "blockk": 4,
+            "priority": "primary"
+        }
+    },
+    {
+        "model": "attribution_preference.course_preference",
+        "pk": 315,
+        "fields": {
+            "attribution_preference": 41,
+            "timetable": 175,
+            "blockk": 4,
+            "priority": "primary"
+        }
+    },
+    {
+        "model": "attribution_preference.course_preference",
+        "pk": 316,
+        "fields": {
+            "attribution_preference": 41,
+            "timetable": 54,
+            "blockk": 4,
+            "priority": "secondary"
+        }
+    },
+    {
+        "model": "attribution_preference.course_preference",
+        "pk": 317,
+        "fields": {
+            "attribution_preference": 41,
+            "timetable": 16,
+            "blockk": 4,
+            "priority": "secondary"
+        }
+    },
+    {
+        "model": "attribution_preference.course_preference",
+        "pk": 318,
+        "fields": {
+            "attribution_preference": 41,
+            "timetable": 49,
+            "blockk": 4,
+            "priority": "secondary"
+        }
+    },
+    {
+        "model": "attribution_preference.course_preference",
+        "pk": 319,
+        "fields": {
+            "attribution_preference": 42,
+            "timetable": 158,
+            "blockk": 4,
+            "priority": "primary"
+        }
+    },
+    {
+        "model": "attribution_preference.course_preference",
+        "pk": 320,
+        "fields": {
+            "attribution_preference": 42,
+            "timetable": 175,
+            "blockk": 4,
+            "priority": "primary"
+        }
+    },
+    {
+        "model": "attribution_preference.course_preference",
+        "pk": 321,
+        "fields": {
+            "attribution_preference": 42,
+            "timetable": 99,
+            "blockk": 5,
+            "priority": "primary"
+        }
+    },
+    {
+        "model": "attribution_preference.course_preference",
+        "pk": 322,
+        "fields": {
+            "attribution_preference": 42,
+            "timetable": 36,
+            "blockk": 4,
+            "priority": "primary"
+        }
+    },
+    {
+        "model": "attribution_preference.course_preference",
+        "pk": 323,
+        "fields": {
+            "attribution_preference": 42,
+            "timetable": 193,
+            "blockk": 4,
+            "priority": "primary"
+        }
+    },
+    {
+        "model": "attribution_preference.course_preference",
+        "pk": 324,
+        "fields": {
+            "attribution_preference": 42,
+            "timetable": 201,
+            "blockk": 5,
+            "priority": "primary"
+        }
+    },
+    {
+        "model": "attribution_preference.course_preference",
+        "pk": 325,
+        "fields": {
+            "attribution_preference": 42,
+            "timetable": 189,
+            "blockk": 5,
+            "priority": "primary"
+        }
+    },
+    {
+        "model": "attribution_preference.course_preference",
+        "pk": 326,
+        "fields": {
+            "attribution_preference": 42,
+            "timetable": 115,
+            "blockk": 5,
+            "priority": "secondary"
+        }
+    },
+    {
+        "model": "attribution_preference.course_preference",
+        "pk": 327,
+        "fields": {
+            "attribution_preference": 42,
+            "timetable": 184,
+            "blockk": 4,
+            "priority": "secondary"
+        }
+    },
+    {
+        "model": "attribution_preference.course_preference",
+        "pk": 328,
+        "fields": {
+            "attribution_preference": 42,
+            "timetable": 112,
+            "blockk": 4,
+            "priority": "secondary"
+        }
+    },
+    {
+        "model": "attribution_preference.course_preference",
+        "pk": 329,
+        "fields": {
+            "attribution_preference": 42,
+            "timetable": 95,
+            "blockk": 4,
+            "priority": "secondary"
+        }
+    },
+    {
+        "model": "attribution_preference.course_preference",
+        "pk": 330,
+        "fields": {
+            "attribution_preference": 43,
+            "timetable": 116,
+            "blockk": 5,
+            "priority": "primary"
+        }
+    },
+    {
+        "model": "attribution_preference.course_preference",
+        "pk": 331,
+        "fields": {
+            "attribution_preference": 43,
+            "timetable": 99,
+            "blockk": 5,
+            "priority": "primary"
+        }
+    },
+    {
+        "model": "attribution_preference.course_preference",
+        "pk": 332,
+        "fields": {
+            "attribution_preference": 43,
+            "timetable": 13,
+            "blockk": 5,
+            "priority": "primary"
+        }
+    },
+    {
+        "model": "attribution_preference.course_preference",
+        "pk": 333,
+        "fields": {
+            "attribution_preference": 43,
+            "timetable": 115,
+            "blockk": 5,
+            "priority": "secondary"
+        }
+    },
+    {
+        "model": "attribution_preference.course_preference",
+        "pk": 334,
+        "fields": {
+            "attribution_preference": 45,
+            "timetable": 189,
+            "blockk": 5,
+            "priority": "primary"
+        }
+    },
+    {
+        "model": "attribution_preference.course_preference",
+        "pk": 335,
+        "fields": {
+            "attribution_preference": 45,
+            "timetable": 201,
+            "blockk": 5,
+            "priority": "primary"
+        }
+    },
+    {
+        "model": "attribution_preference.course_preference",
+        "pk": 336,
+        "fields": {
+            "attribution_preference": 45,
+            "timetable": 99,
+            "blockk": 5,
+            "priority": "primary"
+        }
+    },
+    {
+        "model": "attribution_preference.course_preference",
+        "pk": 337,
+        "fields": {
+            "attribution_preference": 45,
+            "timetable": 191,
+            "blockk": 5,
+            "priority": "primary"
+        }
+    },
+    {
+        "model": "attribution_preference.course_preference",
+        "pk": 338,
+        "fields": {
+            "attribution_preference": 45,
+            "timetable": 183,
+            "blockk": 5,
+            "priority": "primary"
+        }
+    },
+    {
+        "model": "attribution_preference.course_preference",
+        "pk": 339,
+        "fields": {
+            "attribution_preference": 45,
+            "timetable": 115,
+            "blockk": 5,
+            "priority": "secondary"
+        }
+    },
+    {
+        "model": "attribution_preference.course_preference",
+        "pk": 340,
+        "fields": {
+            "attribution_preference": 45,
+            "timetable": 97,
+            "blockk": 5,
+            "priority": "secondary"
+        }
+    },
+    {
+        "model": "attribution_preference.course_preference",
+        "pk": 341,
+        "fields": {
+            "attribution_preference": 46,
+            "timetable": 36,
+            "blockk": 4,
+            "priority": "primary"
+        }
+    },
+    {
+        "model": "attribution_preference.course_preference",
+        "pk": 342,
+        "fields": {
+            "attribution_preference": 46,
+            "timetable": 158,
+            "blockk": 4,
+            "priority": "primary"
+        }
+    },
+    {
+        "model": "attribution_preference.course_preference",
+        "pk": 343,
+        "fields": {
+            "attribution_preference": 46,
+            "timetable": 175,
+            "blockk": 4,
+            "priority": "primary"
+        }
+    },
+    {
+        "model": "attribution_preference.course_preference",
+        "pk": 344,
+        "fields": {
+            "attribution_preference": 46,
+            "timetable": 162,
+            "blockk": 4,
+            "priority": "primary"
+        }
+    },
+    {
+        "model": "attribution_preference.course_preference",
+        "pk": 345,
+        "fields": {
+            "attribution_preference": 46,
+            "timetable": 179,
+            "blockk": 4,
+            "priority": "primary"
+        }
+    },
+    {
+        "model": "attribution_preference.course_preference",
+        "pk": 346,
+        "fields": {
+            "attribution_preference": 46,
+            "timetable": 127,
+            "blockk": 4,
+            "priority": "primary"
+        }
+    },
+    {
+        "model": "attribution_preference.course_preference",
+        "pk": 347,
+        "fields": {
+            "attribution_preference": 46,
+            "timetable": 144,
+            "blockk": 4,
+            "priority": "primary"
+        }
+    },
+    {
+        "model": "attribution_preference.course_preference",
+        "pk": 348,
+        "fields": {
+            "attribution_preference": 46,
+            "timetable": 3,
+            "blockk": 4,
+            "priority": "primary"
+        }
+    },
+    {
+        "model": "attribution_preference.course_preference",
+        "pk": 349,
+        "fields": {
+            "attribution_preference": 46,
+            "timetable": 134,
+            "blockk": 4,
+            "priority": "primary"
+        }
+    },
+    {
+        "model": "attribution_preference.course_preference",
+        "pk": 350,
+        "fields": {
+            "attribution_preference": 46,
+            "timetable": 117,
+            "blockk": 4,
+            "priority": "primary"
+        }
+    },
+    {
+        "model": "attribution_preference.course_preference",
+        "pk": 351,
+        "fields": {
+            "attribution_preference": 46,
+            "timetable": 49,
+            "blockk": 4,
+            "priority": "secondary"
+        }
+    },
+    {
+        "model": "attribution_preference.course_preference",
+        "pk": 352,
+        "fields": {
+            "attribution_preference": 46,
+            "timetable": 16,
+            "blockk": 4,
+            "priority": "secondary"
+        }
+    },
+    {
+        "model": "attribution_preference.course_preference",
+        "pk": 353,
+        "fields": {
+            "attribution_preference": 46,
+            "timetable": 54,
+            "blockk": 4,
+            "priority": "secondary"
+        }
+    }
+]
