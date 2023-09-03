@@ -247,7 +247,7 @@ def disponibility_attribution_preference(request):
 
     if user_regime is None:
         user_regime_choosed = ''
-    elif user_regime.name_job == "rde":
+    elif user_regime.name_job == "RDE":
         user_regime_choosed = user_regime
         user_regime_choosed.name_job = 'RDE'
     elif  user_regime.name_job == 'TEMPORARY':
@@ -259,7 +259,7 @@ def disponibility_attribution_preference(request):
     elif user_regime.name_job == 'TWENTY_HOURS':
         user_regime_choosed = user_regime
         user_regime_choosed.name_job = '20'
-    elif user_regime.name_job == 'forty_hours':
+    elif user_regime.name_job == 'FORTY_HOURS':
         user_regime_choosed = user_regime
         user_regime_choosed.name_job = '40'
     else:
@@ -306,7 +306,8 @@ def courses_attribution_preference(request):
         user_regime = user.job
         courses = Course.objects.all()
         user_is_fgfcc = False
-        # user_is_fgfcc = user.is_fgfcc
+        user_is_fgfcc = user.is_fgfcc
+        print(user_is_fgfcc)
 
         
         user_area = []
@@ -844,13 +845,10 @@ def save_disponiility_preference(user_timeslots, user_regime, user):
         Preference_schedule.objects.filter(attribution_preference__user=user).delete()
 
     for timeslot in user_timeslots:
-        print(timeslot)
         timeslot_begin_hour = timeslot["timeslot_begin_hour"]
-        print(timeslot_begin_hour)
         day_of_week = timeslot["day_of_week"]
 
         timeslot_object = Timeslot.objects.filter(hour_start=timeslot_begin_hour).first()
-        print(timeslot_object)
 
         if day_of_week == 'mon':
             day_object = enum.Day.monday.name

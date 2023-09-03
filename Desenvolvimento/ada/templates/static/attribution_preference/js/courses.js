@@ -104,6 +104,7 @@ if(user_courses_from_blockk.length > 0) {
 }
 
 function show_table(value) {
+    $("#warning-list-message").empty();
     if(value == 1) {
         $('#primary-timetable-courses').css({
             'display': ''
@@ -868,8 +869,6 @@ $(document).ready(function () {
                         var lists_courses = missing_courses.map(function(id) {
                             return "<li>" + id + "</li>";
                           }).join("");
-  
-                          $("#warning-list-message").empty();
                           $("#warning-list-message").html("<ul>" + lists_courses + "</ul>");
                           if(lang == 'pt-br' || lang == '') {
                                 $("#warning-alert-message").text("As seguintes disciplinas estão ultrapassando o escolhido na disponibilidade geral:");
@@ -964,8 +963,8 @@ $(document).ready(function () {
                 });
                 return false;
             }
-            if(cell_left_number.type == '20h') {
-                if(cell_left_number.time <= 13) {
+            if(cell_left_number.type == '20h' || user_is_fgfcc == 'True') {
+                if(type_discipline.primary_choosed >= 8) {
                     $.ajax({
                         type: "post",
                         url: "/" + lang + "/professor/preferencia-atribuicao/",
@@ -1006,7 +1005,7 @@ $(document).ready(function () {
                     });
                 }
             } else {
-                if(cell_left_number.time <= 9) {
+                if(type_discipline.primary_choosed >= 12) {
                     $.ajax({
                         type: "post",
                         url: "/" + lang + "/professor/preferencia-atribuicao/",
@@ -1146,8 +1145,3 @@ function info_button(value) {
         $("#info-input-alert").show();
     }
 }
-
-function closeErrorAlert(id) {
-    $("#"+ id).hide();
-}
-
