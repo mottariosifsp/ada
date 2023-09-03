@@ -6,7 +6,7 @@ var timeslots = document.currentScript.getAttribute("timeslots");
 console.log("Timeslots", timeslots);
 
 var timetable_json = document.currentScript.getAttribute("timetable_json");
-console.log("timetable_json", timetable_json);
+console.log("timetable_json data", JSON.parse(timetable_json));
 
 var json_data = document.currentScript.getAttribute("jsonData");
 json_data = decodeURIComponent(JSON.parse('"' + json_data + '"'));
@@ -43,14 +43,20 @@ $.each(timetables_user, function (index, value) {
 $(document).ready(function () {
 
     $('#rectangle-container').hide();
-
     var jsonData = JSON.parse(json_data);
-
     var json_array = Array.isArray(jsonData) ? jsonData : [jsonData];
+
+    function showCard() {
+        $('.card').removeClass('hidden');
+    }
+
+    function hideCard() {
+        $('.card').addClass('hidden');
+    }
 
     $('.square').click(function () {
         var registrationAreaId = $(this).data('registration_area_id');
-        console.log('registration_area_id:', registrationAreaId);
+        console.log('Clicked square with registration_area_id:', registrationAreaId);
 
         var filteredData = json_array.filter(function (objeto) {
             return objeto.registration_area_id === registrationAreaId;
@@ -60,10 +66,21 @@ $(document).ready(function () {
 
         filteredData.forEach(function (objeto) {
             var rectangle = $('<div class="rectangle"></div>').text(objeto.registration_class_id);
+
+            rectangle.click(function () {
+                showCard();
+            });
+
             $('#rectangle-container').append(rectangle);
         });
 
         $('#rectangle-container').show();
+
+        $('.square').click(function () {
+            hideCard();
+        });
+
+
     });
     // console.log(tametables_user)
 

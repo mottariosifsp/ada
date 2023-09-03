@@ -254,7 +254,7 @@ def final_assignments_classs(request, name_block):
         for timetable in timetables:
             timetable_dict = {
                 'course': {
-                    'id': timetable.course.registration_course_id,
+                    'acronym': timetable.course.acronym,
                     'name': timetable.course.name_course,
                 },
                 'classs': {

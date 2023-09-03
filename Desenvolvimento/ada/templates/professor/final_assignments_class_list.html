@@ -27,19 +27,13 @@
   {% endfor %}
 </div>
 
-<div id="rectangle-container" class="hidden">
-  {% for objeto in json_data %}
-    <div class="rectangle" data-registration_area_id="{{ objeto.registration_area_id }}">
-      {{ objeto.registration_class_id }}
-    </div>
-  {% endfor %}
-</div>
+<div id="rectangle-container" class="hidden"></div>
 
 
 <div class="container pt-5">
    <h1>{{professor.get_full_name_camel_case}}</h1>
    <hr>
-   <div class="card">
+   <div class="card hidden">
       <div class="card-body">
          <div class="tabela">
           <button class="collapsible"><span class="ml-1 icon-minimize" style="float: left;"><i class="fa fa-chevron-down pull-right"></i></span>Matutino</button>
