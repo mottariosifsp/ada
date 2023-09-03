@@ -21,6 +21,7 @@ from .models import Deadline, Criteria
 from django.db.models import F, Sum, Value
 from staff.models import Deadline, Alert
 from datetime import datetime, timedelta
+from django.db.models import Max
 
 from django.contrib.auth.decorators import login_required
 
@@ -39,28 +40,31 @@ def home(request):
         description = request.POST.get('description')
         blockk_id = request.POST.get('block')
         link = request.POST.get('link')
-        print(link)
+        delete_id = request.POST.get('delete_id')
 
-        if blockk_id:
-            name_alert = "ALERT"
-            blockk = Blockk.objects.get(id=blockk_id)
+        if delete_id:
+            Alert.objects.filter(id=delete_id).delete()   
+            print(delete_id)         
         else:
-            name_alert = "LINK"
-            blockk = None
-            title = None
+            if blockk_id:
+                name_alert = "ALERT"
+                blockk = Blockk.objects.get(id=blockk_id)
+                Alert.objects.filter(blockk=blockk).delete()
+                title = title.title()
+                describe = description
+            else:
+                name_alert = "LINK"
+                blockk = None
+                title = None
+                describe = link
 
-        if link:
-            describe = link
-        else:
-            describe = description
-
-        Alert.objects.create(
-            name_alert=name_alert,
-            created_by=request.user,
-            title=title,
-            description=describe,
-            blockk=blockk,
-        )
+            Alert.objects.create(
+                name_alert=name_alert,
+                created_by=request.user,
+                title=title,
+                description=describe,
+                blockk=blockk,
+            )
 
     user = request.user
     status = 'not_configured'
@@ -155,11 +159,43 @@ def home(request):
     period['status'] = status
 
     user_blocks = user.blocks.all()
+
+    user_alerts = []
+    for block in user_blocks:
+        alerts = Alert.objects.filter(name_alert='ALERT', blockk=block)
+        if alerts:
+            for alert in alerts:
+                alert = {
+                    'id': alert.id,
+                    'title': alert.title,
+                    'description': alert.description,
+                    'blockk': alert.blockk
+                }
+                user_alerts.append(alert)
+
+    links = Alert.objects.filter(name_alert='LINK')
+    user_links = []
+    for link in links:
+        link = {
+            'id': link.id,
+            'title': link.title,
+            'description': link.description
+        }
+        user_links.append(link)
+
+    count = {
+        'alerts': len(user_alerts),
+        'links': len(user_links)
+    }
         
     data = {
+        'count': count,
+        'alerts': user_alerts,
+        'links': user_links,
         'user_blocks': user_blocks,
         'period': period
     }
+    print(data)
     return render(request, 'staff/home_staff.html', data)
 
 @login_required

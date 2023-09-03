@@ -307,8 +307,6 @@ def courses_attribution_preference(request):
         courses = Course.objects.all()
         user_is_fgfcc = False
         user_is_fgfcc = user.is_fgfcc
-        print(user_is_fgfcc)
-
         
         user_area = []
         for area in Area.objects.filter(blocks__in=user.blocks.all().distinct()).distinct():

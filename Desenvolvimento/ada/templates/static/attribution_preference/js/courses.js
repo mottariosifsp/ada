@@ -932,9 +932,9 @@ $(document).ready(function () {
             });
         } else {
             if(lang == 'pt-br' || lang == '') {
-                $("#error-message-form").text("Por favor, selecione suas disciplinas.");
+                $("#error-message-form").text("Por favor, selecione a disciplina no modal.");
             } else {
-                $("#error-message-form").text("Please select your subjects.");
+                $("#error-message-form").text("Please select your subject in the modal.");
             }
             $("#error-alert-form").show();
             window.scrollTo({

@@ -86,10 +86,10 @@ for (var i = 0; i < user_courses_choosed_array.length; i++) {
     var new_row = '<tr>' +
       '<td class="text-center align-middle">' + acronym + '</td>' +
       '<td class="text-center align-middle">' + name_course + '</td>' +
-      '<td class="text-center align-middle">' + course_area + '</td>' +
-      '<td class="text-center align-middle">' + primeiraLetraMaiuscula(priority_attr) + '</td>' +
+      '<td class="text-center align-middle">' + course_area + '</td>' +      
       '<td class="text-center align-middle">' + primeiraLetraMaiuscula(period_language) + '</td>' +
       '<td class="text-center align-middle">' + classes + '</td>' +
+      '<td class="text-center align-middle">' + primeiraLetraMaiuscula(priority_attr) + '</td>' +
       '</tr>';
   
     $('#courses-list').append(new_row);
