@@ -54,24 +54,24 @@
                 <h4 class="card-title">{% trans "Status" %}</h4>
                 <hr class="my-0">
                 <div class="mt-4 ml-2">
-                    <p><b>{% trans "Início" %}:</b> {{start_day}} {% trans "ás" %} {{start_time}}</p>
-                    <p><b>{% trans "Fim" %}:</b> {{end_day}} {% trans "ás" %} {{end_time}}</p>
+                    <p><b>{% trans "Início" %}:</b> {{start_day}} {% trans "às" %} {{start_time}}</p>
+                    <p><b>{% trans "Fim" %}:</b> {{end_day}} {% trans "às" %} {{end_time}}</p>
                 </div>
                 {% elif status_fpa == 'started' and courses_done == 'False' %}
                 <div class="float-right message-info-not-done"><i class="fas fa-clock"></i> {% trans 'AGUARDANDO ENVIO'%}</div>
                 <h4 class="card-title">{% trans "Status" %}</h4>
                 <hr class="my-0">
                 <div class="mt-4 ml-2">
-                    <p><b>{% trans "Início" %}:</b> {{start_day}} {% trans "ás" %} {{start_time}}</p>
-                    <p><b>{% trans "Fim" %}:</b> {{end_day}} {% trans "ás" %} {{end_time}}</p>
+                    <p><b>{% trans "Início" %}:</b> {{start_day}} {% trans "às" %} {{start_time}}</p>
+                    <p><b>{% trans "Fim" %}:</b> {{end_day}} {% trans "às" %} {{end_time}}</p>
                 </div>
                 {% else %}
                 <div class="float-right message-info-done"><i class="far fa-check-circle"></i> {% trans 'ENVIADO'%}</div>
                 <h4 class="card-title">{% trans "Status" %}</h4>
                 <hr class="my-0">
                 <div class="mt-4 ml-2">
-                    <p><b>{% trans "Início" %}:</b> {{start_day}} {% trans "ás" %} {{start_time}}</p>
-                    <p><b>{% trans "Fim" %}:</b> {{end_day}} {% trans "ás" %} {{end_time}}</p>
+                    <p><b>{% trans "Início" %}:</b> {{start_day}} {% trans "às" %} {{start_time}}</p>
+                    <p><b>{% trans "Fim" %}:</b> {{end_day}} {% trans "às" %} {{end_time}}</p>
                 </div>
                 {% endif %}
               </div>

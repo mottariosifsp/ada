@@ -91,7 +91,6 @@ class AcademicDegreeHistory(models.Model):
     history = models.ForeignKey('History', on_delete=models.CASCADE)
     academic_degree = models.ForeignKey('AcademicDegree', on_delete=models.CASCADE)
 
-
 class History(models.Model):
     id_history = models.AutoField(primary_key=True) 
     birth = models.DateField(_('birth'), null=False, blank=False)
