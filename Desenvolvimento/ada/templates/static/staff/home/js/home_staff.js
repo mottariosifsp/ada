@@ -1,4 +1,7 @@
 var lang = document.currentScript.getAttribute("data-lang");
+var count_alert = parseInt(document.currentScript.getAttribute("alert-count"));
+var count_link = parseInt(document.currentScript.getAttribute("link-count"));
+
 
 function redirect(url){
     window.location.href = url;
@@ -70,6 +73,7 @@ $(document).ready(function() {
             url = "/staff/";
         }
 
+
         $.ajax({
             type: 'POST',
             url: url,
@@ -80,6 +84,7 @@ $(document).ready(function() {
             success: function(response) {
                 $('#add-alert-form').trigger("reset");
                 $('#error-alert-modal').hide();
+                location.reload();
             },
             error: function(error) {
                 $('#error-message-modal').text('Erro ao adicionar alerta');
@@ -116,6 +121,8 @@ $(document).ready(function() {
             success: function(response) {
                 $('#add-link-form').trigger("reset");
                 $('#error-link-modal').hide();
+                $('#add-link-modal').modal('hide');
+                location.reload();
             },
             error: function(error) {
                 $('#error-message-link-modal').text('Erro ao adicionar alerta');
@@ -124,6 +131,38 @@ $(document).ready(function() {
         });
     });
 });
+
+function mostrarAlerta(value) {
+    let csrftoken = get_cookie("csrftoken");
+
+    if(lang) {
+        url = "/" + lang + "/staff/";
+    } else {
+        url = "/staff/";
+    }
+
+    var dataToSend = {
+        'delete_id': value
+    };
+
+    $.ajax({
+        type: 'POST',
+        url: url,
+        data: dataToSend,
+        headers: {
+            "X-CSRFToken": csrftoken,
+        },
+        success: function(response) {
+            $('#add-link-form').trigger("reset");
+            $('#error-link-modal').hide();
+            location.reload();
+        },
+        error: function(error) {
+            $('#error-message-link-modal').text('Erro ao adicionar alerta');
+            $('#error-link-modal').show();
+        }
+    });
+}
 
 function get_cookie(name) {
     var cookie_value = null;

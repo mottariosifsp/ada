@@ -295,7 +295,12 @@ $(document).ready(function() {
               }
             });
           } else {
-            $('#error-message-form').text('A seleção da disponibilidade de horário não pode ultrapassar 8 horas de trabalho diárias.');
+            if(lang == 'pt-br' || lang == '') {
+              $('#error-message-form').text('A seleção da disponibilidade de horário não pode ultrapassar 8 horas de trabalho diárias.');
+            } else {
+              $('#error-message-form').text('The selection of time availability cannot exceed 8 hours of work per day.');
+            }
+            
             $('#error-alert-form').show();
             window.scrollTo({
               top: $('#error-alert-form').offset().top - $('.navbar').outerHeight() - 30,
@@ -303,7 +308,11 @@ $(document).ready(function() {
             });
           }
         } else {
-          $('#error-message-form').text('A seleção da disponibilidade deve permitir no mínimo 11 horas de intervalo entre a hora inicial do trabalho de um dia e a hora final de trabalho do dia seguinte.');
+          if(lang == 'pt-br' || lang == '') {
+            $('#error-message-form').text('A seleção da disponibilidade deve permitir no mínimo 11 horas de intervalo entre a hora inicial do trabalho de um dia e a hora final de trabalho do dia seguinte.');
+          } else {
+            $('#error-message-form').text("The availability selection must allow for a minimum of 11 hours between the start time of one day's work and the end time of the next day's work.");
+          }
             $('#error-alert-form').show();
             window.scrollTo({
               top: $('#error-alert-form').offset().top - $('.navbar').outerHeight() - 30,
@@ -311,7 +320,11 @@ $(document).ready(function() {
             });
           }
       } else {
-        $('#error-message-form').text('Por favor insira todas as células.');
+        if(lang == 'pt-br' || lang == '') {
+          $('#error-message-form').text('Por favor insira todas as células.');
+        } else {
+          $('#error-message-form').text('Please enter all cells.');
+        }
         $('#error-alert-form').show();
         window.scrollTo({
           top: $('#error-alert-form').offset().top - $('.navbar').outerHeight() - 30,
@@ -319,7 +332,11 @@ $(document).ready(function() {
         });
       }
     } else {
-      $('#error-message-form').text('Insira as informações pedidas em cada seção.');
+      if(lang == 'pt-br' || lang == '') {
+        $('#error-message-form').text('Insira as informações pedidas em cada seção.');
+      } else {
+        $('#error-message-form').text('Enter the information requested in each section.');
+      }
       $('#error-alert-form').show();
       window.scrollTo({
         top: $('#error-alert-form').offset().top - $('.navbar').outerHeight() - 30,
@@ -544,7 +561,12 @@ function period_input(value) {
   } else {
     if(cell_left_number == 0 && cell_type_choosed == 0) {
       block_options();
-      $('#error-message-form').text('Insira o regime de trabalho acrescestar sua disponibilidade.');
+      if(lang == 'pt-br' || lang == '') {
+        $('#error-message-form').text('Insira o regime de trabalho para poder acrescestar sua disponibilidade.');
+      } else {
+        $('#error-message-form').text('Enter the work regime so you can add your availability.');
+      }
+      
     } else {
       $('#period-' + value).css({
         "background-color": "#507c75",
@@ -580,7 +602,11 @@ function timeslot_input(value) {
   } else {
     if(cell_left_number == 0 && cell_type_choosed == 0) {
       block_options();
-      $('#error-message-form').text('Insira o regime de trabalho acrescestar sua disponibilidade.');
+      if(lang == 'pt-br' || lang == '') {
+        $('#error-message-form').text('Insira o regime de trabalho para poder acrescestar sua disponibilidade.');
+      } else {
+        $('#error-message-form').text('Enter the work regime so you can add your availability.');
+      }
     } else {
       $('#timeslot-' + value).css({
         "background-color": "#507c75",
@@ -615,7 +641,11 @@ function day_of_week_input(value) {
   } else {
     if(cell_left_number == 0 && cell_type_choosed == 0) {
       block_options();
-      $('#error-message-form').text('Insira o regime de trabalho acrescestar sua disponibilidade.');
+      if(lang == 'pt-br' || lang == '') {
+        $('#error-message-form').text('Insira o regime de trabalho para poder acrescestar sua disponibilidade.');
+      } else {
+        $('#error-message-form').text('Enter the work regime so you can add your availability.');
+      }
     } else {
       $('#day_of_week-' + value).css({
         "background-color": "#507c75",
@@ -739,8 +769,4 @@ function update_cell_left_number(button_is_checked) {
       }
     }
   }
-}
-
-function closeErrorAlert(id) {
-  $("#"+ id).hide();
 }

@@ -67,7 +67,7 @@
         <ul class="navbar-nav mx-auto" style="font-size: larger;">
           <li class="nav-item word-topic"><a class="nav-link title" href="#">{% trans "Informação" %}</a></li>
           <li class="nav-item word-topic"><a class="nav-link title" href="{% url 'attribution_preference' %}">{% trans "FPA" %}</a></li>
-          <li class="nav-item word-topic"><a class="nav-link title" href="#">{% trans "Grade" %}</a></li>
+          <li class="nav-item word-topic"><a class="nav-link title" href="{% url 'assignments' %}">{% trans "Atribuições" %}</a></li>
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownLangLogin" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               {% get_current_language as LANGUAGE_CODE %}
@@ -190,7 +190,7 @@
                 </a>
             </div>
         </div>
-          <div class="col-lg-6 col-xs-12 links align-middle">
+          <div class="col-lg-6 col-xs-12 links-footer align-middle">
               <h4 class="mt-lg-0 mt-sm-4">Links</h4>
               <a href="" class="mr-2 footer-link"><span>{% trans "Sobre"%}</span></a>
               <a href="" class="mr-2 footer-link"><span>{% trans "Contato"%}</span></a>

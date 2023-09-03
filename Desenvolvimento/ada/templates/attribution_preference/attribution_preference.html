@@ -20,7 +20,7 @@
     <div class="row mb-4">
         {% if status_fpa == 'finished' %}
         <div class="col-12">
-            <div class="card info-card sales-card">
+            <div class="card mt-2 info-card sales-card">
               <div class="card-body">
                 <div id="work-regime">
                 <div class="float-right message-info-not-started"><i class="far fa-check-circle"></i> {% trans 'FINALIZADA'%}</div>
@@ -31,7 +31,7 @@
           </div>
         {% elif status_fpa == 'not_configured' %}
         <div class="col-12">
-            <div class="card info-card sales-card">
+            <div class="card mt-2 info-card sales-card">
               <div class="card-body">
                 <div id="work-regime">
                     <div class="float-right message-info-not-configured"><i class="fas fa-times-circle"></i> {% trans 'NÃO CONFIGURADO'%}</div>
@@ -46,7 +46,7 @@
           </div>
         {% else %}
         <div class="col-xxl-4 col-md-6">
-          <div class="card info-card sales-card">
+          <div class="card mt-2 info-card sales-card">
             <div class="card-body">
               <div id="work-regime">
                 {% if status_fpa == 'configured' %}
@@ -79,7 +79,7 @@
           </div>
         </div>
         <div class="col-xxl-4 col-md-6">
-          <div class="card info-card sales-card">
+          <div class="card mt-2 info-card sales-card">
             <div class="card-body">
               <h4 class="card-title">{% trans "Tempo Restante" %}</h4>
               <hr class="my-0">
