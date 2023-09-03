@@ -242,19 +242,70 @@ def final_assignments_classs(request, name_block):
     all_classes = {}
 
     for area in areas_associadas:
+        classes_da_area = Classs.objects.filter(area=area)  # Use filter() para obter todas as classes da área
+        timetables = Timetable.objects.filter(classs__in=classes_da_area).all()
 
-        classes_da_area = Classs.objects.filter(area=area)
+
+        timeslots_all = Timeslot.objects.all()
+        timetables_user = Timetable_user.objects.filter(timetable__in=timetables).all()
+
+        timetables_professor = []
+
+        for timetable_user in timetables_user:
+            day_combos = timetable_user.timetable.day_combo.all()
+            for day_combo in day_combos:
+                day = day_to_number(day_combo.day)
+                timeslots = day_combo.timeslots.all()
+
+                if timetable_user.user is not None:
+                    professor = timetable_user.user.first_name
+                else:
+                    professor = "-"
+
+                for timeslot in timeslots:
+                    position = timeslot.position
+                    print(timetable_user.user)
+                    timetable_professor = {
+                        "cord": f'{position}-{day}',
+                        "course": timetable_user.timetable.course.name_course,
+                        "acronym": timetable_user.timetable.course.acronym,
+                        "professor": professor,
+                    }
+                    timetables_professor.append(timetable_professor)
+        timetables_professor_json = json.dumps(timetables_professor, ensure_ascii=False).encode('utf8').decode()
 
 
         if area.name_area == 'DESENVOLVIMENTO DE SISTEMAS':
             desenvolvimento_de_sistemas_data = list(classes_da_area.values())
 
 
-    json_data = json.dumps(desenvolvimento_de_sistemas_data, indent=4)
+    print("timeslots", timeslots_all)
+    print("timetables_professor", timetables_professor_json)
+    json_data = json.dumps(desenvolvimento_de_sistemas_data)
+    print("JSON DATA2", json_data)
+
     python_data = json.loads(json_data)
+    print("python_data", python_data)
 
 
-    print("Json data", python_data)
+    data = {
+        'areas': areas_associadas,
+        'json_data': python_data,
+        'timeslots': timeslots_all,
+        'timetables_professor': timetables_professor_json,
+        # 'professor': professor,
+        # 'timeslots': timeslots_all,
+        # 'timetables_professor': timetables_professor_json,
+        # 'user_classes': classes_do_usuario
+    }
+
+
+
+    # print("Json data", python_data)
+
+
+
+    return render(request, 'professor/final_assignments_class_list.html', data)
 
     # timetables_do_usuario = Timetable_user.objects.filter(user=user).values_list('timetable_id', flat=True)
     #
@@ -289,16 +340,7 @@ def final_assignments_classs(request, name_block):
     # timetables_professor_json = json.dumps(timetables_professor, ensure_ascii=False).encode('utf8').decode()
     # print("timetable class filter", timetables_professor_json)
 
-    data = {
-        'areas': areas_associadas,
-        'json_data': python_data,
-        # 'professor': professor,
-        # 'timeslots': timeslots_all,
-        # 'timetables_professor': timetables_professor_json,
-        # 'user_classes': classes_do_usuario
-    }
 
-    return render(request, 'professor/final_assignments_class_list.html', data)
 
 
 def day_to_number(day):

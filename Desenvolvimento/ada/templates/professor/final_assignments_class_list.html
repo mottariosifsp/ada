@@ -62,7 +62,6 @@
                     {% with timeslot_counter=forloop.counter %}
                       <th scope="row" class="align-middle text-center">{{ timeslot.hour_start|date:"H:i" }} - {{ timeslot.hour_end|date:"H:i" }}</th>
                             {% for cell in "012345" %}
-                            <!-- blocktrans? batatinha -->
                                <td class="text-center p-2" id="cel-{{ timeslot_counter }}-{{ forloop.counter }}">{{ cell.content }}</td>
                             {% endfor %}
                       {% endwith %}
@@ -95,7 +94,6 @@
                       {% with timeslot_counter=forloop.counter|add:6 %}
                         <th scope="row" class="align-middle text-center">{{ timeslot.hour_start|date:"H:i" }} - {{ timeslot.hour_end|date:"H:i" }}</th>
                               {% for cell in "012345" %}
-                              <!-- blocktrans? batatinha -->
                                  <td class="text-center p-2" id="cel-{{ timeslot_counter }}-{{ forloop.counter }}">{{ cell.content }}</td>
                               {% endfor %}
                         {% endwith %}
@@ -142,6 +140,6 @@
 </div>
 
 
-<script src="{% static 'professor/js/final_assignments_classs_list.js' %}" timetables-professor='{{timetables_professor}}'></script>
+<script src="{% static 'professor/js/final_assignments_classs_list.js' %}" timetables-user='{{timetables_professor}}' jsonData='{{ json_data }}' timeslots='{{ timeslots }}'></script>
 <script src="{% static 'common/table_window/js/table_window.js' %}"></script>
 {% endblock %}
