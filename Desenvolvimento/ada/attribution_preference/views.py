@@ -81,6 +81,7 @@ def attribution_preference(request):
                     break
                 else:
                     status = 'finished'
+                    semester = '0'
                     break
 
             if status:
