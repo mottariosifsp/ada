@@ -48,7 +48,7 @@
             <p class="home-begin"><div class="float-right">{{period.start_day}} {% trans "às" %} {{period.start_time}}</div><b>{% trans "Inicio" %}</b> </p>
             <p class=""><div class=" float-right">{{period.end_day}} {% trans "às" %} {{period.end_time}}</div><b>{% trans "Fim" %}</b></p>
             {% elif period.status == 'attribution' %}
-            <p><a href="{% url 'attribution' %}"><div class="float-right message-info-not-configured">{% trans 'Atribuição de Aulas'%}</div></a> <b>{% trans "Período" %}</b> </p>
+            <p><a href="{% url 'attribution:attribution' %}"><div class="float-right message-info-not-configured">{% trans 'Atribuição de Aulas'%}</div></a> <b>{% trans "Período" %}</b> </p>
             <p><div class="float-right">{{period.start_day}} {% trans "às" %} {{period.start_time}}</div><b>{% trans "Inicio" %}</b> </p>
             <p class="home-begin"><div class=" float-right">{{period.end_day}} {% trans "às" %} {{period.end_time}}</div><b>{% trans "Fim" %}</b></p>
             {% else %}
