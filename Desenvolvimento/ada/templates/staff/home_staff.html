@@ -37,25 +37,6 @@
             <p><div class="float-right message-info-not-configured">{% trans 'Não Configurado'%}</div><b>{% trans "Período" %}</b> </p>
             <p class="home-begin"><b>{% trans "Situação" %}</b><div class=" text-center big-text">{% trans 'Espere até que seja emitido pelo administrador as datas da atribuição' %}.</div> </p>
             {% elif period.status == 'configured_STARTFPADEADLINE' %}
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
-            <p><div class="float-right message-info-not-configured">{% trans 'Prazo configurado - FPA'%}</div> <b>{% trans "Período" %}</b> </p>
-            <p class="home-begin"><div class=" float-right">{{period.start_day}} {% trans "às" %} {{period.start_time}}</div><b>{% trans "Início" %}</b> </p>
-            <p class=""><div class=" float-right">{{period.end_day}} {% trans "às" %} {{period.end_time}}</div><b>{% trans "Fim" %}</b></p>
-            {% elif period.status == 'configured_STARTASSIGNMENTDEADLINE' %}
-            <p><div class="float-right message-info-not-configured">{% trans 'Prazo configurado - Atribuição'%}</div> <b>{% trans "Período" %}</b> </p>
-            <p class="home-begin"><div class=" float-right">{{period.start_day}} {% trans "às" %} {{period.start_time}}</div><b>{% trans "Início" %}</b> </p>
-            <p class=""><div class=" float-right">{{period.end_day}} {% trans "às" %} {{period.end_time}}</div><b>{% trans "Fim" %}</b></p>
-            {% elif period.status == 'fpa' %}
-            <p><a href="{% url 'attribution_preference' %}"><div class="float-right message-info-not-configured">{% trans 'Formulário de Preferências'%}</div></a> <b>{% trans "Período" %}</b> </p>
-            <p class="home-begin"><div class="float-right">{{period.start_day}} {% trans "às" %} {{period.start_time}}</div><b>{% trans "Início" %}</b> </p>
-            <p class=""><div class=" float-right">{{period.end_day}} {% trans "às" %} {{period.end_time}}</div><b>{% trans "Fim" %}</b></p>
-            {% elif period.status == 'attribution' %}
-            <p><a href="{% url 'attribution:attribution' %}"><div class="float-right message-info-not-configured">{% trans 'Atribuição de Aulas'%}</div></a> <b>{% trans "Período" %}</b> </p>
-            <p><div class="float-right">{{period.start_day}} {% trans "às" %} {{period.start_time}}</div><b>{% trans "Início" %}</b> </p>
-=======
->>>>>>> a1565f7f13f2bafae08f816a3fddf9ca9dc40c1f
             <p><div class="float-right message-info-not-started">{% trans 'Formulário de Preferências'%}</div> <b>{% trans "Período" %}</b> </p>
             <p class="home-begin"><b>{% trans "Situação" %}</b> <i class="float-right">{% trans "Prazo configurado" %}</i></p>
             <p class="home-begin"><div class=" float-right">{{period.start_day}} {% trans "às" %} {{period.start_time}}</div><b>{% trans "Início" %}</b> </p>
