@@ -271,8 +271,8 @@ def attribution_configuration_confirm(request):
             time.user = None
             time.save()
 
-        save_deadline(data) 
-        schedule_attributtion_deadline_staff(startAssignmentDeadline, 'startAssignmentDeadline', blockk.id)       
+        # save_deadline(data) 
+        # schedule_attributtion_deadline_staff(startAssignmentDeadline, 'startAssignmentDeadline', blockk.id)       
 
 
         return render(request, 'staff/attribution/attribution_configuration_confirm.html', data)

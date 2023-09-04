@@ -295,15 +295,16 @@ def float_to_time(seconds):
     time = datetime.datetime(1, 1, 1) + delta
     return time.time()
 
-def schedule_attributtion_deadline_staff(seconds, name, *args):
-    cancel_scheduled_task('task')
-    schedule_deadline(attribution_deadline_start, seconds, name, *args)
+def schedule_attributtion_deadline_staff(seconds, name, queue,*args):
+    # cancel_scheduled_task(name)
+    schedule_deadline(attribution_deadline_start, seconds, name, queue, *args)
 
 import datetime
 def manual_attribution(request):   
 
     if request.method == 'POST':
-        blockk = Blockk.objects.get(registration_block_id=request.POST.get('blockk'))
+        get_block = request.POST.get('blockk')
+        blockk = Blockk.objects.get(registration_block_id=get_block)
 
         work_courses = request.POST.get('timetable')
 
@@ -353,6 +354,7 @@ def manual_attribution(request):
         for timetable_user in timetables_user:
             courses.append(timetable_user.timetable.course)
 
+        print(courses)
         for timetable_user in timetables_user:
             timetable.append(timetable_user.timetable)
 
@@ -464,7 +466,7 @@ def manual_attribution(request):
                             'course_acronym': course_acronym,
                             'course_name': course_name,
                         }
-
+                        print('timetable_item', timetable_item)
                         timetable_user_array.append(timetable_item)
 
         courses_array = []
@@ -538,10 +540,10 @@ def manual_attribution(request):
                 }
                 user_timeslot_traceback.append(string)
 
-        print(user_timeslot_traceback)
+        # print(user_timeslot_traceback)
 
         regime = request.user.job
-        
+        print(timetable_array)
         data = {
             'regime': regime,
             'turno': turno,
@@ -557,8 +559,8 @@ def manual_attribution(request):
         return render(request, 'attribution/manual_attribution.html', data)
 
 def manual_attribution_save(timetables, professor, blockk):
-    print(f'Atual professor {TeacherQueuePosition.objects.get(position=0).teacher.first_name} e professor sendo atualizado {professor.first_name}')
-    if TeacherQueuePosition.objects.get(position=0).teacher == professor:
+    print(f'Atual professor {TeacherQueuePosition.objects.get(position=0, blockk=blockk).teacher.first_name} e professor sendo atualizado {professor.first_name}')
+    if TeacherQueuePosition.objects.get(position=0, blockk=blockk).teacher == professor:
         invalidated_timetables = []
 
         for timetable in timetables:
@@ -569,7 +571,7 @@ def manual_attribution_save(timetables, professor, blockk):
     
         if len(invalidated_timetables) == 0:
             professor_to_end_queue(professor, blockk)
-            TeacherQueuePosition.objects.filter(teacher=professor).delete()
+            TeacherQueuePosition.objects.filter(teacher=professor, blockk=blockk).delete()
             
             print(f'Professor { professor.first_name } escolheu suas novas aulas com sucesso!')
             return None
