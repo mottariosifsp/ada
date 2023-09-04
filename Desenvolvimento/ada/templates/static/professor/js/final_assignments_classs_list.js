@@ -12,31 +12,6 @@ console.log("Json data", JSON.parse(json_data));
 $('.header-table').closest('table').find('.header-days').hide();
 $('.header-table').closest('table').find('tbody').hide();
 
-$.each(timetables_user, function (index, value) {
-
-    let professor = value.professor;
-
-    $("#cel-" + value.cord).html("<strong>" + value.acronym + "</strong>" + "<br>" + professor);
-    $("#cel-" + value.cord).closest('table').find('.header-days').show();
-    $("#cel-" + value.cord).closest('table').find('tbody').show();
-    // console.log(value.cord);
-    // console.log(value.course);
-});
-
-$('.header-table').closest('table').find('.header-days').hide();
-$('.header-table').closest('table').find('tbody').hide();
-
-$.each(timetables_user, function (index, value) {
-
-    let professor = value.professor;
-
-    $("#cel-" + value.cord).html("<strong>" + value.acronym + "</strong>" + "<br>" + professor);
-    $("#cel-" + value.cord).closest('table').find('.header-days').show();
-    $("#cel-" + value.cord).closest('table').find('tbody').show();
-    // console.log(value.cord);
-    // console.log(value.course);
-});
-
 $(document).ready(function () {
 
     $('#rectangle-container').hide();
@@ -66,9 +41,14 @@ $(document).ready(function () {
 
         filteredData.forEach(function (objeto) {
             var rectangle = $('<div class="rectangle"></div>').text(objeto.registration_class_id);
+            let isUpdating = false;
 
             rectangle.click(function () {
-                showCard();
+                    if (isUpdating) {
+                        return;
+            }
+
+            isUpdating = true;
 
             var valorDoElementoClicado = $(event.target).text().trim();
             console.log("valor do elemento clicado 2", valorDoElementoClicado )
@@ -76,9 +56,23 @@ $(document).ready(function () {
             const objetosFiltrados = timetablesData.filter(objetoY => objetoY.class_area === valorDoElementoClicado);
 
             console.log("Resultado do filtro:", objetosFiltrados);
+
+            // Chame a função $.each dentro deste bloco
+            $.each(objetosFiltrados, function (index, value) {
+                let professor = value.professor;
+
+                $("#cel-" + value.cord).html("<strong>" + value.acronym + "</strong>" + "<br>" + professor);
+                $("#cel-" + value.cord).closest('table').find('.header-days').show();
+                $("#cel-" + value.cord).closest('table').find('tbody').show();
             });
 
+            showCard();
 
+
+            setTimeout(() => {
+                isUpdating = false;
+            }, 600);
+            });
 
             $('#rectangle-container').append(rectangle);
         });
@@ -88,7 +82,6 @@ $(document).ready(function () {
         $('.square').click(function () {
             hideCard();
         });
-
 
     });
     // console.log(tametables_user)
