@@ -59,7 +59,6 @@
   </div>
 </div>
 
-<script src="{% static 'staff/timetable/js/show_timetable.js' %}" data-lang="{{LANGUAGE_CODE}}"
-  timetables-complete="{{timetables}}"></script>
-
+<script src="{% static 'staff/timetable/js/show_timetable.js' %}" data-lang={{LANGUAGE_CODE}} timetables-complete="{{timetables}}"></script>
+<script src="{% static 'staff/timetable/js/edit_timetable.js' %}" data-lang={{ LANGUAGE_CODE }} timetables-complete="{{ timetable }}"></script>
 {% endblock %}
