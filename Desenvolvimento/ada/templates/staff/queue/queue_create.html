@@ -33,7 +33,7 @@
     <div class="row mb-3">
         <div class="col m-0 p-0 mr-3">
             <h5>{% trans "Bloco" %}:</h5>
-            <div class="card">
+            <div class="card queue-field">
                 <div class="card-body">
                     <h2 id="blockk-id" value="{{ data.blockk.registration_block_id }}">
                         {% blocktrans with name_block_text=data.blockk.name_block %}
@@ -45,7 +45,7 @@
         <div class="col m-0 p-0">
             {% if data.field != "" %}
             <h5>{% trans "Critério definido pela direção" %}:</h5>
-            <div class="card">
+            <div class="card queue-field">
                 <div class="card-body">
                     <div class="tipx{% if not data.error_field %} no-border{% endif %}">
                         <h2>{{ data.field }}</h2>
