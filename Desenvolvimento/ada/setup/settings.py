@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 """
 
 from pathlib import Path, os
+from celery import Celery
 from dotenv import load_dotenv
 from decouple import config
 import logging
@@ -58,7 +59,8 @@ CELERY_ACCEPT_CONTENT = ["json"]
 CELERY_TASK_SERIALIZER = "json"
 CELERY_TASK_TRACK_STARTED = True
 CELERY_TIMEZONE = 'America/Sao_Paulo'
-
+CELERY_CREATE_MISSING_QUEUES = True
+BROKER_HEARTBEAT=0
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
