@@ -6,7 +6,7 @@ from django.core import serializers
 from django.contrib.auth import get_user_model
 
 from django.utils.decorators import method_decorator
-from timetable.models import Timeslot, Timetable_user
+from timetable.models import Timeslot, Timetable_user, Timetable
 from attribution_preference.models import Attribution_preference
 from staff.models import Deadline, Alert
 from area.models import Area, Blockk
@@ -231,6 +231,49 @@ def profile(request):
     return render(request, 'professor/profile.html', data)
 
 
+@login_required
+def show_assignment(request):
+    classs = Classs.objects.get(registration_class_id=request.GET.get('registration_class_id'))
+
+    timetables = Timetable.objects.filter(classs=classs).all()
+    timeslots_all = Timeslot.objects.all()
+    timetables_user = Timetable_user.objects.filter(timetable__in=timetables).all()  # vai buscar apenas da atribuição final definitiva
+
+    timetables_professor = []
+
+    for timetable_user in timetables_user:
+        day_combos = timetable_user.timetable.day_combo.all()
+        for day_combo in day_combos:
+            day = day_to_number(day_combo.day)
+            timeslots = day_combo.timeslots.all()
+
+            if timetable_user.user is not None:
+                professor = timetable_user.user.first_name
+
+            else:
+                professor = "-"
+
+            for timeslot in timeslots:
+                position = timeslot.position
+                print("timetable user", timetable_user.user)
+                timetable_professor = {
+                    "cord": f'{position}-{day}',
+                    "course": timetable_user.timetable.course.name_course,
+                    "acronym": timetable_user.timetable.course.acronym,
+                    "professor": professor,
+                    "class_area": timetable_user.timetable.classs.registration_class_id
+                }
+                timetables_professor.append(timetable_professor)
+                # print("Timetable professorr",timetables_professor ) #Ok, só pega o professor D
+                timetables_professor_json = json.dumps(timetables_professor, ensure_ascii=False).encode(
+                    'utf8').decode()  # junção de todos
+
+                data = {
+                    'timeslots': timeslots_all,
+                    'timetables_professor': timetables_professor_json,
+                }
+
+    return render(request, 'professor/show_assignment.html', data)
 @login_required
 def assignments(request):
     blockks = request.user.blocks.all()

@@ -26,17 +26,16 @@ $(document).ready(function () {
             var rectangle = $('<div class="rectangle"></div>').text(objeto.registration_class_id);
             let isUpdating = false;
 
-            rectangle.click(function () {
-                if (isUpdating) {
-                    return;
-                }
+        rectangle.click(function () {
+            var valorDoElementoClicado = $(event.target).text().trim();
+            console.log("valor do elemento clicado", valorDoElementoClicado);
 
-                isUpdating = true;
 
-                var valorDoElementoClicado = $(event.target).text().trim();
-                console.log("valor do elemento clicado", valorDoElementoClicado)
+            var novaURL = "/professor/ver/?registration_class_id=" + valorDoElementoClicado;
+            window.location.href = novaURL;
 
-            });
+        });
+
 
             $('#rectangle-container').append(rectangle);
         });
