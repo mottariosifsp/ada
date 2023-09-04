@@ -50,6 +50,48 @@
         }
     },
     {
+        "model": "area.area",
+        "pk": 5,
+        "fields": {
+            "registration_area_id": "LIC.LPT.444444",
+            "name_area": "LICENCIATURA EM LETRAS",
+            "acronym": "LPT",
+            "exchange_area": true,
+            "is_high_school": true,
+            "blocks": [
+                5
+            ]
+        }
+    },
+    {
+        "model": "area.area",
+        "pk": 6,
+        "fields": {
+            "registration_area_id": "LAT.ENFI.555555",
+            "name_area": "ESPECIALIZAÇÃO EM ENSINO DE FILOSOFIA",
+            "acronym": "ENFI",
+            "exchange_area": true,
+            "is_high_school": true,
+            "blocks": [
+                4
+            ]
+        }
+    },
+    {
+        "model": "area.area",
+        "pk": 7,
+        "fields": {
+            "registration_area_id": "LIC.GEO.666666",
+            "name_area": "LICENCIATURA EM GEOGRAFIA",
+            "acronym": "GEO",
+            "exchange_area": true,
+            "is_high_school": true,
+            "blocks": [
+                4
+            ]
+        }
+    },
+    {
         "model": "area.blockk",
         "pk": 1,
         "fields": {
@@ -392,6 +434,166 @@
             "period": "night",
             "semester": 1,
             "area": 2
+        }
+    },
+    {
+        "model": "classs.classs",
+        "pk": 45,
+        "fields": {
+            "registration_class_id": "LPT1",
+            "period": "night",
+            "semester": 1,
+            "area": 5
+        }
+    },
+    {
+        "model": "classs.classs",
+        "pk": 46,
+        "fields": {
+            "registration_class_id": "LPT2M",
+            "period": "morning",
+            "semester": 1,
+            "area": 5
+        }
+    },
+    {
+        "model": "classs.classs",
+        "pk": 47,
+        "fields": {
+            "registration_class_id": "LPT2I",
+            "period": "morning",
+            "semester": 1,
+            "area": 5
+        }
+    },
+    {
+        "model": "classs.classs",
+        "pk": 48,
+        "fields": {
+            "registration_class_id": "LPT4",
+            "period": "morning",
+            "semester": 1,
+            "area": 5
+        }
+    },
+    {
+        "model": "classs.classs",
+        "pk": 49,
+        "fields": {
+            "registration_class_id": "LPT6",
+            "period": "morning",
+            "semester": 1,
+            "area": 5
+        }
+    },
+    {
+        "model": "classs.classs",
+        "pk": 50,
+        "fields": {
+            "registration_class_id": "LPT8",
+            "period": "morning",
+            "semester": 1,
+            "area": 5
+        }
+    },
+    {
+        "model": "classs.classs",
+        "pk": 51,
+        "fields": {
+            "registration_class_id": "GEO1",
+            "period": "night",
+            "semester": 1,
+            "area": 7
+        }
+    },
+    {
+        "model": "classs.classs",
+        "pk": 52,
+        "fields": {
+            "registration_class_id": "GEO2",
+            "period": "morning",
+            "semester": 1,
+            "area": 7
+        }
+    },
+    {
+        "model": "classs.classs",
+        "pk": 53,
+        "fields": {
+            "registration_class_id": "GEO3",
+            "period": "night",
+            "semester": 1,
+            "area": 7
+        }
+    },
+    {
+        "model": "classs.classs",
+        "pk": 54,
+        "fields": {
+            "registration_class_id": "GEO4",
+            "period": "morning",
+            "semester": 1,
+            "area": 7
+        }
+    },
+    {
+        "model": "classs.classs",
+        "pk": 55,
+        "fields": {
+            "registration_class_id": "GEO5",
+            "period": "night",
+            "semester": 1,
+            "area": 7
+        }
+    },
+    {
+        "model": "classs.classs",
+        "pk": 56,
+        "fields": {
+            "registration_class_id": "GEO6",
+            "period": "morning",
+            "semester": 1,
+            "area": 7
+        }
+    },
+    {
+        "model": "classs.classs",
+        "pk": 57,
+        "fields": {
+            "registration_class_id": "GEO7",
+            "period": "night",
+            "semester": 1,
+            "area": 7
+        }
+    },
+    {
+        "model": "classs.classs",
+        "pk": 58,
+        "fields": {
+            "registration_class_id": "GEO8",
+            "period": "morning",
+            "semester": 1,
+            "area": 7
+        }
+    },
+    {
+        "model": "classs.classs",
+        "pk": 59,
+        "fields": {
+            "registration_class_id": "ENFI1",
+            "period": "morning",
+            "semester": 1,
+            "area": 6
+        }
+    },
+    {
+        "model": "classs.classs",
+        "pk": 60,
+        "fields": {
+            "registration_class_id": "ENFI3",
+            "period": "morning",
+            "semester": 1,
+            "area": 6
         }
     },
     {
@@ -941,7 +1143,7 @@
             "name_course": "SOCIOLOGIA",
             "acronym": "SOC-4",
             "area": 1,
-            "blockk": 1
+            "blockk": 4
         }
     },
     {
@@ -1393,6 +1595,1172 @@
             "acronym": "GTIA6",
             "area": 2,
             "blockk": 1
+        }
+    },
+    {
+        "model": "course.course",
+        "pk": 92,
+        "fields": {
+            "registration_course_id": "SUP.11715",
+            "name_course": "PRÁTICAS EXTENSIONISTAS 1",
+            "acronym": "SPOEXT1",
+            "area": 5,
+            "blockk": 5
+        }
+    },
+    {
+        "model": "course.course",
+        "pk": 93,
+        "fields": {
+            "registration_course_id": "SUP.11716",
+            "name_course": "TEORIA LITERÁRIA 1",
+            "acronym": "SPOTEO1",
+            "area": 5,
+            "blockk": 5
+        }
+    },
+    {
+        "model": "course.course",
+        "pk": 94,
+        "fields": {
+            "registration_course_id": "SUP.11726",
+            "name_course": "LITERATURA OCIDENTAL 1",
+            "acronym": "SPOLOC1",
+            "area": 5,
+            "blockk": 5
+        }
+    },
+    {
+        "model": "course.course",
+        "pk": 95,
+        "fields": {
+            "registration_course_id": "SUP.11727",
+            "name_course": "TEXTOS ACADÊMICOS",
+            "acronym": "SPOTACM",
+            "area": 5,
+            "blockk": 5
+        }
+    },
+    {
+        "model": "course.course",
+        "pk": 96,
+        "fields": {
+            "registration_course_id": "SUP.11728",
+            "name_course": "LÍNGUA E CULTURA LATINA 1",
+            "acronym": "SPOLCL1",
+            "area": 5,
+            "blockk": 5
+        }
+    },
+    {
+        "model": "course.course",
+        "pk": 97,
+        "fields": {
+            "registration_course_id": "SUP.11729",
+            "name_course": "FONÉTICA DA LÍNGUA PORTUGUESA",
+            "acronym": "SPOFLPO",
+            "area": 5,
+            "blockk": 5
+        }
+    },
+    {
+        "model": "course.course",
+        "pk": 98,
+        "fields": {
+            "registration_course_id": "SUP.11731",
+            "name_course": "TÓPICOS DE LÍNGUA PORTUGUESA 1",
+            "acronym": "SPOTOP1",
+            "area": 5,
+            "blockk": 5
+        }
+    },
+    {
+        "model": "course.course",
+        "pk": 99,
+        "fields": {
+            "registration_course_id": "SUP.11733",
+            "name_course": "HISTÓRIA DA EDUCAÇÃO",
+            "acronym": "SPOHISA",
+            "area": 5,
+            "blockk": 5
+        }
+    },
+    {
+        "model": "course.course",
+        "pk": 100,
+        "fields": {
+            "registration_course_id": "SUP.11734",
+            "name_course": "PRÁTICAS EXTENSIONISTAS 2",
+            "acronym": "SPOEXT2",
+            "area": 5,
+            "blockk": 5
+        }
+    },
+    {
+        "model": "course.course",
+        "pk": 101,
+        "fields": {
+            "registration_course_id": "SUP.11735",
+            "name_course": "TEORIA LITERÁRIA 2",
+            "acronym": "SPOTEO2",
+            "area": 5,
+            "blockk": 5
+        }
+    },
+    {
+        "model": "course.course",
+        "pk": 102,
+        "fields": {
+            "registration_course_id": "SUP.11736",
+            "name_course": "LITERATURA OCIDENTAL 2",
+            "acronym": "SPOLOC2",
+            "area": 5,
+            "blockk": 5
+        }
+    },
+    {
+        "model": "course.course",
+        "pk": 103,
+        "fields": {
+            "registration_course_id": "SUP.11737",
+            "name_course": "LITERATURA PORTUGUESA 1",
+            "acronym": "SPOLPO1",
+            "area": 5,
+            "blockk": 5
+        }
+    },
+    {
+        "model": "course.course",
+        "pk": 104,
+        "fields": {
+            "registration_course_id": "SUP.11738",
+            "name_course": "METODOLOGIA DO ENSINO: FONOLOGIA DA LÍNGUA PORTUGUESA",
+            "acronym": "SPOMFLP",
+            "area": 5,
+            "blockk": 5
+        }
+    },
+    {
+        "model": "course.course",
+        "pk": 105,
+        "fields": {
+            "registration_course_id": "SUP.11739",
+            "name_course": "LÍNGUA E CULTURA LATINA 2",
+            "acronym": "SPOLCL2",
+            "area": 5,
+            "blockk": 5
+        }
+    },
+    {
+        "model": "course.course",
+        "pk": 106,
+        "fields": {
+            "registration_course_id": "SUP.11740",
+            "name_course": "TÓPICOS DE LÍNGUA PORTUGUESA 2",
+            "acronym": "SPOTOP2",
+            "area": 5,
+            "blockk": 5
+        }
+    },
+    {
+        "model": "course.course",
+        "pk": 107,
+        "fields": {
+            "registration_course_id": "SUP.11741",
+            "name_course": "FUNDAMENTOS TEÓRICOS DA LINGUÍSTICA",
+            "acronym": "SPOFTLG",
+            "area": 5,
+            "blockk": 5
+        }
+    },
+    {
+        "model": "course.course",
+        "pk": 108,
+        "fields": {
+            "registration_course_id": "SUP.11742",
+            "name_course": "FILOSOFIA DA EDUCAÇÃO",
+            "acronym": "SPOFILA",
+            "area": 5,
+            "blockk": 5
+        }
+    },
+    {
+        "model": "course.course",
+        "pk": 109,
+        "fields": {
+            "registration_course_id": "SUP.08936",
+            "name_course": "MORFOLOGIA DA LÍNGUA PORTUGUESA I",
+            "acronym": "L2MO1",
+            "area": 5,
+            "blockk": 5
+        }
+    },
+    {
+        "model": "course.course",
+        "pk": 110,
+        "fields": {
+            "registration_course_id": "SUP.06319",
+            "name_course": "FILOSOFIA DA EDUCAÇÃO",
+            "acronym": "L4FIL",
+            "area": 5,
+            "blockk": 5
+        }
+    },
+    {
+        "model": "course.course",
+        "pk": 111,
+        "fields": {
+            "registration_course_id": "SUP.06323",
+            "name_course": "LITERATURA OCIDENTAL IV",
+            "acronym": "L4LO4",
+            "area": 5,
+            "blockk": 5
+        }
+    },
+    {
+        "model": "course.course",
+        "pk": 112,
+        "fields": {
+            "registration_course_id": "SUP.08947",
+            "name_course": "SINTAXE DA LÍNGUA PORTUGUESA I",
+            "acronym": "L4SI1",
+            "area": 5,
+            "blockk": 5
+        }
+    },
+    {
+        "model": "course.course",
+        "pk": 113,
+        "fields": {
+            "registration_course_id": "SUP.08948",
+            "name_course": "SOCIOLINGUÍSTICA",
+            "acronym": "L4SOC",
+            "area": 5,
+            "blockk": 5
+        }
+    },
+    {
+        "model": "course.course",
+        "pk": 114,
+        "fields": {
+            "registration_course_id": "SUP.08949",
+            "name_course": "CORRENTES CRÍTICAS DA TEORIA LITERÁRIA",
+            "acronym": "L4TEO",
+            "area": 5,
+            "blockk": 5
+        }
+    },
+    {
+        "model": "course.course",
+        "pk": 115,
+        "fields": {
+            "registration_course_id": "SUP.08950",
+            "name_course": "METODOLOGIA DO ENSINO: LEITURA E LETRAMENTO",
+            "acronym": "L4LLE",
+            "area": 5,
+            "blockk": 5
+        }
+    },
+    {
+        "model": "course.course",
+        "pk": 116,
+        "fields": {
+            "registration_course_id": "SUP.09186",
+            "name_course": "LITERATURA PORTUGUESA III",
+            "acronym": "L4PO3",
+            "area": 5,
+            "blockk": 5
+        }
+    },
+    {
+        "model": "course.course",
+        "pk": 117,
+        "fields": {
+            "registration_course_id": "SUP.09243",
+            "name_course": "LITERATURA BRASILEIRA II",
+            "acronym": "L4BR2",
+            "area": 5,
+            "blockk": 5
+        }
+    },
+    {
+        "model": "course.course",
+        "pk": 118,
+        "fields": {
+            "registration_course_id": "SUP.06338",
+            "name_course": "LITERATURA OCIDENTAL VI",
+            "acronym": "L6LO6",
+            "area": 5,
+            "blockk": 5
+        }
+    },
+    {
+        "model": "course.course",
+        "pk": 119,
+        "fields": {
+            "registration_course_id": "SUP.08965",
+            "name_course": "ANÁLISE DO DISCURSO II",
+            "acronym": "L6AD2",
+            "area": 5,
+            "blockk": 5
+        }
+    },
+    {
+        "model": "course.course",
+        "pk": 120,
+        "fields": {
+            "registration_course_id": "SUP.08967",
+            "name_course": "PRAGMÁTICA",
+            "acronym": "L6PRA",
+            "area": 5,
+            "blockk": 5
+        }
+    },
+    {
+        "model": "course.course",
+        "pk": 121,
+        "fields": {
+            "registration_course_id": "SUP.08970",
+            "name_course": "LITERATURA PORTUGUESA V",
+            "acronym": "L6PO5",
+            "area": 5,
+            "blockk": 5
+        }
+    },
+    {
+        "model": "course.course",
+        "pk": 122,
+        "fields": {
+            "registration_course_id": "SUP.08980",
+            "name_course": "LITERATURA BRASILEIRA IV",
+            "acronym": "L6BR4",
+            "area": 5,
+            "blockk": 5
+        }
+    },
+    {
+        "model": "course.course",
+        "pk": 123,
+        "fields": {
+            "registration_course_id": "SUP.08982",
+            "name_course": "LÍNGUA BRASILEIRA DE SINAIS - LIBRAS II",
+            "acronym": "L6LB2",
+            "area": 5,
+            "blockk": 5
+        }
+    },
+    {
+        "model": "course.course",
+        "pk": 124,
+        "fields": {
+            "registration_course_id": "SUP.08989",
+            "name_course": "AVALIAÇÃO EDUCACIONAL E CURRÍCULO",
+            "acronym": "L6AEC",
+            "area": 5,
+            "blockk": 5
+        }
+    },
+    {
+        "model": "course.course",
+        "pk": 125,
+        "fields": {
+            "registration_course_id": "SUP.08992",
+            "name_course": "PRÁTICA PEDAGÓGICA: LEITURA E PRODUÇÃO TEXTUAL I",
+            "acronym": "L6TE1",
+            "area": 5,
+            "blockk": 5
+        }
+    },
+    {
+        "model": "course.course",
+        "pk": 126,
+        "fields": {
+            "registration_course_id": "SUP.09011",
+            "name_course": "SEMIÓTICA",
+            "acronym": "L8SMI",
+            "area": 5,
+            "blockk": 5
+        }
+    },
+    {
+        "model": "course.course",
+        "pk": 127,
+        "fields": {
+            "registration_course_id": "SUP.09053",
+            "name_course": "LITERATURA PORTUGUESA VII",
+            "acronym": "L8PO7",
+            "area": 5,
+            "blockk": 5
+        }
+    },
+    {
+        "model": "course.course",
+        "pk": 128,
+        "fields": {
+            "registration_course_id": "SUP.09054",
+            "name_course": "LITERATURAS AFRICANAS DE LÍNGUA PORTUGUESA II",
+            "acronym": "L8AF2",
+            "area": 5,
+            "blockk": 5
+        }
+    },
+    {
+        "model": "course.course",
+        "pk": 129,
+        "fields": {
+            "registration_course_id": "SUP.09055",
+            "name_course": "DIREITOS HUMANOS NA EDUCAÇÃO",
+            "acronym": "L8DHE",
+            "area": 5,
+            "blockk": 5
+        }
+    },
+    {
+        "model": "course.course",
+        "pk": 130,
+        "fields": {
+            "registration_course_id": "SUP.09056",
+            "name_course": "EDUCAÇÃO DAS RELAÇÕES ÉTNICO RACIAIS",
+            "acronym": "L8ERE",
+            "area": 5,
+            "blockk": 5
+        }
+    },
+    {
+        "model": "course.course",
+        "pk": 131,
+        "fields": {
+            "registration_course_id": "SUP.09057",
+            "name_course": "PRÁTICA PEDAGÓGICA: LEITURA E PRODUÇÃO TEXTUAL III",
+            "acronym": "L8TE3",
+            "area": 5,
+            "blockk": 5
+        }
+    },
+    {
+        "model": "course.course",
+        "pk": 132,
+        "fields": {
+            "registration_course_id": "SUP.09194",
+            "name_course": "LITERATURA OCIDENTAL VIII",
+            "acronym": "L8LO8",
+            "area": 5,
+            "blockk": 5
+        }
+    },
+    {
+        "model": "course.course",
+        "pk": 133,
+        "fields": {
+            "registration_course_id": "SUP.09195",
+            "name_course": "LITERATURA BRASILEIRA VI",
+            "acronym": "L8BR6",
+            "area": 5,
+            "blockk": 5
+        }
+    },
+    {
+        "model": "course.course",
+        "pk": 134,
+        "fields": {
+            "registration_course_id": "POS.00899",
+            "name_course": "FILOSOFIA DO ENSINO DE FILOSOFIA",
+            "acronym": "F1FEF",
+            "area": 6,
+            "blockk": 4
+        }
+    },
+    {
+        "model": "course.course",
+        "pk": 135,
+        "fields": {
+            "registration_course_id": "POS.00900",
+            "name_course": "PESQUISA EM FILOSOFIA EM SALA DE AULA",
+            "acronym": "F1PFS",
+            "area": 6,
+            "blockk": 4
+        }
+    },
+    {
+        "model": "course.course",
+        "pk": 136,
+        "fields": {
+            "registration_course_id": "POS.00901",
+            "name_course": "ENSINO DE FILOSOFIA EM PERSPECTIVA AFRO, DOS POVOS ORIGINÁRIOS E DOS DIREITOS HUMANOS",
+            "acronym": "F1APD",
+            "area": 6,
+            "blockk": 4
+        }
+    },
+    {
+        "model": "course.course",
+        "pk": 137,
+        "fields": {
+            "registration_course_id": "POS.00904",
+            "name_course": "HISTÓRIA, TEMAS E PROBLEMAS DA FILOSOFIA II",
+            "acronym": "F3HTP",
+            "area": 6,
+            "blockk": 4
+        }
+    },
+    {
+        "model": "course.course",
+        "pk": 138,
+        "fields": {
+            "registration_course_id": "POS.00905",
+            "name_course": "SEMINÁRIOS DE PESQUISA I",
+            "acronym": "F3SPE",
+            "area": 6,
+            "blockk": 4
+        }
+    },
+    {
+        "model": "course.course",
+        "pk": 139,
+        "fields": {
+            "registration_course_id": "SUP.14935",
+            "name_course": "INTRODUÇÃO ÀS PRÁTICAS DE EXTENSÃO",
+            "acronym": "SPOIPEX",
+            "area": 7,
+            "blockk": 4
+        }
+    },
+    {
+        "model": "course.course",
+        "pk": 140,
+        "fields": {
+            "registration_course_id": "SUP.14936",
+            "name_course": "INTRODUÇÃO À CARTOGRAFIA",
+            "acronym": "SPOICAR",
+            "area": 7,
+            "blockk": 4
+        }
+    },
+    {
+        "model": "course.course",
+        "pk": 141,
+        "fields": {
+            "registration_course_id": "SUP.14937",
+            "name_course": "INTRODUÇÃO AO PENSAMENTO GEOGRÁFICO",
+            "acronym": "SPOIPEG",
+            "area": 7,
+            "blockk": 4
+        }
+    },
+    {
+        "model": "course.course",
+        "pk": 142,
+        "fields": {
+            "registration_course_id": "SUP.14938",
+            "name_course": "GEOLOGIA",
+            "acronym": "SPOGEOL",
+            "area": 7,
+            "blockk": 4
+        }
+    },
+    {
+        "model": "course.course",
+        "pk": 143,
+        "fields": {
+            "registration_course_id": "SUP.14939",
+            "name_course": "HISTÓRIA CONTEMPORÂNEA",
+            "acronym": "SPOHICO",
+            "area": 7,
+            "blockk": 4
+        }
+    },
+    {
+        "model": "course.course",
+        "pk": 144,
+        "fields": {
+            "registration_course_id": "SUP.14940",
+            "name_course": "LEITURA E PRODUÇÃO DE TEXTO",
+            "acronym": "SPOLPTE",
+            "area": 7,
+            "blockk": 4
+        }
+    },
+    {
+        "model": "course.course",
+        "pk": 145,
+        "fields": {
+            "registration_course_id": "SUP.14941",
+            "name_course": "METODOLOGIA DO TRABALHO CIENTÍFICO",
+            "acronym": "SPOMTCI",
+            "area": 7,
+            "blockk": 4
+        }
+    },
+    {
+        "model": "course.course",
+        "pk": 146,
+        "fields": {
+            "registration_course_id": "SUP.14942",
+            "name_course": "HISTÓRIA DA EDUCAÇÃO",
+            "acronym": "SPOHIED",
+            "area": 7,
+            "blockk": 4
+        }
+    },
+    {
+        "model": "course.course",
+        "pk": 147,
+        "fields": {
+            "registration_course_id": "SUP.16596",
+            "name_course": "PRÁTICAS DE EXTENSÃO II: CARTOGRAFIA",
+            "acronym": "SPOPE2C",
+            "area": 7,
+            "blockk": 4
+        }
+    },
+    {
+        "model": "course.course",
+        "pk": 148,
+        "fields": {
+            "registration_course_id": "SUP.16597",
+            "name_course": "CARTOGRAFIA E ASTRONOMIA",
+            "acronym": "SPOCAST",
+            "area": 7,
+            "blockk": 4
+        }
+    },
+    {
+        "model": "course.course",
+        "pk": 149,
+        "fields": {
+            "registration_course_id": "SUP.16598",
+            "name_course": "CLIMATOLOGIA",
+            "acronym": "SPOCLIM",
+            "area": 7,
+            "blockk": 4
+        }
+    },
+    {
+        "model": "course.course",
+        "pk": 150,
+        "fields": {
+            "registration_course_id": "SUP.16599",
+            "name_course": "ESTATÍSTICA",
+            "acronym": "SPOESTT",
+            "area": 7,
+            "blockk": 4
+        }
+    },
+    {
+        "model": "course.course",
+        "pk": 151,
+        "fields": {
+            "registration_course_id": "SUP.16600",
+            "name_course": "HISTÓRIA ECONÔMICA DO BRASIL",
+            "acronym": "SPOHIEB",
+            "area": 7,
+            "blockk": 4
+        }
+    },
+    {
+        "model": "course.course",
+        "pk": 152,
+        "fields": {
+            "registration_course_id": "SUP.16601",
+            "name_course": "TEORIA E MÉTODO DA GEOGRAFIA",
+            "acronym": "SPOTMGE",
+            "area": 7,
+            "blockk": 4
+        }
+    },
+    {
+        "model": "course.course",
+        "pk": 153,
+        "fields": {
+            "registration_course_id": "SUP.16602",
+            "name_course": "SOCIOLOGIA",
+            "acronym": "SPOSOCI",
+            "area": 7,
+            "blockk": 4
+        }
+    },
+    {
+        "model": "course.course",
+        "pk": 154,
+        "fields": {
+            "registration_course_id": "SUP.16603",
+            "name_course": "FILOSOFIA DA EDUCAÇÃO",
+            "acronym": "SPOFIED",
+            "area": 7,
+            "blockk": 4
+        }
+    },
+    {
+        "model": "course.course",
+        "pk": 155,
+        "fields": {
+            "registration_course_id": "SUP.06559",
+            "name_course": "CARTOGRAFIA TEMÁTICA",
+            "acronym": "CTTG3",
+            "area": 7,
+            "blockk": 4
+        }
+    },
+    {
+        "model": "course.course",
+        "pk": 156,
+        "fields": {
+            "registration_course_id": "SUP.06723",
+            "name_course": "ANTROPOLOGIA",
+            "acronym": "ATRG3",
+            "area": 7,
+            "blockk": 4
+        }
+    },
+    {
+        "model": "course.course",
+        "pk": 157,
+        "fields": {
+            "registration_course_id": "SUP.06724",
+            "name_course": "GEOGRAFIA AGRÁRIA",
+            "acronym": "GEAG3",
+            "area": 7,
+            "blockk": 4
+        }
+    },
+    {
+        "model": "course.course",
+        "pk": 158,
+        "fields": {
+            "registration_course_id": "SUP.06725",
+            "name_course": "GEOLOGIA",
+            "acronym": "GEOG3",
+            "area": 7,
+            "blockk": 4
+        }
+    },
+    {
+        "model": "course.course",
+        "pk": 159,
+        "fields": {
+            "registration_course_id": "SUP.06726",
+            "name_course": "HISTÓRIA ECONÔMICA DO BRASIL II",
+            "acronym": "HE2G3",
+            "area": 7,
+            "blockk": 4
+        }
+    },
+    {
+        "model": "course.course",
+        "pk": 160,
+        "fields": {
+            "registration_course_id": "SUP.06727",
+            "name_course": "ORGANIZAÇÃO DO ESPAÇO INDUSTRIAL",
+            "acronym": "OEIG3",
+            "area": 7,
+            "blockk": 4
+        }
+    },
+    {
+        "model": "course.course",
+        "pk": 161,
+        "fields": {
+            "registration_course_id": "SUP.06728",
+            "name_course": "PSICOLOGIA DA EDUCAÇÃO",
+            "acronym": "PSEG3",
+            "area": 7,
+            "blockk": 4
+        }
+    },
+    {
+        "model": "course.course",
+        "pk": 162,
+        "fields": {
+            "registration_course_id": "SUP.06655",
+            "name_course": "GEOMORFOLOGIA",
+            "acronym": "GMFG4",
+            "area": 7,
+            "blockk": 4
+        }
+    },
+    {
+        "model": "course.course",
+        "pk": 163,
+        "fields": {
+            "registration_course_id": "SUP.06656",
+            "name_course": "GEOTECNOLOGIAS E ENSINO GEOGRAFIA",
+            "acronym": "GTEG4",
+            "area": 7,
+            "blockk": 4
+        }
+    },
+    {
+        "model": "course.course",
+        "pk": 164,
+        "fields": {
+            "registration_course_id": "SUP.06658",
+            "name_course": "PEDOLOGIA",
+            "acronym": "PEDG4",
+            "area": 7,
+            "blockk": 4
+        }
+    },
+    {
+        "model": "course.course",
+        "pk": 165,
+        "fields": {
+            "registration_course_id": "SUP.06729",
+            "name_course": "GEOGRAFIA CULTURAL",
+            "acronym": "GECG4",
+            "area": 7,
+            "blockk": 4
+        }
+    },
+    {
+        "model": "course.course",
+        "pk": 166,
+        "fields": {
+            "registration_course_id": "SUP.06730",
+            "name_course": "GEOGRAFIA URBANA",
+            "acronym": "GEUG4",
+            "area": 7,
+            "blockk": 4
+        }
+    },
+    {
+        "model": "course.course",
+        "pk": 167,
+        "fields": {
+            "registration_course_id": "SUP.06731",
+            "name_course": "INTRODUÇÃO À LIBRAS",
+            "acronym": "LIBG4",
+            "area": 7,
+            "blockk": 4
+        }
+    },
+    {
+        "model": "course.course",
+        "pk": 168,
+        "fields": {
+            "registration_course_id": "SUP.06732",
+            "name_course": "MUNDIALIZAÇÃO DA ECONOMIA",
+            "acronym": "MDEG4",
+            "area": 7,
+            "blockk": 4
+        }
+    },
+    {
+        "model": "course.course",
+        "pk": 169,
+        "fields": {
+            "registration_course_id": "SUP.06566",
+            "name_course": "PAISAGENS BRASILEIRAS E MUNDIAIS I",
+            "acronym": "PB1G5",
+            "area": 7,
+            "blockk": 4
+        }
+    },
+    {
+        "model": "course.course",
+        "pk": 170,
+        "fields": {
+            "registration_course_id": "SUP.06641",
+            "name_course": "BIOGEOGRAFIA",
+            "acronym": "BIOG5",
+            "area": 7,
+            "blockk": 4
+        }
+    },
+    {
+        "model": "course.course",
+        "pk": 171,
+        "fields": {
+            "registration_course_id": "SUP.06733",
+            "name_course": "GEOGRAFIA POLÍTICA",
+            "acronym": "GETG5",
+            "area": 7,
+            "blockk": 4
+        }
+    },
+    {
+        "model": "course.course",
+        "pk": 172,
+        "fields": {
+            "registration_course_id": "SUP.06734",
+            "name_course": "LEGISLAÇÃO E ORGANIZAÇÃO DA EDUCAÇÃO BÁSICA",
+            "acronym": "LGEG5",
+            "area": 7,
+            "blockk": 4
+        }
+    },
+    {
+        "model": "course.course",
+        "pk": 173,
+        "fields": {
+            "registration_course_id": "SUP.06735",
+            "name_course": "PRÁTICA PEDAGÓGICA I",
+            "acronym": "PT1G5",
+            "area": 7,
+            "blockk": 4
+        }
+    },
+    {
+        "model": "course.course",
+        "pk": 174,
+        "fields": {
+            "registration_course_id": "SUP.06736",
+            "name_course": "REGIONALIZAÇÃO DO ESPAÇO MUNDIAL",
+            "acronym": "REMG5",
+            "area": 7,
+            "blockk": 4
+        }
+    },
+    {
+        "model": "course.course",
+        "pk": 175,
+        "fields": {
+            "registration_course_id": "SUP.06737",
+            "name_course": "SOCIOLOGIA DA EDUCAÇÃO",
+            "acronym": "SCEG5",
+            "area": 7,
+            "blockk": 4
+        }
+    },
+    {
+        "model": "course.course",
+        "pk": 176,
+        "fields": {
+            "registration_course_id": "SUP.06561",
+            "name_course": "GEOGRAFIA DA POPULAÇÃO",
+            "acronym": "GEPG6",
+            "area": 7,
+            "blockk": 4
+        }
+    },
+    {
+        "model": "course.course",
+        "pk": 177,
+        "fields": {
+            "registration_course_id": "SUP.06562",
+            "name_course": "HISTÓRIA DA CULTURA AFRO-DESCENTENTE",
+            "acronym": "HAEG6",
+            "area": 7,
+            "blockk": 4
+        }
+    },
+    {
+        "model": "course.course",
+        "pk": 178,
+        "fields": {
+            "registration_course_id": "SUP.06567",
+            "name_course": "PAISAGENS BRASILEIRA E MUNDIAIS II",
+            "acronym": "PB2G6",
+            "area": 7,
+            "blockk": 4
+        }
+    },
+    {
+        "model": "course.course",
+        "pk": 179,
+        "fields": {
+            "registration_course_id": "SUP.06657",
+            "name_course": "HIDROGRAFIA",
+            "acronym": "HIDG6",
+            "area": 7,
+            "blockk": 4
+        }
+    },
+    {
+        "model": "course.course",
+        "pk": 180,
+        "fields": {
+            "registration_course_id": "SUP.06738",
+            "name_course": "EDUCAÇÃO EM DIREITOS HUMANOS",
+            "acronym": "EDHG6",
+            "area": 7,
+            "blockk": 4
+        }
+    },
+    {
+        "model": "course.course",
+        "pk": 181,
+        "fields": {
+            "registration_course_id": "SUP.06739",
+            "name_course": "GEOGRAFIA E RECURSO DIDÁTICOS",
+            "acronym": "GREG6",
+            "area": 7,
+            "blockk": 4
+        }
+    },
+    {
+        "model": "course.course",
+        "pk": 182,
+        "fields": {
+            "registration_course_id": "SUP.06740",
+            "name_course": "PRÁTICAS DE PESQUISA EM GEOGRAFIA",
+            "acronym": "PPEG6",
+            "area": 7,
+            "blockk": 4
+        }
+    },
+    {
+        "model": "course.course",
+        "pk": 183,
+        "fields": {
+            "registration_course_id": "SUP.06741",
+            "name_course": "PRÁTICA PEDAGÓGICA II",
+            "acronym": "PT2G6",
+            "area": 7,
+            "blockk": 4
+        }
+    },
+    {
+        "model": "course.course",
+        "pk": 184,
+        "fields": {
+            "registration_course_id": "SUP.06563",
+            "name_course": "HISTÓRIA E GEOGRAFIA DE SÃO PAULO",
+            "acronym": "HSPG7",
+            "area": 7,
+            "blockk": 4
+        }
+    },
+    {
+        "model": "course.course",
+        "pk": 185,
+        "fields": {
+            "registration_course_id": "SUP.06568",
+            "name_course": "PLANEJAMENTO TERRITORIA",
+            "acronym": "PLTG7",
+            "area": 7,
+            "blockk": 4
+        }
+    },
+    {
+        "model": "course.course",
+        "pk": 186,
+        "fields": {
+            "registration_course_id": "SUP.06654",
+            "name_course": "ESTUDOS DOS IMPACTOS SÓCIO-AMBIENTAIS BRASILEIRO",
+            "acronym": "ESAG7",
+            "area": 7,
+            "blockk": 4
+        }
+    },
+    {
+        "model": "course.course",
+        "pk": 187,
+        "fields": {
+            "registration_course_id": "SUP.06742",
+            "name_course": "EDUCAÇÃO INCLUSIVA",
+            "acronym": "CLEG7",
+            "area": 7,
+            "blockk": 4
+        }
+    },
+    {
+        "model": "course.course",
+        "pk": 188,
+        "fields": {
+            "registration_course_id": "SUP.06743",
+            "name_course": "FORMAÇÃO TERRITORIAL BRASILEIRA",
+            "acronym": "FTBG7",
+            "area": 7,
+            "blockk": 4
+        }
+    },
+    {
+        "model": "course.course",
+        "pk": 189,
+        "fields": {
+            "registration_course_id": "SUP.06744",
+            "name_course": "GESTÃO ESCOLAR",
+            "acronym": "GESG7",
+            "area": 7,
+            "blockk": 4
+        }
+    },
+    {
+        "model": "course.course",
+        "pk": 190,
+        "fields": {
+            "registration_course_id": "SUP.06745",
+            "name_course": "PRÁTICA PEDAGÓGICA III",
+            "acronym": "PT3G7",
+            "area": 7,
+            "blockk": 4
+        }
+    },
+    {
+        "model": "course.course",
+        "pk": 191,
+        "fields": {
+            "registration_course_id": "SUP.06560",
+            "name_course": "FORMAÇÃO DA SOCIEDADE BRASILEIRA",
+            "acronym": "FSBG8",
+            "area": 7,
+            "blockk": 4
+        }
+    },
+    {
+        "model": "course.course",
+        "pk": 192,
+        "fields": {
+            "registration_course_id": "SUP.06564",
+            "name_course": "HISTÓRIA E GEOGRAFIA DE SÃO PAULO II",
+            "acronym": "HSTG8",
+            "area": 7,
+            "blockk": 4
+        }
+    },
+    {
+        "model": "course.course",
+        "pk": 193,
+        "fields": {
+            "registration_course_id": "SUP.06652",
+            "name_course": "EDUCAÇÃO AMBIENTAL",
+            "acronym": "EDAG8",
+            "area": 7,
+            "blockk": 4
+        }
+    },
+    {
+        "model": "course.course",
+        "pk": 194,
+        "fields": {
+            "registration_course_id": "SUP.06653",
+            "name_course": "EDUCAÇÃO DE JOVENS E ADULTOS",
+            "acronym": "EJAG8",
+            "area": 7,
+            "blockk": 4
+        }
+    },
+    {
+        "model": "course.course",
+        "pk": 195,
+        "fields": {
+            "registration_course_id": "SUP.06746",
+            "name_course": "HISTÓRIA DO PENSAMENTO GEOGRÁFIA",
+            "acronym": "HPGG8",
+            "area": 7,
+            "blockk": 4
+        }
+    },
+    {
+        "model": "course.course",
+        "pk": 196,
+        "fields": {
+            "registration_course_id": "SUP.06747",
+            "name_course": "PRÁTICAS PEDAGÓGICAS IV",
+            "acronym": "PT4G8",
+            "area": 7,
+            "blockk": 4
+        }
+    },
+    {
+        "model": "course.course",
+        "pk": 197,
+        "fields": {
+            "registration_course_id": "SUP.11732",
+            "name_course": "INTRODUÇÃO AOS ESTUDOS LINGUÍSTICOS",
+            "acronym": "SPOELGT",
+            "area": 5,
+            "blockk": 5
         }
     },
     {
@@ -4737,6 +6105,1399 @@
         }
     },
     {
+        "model": "timetable.timetable",
+        "pk": 322,
+        "fields": {
+            "course": 5,
+            "classs": 19,
+            "day_combo": [
+                1
+            ]
+        }
+    },
+    {
+        "model": "timetable.timetable",
+        "pk": 323,
+        "fields": {
+            "course": 7,
+            "classs": 19,
+            "day_combo": [
+                2
+            ]
+        }
+    },
+    {
+        "model": "timetable.timetable",
+        "pk": 356,
+        "fields": {
+            "course": 15,
+            "classs": 3,
+            "day_combo": [
+                2
+            ]
+        }
+    },
+    {
+        "model": "timetable.timetable",
+        "pk": 357,
+        "fields": {
+            "course": 14,
+            "classs": 3,
+            "day_combo": [
+                3,
+                110
+            ]
+        }
+    },
+    {
+        "model": "timetable.timetable",
+        "pk": 358,
+        "fields": {
+            "course": 18,
+            "classs": 3,
+            "day_combo": [
+                37
+            ]
+        }
+    },
+    {
+        "model": "timetable.timetable",
+        "pk": 359,
+        "fields": {
+            "course": 19,
+            "classs": 3,
+            "day_combo": [
+                38
+            ]
+        }
+    },
+    {
+        "model": "timetable.timetable",
+        "pk": 360,
+        "fields": {
+            "course": 16,
+            "classs": 3,
+            "day_combo": [
+                39,
+                111
+            ]
+        }
+    },
+    {
+        "model": "timetable.timetable",
+        "pk": 361,
+        "fields": {
+            "course": 28,
+            "classs": 3,
+            "day_combo": [
+                40
+            ]
+        }
+    },
+    {
+        "model": "timetable.timetable",
+        "pk": 362,
+        "fields": {
+            "course": 22,
+            "classs": 3,
+            "day_combo": [
+                41
+            ]
+        }
+    },
+    {
+        "model": "timetable.timetable",
+        "pk": 363,
+        "fields": {
+            "course": 29,
+            "classs": 3,
+            "day_combo": [
+                42
+            ]
+        }
+    },
+    {
+        "model": "timetable.timetable",
+        "pk": 364,
+        "fields": {
+            "course": 21,
+            "classs": 3,
+            "day_combo": [
+                43
+            ]
+        }
+    },
+    {
+        "model": "timetable.timetable",
+        "pk": 365,
+        "fields": {
+            "course": 23,
+            "classs": 3,
+            "day_combo": [
+                44
+            ]
+        }
+    },
+    {
+        "model": "timetable.timetable",
+        "pk": 366,
+        "fields": {
+            "course": 24,
+            "classs": 3,
+            "day_combo": [
+                45
+            ]
+        }
+    },
+    {
+        "model": "timetable.timetable",
+        "pk": 367,
+        "fields": {
+            "course": 25,
+            "classs": 3,
+            "day_combo": [
+                46
+            ]
+        }
+    },
+    {
+        "model": "timetable.timetable",
+        "pk": 368,
+        "fields": {
+            "course": 26,
+            "classs": 3,
+            "day_combo": [
+                47
+            ]
+        }
+    },
+    {
+        "model": "timetable.timetable",
+        "pk": 369,
+        "fields": {
+            "course": 27,
+            "classs": 3,
+            "day_combo": [
+                25
+            ]
+        }
+    },
+    {
+        "model": "timetable.timetable",
+        "pk": 370,
+        "fields": {
+            "course": 17,
+            "classs": 3,
+            "day_combo": [
+                48
+            ]
+        }
+    },
+    {
+        "model": "timetable.timetable",
+        "pk": 371,
+        "fields": {
+            "course": 20,
+            "classs": 3,
+            "day_combo": [
+                49
+            ]
+        }
+    },
+    {
+        "model": "timetable.timetable",
+        "pk": 372,
+        "fields": {
+            "course": 9,
+            "classs": 3,
+            "day_combo": [
+                112
+            ]
+        }
+    },
+    {
+        "model": "timetable.timetable",
+        "pk": 373,
+        "fields": {
+            "course": 197,
+            "classs": 45,
+            "day_combo": [
+                113
+            ]
+        }
+    },
+    {
+        "model": "timetable.timetable",
+        "pk": 374,
+        "fields": {
+            "course": 99,
+            "classs": 45,
+            "day_combo": [
+                114
+            ]
+        }
+    },
+    {
+        "model": "timetable.timetable",
+        "pk": 375,
+        "fields": {
+            "course": 93,
+            "classs": 45,
+            "day_combo": [
+                67
+            ]
+        }
+    },
+    {
+        "model": "timetable.timetable",
+        "pk": 376,
+        "fields": {
+            "course": 96,
+            "classs": 45,
+            "day_combo": [
+                68
+            ]
+        }
+    },
+    {
+        "model": "timetable.timetable",
+        "pk": 377,
+        "fields": {
+            "course": 94,
+            "classs": 45,
+            "day_combo": [
+                92
+            ]
+        }
+    },
+    {
+        "model": "timetable.timetable",
+        "pk": 378,
+        "fields": {
+            "course": 98,
+            "classs": 45,
+            "day_combo": [
+                71,
+                84
+            ]
+        }
+    },
+    {
+        "model": "timetable.timetable",
+        "pk": 379,
+        "fields": {
+            "course": 95,
+            "classs": 45,
+            "day_combo": [
+                85
+            ]
+        }
+    },
+    {
+        "model": "timetable.timetable",
+        "pk": 380,
+        "fields": {
+            "course": 97,
+            "classs": 45,
+            "day_combo": [
+                86
+            ]
+        }
+    },
+    {
+        "model": "timetable.timetable",
+        "pk": 381,
+        "fields": {
+            "course": 92,
+            "classs": 45,
+            "day_combo": [
+                87
+            ]
+        }
+    },
+    {
+        "model": "timetable.timetable",
+        "pk": 382,
+        "fields": {
+            "course": 108,
+            "classs": 46,
+            "day_combo": [
+                115
+            ]
+        }
+    },
+    {
+        "model": "timetable.timetable",
+        "pk": 383,
+        "fields": {
+            "course": 107,
+            "classs": 46,
+            "day_combo": [
+                3
+            ]
+        }
+    },
+    {
+        "model": "timetable.timetable",
+        "pk": 384,
+        "fields": {
+            "course": 102,
+            "classs": 46,
+            "day_combo": [
+                53
+            ]
+        }
+    },
+    {
+        "model": "timetable.timetable",
+        "pk": 385,
+        "fields": {
+            "course": 101,
+            "classs": 46,
+            "day_combo": [
+                116
+            ]
+        }
+    },
+    {
+        "model": "timetable.timetable",
+        "pk": 386,
+        "fields": {
+            "course": 100,
+            "classs": 46,
+            "day_combo": [
+                34
+            ]
+        }
+    },
+    {
+        "model": "timetable.timetable",
+        "pk": 387,
+        "fields": {
+            "course": 106,
+            "classs": 46,
+            "day_combo": [
+                117
+            ]
+        }
+    },
+    {
+        "model": "timetable.timetable",
+        "pk": 388,
+        "fields": {
+            "course": 104,
+            "classs": 46,
+            "day_combo": [
+                118
+            ]
+        }
+    },
+    {
+        "model": "timetable.timetable",
+        "pk": 389,
+        "fields": {
+            "course": 103,
+            "classs": 46,
+            "day_combo": [
+                35
+            ]
+        }
+    },
+    {
+        "model": "timetable.timetable",
+        "pk": 390,
+        "fields": {
+            "course": 105,
+            "classs": 46,
+            "day_combo": [
+                36
+            ]
+        }
+    },
+    {
+        "model": "timetable.timetable",
+        "pk": 391,
+        "fields": {
+            "course": 109,
+            "classs": 47,
+            "day_combo": [
+                10
+            ]
+        }
+    },
+    {
+        "model": "timetable.timetable",
+        "pk": 392,
+        "fields": {
+            "course": 115,
+            "classs": 48,
+            "day_combo": [
+                119
+            ]
+        }
+    },
+    {
+        "model": "timetable.timetable",
+        "pk": 393,
+        "fields": {
+            "course": 110,
+            "classs": 48,
+            "day_combo": [
+                120
+            ]
+        }
+    },
+    {
+        "model": "timetable.timetable",
+        "pk": 394,
+        "fields": {
+            "course": 112,
+            "classs": 48,
+            "day_combo": [
+                6,
+                7
+            ]
+        }
+    },
+    {
+        "model": "timetable.timetable",
+        "pk": 395,
+        "fields": {
+            "course": 116,
+            "classs": 48,
+            "day_combo": [
+                34
+            ]
+        }
+    },
+    {
+        "model": "timetable.timetable",
+        "pk": 396,
+        "fields": {
+            "course": 111,
+            "classs": 48,
+            "day_combo": [
+                55
+            ]
+        }
+    },
+    {
+        "model": "timetable.timetable",
+        "pk": 397,
+        "fields": {
+            "course": 114,
+            "classs": 48,
+            "day_combo": [
+                118
+            ]
+        }
+    },
+    {
+        "model": "timetable.timetable",
+        "pk": 398,
+        "fields": {
+            "course": 113,
+            "classs": 48,
+            "day_combo": [
+                35
+            ]
+        }
+    },
+    {
+        "model": "timetable.timetable",
+        "pk": 399,
+        "fields": {
+            "course": 117,
+            "classs": 48,
+            "day_combo": [
+                36
+            ]
+        }
+    },
+    {
+        "model": "timetable.timetable",
+        "pk": 400,
+        "fields": {
+            "course": 124,
+            "classs": 49,
+            "day_combo": [
+                119
+            ]
+        }
+    },
+    {
+        "model": "timetable.timetable",
+        "pk": 401,
+        "fields": {
+            "course": 125,
+            "classs": 49,
+            "day_combo": [
+                120
+            ]
+        }
+    },
+    {
+        "model": "timetable.timetable",
+        "pk": 402,
+        "fields": {
+            "course": 122,
+            "classs": 49,
+            "day_combo": [
+                6,
+                55
+            ]
+        }
+    },
+    {
+        "model": "timetable.timetable",
+        "pk": 403,
+        "fields": {
+            "course": 121,
+            "classs": 49,
+            "day_combo": [
+                33
+            ]
+        }
+    },
+    {
+        "model": "timetable.timetable",
+        "pk": 404,
+        "fields": {
+            "course": 118,
+            "classs": 49,
+            "day_combo": [
+                9
+            ]
+        }
+    },
+    {
+        "model": "timetable.timetable",
+        "pk": 405,
+        "fields": {
+            "course": 123,
+            "classs": 49,
+            "day_combo": [
+                118
+            ]
+        }
+    },
+    {
+        "model": "timetable.timetable",
+        "pk": 406,
+        "fields": {
+            "course": 119,
+            "classs": 49,
+            "day_combo": [
+                35
+            ]
+        }
+    },
+    {
+        "model": "timetable.timetable",
+        "pk": 407,
+        "fields": {
+            "course": 120,
+            "classs": 49,
+            "day_combo": [
+                36
+            ]
+        }
+    },
+    {
+        "model": "timetable.timetable",
+        "pk": 408,
+        "fields": {
+            "course": 127,
+            "classs": 50,
+            "day_combo": [
+                115
+            ]
+        }
+    },
+    {
+        "model": "timetable.timetable",
+        "pk": 409,
+        "fields": {
+            "course": 128,
+            "classs": 50,
+            "day_combo": [
+                121
+            ]
+        }
+    },
+    {
+        "model": "timetable.timetable",
+        "pk": 410,
+        "fields": {
+            "course": 132,
+            "classs": 50,
+            "day_combo": [
+                58
+            ]
+        }
+    },
+    {
+        "model": "timetable.timetable",
+        "pk": 411,
+        "fields": {
+            "course": 126,
+            "classs": 50,
+            "day_combo": [
+                53
+            ]
+        }
+    },
+    {
+        "model": "timetable.timetable",
+        "pk": 412,
+        "fields": {
+            "course": 130,
+            "classs": 50,
+            "day_combo": [
+                7
+            ]
+        }
+    },
+    {
+        "model": "timetable.timetable",
+        "pk": 413,
+        "fields": {
+            "course": 131,
+            "classs": 50,
+            "day_combo": [
+                122
+            ]
+        }
+    },
+    {
+        "model": "timetable.timetable",
+        "pk": 414,
+        "fields": {
+            "course": 129,
+            "classs": 50,
+            "day_combo": [
+                54
+            ]
+        }
+    },
+    {
+        "model": "timetable.timetable",
+        "pk": 415,
+        "fields": {
+            "course": 133,
+            "classs": 50,
+            "day_combo": [
+                123
+            ]
+        }
+    },
+    {
+        "model": "timetable.timetable",
+        "pk": 416,
+        "fields": {
+            "course": 134,
+            "classs": 59,
+            "day_combo": [
+                124
+            ]
+        }
+    },
+    {
+        "model": "timetable.timetable",
+        "pk": 417,
+        "fields": {
+            "course": 135,
+            "classs": 59,
+            "day_combo": [
+                125
+            ]
+        }
+    },
+    {
+        "model": "timetable.timetable",
+        "pk": 418,
+        "fields": {
+            "course": 136,
+            "classs": 59,
+            "day_combo": [
+                126
+            ]
+        }
+    },
+    {
+        "model": "timetable.timetable",
+        "pk": 419,
+        "fields": {
+            "course": 137,
+            "classs": 60,
+            "day_combo": [
+                125
+            ]
+        }
+    },
+    {
+        "model": "timetable.timetable",
+        "pk": 420,
+        "fields": {
+            "course": 138,
+            "classs": 60,
+            "day_combo": [
+                127
+            ]
+        }
+    },
+    {
+        "model": "timetable.timetable",
+        "pk": 421,
+        "fields": {
+            "course": 145,
+            "classs": 51,
+            "day_combo": [
+                106,
+                113
+            ]
+        }
+    },
+    {
+        "model": "timetable.timetable",
+        "pk": 422,
+        "fields": {
+            "course": 141,
+            "classs": 51,
+            "day_combo": [
+                114
+            ]
+        }
+    },
+    {
+        "model": "timetable.timetable",
+        "pk": 423,
+        "fields": {
+            "course": 139,
+            "classs": 51,
+            "day_combo": [
+                67
+            ]
+        }
+    },
+    {
+        "model": "timetable.timetable",
+        "pk": 424,
+        "fields": {
+            "course": 140,
+            "classs": 51,
+            "day_combo": [
+                68
+            ]
+        }
+    },
+    {
+        "model": "timetable.timetable",
+        "pk": 425,
+        "fields": {
+            "course": 144,
+            "classs": 51,
+            "day_combo": [
+                128
+            ]
+        }
+    },
+    {
+        "model": "timetable.timetable",
+        "pk": 426,
+        "fields": {
+            "course": 146,
+            "classs": 51,
+            "day_combo": [
+                88
+            ]
+        }
+    },
+    {
+        "model": "timetable.timetable",
+        "pk": 427,
+        "fields": {
+            "course": 142,
+            "classs": 51,
+            "day_combo": [
+                74,
+                86
+            ]
+        }
+    },
+    {
+        "model": "timetable.timetable",
+        "pk": 428,
+        "fields": {
+            "course": 143,
+            "classs": 51,
+            "day_combo": [
+                87
+            ]
+        }
+    },
+    {
+        "model": "timetable.timetable",
+        "pk": 429,
+        "fields": {
+            "course": 153,
+            "classs": 52,
+            "day_combo": [
+                115
+            ]
+        }
+    },
+    {
+        "model": "timetable.timetable",
+        "pk": 430,
+        "fields": {
+            "course": 154,
+            "classs": 52,
+            "day_combo": [
+                121
+            ]
+        }
+    },
+    {
+        "model": "timetable.timetable",
+        "pk": 431,
+        "fields": {
+            "course": 150,
+            "classs": 52,
+            "day_combo": [
+                4
+            ]
+        }
+    },
+    {
+        "model": "timetable.timetable",
+        "pk": 432,
+        "fields": {
+            "course": 152,
+            "classs": 52,
+            "day_combo": [
+                129
+            ]
+        }
+    },
+    {
+        "model": "timetable.timetable",
+        "pk": 433,
+        "fields": {
+            "course": 149,
+            "classs": 52,
+            "day_combo": [
+                33,
+                130
+            ]
+        }
+    },
+    {
+        "model": "timetable.timetable",
+        "pk": 434,
+        "fields": {
+            "course": 148,
+            "classs": 52,
+            "day_combo": [
+                34
+            ]
+        }
+    },
+    {
+        "model": "timetable.timetable",
+        "pk": 435,
+        "fields": {
+            "course": 147,
+            "classs": 52,
+            "day_combo": [
+                11
+            ]
+        }
+    },
+    {
+        "model": "timetable.timetable",
+        "pk": 436,
+        "fields": {
+            "course": 151,
+            "classs": 52,
+            "day_combo": [
+                131
+            ]
+        }
+    },
+    {
+        "model": "timetable.timetable",
+        "pk": 437,
+        "fields": {
+            "course": 161,
+            "classs": 53,
+            "day_combo": [
+                82,
+                113
+            ]
+        }
+    },
+    {
+        "model": "timetable.timetable",
+        "pk": 438,
+        "fields": {
+            "course": 159,
+            "classs": 53,
+            "day_combo": [
+                114
+            ]
+        }
+    },
+    {
+        "model": "timetable.timetable",
+        "pk": 439,
+        "fields": {
+            "course": 157,
+            "classs": 53,
+            "day_combo": [
+                92,
+                132
+            ]
+        }
+    },
+    {
+        "model": "timetable.timetable",
+        "pk": 440,
+        "fields": {
+            "course": 160,
+            "classs": 53,
+            "day_combo": [
+                71,
+                81
+            ]
+        }
+    },
+    {
+        "model": "timetable.timetable",
+        "pk": 441,
+        "fields": {
+            "course": 158,
+            "classs": 53,
+            "day_combo": [
+                84,
+                87
+            ]
+        }
+    },
+    {
+        "model": "timetable.timetable",
+        "pk": 442,
+        "fields": {
+            "course": 155,
+            "classs": 53,
+            "day_combo": [
+                85
+            ]
+        }
+    },
+    {
+        "model": "timetable.timetable",
+        "pk": 443,
+        "fields": {
+            "course": 156,
+            "classs": 53,
+            "day_combo": [
+                86
+            ]
+        }
+    },
+    {
+        "model": "timetable.timetable",
+        "pk": 444,
+        "fields": {
+            "course": 168,
+            "classs": 54,
+            "day_combo": [
+                133
+            ]
+        }
+    },
+    {
+        "model": "timetable.timetable",
+        "pk": 445,
+        "fields": {
+            "course": 166,
+            "classs": 54,
+            "day_combo": [
+                4,
+                9
+            ]
+        }
+    },
+    {
+        "model": "timetable.timetable",
+        "pk": 446,
+        "fields": {
+            "course": 162,
+            "classs": 54,
+            "day_combo": [
+                5,
+                10
+            ]
+        }
+    },
+    {
+        "model": "timetable.timetable",
+        "pk": 447,
+        "fields": {
+            "course": 164,
+            "classs": 54,
+            "day_combo": [
+                6
+            ]
+        }
+    },
+    {
+        "model": "timetable.timetable",
+        "pk": 448,
+        "fields": {
+            "course": 165,
+            "classs": 54,
+            "day_combo": [
+                102
+            ]
+        }
+    },
+    {
+        "model": "timetable.timetable",
+        "pk": 449,
+        "fields": {
+            "course": 163,
+            "classs": 54,
+            "day_combo": [
+                11
+            ]
+        }
+    },
+    {
+        "model": "timetable.timetable",
+        "pk": 450,
+        "fields": {
+            "course": 167,
+            "classs": 54,
+            "day_combo": [
+                134
+            ]
+        }
+    },
+    {
+        "model": "timetable.timetable",
+        "pk": 451,
+        "fields": {
+            "course": 172,
+            "classs": 55,
+            "day_combo": [
+                106,
+                113
+            ]
+        }
+    },
+    {
+        "model": "timetable.timetable",
+        "pk": 452,
+        "fields": {
+            "course": 175,
+            "classs": 55,
+            "day_combo": [
+                114
+            ]
+        }
+    },
+    {
+        "model": "timetable.timetable",
+        "pk": 453,
+        "fields": {
+            "course": 171,
+            "classs": 55,
+            "day_combo": [
+                135
+            ]
+        }
+    },
+    {
+        "model": "timetable.timetable",
+        "pk": 454,
+        "fields": {
+            "course": 170,
+            "classs": 55,
+            "day_combo": [
+                84,
+                128
+            ]
+        }
+    },
+    {
+        "model": "timetable.timetable",
+        "pk": 455,
+        "fields": {
+            "course": 169,
+            "classs": 55,
+            "day_combo": [
+                85
+            ]
+        }
+    },
+    {
+        "model": "timetable.timetable",
+        "pk": 456,
+        "fields": {
+            "course": 173,
+            "classs": 55,
+            "day_combo": [
+                86
+            ]
+        }
+    },
+    {
+        "model": "timetable.timetable",
+        "pk": 457,
+        "fields": {
+            "course": 174,
+            "classs": 55,
+            "day_combo": [
+                87
+            ]
+        }
+    },
+    {
+        "model": "timetable.timetable",
+        "pk": 458,
+        "fields": {
+            "course": 176,
+            "classs": 56,
+            "day_combo": [
+                133
+            ]
+        }
+    },
+    {
+        "model": "timetable.timetable",
+        "pk": 459,
+        "fields": {
+            "course": 180,
+            "classs": 56,
+            "day_combo": [
+                3
+            ]
+        }
+    },
+    {
+        "model": "timetable.timetable",
+        "pk": 460,
+        "fields": {
+            "course": 181,
+            "classs": 56,
+            "day_combo": [
+                58
+            ]
+        }
+    },
+    {
+        "model": "timetable.timetable",
+        "pk": 461,
+        "fields": {
+            "course": 177,
+            "classs": 56,
+            "day_combo": [
+                53
+            ]
+        }
+    },
+    {
+        "model": "timetable.timetable",
+        "pk": 462,
+        "fields": {
+            "course": 182,
+            "classs": 56,
+            "day_combo": [
+                7
+            ]
+        }
+    },
+    {
+        "model": "timetable.timetable",
+        "pk": 463,
+        "fields": {
+            "course": 179,
+            "classs": 56,
+            "day_combo": [
+                122
+            ]
+        }
+    },
+    {
+        "model": "timetable.timetable",
+        "pk": 464,
+        "fields": {
+            "course": 183,
+            "classs": 56,
+            "day_combo": [
+                136
+            ]
+        }
+    },
+    {
+        "model": "timetable.timetable",
+        "pk": 465,
+        "fields": {
+            "course": 178,
+            "classs": 56,
+            "day_combo": [
+                11
+            ]
+        }
+    },
+    {
+        "model": "timetable.timetable",
+        "pk": 466,
+        "fields": {
+            "course": 185,
+            "classs": 57,
+            "day_combo": [
+                113
+            ]
+        }
+    },
+    {
+        "model": "timetable.timetable",
+        "pk": 467,
+        "fields": {
+            "course": 188,
+            "classs": 57,
+            "day_combo": [
+                92,
+                132
+            ]
+        }
+    },
+    {
+        "model": "timetable.timetable",
+        "pk": 468,
+        "fields": {
+            "course": 190,
+            "classs": 57,
+            "day_combo": [
+                81
+            ]
+        }
+    },
+    {
+        "model": "timetable.timetable",
+        "pk": 469,
+        "fields": {
+            "course": 186,
+            "classs": 57,
+            "day_combo": [
+                71,
+                84
+            ]
+        }
+    },
+    {
+        "model": "timetable.timetable",
+        "pk": 470,
+        "fields": {
+            "course": 184,
+            "classs": 57,
+            "day_combo": [
+                85
+            ]
+        }
+    },
+    {
+        "model": "timetable.timetable",
+        "pk": 471,
+        "fields": {
+            "course": 189,
+            "classs": 57,
+            "day_combo": [
+                104
+            ]
+        }
+    },
+    {
+        "model": "timetable.timetable",
+        "pk": 472,
+        "fields": {
+            "course": 187,
+            "classs": 57,
+            "day_combo": [
+                105
+            ]
+        }
+    },
+    {
+        "model": "timetable.timetable",
+        "pk": 473,
+        "fields": {
+            "course": 195,
+            "classs": 58,
+            "day_combo": [
+                137
+            ]
+        }
+    },
+    {
+        "model": "timetable.timetable",
+        "pk": 474,
+        "fields": {
+            "course": 196,
+            "classs": 58,
+            "day_combo": [
+                3
+            ]
+        }
+    },
+    {
+        "model": "timetable.timetable",
+        "pk": 475,
+        "fields": {
+            "course": 191,
+            "classs": 58,
+            "day_combo": [
+                94
+            ]
+        }
+    },
+    {
+        "model": "timetable.timetable",
+        "pk": 476,
+        "fields": {
+            "course": 194,
+            "classs": 58,
+            "day_combo": [
+                33
+            ]
+        }
+    },
+    {
+        "model": "timetable.timetable",
+        "pk": 477,
+        "fields": {
+            "course": 192,
+            "classs": 58,
+            "day_combo": [
+                34
+            ]
+        }
+    },
+    {
+        "model": "timetable.timetable",
+        "pk": 478,
+        "fields": {
+            "course": 193,
+            "classs": 58,
+            "day_combo": [
+                11
+            ]
+        }
+    },
+    {
         "model": "timetable.timeslot",
         "pk": 1,
         "fields": {
@@ -6128,6 +8889,340 @@
                 19,
                 20,
                 21
+            ]
+        }
+    },
+    {
+        "model": "timetable.day_combo",
+        "pk": 110,
+        "fields": {
+            "day": "saturday",
+            "timeslots": [
+                8,
+                9
+            ]
+        }
+    },
+    {
+        "model": "timetable.day_combo",
+        "pk": 111,
+        "fields": {
+            "day": "friday",
+            "timeslots": [
+                1
+            ]
+        }
+    },
+    {
+        "model": "timetable.day_combo",
+        "pk": 112,
+        "fields": {
+            "day": "saturday",
+            "timeslots": [
+                1
+            ]
+        }
+    },
+    {
+        "model": "timetable.day_combo",
+        "pk": 113,
+        "fields": {
+            "day": "monday",
+            "timeslots": [
+                19,
+                20
+            ]
+        }
+    },
+    {
+        "model": "timetable.day_combo",
+        "pk": 114,
+        "fields": {
+            "day": "monday",
+            "timeslots": [
+                21,
+                22,
+                23
+            ]
+        }
+    },
+    {
+        "model": "timetable.day_combo",
+        "pk": 115,
+        "fields": {
+            "day": "monday",
+            "timeslots": [
+                1,
+                2,
+                3
+            ]
+        }
+    },
+    {
+        "model": "timetable.day_combo",
+        "pk": 116,
+        "fields": {
+            "day": "wednesday",
+            "timeslots": [
+                2,
+                3
+            ]
+        }
+    },
+    {
+        "model": "timetable.day_combo",
+        "pk": 117,
+        "fields": {
+            "day": "thursday",
+            "timeslots": [
+                1,
+                2,
+                3,
+                4
+            ]
+        }
+    },
+    {
+        "model": "timetable.day_combo",
+        "pk": 118,
+        "fields": {
+            "day": "thursday",
+            "timeslots": [
+                5,
+                6
+            ]
+        }
+    },
+    {
+        "model": "timetable.day_combo",
+        "pk": 119,
+        "fields": {
+            "day": "monday",
+            "timeslots": [
+                3,
+                4,
+                5,
+                6
+            ]
+        }
+    },
+    {
+        "model": "timetable.day_combo",
+        "pk": 120,
+        "fields": {
+            "day": "tuesday",
+            "timeslots": [
+                1,
+                2,
+                3,
+                4
+            ]
+        }
+    },
+    {
+        "model": "timetable.day_combo",
+        "pk": 121,
+        "fields": {
+            "day": "monday",
+            "timeslots": [
+                4,
+                5,
+                6
+            ]
+        }
+    },
+    {
+        "model": "timetable.day_combo",
+        "pk": 122,
+        "fields": {
+            "day": "wednesday",
+            "timeslots": [
+                3,
+                4,
+                5,
+                6
+            ]
+        }
+    },
+    {
+        "model": "timetable.day_combo",
+        "pk": 123,
+        "fields": {
+            "day": "thursday",
+            "timeslots": [
+                3,
+                4,
+                5,
+                6
+            ]
+        }
+    },
+    {
+        "model": "timetable.day_combo",
+        "pk": 124,
+        "fields": {
+            "day": "friday",
+            "timeslots": [
+                19,
+                20,
+                21,
+                22
+            ]
+        }
+    },
+    {
+        "model": "timetable.day_combo",
+        "pk": 125,
+        "fields": {
+            "day": "saturday",
+            "timeslots": [
+                1,
+                2,
+                3
+            ]
+        }
+    },
+    {
+        "model": "timetable.day_combo",
+        "pk": 126,
+        "fields": {
+            "day": "saturday",
+            "timeslots": [
+                4,
+                5,
+                6,
+                7
+            ]
+        }
+    },
+    {
+        "model": "timetable.day_combo",
+        "pk": 127,
+        "fields": {
+            "day": "saturday",
+            "timeslots": [
+                4,
+                5,
+                6
+            ]
+        }
+    },
+    {
+        "model": "timetable.day_combo",
+        "pk": 128,
+        "fields": {
+            "day": "wednesday",
+            "timeslots": [
+                21,
+                22,
+                23
+            ]
+        }
+    },
+    {
+        "model": "timetable.day_combo",
+        "pk": 129,
+        "fields": {
+            "day": "tuesday",
+            "timeslots": [
+                3,
+                4,
+                5,
+                6
+            ]
+        }
+    },
+    {
+        "model": "timetable.day_combo",
+        "pk": 130,
+        "fields": {
+            "day": "thursday",
+            "timeslots": [
+                3
+            ]
+        }
+    },
+    {
+        "model": "timetable.day_combo",
+        "pk": 131,
+        "fields": {
+            "day": "friday",
+            "timeslots": [
+                2,
+                3,
+                4
+            ]
+        }
+    },
+    {
+        "model": "timetable.day_combo",
+        "pk": 132,
+        "fields": {
+            "day": "tuesday",
+            "timeslots": [
+                19
+            ]
+        }
+    },
+    {
+        "model": "timetable.day_combo",
+        "pk": 133,
+        "fields": {
+            "day": "monday",
+            "timeslots": [
+                1,
+                2,
+                3,
+                4
+            ]
+        }
+    },
+    {
+        "model": "timetable.day_combo",
+        "pk": 134,
+        "fields": {
+            "day": "friday",
+            "timeslots": [
+                1,
+                2,
+                3,
+                4
+            ]
+        }
+    },
+    {
+        "model": "timetable.day_combo",
+        "pk": 135,
+        "fields": {
+            "day": "tuesday",
+            "timeslots": [
+                20,
+                21,
+                22,
+                23
+            ]
+        }
+    },
+    {
+        "model": "timetable.day_combo",
+        "pk": 136,
+        "fields": {
+            "day": "thursday",
+            "timeslots": [
+                2,
+                3
+            ]
+        }
+    },
+    {
+        "model": "timetable.day_combo",
+        "pk": 137,
+        "fields": {
+            "day": "monday",
+            "timeslots": [
+                2,
+                3,
+                4
             ]
         }
     },
@@ -8416,6 +11511,1006 @@
         "pk": 321,
         "fields": {
             "timetable": 321,
+            "user": null
+        }
+    },
+    {
+        "model": "timetable.timetable_user",
+        "pk": 322,
+        "fields": {
+            "timetable": 322,
+            "user": null
+        }
+    },
+    {
+        "model": "timetable.timetable_user",
+        "pk": 323,
+        "fields": {
+            "timetable": 323,
+            "user": null
+        }
+    },
+    {
+        "model": "timetable.timetable_user",
+        "pk": 356,
+        "fields": {
+            "timetable": 356,
+            "user": null
+        }
+    },
+    {
+        "model": "timetable.timetable_user",
+        "pk": 357,
+        "fields": {
+            "timetable": 357,
+            "user": null
+        }
+    },
+    {
+        "model": "timetable.timetable_user",
+        "pk": 358,
+        "fields": {
+            "timetable": 358,
+            "user": null
+        }
+    },
+    {
+        "model": "timetable.timetable_user",
+        "pk": 359,
+        "fields": {
+            "timetable": 359,
+            "user": null
+        }
+    },
+    {
+        "model": "timetable.timetable_user",
+        "pk": 360,
+        "fields": {
+            "timetable": 360,
+            "user": null
+        }
+    },
+    {
+        "model": "timetable.timetable_user",
+        "pk": 361,
+        "fields": {
+            "timetable": 361,
+            "user": null
+        }
+    },
+    {
+        "model": "timetable.timetable_user",
+        "pk": 362,
+        "fields": {
+            "timetable": 362,
+            "user": null
+        }
+    },
+    {
+        "model": "timetable.timetable_user",
+        "pk": 363,
+        "fields": {
+            "timetable": 363,
+            "user": null
+        }
+    },
+    {
+        "model": "timetable.timetable_user",
+        "pk": 364,
+        "fields": {
+            "timetable": 364,
+            "user": null
+        }
+    },
+    {
+        "model": "timetable.timetable_user",
+        "pk": 365,
+        "fields": {
+            "timetable": 365,
+            "user": null
+        }
+    },
+    {
+        "model": "timetable.timetable_user",
+        "pk": 366,
+        "fields": {
+            "timetable": 366,
+            "user": null
+        }
+    },
+    {
+        "model": "timetable.timetable_user",
+        "pk": 367,
+        "fields": {
+            "timetable": 367,
+            "user": null
+        }
+    },
+    {
+        "model": "timetable.timetable_user",
+        "pk": 368,
+        "fields": {
+            "timetable": 368,
+            "user": null
+        }
+    },
+    {
+        "model": "timetable.timetable_user",
+        "pk": 369,
+        "fields": {
+            "timetable": 369,
+            "user": null
+        }
+    },
+    {
+        "model": "timetable.timetable_user",
+        "pk": 370,
+        "fields": {
+            "timetable": 370,
+            "user": null
+        }
+    },
+    {
+        "model": "timetable.timetable_user",
+        "pk": 371,
+        "fields": {
+            "timetable": 371,
+            "user": null
+        }
+    },
+    {
+        "model": "timetable.timetable_user",
+        "pk": 372,
+        "fields": {
+            "timetable": 372,
+            "user": null
+        }
+    },
+    {
+        "model": "timetable.timetable_user",
+        "pk": 373,
+        "fields": {
+            "timetable": 373,
+            "user": null
+        }
+    },
+    {
+        "model": "timetable.timetable_user",
+        "pk": 374,
+        "fields": {
+            "timetable": 374,
+            "user": null
+        }
+    },
+    {
+        "model": "timetable.timetable_user",
+        "pk": 375,
+        "fields": {
+            "timetable": 375,
+            "user": null
+        }
+    },
+    {
+        "model": "timetable.timetable_user",
+        "pk": 376,
+        "fields": {
+            "timetable": 376,
+            "user": null
+        }
+    },
+    {
+        "model": "timetable.timetable_user",
+        "pk": 377,
+        "fields": {
+            "timetable": 377,
+            "user": null
+        }
+    },
+    {
+        "model": "timetable.timetable_user",
+        "pk": 378,
+        "fields": {
+            "timetable": 378,
+            "user": null
+        }
+    },
+    {
+        "model": "timetable.timetable_user",
+        "pk": 379,
+        "fields": {
+            "timetable": 379,
+            "user": null
+        }
+    },
+    {
+        "model": "timetable.timetable_user",
+        "pk": 380,
+        "fields": {
+            "timetable": 380,
+            "user": null
+        }
+    },
+    {
+        "model": "timetable.timetable_user",
+        "pk": 381,
+        "fields": {
+            "timetable": 381,
+            "user": null
+        }
+    },
+    {
+        "model": "timetable.timetable_user",
+        "pk": 382,
+        "fields": {
+            "timetable": 382,
+            "user": null
+        }
+    },
+    {
+        "model": "timetable.timetable_user",
+        "pk": 383,
+        "fields": {
+            "timetable": 383,
+            "user": null
+        }
+    },
+    {
+        "model": "timetable.timetable_user",
+        "pk": 384,
+        "fields": {
+            "timetable": 384,
+            "user": null
+        }
+    },
+    {
+        "model": "timetable.timetable_user",
+        "pk": 385,
+        "fields": {
+            "timetable": 385,
+            "user": null
+        }
+    },
+    {
+        "model": "timetable.timetable_user",
+        "pk": 386,
+        "fields": {
+            "timetable": 386,
+            "user": null
+        }
+    },
+    {
+        "model": "timetable.timetable_user",
+        "pk": 387,
+        "fields": {
+            "timetable": 387,
+            "user": null
+        }
+    },
+    {
+        "model": "timetable.timetable_user",
+        "pk": 388,
+        "fields": {
+            "timetable": 388,
+            "user": null
+        }
+    },
+    {
+        "model": "timetable.timetable_user",
+        "pk": 389,
+        "fields": {
+            "timetable": 389,
+            "user": null
+        }
+    },
+    {
+        "model": "timetable.timetable_user",
+        "pk": 390,
+        "fields": {
+            "timetable": 390,
+            "user": null
+        }
+    },
+    {
+        "model": "timetable.timetable_user",
+        "pk": 391,
+        "fields": {
+            "timetable": 391,
+            "user": null
+        }
+    },
+    {
+        "model": "timetable.timetable_user",
+        "pk": 392,
+        "fields": {
+            "timetable": 392,
+            "user": null
+        }
+    },
+    {
+        "model": "timetable.timetable_user",
+        "pk": 393,
+        "fields": {
+            "timetable": 393,
+            "user": null
+        }
+    },
+    {
+        "model": "timetable.timetable_user",
+        "pk": 394,
+        "fields": {
+            "timetable": 394,
+            "user": null
+        }
+    },
+    {
+        "model": "timetable.timetable_user",
+        "pk": 395,
+        "fields": {
+            "timetable": 395,
+            "user": null
+        }
+    },
+    {
+        "model": "timetable.timetable_user",
+        "pk": 396,
+        "fields": {
+            "timetable": 396,
+            "user": null
+        }
+    },
+    {
+        "model": "timetable.timetable_user",
+        "pk": 397,
+        "fields": {
+            "timetable": 397,
+            "user": null
+        }
+    },
+    {
+        "model": "timetable.timetable_user",
+        "pk": 398,
+        "fields": {
+            "timetable": 398,
+            "user": null
+        }
+    },
+    {
+        "model": "timetable.timetable_user",
+        "pk": 399,
+        "fields": {
+            "timetable": 399,
+            "user": null
+        }
+    },
+    {
+        "model": "timetable.timetable_user",
+        "pk": 400,
+        "fields": {
+            "timetable": 400,
+            "user": null
+        }
+    },
+    {
+        "model": "timetable.timetable_user",
+        "pk": 401,
+        "fields": {
+            "timetable": 401,
+            "user": null
+        }
+    },
+    {
+        "model": "timetable.timetable_user",
+        "pk": 402,
+        "fields": {
+            "timetable": 402,
+            "user": null
+        }
+    },
+    {
+        "model": "timetable.timetable_user",
+        "pk": 403,
+        "fields": {
+            "timetable": 403,
+            "user": null
+        }
+    },
+    {
+        "model": "timetable.timetable_user",
+        "pk": 404,
+        "fields": {
+            "timetable": 404,
+            "user": null
+        }
+    },
+    {
+        "model": "timetable.timetable_user",
+        "pk": 405,
+        "fields": {
+            "timetable": 405,
+            "user": null
+        }
+    },
+    {
+        "model": "timetable.timetable_user",
+        "pk": 406,
+        "fields": {
+            "timetable": 406,
+            "user": null
+        }
+    },
+    {
+        "model": "timetable.timetable_user",
+        "pk": 407,
+        "fields": {
+            "timetable": 407,
+            "user": null
+        }
+    },
+    {
+        "model": "timetable.timetable_user",
+        "pk": 408,
+        "fields": {
+            "timetable": 408,
+            "user": null
+        }
+    },
+    {
+        "model": "timetable.timetable_user",
+        "pk": 409,
+        "fields": {
+            "timetable": 409,
+            "user": null
+        }
+    },
+    {
+        "model": "timetable.timetable_user",
+        "pk": 410,
+        "fields": {
+            "timetable": 410,
+            "user": null
+        }
+    },
+    {
+        "model": "timetable.timetable_user",
+        "pk": 411,
+        "fields": {
+            "timetable": 411,
+            "user": null
+        }
+    },
+    {
+        "model": "timetable.timetable_user",
+        "pk": 412,
+        "fields": {
+            "timetable": 412,
+            "user": null
+        }
+    },
+    {
+        "model": "timetable.timetable_user",
+        "pk": 413,
+        "fields": {
+            "timetable": 413,
+            "user": null
+        }
+    },
+    {
+        "model": "timetable.timetable_user",
+        "pk": 414,
+        "fields": {
+            "timetable": 414,
+            "user": null
+        }
+    },
+    {
+        "model": "timetable.timetable_user",
+        "pk": 415,
+        "fields": {
+            "timetable": 415,
+            "user": null
+        }
+    },
+    {
+        "model": "timetable.timetable_user",
+        "pk": 416,
+        "fields": {
+            "timetable": 416,
+            "user": null
+        }
+    },
+    {
+        "model": "timetable.timetable_user",
+        "pk": 417,
+        "fields": {
+            "timetable": 417,
+            "user": null
+        }
+    },
+    {
+        "model": "timetable.timetable_user",
+        "pk": 418,
+        "fields": {
+            "timetable": 418,
+            "user": null
+        }
+    },
+    {
+        "model": "timetable.timetable_user",
+        "pk": 419,
+        "fields": {
+            "timetable": 419,
+            "user": null
+        }
+    },
+    {
+        "model": "timetable.timetable_user",
+        "pk": 420,
+        "fields": {
+            "timetable": 420,
+            "user": null
+        }
+    },
+    {
+        "model": "timetable.timetable_user",
+        "pk": 421,
+        "fields": {
+            "timetable": 421,
+            "user": null
+        }
+    },
+    {
+        "model": "timetable.timetable_user",
+        "pk": 422,
+        "fields": {
+            "timetable": 422,
+            "user": null
+        }
+    },
+    {
+        "model": "timetable.timetable_user",
+        "pk": 423,
+        "fields": {
+            "timetable": 423,
+            "user": null
+        }
+    },
+    {
+        "model": "timetable.timetable_user",
+        "pk": 424,
+        "fields": {
+            "timetable": 424,
+            "user": null
+        }
+    },
+    {
+        "model": "timetable.timetable_user",
+        "pk": 425,
+        "fields": {
+            "timetable": 425,
+            "user": null
+        }
+    },
+    {
+        "model": "timetable.timetable_user",
+        "pk": 426,
+        "fields": {
+            "timetable": 426,
+            "user": null
+        }
+    },
+    {
+        "model": "timetable.timetable_user",
+        "pk": 427,
+        "fields": {
+            "timetable": 427,
+            "user": null
+        }
+    },
+    {
+        "model": "timetable.timetable_user",
+        "pk": 428,
+        "fields": {
+            "timetable": 428,
+            "user": null
+        }
+    },
+    {
+        "model": "timetable.timetable_user",
+        "pk": 429,
+        "fields": {
+            "timetable": 429,
+            "user": null
+        }
+    },
+    {
+        "model": "timetable.timetable_user",
+        "pk": 430,
+        "fields": {
+            "timetable": 430,
+            "user": null
+        }
+    },
+    {
+        "model": "timetable.timetable_user",
+        "pk": 431,
+        "fields": {
+            "timetable": 431,
+            "user": null
+        }
+    },
+    {
+        "model": "timetable.timetable_user",
+        "pk": 432,
+        "fields": {
+            "timetable": 432,
+            "user": null
+        }
+    },
+    {
+        "model": "timetable.timetable_user",
+        "pk": 433,
+        "fields": {
+            "timetable": 433,
+            "user": null
+        }
+    },
+    {
+        "model": "timetable.timetable_user",
+        "pk": 434,
+        "fields": {
+            "timetable": 434,
+            "user": null
+        }
+    },
+    {
+        "model": "timetable.timetable_user",
+        "pk": 435,
+        "fields": {
+            "timetable": 435,
+            "user": null
+        }
+    },
+    {
+        "model": "timetable.timetable_user",
+        "pk": 436,
+        "fields": {
+            "timetable": 436,
+            "user": null
+        }
+    },
+    {
+        "model": "timetable.timetable_user",
+        "pk": 437,
+        "fields": {
+            "timetable": 437,
+            "user": null
+        }
+    },
+    {
+        "model": "timetable.timetable_user",
+        "pk": 438,
+        "fields": {
+            "timetable": 438,
+            "user": null
+        }
+    },
+    {
+        "model": "timetable.timetable_user",
+        "pk": 439,
+        "fields": {
+            "timetable": 439,
+            "user": null
+        }
+    },
+    {
+        "model": "timetable.timetable_user",
+        "pk": 440,
+        "fields": {
+            "timetable": 440,
+            "user": null
+        }
+    },
+    {
+        "model": "timetable.timetable_user",
+        "pk": 441,
+        "fields": {
+            "timetable": 441,
+            "user": null
+        }
+    },
+    {
+        "model": "timetable.timetable_user",
+        "pk": 442,
+        "fields": {
+            "timetable": 442,
+            "user": null
+        }
+    },
+    {
+        "model": "timetable.timetable_user",
+        "pk": 443,
+        "fields": {
+            "timetable": 443,
+            "user": null
+        }
+    },
+    {
+        "model": "timetable.timetable_user",
+        "pk": 444,
+        "fields": {
+            "timetable": 444,
+            "user": null
+        }
+    },
+    {
+        "model": "timetable.timetable_user",
+        "pk": 445,
+        "fields": {
+            "timetable": 445,
+            "user": null
+        }
+    },
+    {
+        "model": "timetable.timetable_user",
+        "pk": 446,
+        "fields": {
+            "timetable": 446,
+            "user": null
+        }
+    },
+    {
+        "model": "timetable.timetable_user",
+        "pk": 447,
+        "fields": {
+            "timetable": 447,
+            "user": null
+        }
+    },
+    {
+        "model": "timetable.timetable_user",
+        "pk": 448,
+        "fields": {
+            "timetable": 448,
+            "user": null
+        }
+    },
+    {
+        "model": "timetable.timetable_user",
+        "pk": 449,
+        "fields": {
+            "timetable": 449,
+            "user": null
+        }
+    },
+    {
+        "model": "timetable.timetable_user",
+        "pk": 450,
+        "fields": {
+            "timetable": 450,
+            "user": null
+        }
+    },
+    {
+        "model": "timetable.timetable_user",
+        "pk": 451,
+        "fields": {
+            "timetable": 451,
+            "user": null
+        }
+    },
+    {
+        "model": "timetable.timetable_user",
+        "pk": 452,
+        "fields": {
+            "timetable": 452,
+            "user": null
+        }
+    },
+    {
+        "model": "timetable.timetable_user",
+        "pk": 453,
+        "fields": {
+            "timetable": 453,
+            "user": null
+        }
+    },
+    {
+        "model": "timetable.timetable_user",
+        "pk": 454,
+        "fields": {
+            "timetable": 454,
+            "user": null
+        }
+    },
+    {
+        "model": "timetable.timetable_user",
+        "pk": 455,
+        "fields": {
+            "timetable": 455,
+            "user": null
+        }
+    },
+    {
+        "model": "timetable.timetable_user",
+        "pk": 456,
+        "fields": {
+            "timetable": 456,
+            "user": null
+        }
+    },
+    {
+        "model": "timetable.timetable_user",
+        "pk": 457,
+        "fields": {
+            "timetable": 457,
+            "user": null
+        }
+    },
+    {
+        "model": "timetable.timetable_user",
+        "pk": 458,
+        "fields": {
+            "timetable": 458,
+            "user": null
+        }
+    },
+    {
+        "model": "timetable.timetable_user",
+        "pk": 459,
+        "fields": {
+            "timetable": 459,
+            "user": null
+        }
+    },
+    {
+        "model": "timetable.timetable_user",
+        "pk": 460,
+        "fields": {
+            "timetable": 460,
+            "user": null
+        }
+    },
+    {
+        "model": "timetable.timetable_user",
+        "pk": 461,
+        "fields": {
+            "timetable": 461,
+            "user": null
+        }
+    },
+    {
+        "model": "timetable.timetable_user",
+        "pk": 462,
+        "fields": {
+            "timetable": 462,
+            "user": null
+        }
+    },
+    {
+        "model": "timetable.timetable_user",
+        "pk": 463,
+        "fields": {
+            "timetable": 463,
+            "user": null
+        }
+    },
+    {
+        "model": "timetable.timetable_user",
+        "pk": 464,
+        "fields": {
+            "timetable": 464,
+            "user": null
+        }
+    },
+    {
+        "model": "timetable.timetable_user",
+        "pk": 465,
+        "fields": {
+            "timetable": 465,
+            "user": null
+        }
+    },
+    {
+        "model": "timetable.timetable_user",
+        "pk": 466,
+        "fields": {
+            "timetable": 466,
+            "user": null
+        }
+    },
+    {
+        "model": "timetable.timetable_user",
+        "pk": 467,
+        "fields": {
+            "timetable": 467,
+            "user": null
+        }
+    },
+    {
+        "model": "timetable.timetable_user",
+        "pk": 468,
+        "fields": {
+            "timetable": 468,
+            "user": null
+        }
+    },
+    {
+        "model": "timetable.timetable_user",
+        "pk": 469,
+        "fields": {
+            "timetable": 469,
+            "user": null
+        }
+    },
+    {
+        "model": "timetable.timetable_user",
+        "pk": 470,
+        "fields": {
+            "timetable": 470,
+            "user": null
+        }
+    },
+    {
+        "model": "timetable.timetable_user",
+        "pk": 471,
+        "fields": {
+            "timetable": 471,
+            "user": null
+        }
+    },
+    {
+        "model": "timetable.timetable_user",
+        "pk": 472,
+        "fields": {
+            "timetable": 472,
+            "user": null
+        }
+    },
+    {
+        "model": "timetable.timetable_user",
+        "pk": 473,
+        "fields": {
+            "timetable": 473,
+            "user": null
+        }
+    },
+    {
+        "model": "timetable.timetable_user",
+        "pk": 474,
+        "fields": {
+            "timetable": 474,
+            "user": null
+        }
+    },
+    {
+        "model": "timetable.timetable_user",
+        "pk": 475,
+        "fields": {
+            "timetable": 475,
+            "user": null
+        }
+    },
+    {
+        "model": "timetable.timetable_user",
+        "pk": 476,
+        "fields": {
+            "timetable": 476,
+            "user": null
+        }
+    },
+    {
+        "model": "timetable.timetable_user",
+        "pk": 477,
+        "fields": {
+            "timetable": 477,
+            "user": null
+        }
+    },
+    {
+        "model": "timetable.timetable_user",
+        "pk": 478,
+        "fields": {
+            "timetable": 478,
             "user": null
         }
     },
