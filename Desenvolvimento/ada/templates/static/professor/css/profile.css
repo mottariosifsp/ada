@@ -24,11 +24,10 @@ input[name="course"]:hover::-webkit-calendar-picker-indicator {
     color: rgba(22, 72, 60, 0.839) !important;
 }
 
-.inline-block-container {
+.history-fpa .col-3{
     padding: 10px 10px 20px 10px;
     border: #0000004b solid 1px;
     border-radius: 10px;
-    display: inline-block;
 }
 
 .name {

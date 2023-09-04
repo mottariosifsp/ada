@@ -108,8 +108,9 @@
                     <div class="tab-pane fade show active profile-overview" id="profile-overview" role="tabpanel" aria-labelledby="overview-tab">
                       <h5 class="card-title">{% trans 'Histórico' %}</h5>
                     </div>
-                    {% for fpa in fpas %}
-                      <div class="inline-block-container w-25">
+                    <div class="row history-fpa">
+                      {% for fpa in fpas %}
+                      <div class="col-3">
                         <div class="inline-block mt-3">
                             <b>{{ fpa }}</b>
                             <a href="{% url 'show_attribution_preference' fpa %}">
@@ -118,6 +119,8 @@
                         </div>
                     </div>
                     {% endfor %}
+                    </div>
+                    
                     
                   </div>
       
