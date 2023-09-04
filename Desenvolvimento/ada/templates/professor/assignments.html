@@ -1,0 +1,62 @@
+{% extends "professor/base.html" %}
+{% load i18n %}
+{% load static %}
+
+{% block head %}
+    <title>{% trans "Atribuições Professor(a)" %}</title>
+{% endblock %}
+
+{% block body %}
+
+<h1 class="title-page">{% trans "Atribuições do Professor" %}</h1>
+<nav>
+    <ol class="breadcrumb hidden-itens">
+        <li class="breadcrumb-item"><a href="{% url 'home' %}"><i class="bi bi-house-door"></i></a></li>
+        <li class="breadcrumb-item active">{% trans "Atribuições" %}</li>
+    </ol>
+</nav>
+
+<div class="blockk-container">
+    {% for blockk in user_blockks %}
+        <a href="{% url 'final_assignments_classs' name_block=blockk.name_block %}" class="blockk-link">
+            <div class="blockk">
+                <!--- precisa trocar as imagens de acordo com o nome -->
+                <span class="name_block">{{ blockk.name_block }}</span>
+            </div>
+        </a>
+    {% endfor %}
+</div>
+
+
+    <style>
+    .blockk-container {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .blockk {
+        text-align: center;
+        margin: 10px;
+        flex: 1;
+        display: flex;
+        flex-direction: column; /* Empilhar elementos verticalmente */
+        align-items: center; /* Centralizar elementos horizontalmente */
+    }
+
+    .blockk img {
+        width: 300px;
+        height: 300px;
+    }
+
+    .name_block {
+        margin-top: 5px;
+    }
+
+    .blockk-link {
+        text-decoration: none;
+        color: inherit;
+    }
+</style>
+
+{% endblock %}
