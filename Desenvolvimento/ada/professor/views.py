@@ -181,15 +181,15 @@ def home(request):
             "block": blockk,
             "image": None
         }
-        if blockk.registration_block_id == "721165":
+        if blockk.registration_block_id == "CNA.151515":
             blockk_images["image"] = "https://media.discordapp.net/attachments/1081682716531118151/1117328326533595207/OIG.png?width=473&height=473"
-        elif blockk.registration_block_id == "776291":
+        elif blockk.registration_block_id == "HUM.141414":
             blockk_images["image"] = "https://media.discordapp.net/attachments/1081682716531118151/1117321570101248030/OIG.png?width=473&height=473"
-        elif blockk.registration_block_id == "776293":
+        elif blockk.registration_block_id == "LNG.161616":
             blockk_images["image"] = "https://media.discordapp.net/attachments/1081682716531118151/1117321528380489789/OIG.png?width=473&height=473"
-        elif blockk.registration_block_id == "776294":
+        elif blockk.registration_block_id == "MAT.131313":
             blockk_images["image"] = "https://media.discordapp.net/attachments/1081682716531118151/1116866399952961586/dan-cristian-padure-h3kuhYUCE9A-unsplash.jpg?width=710&height=473"
-        elif blockk.registration_block_id == "776295":
+        elif blockk.registration_block_id == "TEC.121212":
             blockk_images["image"] = "https://media.discordapp.net/attachments/1081682716531118151/1116866399671951441/roonz-nl-2xEQDxB0ss4-unsplash.jpg?width=842&height=473"
         elif blockk.registration_block_id == "776292":
             blockk_images["image"] = "https://media.discordapp.net/attachments/1081682716531118151/1117348338254233680/image.png"
