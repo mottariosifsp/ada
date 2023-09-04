@@ -124,8 +124,8 @@
 
                         <div class="form-group mt-6">
                             <label for="searchInput" id="block-title">Matérias bloqueadas</label><br>
-                            <input type="text" id="blockedCourses" onkeyup="filterOptions()" placeholder="Pesquisar matéria">
-                            <select id="courseDropdown" multiple>
+                            <input type="text" id="blockedCourses" onkeyup="filterOptions()" placeholder="Pesquisar matéria" class="form-control">
+                            <select id="courseDropdown" multiple class="form-control">
                                 {% for course in courses %}
                                     <option value="{{ course.registration_course_id }}">{{ course.name_course }}</option>
                                 {% endfor %}
