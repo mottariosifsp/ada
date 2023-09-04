@@ -6,12 +6,8 @@ from django.core import serializers
 from django.contrib.auth import get_user_model
 
 from django.utils.decorators import method_decorator
-<<<<<<< HEAD
 from timetable.models import Timeslot, Timetable_user
 from attribution_preference.models import Attribution_preference
-=======
-from timetable.models import Timeslot, Timetable_user, Timetable
->>>>>>> 0cec0182eba674e5db3904b852c64968afd90f01
 from staff.models import Deadline, Alert
 from area.models import Area, Blockk
 from datetime import datetime, timedelta
