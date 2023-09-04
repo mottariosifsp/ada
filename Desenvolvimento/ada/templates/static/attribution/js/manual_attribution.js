@@ -766,3 +766,32 @@ function getDiaCompleto(abreviacao_dia) {
   
     return dias[abreviacao_dia] || "Nenhum dia correspondente";
  }
+
+ function info_button(value) {
+    var infoMessage = $("#info-input-message").text();
+
+    $("#info-input-message").empty();
+    if (value === 'block') {
+        var word_to_search = 'Bloco';
+        if(lang == 'pt-br' || lang == '') {
+            $("#info-input-message").text("O filtro de Bloco serve para filtrar todas as disciplinas disponíveis apenas aquelas com o mesmo bloco pedido. Exemplo: Técnico - Aulas do técnico apenas.");
+        } else {
+            $("#info-input-message").text("The Block filter is used to filter all available disciplines, only those with the same requested block. Example: Technician - Technician classes only.");
+        }
+        
+    } else if (value === 'area') {
+        var word_to_search = 'Área';
+        if(lang == 'pt-br' || lang == '') {
+            $("#info-input-message").text("O filtro de Área serve para filtrar todas as disciplinas disponíveis apenas aquelas com a mesma área pedida. Exemplo: ADS - Aulas de análise e desenvolvimento de sistemas apenas.");
+        } else {
+            $("#info-input-message").text("The Area filter is used to filter all available disciplines only those with the same requested area. Example: ADS - Systems analysis and development classes only."); 
+        }
+        
+    }
+
+    if ($("#info-input-alert").css("display") === "block" && infoMessage.indexOf(word_to_search) !== -1) {
+        $("#info-input-alert").hide();
+    } else {
+        $("#info-input-alert").show();
+    }
+}

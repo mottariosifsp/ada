@@ -283,6 +283,23 @@ img.lang-icon, img.user-photo {width: 100%;}
     border: #0d2131;
     color: #ddf0ff;
   }
+
+   /*btn red*/
+   .ada-btn-red {
+    background-color: #9e1818;
+    border: #9e1818;
+    color: #ddf0ff;
+  }
+  .ada-btn-red:hover {
+    background-color: #650f0f;
+    border: #650f0f;
+    color: #ddf0ff;
+  }
+  .ada-btn-red:active {
+    background-color: #650f0f;
+    border: #650f0f;
+    color: #ddf0ff;
+  }
   div.alert b {
     color: rgba(0, 0, 0, 0.636)!important;
   }

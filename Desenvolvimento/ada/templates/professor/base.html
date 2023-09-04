@@ -55,8 +55,8 @@
     <nav class="navbar navbar-nav navbar-expand-lg fixed-top navbar-dark nav-color">
       <div class="d-flex justify-content-between align-items-center w-100">
         <div class="nav-brand mr-auto">
-          <a class="logo" href="{% url 'home' %}">
-            <img class="ada-logo" src="{% static 'images/logo_bg.png' %}" alt="logo do site ADA">
+          <a class="logo" href="{% url 'home' %}" style="font-size: larger;">
+            &nbsp;<img class="ada-logo" src="{% static 'images/logo_bg.png' %}" alt="logo do site ADA"> &emsp; | &emsp; Professor
           </a>
         </div>
         <div id="sidebar-icon" data-toggle="modal" data-target="#modalNavBar">
@@ -64,10 +64,10 @@
         </div>
       </div>
       <div class="collapse navbar-collapse justify-content-end" id="navbarToggler">
-        <ul class="navbar-nav mx-auto ">
-          <li class="nav-item word-topic"><a class="nav-link title" href="#">{% trans "Bloco" %}</a></li>
+        <ul class="navbar-nav mx-auto" style="font-size: larger;">
+          <li class="nav-item word-topic"><a class="nav-link title" href="#">{% trans "Informação" %}</a></li>
           <li class="nav-item word-topic"><a class="nav-link title" href="{% url 'attribution_preference' %}">{% trans "FPA" %}</a></li>
-          <li class="nav-item word-topic"><a class="nav-link title" href="#">{% trans "Grade" %}</a></li>
+          <li class="nav-item word-topic"><a class="nav-link title" href="{% url 'assignments' %}">{% trans "Atribuições" %}</a></li>
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownLangLogin" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               {% get_current_language as LANGUAGE_CODE %}
@@ -129,9 +129,9 @@
                 </a>
               </div>
               <hr>
-              <div class="modal-line"><a class="nav-link title" href="#"><i class="bi bi-people-fill lang-icon"></i> {% trans "Bloco" %}</a></div>
-              <div class="modal-line"><a class="nav-link title" href="{% url 'attribution_preference' %}"><i class="bi bi-people lang-icon"></i> {% trans "FPA" %}</a></div>
-              <div class="modal-line"><a class="nav-link title" href="#"><i class="bi bi-bar-chart-line lang-icon"></i> {% trans "Grade" %}</a></div>
+              <div class="modal-line"><a class="nav-link title" href="#"><i class="bi bi-info-square"></i> {% trans "Informação" %}</a></div>
+              <div class="modal-line"><a class="nav-link title" href="{% url 'attribution_preference' %}"><i class="bi bi-ui-checks-grid"></i> {% trans "FPA" %}</a></div>
+              <div class="modal-line"><a class="nav-link title" href="#"><i class="bi bi-layout-text-window-reverse"></i> {% trans "Grade" %}</a></div>
               <div class="modal-line dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownLangSidebar" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                   <i class="bi bi-globe lang-icon"></i> {% trans "Línguas" %}
@@ -190,7 +190,7 @@
                 </a>
             </div>
         </div>
-          <div class="col-lg-6 col-xs-12 links align-middle">
+          <div class="col-lg-6 col-xs-12 links-footer align-middle">
               <h4 class="mt-lg-0 mt-sm-4">Links</h4>
               <a href="" class="mr-2 footer-link"><span>{% trans "Sobre"%}</span></a>
               <a href="" class="mr-2 footer-link"><span>{% trans "Contato"%}</span></a>

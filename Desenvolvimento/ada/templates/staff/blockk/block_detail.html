@@ -51,19 +51,17 @@
                     <div class="card-body">
                         <h5 class="card-title">{% trans "Detalhes" %}</h5>
                             <ul class="list-group">
-                                {% blocktrans with name_area_text=area.name_area name_text="Área" %}
-                                <li class="list-group-item"><strong>{{ name_text }}:</strong> {{ name_area_text }}</li>
-                                {% endblocktrans %}
-                                <li class="list-group-item"><strong>{% trans "Registro" %}:</strong> {% trans area.registration_area_id %}</li>
-                                {% blocktrans with acronym_text=area.acronym acronym_label="Sigla" %}
+                                <li class="list-group-item"><strong>{% trans 'Áreas' %}:</strong>{% for area in areas %} {{area}} {% if not forloop.last %}|{% endif %}{% endfor %}</li>
+                                <li class="list-group-item"><strong>{% trans "Registro" %}:</strong> {% trans blockk.registration_block_id %}</li>
+                                {% blocktrans with acronym_text=blockk.acronym acronym_label="Sigla" %}
                                 <li class="list-group-item"><strong>{{ acronym_label }}:</strong> {{ acronym_text }}</li>
                                 {% endblocktrans %}
-                                {% blocktrans with exchange_area_text=area.exchange_area exchange_text="Permuta" %}
+                                {% comment %} {% blocktrans with exchange_area_text=area.exchange_area exchange_text="Permuta" %}
                                 <li class="list-group-item"><strong>{{ exchange_text }}:</strong> {{ exchange_area_text }}</li>
                                 {% endblocktrans %}
                                 {% blocktrans with is_high_school_text=area.is_high_school high_school="Ensino Médio" %}
                                 <li class="list-group-item"><strong>{{ high_school }}:</strong> {{ is_high_school_text }}</li>
-                                {% endblocktrans %}
+                                {% endblocktrans %} {% endcomment %}
                             </ul>
                     </div>
                 </div>
