@@ -4,14 +4,15 @@
 
 {% block head %}
     {{ block.super }}
-    <title>{% trans "Criar Grade" %}</title>
+    <title>{% trans "Editar Grade" %}</title>
     <link rel="stylesheet" href="{% static 'staff/timetable/css/edit_timetable.css' %}">
     <link rel="stylesheet" href="{% static 'common/table_window/css/table_window.css' %}"/>
 {% endblock %}
 
 {% block body %}
   {{ block.super }}
-  <h1 class="title-page">{% trans "Editar grade horária" %}</h1>
+  <h1 class="title-page mt-4">{% trans "Editar Grade" %}</h1>
+  <hr> 
   <nav>
     <ol class="breadcrumb">
       <li class="breadcrumb-item"><a href="{% url 'home' %}"><i class="bi bi-house-door"></i></a></li>
@@ -20,6 +21,8 @@
       <li class="breadcrumb-item active">{% trans "Editar" %} {{ request.GET.class }}</li>
     </ol>
   </nav>  <h1><span id="selected_class" class="d-flex justify-content-center">{{ request.GET.class }}</span></h1>
+  <div class="card">
+    <div class="card-body">
 <div class="container">
   <form id="course_select">
     {% csrf_token %}
@@ -155,7 +158,9 @@
     <button type="button" class="btn btn-primary btn-block form-group" id="submit_timetable">{% trans "Enviar" %}</button>
   </form>
   </div>
-  
+    </div>
+  </div>
+
 <script src="{% static 'staff/timetable/js/edit_timetable.js' %}" data-lang={{ LANGUAGE_CODE }} timetables-complete="{{ timetable }}"></script>
 <script src="{% static 'common/table_window/js/table_window.js' %}"></script>
 {% endblock %}
