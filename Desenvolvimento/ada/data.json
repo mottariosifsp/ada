@@ -1402,8 +1402,8 @@
             "name": "STARTFPADEADLINE",
             "deadline_start": "2023-09-01T06:03:00",
             "deadline_end": "2023-09-03T06:03:00",
-            "semester": 1, 
-            "year":  2023,
+            "semester": 1,
+            "year": 2023,
             "blockk": 1
         }
     },
@@ -1414,8 +1414,8 @@
             "name": "STARTASSIGNMENTDEADLINE",
             "deadline_start": "2023-09-05T06:03:00",
             "deadline_end": "2023-09-06T06:03:00",
-            "semester": 1, 
-            "year":  2023,
+            "semester": 1,
+            "year": 2023,
             "blockk": 1
         }
     },
@@ -1426,8 +1426,8 @@
             "name": "STARTFPADEADLINE",
             "deadline_start": "2023-09-01T06:03:00",
             "deadline_end": "2023-09-03T06:03:00",
-            "semester": 1, 
-            "year":  2023,
+            "semester": 1,
+            "year": 2023,
             "blockk": 2
         }
     },
@@ -1438,8 +1438,8 @@
             "name": "STARTASSIGNMENTDEADLINE",
             "deadline_start": "2023-09-05T06:03:00",
             "deadline_end": "2023-09-06T06:03:00",
-            "semester": 1, 
-            "year":  2023,
+            "semester": 1,
+            "year": 2023,
             "blockk": 2
         }
     },
@@ -1450,8 +1450,8 @@
             "name": "STARTFPADEADLINE",
             "deadline_start": "2023-09-01T06:03:00",
             "deadline_end": "2023-09-03T06:03:00",
-            "semester": 1, 
-            "year":  2023,
+            "semester": 1,
+            "year": 2023,
             "blockk": 3
         }
     },
@@ -1462,8 +1462,8 @@
             "name": "STARTASSIGNMENTDEADLINE",
             "deadline_start": "2023-09-05T06:03:00",
             "deadline_end": "2023-09-06T06:03:00",
-            "semester": 1, 
-            "year":  2023,
+            "semester": 1,
+            "year": 2023,
             "blockk": 3
         }
     },
@@ -1474,8 +1474,8 @@
             "name": "STARTFPADEADLINE",
             "deadline_start": "2023-09-01T06:03:00",
             "deadline_end": "2023-09-03T06:03:00",
-            "semester": 1, 
-            "year":  2023,
+            "semester": 1,
+            "year": 2023,
             "blockk": 4
         }
     },
@@ -1486,8 +1486,8 @@
             "name": "STARTASSIGNMENTDEADLINE",
             "deadline_start": "2023-09-05T06:03:00",
             "deadline_end": "2023-09-06T06:03:00",
-            "semester": 1, 
-            "year":  2023,
+            "semester": 1,
+            "year": 2023,
             "blockk": 4
         }
     },
@@ -1498,8 +1498,8 @@
             "name": "STARTFPADEADLINE",
             "deadline_start": "2023-09-01T06:03:00",
             "deadline_end": "2023-09-03T06:03:00",
-            "semester": 1, 
-            "year":  2023,
+            "semester": 1,
+            "year": 2023,
             "blockk": 5
         }
     },
@@ -1510,8 +1510,8 @@
             "name": "STARTASSIGNMENTDEADLINE",
             "deadline_start": "2023-09-05T06:03:00",
             "deadline_end": "2023-09-06T06:03:00",
-            "semester": 1, 
-            "year":  2023,
+            "semester": 1,
+            "year": 2023,
             "blockk": 5
         }
     },
@@ -8424,7 +8424,7 @@
         "pk": 1,
         "fields": {
             "password": "pbkdf2_sha256$390000$UYztBMlrQEbdT4DuIfE4OQ$UsnwvKwMSYI1jHr9mrYoj6tQ2+NPeUaNRAEpQ+gFXwU=",
-            "last_login": "2023-09-02T05:55:44.168",
+            "last_login": "2023-09-04T03:41:10.207",
             "registration_id": "3045463",
             "first_name": "ISABELLA",
             "last_name": "VALERIO MAZARÁ",
@@ -8609,13 +8609,13 @@
         "model": "user.user",
         "pk": 8,
         "fields": {
-            "password": "pbkdf2_sha256$390000$FUHDc1IfYZL6OAOJ3YD7Pn$7acFYmPXKTCBwQc4DYwqt4JLQIWdT0jgshB12QAspwY=",
-            "last_login": null,
+            "password": "pbkdf2_sha256$390000$S78PbjiOuxFRv4CV7XdWBe$6sAGera64+FypPiRs43hLUxWJq/aPuRxOLmBb1cY5Kk=",
+            "last_login": "2023-09-04T04:04:30.770",
             "registration_id": "SP1284708",
             "first_name": "LEONARDO",
             "last_name": "ANDRADE MOTTA DE LIMA",
             "email": "leonardo.motta@ifsp.edu.br",
-            "telephone": "(18)2819-2982",
+            "telephone": "93939393993",
             "cell_phone": "+5511999999999",
             "date_joined": "2023-09-01T19:41:19.307",
             "is_superuser": false,
@@ -8636,13 +8636,13 @@
         "model": "user.user",
         "pk": 9,
         "fields": {
-            "password": "pbkdf2_sha256$390000$K02wCRNRbLXl0tn5VhVuyx$n3xve8MlkNiMuPdZX+abePyUXfYHrz0SJYbR36m74HU=",
-            "last_login": null,
+            "password": "pbkdf2_sha256$390000$Jo0QQeMiNWKMt4hvY3tLhi$z4Ak2Rrv4SJ9MF94Q/1nRLznfCDHhYcFx0RFpcKTxb4=",
+            "last_login": "2023-09-04T04:07:31.594",
             "registration_id": "SP3278994",
             "first_name": "GUSTAVO",
             "last_name": "FORTUNATO PUGA",
             "email": "gustavo.puga@ifsp.edu.br",
-            "telephone": "(12)1212-1212",
+            "telephone": "02939929202",
             "cell_phone": "+5511999999998",
             "date_joined": "2023-09-01T19:43:18.973",
             "is_superuser": false,
@@ -8663,13 +8663,13 @@
         "model": "user.user",
         "pk": 10,
         "fields": {
-            "password": "pbkdf2_sha256$390000$lHkl6FLAbmZ7tvJen066WL$7Clf/khBWfQqxdg9ffdhtB0HNUASbPnQXin/WiIXP1c=",
-            "last_login": null,
+            "password": "pbkdf2_sha256$390000$4aLhZcbO6b9kEnc0O0GGbe$voLxK6p00a4uHJZJbmgoWwmBBYyzBpzgSiuJC3bDOv8=",
+            "last_login": "2023-09-04T04:08:54.394",
             "registration_id": "SP0000000",
             "first_name": "BANCA",
             "last_name": "BANCA",
             "email": "banca@ifsp.edu.br",
-            "telephone": "",
+            "telephone": null,
             "cell_phone": "(11)99999-0000",
             "date_joined": "2023-09-02T02:10:18.080",
             "is_superuser": false,
@@ -8691,7 +8691,7 @@
         "pk": 11,
         "fields": {
             "password": "pbkdf2_sha256$390000$ymTlnTBNZlYvb4xcxErul9$enBl9DQ63myCIOIFN0ggYx5uXfioDPm89uaCbkfvZes=",
-            "last_login": null,
+            "last_login": "2023-09-04T03:34:14.720",
             "registration_id": "SP0101010",
             "first_name": "TRIO 1",
             "last_name": "TESTE",
@@ -8718,7 +8718,7 @@
         "pk": 12,
         "fields": {
             "password": "pbkdf2_sha256$390000$9Z0GF5wxKInQ0oUAMS1drN$hL87sRVmp2yTtzsqQTGyzXlk/6NrqgnJPkK5Dakrn5w=",
-            "last_login": null,
+            "last_login": "2023-09-04T03:34:52.915",
             "registration_id": "SP0202020",
             "first_name": "TRIO 2",
             "last_name": "TESTE",
@@ -8749,7 +8749,7 @@
         "pk": 13,
         "fields": {
             "password": "pbkdf2_sha256$390000$N357H5X8vXkcSp7vdBKsOU$bYTji5129nYzK8sq7fWCRKkopOrbmuovO57Tg+lJcSI=",
-            "last_login": null,
+            "last_login": "2023-09-04T03:35:10.949",
             "registration_id": "SP0303030",
             "first_name": "TRIO 3",
             "last_name": "TESTE",
@@ -8777,7 +8777,7 @@
         "pk": 14,
         "fields": {
             "password": "pbkdf2_sha256$390000$M08PlrLu4LQ9YX1Gn5pjkb$blUSrENbBYTF4BYwN4lC6USCICnGqevFvWW+8gcbHfU=",
-            "last_login": null,
+            "last_login": "2023-09-04T03:35:32.300",
             "registration_id": "SP0404040",
             "first_name": "DUPLO 1",
             "last_name": "TESTE",
@@ -8804,7 +8804,7 @@
         "pk": 15,
         "fields": {
             "password": "pbkdf2_sha256$390000$sXYwzAu4ogACDxLPUsJoZJ$6KB/hwf2MBy7wqJKv9ECButNprbahM1jC72uXuf2W2w=",
-            "last_login": null,
+            "last_login": "2023-09-04T03:35:48.443",
             "registration_id": "SP0505050",
             "first_name": "DUPLO 2",
             "last_name": "TESTE",
@@ -8833,7 +8833,7 @@
         "pk": 16,
         "fields": {
             "password": "pbkdf2_sha256$390000$pFg9O2pjyMhSkduvqHjCuy$JI5AS7nE4U0a+XI+SdIDb+omkk5MIwZmCpbOKyjW9Mk=",
-            "last_login": null,
+            "last_login": "2023-09-04T03:36:04.252",
             "registration_id": "SP0606060",
             "first_name": "BIS 1",
             "last_name": "TESTE",
@@ -8860,7 +8860,7 @@
         "pk": 17,
         "fields": {
             "password": "pbkdf2_sha256$390000$jimVExBgOotfLRqIE9JLiJ$M08h0uJQ/u4Ie0clzvRUFq/37NV8yiFpOt+sB7+GDcw=",
-            "last_login": null,
+            "last_login": "2023-09-04T03:36:20.073",
             "registration_id": "SP0707070",
             "first_name": "BIS 2",
             "last_name": "TESTE",
@@ -8888,7 +8888,7 @@
         "pk": 18,
         "fields": {
             "password": "pbkdf2_sha256$390000$5XkMkcHa3eeRyJu7F7fcUf$ZxrvgzrfVQtlS88tz/b7SWWkEwubcLv6m0EUGeqGuAc=",
-            "last_login": "2023-09-02T05:06:16.170",
+            "last_login": "2023-09-04T03:50:08.710",
             "registration_id": "SP1111111",
             "first_name": "PROFESSOR 1",
             "last_name": "TESTE",
@@ -8915,7 +8915,7 @@
         "pk": 19,
         "fields": {
             "password": "pbkdf2_sha256$390000$aEfL1kmVeEI2RWBtoQuhHs$QSzggUlegJv5t8g7aAPgXQedlylgtJ4mi2ZYKhsCbRU=",
-            "last_login": null,
+            "last_login": "2023-09-04T03:50:23.356",
             "registration_id": "SP1111112",
             "first_name": "PROFESSOR 2",
             "last_name": "TESTE",
@@ -8942,7 +8942,7 @@
         "pk": 20,
         "fields": {
             "password": "pbkdf2_sha256$390000$EVsms1OkZaxrM5DaFWHTyx$dqEA5VVx2Px7+xSr2vZfYRGoIPGG2WC7dAb5FQFzXiM=",
-            "last_login": null,
+            "last_login": "2023-09-04T03:50:38.482",
             "registration_id": "SP1111113",
             "first_name": "PROFESSOR 3",
             "last_name": "TESTE",
@@ -8969,7 +8969,7 @@
         "pk": 21,
         "fields": {
             "password": "pbkdf2_sha256$390000$uawouopeywyRrBg3C8wznR$e5uUsFdKot18YaHtwr7Hcw5k8JoTu7s8kL3//kw9nHk=",
-            "last_login": null,
+            "last_login": "2023-09-04T03:50:53.908",
             "registration_id": "SP1111114",
             "first_name": "PROFESSOR 4",
             "last_name": "TESTE",
@@ -8996,7 +8996,7 @@
         "pk": 22,
         "fields": {
             "password": "pbkdf2_sha256$390000$qLq4OVJjhulksPTxOx6Baq$RpimdC0dViqfKD2Fs60X206Nq+ppdXcPj3ANis2cZE8=",
-            "last_login": null,
+            "last_login": "2023-09-04T03:51:09.489",
             "registration_id": "SP1111115",
             "first_name": "PROFESSOR 5",
             "last_name": "TESTE",
@@ -9023,7 +9023,7 @@
         "pk": 23,
         "fields": {
             "password": "pbkdf2_sha256$390000$4eeV8kyUQwbKAcCaOn0zgr$wRrhxAqKTivndzfXcktZnSUgYeGoXDWCc/Kltwfr/Cw=",
-            "last_login": null,
+            "last_login": "2023-09-04T03:51:23.711",
             "registration_id": "SP1111116",
             "first_name": "PROFESSOR 6",
             "last_name": "TESTE",
@@ -9050,7 +9050,7 @@
         "pk": 24,
         "fields": {
             "password": "pbkdf2_sha256$390000$pc4bQ8eX0ZKieeKq3oYERO$ITTpgbFQpaRsqg+zfA7b35BZe7R7Ti4XmjWto5fC2Kw=",
-            "last_login": null,
+            "last_login": "2023-09-04T03:51:36.176",
             "registration_id": "SP1111117",
             "first_name": "PROFESSOR 7",
             "last_name": "TESTE",
@@ -9077,7 +9077,7 @@
         "pk": 25,
         "fields": {
             "password": "pbkdf2_sha256$390000$4h5uE0f8cUwn1hbccj26oJ$M4EBg9DoLH9N6Rk9FY4fYtvUgREKWY2GpqjcmiPQ8YE=",
-            "last_login": null,
+            "last_login": "2023-09-04T03:51:49.875",
             "registration_id": "SP1111118",
             "first_name": "PROFESSOR 8",
             "last_name": "TESTE",
@@ -9104,7 +9104,7 @@
         "pk": 26,
         "fields": {
             "password": "pbkdf2_sha256$390000$3LIdz6rjHQQkOTrxkfGfsR$Ouyk0KtbKtkyhKXGB1VzphyLzNzdbT6kWGvla16cGd0=",
-            "last_login": null,
+            "last_login": "2023-09-04T03:52:06.720",
             "registration_id": "SP1111119",
             "first_name": "PROFESSOR 9",
             "last_name": "TESTE",
@@ -9131,7 +9131,7 @@
         "pk": 27,
         "fields": {
             "password": "pbkdf2_sha256$390000$qeQ45S8VsUpKGhCq4kPDfc$rQVv1B2MukYkqlOQf/v6LuIDAcP+/Mg5hbQss7IDAXo=",
-            "last_login": null,
+            "last_login": "2023-09-04T03:52:23.543",
             "registration_id": "SP1111120",
             "first_name": "PROFESSOR 10",
             "last_name": "TESTE",
@@ -9158,7 +9158,7 @@
         "pk": 28,
         "fields": {
             "password": "pbkdf2_sha256$390000$kx9kkhc384VHv6h8N97y3I$hY+rpJEvzTVH6shlX7z29pZXAlY0UZl2TB2rcPyvioE=",
-            "last_login": null,
+            "last_login": "2023-09-04T03:53:00.699",
             "registration_id": "SP1111121",
             "first_name": "PROFESSOR 11",
             "last_name": "TESTE",
@@ -9185,7 +9185,7 @@
         "pk": 29,
         "fields": {
             "password": "pbkdf2_sha256$390000$dYY1Sg40k3QAyiuqZEcIfY$LEsouVpB5iDXRDb2p0Uasxb/UgnrYvhWnhBCF8/Otkw=",
-            "last_login": null,
+            "last_login": "2023-09-04T03:53:15.380",
             "registration_id": "SP1111122",
             "first_name": "PROFESSOR 12",
             "last_name": "TESTE",
@@ -9212,7 +9212,7 @@
         "pk": 30,
         "fields": {
             "password": "pbkdf2_sha256$390000$9ZdFqCr8Mh8W1mQCMae0np$gnLY7apfUwcsTqlj3iTGbUqsFXYZIRLgb0Xc/nAIOP0=",
-            "last_login": null,
+            "last_login": "2023-09-04T03:53:29.879",
             "registration_id": "SP1111123",
             "first_name": "PROFESSOR 13",
             "last_name": "TESTE",
@@ -9239,7 +9239,7 @@
         "pk": 31,
         "fields": {
             "password": "pbkdf2_sha256$390000$RbhHtHt5wmca8VRhU7bDKf$thTo1M0zY2PHFGiJrqjRk91XSRrBrYJ0spLjkr2RsYE=",
-            "last_login": null,
+            "last_login": "2023-09-04T03:53:44.852",
             "registration_id": "SP1111124",
             "first_name": "PROFESSOR 14",
             "last_name": "TESTE",
@@ -9266,7 +9266,7 @@
         "pk": 32,
         "fields": {
             "password": "pbkdf2_sha256$390000$dWII6emHP3mrV4c8CJDl3x$IZrTdi2yAljNsISQ87jnMHZnziZQCbhuoBxwWuDLJlE=",
-            "last_login": null,
+            "last_login": "2023-09-04T03:54:05.142",
             "registration_id": "SP1111125",
             "first_name": "PROFESSOR 15",
             "last_name": "TESTE",
@@ -9293,7 +9293,7 @@
         "pk": 33,
         "fields": {
             "password": "pbkdf2_sha256$390000$kWLrPrXQ38uDzmAZfFVxVl$ChH0s0xxpdZpss1ZqemfpYSIfhUkMv6cKyWX+d+eL/w=",
-            "last_login": null,
+            "last_login": "2023-09-04T03:54:19.311",
             "registration_id": "SP1111126",
             "first_name": "PROFESSOR 16",
             "last_name": "TESTE",
@@ -9320,7 +9320,7 @@
         "pk": 34,
         "fields": {
             "password": "pbkdf2_sha256$390000$Xf9WkuHBcbqxi8C0lByIyM$4OqzJzcP9aGoaVn3m6s5s6MQhpWWEDtF02kzbrwGvWw=",
-            "last_login": null,
+            "last_login": "2023-09-04T03:54:32.518",
             "registration_id": "SP1111127",
             "first_name": "PROFESSOR 17",
             "last_name": "TESTE",
@@ -9347,7 +9347,7 @@
         "pk": 35,
         "fields": {
             "password": "pbkdf2_sha256$390000$onuFjKEDpkMF02fLp2c4eW$jH8hdgVONgVoLZtz4iXADOG1idA7gZ1Cj5yH/0bxRTk=",
-            "last_login": null,
+            "last_login": "2023-09-04T03:54:45.265",
             "registration_id": "SP1111128",
             "first_name": "PROFESSOR 18",
             "last_name": "TESTE",
@@ -9374,7 +9374,7 @@
         "pk": 36,
         "fields": {
             "password": "pbkdf2_sha256$390000$NgdpkjEmDcZGiWMOzhItO6$QAXc51dGsFPsYipckmqyeZlqVCjcNtprTKPSOLH+Mps=",
-            "last_login": null,
+            "last_login": "2023-09-04T03:55:02.849",
             "registration_id": "SP1111129",
             "first_name": "PROFESSOR 19",
             "last_name": "TESTE",
@@ -9401,7 +9401,7 @@
         "pk": 37,
         "fields": {
             "password": "pbkdf2_sha256$390000$wWijRbRFq8gpJ2NybLylQo$hPbabsoYe18OO0O+ROqhI0O7zdvzghFqGS39qQ+D95k=",
-            "last_login": null,
+            "last_login": "2023-09-04T03:55:21.402",
             "registration_id": "SP1111130",
             "first_name": "PROFESSOR 20",
             "last_name": "TESTE",
@@ -9428,7 +9428,7 @@
         "pk": 38,
         "fields": {
             "password": "pbkdf2_sha256$390000$ETGD9iM4IxqxXqQqePlIeJ$tJfKqsBBUCF0itsZFwMUNcEk/1gAKIwMIAUJ3uklVLU=",
-            "last_login": null,
+            "last_login": "2023-09-04T03:55:37.212",
             "registration_id": "SP1111131",
             "first_name": "PROFESSOR 21",
             "last_name": "TESTE",
@@ -9455,7 +9455,7 @@
         "pk": 39,
         "fields": {
             "password": "pbkdf2_sha256$390000$0gbYLb3BU5BNhN6LMEHUeV$Z8itPlRKKAlQopCuFAV7DcF/kYsbQLS9sG945Xn/Kkc=",
-            "last_login": null,
+            "last_login": "2023-09-04T03:56:44.091",
             "registration_id": "SP1111132",
             "first_name": "PROFESSOR 22",
             "last_name": "TESTE",
@@ -9481,13 +9481,13 @@
         "model": "user.user",
         "pk": 40,
         "fields": {
-            "password": "pbkdf2_sha256$390000$pyQYkbj2a6kJ2vfzxiAGl5$UXqQ9//wkYl+m32LB6SuPHpD6deSb8OShiLh/dm1Gj8=",
-            "last_login": null,
+            "password": "pbkdf2_sha256$390000$MWwUSrJxZIiCMuetnIva6w$R2ovU7UHoAHs1RKoQmrDmN6ixf12AetrIonROF6UYkE=",
+            "last_login": "2023-09-04T04:10:52.424",
             "registration_id": "SP1111133",
             "first_name": "PROFESSOR 23",
             "last_name": "TESTE",
             "email": "professor23@ifsp.edu.br",
-            "telephone": "(66)6666-6674",
+            "telephone": "38299392939",
             "cell_phone": "+5511999999930",
             "date_joined": "2023-09-02T03:15:49.823",
             "is_superuser": false,
@@ -9509,7 +9509,7 @@
         "pk": 41,
         "fields": {
             "password": "pbkdf2_sha256$390000$vAXbcTYemdfMiITjr74XGP$9xQdKKWCqzb42aulHWeNTpyVJvM6l7Y0Gj7WyL10Lz8=",
-            "last_login": null,
+            "last_login": "2023-09-04T03:57:01.603",
             "registration_id": "SP1111134",
             "first_name": "PROFESSOR 24",
             "last_name": "TESTE",
@@ -9536,7 +9536,7 @@
         "pk": 42,
         "fields": {
             "password": "pbkdf2_sha256$390000$LEXbQuIgqkmn1P4rZiR2lU$Oeez4FSOzxSXk5KqIcgk3pstDGadHvs7/7bhD3u5v70=",
-            "last_login": null,
+            "last_login": "2023-09-04T03:57:17.210",
             "registration_id": "SP1111135",
             "first_name": "PROFESSOR 25",
             "last_name": "TESTE",
@@ -9563,7 +9563,7 @@
         "pk": 43,
         "fields": {
             "password": "pbkdf2_sha256$390000$YjBZI7HL0i13hP9Utg9YeK$BzwlIe/cGhAc9EUl+CVRhKGg9cX4w1+69x1mtPmCvjY=",
-            "last_login": null,
+            "last_login": "2023-09-04T03:57:35.956",
             "registration_id": "SP1111136",
             "first_name": "PROFESSOR 26",
             "last_name": "TESTE",
@@ -9590,7 +9590,7 @@
         "pk": 44,
         "fields": {
             "password": "pbkdf2_sha256$390000$liMuSJciIk49vOEyvSKNrW$skb6UxCkHMhmjmPgcMPslhXFoAA4lBc1jh5e6N/jeWE=",
-            "last_login": null,
+            "last_login": "2023-09-04T03:57:49.239",
             "registration_id": "SP1111137",
             "first_name": "PROFESSOR 27",
             "last_name": "TESTE",
@@ -9617,7 +9617,7 @@
         "pk": 45,
         "fields": {
             "password": "pbkdf2_sha256$390000$LEQ2gnHSfVdNCjoLFnkplB$aabDTYPmLT9Ra0gX7v+OdFKfTG0M5tzgJ+uwTQMR3aA=",
-            "last_login": null,
+            "last_login": "2023-09-04T03:58:04.036",
             "registration_id": "SP1111138",
             "first_name": "PROFESSOR 28",
             "last_name": "TESTE",
@@ -9644,7 +9644,7 @@
         "pk": 46,
         "fields": {
             "password": "pbkdf2_sha256$390000$L43092Kah8BewfyutnZeCX$9qhxY1Ph4cWncbNs9uZTF6sDM0YPBLzALtahuraaSeE=",
-            "last_login": null,
+            "last_login": "2023-09-04T03:58:19.331",
             "registration_id": "SP1111139",
             "first_name": "PROFESSOR 29",
             "last_name": "TESTE",
@@ -9671,7 +9671,7 @@
         "pk": 47,
         "fields": {
             "password": "pbkdf2_sha256$390000$j0pELO2WrhSnaiU62jwaV5$8S+Fc6yDokhiDHNMKoN7vuCBqzveZ9Z9o3c8zo81ArQ=",
-            "last_login": null,
+            "last_login": "2023-09-04T03:58:34.195",
             "registration_id": "SP1111140",
             "first_name": "PROFESSOR 30",
             "last_name": "TESTE",
@@ -9698,7 +9698,7 @@
         "pk": 48,
         "fields": {
             "password": "pbkdf2_sha256$390000$OfU6Mc9XzqG1KiytMHp0nL$CTUSVRAC5i0ds2mzhPSUKg6roShH1r9vn5r5nCk1xi0=",
-            "last_login": null,
+            "last_login": "2023-09-04T03:58:59.657",
             "registration_id": "SP1111141",
             "first_name": "PROFESSOR 31",
             "last_name": "TESTE",
@@ -9725,7 +9725,7 @@
         "pk": 49,
         "fields": {
             "password": "pbkdf2_sha256$390000$Jbuk4jIK1fpGq0agBd3Xby$PLp1qTlk3KMMQB0bvWxhFHWzsF4cl766ug53EA1PowI=",
-            "last_login": null,
+            "last_login": "2023-09-04T03:59:11.907",
             "registration_id": "SP1111142",
             "first_name": "PROFESSOR 32",
             "last_name": "TESTE",
@@ -9752,7 +9752,7 @@
         "pk": 50,
         "fields": {
             "password": "pbkdf2_sha256$390000$CQxqMZgNNtuf6RvHl2F5JT$HC74xRRkuoI9JmO6bDBrxEXu2DD09MPt+9uY6tKF5S4=",
-            "last_login": null,
+            "last_login": "2023-09-04T03:59:26.629",
             "registration_id": "SP1111143",
             "first_name": "PROFESSOR 33",
             "last_name": "TESTE",
@@ -9779,7 +9779,7 @@
         "pk": 51,
         "fields": {
             "password": "pbkdf2_sha256$390000$oACybaHwuxaCDqYbafl28l$GDnDSPu8w+enk0MNJee/PfioAocDfTxgfcsoaUDzjis=",
-            "last_login": null,
+            "last_login": "2023-09-04T03:59:39.594",
             "registration_id": "SP1111144",
             "first_name": "PROFESSOR 34",
             "last_name": "TESTE",
@@ -9806,7 +9806,7 @@
         "pk": 52,
         "fields": {
             "password": "pbkdf2_sha256$390000$HJ8fzlUaxDC6Xe8CN1kd9M$OtTcu73+h0IZ/b6QTJCH3fwsU7VxYPcYgdcwve1Q/BA=",
-            "last_login": null,
+            "last_login": "2023-09-04T03:59:52.265",
             "registration_id": "SP1111145",
             "first_name": "PROFESSOR 35",
             "last_name": "TESTE",
@@ -9833,7 +9833,7 @@
         "pk": 53,
         "fields": {
             "password": "pbkdf2_sha256$390000$GeCDsfUzkMVFQnF7mXAyX3$4suQG1j29nrbWuVmwT5Cy00YYkVKrPQd1FxwcNLTS9w=",
-            "last_login": null,
+            "last_login": "2023-09-04T04:00:06.978",
             "registration_id": "SP1111146",
             "first_name": "PROFESSOR 36",
             "last_name": "TESTE",
@@ -9860,7 +9860,7 @@
         "pk": 54,
         "fields": {
             "password": "pbkdf2_sha256$390000$F8YTT11QVYfs2wD46k5xVS$+sh6GSHvltQ9jHmprgwNkGDUOtxrvYcZbrk4dM3pfkk=",
-            "last_login": null,
+            "last_login": "2023-09-04T04:00:18.127",
             "registration_id": "SP1111147",
             "first_name": "PROFESSOR 37",
             "last_name": "TESTE",
@@ -9887,7 +9887,7 @@
         "pk": 55,
         "fields": {
             "password": "pbkdf2_sha256$390000$O5QGjgDAgfQVh99uyCnb9g$P90qdyaiahkTSuZmO66gwS/dYE0YeXwSh/h7ke7QFVQ=",
-            "last_login": null,
+            "last_login": "2023-09-04T04:00:29.161",
             "registration_id": "SP1111148",
             "first_name": "PROFESSOR 38",
             "last_name": "TESTE",
@@ -9914,7 +9914,7 @@
         "pk": 56,
         "fields": {
             "password": "pbkdf2_sha256$390000$D1CFZAfjGgp5UwLQk2eDWD$bsl3jL/BxmBe39L9VQEM95kteb/LR9CAbfd2gdhVp6c=",
-            "last_login": null,
+            "last_login": "2023-09-04T04:00:40.821",
             "registration_id": "SP1111149",
             "first_name": "PROFESSOR 39",
             "last_name": "TESTE",
@@ -9941,7 +9941,7 @@
         "pk": 57,
         "fields": {
             "password": "pbkdf2_sha256$390000$PrCFBqFp3jyq2lEMUAfady$9Uzt4bs4AybIqN4hF18BkcR4O0Ye+dyky0T/2Id4Uzw=",
-            "last_login": null,
+            "last_login": "2023-09-04T04:00:54.924",
             "registration_id": "SP1111150",
             "first_name": "PROFESSOR 40",
             "last_name": "TESTE",
