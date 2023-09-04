@@ -9,6 +9,8 @@ from area.models import Blockk, Area
 from common.validator.validator import convert_to_uppercase
 
 # Métodos de gerenciamento de usuário
+
+
 class UserManager(BaseUserManager):
     use_in_migrations = True
 
@@ -29,28 +31,68 @@ class UserManager(BaseUserManager):
 
     def create_superuser(self, email, password, **extra_fields):
         extra_fields.setdefault('is_superuser', True)
-        
+
         if extra_fields.get('is_superuser') is not True:
             raise ValueError('Superuser must have is_superuser=True.')
 
         return self._create_user(email, password, **extra_fields)
 
+
 class User(AbstractBaseUser, PermissionsMixin):
-    registration_id = models.CharField(_('registration id'), max_length=9, unique=True, null=False, blank=False)
-    first_name = models.CharField(_('first name'), max_length=60, null=False, blank=False)
-    last_name = models.CharField(_('last name'), max_length=200, null=False, blank=False)
-    email = models.EmailField(_('email address'), max_length=256, unique=True, null=False, blank=False)
-    telephone = models.CharField(_('telephone'), max_length=11, null=True, blank=True)
-    cell_phone = models.CharField(_('cell phone'), max_length=14, unique=True, null=False, blank=False)
+    registration_id = models.CharField(
+        _('registration id'),
+        max_length=9,
+        unique=True,
+        null=False,
+        blank=False)
+    first_name = models.CharField(
+        _('first name'),
+        max_length=60,
+        null=False,
+        blank=False)
+    last_name = models.CharField(
+        _('last name'),
+        max_length=200,
+        null=False,
+        blank=False)
+    email = models.EmailField(
+        _('email address'),
+        max_length=256,
+        unique=True,
+        null=False,
+        blank=False)
+    telephone = models.CharField(
+        _('telephone'),
+        max_length=11,
+        null=True,
+        blank=True)
+    cell_phone = models.CharField(
+        _('cell phone'),
+        max_length=14,
+        unique=True,
+        null=False,
+        blank=False)
     date_joined = models.DateTimeField(_('date joined'), auto_now_add=True)
     is_superuser = models.BooleanField(_('superuser status'), default=False)
     is_staff = models.BooleanField(_('staff status'), default=True)
-    is_active = models.BooleanField(_('active'), default=True) #mudar depois
+    is_active = models.BooleanField(_('active'), default=True)  # mudar depois
     is_fgfcc = models.BooleanField(_('fgfcc'), default=False)
     is_professor = models.BooleanField(_('professor'), default=False)
-    history = models.ForeignKey('user.History', on_delete=models.CASCADE, blank=True, unique=True, null=True)
-    job = models.ForeignKey('user.Job', on_delete=models.CASCADE, blank=True, null=True)
-    blocks = models.ManyToManyField('area.Blockk', blank=True, related_name='user_blocks')
+    history = models.ForeignKey(
+        'user.History',
+        on_delete=models.CASCADE,
+        blank=True,
+        unique=True,
+        null=True)
+    job = models.ForeignKey(
+        'user.Job',
+        on_delete=models.CASCADE,
+        blank=True,
+        null=True)
+    blocks = models.ManyToManyField(
+        'area.Blockk',
+        blank=True,
+        related_name='user_blocks')
     objects = UserManager()
 
     USERNAME_FIELD = 'registration_id'
@@ -82,31 +124,49 @@ class User(AbstractBaseUser, PermissionsMixin):
 
     def clean(self):
         super().clean()
-        convert_to_uppercase(self, 'registration_id', 'first_name', 'last_name'), 
+        convert_to_uppercase(
+            self,
+            'registration_id',
+            'first_name',
+            'last_name'),
 
     def __str__(self):
-        return str(self.first_name)        
+        return str(self.first_name)
+
 
 class AcademicDegreeHistory(models.Model):
     history = models.ForeignKey('History', on_delete=models.CASCADE)
-    academic_degree = models.ForeignKey('AcademicDegree', on_delete=models.CASCADE)
+    academic_degree = models.ForeignKey(
+        'AcademicDegree', on_delete=models.CASCADE)
+        
+
 
 class History(models.Model):
-    id_history = models.AutoField(primary_key=True) 
+    id_history = models.AutoField(primary_key=True)
     birth = models.DateField(_('birth'), null=False, blank=False)
     date_career = models.DateField(_('date career'), null=False, blank=False)
     date_campus = models.DateField(_('date campus'), null=False, blank=False)
-    date_professor = models.DateField(_('date professor'), null=False, blank=False)
+    date_professor = models.DateField(
+        _('date professor'), null=False, blank=False)
     date_area = models.DateField(_('date area'), null=False, blank=False)
-    date_institute = models.DateField(_('date institute'), null=False, blank=False)
-    academic_degrees = models.ManyToManyField('AcademicDegree', blank=True, through='AcademicDegreeHistory')
+    date_institute = models.DateField(
+        _('date institute'), null=False, blank=False)
+    academic_degrees = models.ManyToManyField(
+        'AcademicDegree', blank=True, through='AcademicDegreeHistory')
     # blocks = models.ManyToManyField('area.Blockk', blank=True, related_name='history_blocks')
 
     def __str__(self):
         return str(self.id_history)
 
-    def update_history(self, birth, date_career, date_campus, date_professor, date_area, date_institute,
-                       academic_degrees=None):
+    def update_history(
+            self,
+            birth,
+            date_career,
+            date_campus,
+            date_professor,
+            date_area,
+            date_institute,
+            academic_degrees=None):
         self.birth = birth
         self.date_career = date_career
         self.date_campus = date_campus
@@ -119,7 +179,8 @@ class History(models.Model):
             for degree_data in academic_degrees:
                 name = degree_data['name']
                 punctuation = int(degree_data['punctuation'])
-                academic_degree, _ = AcademicDegree.objects.get_or_create(name=name, punctuation=punctuation)
+                academic_degree, _ = AcademicDegree.objects.get_or_create(
+                    name=name, punctuation=punctuation)
                 academic_degrees_objs.append(academic_degree)
 
             self.academic_degrees.clear()
@@ -127,10 +188,19 @@ class History(models.Model):
 
         self.save()
 
+
 class AcademicDegree(models.Model):
     id_academic_degree = models.AutoField(primary_key=True)
-    name = models.CharField(_('name'), max_length=256, unique=True, null=False, blank=False)
+    name = models.CharField(
+        _('name'),
+        max_length=256,
+        unique=True,
+        null=False,
+        blank=False)
     punctuation = models.IntegerField()
+
+    def __str__(self):
+        return str(self.name)
 
     @classmethod
     def clean_up_unused_degrees(cls):
@@ -141,21 +211,28 @@ class AcademicDegree(models.Model):
         super().clean()
         convert_to_uppercase(self, 'name')
 
+
 class Job(models.Model):
     id_job = models.AutoField(primary_key=True)
-    name_job = models.CharField(_('name job'), choices=[(s.name, s.value) for s in enum.Job], max_length=45)
+    name_job = models.CharField(
+        _('name job'), choices=[
+            (s.name, s.value) for s in enum.Job], max_length=45)
 
     def __str__(self):
         return self.name_job
-    
+
     def clean(self):
         super().clean()
         convert_to_uppercase(self, 'name_job')
-    
+
+
 class Proficiency(models.Model):
     id_proficiency = models.AutoField(primary_key=True)
     is_competent = models.BooleanField(_('is competent'), default=True)
-    course = models.ForeignKey('course.Course', on_delete=models.CASCADE, null=True)
+    course = models.ForeignKey(
+        'course.Course',
+        on_delete=models.CASCADE,
+        null=True)
     user = models.ForeignKey('user', on_delete=models.CASCADE, null=True)
 
     def __str__(self):

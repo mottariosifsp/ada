@@ -5,6 +5,7 @@ from django.urls import reverse
 from attribution.models import TeacherQueuePosition, TeacherQueuePositionBackup
 # from attribution import task
 from attribution.views import schedule_attributtion_deadline_staff
+from attribution_preference.models import Course_preference
 from enums import enum
 from django.db import transaction
 from django.http import JsonResponse
@@ -201,7 +202,7 @@ def home(request):
 @login_required
 @user_passes_test(is_staff)
 def attribution_configuration_index(request):
-   
+    print(Course_preference.objects.filter(priority=enum.Priority.primary.name))
     blockks = request.user.blocks.all()
     blockks_images = []
 
@@ -1087,12 +1088,13 @@ def queue_create(request):
             professor = User.objects.get(registration_id=professor_registration_id)
 
             if TeacherQueuePositionBackup.objects.filter(teacher=professor, blockk=blockk).exists():
-                TeacherQueuePositionBackup.objects.filter(teacher=professor).update(position=position)
+                TeacherQueuePositionBackup.objects.filter(teacher=professor, blockk=blockk).update(position=position)
             else:
+                print(blockk)
                 add_teacher_to_queue_backup(professor, position, blockk)
 
             if TeacherQueuePosition.objects.filter(teacher=professor, blockk=blockk).exists():
-                TeacherQueuePosition.objects.filter(teacher=professor).update(position=position)
+                TeacherQueuePosition.objects.filter(teacher=professor, blockk=blockk).update(position=position)
             else:
                 add_teacher_to_queue(professor, position, blockk)
 
