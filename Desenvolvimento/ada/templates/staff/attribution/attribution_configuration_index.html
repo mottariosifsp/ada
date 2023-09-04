@@ -3,13 +3,14 @@
 {% load static %}
 
 {% block head %}
-<title>{% trans "Configuração de Atribuição" %}</title>
+<title>{% trans "Configurar Atribuição" %}</title>
 <link rel="stylesheet" href="{% static 'staff/attribution/css/attribution_configuration_index.css' %}">
 <script src="{% static 'staff/attribution/js/attribution_configuration_index.js' %}" data-lang={{ LANGUAGE_CODE }}>
 </script>
 {% endblock %}
 {% block body %}
-<h1 class="title-page">{% trans "Blocos Atribuição" %}</h1>
+<h1 class="title-page mt-4">{% trans "Configurar Atribuição" %}</h1>
+<hr>
 <nav>
   <ol class="breadcrumb">
     <li class="breadcrumb-item"><a href="{% url 'home' %}"><i class="bi bi-house-door"></i></a></li>

@@ -4,13 +4,14 @@
 
 {% block head %}
 <link rel="stylesheet" href="{% static 'attribution_preference/css/courses.css' %}">
-<title>{% trans "FPA Usuário" %}</title>
+<title>{% trans "Meu FPA" %}</title>
 <script src="{% static 'attribution_preference/js/index.js' %}" seconds='{{context.seconds}}'
     disponilibity_done='{{disponilibity_done}}' data-lang={{LANGUAGE_CODE}}></script>
 {% endblock %}
 
 {% block body %}
-<h1 class="title-page">{% trans "FPA Usuário" %}</h1>
+<h1 class="title-page mt-4">{% trans "Meu FPA" %}</h1>
+<hr>
 <nav>
     <ol class="breadcrumb hidden-itens">
         <li class="breadcrumb-item"><a href="{% url 'home' %}"><i class="bi bi-house-door"></i></a></li>

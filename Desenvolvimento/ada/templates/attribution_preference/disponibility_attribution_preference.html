@@ -4,7 +4,7 @@
 
 {% block head %}
 <link rel="stylesheet" href="{% static 'attribution_preference/css/disponibility.css' %}">
-<title>{% trans "Envio FPA" %}</title>
+<title>{% trans "Envio FPA - Disponibilidade" %}</title>
 <style>
   abbr[title] {
     border-bottom: none !important;
@@ -19,7 +19,8 @@
 
 {% block body %}
 <section class="section dashboard">
-  <h1 class="title-page">{% trans "Declaração de disponibilidade" %}</h1>
+  <h1 class="title-page mt-4">{% trans "Disponibilidade de Horário" %}</h1>
+  <hr>
   <nav>
     <ol class="breadcrumb hidden-itens">
       <li class="breadcrumb-item"><a href="{% url 'home' %}"><i class="bi bi-house-door"></i></a></li>

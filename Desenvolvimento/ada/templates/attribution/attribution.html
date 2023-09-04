@@ -15,7 +15,8 @@
 {% block body %}
 {% comment %}
 {% blocktrans with name_block_text=blockk.name_block text="Fila de professores" %}
-<h1>{{ text }} ( {{ name_block_text }} )</h1>
+<h1 class="title-page mt-4">{{ text }} ( {{ name_block_text }} )</h1>
+<hr>
 {% endblocktrans %}
 {% endcomment %}
 <h1 id="blockk" value="{{ blockk.registration_block_id }}">

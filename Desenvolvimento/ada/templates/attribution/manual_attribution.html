@@ -27,8 +27,9 @@
 {% block body %}
 
 <section class="section dashboard">
-  <h1 class="title-page">{% trans "Escolha as suas preferências novamente" %}</h1>
+  <h1 class="title-page mt-4">{% trans "Atribuição Manual" %}</h1>
   <hr>
+  <p>Escolha as suas preferências novamente.</p>
   <form id="sendDisponibilityForm" method="post">
     {% csrf_token %}
     <div id="error-alert-form" class="alert alert-danger" style="display: none;">
@@ -42,7 +43,7 @@
             <h4 class="card-title">{% trans "Bloco" %}:</h4>
             <hr class="my-0">
             <div class="text-center mt-4 mb-4 pr-2 pl-2 d-flex">
-              <h2 id="blockk" value="{{blockk.registration_block_id}}">{{blockk}}</h2>
+              <h2 id="blockk" value="{{blockk.registration_block_id}}">{{blockk.name_block}}</h2>
             </div>
           </div>
         </div>
