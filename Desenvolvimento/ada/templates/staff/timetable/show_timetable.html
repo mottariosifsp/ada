@@ -20,7 +20,7 @@
 </div>
 <div class="container" style="padding-bottom: 1rem;">
     <a href="{% url 'edit_timetable' %}?class={{classs.registration_class_id}}">
-        <button type="button" class="btn btn-success float-right createClassBtn"><i class="bi bi-pencil-square"></i> {% trans "Editar Grade" %}</button>
+        <button type="button" class="btn btn-warning float-right createClassBtn"><i class="bi bi-pencil"></i> {% trans "Editar" %}</button>
     </a>
     <h1 class="text-center">{{ request.GET.class }}</h1>
     <!-- limpar -->

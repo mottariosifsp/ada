@@ -21,12 +21,15 @@
     <p class="font-italic text-muted mb-4">{% trans "Crie ou edite as filas e os prazos dos seus blocos" %}.</p>
     <div class="row">
       <!-- DEMO 5 Item-->
+      
+      
+
       {% for block in blockks %}
-        <div class="col-lg-6 mb-1 mb-lg-4 block-card" data-block-name="{{ block.block.name }}" onclick="redirect('{{ block.block.registration_block_id }}')">
+        <div class="col-lg-6 mb-1 mb-lg-4 block-card" data-block-name="{{ block.block.name_block }}" onclick="redirect('{{ block.block.registration_block_id }}')">
           <div class="hover hover-5 text-white rounded"><img src="{{block.image}}" alt="">
             <div class="hover-overlay"></div>
             <div class="hover-5-content">
-              {% blocktrans with block_text=block.block config_text="Configurar" %}
+              {% blocktrans with block_text=block.block.name_block config_text="Configurar" %}
                 <h3 class="hover-5-title text-uppercase font-weight-light mb-0"><strong class="font-weight-bold text-white">{{ block_text }}</strong><br><span>{{ config_text }}</span></h3>
               {% endblocktrans %}
             </div>

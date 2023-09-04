@@ -1,0 +1,81 @@
+input[name="course"]::-webkit-calendar-picker-indicator{
+    opacity: 0.0;
+    display: none;
+    margin: 0px;
+    padding: 0px;
+    width: 0px;
+    height: 0px;
+}
+
+input[name="course"]:hover::-webkit-calendar-picker-indicator {
+    opacity:1;
+    display: block;
+    margin: 4px;
+    padding: 0px;
+    width: 1px;
+    height: 3px;
+}
+
+.header-table:hover{
+    opacity: 0.9;
+    cursor: pointer;
+}
+
+.form-control:focus{
+    border-color: #80bdff;
+    box-shadow: 0 0 0 0.0rem rgba(0,123,255,.25);
+}
+
+td{
+    width: calc((100% - 7.7rem) / 6) !important;
+    vertical-align:middle !important;
+}
+
+
+.squares {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.square {
+  flex: 1;
+  min-width: 200px;
+  padding: 20px;
+  background-color: #007bff;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: color 0.3s ease-in-out;
+  color: #fff;
+}
+
+
+.square:hover {
+  background-color: #0056b3;
+}
+
+.rectangle {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.3s;
+    margin: 10px 10px;
+}
+
+.rectangle:hover {
+    background-color: #45a049;
+    transform: translateY(-2px);
+}
+
+.hidden {
+    display: none;
+}
+
+
+

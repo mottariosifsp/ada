@@ -20,32 +20,40 @@
         <li class="breadcrumb-item active">{% trans "Grades Horárias" %}</li>
       </ol>
     </nav>
-    <div class="tabela">
-      <table class="table table-bordered editable" id="timetable_list">
-        <thead class="thead-dark">
-          <tr>
-            <th scope="col">{% trans "Registro" %}</th>
-            <th scope="col">{% trans "Área" %}</th>
-            <th scope="col">{% trans "Ação" %}</th>
-          </tr>
-        </thead>
-        <tbody>
-          {% for classs in classes %}
-            <tr>
-                <td>{{ classs.registration_class_id }}</td>
-                {% blocktrans with name_area_text=classs.area.name_area %}
-                  <td>{{ name_area_text }}</td>
-                {% endblocktrans %}
-                <td>
-                  {% if classs.timetable.exists %}
-                    <a href="{% url 'show_timetable' %}?class={{classs.registration_class_id}}" class="btn btn-primary"><i class="bi bi-eye"></i></a>
-                  {% else %}
-                    <a href="{% url 'create_timetable' %}?class={{classs.registration_class_id}}" class="btn btn-success"><i class="bi bi-calendar-plus"></i></a>
-                  {% endif %}
-                </td>
-            </tr>
-          {% endfor %}
-        </tbody>
-      </table>
+    <div class="card">
+      <div class="card-body">
+        <div class="tabela">
+          <table class="table table-hover table-bordered editable display" id="timetable_list">
+            <thead class="thead-dark">
+              <tr>
+                <th scope="col">{% trans "Registro" %}</th>
+                <th scope="col">{% trans "Área" %}</th>
+                <th scope="col">{% trans "Ação" %}</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for classs in classes %}
+                <tr>
+                  <td>{{ classs.registration_class_id }}</td>
+                  {% blocktrans with name_area_text=classs.area.name_area %}
+                    <td>{{ name_area_text }}</td>
+                  {% endblocktrans %}
+                  <td class="text-center">
+                    {% if classs.timetable.exists %}
+                      <a href="{% url 'show_timetable' %}?class={{classs.registration_class_id}}" class="btn btn-primary"><i class="bi bi-eye"></i></a>
+                      <a href="{% url 'edit_timetable' %}?class={{classs.registration_class_id}}" class="btn btn-warning"><i class="bi bi-pencil"></i></a>
+                    {% else %}
+                      <a href="{% url 'create_timetable' %}?class={{classs.registration_class_id}}" class="btn btn-success"><i class="bi bi-calendar-plus"></i></a>
+                    {% endif %}
+                  </td>
+                </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      </div>
     </div>
+
+    <script src="{% static 'staff/timetable/js/show_timetable.js' %}" data-lang="{{LANGUAGE_CODE}}" timetables-complete="{{timetables}}"></script>
+
 {% endblock %}

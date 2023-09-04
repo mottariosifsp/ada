@@ -3,19 +3,20 @@
 {% load static %}
 
 {% block head %}
-    <title>{% trans "Home Professor(a)" %}</title>
+    <title>{% trans "Página inicial - Professor(a)" %}</title>
     <link rel="stylesheet" href="{% static 'professor/css/home_professor.css' %}">
     <script src="{% static 'professor/js/home_professor.js' %}" data-lang='{{ LANGUAGE_CODE }}'></script>
 {% endblock %}
 
 {% block body %}
 
-<h1 class="title-page">{% trans "Home Professor" %}</h1>
-    <nav>
-    <ol class="breadcrumb hidden-itens">
-        <li class="breadcrumb-item active"><i class="mr-2 bi bi-house-door"></i> {% trans "Home" %}</li>
-    </ol>
-    </nav>
+<h1 class="title-page mt-4">{% trans "Página inicial" %}</h1>
+<hr>
+<nav>
+<ol class="breadcrumb hidden-itens">
+    <li class="breadcrumb-item active"><i class="mr-2 bi bi-house-door"></i> {% trans "Home" %}</li>
+</ol>
+</nav>
 
 
 <div class="container">
@@ -32,22 +33,22 @@
             {% elif period.status == 'configured_STARTFPADEADLINE' %}
             <p><div class="float-right message-info-not-started">{% trans 'Formulário de Preferências'%}</div> <b>{% trans "Período" %}</b> </p>
             <p class="home-begin"><b>{% trans "Situação" %}</b> <i class="float-right">{% trans "Prazo configurado" %}</i></p>
-            <p class="home-begin"><div class=" float-right">{{period.start_day}} {% trans "às" %} {{period.start_time}}</div><b>{% trans "Inicio" %}</b> </p>
+            <p class="home-begin"><div class=" float-right">{{period.start_day}} {% trans "às" %} {{period.start_time}}</div><b>{% trans "Início" %}</b> </p>
             <p class=""><div class=" float-right">{{period.end_day}} {% trans "às" %} {{period.end_time}}</div><b>{% trans "Fim" %}</b></p>
             {% elif period.status == 'configured_STARTASSIGNMENTDEADLINE' %}
             <p><div class="float-right message-info-not-started">{% trans 'Atribuição de Aulas'%}</div> <b>{% trans "Período" %}</b> </p>
             <p class="home-begin"><b>{% trans "Situação" %}</b> <i class="float-right">{% trans "Prazo configurado" %}</i></p>
-            <p class="home-begin"><div class=" float-right">{{period.start_day}} {% trans "às" %} {{period.start_time}}</div><b>{% trans "Inicio" %}</b> </p>
+            <p class="home-begin"><div class=" float-right">{{period.start_day}} {% trans "às" %} {{period.start_time}}</div><b>{% trans "Início" %}</b> </p>
             <p class=""><div class=" float-right">{{period.end_day}} {% trans "às" %} {{period.end_time}}</div><b>{% trans "Fim" %}</b></p>
             {% elif period.status == 'fpa' %}
             <p><a href="{% url 'attribution_preference' %}"><div class="float-right message-info-not-started-home">{% trans 'Formulário de Preferências'%}</div></a> <b>{% trans "Período" %}</b> </p>
             <p class="home-begin"><b>{% trans "Situação" %}</b> <i class="float-right">{% trans "Iniciado" %}</i></p>
-            <p class="home-begin"><div class="float-right">{{period.start_day}} {% trans "às" %} {{period.start_time}}</div><b>{% trans "Inicio" %}</b> </p>
+            <p class="home-begin"><div class="float-right">{{period.start_day}} {% trans "às" %} {{period.start_time}}</div><b>{% trans "Início" %}</b> </p>
             <p class=""><div class=" float-right">{{period.end_day}} {% trans "às" %} {{period.end_time}}</div><b>{% trans "Fim" %}</b></p>
             {% elif period.status == 'attribution' %}
             <p><a href="#attribution_blocks"><div class="float-right message-info-not-started-home">{% trans 'Atribuição de Aulas'%}</div></a> <b>{% trans "Período" %}</b> </p>
             <p class="home-begin"><b>{% trans "Situação" %}</b> <i class="float-right">{% trans "Iniciado" %}</i></p>
-            <p><div class="float-right">{{period.start_day}} {% trans "às" %} {{period.start_time}}</div><b>{% trans "Inicio" %}</b> </p>
+            <p><div class="float-right">{{period.start_day}} {% trans "às" %} {{period.start_time}}</div><b>{% trans "Início" %}</b> </p>
             <p class="home-begin"><div class=" float-right">{{period.end_day}} {% trans "às" %} {{period.end_time}}</div><b>{% trans "Fim" %}</b></p>
             {% else %}
             <p><div class="float-right message-info-done">{% trans 'Finalizado'%}</div> <b>{% trans "Período" %}</b> </p>
@@ -91,7 +92,7 @@
     <div class="col-12 col-md-6">
       <div class="mt-4 card info-card sales-card">
         <div class="card-body">
-          <h4 class="card-title">{% trans "Atualizações Legislação" %} <i class="far fa-file custom-icon"></i></h4>
+          <h4 class="card-title">{% trans "Atualizações Legislação" %} <i class="bi bi-file-earmark-post"></i></h4>
           <hr>
           <div>
             <div class="no-alert">
@@ -124,7 +125,7 @@
             {% elif period.status == 'finished' %}
             <p class="m-5 p-4"><b>{% trans "A atribuição terminou, todas permutas que foram pedidas foram resolvidas" %}</b>.</p>
             {% else %}
-            <p class="m-5 p-4"><b>{% trans "Permuta não foi habilitada" %}</b>.</p>
+            <p class="m-5 p-4 text-justify">{% trans "Permuta não foi habilitada" %}.</p>
             {% endif %}
           </div>
         </div>
@@ -141,11 +142,11 @@
         <div class="row">
           <!-- blocos bonitinhos -->
           {% for block in blockks %}
-            <div class="col-lg-6 mb-1 mb-lg-4 block-card" onclick="redirect({{block.block.registration_block_id}})">
+            <div class="col-lg-6 mb-1 mb-lg-4 block-card" onclick="redirect('{{block.block.registration_block_id}}')">
               <div class="hover hover-5 text-white rounded"><img src="{{block.image}}" alt="">
                 <div class="hover-overlay"></div>
                 <div class="hover-5-content">
-                  {% blocktrans with block_text=block.block access_text="Acessar" %}
+                  {% blocktrans with block_text=block.block.name_block access_text="Acessar" %}
                   <h3 class="hover-5-title text-uppercase font-weight-light mb-0"><strong class="font-weight-bold text-white">{{ block_text }}</strong><br><span>{{access_text}}</span></h3>
                   {% endblocktrans %}
                 </div>

@@ -1,0 +1,42 @@
+{% extends "professor/base.html" %}
+{% load i18n %}
+{% load static %}
+
+{% block head %}
+    <title>{% trans "Atribuições Professor(a)" %}</title>
+    <link rel="stylesheet" href="{% static 'professor/css/assignments.css' %}">
+    <link rel="stylesheet" href="{% static 'staff/prof/css/attribution_configuration_index.css' %}">
+{% endblock %}
+
+{% block body %}
+
+    <h1 class="title-page">{% trans "Atribuições do Professor" %}</h1>
+    <nav>
+        <ol class="breadcrumb hidden-itens">
+            <li class="breadcrumb-item"><a href="{% url 'home' %}"><i class="bi bi-house-door"></i></a></li>
+            <li class="breadcrumb-item active">{% trans "Atribuições" %}</li>
+        </ol>
+    </nav>
+
+    <div class="row">
+
+        {% for block in blockks %}
+            <div class="col-lg-6 mb-1 mb-lg-4 block-card">
+                <a href="{% url 'final_assignments_classs' name_block=block.block.name_block %}" class="blockk-link">
+                    <div class="hover hover-5 text-white rounded">
+                        <img src="{{ block.image }}" alt="">
+                        <div class="hover-overlay"></div>
+                        <div class="hover-5-content">
+                            {% blocktrans with block_text=block.block.name_block config_text="Ver atribuições" %}
+                                <h3 class="hover-5-title text-uppercase font-weight-light mb-0">
+                                    <strong class="font-weight-bold text-white">{{ block_text }}</strong><br><span>{{ config_text }}</span>
+                                </h3>
+                            {% endblocktrans %}
+                        </div>
+                    </div>
+                </a>
+            </div>
+        {% endfor %}
+    </div>
+
+{% endblock %}

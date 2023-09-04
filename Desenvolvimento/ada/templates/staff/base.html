@@ -56,8 +56,8 @@
     <nav class="navbar navbar-nav navbar-expand-lg fixed-top navbar-dark nav-color">
       <div class="d-flex justify-content-between align-items-center w-100">
         <div class="nav-brand mr-auto">
-          <a class="logo" href="{% url 'home' %}">
-            <img class="ada-logo" src="{% static 'images/logo_bg.png' %}" alt="logo do site ADA">
+          <a class="logo" href="{% url 'home' %}" style="font-size: larger;">
+            &nbsp;<img class="ada-logo" src="{% static 'images/logo_bg.png' %}" alt="logo do site ADA"> &emsp; | &emsp; Representante
           </a>
         </div>
         <div id="sidebar-icon" data-toggle="modal" data-target="#myModal">
@@ -65,11 +65,11 @@
         </div>
       </div>
       <div class="collapse navbar-collapse justify-content-end" id="navbarToggler">
-        <ul class="navbar-nav mx-auto ">
-          <li class="nav-item word-topic"><a class="nav-link title" href="{% url 'professors_list' %}">{% trans "Professores" %}</a></li>
+        <ul class="navbar-nav mx-auto " style="font-size: larger;">          
+          <li class="nav-item word-topic"><a class="nav-link title" href="{% url 'timetables' %}">{% trans "Grade" %}</a></li>
+          <li class="nav-item word-topic"><a class="nav-link title" href="{% url 'professors_list' %}">{% trans "Professor" %}</a></li>
           <li class="nav-item word-topic"><a class="nav-link title" href="{% url 'classes_list' %}">{% trans "Turma" %}</a></li>
           <li class="nav-item word-topic"><a class="nav-link title" href="{% url 'blocks_list' %}">{% trans "Bloco" %}</a></li>
-          <li class="nav-item word-topic"><a class="nav-link title" href="{% url 'timetables' %}">{% trans "Grade" %}</a></li>
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownLangLogin" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               {% get_current_language as LANGUAGE_CODE %}
@@ -130,10 +130,10 @@
                 </a>
               </div>
               <hr>
-              <div class="modal-line"><a class="nav-link title" href="{% url 'professors_list' %}"><i class="fas fa-chalkboard-teacher"></i> {% trans "Professores" %}</a></div>
+              <div class="modal-line"><a class="nav-link title" href="{% url 'timetables' %}"><i class="bi bi-layout-text-window-reverse"></i> <!--<i class="bi bi-grid-3x3"></i> <i class="bi bi-table"></i>--> {% trans "Grade" %}</a></div>
+              <div class="modal-line"><a class="nav-link title" href="{% url 'professors_list' %}"><i class="fas fa-chalkboard-teacher"></i> {% trans "Professor" %}</a></div>
               <div class="modal-line"><a class="nav-link title" href="{% url 'classes_list' %}"><i class="bi bi-easel2"></i><!--<i class="bi bi-diagram-3"></i>--> {% trans "Turma" %}</a></div>
               <div class="modal-line"><a class="nav-link title" href="{% url 'blocks_list' %}"><i class="bi bi-box"></i> {% trans "Bloco" %}</a></div>
-              <div class="modal-line"><a class="nav-link title" href="{% url 'timetables' %}"><i class="bi bi-layout-text-window-reverse"></i> <!--<i class="bi bi-grid-3x3"></i> <i class="bi bi-table"></i>--> {% trans "Grade" %}</a></div>
               <div class="modal-line dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownLangSidebar" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                   <i class="bi bi-globe2"></i> {% trans "Línguas" %}
@@ -198,7 +198,7 @@
                 <a href="" class="mr-2 footer-link"><span>{% trans "Termos e Condições de Uso"%}</span></a>
                 <div class="row">
                   <div class="col copyright">
-                    <p class=""><small class="text-white-50">© 2023 Mottarios. {% trans "Todos Direitos Reservados"%}.</small></p>
+                    <p class=""><small class="text-white-50">© 2023 Mottarios. {% trans "Todos os direitos são reservados"%}.</small></p>
                   </div>
                 </div>
             </div>
