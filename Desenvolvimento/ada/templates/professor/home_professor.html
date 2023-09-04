@@ -3,9 +3,9 @@
 {% load static %}
 
 {% block head %}
-    <title>{% trans "Página inicial - Professor(a)" %}</title>
-    <link rel="stylesheet" href="{% static 'professor/css/home_professor.css' %}">
-    <script src="{% static 'professor/js/home_professor.js' %}" data-lang='{{ LANGUAGE_CODE }}'></script>
+<title>{% trans "Página inicial - Professor(a)" %}</title>
+<link rel="stylesheet" href="{% static 'professor/css/home_professor.css' %}">
+<script src="{% static 'professor/js/home_professor.js' %}" data-lang='{{ LANGUAGE_CODE }}'></script>
 {% endblock %}
 
 {% block body %}
@@ -13,9 +13,9 @@
 <h1 class="title-page mt-4">{% trans "Página inicial" %}</h1>
 <hr>
 <nav>
-<ol class="breadcrumb hidden-itens">
+  <ol class="breadcrumb hidden-itens">
     <li class="breadcrumb-item active"><i class="mr-2 bi bi-house-door"></i> {% trans "Home" %}</li>
-</ol>
+  </ol>
 </nav>
 
 
@@ -28,31 +28,78 @@
           <hr>
           <div>
             {% if period.status == 'not_configured' %}
-            <p><div class="float-right message-info-not-configured">{% trans 'Não Configurado'%}</div><b>{% trans "Período" %}</b> </p>
-            <p class="home-begin"><b>{% trans "Situação" %}</b><div class=" text-center big-text">{% trans 'Espere até que seja emitido pelo administrador as datas da atribuição' %}.</div> </p>
+            <p>
+              <div class="float-right message-info-not-configured">{% trans 'Não Configurado'%}</div>
+              <b>{% trans "Período" %}</b>
+            </p>
+            <p class="home-begin"><b>{% trans "Situação" %}</b>
+              <div class=" text-center big-text">
+                {% trans 'Espere até que seja emitido pelo administrador as datas da atribuição' %}.</div>
+            </p>
             {% elif period.status == 'configured_STARTFPADEADLINE' %}
-            <p><div class="float-right message-info-not-started">{% trans 'Formulário de Preferências'%}</div> <b>{% trans "Período" %}</b> </p>
-            <p class="home-begin"><b>{% trans "Situação" %}</b> <i class="float-right">{% trans "Prazo configurado" %}</i></p>
-            <p class="home-begin"><div class=" float-right">{{period.start_day}} {% trans "às" %} {{period.start_time}}</div><b>{% trans "Início" %}</b> </p>
-            <p class=""><div class=" float-right">{{period.end_day}} {% trans "às" %} {{period.end_time}}</div><b>{% trans "Fim" %}</b></p>
+            <p>
+              <div class="float-right message-info-not-started">{% trans 'Formulário de Preferências'%}</div>
+              <b>{% trans "Período" %}</b>
+            </p>
+            <p class="home-begin"><b>{% trans "Situação" %}</b> <i
+                class="float-right">{% trans "Prazo configurado" %}</i></p>
+            <p class="home-begin">
+              <div class=" float-right">{{period.start_day}} {% trans "às" %} {{period.start_time}}</div>
+              <b>{% trans "Início" %}</b>
+            </p>
+            <p class="">
+              <div class=" float-right">{{period.end_day}} {% trans "às" %} {{period.end_time}}</div>
+              <b>{% trans "Fim" %}</b>
+            </p>
             {% elif period.status == 'configured_STARTASSIGNMENTDEADLINE' %}
-            <p><div class="float-right message-info-not-started">{% trans 'Atribuição de Aulas'%}</div> <b>{% trans "Período" %}</b> </p>
-            <p class="home-begin"><b>{% trans "Situação" %}</b> <i class="float-right">{% trans "Prazo configurado" %}</i></p>
-            <p class="home-begin"><div class=" float-right">{{period.start_day}} {% trans "às" %} {{period.start_time}}</div><b>{% trans "Início" %}</b> </p>
-            <p class=""><div class=" float-right">{{period.end_day}} {% trans "às" %} {{period.end_time}}</div><b>{% trans "Fim" %}</b></p>
+            <p>
+              <div class="float-right message-info-not-started">{% trans 'Atribuição de Aulas'%}</div>
+              <b>{% trans "Período" %}</b>
+            </p>
+            <p class="home-begin"><b>{% trans "Situação" %}</b> <i
+                class="float-right">{% trans "Prazo configurado" %}</i></p>
+            <p class="home-begin">
+              <div class=" float-right">{{period.start_day}} {% trans "às" %} {{period.start_time}}</div>
+              <b>{% trans "Início" %}</b>
+            </p>
+            <p class="">
+              <div class=" float-right">{{period.end_day}} {% trans "às" %} {{period.end_time}}</div>
+              <b>{% trans "Fim" %}</b>
+            </p>
             {% elif period.status == 'fpa' %}
-            <p><a href="{% url 'attribution_preference' %}"><div class="float-right message-info-not-started-home">{% trans 'Formulário de Preferências'%}</div></a> <b>{% trans "Período" %}</b> </p>
+            <p><a href="{% url 'attribution_preference' %}">
+                <div class="float-right message-info-not-started-home">{% trans 'Formulário de Preferências'%}</div>
+              </a> <b>{% trans "Período" %}</b> </p>
             <p class="home-begin"><b>{% trans "Situação" %}</b> <i class="float-right">{% trans "Iniciado" %}</i></p>
-            <p class="home-begin"><div class="float-right">{{period.start_day}} {% trans "às" %} {{period.start_time}}</div><b>{% trans "Início" %}</b> </p>
-            <p class=""><div class=" float-right">{{period.end_day}} {% trans "às" %} {{period.end_time}}</div><b>{% trans "Fim" %}</b></p>
+            <p class="home-begin">
+              <div class="float-right">{{period.start_day}} {% trans "às" %} {{period.start_time}}</div>
+              <b>{% trans "Início" %}</b>
+            </p>
+            <p class="">
+              <div class=" float-right">{{period.end_day}} {% trans "às" %} {{period.end_time}}</div>
+              <b>{% trans "Fim" %}</b>
+            </p>
             {% elif period.status == 'attribution' %}
-            <p><a href="#attribution_blocks"><div class="float-right message-info-not-started-home">{% trans 'Atribuição de Aulas'%}</div></a> <b>{% trans "Período" %}</b> </p>
+            <p><a href="#attribution_blocks">
+                <div class="float-right message-info-not-started-home">{% trans 'Atribuição de Aulas'%}</div>
+              </a> <b>{% trans "Período" %}</b> </p>
             <p class="home-begin"><b>{% trans "Situação" %}</b> <i class="float-right">{% trans "Iniciado" %}</i></p>
-            <p><div class="float-right">{{period.start_day}} {% trans "às" %} {{period.start_time}}</div><b>{% trans "Início" %}</b> </p>
-            <p class="home-begin"><div class=" float-right">{{period.end_day}} {% trans "às" %} {{period.end_time}}</div><b>{% trans "Fim" %}</b></p>
+            <p>
+              <div class="float-right">{{period.start_day}} {% trans "às" %} {{period.start_time}}</div>
+              <b>{% trans "Início" %}</b>
+            </p>
+            <p class="home-begin">
+              <div class=" float-right">{{period.end_day}} {% trans "às" %} {{period.end_time}}</div>
+              <b>{% trans "Fim" %}</b>
+            </p>
             {% else %}
-            <p><div class="float-right message-info-done">{% trans 'Finalizado'%}</div> <b>{% trans "Período" %}</b> </p>
-            <p class="home-begin"><div class=" float-right">{% trans 'A atribuição de aulas terminou' %}, <i>{% trans 'até próxima atribuição' %}</i></div><b>{% trans "Situação" %}</b> </p>
+            <p>
+              <div class="float-right message-info-done">{% trans 'Finalizado'%}</div> <b>{% trans "Período" %}</b>
+            </p>
+            <p class="home-begin">
+              <div class=" float-right">{% trans 'A atribuição de aulas terminou' %},
+                <i>{% trans 'até próxima atribuição' %}</i></div><b>{% trans "Situação" %}</b>
+            </p>
             {% endif%}
           </div>
         </div>
@@ -72,18 +119,18 @@
               {% for alert in alerts %}
               <div class="mr-3 ml-3 block p-2">
                 {% with alert_title=alert.title alert_block_name=alert.blockk.name_block description=alert.description %}
-                  {% blocktrans %}
-                      <b class="title">{{ alert_title }} | {{ alert_block_name }}</b></br>
-                      <span class="description"><i>{{ description }}</i></span>
-                  {% endblocktrans %}
-                {% endwith %}                
-              </div>              
+                {% blocktrans %}
+                <b class="title">{{ alert_title }} | {{ alert_block_name }}</b></br>
+                <span class="description"><i>{{ description }}</i></span>
+                {% endblocktrans %}
+                {% endwith %}
+              </div>
               {% endfor %}
-            </div>     
+            </div>
             {% else %}
             <div class="alerts mt-3 mb-3 pb-4" style="display: none;"></div>
-            {% endif %}   
-            
+            {% endif %}
+
           </div>
         </div>
       </div>
@@ -105,10 +152,11 @@
               {% for link in links %}
               <div class="mr-3 ml-3 block p-2">
                 ▸ <a target="_blank" href="{{link.description}}" class="link">{{link.description}}</a></br>
-                <span class="created">{% trans 'Criado por:' %}<i> {{ link.created_by.get_first_name_and_last_initial }}</i></span>              
-              </div>              
+                <span class="created">{% trans 'Criado por:' %}<i>
+                    {{ link.created_by.get_first_name_and_last_initial }}</i></span>
+              </div>
               {% endfor %}
-            </div>     
+            </div>
             {% else %}
             <div class="links mt-3 mb-3 pb-4" style="display: none;"></div>
             {% endif %}
@@ -117,13 +165,15 @@
       </div>
       <div class="mt-4 card info-card sales-card">
         <div class="card-body ">
-          <h4 class="card-title">{% trans "Permutações para você" %} <i class="fas fa-exchange-alt custom-icon"></i></h4>
+          <h4 class="card-title">{% trans "Permutações para você" %} <i class="fas fa-exchange-alt custom-icon"></i>
+          </h4>
           <hr class="my-0">
           <div class="text-center">
             {% if period.status == 'configured_STARTEXCHANGEDEADLINE' %}
             <p class="m-5 p-4"><b>{% trans "Permutação ocorrendo" %}</b>.</p>
             {% elif period.status == 'finished' %}
-            <p class="m-5 p-4"><b>{% trans "A atribuição terminou, todas permutas que foram pedidas foram resolvidas" %}</b>.</p>
+            <p class="m-5 p-4">
+              <b>{% trans "A atribuição terminou, todas permutas que foram pedidas foram resolvidas" %}</b>.</p>
             {% else %}
             <p class="m-5 p-4 text-justify">{% trans "Permuta não foi habilitada" %}.</p>
             {% endif %}
@@ -138,29 +188,31 @@
       <h4 class="card-title">{% trans "Suas atribuições" %} <i class="fas fa-table custom-icon"></i></h4>
       <hr class="my-0">
       <div class=" mt-2">
-        <p class="font-italic text-muted mb-4">{% trans "Clique em um bloco para ver o andamento de sua atribuição" %}. </p>
+        <p class="font-italic text-muted mb-4">{% trans "Clique em um bloco para ver o andamento de sua atribuição" %}.
+        </p>
         <div class="row">
           <!-- blocos bonitinhos -->
           {% for block in blockks %}
-            <div class="col-lg-6 mb-1 mb-lg-4 block-card" onclick="redirect('{{block.block.registration_block_id}}')">
-              <div class="hover hover-5 text-white rounded"><img src="{{block.image}}" alt="">
-                <div class="hover-overlay"></div>
-                <div class="hover-5-content">
-                  {% blocktrans with block_text=block.block.name_block access_text="Acessar" %}
-                  <h3 class="hover-5-title text-uppercase font-weight-light mb-0"><strong class="font-weight-bold text-white">{{ block_text }}</strong><br><span>{{access_text}}</span></h3>
-                  {% endblocktrans %}
-                </div>
+          <div class="col-lg-6 mb-1 mb-lg-4 block-card" onclick="redirect('{{block.block.registration_block_id}}')">
+            <div class="hover hover-5 text-white rounded"><img src="{{block.image}}" alt="">
+              <div class="hover-overlay"></div>
+              <div class="hover-5-content">
+                {% blocktrans with block_text=block.block.name_block access_text="Acessar" %}
+                <h3 class="hover-5-title text-uppercase font-weight-light mb-0"><strong
+                    class="font-weight-bold text-white">{{ block_text }}</strong><br><span>{{access_text}}</span></h3>
+                {% endblocktrans %}
               </div>
             </div>
-            {% endfor %}
           </div>
-        </div>    
+          {% endfor %}
+        </div>
+      </div>
     </div>
   </div>
-  </div>
-  {% endif%}
+</div>
+{% endif%}
 
-    
-  </div>
+
+</div>
 </div>
 {% endblock %}

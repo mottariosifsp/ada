@@ -1,39 +1,40 @@
-{% extends "professor/base_attribution.html" %} 
-{% load i18n %} 
-{% load static %} 
+{% extends "professor/base_attribution.html" %}
+{% load i18n %}
+{% load static %}
 
 {% block head %}
-  <title>{% trans "Classes Atribuídas" %}</title>
-  <link rel="stylesheet" href="{% static 'staff/blockk/css/block_list.css' %}">
-{% endblock %} 
+<title>{% trans "Classes Atribuídas" %}</title>
+<link rel="stylesheet" href="{% static 'staff/blockk/css/block_list.css' %}">
+{% endblock %}
 
-{% block body %} 
-  <h1>{% trans "Classes" %}</h1>
-  <div class="tabela">
-      <table class="table table-bordered editable" id="classes_list">
-          <thead>
-              <tr>
-                  <th scope="col">{% trans "Classes" %}</th>
-                  <th scope="col">{% trans "Área" %}</th>
-                  <th scope="col">{% trans "Ações" %}</th>
-              </tr>
-          </thead>
-          <tbody>
-            {% for classs in classses %}
-                <tr>
-                  <td>{{ classs.registration_class_id }}</td>
-                  <!-- blocktrans? batatinha -->
-                  <td>{{ classs.area }}</td>
-                  <td><a href="{% url 'attribution:attribution_detail' %}?class={{classs.registration_class_id}}" class="btn btn-primary"><i class="bi bi-eye"></i></a></td>
-                </tr>         
-            {% endfor %}   
-          </tbody>
-      </table>
-  </div>
+{% block body %}
+<h1>{% trans "Classes" %}</h1>
+<div class="tabela">
+  <table class="table table-bordered editable" id="classes_list">
+    <thead>
+      <tr>
+        <th scope="col">{% trans "Classes" %}</th>
+        <th scope="col">{% trans "Área" %}</th>
+        <th scope="col">{% trans "Ações" %}</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for classs in classses %}
+      <tr>
+        <td>{{ classs.registration_class_id }}</td>
+        <!-- blocktrans? batatinha -->
+        <td>{{ classs.area }}</td>
+        <td><a href="{% url 'attribution:attribution_detail' %}?class={{classs.registration_class_id}}"
+            class="btn btn-primary"><i class="bi bi-eye"></i></a></td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
 
 {% endblock %}
 
 {% block endbody %}
 <script src="{% static 'attribution/js/attribution_class_list.js' %}"></script>
 
-{% endblock%}
+{% endblock %}

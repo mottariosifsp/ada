@@ -1,33 +1,34 @@
     {% extends "staff/base.html" %}
-{% load i18n %}
-{% load static %}
+    {% load i18n %}
+    {% load static %}
 
-{% block head %}
+    {% block head %}
     {{ block.super }}
     <title>{% trans "Detalhes Bloco" %}</title>
     <link rel="stylesheet" href="{% static 'staff/blockk/css/block_detail.css' %}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fomantic-ui/2.9.2/semantic.min.css" />
     <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/dataTables.semanticui.min.css" />
-    <link rel="stylesheet" href="https://datatables.net/release-datatables/extensions/FixedColumns/css/fixedColumns.bootstrap4.css" />
+    <link rel="stylesheet"
+        href="https://datatables.net/release-datatables/extensions/FixedColumns/css/fixedColumns.bootstrap4.css" />
     <link rel="stylesheet" href="https://datatables.net/release-datatables/media/css/dataTables.bootstrap4.css" />
     <script src="{% static 'staff/blockk/js/block_detail.js' %}" data-lang={{LANGUAGE_CODE}}></script>
-{% endblock %}
+    {% endblock %}
 
 
-{% block body %}
+    {% block body %}
     {{ block.super }}
     <h1 class="title-page">{% trans "Detalhes Bloco" %}</h1>
     <nav>
-      <ol class="breadcrumb">
-        <li class="breadcrumb-item"><a href="{% url 'home' %}"><i class="bi bi-house-door"></i></a></li>
-        <li class="breadcrumb-item active" aria-current="page">{% trans "Configurar Blocos" %}</li>
-        <li class="breadcrumb-item active"><a href="{% url 'blocks_list' %}">{% trans "Blocos" %}</a></li>
-        <!-- blocktrans? batatinha -->
-        <li class="breadcrumb-item active" aria-current="page">{{blockk.acronym}}</li>
-      </ol>
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="{% url 'home' %}"><i class="bi bi-house-door"></i></a></li>
+            <li class="breadcrumb-item active" aria-current="page">{% trans "Configurar Blocos" %}</li>
+            <li class="breadcrumb-item active"><a href="{% url 'blocks_list' %}">{% trans "Blocos" %}</a></li>
+            <!-- blocktrans? batatinha -->
+            <li class="breadcrumb-item active" aria-current="page">{{blockk.acronym}}</li>
+        </ol>
     </nav>
 
-    
+
 
     <div class="mb-4">
         <div class="row">
@@ -35,43 +36,52 @@
                 {% blocktrans with name_block_text=blockk.name_block %}
                 <div class="row ml-1">
                     <h1>{{ name_block_text }}</h1>
-                {% endblocktrans %}
-                {% if blockk in user_blocks %}
+                    {% endblocktrans %}
+                    {% if blockk in user_blocks %}
                     <div class="d-flex ml-auto mr-3">
 
                         <a href="{% url 'queue_create' %}?blockk={{ blockk.registration_block_id }}" class="mr-3">
-                            <button type="button" class="btn btn-success float-right createCourseBtn ml-3">{% trans "Criar fila" %}</button>
+                            <button type="button"
+                                class="btn btn-success float-right createCourseBtn ml-3">{% trans "Criar fila" %}</button>
                         </a>
-                        
-                        <a href="{% url 'queue_show' %}?blockk={{ blockk.registration_block_id }}"><button type="button" class="btn btn-success float-right createCourseBtn"> {% trans "Ver fila" %} </button></a>
+
+                        <a href="{% url 'queue_show' %}?blockk={{ blockk.registration_block_id }}"><button type="button"
+                                class="btn btn-success float-right createCourseBtn"> {% trans "Ver fila" %}
+                            </button></a>
                     </div>
-                {% endif %}
+                    {% endif %}
                 </div>
                 <div class="card">
                     <div class="card-body">
                         <h5 class="card-title">{% trans "Detalhes" %}</h5>
-                            <ul class="list-group">
-                                <li class="list-group-item"><strong>{% trans 'Áreas' %}:</strong>{% for area in areas %} {{area}} {% if not forloop.last %}|{% endif %}{% endfor %}</li>
-                                <li class="list-group-item"><strong>{% trans "Registro" %}:</strong> {% trans blockk.registration_block_id %}</li>
-                                {% blocktrans with acronym_text=blockk.acronym acronym_label="Sigla" %}
-                                <li class="list-group-item"><strong>{{ acronym_label }}:</strong> {{ acronym_text }}</li>
-                                {% endblocktrans %}
-                                {% comment %} {% blocktrans with exchange_area_text=area.exchange_area exchange_text="Permuta" %}
-                                <li class="list-group-item"><strong>{{ exchange_text }}:</strong> {{ exchange_area_text }}</li>
-                                {% endblocktrans %}
-                                {% blocktrans with is_high_school_text=area.is_high_school high_school="Ensino Médio" %}
-                                <li class="list-group-item"><strong>{{ high_school }}:</strong> {{ is_high_school_text }}</li>
-                                {% endblocktrans %} {% endcomment %}
-                            </ul>
+                        <ul class="list-group">
+                            <li class="list-group-item"><strong>{% trans 'Áreas' %}:</strong>{% for area in areas %}
+                                {{area}} {% if not forloop.last %}|{% endif %}{% endfor %}</li>
+                            <li class="list-group-item"><strong>{% trans "Registro" %}:</strong>
+                                {% trans blockk.registration_block_id %}</li>
+                            {% blocktrans with acronym_text=blockk.acronym acronym_label="Sigla" %}
+                            <li class="list-group-item"><strong>{{ acronym_label }}:</strong> {{ acronym_text }}</li>
+                            {% endblocktrans %}
+                            {% comment %}
+                            {% blocktrans with exchange_area_text=area.exchange_area exchange_text="Permuta" %}
+                            <li class="list-group-item"><strong>{{ exchange_text }}:</strong> {{ exchange_area_text }}
+                            </li>
+                            {% endblocktrans %}
+                            {% blocktrans with is_high_school_text=area.is_high_school high_school="Ensino Médio" %}
+                            <li class="list-group-item"><strong>{{ high_school }}:</strong> {{ is_high_school_text }}
+                            </li>
+                            {% endblocktrans %} {% endcomment %}
+                        </ul>
                     </div>
                 </div>
             </div>
         </div>
-    </div>      
+    </div>
     <div class="row">
         <div class="d-flex ml-auto mr-3 mb-3    ">
             {% if blockk in user_blocks %}
-                <button type="button" class="btn btn-success float-right createCourseBtn" data-toggle="modal" data-target="#createCourseModal"> {% trans "Criar Disciplina" %} </button>
+            <button type="button" class="btn btn-success float-right createCourseBtn" data-toggle="modal"
+                data-target="#createCourseModal"> {% trans "Criar Disciplina" %} </button>
             {% endif %}
         </div>
     </div>
@@ -92,22 +102,27 @@
                     <tbody>
                         {% csrf_token %}
                         {% for course in courses %}
-                            <!-- Lista -->
-                                <tr>
-                                    <td>{{ course.registration_course_id }}</td>
-                                    {% blocktrans with name_course_text=course.name_course %}
-                                    <td>{{ name_course_text }}</td>
-                                    {% endblocktrans %}
-                                    {% blocktrans with acronym_text=course.acronym %}
-                                    <td>{{ acronym_text }}</td>
-                                    {% endblocktrans %}
-                                    {% if blockk in user_blocks %}
-                                    <td>
-                                        <button type="button" data-toggle="modal" data-target="#editCourseModal" data-course-id="{{ course.id }}" data-counter="{{ counter }}" class="btn btn-warning editCourseBtn"><i class="bi bi-pencil"></i></button>
-                                        <button type="button" class="btn btn-danger deleteCourseBtn" data-course-id="{{ course.id }}" data-registration-course-id="{{ course.registration_course_id }}"><i class="bi bi-trash"></i></button>
-                                    </td>
-                                    {% endif %}
-                                </tr>
+                        <!-- Lista -->
+                        <tr>
+                            <td>{{ course.registration_course_id }}</td>
+                            {% blocktrans with name_course_text=course.name_course %}
+                            <td>{{ name_course_text }}</td>
+                            {% endblocktrans %}
+                            {% blocktrans with acronym_text=course.acronym %}
+                            <td>{{ acronym_text }}</td>
+                            {% endblocktrans %}
+                            {% if blockk in user_blocks %}
+                            <td>
+                                <button type="button" data-toggle="modal" data-target="#editCourseModal"
+                                    data-course-id="{{ course.id }}" data-counter="{{ counter }}"
+                                    class="btn btn-warning editCourseBtn"><i class="bi bi-pencil"></i></button>
+                                <button type="button" class="btn btn-danger deleteCourseBtn"
+                                    data-course-id="{{ course.id }}"
+                                    data-registration-course-id="{{ course.registration_course_id }}"><i
+                                        class="bi bi-trash"></i></button>
+                            </td>
+                            {% endif %}
+                        </tr>
                         {% endfor %}
                     </tbody>
                 </table>
@@ -115,7 +130,8 @@
         </div>
     </div>
     <!-- Modal criação disciplina -->
-    <div class="modal fade" id="createCourseModal" tabindex="-1" role="dialog" aria-labelledby="createCourseModelLabel" aria-hidden="true">
+    <div class="modal fade" id="createCourseModal" tabindex="-1" role="dialog" aria-labelledby="createCourseModelLabel"
+        aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -143,14 +159,16 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">{% trans "Fechar" %}</button>
-                    <button type="button" class="btn btn-primary" data-area-id="{{ area.id  }}" data-block-id="{{ blockk.id }}" id="saveCreateBtn">{% trans "Criar" %}</button>
+                    <button type="button" class="btn btn-primary" data-area-id="{{ area.id  }}"
+                        data-block-id="{{ blockk.id }}" id="saveCreateBtn">{% trans "Criar" %}</button>
                 </div>
             </div>
         </div>
     </div>
 
     <!-- Modal edição turma -->
-    <div class="modal fade" id="editCourseModal" tabindex="-1" role="dialog" aria-labelledby="edtCourseModelLabel" aria-hidden="true">
+    <div class="modal fade" id="editCourseModal" tabindex="-1" role="dialog" aria-labelledby="edtCourseModelLabel"
+        aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -185,23 +203,26 @@
     </div>
 
     <!-- Modal confirmação deletar turma -->
-    <div class="modal fade" id="confirmDeleteCourseModal" tabindex="-1" role="dialog" aria-labelledby="confirmDeleteModalCourseLabel" aria-hidden="true">
+    <div class="modal fade" id="confirmDeleteCourseModal" tabindex="-1" role="dialog"
+        aria-labelledby="confirmDeleteModalCourseLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title" id="confirmDeleteModalCourseLabel">{% trans "Confirmar Exclusão" %}</h5>
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-              </button>
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="confirmDeleteModalCourseLabel">{% trans "Confirmar Exclusão" %}</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p>{% trans "Tem certeza de que quer deletar a disciplina" %} <span
+                            id="registrationCourseId"></span>?</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline-secondary"
+                        data-dismiss="modal">{% trans "Cancelar" %}</button>
+                    <button type="button" class="btn btn-danger" id="confirmDeleteCourseBtn">{% trans "Excluir" %}</a>
+                </div>
             </div>
-            <div class="modal-body">
-                <p>{% trans "Tem certeza de que quer deletar a disciplina" %} <span id="registrationCourseId"></span>?</p>
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">{% trans "Cancelar" %}</button>
-              <button type="button" class="btn btn-danger" id="confirmDeleteCourseBtn">{% trans "Excluir" %}</a>
-            </div>
-          </div> 
         </div>
-      </div>
-{% endblock %}
+    </div>
+    {% endblock %}

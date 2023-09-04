@@ -1,93 +1,100 @@
-{% extends "user/base.html" %} 
+{% extends "user/base.html" %}
 {% load i18n %}
 {% load static %}
 
 {% block head %}
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-    <link rel="stylesheet" href="{% static 'user/css/login.css' %}">
-    <title>{% trans "Acessar conta" %}</title>
-    <style>
-        .ada-logo-login {background-image: url("{% static '/images/login_back.jpg' %}");}
-    </style>
+<link rel="stylesheet" href="{% static 'user/css/login.css' %}">
+<title>{% trans "Acessar conta" %}</title>
+<style>
+    .ada-logo-login {
+        background-image: url("{% static '/images/login_back.jpg' %}");
+    }
+</style>
 {% endblock %}
 
 {% block body %}
 <section class="section register d-flex align-items-center justify-content-center">
-        <div class="col-12 col-lg-6 ">
-            <div class="card inputs">
-                <div class="card-body">
-                    <div class="pt-4 pb-2">
-                        <h2 class="card-title text-center">{% trans "Acessar Conta" %}</h2>
+    <div class="col-12 col-lg-6 ">
+        <div class="card inputs">
+            <div class="card-body">
+                <div class="pt-4 pb-2">
+                    <h2 class="card-title text-center">{% trans "Acessar Conta" %}</h2>
+                </div>
+                <form class="row" id="form-login" method="post" action="{% url 'signup' %}" novalidate>
+                    {% csrf_token %}
+
+                    {% if error_message %}
+                    <div id="errorMessage" class="alert alert-danger alert-dismissible fade show w-100">
+                        <i class="fas fa-exclamation-circle mr-2"></i><b>{% trans "Erro" %}:</b> {{ error_message }}.
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
                     </div>
-                    <form class="row" id="form-login" method="post" action="{% url 'signup' %}" novalidate>
-                        {% csrf_token %}
+                    {% endif %}
 
-                        {% if error_message %}
-                        <div id="errorMessage" class="alert alert-danger alert-dismissible fade show w-100">
-                            <i class="fas fa-exclamation-circle mr-2"></i><b>{% trans "Erro" %}:</b> {{ error_message }}.
-                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
-                        {% endif %}
+                    {#                        {% if form.non_field_errors %}#}
+                    {#                        <div id="loginError" class="alert alert-danger alert-dismissible fade show w-100">#}
+                    {#                            <i class="fas fa-exclamation-circle mr-2"></i><b>{% trans "Erro" %}:</b> {% trans "Usuário ou senha incorretos" %}.#}
+                    {#                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">#}
+                    {#                                <span aria-hidden="true">&times;</span>#}
+                    {#                            </button>#}
+                    {#                        </div>#}
+                    {#                        {% endif %}#}
 
-{#                        {% if form.non_field_errors %}#}
-{#                        <div id="loginError" class="alert alert-danger alert-dismissible fade show w-100">#}
-{#                            <i class="fas fa-exclamation-circle mr-2"></i><b>{% trans "Erro" %}:</b> {% trans "Usuário ou senha incorretos" %}.#}
-{#                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">#}
-{#                                <span aria-hidden="true">&times;</span>#}
-{#                            </button>#}
-{#                        </div>#}
-{#                        {% endif %}#}
-
-                        <div class="col-12">
-                            <div class="form-group has-validation">
-                                <!-- <div class="input-filled">{% trans 'E-mail institucional'%}</div> -->
-                                <label for="yourEmail" class="form-label mt-2 {% if request.POST.email %}input-filled{% endif %}">
-                                    <i class="fa fa-user"></i>
-                                </label>
-                                <input type="text" name="email" class="form-control" id="yourEmail" required placeholder="E-mail" />
-                                <div id="emailError" class="invalid-feedback">
-                                    {% trans "Por favor, insira o seu e-mail institucional" %}.
-                                </div>
+                    <div class="col-12">
+                        <div class="form-group has-validation">
+                            <!-- <div class="input-filled">{% trans 'E-mail institucional'%}</div> -->
+                            <label for="yourEmail"
+                                class="form-label mt-2 {% if request.POST.email %}input-filled{% endif %}">
+                                <i class="fa fa-user"></i>
+                            </label>
+                            <input type="text" name="email" class="form-control" id="yourEmail" required
+                                placeholder="E-mail" />
+                            <div id="emailError" class="invalid-feedback">
+                                {% trans "Por favor, insira o seu e-mail institucional" %}.
                             </div>
                         </div>
-                        
-                        <div class="col-12">
-                            <div class="form-group has-validation">
-                                <!-- <div class="input-filled">{% trans 'Senha'%}</div> -->
-                                <label for="yourPassword" class="mt-2 form-label {% if request.POST.password %}input-filled{% endif %}">
-                                    <i class="fa fa-lock"></i>
-                                </label>
-                                <input type="password" name="password" class="form-control" id="yourPassword" required placeholder="Senha" />
-                                <div id="passwordError" class="invalid-feedback">
-                                    {% trans "Por favor, insira a sua senha" %}.
-                                </div>
+                    </div>
+
+                    <div class="col-12">
+                        <div class="form-group has-validation">
+                            <!-- <div class="input-filled">{% trans 'Senha'%}</div> -->
+                            <label for="yourPassword"
+                                class="mt-2 form-label {% if request.POST.password %}input-filled{% endif %}">
+                                <i class="fa fa-lock"></i>
+                            </label>
+                            <input type="password" name="password" class="form-control" id="yourPassword" required
+                                placeholder="Senha" />
+                            <div id="passwordError" class="invalid-feedback">
+                                {% trans "Por favor, insira a sua senha" %}.
                             </div>
                         </div>
+                    </div>
 
-                        <div class="col-12">
-                            <button class="custom-btn w-100 expand-button" type="submit"><b>{% trans "Entrar" %}</b></button>
-                            <input type="hidden" name="next" value="{{ next }}">
-                        </div>
-                        <!--
+                    <div class="col-12">
+                        <button class="custom-btn w-100 expand-button"
+                            type="submit"><b>{% trans "Entrar" %}</b></button>
+                        <input type="hidden" name="next" value="{{ next }}">
+                    </div>
+                    <!--
                         <div class="col-12">
                             <button class="google-btn w-100" type="submit"><i class="bi bi-google"></i> {% trans "Entre com" %}<b> Google</b></button>
                         </div>
                         -->
-                    </form>
-                </div>
+                </form>
             </div>
         </div>
+    </div>
     </div>
 </section>
 {% endblock %}
 
 {% block endbody %}
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0/css/bootstrap.min.css">
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.10.2/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0/js/bootstrap.min.js"></script>
-    <script src="{% static 'professor/js/register.js' %}"></script>
-    <script src="vendor/jquery/jquery.min.js"></script>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0/css/bootstrap.min.css">
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.10.2/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0/js/bootstrap.min.js"></script>
+<script src="{% static 'professor/js/register.js' %}"></script>
+<script src="vendor/jquery/jquery.min.js"></script>
 {% endblock %}
