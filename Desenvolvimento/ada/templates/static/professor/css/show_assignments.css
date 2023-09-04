@@ -30,3 +30,9 @@ td{
     width: calc((100% - 7.7rem) / 6) !important;
     vertical-align:middle !important;
 }
+
+.classe {
+    font-size: 42px;
+    color: #000;
+    font-weight: bold;
+}

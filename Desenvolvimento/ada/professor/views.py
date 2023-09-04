@@ -17,10 +17,8 @@ from course.models import Course
 from user.models import User
 from django.core.mail import send_mail, EmailMessage
 
-
 def is_not_staff(user):
     return not user.is_staff
-
 
 @login_required
 def home(request):
@@ -271,6 +269,7 @@ def show_assignment(request):
                 data = {
                     'timeslots': timeslots_all,
                     'timetables_professor': timetables_professor_json,
+                    'classs': classs
                 }
 
     return render(request, 'professor/show_assignment.html', data)
