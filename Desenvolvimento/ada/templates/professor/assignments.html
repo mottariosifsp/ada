@@ -22,7 +22,7 @@
 
     {% for block in blockks %}
     <div class="col-lg-6 mb-1 mb-lg-4 block-card">
-        <a href="{% url 'final_assignments_classs' name_block=block.block.name_block %}" class="blockk-link">
+        <a href="{% url 'assignments_classs_list' name_block=block.block.name_block %}" class="blockk-link">
             <div class="hover hover-5 text-white rounded">
                 <img src="{{ block.image }}" alt="">
                 <div class="hover-overlay"></div>
