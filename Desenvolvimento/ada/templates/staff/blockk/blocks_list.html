@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="https://datatables.net/release-datatables/extensions/FixedColumns/css/fixedColumns.bootstrap4.css" />
     <link rel="stylesheet" href="https://datatables.net/release-datatables/media/css/dataTables.bootstrap4.css" />
     <link rel="stylesheet" href="{% static 'staff/blockk/css/block_list.css' %}">
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="{% static 'staff/blockk/js/blocks_list.js' %}" data-lang={{LANGUAGE_CODE}}></script>
 {% endblock %}
 
@@ -26,8 +27,8 @@
     <div class="card">
         <div class="card-body">
             <div class="tabela">
-                <table class="table display editable" id="blocks_list">
-                    <thead>
+                <table class="table table-hover table-bordered editable display" id="blocks_list">
+                    <thead class="thead-dark">
                         <tr>
                             <th scope="col">{% trans "Registro" %}</th>
                             <th scope="col">{% trans "Nome" %}</th>
@@ -47,7 +48,7 @@
                                     {% blocktrans with acronym_text=blockk.acronym %}
                                     <td>{{ acronym_text }}</td>
                                     {% endblocktrans %}
-                                    <td><a href="{% url 'block_detail' blockk.registration_block_id %}"><button type="button" class="btn btn-primary editProfessorBtn"><i class="bi bi-eye"></i></button></a></td>
+                                    <td class="text-center"><a href="{% url 'block_detail' blockk.registration_block_id %}"><button type="button" class="btn btn-primary editProfessorBtn"><i class="bi bi-eye"></i></button></a></td>
                                 </tr>
                         {% endfor %}
                     </tbody>
