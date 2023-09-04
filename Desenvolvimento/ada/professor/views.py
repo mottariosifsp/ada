@@ -21,36 +21,6 @@ def is_not_staff(user):
     return not user.is_staff
 
 
-def register(request):
-    professors_inactive = User.objects.filter(is_professor=True, is_active=False).all()
-
-    for professor in professors_inactive:
-        send_email(professor)
-
-
-def send_email(professor):
-    subject = 'Ação requerida: Cadastre-se'
-
-    nome = professor.first_name
-    email = professor.email
-
-    current_path = os.getcwd()
-    with open(current_path + '\\templates\static\email\professor_register_message.html', 'r', encoding='utf-8') as file:
-        message = file.read()
-        message = message.format(nome=nome)
-
-    email = EmailMessage(
-        subject,
-        message,
-        'ada.ifsp@gmail.com',
-        [email],
-    )
-
-    email.content_subtype = "html"
-
-    email.send()
-
-
 @login_required
 def home(request):
     blockks = request.user.blocks.all()
@@ -181,21 +151,16 @@ def home(request):
             "block": blockk,
             "image": None
         }
-        if blockk.registration_block_id == "721165":
-            blockk_images[
-                "image"] = "https://media.discordapp.net/attachments/1081682716531118151/1117328326533595207/OIG.png?width=473&height=473"
-        elif blockk.registration_block_id == "776291":
-            blockk_images[
-                "image"] = "https://media.discordapp.net/attachments/1081682716531118151/1117321570101248030/OIG.png?width=473&height=473"
-        elif blockk.registration_block_id == "776293":
-            blockk_images[
-                "image"] = "https://media.discordapp.net/attachments/1081682716531118151/1117321528380489789/OIG.png?width=473&height=473"
-        elif blockk.registration_block_id == "776294":
-            blockk_images[
-                "image"] = "https://media.discordapp.net/attachments/1081682716531118151/1116866399952961586/dan-cristian-padure-h3kuhYUCE9A-unsplash.jpg?width=710&height=473"
-        elif blockk.registration_block_id == "776295":
-            blockk_images[
-                "image"] = "https://media.discordapp.net/attachments/1081682716531118151/1116866399671951441/roonz-nl-2xEQDxB0ss4-unsplash.jpg?width=842&height=473"
+        if blockk.registration_block_id == "CNA.151515":
+            blockk_images["image"] = "https://media.discordapp.net/attachments/1081682716531118151/1117328326533595207/OIG.png?width=473&height=473"
+        elif blockk.registration_block_id == "HUM.141414":
+            blockk_images["image"] = "https://media.discordapp.net/attachments/1081682716531118151/1117321570101248030/OIG.png?width=473&height=473"
+        elif blockk.registration_block_id == "LNG.161616":
+            blockk_images["image"] = "https://media.discordapp.net/attachments/1081682716531118151/1117321528380489789/OIG.png?width=473&height=473"
+        elif blockk.registration_block_id == "MAT.131313":
+            blockk_images["image"] = "https://media.discordapp.net/attachments/1081682716531118151/1116866399952961586/dan-cristian-padure-h3kuhYUCE9A-unsplash.jpg?width=710&height=473"
+        elif blockk.registration_block_id == "TEC.121212":
+            blockk_images["image"] = "https://media.discordapp.net/attachments/1081682716531118151/1116866399671951441/roonz-nl-2xEQDxB0ss4-unsplash.jpg?width=842&height=473"
         elif blockk.registration_block_id == "776292":
             blockk_images[
                 "image"] = "https://media.discordapp.net/attachments/1081682716531118151/1117348338254233680/image.png"
@@ -256,7 +221,27 @@ def profile(request):
 
 @login_required
 def assignments(request):
-    user = request.user
+    blockks = request.user.blocks.all()
+    blockks_images = []
+
+    for blockk in blockks:
+        blockk_images = {
+            "block": blockk,
+            "image": None
+        }
+        if blockk.registration_block_id == "CNA.151515":
+            blockk_images["image"] = "https://media.discordapp.net/attachments/1081682716531118151/1117328326533595207/OIG.png?width=473&height=473"
+        elif blockk.registration_block_id == "HUM.141414":
+            blockk_images["image"] = "https://media.discordapp.net/attachments/1081682716531118151/1117321570101248030/OIG.png?width=473&height=473"
+        elif blockk.registration_block_id == "LNG.161616":
+            blockk_images["image"] = "https://media.discordapp.net/attachments/1081682716531118151/1117321528380489789/OIG.png?width=473&height=473"
+        elif blockk.registration_block_id == "MAT.131313":
+            blockk_images["image"] = "https://media.discordapp.net/attachments/1081682716531118151/1116866399952961586/dan-cristian-padure-h3kuhYUCE9A-unsplash.jpg?width=710&height=473"
+        elif blockk.registration_block_id == "TEC.121212":
+            blockk_images["image"] = "https://media.discordapp.net/attachments/1081682716531118151/1116866399671951441/roonz-nl-2xEQDxB0ss4-unsplash.jpg?width=842&height=473"
+        elif blockk.registration_block_id == "776292":
+            blockk_images["image"] = "https://media.discordapp.net/attachments/1081682716531118151/1117348338254233680/image.png"
+        blockks_images.append(blockk_images)
 
     # user_timetables = Timetable_user.objects.filter(user=user).values_list('timetable_id', flat=True)
     #
@@ -266,9 +251,9 @@ def assignments(request):
     # user_areas = Area.objects.filter(classs__in=user_classes).distinct()
     # print("Areasss", user_areas)
 
-    user_blockks = blocks = Blockk.objects.all()
+    # user_blockks = blocks = Blockk.objects.all()
 
-    return render(request, 'professor/assignments.html', {'user_blockks': user_blockks})
+    return render(request, 'professor/assignments.html', {'blockks': blockks_images})
 
 
 @login_required
@@ -286,19 +271,6 @@ def final_assignments_classs(request, name_block):
         classes_da_area = Classs.objects.filter(area=area)
 
         timetables = Timetable.objects.filter(classs__in=classes_da_area).all()
-
-        for timetable in timetables:
-            timetable_dict = {
-                'course': {
-                    'acronym': timetable.course.acronym,
-                    'name': timetable.course.name_course,
-                },
-                'classs': {
-                    'id': timetable.classs.registration_class_id,
-                    'class_area': timetable.classs.registration_class_id
-                }
-            }
-            timetable_data.append(timetable_dict)
 
         for classe in classes_da_area:
             all_classes.append({
@@ -337,6 +309,7 @@ def final_assignments_classs(request, name_block):
                         "course": timetable_user.timetable.course.name_course,
                         "acronym": timetable_user.timetable.course.acronym,
                         "professor": professor,
+                        "class_area": timetable_user.timetable.classs.registration_class_id
                     }
                     print("professor passando dentro do loop", professor)
                     timetables_professor.append(timetable_professor)
@@ -347,8 +320,8 @@ def final_assignments_classs(request, name_block):
     # print("timeslots", timeslots_all)
     # print("timetables_professor", timetables_professor_json)
     all_classes = json.dumps(all_classes)
-    timetable_json = json.dumps(timetable_data)
-    print("objeto itmetable", timetable_json )
+
+
     # print("JSON DATA2", json_data)
 
     python_data = all_classes
@@ -362,7 +335,6 @@ def final_assignments_classs(request, name_block):
         'json_data': python_data,
         'timeslots': timeslots_all,
         'timetables_professor': timetables_professor_json,
-        'timetable_json': timetable_json
     }
 
     return render(request, 'professor/final_assignments_class_list.html', data)

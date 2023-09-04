@@ -146,7 +146,7 @@
               <div class="hover hover-5 text-white rounded"><img src="{{block.image}}" alt="">
                 <div class="hover-overlay"></div>
                 <div class="hover-5-content">
-                  {% blocktrans with block_text=block.block access_text="Acessar" %}
+                  {% blocktrans with block_text=block.block.name_block access_text="Acessar" %}
                   <h3 class="hover-5-title text-uppercase font-weight-light mb-0"><strong class="font-weight-bold text-white">{{ block_text }}</strong><br><span>{{access_text}}</span></h3>
                   {% endblocktrans %}
                 </div>

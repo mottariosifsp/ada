@@ -15,7 +15,7 @@
     <ol class="breadcrumb hidden-itens">
         <li class="breadcrumb-item"><a href="{% url 'home' %}"><i class="bi bi-house-door"></i></a></li>
         <li class="breadcrumb-item active">{% trans "Atribuições" %}</li>
-        <li class="breadcrumb-item active">{% trans "Área" %}</li>
+        <li class="breadcrumb-item active">{% trans "Bloco" %}</li>
     </ol>
 </nav>
 
@@ -27,7 +27,9 @@
   {% endfor %}
 </div>
 
-<div id="rectangle-container" class="hidden"></div>
+<div id="rectangle-container" class="hidden">
+    <div class="rectangle"></div>
+</div>
 
 
 <div class="container pt-5">
@@ -135,6 +137,6 @@
 </div>
 
 {#<div id="json-data" data-json-data="{{ json_data|escapejs }}"></div>#}
-<script src="{% static 'professor/js/final_assignments_classs_list.js' %}" timetables-user='{{timetables_professor}}' jsonData='{{ json_data|escapejs }}' timeslots='{{ timeslots }}' timetable_json='{{ timetable_json }}'></script>
+<script src="{% static 'professor/js/final_assignments_classs_list.js' %}" timetables-user='{{timetables_professor}}' jsonData='{{ json_data|escapejs }}' timeslots='{{ timeslots }}'></script>
 <script src="{% static 'common/table_window/js/table_window.js' %}"></script>
 {% endblock %}
