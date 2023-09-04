@@ -95,7 +95,7 @@
                             </td>
                             <td>
                                 {% for block in professor.blocks.all %}
-                                <span block-id="{{ block.id }}" block-name="{{block.name_block}}">{{ block }}</span>
+                                <span block-id="{{ block.id }}" block-name="{{block.name_block}}">{{ block.name_block }}</span>
                                 <br />
                                 {% endfor %}
                             </td>
