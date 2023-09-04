@@ -6,18 +6,143 @@
 <title>{% trans "Perfil" %}</title>
 <link rel="stylesheet" href="{% static 'professor/css/profile.css' %}">
 <link rel="stylesheet" href="{% static 'common/table_window/css/table_window.css' %}" />
+<script src="https://cdn.jsdelivr.net/npm/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
 {% endblock %}
 {% block body %}
 
-<div class="container pt-5">
-  <h1>{{professor.get_full_name_camel_case}}</h1>
+<h1 class="title-page">{% trans "Perfil" %}</h1>
+<nav>
+  <ol class="breadcrumb hidden-itens">
+    <li class="breadcrumb-item"><a href="{% url 'home' %}"><i class="bi bi-house-door"></i></a></li>
+    <li class="breadcrumb-item active">{% trans "Perfil" %}</li>
+  </ol>
+</nav>
+
+<div class="container">
+  <section class="section profile">
+    <div class="row">
+      <div class="col-md-4">
+
+        <div class="card">
+          <div class="card-body profile-card pt-4 d-flex flex-column align-items-center">
+
+            <div class="name">{{user.get_initial}}</div>
+            <h2 class="text-center mt-3">{{ request.user.get_first_name_and_last_initial }}</h2>
+            <h4></h4>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="col-md-8">
+
+        <div class="card">
+          <div class="card-body pt-3">
+            <!-- Bordered Tabs -->
+            <ul class="nav nav-tabs" id="profileTabs" role="tablist">
+              <li class="nav-item" role="presentation">
+                <a class="nav-link active" id="overview-tab" data-bs-toggle="tab" href="#profile-overview" role="tab"
+                  aria-controls="profile-overview" aria-selected="true">{% trans 'Detalhes' %}</a>
+              </li>
+              <li class="nav-item" role="presentation">
+                <a class="nav-link" id="settings-tab" data-bs-toggle="tab" href="#fpa" role="tab"
+                  aria-controls="profile-settings" aria-selected="false">{% trans 'Histórico de FPAs' %}</a>
+              </li>
+            </ul>
+            <div class="tab-content pt-2">
+
+              <div class="tab-pane fade show active profile-overview" id="profile-overview" role="tabpanel"
+                aria-labelledby="overview-tab">
+                <h5 class="card-title">{% trans 'Detalhes Perfil' %}</h5>
+
+                <div class="row">
+                  <div class="col-lg-3 col-md-4 label">{% trans 'Nome Completo' %}:</div>
+                  <div class="col-lg-9 col-md-8">{{user.get_full_name_camel_case}}</div>
+                </div>
+                <div class="row">
+                  <div class="col-lg-3 col-md-4 label">{% trans 'Nascimento' %}:</div>
+                  <div class="col-lg-9 col-md-8">{{user.history.format_birth}}</div>
+                </div>
+                <div class="row">
+                  <div class="col-lg-3 col-md-4 label">{% trans 'Email' %}:</div>
+                  <div class="col-lg-9 col-md-8">{{user.email}}</div>
+                </div>
+                <div class="row">
+                  <div class="col-lg-3 col-md-4 label">{% trans 'Telefone' %}:</div>
+                  <div class="col-lg-9 col-md-8">{{user.format_telephone}}</div>
+                </div>
+                <div class="row">
+                  <div class="col-lg-3 col-md-4 label">{% trans 'Celular' %}:</div>
+                  <div class="col-lg-9 col-md-8">{{user.format_cell_phone}}</div>
+                </div>
+                {% if user.history.academic_degrees.name == None %}
+                <div class="row">
+                  <div class="col-lg-3 col-md-4 label">{% trans 'Diploma' %}:</div>
+                  <div class="col-lg-9 col-md-8">--</div>
+                </div>
+                {% else %}
+                <div class="row">
+                  <div class="col-lg-3 col-md-4 label">{% trans 'Regime' %}:</div>
+                  <div class="col-lg-9 col-md-8">{{user.job.name_job}}</div>
+                </div>
+                {% endif %}
+                {% if user.job.name_job == None %}
+                <div class="row">
+                  <div class="col-lg-3 col-md-4 label">{% trans 'Regime' %}:</div>
+                  <div class="col-lg-9 col-md-8">--</div>
+                </div>
+                {% else %}
+                <div class="row">
+                  <div class="col-lg-3 col-md-4 label">{% trans 'Regime' %}:</div>
+                  <div class="col-lg-9 col-md-8">{% trans user.get_job %}</div>
+                </div>
+                {% endif %}
+                <div class="row">
+                  <div class="col-lg-3 col-md-4 label">{% trans 'Blocos' %}:</div>
+                  <div class="col-lg-9 col-md-8">
+                    {% for block in user_blocks %}
+                    {% trans block.name_block %}{% if not forloop.last %}, {% else %}.{% endif %}
+                    {% endfor %}
+                  </div>
+                </div>
+              </div>
+
+              <div class="tab-pane fade" id="fpa">
+                <div class="tab-pane fade show active profile-overview" id="profile-overview" role="tabpanel"
+                  aria-labelledby="overview-tab">
+                  <h5 class="card-title">{% trans 'Histórico' %}</h5>
+                </div>
+                <div class="row history-fpa">
+                  {% for fpa in fpas %}
+                  <div class="col-3">
+                    <div class="inline-block mt-3">
+                      <b>{{ fpa }}</b>
+                      <a href="{% url 'show_attribution_preference' fpa %}">
+                        <button class="float-right btn ada-btn-sucess">{% trans 'Ver' %}</button>
+                      </a>
+                    </div>
+                  </div>
+                  {% endfor %}
+                </div>
+
+
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
   <hr>
-  <h5>{% trans "Sua atribuição" %}</h5>
-  <div class="card">
-    <div class="card-body">
+  <h3>{% trans "Sua atribuição" %}</h3>
+  <div class="card mt-3">
+    <div class="card-body" id="profile-table">
       <div class="tabela">
         <button class="collapsible"><span class="ml-1 icon-minimize" style="float: left;"><i
-              class="fa fa-chevron-down pull-right"></i></span>Matutino</button>
+              class="fa fa-chevron-down pull-right"></i></span>{% trans "Matutino" %}</button>
         <div class="content_collapsible">
           <table class="table table-bordered editable" id="blocks_list">
             <thead class="thead-dark">
@@ -39,7 +164,6 @@
                 <th scope="row" class="align-middle text-center">{{ timeslot.hour_start|date:"H:i" }} -
                   {{ timeslot.hour_end|date:"H:i" }}</th>
                 {% for cell in "012345" %}
-                <!-- blocktrans? batatinha -->
                 <td class="text-center p-2" id="cel-{{ timeslot_counter }}-{{ forloop.counter }}">{{ cell.content }}
                 </td>
                 {% endfor %}
@@ -52,7 +176,7 @@
       </div>
       <br />
       <button class="collapsible"><span class="ml-1 icon-minimize" style="float: left;"><i
-            class="fa fa-chevron-down pull-right"></i></span>Vespertino</button>
+            class="fa fa-chevron-down pull-right"></i></span>{% trans "Vespertino" %}</button>
       <div class="content_collapsible">
         <div class="tabela">
           <table class="table table-bordered editable" id="blocks_list">
@@ -88,7 +212,7 @@
       </div>
       <br />
       <button class="collapsible"><span class="ml-1 icon-minimize" style="float: left;"><i
-            class="fa fa-chevron-down pull-right"></i></span>Noturno</button>
+            class="fa fa-chevron-down pull-right"></i></span>{% trans "Noturno" %}</button>
       <div class="content_collapsible">
         <div class="tabela">
           <table class="table table-bordered editable" id="blocks_list">
@@ -123,7 +247,80 @@
         </div>
       </div>
     </div>
+    <br />
+    <button class="collapsible"><span class="ml-1 icon-minimize" style="float: left;"><i
+          class="fa fa-chevron-down pull-right"></i></span>Vespertino</button>
+    <div class="content_collapsible">
+      <div class="tabela">
+        <table class="table table-bordered editable" id="blocks_list">
+          <thead class="thead-dark">
+            <tr class="header-days">
+              <!-- <th scope="col" class="align-middle">Período</th> -->
+              <th scope="col" class="text-center" style="width: 7.7rem">{% trans "Horário" %}</th>
+              <th scope="col" class="text-center">{% trans "Segunda-feira" %}</th>
+              <th scope="col" class="text-center">{% trans "Terça-feira" %}</th>
+              <th scope="col" class="text-center">{% trans "Quarta-feira" %}</th>
+              <th scope="col" class="text-center">{% trans "Quinta-feira" %}</th>
+              <th scope="col" class="text-center">{% trans "Sexta-feira" %}</th>
+              <th scope="col" class="text-center">{% trans "Sábado" %}</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for timeslot in timeslots|slice:"6:12" %}
+            <tr>
+              {% with timeslot_counter=forloop.counter|add:6 %}
+              <th scope="row" class="align-middle text-center">{{ timeslot.hour_start|date:"H:i" }} -
+                {{ timeslot.hour_end|date:"H:i" }}</th>
+              {% for cell in "012345" %}
+              <!-- blocktrans? batatinha -->
+              <td class="text-center p-2" id="cel-{{ timeslot_counter }}-{{ forloop.counter }}">{{ cell.content }}
+              </td>
+              {% endfor %}
+              {% endwith %}
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <br />
+    <button class="collapsible"><span class="ml-1 icon-minimize" style="float: left;"><i
+          class="fa fa-chevron-down pull-right"></i></span>Noturno</button>
+    <div class="content_collapsible">
+      <div class="tabela">
+        <table class="table table-bordered editable" id="blocks_list">
+          <thead class="thead-dark">
+            <tr class="header-days">
+              <!-- <th scope="col" class="align-middle">Período</th> -->
+              <th scope="col" class="text-center" style="width: 7.7rem">{% trans "Horário" %}</th>
+              <th scope="col" class="text-center">{% trans "Segunda-feira" %}</th>
+              <th scope="col" class="text-center">{% trans "Terça-feira" %}</th>
+              <th scope="col" class="text-center">{% trans "Quarta-feira" %}</th>
+              <th scope="col" class="text-center">{% trans "Quinta-feira" %}</th>
+              <th scope="col" class="text-center">{% trans "Sexta-feira" %}</th>
+              <th scope="col" class="text-center">{% trans "Sábado" %}</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for timeslot in timeslots|slice:"12:" %}
+            <tr>
+              {% with timeslot_counter=forloop.counter|add:12 %}
+              <th scope="row" class="align-middle text-center">{{ timeslot.hour_start|date:"H:i" }} -
+                {{ timeslot.hour_end|date:"H:i" }}</th>
+              {% for cell in "012345" %}
+              <!-- blocktrans? batatinha -->
+              <td class="align-middle text-center p-2" id="cel-{{ timeslot_counter }}-{{ forloop.counter }}">
+                {{ cell.content }}</td>
+              {% endfor %}
+              {% endwith %}
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
   </div>
+</div>
 </div>
 
 {% endblock %}
