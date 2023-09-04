@@ -5,6 +5,7 @@ from django.contrib.auth.base_user import AbstractBaseUser, BaseUserManager
 from django.dispatch import receiver
 from django.utils.translation import gettext_lazy as _
 from enums import enum
+import re
 from area.models import Blockk, Area
 from common.validator.validator import convert_to_uppercase
 
@@ -106,6 +107,18 @@ class User(AbstractBaseUser, PermissionsMixin):
         full_name = '%s %s' % (self.first_name, self.last_name)
         return full_name.strip()
 
+    def get_job(self):
+        if self.job.name_job == 'TWENTY_HOURS':
+            return "20 horas"
+        elif self.job.name_job == 'FOURTY_HOURS':
+            return "40 horas"
+        elif self.job.name_job == 'SUBSTITUTE':
+            return "Substituto"
+        elif self.job.name_job == 'TEMPORARY':
+            return "Temporário"
+        else:
+            return "RDE"
+
     def get_full_name_camel_case(self):
         full_name = '%s %s' % (self.first_name, self.last_name)
         return full_name.title().strip()
@@ -113,11 +126,28 @@ class User(AbstractBaseUser, PermissionsMixin):
     def get_short_name(self):
         return self.first_name
 
+    def format_telephone(self):
+        telephone = self.telephone
+        return f"({telephone[:2]}) {telephone[2:7]}-{telephone[7:]}"
+
+    def format_cell_phone(self):
+        cell_phone = self.cell_phone
+        return f"({cell_phone[:2]}) {cell_phone[2:6]}-{cell_phone[6:]}"
+
     def get_first_name_and_last_initial(self):
-        last_name_parts = self.last_name.split()  # Dividir o sobrenome em palavras
+        last_name_parts = self.last_name.split()
         last_name_last_word = last_name_parts[-1] if last_name_parts else ''
         last_name_initial = last_name_last_word[0] if last_name_last_word else ''
         return f"{self.first_name} {last_name_initial}."
+
+    def get_initial(self):
+        first_name_parts = self.first_name.split()
+        last_name_parts = self.last_name.split()
+        first_initial = first_name_parts[0][0] if first_name_parts else ''        
+        last_name_last_word = last_name_parts[-1] if last_name_parts else ''
+        last_name_initial = last_name_last_word[0] if last_name_last_word else ''
+        
+        return f"{first_initial} {last_name_initial}"
 
     def email_user(self, subject, message, from_email=None, **kwargs):
         send_mail(subject, message, from_email, [self.email], **kwargs)
@@ -158,15 +188,16 @@ class History(models.Model):
     def __str__(self):
         return str(self.id_history)
 
-    def update_history(
-            self,
-            birth,
-            date_career,
-            date_campus,
-            date_professor,
-            date_area,
-            date_institute,
-            academic_degrees=None):
+    def format_date(self, date):
+        if date:
+            return date.strftime("%d/%m/%Y")
+        return ""
+
+    def format_birth(self):
+        return self.format_date(self.birth)
+
+    def update_history(self, birth, date_career, date_campus, date_professor, date_area, date_institute,
+                       academic_degrees=None):
         self.birth = birth
         self.date_career = date_career
         self.date_campus = date_campus

@@ -1,19 +1,21 @@
-{% extends "staff/base.html" %} 
-{% load i18n %} 
-{% load static %} 
+{% extends "staff/base.html" %}
+{% load i18n %}
+{% load static %}
 {% block head %}
 
 <title>{% trans "Atribuição Concluída" %}</title>
 <script src="{% static 'staff/attribution/js/attribution_configuration_confirm.js' %}"></script>
 
-{% endblock %} 
+{% endblock %}
 {% block body %}
 <div class="d-flex align-items-center justify-content-center" style="min-height: 80vh;">
    <div class="container text-center">
       <div class="text-center">
-         <img src="https://img.uxwing.com/wp-content/themes/uxwing/download/checkmark-cross/confirm-icon.svg" style="width: 20%">
+         <img src="https://img.uxwing.com/wp-content/themes/uxwing/download/checkmark-cross/confirm-icon.svg"
+            style="width: 20%">
       </div>
-      <h1>{% trans "Configuração salva" %}!</h1>
+      <h1 class="title-page mt-4">{% trans "Atribuição Concluída" %}</h1>
+      <hr>
       <p>{% trans "As atividades foram devidamente configuradas, os prazos estabelecidos e a fila organizada" %}.</p>
       <br>
       <!-- <button type="button" id="return-button" class="btn btn-outline-primary btn-lg rounded-pill">{% trans "Voltar à página inicial" %}</button> -->

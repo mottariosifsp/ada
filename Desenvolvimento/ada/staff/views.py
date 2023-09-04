@@ -189,7 +189,7 @@ def home(request):
         'links': len(user_links)
     }
         
-    data = {
+    data = {        
         'count': count,
         'alerts': user_alerts,
         'links': user_links,

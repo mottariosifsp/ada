@@ -3,739 +3,807 @@
 {% load static %}
 
 {% block head %}
-  <link rel="stylesheet" href="{% static 'attribution_preference/css/courses.css' %}">
-  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
-  <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-  <title>{% trans "Envio FPA" %}</title>
+<link rel="stylesheet" href="{% static 'attribution_preference/css/courses.css' %}">
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+<link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<title>{% trans "Envio FPA - Disciplinas" %}</title>
 {% endblock %}
 
 {% block body %}
 <section class="section dashboard">
-    <h1 class="title-page">{% trans "Declaração de disciplinas" %}</h1>
-    <nav>
+  <h1 class="title-page mt-4">{% trans "Preferência de Disciplinas" %}</h1>
+  <hr>
+  <nav>
     <ol class="breadcrumb hidden-itens">
-        <li class="breadcrumb-item"><a href="{% url 'home' %}"><i class="bi bi-house-door"></i></a></li>
-        <li class="breadcrumb-item"><a href="{% url 'attribution_preference' %}">{% trans "FPA Usuário" %}</a></li>
-        <li class="breadcrumb-item active">{% trans "Escolher Disciplinas" %}</li>
-        <li class="breadcrumb-item active" aria-current="page">{{ user_blockk.acronym }}</li>
+      <li class="breadcrumb-item"><a href="{% url 'home' %}"><i class="bi bi-house-door"></i></a></li>
+      <li class="breadcrumb-item"><a href="{% url 'attribution_preference' %}">{% trans "FPA Usuário" %}</a></li>
+      <li class="breadcrumb-item active">{% trans "Escolher Disciplinas" %}</li>
+      <li class="breadcrumb-item active" aria-current="page">{{ user_blockk.acronym }}</li>
     </ol>
-    </nav>
+  </nav>
 
-    <form id="send-disponibility-form" method="post">
-      {% csrf_token %}
-      <div id="error-alert-form" class="alert alert-danger" style="display: none;">
-        <button type="button" class="close" aria-label="Close" onclick="closeErrorAlert('error-alert-form')">
-          <span aria-hidden="true">&times;</span>
-        </button>
-        <span class="fa fa-times-circle"></span>
-        <b>{% trans "Erro" %}:</b> <span id="error-message-form"></span>        
-      </div>
+  <form id="send-disponibility-form" method="post">
+    {% csrf_token %}
+    <div id="error-alert-form" class="alert alert-danger" style="display: none;">
+      <button type="button" class="close" aria-label="Close" onclick="closeErrorAlert('error-alert-form')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+      <span class="fa fa-times-circle"></span>
+      <b>{% trans "Erro" %}:</b> <span id="error-message-form"></span>
+    </div>
 
-      <div class="row">
-        <div class="col-xxl-4 col-md-6">
-          <div class="card mt-2 info-card sales-card">
-            <div class="card-body">
-              <h4 class="card-title">{% trans "Regime escolhido" %}:</h4>
-              <hr class="my-0">
-              <div class="text-center mt-4 mb-4 pr-2 pl-2 d-flex">
-                <i class="form-check-inline fas fa-check-circle custom-icon"></i>
-                {% blocktrans with work_regime_text=user_regime hour_text="horas"%}
-                  <input name="work_regime" value='{{ work_regime_text }} {{hour_text}}' readonly class="text-center form-check-inline form-check form-control-plaintext custom-border">
-                {% endblocktrans %}
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-xxl-4 col-md-6">
-          <div class="card mt-2 info-card sales-card">
-            <div class="card-body">
-              <h4 class="card-title primary-item">{% trans "Células primárias restantes" %}:</h4>
-              <h4 class="card-title secondary-item" style="display: none;">{% trans "Células secundárias restantes" %}:</h4>
-              <hr class="my-0">
-              <div class="text-center" id="count-cel">
-                <span class="min-cel" id="cel-hour">--</span><span class="cel">{% trans "células" %}</span>
-              </div>
+    <div class="row">
+      <div class="col-xxl-4 col-md-6">
+        <div class="card mt-2 info-card sales-card">
+          <div class="card-body">
+            <h4 class="card-title">{% trans "Regime escolhido" %}:</h4>
+            <hr class="my-0">
+            <div class="text-center mt-4 mb-4 pr-2 pl-2 d-flex">
+              <i class="form-check-inline fas fa-check-circle custom-icon"></i>
+              {% blocktrans with work_regime_text=user_regime hour_text="horas"%}
+              <input name="work_regime" value='{{ work_regime_text }} {{hour_text}}' readonly
+                class="text-center form-check-inline form-check form-control-plaintext custom-border">
+              {% endblocktrans %}
             </div>
           </div>
         </div>
       </div>
-      <div class="card info-card sales-card mt-4">
-        <div class="card-body">
-          <div id="work-availability">
-            <h4>{% trans "Disciplinas do Bloco" %}: {{ user_blockk.name_block }}</h4>
-            <hr>
-            <div id="warning-alert" class="alert alert-warning" style="display: none;">
-              <button type="button" class="close" aria-label="Close" onclick="closeErrorAlert('warning-alert')">
-                  <span aria-hidden="true">&times;</span>
-              </button>
-              <span class="fas fa-exclamation-circle"></span>
-              <b>{% trans "Aviso" %}:</b>
-              <span id="warning-alert-message"></span>
-              <div id="warning-list-message"></div>
-              
+      <div class="col-xxl-4 col-md-6">
+        <div class="card mt-2 info-card sales-card">
+          <div class="card-body">
+            <h4 class="card-title primary-item">{% trans "Células primárias restantes" %}:</h4>
+            <h4 class="card-title secondary-item" style="display: none;">{% trans "Células secundárias restantes" %}:
+            </h4>
+            <hr class="my-0">
+            <div class="text-center" id="count-cel">
+              <span class="min-cel" id="cel-hour">--</span><span class="cel">{% trans "células" %}</span>
             </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="card info-card sales-card mt-4">
+      <div class="card-body">
+        <div id="work-availability">
+          <h4>{% trans "Disciplinas do Bloco" %}: {{ user_blockk.name_block }}</h4>
+          <hr>
+          <div id="warning-alert" class="alert alert-warning" style="display: none;">
+            <button type="button" class="close" aria-label="Close" onclick="closeErrorAlert('warning-alert')">
+              <span aria-hidden="true">&times;</span>
+            </button>
+            <span class="fas fa-exclamation-circle"></span>
+            <b>{% trans "Aviso" %}:</b>
+            <span id="warning-alert-message"></span>
+            <div id="warning-list-message"></div>
 
-            <div class="table-responsive">
-              <table class="table table-bordered table-sm text-center">
-                <thead>
-                  <tr>
-                    <th class="col-1 column text-center align-middle">{% trans "Período" %}</th>
-                    <th class="col-1 text-center align-middle">{% trans "Horários" %}</th>
-                    <th class="col-1 text-center align-middle">{% trans "Segunda-Feira" %}</th>
-                    <th class="col-1 text-center align-middle">{% trans "Terça-Feira" %}</th>
-                    <th class="col-1 text-center align-middle">{% trans "Quarta-Feira" %}</th>
-                    <th class="col-1 text-center align-middle">{% trans "Quinta-Feira" %}</th>
-                    <th class="col-1 text-center align-middle">{% trans "Sexta-Feira" %}</th>
-                    <th class="col-1 text-center align-middle">{% trans "Sábado" %}</th>
-                  </tr>
-                </thead>
-                <h6>
-                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="13" fill="currentColor" class=" bi bi-info-circle" viewBox="0 0 16 16">
-                    <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
-                    <path d="m8.93 6.588-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533L8.93 6.588zM9 4.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"/>
-                  </svg>
-                  {% trans 'Prioridade da Preferência' %}:
-                </h6>
-                <div class="mb-3 text-center">                  
-                  <div onclick="show_table(1)" class="btn primary btn-priority">{% trans "Primária" %}</div>
-                  <div onclick="show_table(2)" class="btn secondary btn-priority"><i class="secondary-item fas fa-lock"></i> {% trans "Secundária" %}</div>
-                </div>
-                <tbody class="block" id="primary-timetable-courses" >
-                  {% for i in "MVN" %}
-                    {% if i == "M" %}
-                      <td class="text-center align-middle column" rowspan='{{ shift.morning_classes }}'>{% trans "Matutino" %}</td>
-                      {% for timeslot in shift.morning %}
-                        <tr>
-                          <td class="text-center align-middle">{{ timeslot.hour_start|date:"H:i" }} - {{ timeslot.hour_end|date:"H:i" }}</td>
+          </div>
 
-                          <td class="text-center">
-                            <div class="openModalBtn" >
-                              <div data-id="mon-mor-{{ forloop.counter }}-pri" id="btn-mon-mor-{{ forloop.counter }}-pri" class="btn-group-toggle" data-toggle="buttons">
-                                <label class="btn w-100 btn-notchecked checkbox disabled" for="mon-mor-{{ forloop.counter }}-pri">
-                                  <input  disabled type="checkbox" id="mon-mor-{{ forloop.counter }}-pri"
-                                    value="{{ timeslot.hour_start }}-{{ timeslot.hour_end }},mon"
-                                    autocomplete="off">
-                                    <div id="sub-mon-mor-{{ forloop.counter }}-pri">--</div>
-                                </label>
-                              </div>
-                            </div>
-                          </td>
+          <div class="table-responsive">
+            <table class="table table-bordered table-sm text-center">
+              <thead>
+                <tr>
+                  <th class="col-1 column text-center align-middle">{% trans "Período" %}</th>
+                  <th class="col-1 text-center align-middle">{% trans "Horários" %}</th>
+                  <th class="col-1 text-center align-middle">{% trans "Segunda-Feira" %}</th>
+                  <th class="col-1 text-center align-middle">{% trans "Terça-Feira" %}</th>
+                  <th class="col-1 text-center align-middle">{% trans "Quarta-Feira" %}</th>
+                  <th class="col-1 text-center align-middle">{% trans "Quinta-Feira" %}</th>
+                  <th class="col-1 text-center align-middle">{% trans "Sexta-Feira" %}</th>
+                  <th class="col-1 text-center align-middle">{% trans "Sábado" %}</th>
+                </tr>
+              </thead>
+              <h6>
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="13" fill="currentColor"
+                  class=" bi bi-info-circle" viewBox="0 0 16 16">
+                  <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
+                  <path
+                    d="m8.93 6.588-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533L8.93 6.588zM9 4.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0z" />
+                </svg>
+                {% trans 'Prioridade da Preferência' %}:
+              </h6>
+              <div class="mb-3 text-center">
+                <div onclick="show_table(1)" class="btn primary btn-priority">{% trans "Primária" %}</div>
+                <div onclick="show_table(2)" class="btn secondary btn-priority"><i
+                    class="secondary-item fas fa-lock"></i> {% trans "Secundária" %}</div>
+              </div>
+              <tbody class="block" id="primary-timetable-courses">
+                {% for i in "MVN" %}
+                {% if i == "M" %}
+                <td class="text-center align-middle column" rowspan='{{ shift.morning_classes }}'>{% trans "Matutino" %}
+                </td>
+                {% for timeslot in shift.morning %}
+                <tr>
+                  <td class="text-center align-middle">{{ timeslot.hour_start|date:"H:i" }} -
+                    {{ timeslot.hour_end|date:"H:i" }}</td>
 
-                          <td class="text-center">
-                            <div class="openModalBtn" >
-                              <div data-id="tue-mor-{{ forloop.counter }}-pri" id="btn-tue-mor-{{ forloop.counter }}-pri" class="btn-group-toggle" data-toggle="buttons">
-                                <label class="btn w-100 btn-notchecked checkbox disabled" for="tue-mor-{{ forloop.counter }}-pri">
-                                  <input disabled type="checkbox" id="tue-mor-{{ forloop.counter }}-pri"
-                                    value="{{ timeslot.hour_start }}-{{ timeslot.hour_end }},tue"
-                                    autocomplete="off">
-                                    <div id="sub-tue-mor-{{ forloop.counter }}-pri">--</div>
-                                </label>
-                              </div>
-                            </div>
-                          </td>
+                  <td class="text-center">
+                    <div class="openModalBtn">
+                      <div data-id="mon-mor-{{ forloop.counter }}-pri" id="btn-mon-mor-{{ forloop.counter }}-pri"
+                        class="btn-group-toggle" data-toggle="buttons">
+                        <label class="btn w-100 btn-notchecked checkbox disabled"
+                          for="mon-mor-{{ forloop.counter }}-pri">
+                          <input disabled type="checkbox" id="mon-mor-{{ forloop.counter }}-pri"
+                            value="{{ timeslot.hour_start }}-{{ timeslot.hour_end }},mon" autocomplete="off">
+                          <div id="sub-mon-mor-{{ forloop.counter }}-pri">--</div>
+                        </label>
+                      </div>
+                    </div>
+                  </td>
 
-                          <td class="text-center">
-                            <div class="openModalBtn">
-                              <div data-id="wed-mor-{{ forloop.counter }}-pri" id="btn-wed-mor-{{ forloop.counter }}-pri" class="btn-group-toggle" data-toggle="buttons">
-                                <label class="btn w-100 btn-notchecked checkbox disabled" for="wed-mor-{{ forloop.counter }}-pri">
-                                  <input disabled type="checkbox" id="wed-mor-{{ forloop.counter }}-pri"
-                                    value="{{ timeslot.hour_start }}-{{ timeslot.hour_end }},wed"
-                                    autocomplete="off">
-                                    <div id="sub-wed-mor-{{ forloop.counter }}-pri">--</div>
-                                </label>
-                              </div>
-                            </div>
-                          </td>
+                  <td class="text-center">
+                    <div class="openModalBtn">
+                      <div data-id="tue-mor-{{ forloop.counter }}-pri" id="btn-tue-mor-{{ forloop.counter }}-pri"
+                        class="btn-group-toggle" data-toggle="buttons">
+                        <label class="btn w-100 btn-notchecked checkbox disabled"
+                          for="tue-mor-{{ forloop.counter }}-pri">
+                          <input disabled type="checkbox" id="tue-mor-{{ forloop.counter }}-pri"
+                            value="{{ timeslot.hour_start }}-{{ timeslot.hour_end }},tue" autocomplete="off">
+                          <div id="sub-tue-mor-{{ forloop.counter }}-pri">--</div>
+                        </label>
+                      </div>
+                    </div>
+                  </td>
 
-                          <td class="text-center">
-                            <div class="openModalBtn">
-                              <div data-id="thu-mor-{{ forloop.counter }}-pri" id="btn-thu-mor-{{ forloop.counter }}-pri" class="btn-group-toggle" data-toggle="buttons">
-                                <label class="btn w-100 btn-notchecked disabled checkbox" for="thu-mor-{{ forloop.counter }}-pri">
-                                  <input disabled type="checkbox" id="thu-mor-{{ forloop.counter }}-pri"
-                                    value="{{ timeslot.hour_start }}-{{ timeslot.hour_end }},thu"
-                                    autocomplete="off">
-                                    <div id="sub-thu-mor-{{ forloop.counter }}-pri">--</div>
-                                </label>
-                              </div>
-                            </div>
-                          </td>
+                  <td class="text-center">
+                    <div class="openModalBtn">
+                      <div data-id="wed-mor-{{ forloop.counter }}-pri" id="btn-wed-mor-{{ forloop.counter }}-pri"
+                        class="btn-group-toggle" data-toggle="buttons">
+                        <label class="btn w-100 btn-notchecked checkbox disabled"
+                          for="wed-mor-{{ forloop.counter }}-pri">
+                          <input disabled type="checkbox" id="wed-mor-{{ forloop.counter }}-pri"
+                            value="{{ timeslot.hour_start }}-{{ timeslot.hour_end }},wed" autocomplete="off">
+                          <div id="sub-wed-mor-{{ forloop.counter }}-pri">--</div>
+                        </label>
+                      </div>
+                    </div>
+                  </td>
 
-                          <td class="text-center">
-                            <div class="openModalBtn">
-                              <div data-id="fri-mor-{{ forloop.counter }}-pri" id="btn-fri-mor-{{ forloop.counter }}-pri" class="btn-group-toggle" data-toggle="buttons">
-                                <label class="btn w-100 btn-notchecked disabled checkbox" for="fri-mor-{{ forloop.counter }}-pri">
-                                  <input disabled type="checkbox" id="fri-mor-{{ forloop.counter }}-pri"
-                                    value="{{ timeslot.hour_start }}-{{ timeslot.hour_end }},fri"
-                                    autocomplete="off">
-                                    <div id="sub-fri-mor-{{ forloop.counter }}-pri">--</div>
-                                </label>
-                              </div>
-                            </div>
-                          </td>
+                  <td class="text-center">
+                    <div class="openModalBtn">
+                      <div data-id="thu-mor-{{ forloop.counter }}-pri" id="btn-thu-mor-{{ forloop.counter }}-pri"
+                        class="btn-group-toggle" data-toggle="buttons">
+                        <label class="btn w-100 btn-notchecked disabled checkbox"
+                          for="thu-mor-{{ forloop.counter }}-pri">
+                          <input disabled type="checkbox" id="thu-mor-{{ forloop.counter }}-pri"
+                            value="{{ timeslot.hour_start }}-{{ timeslot.hour_end }},thu" autocomplete="off">
+                          <div id="sub-thu-mor-{{ forloop.counter }}-pri">--</div>
+                        </label>
+                      </div>
+                    </div>
+                  </td>
 
-                          <td class="text-center">
-                            <div class="openModalBtn">
-                              <div data-id="sat-mor-{{ forloop.counter }}-pri" id="btn-sat-mor-{{ forloop.counter }}-pri" class="btn-group-toggle" data-toggle="buttons">
-                                <label class="btn w-100 btn-notchecked disabled checkbox" for="sat-mor-{{ forloop.counter }}-pri">
-                                  <input disabled type="checkbox" id="sat-mor-{{ forloop.counter }}-pri"
-                                    value="{{ timeslot.hour_start }}-{{ timeslot.hour_end }},sat"
-                                    autocomplete="off">
-                                  <div id="sub-sat-mor-{{ forloop.counter }}-pri">--</div>
-                                </label>
-                              </div>
-                            </div>
-                          </td>
-                        </tr>
-                      {% endfor %}
-                    {% elif i == "V" %}
-                      <td class="text-center align-middle column" rowspan="{{ shift.afternoon_classes }}">{% trans "Vespertino" %}</td>
+                  <td class="text-center">
+                    <div class="openModalBtn">
+                      <div data-id="fri-mor-{{ forloop.counter }}-pri" id="btn-fri-mor-{{ forloop.counter }}-pri"
+                        class="btn-group-toggle" data-toggle="buttons">
+                        <label class="btn w-100 btn-notchecked disabled checkbox"
+                          for="fri-mor-{{ forloop.counter }}-pri">
+                          <input disabled type="checkbox" id="fri-mor-{{ forloop.counter }}-pri"
+                            value="{{ timeslot.hour_start }}-{{ timeslot.hour_end }},fri" autocomplete="off">
+                          <div id="sub-fri-mor-{{ forloop.counter }}-pri">--</div>
+                        </label>
+                      </div>
+                    </div>
+                  </td>
 
-                      {% for timeslot in shift.afternoon %}
-                        <tr>
-                          <td class="text-center align-middle">{{ timeslot.hour_start|date:"H:i" }} - {{ timeslot.hour_end|date:"H:i" }}</td>
+                  <td class="text-center">
+                    <div class="openModalBtn">
+                      <div data-id="sat-mor-{{ forloop.counter }}-pri" id="btn-sat-mor-{{ forloop.counter }}-pri"
+                        class="btn-group-toggle" data-toggle="buttons">
+                        <label class="btn w-100 btn-notchecked disabled checkbox"
+                          for="sat-mor-{{ forloop.counter }}-pri">
+                          <input disabled type="checkbox" id="sat-mor-{{ forloop.counter }}-pri"
+                            value="{{ timeslot.hour_start }}-{{ timeslot.hour_end }},sat" autocomplete="off">
+                          <div id="sub-sat-mor-{{ forloop.counter }}-pri">--</div>
+                        </label>
+                      </div>
+                    </div>
+                  </td>
+                </tr>
+                {% endfor %}
+                {% elif i == "V" %}
+                <td class="text-center align-middle column" rowspan="{{ shift.afternoon_classes }}">
+                  {% trans "Vespertino" %}</td>
 
-                          <td class="text-center">
-                            <div class="openModalBtn">
-                              <div data-id="mon-aft-{{ forloop.counter }}-pri" id="btn-mon-aft-{{ forloop.counter }}-pri" class="btn-group-toggle" data-toggle="buttons">
-                                <label class="btn w-100 btn-notchecked disabled checkbox" for="mon-aft-{{ forloop.counter }}-pri">
-                                  <input disabled type="checkbox" id="mon-aft-{{ forloop.counter }}-pri"
-                                  mon-aft-{{ forloop.counter }}-pri            value="{{ timeslot.hour_start }}-{{ timeslot.hour_end }},mon"
-                                    autocomplete="off">
-                                    <div id="sub-mon-aft-{{ forloop.counter }}-pri">--</div>
-                                </label>
-                              </div>
-                            </div>
-                          </td>
+                {% for timeslot in shift.afternoon %}
+                <tr>
+                  <td class="text-center align-middle">{{ timeslot.hour_start|date:"H:i" }} -
+                    {{ timeslot.hour_end|date:"H:i" }}</td>
 
-                          <td class="text-center">
-                            <div class="openModalBtn">
-                              <div data-id="tue-aft-{{ forloop.counter }}-pri" id="btn-tue-aft-{{ forloop.counter }}-pri" class="btn-group-toggle" data-toggle="buttons">
-                                <label class="btn w-100 btn-notchecked disabled checkbox" for="tue-aft-{{ forloop.counter }}-pri">
-                                  <input disabled type="checkbox" id="tue-aft-{{ forloop.counter }}-pri"
-                                    value="{{ timeslot.hour_start }}-{{ timeslot.hour_end }},tue"
-                                    autocomplete="off">
-                                    <div id="sub-tue-aft-{{ forloop.counter }}-pri">--</div>
-                                </label>
-                              </div>
-                            </div>
-                          </td>
+                  <td class="text-center">
+                    <div class="openModalBtn">
+                      <div data-id="mon-aft-{{ forloop.counter }}-pri" id="btn-mon-aft-{{ forloop.counter }}-pri"
+                        class="btn-group-toggle" data-toggle="buttons">
+                        <label class="btn w-100 btn-notchecked disabled checkbox"
+                          for="mon-aft-{{ forloop.counter }}-pri">
+                          <input disabled type="checkbox" id="mon-aft-{{ forloop.counter }}-pri"
+                            mon-aft-{{ forloop.counter }}-pri
+                            value="{{ timeslot.hour_start }}-{{ timeslot.hour_end }},mon" autocomplete="off">
+                          <div id="sub-mon-aft-{{ forloop.counter }}-pri">--</div>
+                        </label>
+                      </div>
+                    </div>
+                  </td>
 
-                          <td class="text-center">
-                            <div class="openModalBtn">
-                              <div data-id="wed-aft-{{ forloop.counter }}-pri" id="btn-wed-aft-{{ forloop.counter }}-pri" class="btn-group-toggle" data-toggle="buttons">
-                                <label class="btn w-100 btn-notchecked disabled checkbox" for="wed-aft-{{ forloop.counter }}-pri">
-                                  <input disabled type="checkbox" id="wed-aft-{{ forloop.counter }}-pri"
-                                    value="{{ timeslot.hour_start }}-{{ timeslot.hour_end }},wed"
-                                    autocomplete="off">
-                                    <div id="sub-wed-aft-{{ forloop.counter }}-pri">--</div>
-                                </label>
-                              </div>
-                            </div>
-                          </td>
+                  <td class="text-center">
+                    <div class="openModalBtn">
+                      <div data-id="tue-aft-{{ forloop.counter }}-pri" id="btn-tue-aft-{{ forloop.counter }}-pri"
+                        class="btn-group-toggle" data-toggle="buttons">
+                        <label class="btn w-100 btn-notchecked disabled checkbox"
+                          for="tue-aft-{{ forloop.counter }}-pri">
+                          <input disabled type="checkbox" id="tue-aft-{{ forloop.counter }}-pri"
+                            value="{{ timeslot.hour_start }}-{{ timeslot.hour_end }},tue" autocomplete="off">
+                          <div id="sub-tue-aft-{{ forloop.counter }}-pri">--</div>
+                        </label>
+                      </div>
+                    </div>
+                  </td>
 
-                          <td class="text-center">
-                            <div class="openModalBtn">
-                              <div data-id="thu-aft-{{ forloop.counter }}-pri" id="btn-thu-aft-{{ forloop.counter }}-pri" class="btn-group-toggle" data-toggle="buttons">
-                                <label class="btn w-100 btn-notchecked disabled checkbox" for="thu-aft-{{ forloop.counter }}-pri">
-                                  <input disabled type="checkbox" id="thu-aft-{{ forloop.counter }}-pri"
-                                    value="{{ timeslot.hour_start }}-{{ timeslot.hour_end }},thu"
-                                    autocomplete="off">
-                                    <div id="sub-thu-aft-{{ forloop.counter }}-pri">--</div>
-                                </label>
-                              </div>
-                            </div>
-                          </td>
+                  <td class="text-center">
+                    <div class="openModalBtn">
+                      <div data-id="wed-aft-{{ forloop.counter }}-pri" id="btn-wed-aft-{{ forloop.counter }}-pri"
+                        class="btn-group-toggle" data-toggle="buttons">
+                        <label class="btn w-100 btn-notchecked disabled checkbox"
+                          for="wed-aft-{{ forloop.counter }}-pri">
+                          <input disabled type="checkbox" id="wed-aft-{{ forloop.counter }}-pri"
+                            value="{{ timeslot.hour_start }}-{{ timeslot.hour_end }},wed" autocomplete="off">
+                          <div id="sub-wed-aft-{{ forloop.counter }}-pri">--</div>
+                        </label>
+                      </div>
+                    </div>
+                  </td>
 
-                          <td class="text-center">
-                            <div class="openModalBtn">
-                              <div data-id="fri-aft-{{ forloop.counter }}-pri" id="btn-fri-aft-{{ forloop.counter }}-pri" class="btn-group-toggle" data-toggle="buttons">
-                                <label class="btn w-100 btn-notchecked disabled checkbox" for="fri-aft-{{ forloop.counter }}-pri">
-                                  <input disabled type="checkbox" id="fri-aft-{{ forloop.counter }}-pri"
-                                    value="{{ timeslot.hour_start }}-{{ timeslot.hour_end }},fri"
-                                    autocomplete="off">
-                                    <div id="sub-fri-aft-{{ forloop.counter }}-pri">--</div>
-                                </label>
-                              </div>
-                            </div>
-                          </td>
+                  <td class="text-center">
+                    <div class="openModalBtn">
+                      <div data-id="thu-aft-{{ forloop.counter }}-pri" id="btn-thu-aft-{{ forloop.counter }}-pri"
+                        class="btn-group-toggle" data-toggle="buttons">
+                        <label class="btn w-100 btn-notchecked disabled checkbox"
+                          for="thu-aft-{{ forloop.counter }}-pri">
+                          <input disabled type="checkbox" id="thu-aft-{{ forloop.counter }}-pri"
+                            value="{{ timeslot.hour_start }}-{{ timeslot.hour_end }},thu" autocomplete="off">
+                          <div id="sub-thu-aft-{{ forloop.counter }}-pri">--</div>
+                        </label>
+                      </div>
+                    </div>
+                  </td>
 
-                          <td class="text-center">
-                            <div class="openModalBtn">
-                              <div data-id="sat-aft-{{ forloop.counter }}-pri" id="btn-sat-aft-{{ forloop.counter }}-pri" class="btn-group-toggle" data-toggle="buttons">
-                                <label class="btn w-100 btn-notchecked disabled checkbox" for="sat-aft-{{ forloop.counter }}-pri">
-                                  <input disabled type="checkbox" id="sat-aft-{{ forloop.counter }}-pri"
-                                    value="{{ timeslot.hour_start }}-{{ timeslot.hour_end }},sat"
-                                    autocomplete="off">
-                                  <div id="sub-sat-aft-{{ forloop.counter }}-pri">--</div>
-                                </label>
-                              </div>
-                            </div>
-                          </td>
-                        </tr>
+                  <td class="text-center">
+                    <div class="openModalBtn">
+                      <div data-id="fri-aft-{{ forloop.counter }}-pri" id="btn-fri-aft-{{ forloop.counter }}-pri"
+                        class="btn-group-toggle" data-toggle="buttons">
+                        <label class="btn w-100 btn-notchecked disabled checkbox"
+                          for="fri-aft-{{ forloop.counter }}-pri">
+                          <input disabled type="checkbox" id="fri-aft-{{ forloop.counter }}-pri"
+                            value="{{ timeslot.hour_start }}-{{ timeslot.hour_end }},fri" autocomplete="off">
+                          <div id="sub-fri-aft-{{ forloop.counter }}-pri">--</div>
+                        </label>
+                      </div>
+                    </div>
+                  </td>
 
-                      {% endfor %}
-                    {% else %}
-                      <td class="text-center align-middle column" rowspan="{{ shift.nocturnal_classes }}">{% trans "Noturno" %}</td>
+                  <td class="text-center">
+                    <div class="openModalBtn">
+                      <div data-id="sat-aft-{{ forloop.counter }}-pri" id="btn-sat-aft-{{ forloop.counter }}-pri"
+                        class="btn-group-toggle" data-toggle="buttons">
+                        <label class="btn w-100 btn-notchecked disabled checkbox"
+                          for="sat-aft-{{ forloop.counter }}-pri">
+                          <input disabled type="checkbox" id="sat-aft-{{ forloop.counter }}-pri"
+                            value="{{ timeslot.hour_start }}-{{ timeslot.hour_end }},sat" autocomplete="off">
+                          <div id="sub-sat-aft-{{ forloop.counter }}-pri">--</div>
+                        </label>
+                      </div>
+                    </div>
+                  </td>
+                </tr>
 
-                      {% for timeslot in shift.nocturnal %}
-                        <tr>
-                          <td class="text-center align-middle">{{ timeslot.hour_start|date:"H:i" }} - {{ timeslot.hour_end|date:"H:i" }}</td>
+                {% endfor %}
+                {% else %}
+                <td class="text-center align-middle column" rowspan="{{ shift.nocturnal_classes }}">
+                  {% trans "Noturno" %}</td>
 
-                          <td class="text-center">
-                            <div class="openModalBtn">
-                              <div data-id="mon-noc-{{ forloop.counter }}-pri" id="btn-mon-noc-{{ forloop.counter }}-pri" class="btn-group-toggle" data-toggle="buttons">
-                                <label class="btn w-100 btn-notchecked disabled checkbox" for="mon-noc-{{ forloop.counter }}-pri">
-                                  <input disabled type="checkbox" id="mon-noc-{{ forloop.counter }}-pri"
-                                    value="{{ timeslot.hour_start }}-{{ timeslot.hour_end }},mon"
-                                    autocomplete="off">
-                                  <div id="sub-mon-noc-{{ forloop.counter }}-pri">--</div>
-                                </label>
-                              </div>
-                            </div>
-                          </td>
+                {% for timeslot in shift.nocturnal %}
+                <tr>
+                  <td class="text-center align-middle">{{ timeslot.hour_start|date:"H:i" }} -
+                    {{ timeslot.hour_end|date:"H:i" }}</td>
 
-                          <td class="text-center">
-                            <div class="openModalBtn">
-                              <div data-id="tue-noc-{{ forloop.counter }}-pri" id="btn-tue-noc-{{ forloop.counter }}-pri" class="btn-group-toggle" data-toggle="buttons">
-                                <label class="btn w-100 btn-notchecked checkbox disabled" for="tue-noc-{{ forloop.counter }}-pri">
-                                  <input disabled type="checkbox" id="tue-noc-{{ forloop.counter }}-pri"
-                                    value="{{ timeslot.hour_start }}-{{ timeslot.hour_end }},tue"
-                                    autocomplete="off">
-                                  <div id="sub-tue-noc-{{ forloop.counter }}-pri">--</div>
-                                </label>
-                              </div>
-                            </div>
-                          </td>
+                  <td class="text-center">
+                    <div class="openModalBtn">
+                      <div data-id="mon-noc-{{ forloop.counter }}-pri" id="btn-mon-noc-{{ forloop.counter }}-pri"
+                        class="btn-group-toggle" data-toggle="buttons">
+                        <label class="btn w-100 btn-notchecked disabled checkbox"
+                          for="mon-noc-{{ forloop.counter }}-pri">
+                          <input disabled type="checkbox" id="mon-noc-{{ forloop.counter }}-pri"
+                            value="{{ timeslot.hour_start }}-{{ timeslot.hour_end }},mon" autocomplete="off">
+                          <div id="sub-mon-noc-{{ forloop.counter }}-pri">--</div>
+                        </label>
+                      </div>
+                    </div>
+                  </td>
 
-                          <td class="text-center">
-                            <div class="openModalBtn">
-                              <div data-id="wed-noc-{{ forloop.counter }}-pri" id="btn-wed-noc-{{ forloop.counter }}-pri" class="btn-group-toggle" data-toggle="buttons">
-                                <label class="btn w-100 btn-notchecked disabled checkbox" for="wed-noc-{{ forloop.counter }}-pri">
-                                  <input disabled type="checkbox" id="wed-noc-{{ forloop.counter }}-pri"
-                                    value="{{ timeslot.hour_start }}-{{ timeslot.hour_end }},wed"
-                                    autocomplete="off">
-                                  <div id="sub-wed-noc-{{ forloop.counter }}-pri">--</div>
-                                </label>
-                              </div>
-                            </div>
-                          </td>
+                  <td class="text-center">
+                    <div class="openModalBtn">
+                      <div data-id="tue-noc-{{ forloop.counter }}-pri" id="btn-tue-noc-{{ forloop.counter }}-pri"
+                        class="btn-group-toggle" data-toggle="buttons">
+                        <label class="btn w-100 btn-notchecked checkbox disabled"
+                          for="tue-noc-{{ forloop.counter }}-pri">
+                          <input disabled type="checkbox" id="tue-noc-{{ forloop.counter }}-pri"
+                            value="{{ timeslot.hour_start }}-{{ timeslot.hour_end }},tue" autocomplete="off">
+                          <div id="sub-tue-noc-{{ forloop.counter }}-pri">--</div>
+                        </label>
+                      </div>
+                    </div>
+                  </td>
 
-                          <td class="text-center">
-                            <div class="openModalBtn" >
-                              <div data-id="thu-noc-{{ forloop.counter }}-pri" id="btn-thu-noc-{{ forloop.counter }}-pri" class="btn-group-toggle" data-toggle="buttons">
-                                <label class="btn w-100 btn-notchecked checkbox disabled" for="thu-noc-{{ forloop.counter }}-pri">
-                                  <input disabled type="checkbox" id="thu-noc-{{ forloop.counter }}-pri"
-                                    value="{{ timeslot.hour_start }}-{{ timeslot.hour_end }},tue"
-                                    autocomplete="off">
-                                    <div id="sub-thu-noc-{{ forloop.counter }}-pri">--</div>
-                                </label>
-                              </div>
-                            </div>
-                          </td>
+                  <td class="text-center">
+                    <div class="openModalBtn">
+                      <div data-id="wed-noc-{{ forloop.counter }}-pri" id="btn-wed-noc-{{ forloop.counter }}-pri"
+                        class="btn-group-toggle" data-toggle="buttons">
+                        <label class="btn w-100 btn-notchecked disabled checkbox"
+                          for="wed-noc-{{ forloop.counter }}-pri">
+                          <input disabled type="checkbox" id="wed-noc-{{ forloop.counter }}-pri"
+                            value="{{ timeslot.hour_start }}-{{ timeslot.hour_end }},wed" autocomplete="off">
+                          <div id="sub-wed-noc-{{ forloop.counter }}-pri">--</div>
+                        </label>
+                      </div>
+                    </div>
+                  </td>
 
-                          <td class="text-center">
-                            <div class="openModalBtn">
-                              <div data-id="fri-noc-{{ forloop.counter }}-pri" id="btn-fri-noc-{{ forloop.counter }}-pri" class="btn-group-toggle" data-toggle="buttons">
-                                <label class="btn w-100 btn-notchecked disabled checkbox" for="fri-noc-{{ forloop.counter }}-pri">
-                                  <input disabled type="checkbox" id="fri-noc-{{ forloop.counter }}-pri"
-                                    value="{{ timeslot.hour_start }}-{{ timeslot.hour_end }},fri"
-                                    autocomplete="off" >
-                                  <div id="sub-fri-noc-{{ forloop.counter }}-pri">--</div>
-                                </label>
-                              </div>
-                            </div>
-                          </td>
+                  <td class="text-center">
+                    <div class="openModalBtn">
+                      <div data-id="thu-noc-{{ forloop.counter }}-pri" id="btn-thu-noc-{{ forloop.counter }}-pri"
+                        class="btn-group-toggle" data-toggle="buttons">
+                        <label class="btn w-100 btn-notchecked checkbox disabled"
+                          for="thu-noc-{{ forloop.counter }}-pri">
+                          <input disabled type="checkbox" id="thu-noc-{{ forloop.counter }}-pri"
+                            value="{{ timeslot.hour_start }}-{{ timeslot.hour_end }},tue" autocomplete="off">
+                          <div id="sub-thu-noc-{{ forloop.counter }}-pri">--</div>
+                        </label>
+                      </div>
+                    </div>
+                  </td>
 
-                          <td class="text-center">
-                            <div class="openModalBtn">
-                              <div data-id="sat-noc-{{ forloop.counter }}-pri"  id="btn-sat-noc-{{ forloop.counter }}-pri" class="btn-group-toggle" data-toggle="buttons">
-                                <label class="btn w-100 btn-notchecked disabled checkbox" for="sat-noc-{{ forloop.counter }}-pri">
-                                  <input disabled type="checkbox" id="sat-noc-{{ forloop.counter }}-pri"
-                                    value="{{ timeslot.hour_start }}-{{ timeslot.hour_end }},sat"
-                                    autocomplete="off" >
-                                  <div id="sub-sat-noc-{{ forloop.counter }}-pri">--</div>
-                                </label>
-                              </div>
-                            </div>
-                          </td>
-                        </tr>
-                      {% endfor %}
-                    {% endif %}
-                  {% endfor %}
-                </tbody>
-                  <tbody class="block" id="secondary-timetable-courses" >
-                    {% for i in "MVN" %}
-                      {% if i == "M" %}
-                        <td class="text-center align-middle column" rowspan='{{ shift.morning_classes }}'>{% trans "Matutino" %}</td>
-                        {% for timeslot in shift.morning %}
-                          <tr>
-                            <td class="text-center align-middle">{{ timeslot.hour_start|date:"H:i" }} - {{ timeslot.hour_end|date:"H:i" }}</td>
+                  <td class="text-center">
+                    <div class="openModalBtn">
+                      <div data-id="fri-noc-{{ forloop.counter }}-pri" id="btn-fri-noc-{{ forloop.counter }}-pri"
+                        class="btn-group-toggle" data-toggle="buttons">
+                        <label class="btn w-100 btn-notchecked disabled checkbox"
+                          for="fri-noc-{{ forloop.counter }}-pri">
+                          <input disabled type="checkbox" id="fri-noc-{{ forloop.counter }}-pri"
+                            value="{{ timeslot.hour_start }}-{{ timeslot.hour_end }},fri" autocomplete="off">
+                          <div id="sub-fri-noc-{{ forloop.counter }}-pri">--</div>
+                        </label>
+                      </div>
+                    </div>
+                  </td>
 
-                            <td class="text-center">
-                              <div class="openModalBtn" >
-                                <div data-id="mon-mor-{{ forloop.counter }}-sec" id="btn-mon-mor-{{ forloop.counter }}-sec" class="btn-group-toggle" data-toggle="buttons">
-                                  <label class="btn w-100 btn-notchecked checkbox disabled" for="mon-mor-{{ forloop.counter }}-sec">
-                                    <input  disabled type="checkbox" id="mon-mor-{{ forloop.counter }}-sec"
-                                      value="{{ timeslot.hour_start }}-{{ timeslot.hour_end }},mon"
-                                      autocomplete="off">
-                                      <div id="sub-mon-mor-{{ forloop.counter }}-sec">--</div>
-                                  </label>
-                                </div>
-                              </div>
-                            </td>
+                  <td class="text-center">
+                    <div class="openModalBtn">
+                      <div data-id="sat-noc-{{ forloop.counter }}-pri" id="btn-sat-noc-{{ forloop.counter }}-pri"
+                        class="btn-group-toggle" data-toggle="buttons">
+                        <label class="btn w-100 btn-notchecked disabled checkbox"
+                          for="sat-noc-{{ forloop.counter }}-pri">
+                          <input disabled type="checkbox" id="sat-noc-{{ forloop.counter }}-pri"
+                            value="{{ timeslot.hour_start }}-{{ timeslot.hour_end }},sat" autocomplete="off">
+                          <div id="sub-sat-noc-{{ forloop.counter }}-pri">--</div>
+                        </label>
+                      </div>
+                    </div>
+                  </td>
+                </tr>
+                {% endfor %}
+                {% endif %}
+                {% endfor %}
+              </tbody>
+              <tbody class="block" id="secondary-timetable-courses">
+                {% for i in "MVN" %}
+                {% if i == "M" %}
+                <td class="text-center align-middle column" rowspan='{{ shift.morning_classes }}'>{% trans "Matutino" %}
+                </td>
+                {% for timeslot in shift.morning %}
+                <tr>
+                  <td class="text-center align-middle">{{ timeslot.hour_start|date:"H:i" }} -
+                    {{ timeslot.hour_end|date:"H:i" }}</td>
 
-                            <td class="text-center">
-                              <div class="openModalBtn" >
-                                <div data-id="tue-mor-{{ forloop.counter }}-sec" id="btn-tue-mor-{{ forloop.counter }}-sec" class="btn-group-toggle" data-toggle="buttons">
-                                  <label class="btn w-100 btn-notchecked checkbox disabled" for="tue-mor-{{ forloop.counter }}-sec">
-                                    <input disabled type="checkbox" id="tue-mor-{{ forloop.counter }}-sec"
-                                      value="{{ timeslot.hour_start }}-{{ timeslot.hour_end }},tue"
-                                      autocomplete="off">
-                                      <div id="sub-tue-mor-{{ forloop.counter }}-sec">--</div>
-                                  </label>
-                                </div>
-                              </div>
-                            </td>
+                  <td class="text-center">
+                    <div class="openModalBtn">
+                      <div data-id="mon-mor-{{ forloop.counter }}-sec" id="btn-mon-mor-{{ forloop.counter }}-sec"
+                        class="btn-group-toggle" data-toggle="buttons">
+                        <label class="btn w-100 btn-notchecked checkbox disabled"
+                          for="mon-mor-{{ forloop.counter }}-sec">
+                          <input disabled type="checkbox" id="mon-mor-{{ forloop.counter }}-sec"
+                            value="{{ timeslot.hour_start }}-{{ timeslot.hour_end }},mon" autocomplete="off">
+                          <div id="sub-mon-mor-{{ forloop.counter }}-sec">--</div>
+                        </label>
+                      </div>
+                    </div>
+                  </td>
 
-                            <td class="text-center">
-                              <div class="openModalBtn">
-                                <div data-id="wed-mor-{{ forloop.counter }}-sec" id="btn-wed-mor-{{ forloop.counter }}-sec" class="btn-group-toggle" data-toggle="buttons">
-                                  <label class="btn w-100 btn-notchecked checkbox disabled" for="wed-mor-{{ forloop.counter }}-sec">
-                                    <input disabled type="checkbox" id="wed-mor-{{ forloop.counter }}-sec"
-                                      value="{{ timeslot.hour_start }}-{{ timeslot.hour_end }},wed"
-                                      autocomplete="off">
-                                      <div id="sub-wed-mor-{{ forloop.counter }}-sec">--</div>
-                                  </label>
-                                </div>
-                              </div>
-                            </td>
+                  <td class="text-center">
+                    <div class="openModalBtn">
+                      <div data-id="tue-mor-{{ forloop.counter }}-sec" id="btn-tue-mor-{{ forloop.counter }}-sec"
+                        class="btn-group-toggle" data-toggle="buttons">
+                        <label class="btn w-100 btn-notchecked checkbox disabled"
+                          for="tue-mor-{{ forloop.counter }}-sec">
+                          <input disabled type="checkbox" id="tue-mor-{{ forloop.counter }}-sec"
+                            value="{{ timeslot.hour_start }}-{{ timeslot.hour_end }},tue" autocomplete="off">
+                          <div id="sub-tue-mor-{{ forloop.counter }}-sec">--</div>
+                        </label>
+                      </div>
+                    </div>
+                  </td>
 
-                            <td class="text-center">
-                              <div class="openModalBtn">
-                                <div data-id="thu-mor-{{ forloop.counter }}-sec" id="btn-thu-mor-{{ forloop.counter }}-sec" class="btn-group-toggle" data-toggle="buttons">
-                                  <label class="btn w-100 btn-notchecked disabled checkbox" for="thu-mor-{{ forloop.counter }}-sec">
-                                    <input disabled type="checkbox" id="thu-mor-{{ forloop.counter }}-sec"
-                                      value="{{ timeslot.hour_start }}-{{ timeslot.hour_end }},thu"
-                                      autocomplete="off">
-                                      <div id="sub-thu-mor-{{ forloop.counter }}-sec">--</div>
-                                  </label>
-                                </div>
-                              </div>
-                            </td>
+                  <td class="text-center">
+                    <div class="openModalBtn">
+                      <div data-id="wed-mor-{{ forloop.counter }}-sec" id="btn-wed-mor-{{ forloop.counter }}-sec"
+                        class="btn-group-toggle" data-toggle="buttons">
+                        <label class="btn w-100 btn-notchecked checkbox disabled"
+                          for="wed-mor-{{ forloop.counter }}-sec">
+                          <input disabled type="checkbox" id="wed-mor-{{ forloop.counter }}-sec"
+                            value="{{ timeslot.hour_start }}-{{ timeslot.hour_end }},wed" autocomplete="off">
+                          <div id="sub-wed-mor-{{ forloop.counter }}-sec">--</div>
+                        </label>
+                      </div>
+                    </div>
+                  </td>
 
-                            <td class="text-center">
-                              <div class="openModalBtn">
-                                <div data-id="fri-mor-{{ forloop.counter }}-sec" id="btn-fri-mor-{{ forloop.counter }}-sec" class="btn-group-toggle" data-toggle="buttons">
-                                  <label class="btn w-100 btn-notchecked disabled checkbox" for="fri-mor-{{ forloop.counter }}-sec">
-                                    <input disabled type="checkbox" id="fri-mor-{{ forloop.counter }}-sec"
-                                      value="{{ timeslot.hour_start }}-{{ timeslot.hour_end }},fri"
-                                      autocomplete="off">
-                                      <div id="sub-fri-mor-{{ forloop.counter }}-sec">--</div>
-                                  </label>
-                                </div>
-                              </div>
-                            </td>
+                  <td class="text-center">
+                    <div class="openModalBtn">
+                      <div data-id="thu-mor-{{ forloop.counter }}-sec" id="btn-thu-mor-{{ forloop.counter }}-sec"
+                        class="btn-group-toggle" data-toggle="buttons">
+                        <label class="btn w-100 btn-notchecked disabled checkbox"
+                          for="thu-mor-{{ forloop.counter }}-sec">
+                          <input disabled type="checkbox" id="thu-mor-{{ forloop.counter }}-sec"
+                            value="{{ timeslot.hour_start }}-{{ timeslot.hour_end }},thu" autocomplete="off">
+                          <div id="sub-thu-mor-{{ forloop.counter }}-sec">--</div>
+                        </label>
+                      </div>
+                    </div>
+                  </td>
 
-                            <td class="text-center">
-                              <div class="openModalBtn">
-                                <div data-id="sat-mor-{{ forloop.counter }}-sec" id="btn-sat-mor-{{ forloop.counter }}-sec" class="btn-group-toggle" data-toggle="buttons">
-                                  <label class="btn w-100 btn-notchecked disabled checkbox" for="sat-mor-{{ forloop.counter }}-sec">
-                                    <input disabled type="checkbox" id="sat-mor-{{ forloop.counter }}-sec"
-                                      value="{{ timeslot.hour_start }}-{{ timeslot.hour_end }},sat"
-                                      autocomplete="off">
-                                    <div id="sub-sat-mor-{{ forloop.counter }}-sec">--</div>
-                                  </label>
-                                </div>
-                              </div>
-                            </td>
-                          </tr>
-                        {% endfor %}
-                      {% elif i == "V" %}
-                        <td class="text-center align-middle column" rowspan="{{ shift.afternoon_classes }}">{% trans "Vespertino" %}</td>
+                  <td class="text-center">
+                    <div class="openModalBtn">
+                      <div data-id="fri-mor-{{ forloop.counter }}-sec" id="btn-fri-mor-{{ forloop.counter }}-sec"
+                        class="btn-group-toggle" data-toggle="buttons">
+                        <label class="btn w-100 btn-notchecked disabled checkbox"
+                          for="fri-mor-{{ forloop.counter }}-sec">
+                          <input disabled type="checkbox" id="fri-mor-{{ forloop.counter }}-sec"
+                            value="{{ timeslot.hour_start }}-{{ timeslot.hour_end }},fri" autocomplete="off">
+                          <div id="sub-fri-mor-{{ forloop.counter }}-sec">--</div>
+                        </label>
+                      </div>
+                    </div>
+                  </td>
 
-                        {% for timeslot in shift.afternoon %}
-                          <tr>
-                            <td class="text-center align-middle">{{ timeslot.hour_start|date:"H:i" }} - {{ timeslot.hour_end|date:"H:i" }}</td>
+                  <td class="text-center">
+                    <div class="openModalBtn">
+                      <div data-id="sat-mor-{{ forloop.counter }}-sec" id="btn-sat-mor-{{ forloop.counter }}-sec"
+                        class="btn-group-toggle" data-toggle="buttons">
+                        <label class="btn w-100 btn-notchecked disabled checkbox"
+                          for="sat-mor-{{ forloop.counter }}-sec">
+                          <input disabled type="checkbox" id="sat-mor-{{ forloop.counter }}-sec"
+                            value="{{ timeslot.hour_start }}-{{ timeslot.hour_end }},sat" autocomplete="off">
+                          <div id="sub-sat-mor-{{ forloop.counter }}-sec">--</div>
+                        </label>
+                      </div>
+                    </div>
+                  </td>
+                </tr>
+                {% endfor %}
+                {% elif i == "V" %}
+                <td class="text-center align-middle column" rowspan="{{ shift.afternoon_classes }}">
+                  {% trans "Vespertino" %}</td>
 
-                            <td class="text-center">
-                              <div class="openModalBtn">
-                                <div data-id="mon-aft-{{ forloop.counter }}-sec" id="btn-mon-aft-{{ forloop.counter }}-sec" class="btn-group-toggle" data-toggle="buttons">
-                                  <label class="btn w-100 btn-notchecked disabled checkbox" for="mon-aft-{{ forloop.counter }}-sec">
-                                    <input disabled type="checkbox" id="mon-aft-{{ forloop.counter }}-sec"
-                                    mon-aft-{{ forloop.counter }}-pri            value="{{ timeslot.hour_start }}-{{ timeslot.hour_end }},mon"
-                                      autocomplete="off">
-                                      <div id="sub-mon-aft-{{ forloop.counter }}-sec">--</div>
-                                  </label>
-                                </div>
-                              </div>
-                            </td>
+                {% for timeslot in shift.afternoon %}
+                <tr>
+                  <td class="text-center align-middle">{{ timeslot.hour_start|date:"H:i" }} -
+                    {{ timeslot.hour_end|date:"H:i" }}</td>
 
-                            <td class="text-center">
-                              <div class="openModalBtn">
-                                <div data-id="tue-aft-{{ forloop.counter }}-sec" id="btn-tue-aft-{{ forloop.counter }}-sec" class="btn-group-toggle" data-toggle="buttons">
-                                  <label class="btn w-100 btn-notchecked disabled checkbox" for="tue-aft-{{ forloop.counter }}-sec">
-                                    <input disabled type="checkbox" id="tue-aft-{{ forloop.counter }}-sec"
-                                      value="{{ timeslot.hour_start }}-{{ timeslot.hour_end }},tue"
-                                      autocomplete="off">
-                                      <div id="sub-tue-aft-{{ forloop.counter }}-sec">--</div>
-                                  </label>
-                                </div>
-                              </div>
-                            </td>
+                  <td class="text-center">
+                    <div class="openModalBtn">
+                      <div data-id="mon-aft-{{ forloop.counter }}-sec" id="btn-mon-aft-{{ forloop.counter }}-sec"
+                        class="btn-group-toggle" data-toggle="buttons">
+                        <label class="btn w-100 btn-notchecked disabled checkbox"
+                          for="mon-aft-{{ forloop.counter }}-sec">
+                          <input disabled type="checkbox" id="mon-aft-{{ forloop.counter }}-sec"
+                            mon-aft-{{ forloop.counter }}-pri
+                            value="{{ timeslot.hour_start }}-{{ timeslot.hour_end }},mon" autocomplete="off">
+                          <div id="sub-mon-aft-{{ forloop.counter }}-sec">--</div>
+                        </label>
+                      </div>
+                    </div>
+                  </td>
 
-                            <td class="text-center">
-                              <div class="openModalBtn">
-                                <div data-id="wed-aft-{{ forloop.counter }}-sec" id="btn-wed-aft-{{ forloop.counter }}-sec" class="btn-group-toggle" data-toggle="buttons">
-                                  <label class="btn w-100 btn-notchecked disabled checkbox" for="wed-aft-{{ forloop.counter }}-sec">
-                                    <input disabled type="checkbox" id="wed-aft-{{ forloop.counter }}-sec"
-                                      value="{{ timeslot.hour_start }}-{{ timeslot.hour_end }},wed"
-                                      autocomplete="off">
-                                      <div id="sub-wed-aft-{{ forloop.counter }}-sec">--</div>
-                                  </label>
-                                </div>
-                              </div>
-                            </td>
+                  <td class="text-center">
+                    <div class="openModalBtn">
+                      <div data-id="tue-aft-{{ forloop.counter }}-sec" id="btn-tue-aft-{{ forloop.counter }}-sec"
+                        class="btn-group-toggle" data-toggle="buttons">
+                        <label class="btn w-100 btn-notchecked disabled checkbox"
+                          for="tue-aft-{{ forloop.counter }}-sec">
+                          <input disabled type="checkbox" id="tue-aft-{{ forloop.counter }}-sec"
+                            value="{{ timeslot.hour_start }}-{{ timeslot.hour_end }},tue" autocomplete="off">
+                          <div id="sub-tue-aft-{{ forloop.counter }}-sec">--</div>
+                        </label>
+                      </div>
+                    </div>
+                  </td>
 
-                            <td class="text-center">
-                              <div class="openModalBtn">
-                                <div data-id="thu-aft-{{ forloop.counter }}-sec" id="btn-thu-aft-{{ forloop.counter }}-sec" class="btn-group-toggle" data-toggle="buttons">
-                                  <label class="btn w-100 btn-notchecked disabled checkbox" for="thu-aft-{{ forloop.counter }}-sec">
-                                    <input disabled type="checkbox" id="thu-aft-{{ forloop.counter }}-sec"
-                                      value="{{ timeslot.hour_start }}-{{ timeslot.hour_end }},thu"
-                                      autocomplete="off">
-                                      <div id="sub-thu-aft-{{ forloop.counter }}-sec">--</div>
-                                  </label>
-                                </div>
-                              </div>
-                            </td>
+                  <td class="text-center">
+                    <div class="openModalBtn">
+                      <div data-id="wed-aft-{{ forloop.counter }}-sec" id="btn-wed-aft-{{ forloop.counter }}-sec"
+                        class="btn-group-toggle" data-toggle="buttons">
+                        <label class="btn w-100 btn-notchecked disabled checkbox"
+                          for="wed-aft-{{ forloop.counter }}-sec">
+                          <input disabled type="checkbox" id="wed-aft-{{ forloop.counter }}-sec"
+                            value="{{ timeslot.hour_start }}-{{ timeslot.hour_end }},wed" autocomplete="off">
+                          <div id="sub-wed-aft-{{ forloop.counter }}-sec">--</div>
+                        </label>
+                      </div>
+                    </div>
+                  </td>
 
-                            <td class="text-center">
-                              <div class="openModalBtn">
-                                <div data-id="fri-aft-{{ forloop.counter }}-sec" id="btn-fri-aft-{{ forloop.counter }}-sec" class="btn-group-toggle" data-toggle="buttons">
-                                  <label class="btn w-100 btn-notchecked disabled checkbox" for="fri-aft-{{ forloop.counter }}-sec">
-                                    <input disabled type="checkbox" id="fri-aft-{{ forloop.counter }}-sec"
-                                      value="{{ timeslot.hour_start }}-{{ timeslot.hour_end }},fri"
-                                      autocomplete="off">
-                                      <div id="sub-fri-aft-{{ forloop.counter }}-sec">--</div>
-                                  </label>
-                                </div>
-                              </div>
-                            </td>
+                  <td class="text-center">
+                    <div class="openModalBtn">
+                      <div data-id="thu-aft-{{ forloop.counter }}-sec" id="btn-thu-aft-{{ forloop.counter }}-sec"
+                        class="btn-group-toggle" data-toggle="buttons">
+                        <label class="btn w-100 btn-notchecked disabled checkbox"
+                          for="thu-aft-{{ forloop.counter }}-sec">
+                          <input disabled type="checkbox" id="thu-aft-{{ forloop.counter }}-sec"
+                            value="{{ timeslot.hour_start }}-{{ timeslot.hour_end }},thu" autocomplete="off">
+                          <div id="sub-thu-aft-{{ forloop.counter }}-sec">--</div>
+                        </label>
+                      </div>
+                    </div>
+                  </td>
 
-                            <td class="text-center">
-                              <div class="openModalBtn">
-                                <div data-id="sat-aft-{{ forloop.counter }}-sec" id="btn-sat-aft-{{ forloop.counter }}-sec" class="btn-group-toggle" data-toggle="buttons">
-                                  <label class="btn w-100 btn-notchecked disabled checkbox" for="sat-aft-{{ forloop.counter }}-sec">
-                                    <input disabled type="checkbox" id="sat-aft-{{ forloop.counter }}-sec"
-                                      value="{{ timeslot.hour_start }}-{{ timeslot.hour_end }},sat"
-                                      autocomplete="off">
-                                    <div id="sub-sat-aft-{{ forloop.counter }}-sec">--</div>
-                                  </label>
-                                </div>
-                              </div>
-                            </td>
-                          </tr>
+                  <td class="text-center">
+                    <div class="openModalBtn">
+                      <div data-id="fri-aft-{{ forloop.counter }}-sec" id="btn-fri-aft-{{ forloop.counter }}-sec"
+                        class="btn-group-toggle" data-toggle="buttons">
+                        <label class="btn w-100 btn-notchecked disabled checkbox"
+                          for="fri-aft-{{ forloop.counter }}-sec">
+                          <input disabled type="checkbox" id="fri-aft-{{ forloop.counter }}-sec"
+                            value="{{ timeslot.hour_start }}-{{ timeslot.hour_end }},fri" autocomplete="off">
+                          <div id="sub-fri-aft-{{ forloop.counter }}-sec">--</div>
+                        </label>
+                      </div>
+                    </div>
+                  </td>
 
-                        {% endfor %}
-                      {% else %}
-                        <td class="text-center align-middle column" rowspan="{{ shift.nocturnal_classes }}">{% trans "Noturno" %}</td>
+                  <td class="text-center">
+                    <div class="openModalBtn">
+                      <div data-id="sat-aft-{{ forloop.counter }}-sec" id="btn-sat-aft-{{ forloop.counter }}-sec"
+                        class="btn-group-toggle" data-toggle="buttons">
+                        <label class="btn w-100 btn-notchecked disabled checkbox"
+                          for="sat-aft-{{ forloop.counter }}-sec">
+                          <input disabled type="checkbox" id="sat-aft-{{ forloop.counter }}-sec"
+                            value="{{ timeslot.hour_start }}-{{ timeslot.hour_end }},sat" autocomplete="off">
+                          <div id="sub-sat-aft-{{ forloop.counter }}-sec">--</div>
+                        </label>
+                      </div>
+                    </div>
+                  </td>
+                </tr>
 
-                        {% for timeslot in shift.nocturnal %}
-                          <tr>
-                            <td class="text-center align-middle">{{ timeslot.hour_start|date:"H:i" }} - {{ timeslot.hour_end|date:"H:i" }}</td>
+                {% endfor %}
+                {% else %}
+                <td class="text-center align-middle column" rowspan="{{ shift.nocturnal_classes }}">
+                  {% trans "Noturno" %}</td>
 
-                            <td class="text-center">
-                              <div class="openModalBtn">
-                                <div data-id="mon-noc-{{ forloop.counter }}-sec" id="btn-mon-noc-{{ forloop.counter }}-sec" class="btn-group-toggle" data-toggle="buttons">
-                                  <label class="btn w-100 btn-notchecked disabled checkbox" for="mon-noc-{{ forloop.counter }}-sec">
-                                    <input disabled type="checkbox" id="mon-noc-{{ forloop.counter }}-sec"
-                                      value="{{ timeslot.hour_start }}-{{ timeslot.hour_end }},mon"
-                                      autocomplete="off">
-                                    <div id="sub-mon-noc-{{ forloop.counter }}-sec">--</div>
-                                  </label>
-                                </div>
-                              </div>
-                            </td>
+                {% for timeslot in shift.nocturnal %}
+                <tr>
+                  <td class="text-center align-middle">{{ timeslot.hour_start|date:"H:i" }} -
+                    {{ timeslot.hour_end|date:"H:i" }}</td>
 
-                            <td class="text-center">
-                              <div class="openModalBtn">
-                                <div data-id="tue-noc-{{ forloop.counter }}-sec" id="btn-tue-noc-{{ forloop.counter }}-sec" class="btn-group-toggle" data-toggle="buttons">
-                                  <label class="btn w-100 btn-notchecked checkbox disabled" for="tue-noc-{{ forloop.counter }}-sec">
-                                    <input disabled type="checkbox" id="tue-noc-{{ forloop.counter }}-sec"
-                                      value="{{ timeslot.hour_start }}-{{ timeslot.hour_end }},tue"
-                                      autocomplete="off">
-                                    <div id="sub-tue-noc-{{ forloop.counter }}-sec">--</div>
-                                  </label>
-                                </div>
-                              </div>
-                            </td>
+                  <td class="text-center">
+                    <div class="openModalBtn">
+                      <div data-id="mon-noc-{{ forloop.counter }}-sec" id="btn-mon-noc-{{ forloop.counter }}-sec"
+                        class="btn-group-toggle" data-toggle="buttons">
+                        <label class="btn w-100 btn-notchecked disabled checkbox"
+                          for="mon-noc-{{ forloop.counter }}-sec">
+                          <input disabled type="checkbox" id="mon-noc-{{ forloop.counter }}-sec"
+                            value="{{ timeslot.hour_start }}-{{ timeslot.hour_end }},mon" autocomplete="off">
+                          <div id="sub-mon-noc-{{ forloop.counter }}-sec">--</div>
+                        </label>
+                      </div>
+                    </div>
+                  </td>
 
-                            <td class="text-center">
-                              <div class="openModalBtn">
-                                <div data-id="wed-noc-{{ forloop.counter }}-sec" id="btn-wed-noc-{{ forloop.counter }}-sec" class="btn-group-toggle" data-toggle="buttons">
-                                  <label class="btn w-100 btn-notchecked disabled checkbox" for="wed-noc-{{ forloop.counter }}-sec">
-                                    <input disabled type="checkbox" id="wed-noc-{{ forloop.counter }}-sec"
-                                      value="{{ timeslot.hour_start }}-{{ timeslot.hour_end }},wed"
-                                      autocomplete="off">
-                                    <div id="sub-wed-noc-{{ forloop.counter }}-sec">--</div>
-                                  </label>
-                                </div>
-                              </div>
-                            </td>
+                  <td class="text-center">
+                    <div class="openModalBtn">
+                      <div data-id="tue-noc-{{ forloop.counter }}-sec" id="btn-tue-noc-{{ forloop.counter }}-sec"
+                        class="btn-group-toggle" data-toggle="buttons">
+                        <label class="btn w-100 btn-notchecked checkbox disabled"
+                          for="tue-noc-{{ forloop.counter }}-sec">
+                          <input disabled type="checkbox" id="tue-noc-{{ forloop.counter }}-sec"
+                            value="{{ timeslot.hour_start }}-{{ timeslot.hour_end }},tue" autocomplete="off">
+                          <div id="sub-tue-noc-{{ forloop.counter }}-sec">--</div>
+                        </label>
+                      </div>
+                    </div>
+                  </td>
 
-                            <td class="text-center">
-                              <div class="openModalBtn" >
-                                <div data-id="thu-noc-{{ forloop.counter }}-sec" id="btn-thu-noc-{{ forloop.counter }}-sec" class="btn-group-toggle" data-toggle="buttons">
-                                  <label class="btn w-100 btn-notchecked checkbox disabled" for="thu-noc-{{ forloop.counter }}-sec">
-                                    <input disabled type="checkbox" id="thu-noc-{{ forloop.counter }}-sec"
-                                      value="{{ timeslot.hour_start }}-{{ timeslot.hour_end }},tue"
-                                      autocomplete="off">
-                                      <div id="sub-thu-noc-{{ forloop.counter }}-sec">--</div>
-                                  </label>
-                                </div>
-                              </div>
-                            </td>
+                  <td class="text-center">
+                    <div class="openModalBtn">
+                      <div data-id="wed-noc-{{ forloop.counter }}-sec" id="btn-wed-noc-{{ forloop.counter }}-sec"
+                        class="btn-group-toggle" data-toggle="buttons">
+                        <label class="btn w-100 btn-notchecked disabled checkbox"
+                          for="wed-noc-{{ forloop.counter }}-sec">
+                          <input disabled type="checkbox" id="wed-noc-{{ forloop.counter }}-sec"
+                            value="{{ timeslot.hour_start }}-{{ timeslot.hour_end }},wed" autocomplete="off">
+                          <div id="sub-wed-noc-{{ forloop.counter }}-sec">--</div>
+                        </label>
+                      </div>
+                    </div>
+                  </td>
 
-                            <td class="text-center">
-                              <div class="openModalBtn">
-                                <div data-id="fri-noc-{{ forloop.counter }}-sec" id="btn-fri-noc-{{ forloop.counter }}-sec" class="btn-group-toggle" data-toggle="buttons">
-                                  <label class="btn w-100 btn-notchecked disabled checkbox" for="fri-noc-{{ forloop.counter }}-sec">
-                                    <input disabled type="checkbox" id="fri-noc-{{ forloop.counter }}-sec"
-                                      value="{{ timeslot.hour_start }}-{{ timeslot.hour_end }},fri"
-                                      autocomplete="off" >
-                                    <div id="sub-fri-noc-{{ forloop.counter }}-sec">--</div>
-                                  </label>
-                                </div>
-                              </div>
-                            </td>
+                  <td class="text-center">
+                    <div class="openModalBtn">
+                      <div data-id="thu-noc-{{ forloop.counter }}-sec" id="btn-thu-noc-{{ forloop.counter }}-sec"
+                        class="btn-group-toggle" data-toggle="buttons">
+                        <label class="btn w-100 btn-notchecked checkbox disabled"
+                          for="thu-noc-{{ forloop.counter }}-sec">
+                          <input disabled type="checkbox" id="thu-noc-{{ forloop.counter }}-sec"
+                            value="{{ timeslot.hour_start }}-{{ timeslot.hour_end }},tue" autocomplete="off">
+                          <div id="sub-thu-noc-{{ forloop.counter }}-sec">--</div>
+                        </label>
+                      </div>
+                    </div>
+                  </td>
 
-                            <td class="text-center">
-                              <div class="openModalBtn">
-                                <div data-id="sat-noc-{{ forloop.counter }}-sec"  id="btn-sat-noc-{{ forloop.counter }}-sec" class="btn-group-toggle" data-toggle="buttons">
-                                  <label class="btn w-100 btn-notchecked disabled checkbox" for="sat-noc-{{ forloop.counter }}-sec">
-                                    <input type="checkbox" id="sat-noc-{{ forloop.counter }}-sec"
-                                      value="{{ timeslot.hour_start }}-{{ timeslot.hour_end }},sat"
-                                      autocomplete="off" >
-                                    <div id="sub-sat-noc-{{ forloop.counter }}-sec">--</div>
-                                  </label>
-                                </div>
-                              </div>
-                            </td>
-                          </tr>
-                        {% endfor %}
-                      {% endif %}
-                    {% endfor %}
-                  </tbody>
-              </table>
-              <div class="modal center-modal fade my-custom-modal" id="add-course-modal" tabindex="-1" role="dialog" aria-labelledby="add-course-modal-label" aria-hidden="true">
-                <div class="modal-dialog" role="document">
-                  <div class="modal-content">
-                    <div class="modal-header">
-                      <h5 class="modal-title" id="add-course-modal-label">{% trans "Adicionar Disciplina" %}</h5><span id="cel-position"></span>
-                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <td class="text-center">
+                    <div class="openModalBtn">
+                      <div data-id="fri-noc-{{ forloop.counter }}-sec" id="btn-fri-noc-{{ forloop.counter }}-sec"
+                        class="btn-group-toggle" data-toggle="buttons">
+                        <label class="btn w-100 btn-notchecked disabled checkbox"
+                          for="fri-noc-{{ forloop.counter }}-sec">
+                          <input disabled type="checkbox" id="fri-noc-{{ forloop.counter }}-sec"
+                            value="{{ timeslot.hour_start }}-{{ timeslot.hour_end }},fri" autocomplete="off">
+                          <div id="sub-fri-noc-{{ forloop.counter }}-sec">--</div>
+                        </label>
+                      </div>
+                    </div>
+                  </td>
+
+                  <td class="text-center">
+                    <div class="openModalBtn">
+                      <div data-id="sat-noc-{{ forloop.counter }}-sec" id="btn-sat-noc-{{ forloop.counter }}-sec"
+                        class="btn-group-toggle" data-toggle="buttons">
+                        <label class="btn w-100 btn-notchecked disabled checkbox"
+                          for="sat-noc-{{ forloop.counter }}-sec">
+                          <input type="checkbox" id="sat-noc-{{ forloop.counter }}-sec"
+                            value="{{ timeslot.hour_start }}-{{ timeslot.hour_end }},sat" autocomplete="off">
+                          <div id="sub-sat-noc-{{ forloop.counter }}-sec">--</div>
+                        </label>
+                      </div>
+                    </div>
+                  </td>
+                </tr>
+                {% endfor %}
+                {% endif %}
+                {% endfor %}
+              </tbody>
+            </table>
+            <div class="modal center-modal fade my-custom-modal" id="add-course-modal" tabindex="-1" role="dialog"
+              aria-labelledby="add-course-modal-label" aria-hidden="true">
+              <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="add-course-modal-label">{% trans "Adicionar Disciplina" %}</h5><span
+                      id="cel-position"></span>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  <div class="modal-body">
+                    <div id="error-alert" class="alert alert-danger" style="display: none;">
+                      <button type="button" class="close" aria-label="Close" onclick="closeErrorAlert('error-alert')">
                         <span aria-hidden="true">&times;</span>
                       </button>
+                      <span class="fa fa-times-circle"></span>
+                      <b>{% trans "Erro" %}:</b>
+                      <span id="error-message"></span>
                     </div>
-                    <div class="modal-body">
-                      <div id="error-alert" class="alert alert-danger" style="display: none;">
-                        <button type="button" class="close" aria-label="Close" onclick="closeErrorAlert('error-alert')">
-                          <span aria-hidden="true">&times;</span>
-                        </button>
-                        <span class="fa fa-times-circle"></span>
-                        <b>{% trans "Erro" %}:</b>
-                        <span id="error-message"></span>                        
-                      </div>
-                      <div id="info-input-alert" class="alert alert-info" style="display: none;">
-                        <button type="button" class="close" aria-label="Close" onclick="closeErrorAlert('info-input-alert')">
-                          <span aria-hidden="true">&times;</span>
-                        </button>
-                        <span class="fas fa-info-circle"></span>
-                        <b>{% trans "Info" %}:</b>
-                        <span id="info-input-message"></span>                        
-                      </div>
-                      <form id="add-course-form" method="post">
-                        {% csrf_token %}
-                        <div class="row">
-                          <div class="col-md-6">
-                            <div class="form-group">
-                              <label for="block-filter" class="form-label">{% trans "Filtrar bloco" %}</label> 
-                              <button type="button" class="btn btn-outline-info info-button" onclick="info_button('block')">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-info-circle" viewBox="0 0 16 16">
-                                  <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
-                                  <path d="m8.93 6.588-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533L8.93 6.588zM9 4.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"/>
-                                </svg>
-                              </button>
-                              <div class="input-group">
-                                <input list="block-options" id="block-filter" placeholder="--" class="form-control mb-4"> <!-- HAKUN4MATAT4 -->
-                                <datalist id="block-options">
-                                </datalist>
-                              </div>
-                            </div>
-                          </div>
-
-                          <div class="col-md-6">
-                            <div class="form-group">
-                              <label for="area-filter" class="form-label">{% trans "Filtrar área" %}</label>
-                              <button type="button" class="btn btn-outline-info info-button" onclick="info_button('area')">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-info-circle" viewBox="0 0 16 16">
-                                  <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
-                                  <path d="m8.93 6.588-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533L8.93 6.588zM9 4.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"/>
-                                </svg>
-                              </button>
-                              <div class="input-group">
-                                <input list="area-options" id="area-filter" placeholder="--" class="form-control mb-4"> <!-- HAKUN4MATAT4 -->
-                                <datalist id="area-options">
-                                </datalist>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                        <div class="form-group">
-                          <label for="class-filter" class="form-label">{% trans "Disciplinas" %}</label>
-                          <div class="input-group">
-                            <input list="course-options" autocomplete="off" id="course-filter" class="form-control w-100" placeholder="{% trans Selecione %}">
-                            {% blocktrans with name_course_text=course.name_course acronym_text=course.acronym %}
-                              <datalist id="course-options">
-                                
+                    <div id="info-input-alert" class="alert alert-info" style="display: none;">
+                      <button type="button" class="close" aria-label="Close"
+                        onclick="closeErrorAlert('info-input-alert')">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                      <span class="fas fa-info-circle"></span>
+                      <b>{% trans "Info" %}:</b>
+                      <span id="info-input-message"></span>
+                    </div>
+                    <form id="add-course-form" method="post">
+                      {% csrf_token %}
+                      <div class="row">
+                        <div class="col-md-6">
+                          <div class="form-group">
+                            <label for="block-filter" class="form-label">{% trans "Filtrar bloco" %}</label>
+                            <button type="button" class="btn btn-outline-info info-button"
+                              onclick="info_button('block')">
+                              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                class="bi bi-info-circle" viewBox="0 0 16 16">
+                                <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
+                                <path
+                                  d="m8.93 6.588-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533L8.93 6.588zM9 4.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0z" />
+                              </svg>
+                            </button>
+                            <div class="input-group">
+                              <input list="block-options" id="block-filter" placeholder="--" class="form-control mb-4">
+                              <!-- HAKUN4MATAT4 -->
+                              <datalist id="block-options">
                               </datalist>
-                            {% endblocktrans %}                            
+                            </div>
                           </div>
                         </div>
-                        <div>
-                          <div id="info-alert" style="display: none">
-                            <table class="table table-sm table-info text-center">
-                              <tbody>
-                                <tr>
-                                  <td>{% trans "Sigla Disciplina" %}</td>
-                                  <td class="info-displine"></td>
-                                </tr>
-                                <tr>
-                                  <td>{% trans "Turma e Parte" %}</td>
-                                  <td class="info-class"></td>
-                                </tr>
-                                <tr>
-                                  <td>{% trans "Dia da Semana" %}</td>
-                                  <td class="info-day"></td>
-                                </tr>
-                                <tr>
-                                  <td>{% trans "Horário Início" %}</td>
-                                  <td class="info-start-hour"></td>
-                                </tr>
-                                <tr>
-                                  <td>{% trans "Horário Fim" %}</td>
-                                  <td class="info-end-hour"></td>
-                                </tr>                               
-                              </tbody>
-                            </table>
+
+                        <div class="col-md-6">
+                          <div class="form-group">
+                            <label for="area-filter" class="form-label">{% trans "Filtrar área" %}</label>
+                            <button type="button" class="btn btn-outline-info info-button"
+                              onclick="info_button('area')">
+                              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                class="bi bi-info-circle" viewBox="0 0 16 16">
+                                <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
+                                <path
+                                  d="m8.93 6.588-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533L8.93 6.588zM9 4.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0z" />
+                              </svg>
+                            </button>
+                            <div class="input-group">
+                              <input list="area-options" id="area-filter" placeholder="--" class="form-control mb-4">
+                              <!-- HAKUN4MATAT4 -->
+                              <datalist id="area-options">
+                              </datalist>
+                            </div>
                           </div>
                         </div>
-                      </form>
-                    </div>
-                    <div class="modal-footer">
-                      <button type="button" class="btn btn-secondary" data-dismiss="modal">{% trans "Fechar" %}</button>
-                      <button type="button" data-dismiss="modal" class="btn ada-btn-blue-dark" name="add-course" id="add-course-button">{% trans "Adicionar" %}</button>
-                    </div>
+                      </div>
+                      <div class="form-group">
+                        <label for="class-filter" class="form-label">{% trans "Disciplinas" %}</label>
+                        <div class="input-group">
+                          <input list="course-options" autocomplete="off" id="course-filter" class="form-control w-100"
+                            placeholder="{% trans Selecione %}">
+                          {% blocktrans with name_course_text=course.name_course acronym_text=course.acronym %}
+                          <datalist id="course-options">
+
+                          </datalist>
+                          {% endblocktrans %}
+                        </div>
+                      </div>
+                      <div>
+                        <div id="info-alert" style="display: none">
+                          <table class="table table-sm table-info text-center">
+                            <tbody>
+                              <tr>
+                                <td>{% trans "Sigla Disciplina" %}</td>
+                                <td class="info-displine"></td>
+                              </tr>
+                              <tr>
+                                <td>{% trans "Turma e Parte" %}</td>
+                                <td class="info-class"></td>
+                              </tr>
+                              <tr>
+                                <td>{% trans "Dia da Semana" %}</td>
+                                <td class="info-day"></td>
+                              </tr>
+                              <tr>
+                                <td>{% trans "Horário Início" %}</td>
+                                <td class="info-start-hour"></td>
+                              </tr>
+                              <tr>
+                                <td>{% trans "Horário Fim" %}</td>
+                                <td class="info-end-hour"></td>
+                              </tr>
+                            </tbody>
+                          </table>
+                        </div>
+                      </div>
+                    </form>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">{% trans "Fechar" %}</button>
+                    <button type="button" data-dismiss="modal" class="btn ada-btn-blue-dark" name="add-course"
+                      id="add-course-button">{% trans "Adicionar" %}</button>
                   </div>
                 </div>
               </div>
@@ -743,12 +811,20 @@
           </div>
         </div>
       </div>
-      <button type="button" class="btn ada-btn-blue-dark float-right mt-4 mb-5" name="send-courses" id="send-courses">{% trans "Enviar Disciplinas" %}</button>
-      <a href="{% url 'disponibility_attribution_preference' %}"><button type="button"  class="btn ada-btn-blue float-left mt-4 mb-5 mr-2" ><i class="fa fa-redo"></i> {% trans "Retornar a Disponibilidade" %}</button></a>
-    </form>
-  </section>
+    </div>
+    <button type="button" class="btn ada-btn-blue-dark float-right mt-4 mb-5" name="send-courses"
+      id="send-courses">{% trans "Enviar Disciplinas" %}</button>
+    <a href="{% url 'disponibility_attribution_preference' %}"><button type="button"
+        class="btn ada-btn-blue float-left mt-4 mb-5 mr-2"><i class="fa fa-redo"></i>
+        {% trans "Retornar a Disponibilidade" %}</button></a>
+  </form>
+</section>
 {% endblock %}
 
 {% block endbody %}
-  <script src="{% static 'attribution_preference/js/courses.js' %}" data-lang='{{ LANGUAGE_CODE }}' user_is_fgfcc='{{ user_is_fgfcc }}' user_courses_from_blockk="{{user_courses_from_blockk}}" user_courses_from_fpa="{{user_courses_from_fpa}}" user_regime='{{ user_regime }}' user_blocks='{{ user_blockk }}' user_areas='{{ user_areas }}' user_courses='{{ user_courses }}' user_timetables='{{ user_timetables }}' user_disponibility='{{ user_disponibility }}'></script>
+<script src="{% static 'attribution_preference/js/courses.js' %}" data-lang='{{ LANGUAGE_CODE }}'
+  user_is_fgfcc='{{ user_is_fgfcc }}' user_courses_from_blockk="{{user_courses_from_blockk}}"
+  user_courses_from_fpa="{{user_courses_from_fpa}}" user_regime='{{ user_regime }}' user_blocks='{{ user_blockk }}'
+  user_areas='{{ user_areas }}' user_courses='{{ user_courses }}' user_timetables='{{ user_timetables }}'
+  user_disponibility='{{ user_disponibility }}'></script>
 {% endblock %}

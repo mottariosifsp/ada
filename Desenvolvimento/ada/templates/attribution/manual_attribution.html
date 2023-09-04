@@ -3,455 +3,471 @@
 {% load static %}
 
 {% block head %}
-  <title>{% trans "Atribuição Manual" %}</title>
-  <link rel="stylesheet" href="{% static 'attribution_preference/css/courses.css' %}">
-  <style>
-    .btn-checked {
-      background-color: #2f7363;
-      color: white;
-    }
-    .btn-checked:hover {
-      font-weight: 700;
-      color: white;
-    }
+<title>{% trans "Atribuição Manual" %}</title>
+<link rel="stylesheet" href="{% static 'attribution_preference/css/courses.css' %}">
+<style>
+  .btn-checked {
+    background-color: #2f7363;
+    color: white;
+  }
 
-    label.checkbox {
-      font-weight: 700;
-      color: white;
-      background-color: #507c75;
-    }
-  </style>
+  .btn-checked:hover {
+    font-weight: 700;
+    color: white;
+  }
+
+  label.checkbox {
+    font-weight: 700;
+    color: white;
+    background-color: #507c75;
+  }
+</style>
 {% endblock %}
 
 {% block body %}
 
 <section class="section dashboard">
-    <h1 class="title-page">{% trans "Escolha as suas preferências novamente" %}</h1>
-    <hr>
-    <form id="sendDisponibilityForm" method="post">
-      {% csrf_token %}
-      <div id="error-alert-form" class="alert alert-danger" style="display: none;">
-        <span id="error-message-form"></span>
-      </div>
+  <h1 class="title-page mt-4">{% trans "Atribuição Manual" %}</h1>
+  <hr>
+  <p>Escolha as suas preferências novamente.</p>
+  <form id="sendDisponibilityForm" method="post">
+    {% csrf_token %}
+    <div id="error-alert-form" class="alert alert-danger" style="display: none;">
+      <span id="error-message-form"></span>
+    </div>
 
-      <div class="row">
-        <div class="col-xxl-4 col-md-6">
-          <div class="card info-card sales-card">
-            <div class="card-body">
-              <h4 class="card-title">{% trans "Bloco" %}:</h4>
-              <hr class="my-0">
-              <div class="text-center mt-4 mb-4 pr-2 pl-2 d-flex">
-                <h2 id="blockk" value="{{blockk.registration_block_id}}">{{blockk.name_block}}</h2>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-xxl-4 col-md-6">
-          <div class="card info-card sales-card">
-            <div class="card-body">
-              <h4 class="card-title">{% trans "Células de horas restantes" %}:</h4>
-              <hr class="my-0">
-              <div class="text-center" id="count-cel">
-                <span class="min-cel" id="cel-hour">--</span><span class="cel">{% trans "células" %}</span>
-              </div>
+    <div class="row">
+      <div class="col-xxl-4 col-md-6">
+        <div class="card info-card sales-card">
+          <div class="card-body">
+            <h4 class="card-title">{% trans "Bloco" %}:</h4>
+            <hr class="my-0">
+            <div class="text-center mt-4 mb-4 pr-2 pl-2 d-flex">
+              <h2 id="blockk" value="{{blockk.registration_block_id}}">{{blockk.name_block}}</h2>
             </div>
           </div>
         </div>
       </div>
-      <div class="card info-card sales-card mt-4">
-        <div class="card-body">
-          <div id="work-availability">
-            <h4>{% trans "Disciplinas" %}</h4>
-            <hr>
-            <div id="warning-alert" class="alert alert-warning" style="display: none;">
-              <span id="warning-alert-message"></span>
-              <div id="warning-list-message"></div>
+      <div class="col-xxl-4 col-md-6">
+        <div class="card info-card sales-card">
+          <div class="card-body">
+            <h4 class="card-title">{% trans "Células de horas restantes" %}:</h4>
+            <hr class="my-0">
+            <div class="text-center" id="count-cel">
+              <span class="min-cel" id="cel-hour">--</span><span class="cel">{% trans "células" %}</span>
             </div>
-            <div class="table-responsive">
-              <table class="table table-bordered table-sm text-center">
-                <thead>
-                  <tr>
-                    <th class="col-1 text-center align-middle">{% trans "Período" %}</th>
-                    <th class="col-2 text-center align-middle">{% trans "Horários" %}</th>
-                    <th class=" text-center">{% trans "Segunda-Feira" %}</th>
-                    <th class=" text-center">{% trans "Terça-Feira" %}</th>
-                    <th class=" text-center">{% trans "Quarta-Feira" %}</th>
-                    <th class=" text-center">{% trans "Quinta-Feira" %}</th>
-                    <th class=" text-center">{% trans "Sexta-Feira" %}</th>
-                    <th class=" text-center">{% trans "Sábado" %}</th>
-                  </tr>
-                </thead>
-                  <tbody class="block" id="timetable-courses" >
-                    {% for i in "MVN" %}
-                      {% if i == "M" %}
-                        <td class="text-center align-middle" rowspan='{{ turno.matutinoAulas }}'>{% trans "Matutino" %}</td>
-                        {% for horario in turno.matutino %}
-                          <tr>
-                            <td class="text-center align-middle">{{ horario.hour_start }} - {{ horario.hour_end }}</td>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="card info-card sales-card mt-4">
+      <div class="card-body">
+        <div id="work-availability">
+          <h4>{% trans "Disciplinas" %}</h4>
+          <hr>
+          <div id="warning-alert" class="alert alert-warning" style="display: none;">
+            <span id="warning-alert-message"></span>
+            <div id="warning-list-message"></div>
+          </div>
+          <div class="table-responsive">
+            <table class="table table-bordered table-sm text-center">
+              <thead>
+                <tr>
+                  <th class="col-1 text-center align-middle">{% trans "Período" %}</th>
+                  <th class="col-2 text-center align-middle">{% trans "Horários" %}</th>
+                  <th class=" text-center">{% trans "Segunda-Feira" %}</th>
+                  <th class=" text-center">{% trans "Terça-Feira" %}</th>
+                  <th class=" text-center">{% trans "Quarta-Feira" %}</th>
+                  <th class=" text-center">{% trans "Quinta-Feira" %}</th>
+                  <th class=" text-center">{% trans "Sexta-Feira" %}</th>
+                  <th class=" text-center">{% trans "Sábado" %}</th>
+                </tr>
+              </thead>
+              <tbody class="block" id="timetable-courses">
+                {% for i in "MVN" %}
+                {% if i == "M" %}
+                <td class="text-center align-middle" rowspan='{{ turno.matutinoAulas }}'>{% trans "Matutino" %}</td>
+                {% for horario in turno.matutino %}
+                <tr>
+                  <td class="text-center align-middle">{{ horario.hour_start }} - {{ horario.hour_end }}</td>
 
-                            <td class="text-center">
-                              <div class="openModalBtn">
-                                <div data-toggle="modal" data-target="#addCourseModal" data-id="mon-mat-{{ forloop.counter }}" id="btn-mon-mat-{{ forloop.counter }}" class="btn-group-toggle" data-toggle="buttons">
-                                    <label class="btn w-100 btn-notchecked checkbox" for="mon-mat-{{ forloop.counter }}">
-                                        <input type="checkbox" id="mon-mat-{{ forloop.counter }}" value="{{ horario.hour_start }}-{{ horario.hour_end }},mon" autocomplete="off" />
-                                        <div id="sub-mon-mat-{{ forloop.counter }}">+</div>
-                                    </label>
-                                </div>
-                              </div>
-                            </td>
+                  <td class="text-center">
+                    <div class="openModalBtn">
+                      <div data-toggle="modal" data-target="#addCourseModal" data-id="mon-mat-{{ forloop.counter }}"
+                        id="btn-mon-mat-{{ forloop.counter }}" class="btn-group-toggle" data-toggle="buttons">
+                        <label class="btn w-100 btn-notchecked checkbox" for="mon-mat-{{ forloop.counter }}">
+                          <input type="checkbox" id="mon-mat-{{ forloop.counter }}"
+                            value="{{ horario.hour_start }}-{{ horario.hour_end }},mon" autocomplete="off" />
+                          <div id="sub-mon-mat-{{ forloop.counter }}">+</div>
+                        </label>
+                      </div>
+                    </div>
+                  </td>
 
-                            <td class="text-center">
-                              <div class="openModalBtn">
-                                <div data-toggle="modal" data-target="#addCourseModal" data-id="tue-mat-{{ forloop.counter }}" id="btn-tue-mat-{{ forloop.counter }}" class="btn-group-toggle" data-toggle="buttons">
-                                  <label class="btn w-100 btn-notchecked checkbox" for="tue-mat-{{ forloop.counter }}">
-                                    <input type="checkbox" id="tue-mat-{{ forloop.counter }}"
-                                      value="{{ horario.hour_start }}-{{ horario.hour_end }},tue"
-                                      autocomplete="off">
-                                      <div id="sub-tue-mat-{{ forloop.counter }}">+</div>
-                                  </label>
-                                </div>
-                              </div>
-                            </td>
+                  <td class="text-center">
+                    <div class="openModalBtn">
+                      <div data-toggle="modal" data-target="#addCourseModal" data-id="tue-mat-{{ forloop.counter }}"
+                        id="btn-tue-mat-{{ forloop.counter }}" class="btn-group-toggle" data-toggle="buttons">
+                        <label class="btn w-100 btn-notchecked checkbox" for="tue-mat-{{ forloop.counter }}">
+                          <input type="checkbox" id="tue-mat-{{ forloop.counter }}"
+                            value="{{ horario.hour_start }}-{{ horario.hour_end }},tue" autocomplete="off">
+                          <div id="sub-tue-mat-{{ forloop.counter }}">+</div>
+                        </label>
+                      </div>
+                    </div>
+                  </td>
 
-                            <td class="text-center">
-                              <div class="openModalBtn">
-                                <div data-toggle="modal" data-target="#addCourseModal" data-id="wed-mat-{{ forloop.counter }}" id="btn-wed-mat-{{ forloop.counter }}" class="btn-group-toggle" data-toggle="buttons">
-                                  <label class="btn w-100 btn-notchecked checkbox " for="wed-mat-{{ forloop.counter }}">
-                                    <input type="checkbox" id="wed-mat-{{ forloop.counter }}"
-                                      value="{{ horario.hour_start }}-{{ horario.hour_end }},wed"
-                                      autocomplete="off">
-                                      <div id="sub-wed-mat-{{ forloop.counter }}">+</div>
-                                  </label>
-                                </div>
-                              </div>
-                            </td>
+                  <td class="text-center">
+                    <div class="openModalBtn">
+                      <div data-toggle="modal" data-target="#addCourseModal" data-id="wed-mat-{{ forloop.counter }}"
+                        id="btn-wed-mat-{{ forloop.counter }}" class="btn-group-toggle" data-toggle="buttons">
+                        <label class="btn w-100 btn-notchecked checkbox " for="wed-mat-{{ forloop.counter }}">
+                          <input type="checkbox" id="wed-mat-{{ forloop.counter }}"
+                            value="{{ horario.hour_start }}-{{ horario.hour_end }},wed" autocomplete="off">
+                          <div id="sub-wed-mat-{{ forloop.counter }}">+</div>
+                        </label>
+                      </div>
+                    </div>
+                  </td>
 
-                            <td class="text-center">
-                              <div class="openModalBtn">
-                                <div data-toggle="modal" data-target="#addCourseModal" data-id="thu-mat-{{ forloop.counter }}" id="btn-thu-mat-{{ forloop.counter }}" class="btn-group-toggle" data-toggle="buttons">
-                                  <label class="btn w-100 btn-notchecked checkbox" for="thu-mat-{{ forloop.counter }}">
-                                    <input type="checkbox" id="thu-mat-{{ forloop.counter }}"
-                                      value="{{ horario.hour_start }}-{{ horario.hour_end }},thu"
-                                      autocomplete="off">
-                                      <div id="sub-thu-mat-{{ forloop.counter }}">+</div>
-                                  </label>
-                                </div>
-                              </div>
-                            </td>
+                  <td class="text-center">
+                    <div class="openModalBtn">
+                      <div data-toggle="modal" data-target="#addCourseModal" data-id="thu-mat-{{ forloop.counter }}"
+                        id="btn-thu-mat-{{ forloop.counter }}" class="btn-group-toggle" data-toggle="buttons">
+                        <label class="btn w-100 btn-notchecked checkbox" for="thu-mat-{{ forloop.counter }}">
+                          <input type="checkbox" id="thu-mat-{{ forloop.counter }}"
+                            value="{{ horario.hour_start }}-{{ horario.hour_end }},thu" autocomplete="off">
+                          <div id="sub-thu-mat-{{ forloop.counter }}">+</div>
+                        </label>
+                      </div>
+                    </div>
+                  </td>
 
-                            <td class="text-center">
-                              <div class="openModalBtn">
-                                <div data-toggle="modal" data-target="#addCourseModal" data-id="fri-mat-{{ forloop.counter }}" id="btn-fri-mat-{{ forloop.counter }}" class="btn-group-toggle" data-toggle="buttons">
-                                  <label class="btn w-100 btn-notchecked checkbox " for="fri-mat-{{ forloop.counter }}">
-                                    <input type="checkbox" id="fri-mat-{{ forloop.counter }}"
-                                      value="{{ horario.hour_start }}-{{ horario.hour_end }},fri"
-                                      autocomplete="off">
-                                      <div id="sub-fri-mat-{{ forloop.counter }}">+</div>
-                                  </label>
-                                </div>
-                              </div>
-                            </td>
+                  <td class="text-center">
+                    <div class="openModalBtn">
+                      <div data-toggle="modal" data-target="#addCourseModal" data-id="fri-mat-{{ forloop.counter }}"
+                        id="btn-fri-mat-{{ forloop.counter }}" class="btn-group-toggle" data-toggle="buttons">
+                        <label class="btn w-100 btn-notchecked checkbox " for="fri-mat-{{ forloop.counter }}">
+                          <input type="checkbox" id="fri-mat-{{ forloop.counter }}"
+                            value="{{ horario.hour_start }}-{{ horario.hour_end }},fri" autocomplete="off">
+                          <div id="sub-fri-mat-{{ forloop.counter }}">+</div>
+                        </label>
+                      </div>
+                    </div>
+                  </td>
 
-                            <td class="text-center">
-                              <div class="openModalBtn">
-                                <div data-toggle="modal" data-target="#addCourseModal" data-id="sat-mat-{{ forloop.counter }}" id="btn-sat-mat-{{ forloop.counter }}" class="btn-group-toggle" data-toggle="buttons">
-                                  <label class="btn w-100 btn-notchecked  checkbox" for="sat-mat-{{ forloop.counter }}">
-                                    <input  type="checkbox" id="sat-mat-{{ forloop.counter }}"
-                                      value="{{ horario.hour_start }}-{{ horario.hour_end }},sat"
-                                      autocomplete="off">
-                                    <div id="sub-sat-mat-{{ forloop.counter }}">+</div>
-                                  </label>
-                                </div>
-                              </div>
-                            </td>
-                          </tr>
-                        {% endfor %}
-                      {% elif i == "V" %}
-                        <td class="text-center align-middle" rowspan="{{ turno.vespertinoAulas }}">{% trans "Vespertino" %}</td>
+                  <td class="text-center">
+                    <div class="openModalBtn">
+                      <div data-toggle="modal" data-target="#addCourseModal" data-id="sat-mat-{{ forloop.counter }}"
+                        id="btn-sat-mat-{{ forloop.counter }}" class="btn-group-toggle" data-toggle="buttons">
+                        <label class="btn w-100 btn-notchecked  checkbox" for="sat-mat-{{ forloop.counter }}">
+                          <input type="checkbox" id="sat-mat-{{ forloop.counter }}"
+                            value="{{ horario.hour_start }}-{{ horario.hour_end }},sat" autocomplete="off">
+                          <div id="sub-sat-mat-{{ forloop.counter }}">+</div>
+                        </label>
+                      </div>
+                    </div>
+                  </td>
+                </tr>
+                {% endfor %}
+                {% elif i == "V" %}
+                <td class="text-center align-middle" rowspan="{{ turno.vespertinoAulas }}">{% trans "Vespertino" %}</td>
 
-                        {% for horario in turno.vespertino %}
-                          <tr>
-                            <td class="text-center align-middle">{{ horario.hour_start }} - {{ horario.hour_end }}</td>
+                {% for horario in turno.vespertino %}
+                <tr>
+                  <td class="text-center align-middle">{{ horario.hour_start }} - {{ horario.hour_end }}</td>
 
-                            <td class="text-center">
-                              <div class="openModalBtn">
-                                <div data-toggle="modal" data-target="#addCourseModal" data-id="mon-ves-{{ forloop.counter }}" id="btn-mon-ves-{{ forloop.counter }}" class="btn-group-toggle" data-toggle="buttons">
-                                  <label class="btn w-100 btn-notchecked  checkbox" for="mon-ves-{{ forloop.counter }}">
-                                    <input  type="checkbox" id="mon-ves-{{ forloop.counter }}"
-                                      value="{{ horario.hour_start }}-{{ horario.hour_end }},mon"
-                                      autocomplete="off">
-                                      <div id="sub-mon-ves-{{ forloop.counter }}">+</div>
-                                  </label>
-                                </div>
-                              </div>
-                            </td>
+                  <td class="text-center">
+                    <div class="openModalBtn">
+                      <div data-toggle="modal" data-target="#addCourseModal" data-id="mon-ves-{{ forloop.counter }}"
+                        id="btn-mon-ves-{{ forloop.counter }}" class="btn-group-toggle" data-toggle="buttons">
+                        <label class="btn w-100 btn-notchecked  checkbox" for="mon-ves-{{ forloop.counter }}">
+                          <input type="checkbox" id="mon-ves-{{ forloop.counter }}"
+                            value="{{ horario.hour_start }}-{{ horario.hour_end }},mon" autocomplete="off">
+                          <div id="sub-mon-ves-{{ forloop.counter }}">+</div>
+                        </label>
+                      </div>
+                    </div>
+                  </td>
 
-                            <td class="text-center">
-                              <div class="openModalBtn">
-                                <div data-toggle="modal" data-target="#addCourseModal" data-id="tue-ves-{{ forloop.counter }}" id="btn-tue-ves-{{ forloop.counter }}" class="btn-group-toggle" data-toggle="buttons">
-                                  <label class="btn w-100 btn-notchecked  checkbox" for="tue-ves-{{ forloop.counter }}">
-                                    <input  type="checkbox" id="tue-ves-{{ forloop.counter }}"
-                                      value="{{ horario.hour_start }}-{{ horario.hour_end }},tue"
-                                      autocomplete="off">
-                                      <div id="sub-tue-ves-{{ forloop.counter }}">+</div>
-                                  </label>
-                                </div>
-                              </div>
-                            </td>
+                  <td class="text-center">
+                    <div class="openModalBtn">
+                      <div data-toggle="modal" data-target="#addCourseModal" data-id="tue-ves-{{ forloop.counter }}"
+                        id="btn-tue-ves-{{ forloop.counter }}" class="btn-group-toggle" data-toggle="buttons">
+                        <label class="btn w-100 btn-notchecked  checkbox" for="tue-ves-{{ forloop.counter }}">
+                          <input type="checkbox" id="tue-ves-{{ forloop.counter }}"
+                            value="{{ horario.hour_start }}-{{ horario.hour_end }},tue" autocomplete="off">
+                          <div id="sub-tue-ves-{{ forloop.counter }}">+</div>
+                        </label>
+                      </div>
+                    </div>
+                  </td>
 
-                            <td class="text-center">
-                              <div class="openModalBtn">
-                                <div data-toggle="modal" data-target="#addCourseModal" data-id="wed-ves-{{ forloop.counter }}" id="btn-wed-ves-{{ forloop.counter }}" class="btn-group-toggle" data-toggle="buttons">
-                                  <label class="btn w-100 btn-notchecked  checkbox" for="wed-ves-{{ forloop.counter }}">
-                                    <input  type="checkbox" id="wed-ves-{{ forloop.counter }}"
-                                      value="{{ horario.hour_start }}-{{ horario.hour_end }},wed"
-                                      autocomplete="off">
-                                      <div id="sub-wed-ves-{{ forloop.counter }}">+</div>
-                                  </label>
-                                </div>
-                              </div>
-                            </td>
+                  <td class="text-center">
+                    <div class="openModalBtn">
+                      <div data-toggle="modal" data-target="#addCourseModal" data-id="wed-ves-{{ forloop.counter }}"
+                        id="btn-wed-ves-{{ forloop.counter }}" class="btn-group-toggle" data-toggle="buttons">
+                        <label class="btn w-100 btn-notchecked  checkbox" for="wed-ves-{{ forloop.counter }}">
+                          <input type="checkbox" id="wed-ves-{{ forloop.counter }}"
+                            value="{{ horario.hour_start }}-{{ horario.hour_end }},wed" autocomplete="off">
+                          <div id="sub-wed-ves-{{ forloop.counter }}">+</div>
+                        </label>
+                      </div>
+                    </div>
+                  </td>
 
-                            <td class="text-center">
-                              <div class="openModalBtn">
-                                <div data-toggle="modal" data-target="#addCourseModal" data-id="thu-ves-{{ forloop.counter }}" id="btn-thu-ves-{{ forloop.counter }}" class="btn-group-toggle" data-toggle="buttons">
-                                  <label class="btn w-100 btn-notchecked  checkbox" for="thu-ves-{{ forloop.counter }}">
-                                    <input  type="checkbox" id="thu-ves-{{ forloop.counter }}"
-                                      value="{{ horario.hour_start }}-{{ horario.hour_end }},thu"
-                                      autocomplete="off">
-                                      <div id="sub-thu-ves-{{ forloop.counter }}">+</div>
-                                  </label>
-                                </div>
-                              </div>
-                            </td>
+                  <td class="text-center">
+                    <div class="openModalBtn">
+                      <div data-toggle="modal" data-target="#addCourseModal" data-id="thu-ves-{{ forloop.counter }}"
+                        id="btn-thu-ves-{{ forloop.counter }}" class="btn-group-toggle" data-toggle="buttons">
+                        <label class="btn w-100 btn-notchecked  checkbox" for="thu-ves-{{ forloop.counter }}">
+                          <input type="checkbox" id="thu-ves-{{ forloop.counter }}"
+                            value="{{ horario.hour_start }}-{{ horario.hour_end }},thu" autocomplete="off">
+                          <div id="sub-thu-ves-{{ forloop.counter }}">+</div>
+                        </label>
+                      </div>
+                    </div>
+                  </td>
 
-                            <td class="text-center">
-                              <div class="openModalBtn">
-                                <div data-toggle="modal" data-target="#addCourseModal" data-id="fri-ves-{{ forloop.counter }}" id="btn-fri-ves-{{ forloop.counter }}" class="btn-group-toggle" data-toggle="buttons">
-                                  <label class="btn w-100 btn-notchecked  checkbox" for="fri-ves-{{ forloop.counter }}">
-                                    <input  type="checkbox" id="fri-ves-{{ forloop.counter }}"
-                                      value="{{ horario.hour_start }}-{{ horario.hour_end }},fri"
-                                      autocomplete="off">
-                                      <div id="sub-fri-ves-{{ forloop.counter }}">+</div>
-                                  </label>
-                                </div>
-                              </div>
-                            </td>
+                  <td class="text-center">
+                    <div class="openModalBtn">
+                      <div data-toggle="modal" data-target="#addCourseModal" data-id="fri-ves-{{ forloop.counter }}"
+                        id="btn-fri-ves-{{ forloop.counter }}" class="btn-group-toggle" data-toggle="buttons">
+                        <label class="btn w-100 btn-notchecked  checkbox" for="fri-ves-{{ forloop.counter }}">
+                          <input type="checkbox" id="fri-ves-{{ forloop.counter }}"
+                            value="{{ horario.hour_start }}-{{ horario.hour_end }},fri" autocomplete="off">
+                          <div id="sub-fri-ves-{{ forloop.counter }}">+</div>
+                        </label>
+                      </div>
+                    </div>
+                  </td>
 
-                            <td class="text-center">
-                              <div class="openModalBtn">
-                                <div data-toggle="modal" data-target="#addCourseModal" data-id="sat-ves-{{ forloop.counter }}" id="btn-sat-ves-{{ forloop.counter }}" class="btn-group-toggle" data-toggle="buttons">
-                                  <label class="btn w-100 btn-notchecked  checkbox" for="sat-ves-{{ forloop.counter }}">
-                                    <input  type="checkbox" id="sat-ves-{{ forloop.counter }}"
-                                      value="{{ horario.hour_start }}-{{ horario.hour_end }},sat"
-                                      autocomplete="off">
-                                    <div id="sub-sat-ves-{{ forloop.counter }}">+</div>
-                                  </label>
-                                </div>
-                              </div>
-                            </td>
-                          </tr>
+                  <td class="text-center">
+                    <div class="openModalBtn">
+                      <div data-toggle="modal" data-target="#addCourseModal" data-id="sat-ves-{{ forloop.counter }}"
+                        id="btn-sat-ves-{{ forloop.counter }}" class="btn-group-toggle" data-toggle="buttons">
+                        <label class="btn w-100 btn-notchecked  checkbox" for="sat-ves-{{ forloop.counter }}">
+                          <input type="checkbox" id="sat-ves-{{ forloop.counter }}"
+                            value="{{ horario.hour_start }}-{{ horario.hour_end }},sat" autocomplete="off">
+                          <div id="sub-sat-ves-{{ forloop.counter }}">+</div>
+                        </label>
+                      </div>
+                    </div>
+                  </td>
+                </tr>
 
-                        {% endfor %}
-                      {% else %}
-                        <td class="text-center align-middle" rowspan="{{ turno.noturnoAulas }}">{% trans "Noturno" %}</td>
+                {% endfor %}
+                {% else %}
+                <td class="text-center align-middle" rowspan="{{ turno.noturnoAulas }}">{% trans "Noturno" %}</td>
 
-                        {% for horario in turno.noturno %}
-                          <tr>
-                            <td class="text-center align-middle">{{ horario.hour_start }} - {{ horario.hour_end }}</td>
+                {% for horario in turno.noturno %}
+                <tr>
+                  <td class="text-center align-middle">{{ horario.hour_start }} - {{ horario.hour_end }}</td>
 
-                            <td class="text-center">
-                              <div class="openModalBtn">
-                                <div data-toggle="modal" data-target="#addCourseModal" data-id="mon-not-{{ forloop.counter }}" id="btn-mon-not-{{ forloop.counter }}" class="btn-group-toggle" data-toggle="buttons">
-                                  <label class="btn w-100 btn-notchecked  checkbox" for="mon-not-{{ forloop.counter }}">
-                                    <input  type="checkbox" id="mon-not-{{ forloop.counter }}"
-                                      value="{{ horario.hour_start }}-{{ horario.hour_end }},mon"
-                                      autocomplete="off">
-                                    <div id="sub-mon-not-{{ forloop.counter }}">+</div>
-                                  </label>
-                                </div>
-                              </div>
-                            </td>
+                  <td class="text-center">
+                    <div class="openModalBtn">
+                      <div data-toggle="modal" data-target="#addCourseModal" data-id="mon-not-{{ forloop.counter }}"
+                        id="btn-mon-not-{{ forloop.counter }}" class="btn-group-toggle" data-toggle="buttons">
+                        <label class="btn w-100 btn-notchecked  checkbox" for="mon-not-{{ forloop.counter }}">
+                          <input type="checkbox" id="mon-not-{{ forloop.counter }}"
+                            value="{{ horario.hour_start }}-{{ horario.hour_end }},mon" autocomplete="off">
+                          <div id="sub-mon-not-{{ forloop.counter }}">+</div>
+                        </label>
+                      </div>
+                    </div>
+                  </td>
 
-                            <td class="text-center">
-                              <div class="openModalBtn">
-                                <div data-toggle="modal" data-target="#addCourseModal" data-id="tue-not-{{ forloop.counter }}" id="btn-tue-not-{{ forloop.counter }}" class="btn-group-toggle" data-toggle="buttons">
-                                  <label class="btn w-100 btn-notchecked checkbox " for="tue-not-{{ forloop.counter }}">
-                                    <input  type="checkbox" id="tue-not-{{ forloop.counter }}"
-                                      value="{{ horario.hour_start }}-{{ horario.hour_end }},tue"
-                                      autocomplete="off">
-                                    <div id="sub-tue-not-{{ forloop.counter }}">+</div>
-                                  </label>
-                                </div>
-                              </div>
-                            </td>
+                  <td class="text-center">
+                    <div class="openModalBtn">
+                      <div data-toggle="modal" data-target="#addCourseModal" data-id="tue-not-{{ forloop.counter }}"
+                        id="btn-tue-not-{{ forloop.counter }}" class="btn-group-toggle" data-toggle="buttons">
+                        <label class="btn w-100 btn-notchecked checkbox " for="tue-not-{{ forloop.counter }}">
+                          <input type="checkbox" id="tue-not-{{ forloop.counter }}"
+                            value="{{ horario.hour_start }}-{{ horario.hour_end }},tue" autocomplete="off">
+                          <div id="sub-tue-not-{{ forloop.counter }}">+</div>
+                        </label>
+                      </div>
+                    </div>
+                  </td>
 
-                            <td class="text-center">
-                              <div class="openModalBtn">
-                                <div data-toggle="modal" data-target="#addCourseModal" data-id="wed-not-{{ forloop.counter }}" id="btn-wed-not-{{ forloop.counter }}" class="btn-group-toggle" data-toggle="buttons">
-                                  <label class="btn w-100 btn-notchecked  checkbox" for="wed-not-{{ forloop.counter }}">
-                                    <input  type="checkbox" id="wed-not-{{ forloop.counter }}"
-                                      value="{{ horario.hour_start }}-{{ horario.hour_end }},wed"
-                                      autocomplete="off">
-                                    <div id="sub-wed-not-{{ forloop.counter }}">+</div>
-                                  </label>
-                                </div>
-                              </div>
-                            </td>
+                  <td class="text-center">
+                    <div class="openModalBtn">
+                      <div data-toggle="modal" data-target="#addCourseModal" data-id="wed-not-{{ forloop.counter }}"
+                        id="btn-wed-not-{{ forloop.counter }}" class="btn-group-toggle" data-toggle="buttons">
+                        <label class="btn w-100 btn-notchecked  checkbox" for="wed-not-{{ forloop.counter }}">
+                          <input type="checkbox" id="wed-not-{{ forloop.counter }}"
+                            value="{{ horario.hour_start }}-{{ horario.hour_end }},wed" autocomplete="off">
+                          <div id="sub-wed-not-{{ forloop.counter }}">+</div>
+                        </label>
+                      </div>
+                    </div>
+                  </td>
 
-                            <td class="text-center">
-                              <div class="openModalBtn">
-                                <div data-toggle="modal" data-target="#addCourseModal" data-id="thu-not-{{ forloop.counter }}" id="btn-thu-not-{{ forloop.counter }}" class="btn-group-toggle" data-toggle="buttons">
-                                  <label class="btn w-100 btn-notchecked  checkbox" for="thu-not-{{ forloop.counter }}">
-                                    <input  type="checkbox" id="thu-not-{{ forloop.counter }}"
-                                      value="{{ horario.hour_start }}-{{ horario.hour_end }},thu"
-                                      autocomplete="off" >
-                                    <div id="sub-thu-not-{{ forloop.counter }}">+</div>
-                                  </label>
-                                </div>
-                              </div>
-                            </td>
+                  <td class="text-center">
+                    <div class="openModalBtn">
+                      <div data-toggle="modal" data-target="#addCourseModal" data-id="thu-not-{{ forloop.counter }}"
+                        id="btn-thu-not-{{ forloop.counter }}" class="btn-group-toggle" data-toggle="buttons">
+                        <label class="btn w-100 btn-notchecked  checkbox" for="thu-not-{{ forloop.counter }}">
+                          <input type="checkbox" id="thu-not-{{ forloop.counter }}"
+                            value="{{ horario.hour_start }}-{{ horario.hour_end }},thu" autocomplete="off">
+                          <div id="sub-thu-not-{{ forloop.counter }}">+</div>
+                        </label>
+                      </div>
+                    </div>
+                  </td>
 
-                            <td class="text-center">
-                              <div class="openModalBtn">
-                                <div data-toggle="modal" data-target="#addCourseModal" data-id="fri-not-{{ forloop.counter }}" id="btn-fri-not-{{ forloop.counter }}" class="btn-group-toggle" data-toggle="buttons">
-                                  <label class="btn w-100 btn-notchecked  checkbox" for="fri-not-{{ forloop.counter }}">
-                                    <input  type="checkbox" id="fri-not-{{ forloop.counter }}"
-                                      value="{{ horario.hour_start }}-{{ horario.hour_end }},fri"
-                                      autocomplete="off" >
-                                    <div id="sub-fri-not-{{ forloop.counter }}">+</div>
-                                  </label>
-                                </div>
-                              </div>
-                            </td>
+                  <td class="text-center">
+                    <div class="openModalBtn">
+                      <div data-toggle="modal" data-target="#addCourseModal" data-id="fri-not-{{ forloop.counter }}"
+                        id="btn-fri-not-{{ forloop.counter }}" class="btn-group-toggle" data-toggle="buttons">
+                        <label class="btn w-100 btn-notchecked  checkbox" for="fri-not-{{ forloop.counter }}">
+                          <input type="checkbox" id="fri-not-{{ forloop.counter }}"
+                            value="{{ horario.hour_start }}-{{ horario.hour_end }},fri" autocomplete="off">
+                          <div id="sub-fri-not-{{ forloop.counter }}">+</div>
+                        </label>
+                      </div>
+                    </div>
+                  </td>
 
-                            <td class="text-center">
-                              <div class="openModalBtn">
-                                <div data-toggle="modal" data-target="#addCourseModal" data-id="sat-not-{{ forloop.counter }}"  id="btn-sat-not-{{ forloop.counter }}" class="btn-group-toggle" data-toggle="buttons">
-                                  <label class="btn w-100 btn-notchecked  checkbox" for="sat-not-{{ forloop.counter }}">
-                                    <input  type="checkbox" id="sat-not-{{ forloop.counter }}"
-                                      value="{{ horario.hour_start }}-{{ horario.hour_end }},sat"
-                                      autocomplete="off" >
-                                    <div id="sub-sat-not-{{ forloop.counter }}">+</div>
-                                  </label>
-                                </div>
-                              </div>
-                            </td>
-                          </tr>
-                        {% endfor %}
-                      {% endif %}
-                    {% endfor %}
-                  </tbody>
-              </table>
-              <div class="modal center-modal fade my-custom-modal" id="addCourseModal" tabindex="-1" role="dialog" aria-labelledby="addCourseModalLabel" aria-hidden="true">
+                  <td class="text-center">
+                    <div class="openModalBtn">
+                      <div data-toggle="modal" data-target="#addCourseModal" data-id="sat-not-{{ forloop.counter }}"
+                        id="btn-sat-not-{{ forloop.counter }}" class="btn-group-toggle" data-toggle="buttons">
+                        <label class="btn w-100 btn-notchecked  checkbox" for="sat-not-{{ forloop.counter }}">
+                          <input type="checkbox" id="sat-not-{{ forloop.counter }}"
+                            value="{{ horario.hour_start }}-{{ horario.hour_end }},sat" autocomplete="off">
+                          <div id="sub-sat-not-{{ forloop.counter }}">+</div>
+                        </label>
+                      </div>
+                    </div>
+                  </td>
+                </tr>
+                {% endfor %}
+                {% endif %}
+                {% endfor %}
+              </tbody>
+            </table>
+            <div class="modal center-modal fade my-custom-modal" id="addCourseModal" tabindex="-1" role="dialog"
+              aria-labelledby="addCourseModalLabel" aria-hidden="true">
+              <div class="modal-dialog" role="document">
                 <div class="modal-dialog" role="document">
-                  <div class="modal-dialog" role="document">
-                    <div class="modal-content">
-                      <div class="modal-header">
-                        <h5 class="modal-title" id="add-course-modal-label">{% trans "Adicionar Disciplina" %}</h5><span id="cel-position"></span>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title" id="add-course-modal-label">{% trans "Adicionar Disciplina" %}</h5><span
+                        id="cel-position"></span>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+                    <div class="modal-body">
+                      <div id="error-alert" class="alert alert-danger" style="display: none;">
+                        <button type="button" class="close" aria-label="Close" onclick="closeErrorAlert('error-alert')">
                           <span aria-hidden="true">&times;</span>
                         </button>
+                        <span class="fa fa-times-circle"></span>
+                        <b>{% trans "Erro" %}:</b>
+                        <span id="error-message"></span>
                       </div>
-                      <div class="modal-body">
-                        <div id="error-alert" class="alert alert-danger" style="display: none;">
-                          <button type="button" class="close" aria-label="Close" onclick="closeErrorAlert('error-alert')">
-                            <span aria-hidden="true">&times;</span>
-                          </button>
-                          <span class="fa fa-times-circle"></span>
-                          <b>{% trans "Erro" %}:</b>
-                          <span id="error-message"></span>                        
-                        </div>
-                        <div id="info-input-alert" class="alert alert-info" style="display: none;">
-                          <button type="button" class="close" aria-label="Close" onclick="closeErrorAlert('info-input-alert')">
-                            <span aria-hidden="true">&times;</span>
-                          </button>
-                          <span class="fas fa-info-circle"></span>
-                          <b>{% trans "Info" %}:</b>
-                          <span id="info-input-message"></span>                        
-                        </div>
-                        <form id="add-course-form" method="post">
-                          {% csrf_token %}
-                          <div class="row">
-                            <div class="col-md-6">
-                              <div class="form-group">
-                                <label for="block-filter" class="form-label">{% trans "Filtrar bloco" %}</label> 
-                                <button type="button" class="btn btn-outline-info info-button" onclick="info_button('block')">
-                                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-info-circle" viewBox="0 0 16 16">
-                                    <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
-                                    <path d="m8.93 6.588-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533L8.93 6.588zM9 4.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"/>
-                                  </svg>
-                                </button>
-                                <div class="input-group">
-                                  <input list="block-options" id="block-filter" placeholder="--" class="form-control mb-4"> <!-- HAKUN4MATAT4 -->
-                                  <datalist id="block-options">
-                                  </datalist>
-                                </div>
-                              </div>
-                            </div>
-  
-                            <div class="col-md-6">
-                              <div class="form-group">
-                                <label for="area-filter" class="form-label">{% trans "Filtrar área" %}</label>
-                                <button type="button" class="btn btn-outline-info info-button" onclick="info_button('area')">
-                                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-info-circle" viewBox="0 0 16 16">
-                                    <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
-                                    <path d="m8.93 6.588-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533L8.93 6.588zM9 4.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"/>
-                                  </svg>
-                                </button>
-                                <div class="input-group">
-                                  <input list="area-options" id="area-filter" placeholder="--" class="form-control mb-4"> <!-- HAKUN4MATAT4 -->
-                                  <datalist id="area-options">
-                                  </datalist>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                          <div class="form-group">
-                            <label for="class-filter" class="form-label">{% trans "Disciplinas" %}</label>
-                            <div class="input-group">
-                              <input list="course-options" autocomplete="off" id="course-filter" class="form-control w-100" placeholder="{% trans Selecione %}">
-                              {% blocktrans with name_course_text=course.name_course acronym_text=course.acronym %}
-                                <datalist id="course-options">
-                                  
+                      <div id="info-input-alert" class="alert alert-info" style="display: none;">
+                        <button type="button" class="close" aria-label="Close"
+                          onclick="closeErrorAlert('info-input-alert')">
+                          <span aria-hidden="true">&times;</span>
+                        </button>
+                        <span class="fas fa-info-circle"></span>
+                        <b>{% trans "Info" %}:</b>
+                        <span id="info-input-message"></span>
+                      </div>
+                      <form id="add-course-form" method="post">
+                        {% csrf_token %}
+                        <div class="row">
+                          <div class="col-md-6">
+                            <div class="form-group">
+                              <label for="block-filter" class="form-label">{% trans "Filtrar bloco" %}</label>
+                              <button type="button" class="btn btn-outline-info info-button"
+                                onclick="info_button('block')">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                  class="bi bi-info-circle" viewBox="0 0 16 16">
+                                  <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
+                                  <path
+                                    d="m8.93 6.588-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533L8.93 6.588zM9 4.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0z" />
+                                </svg>
+                              </button>
+                              <div class="input-group">
+                                <input list="block-options" id="block-filter" placeholder="--"
+                                  class="form-control mb-4"> <!-- HAKUN4MATAT4 -->
+                                <datalist id="block-options">
                                 </datalist>
-                              {% endblocktrans %}                            
+                              </div>
                             </div>
                           </div>
-                          <div>
-                            <div id="info-alert" style="display: none">
-                              <table class="table table-sm table-info text-center">
-                                <tbody>
-                                  <tr>
-                                    <td>{% trans "Sigla Disciplina" %}</td>
-                                    <td class="info-displine"></td>
-                                  </tr>
-                                  <tr>
-                                    <td>{% trans "Turma e Parte" %}</td>
-                                    <td class="info-class"></td>
-                                  </tr>
-                                  <tr>
-                                    <td>{% trans "Dia da Semana" %}</td>
-                                    <td class="info-day"></td>
-                                  </tr>
-                                  <tr>
-                                    <td>{% trans "Horário Início" %}</td>
-                                    <td class="info-start-hour"></td>
-                                  </tr>
-                                  <tr>
-                                    <td>{% trans "Horário Fim" %}</td>
-                                    <td class="info-end-hour"></td>
-                                  </tr>                               
-                                </tbody>
-                              </table>
+
+                          <div class="col-md-6">
+                            <div class="form-group">
+                              <label for="area-filter" class="form-label">{% trans "Filtrar área" %}</label>
+                              <button type="button" class="btn btn-outline-info info-button"
+                                onclick="info_button('area')">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                  class="bi bi-info-circle" viewBox="0 0 16 16">
+                                  <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
+                                  <path
+                                    d="m8.93 6.588-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533L8.93 6.588zM9 4.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0z" />
+                                </svg>
+                              </button>
+                              <div class="input-group">
+                                <input list="area-options" id="area-filter" placeholder="--" class="form-control mb-4">
+                                <!-- HAKUN4MATAT4 -->
+                                <datalist id="area-options">
+                                </datalist>
+                              </div>
                             </div>
                           </div>
-                        </form>
-                      </div>
-                      <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">{% trans "Fechar" %}</button>
-                        <button type="button" data-dismiss="modal" class="btn ada-btn-blue-dark" name="add-course" id="add-course-button">{% trans "Adicionar" %}</button>
-                      </div>
+                        </div>
+                        <div class="form-group">
+                          <label for="class-filter" class="form-label">{% trans "Disciplinas" %}</label>
+                          <div class="input-group">
+                            <input list="course-options" autocomplete="off" id="course-filter"
+                              class="form-control w-100" placeholder="{% trans Selecione %}">
+                            {% blocktrans with name_course_text=course.name_course acronym_text=course.acronym %}
+                            <datalist id="course-options">
+
+                            </datalist>
+                            {% endblocktrans %}
+                          </div>
+                        </div>
+                        <div>
+                          <div id="info-alert" style="display: none">
+                            <table class="table table-sm table-info text-center">
+                              <tbody>
+                                <tr>
+                                  <td>{% trans "Sigla Disciplina" %}</td>
+                                  <td class="info-displine"></td>
+                                </tr>
+                                <tr>
+                                  <td>{% trans "Turma e Parte" %}</td>
+                                  <td class="info-class"></td>
+                                </tr>
+                                <tr>
+                                  <td>{% trans "Dia da Semana" %}</td>
+                                  <td class="info-day"></td>
+                                </tr>
+                                <tr>
+                                  <td>{% trans "Horário Início" %}</td>
+                                  <td class="info-start-hour"></td>
+                                </tr>
+                                <tr>
+                                  <td>{% trans "Horário Fim" %}</td>
+                                  <td class="info-end-hour"></td>
+                                </tr>
+                              </tbody>
+                            </table>
+                          </div>
+                        </div>
+                      </form>
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" data-dismiss="modal">{% trans "Fechar" %}</button>
+                      <button type="button" data-dismiss="modal" class="btn ada-btn-blue-dark" name="add-course"
+                        id="add-course-button">{% trans "Adicionar" %}</button>
                     </div>
                   </div>
                 </div>
@@ -460,15 +476,21 @@
           </div>
         </div>
       </div>
-      <button type="button" class="btn btn-primary float-right mt-4 mb-5" name="sendCourses" id="sendCourses">{% trans "Enviar" %}</button>
-      <button type="button"  class="btn btn-danger float-right mt-4 mb-5 mr-2" name="cleanFPA" style="display: none"id="cleanFPA">{% trans "Limpar" %}</button>
-    </form>
-  </section>
+    </div>
+    <button type="button" class="btn btn-primary float-right mt-4 mb-5" name="sendCourses"
+      id="sendCourses">{% trans "Enviar" %}</button>
+    <button type="button" class="btn btn-danger float-right mt-4 mb-5 mr-2" name="cleanFPA" style="display: none"
+      id="cleanFPA">{% trans "Limpar" %}</button>
+  </form>
+</section>
 {% endblock %}
 
 {% block endbody %}
-  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
-  <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-  <script src="{% static 'attribution/js/manual_attribution.js' %}" data-lang='{{ LANGUAGE_CODE }}' blocks='{{user_blocks}}' areas='{{user_areas}}' disponibility_hour='{{ user_hour }}' courses='{{ courses }}' timetables='{{ timetables }}' disponibility='{{ user_disponibility }}' timetables-user='{{ timetables_user }}' regime='{{regime}}'></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+<link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<script src="{% static 'attribution/js/manual_attribution.js' %}" data-lang='{{ LANGUAGE_CODE }}'
+  blocks='{{user_blocks}}' areas='{{user_areas}}' disponibility_hour='{{ user_hour }}' courses='{{ courses }}'
+  timetables='{{ timetables }}' disponibility='{{ user_disponibility }}' timetables-user='{{ timetables_user }}'
+  regime='{{regime}}'></script>
 {% endblock %}

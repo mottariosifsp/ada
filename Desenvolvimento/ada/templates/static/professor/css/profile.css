@@ -16,6 +16,41 @@ input[name="course"]:hover::-webkit-calendar-picker-indicator {
     height: 3px;
 }
 
+#profile-table button, #profile-table thead th {
+    background-color: #285f52d6 !important;
+}
+
+#profile-table tbody{
+    color: rgba(22, 72, 60, 0.839) !important;
+}
+
+.history-fpa .col-3{
+    padding: 10px 10px 20px 10px;
+    border: #0000004b solid 1px;
+    border-radius: 10px;
+}
+
+.name {
+    background-color: randomColor();
+    font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    padding: 15% 18% 15% 18%;
+    font-size: 70pt;
+    border-radius: 50%;
+    color: white;
+}
+
+@media (max-width: 992px){
+    .name {
+        background-color: randomColor();
+        font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+        text-align: center;
+        font-size: 70pt;
+        border-radius: 50%;
+        color: white;
+        width: 80% !important;
+    }
+}
+
 .header-table:hover{
     opacity: 0.9;
     cursor: pointer;

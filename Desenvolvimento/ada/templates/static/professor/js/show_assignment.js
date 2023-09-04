@@ -1,5 +1,6 @@
 var timetables_user = document.currentScript.getAttribute("timetables-user");
 var timetables_user = JSON.parse(timetables_user);
+console.log(timetables_user)
 
 $('.header-table').closest('table').find('.header-days').hide();
 $('.header-table').closest('table').find('tbody').hide();

@@ -7,6 +7,7 @@ from django.contrib.auth import get_user_model
 
 from django.utils.decorators import method_decorator
 from timetable.models import Timeslot, Timetable_user, Timetable
+from attribution_preference.models import Attribution_preference
 from staff.models import Deadline, Alert
 from area.models import Area, Blockk
 from datetime import datetime, timedelta
@@ -210,18 +211,92 @@ def profile(request):
     timetables_professor_json = json.dumps(timetables_professor, ensure_ascii=False).encode('utf8').decode()
     print(timetables_professor_json)
 
+    user = request.user
+    user_blocks = user.blocks.all()
+
+    fpa_history = []
+    for atrribution_user in Attribution_preference.objects.filter(user=user):
+        year = atrribution_user.year
+        fpa_history.append(year)
+
     data = {
+        'fpas': fpa_history,
+        'user_blocks': user_blocks,
         'professor': professor,
         'timeslots': timeslots_all,
         'timetables_professor': timetables_professor_json
     }
+    print(data)
 
     return render(request, 'professor/profile.html', data)
 
 
 @login_required
+def show_assignment(request):
+    classs = Classs.objects.get(registration_class_id=request.GET.get('registration_class_id'))
+
+    timetables = Timetable.objects.filter(classs=classs).all()
+    timeslots_all = Timeslot.objects.all()
+    timetables_user = Timetable_user.objects.filter(timetable__in=timetables).all()  # vai buscar apenas da atribuição final definitiva
+
+    timetables_professor = []
+
+    for timetable_user in timetables_user:
+        day_combos = timetable_user.timetable.day_combo.all()
+        for day_combo in day_combos:
+            day = day_to_number(day_combo.day)
+            timeslots = day_combo.timeslots.all()
+
+            if timetable_user.user is not None:
+                professor = timetable_user.user.first_name
+
+            else:
+                professor = "-"
+
+            for timeslot in timeslots:
+                position = timeslot.position
+                print("timetable user", timetable_user.user)
+                timetable_professor = {
+                    "cord": f'{position}-{day}',
+                    "course": timetable_user.timetable.course.name_course,
+                    "acronym": timetable_user.timetable.course.acronym,
+                    "professor": professor,
+                    "class_area": timetable_user.timetable.classs.registration_class_id
+                }
+                timetables_professor.append(timetable_professor)
+                # print("Timetable professorr",timetables_professor ) #Ok, só pega o professor D
+                timetables_professor_json = json.dumps(timetables_professor, ensure_ascii=False).encode(
+                    'utf8').decode()  # junção de todos
+
+                data = {
+                    'timeslots': timeslots_all,
+                    'timetables_professor': timetables_professor_json,
+                }
+
+    return render(request, 'professor/show_assignment.html', data)
+@login_required
 def assignments(request):
-    user = request.user
+    blockks = request.user.blocks.all()
+    blockks_images = []
+
+    for blockk in blockks:
+        blockk_images = {
+            "block": blockk,
+            "image": None
+        }
+        if blockk.registration_block_id == "CNA.151515":
+            blockk_images["image"] = "https://media.discordapp.net/attachments/1081682716531118151/1117328326533595207/OIG.png?width=473&height=473"
+        elif blockk.registration_block_id == "HUM.141414":
+            blockk_images["image"] = "https://media.discordapp.net/attachments/1081682716531118151/1117321570101248030/OIG.png?width=473&height=473"
+        elif blockk.registration_block_id == "LNG.161616":
+            blockk_images["image"] = "https://media.discordapp.net/attachments/1081682716531118151/1117321528380489789/OIG.png?width=473&height=473"
+        elif blockk.registration_block_id == "MAT.131313":
+            blockk_images["image"] = "https://media.discordapp.net/attachments/1081682716531118151/1116866399952961586/dan-cristian-padure-h3kuhYUCE9A-unsplash.jpg?width=710&height=473"
+        elif blockk.registration_block_id == "TEC.121212":
+            blockk_images["image"] = "https://media.discordapp.net/attachments/1081682716531118151/1116866399671951441/roonz-nl-2xEQDxB0ss4-unsplash.jpg?width=842&height=473"
+        elif blockk.registration_block_id == "776292":
+            blockk_images["image"] = "https://media.discordapp.net/attachments/1081682716531118151/1117348338254233680/image.png"
+        blockks_images.append(blockk_images)
 
     # user_timetables = Timetable_user.objects.filter(user=user).values_list('timetable_id', flat=True)
     #
@@ -231,39 +306,24 @@ def assignments(request):
     # user_areas = Area.objects.filter(classs__in=user_classes).distinct()
     # print("Areasss", user_areas)
 
-    user_blockks = blocks = Blockk.objects.all()
+    # user_blockks = blocks = Blockk.objects.all()
 
-    return render(request, 'professor/assignments.html', {'user_blockks': user_blockks})
+    return render(request, 'professor/assignments.html', {'blockks': blockks_images})
 
 
 @login_required
 def final_assignments_classs(request, name_block):
     blockk = Blockk.objects.get(name_block=name_block)
-    print("BLOCO", blockk)
+    print("BLOCO", blockk.name_block)
 
     areas_associadas = Area.objects.filter(blocks=blockk)
-    print(f"Todas as áreas associadas ao bloco {name_block}", areas_associadas)
 
-    all_classes = []
     timetable_data = []
+    all_classes = []
+    timetables_professor = []
 
     for area in areas_associadas:
         classes_da_area = Classs.objects.filter(area=area)
-
-        timetables = Timetable.objects.filter(classs__in=classes_da_area).all()
-
-        for timetable in timetables:
-            timetable_dict = {
-                'course': {
-                    'acronym': timetable.course.acronym,
-                    'name': timetable.course.name_course,
-                },
-                'classs': {
-                    'id': timetable.classs.registration_class_id,
-                    'class_area': timetable.classs.registration_class_id
-                }
-            }
-            timetable_data.append(timetable_dict)
 
         for classe in classes_da_area:
             all_classes.append({
@@ -274,96 +334,16 @@ def final_assignments_classs(request, name_block):
                 "registration_area_id": classe.area.registration_area_id,
             })
 
-
-        print(f"Area {area}, timetable {timetables}")
-        timeslots_all = Timeslot.objects.all()
-        timetables_user = Timetable_user.objects.filter(
-            timetable__in=timetables).all()  # vai buscar apenas da atribuição final definitiva
-
-        timetables_professor = []
-
-        for timetable_user in timetables_user:
-            day_combos = timetable_user.timetable.day_combo.all()
-            for day_combo in day_combos:
-                day = day_to_number(day_combo.day)
-                timeslots = day_combo.timeslots.all()
-
-                if timetable_user.user is not None:
-                    professor = timetable_user.user.first_name
-                    print("professor com nome", professor)
-                else:
-                    professor = "-"
-
-                for timeslot in timeslots:
-                    position = timeslot.position
-                    print("timetable user", timetable_user.user)
-                    timetable_professor = {
-                        "cord": f'{position}-{day}',
-                        "course": timetable_user.timetable.course.name_course,
-                        "acronym": timetable_user.timetable.course.acronym,
-                        "professor": professor,
-                    }
-                    print("professor passando dentro do loop", professor)
-                    timetables_professor.append(timetable_professor)
-                    # print("Timetable professorr",timetables_professor ) #Ok, só pega o professor D
-        timetables_professor_json = json.dumps(timetables_professor, ensure_ascii=False).encode(
-            'utf8').decode()  # junção de todos
-
-    # print("timeslots", timeslots_all)
-    # print("timetables_professor", timetables_professor_json)
     all_classes = json.dumps(all_classes)
-    timetable_json = json.dumps(timetable_data)
-    print("objeto itmetable", timetable_json )
-    # print("JSON DATA2", json_data)
-
-    python_data = all_classes
-    # print("python_data", python_data)
-
-    print("TIMESLOTs", timeslots_all)
-    # print("professores", all_professor)
 
     data = {
         'areas': areas_associadas,
-        'json_data': python_data,
-        'timeslots': timeslots_all,
-        'timetables_professor': timetables_professor_json,
-        'timetable_json': timetable_json
+        'json_data': all_classes,
     }
 
+    print("Tamanho de timetable_professor depois:", len(timetables_professor))
+
     return render(request, 'professor/final_assignments_class_list.html', data)
-
-    # timetables_do_usuario = Timetable_user.objects.filter(user=user).values_list('timetable_id', flat=True)
-    #
-    # classes_do_usuario = classes_da_area.filter(timetable__id__in=timetables_do_usuario)
-    # print("classes do usuario", classes_do_usuario)
-
-    ###
-    # professor = request.user
-    # timeslots_all = Timeslot.objects.all()
-    # timetables_user = Timetable_user.objects.filter(user=professor, timetable__classs=classes_do_usuario[0])
-
-    # timetables_user = Timetable_user.objects.filter(user=professor)
-
-    # timetables_professor = []
-    #
-    # for timetable_user in timetables_user:
-    #     day_combos = timetable_user.timetable.day_combo.all()
-    #     for day_combo in day_combos:
-    #         day = day_to_number(day_combo.day)
-    #         timeslots = day_combo.timeslots.all()
-    #
-    #         for timeslot in timeslots:
-    #             position = timeslot.position
-    #
-    #             timetable_professor = {
-    #                 "cord": f'{position}-{day}',
-    #                 "course": timetable_user.timetable.course.name_course,
-    #                 "acronym": timetable_user.timetable.course.acronym,
-    #             }
-    #             timetables_professor.append(timetable_professor)
-    # timetables_professor_json = json.dumps(timetables_professor, ensure_ascii=False).encode('utf8').decode()
-    # print("timetable class filter", timetables_professor_json)
-
 
 def day_to_number(day):
     number = {
