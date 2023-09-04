@@ -57,7 +57,8 @@ $(document).ready(function () {
 
             console.log("Resultado do filtro:", objetosFiltrados);
 
-            // Chame a função $.each dentro deste bloco
+            $('[id^="cel-"]').html('');
+
             $.each(objetosFiltrados, function (index, value) {
                 let professor = value.professor;
 
