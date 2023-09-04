@@ -287,18 +287,18 @@ def final_assignments_classs(request, name_block):
 
         timetables = Timetable.objects.filter(classs__in=classes_da_area).all()
 
-        for timetable in timetables:
-            timetable_dict = {
-                'course': {
-                    'acronym': timetable.course.acronym,
-                    'name': timetable.course.name_course,
-                },
-                'classs': {
-                    'id': timetable.classs.registration_class_id,
-                    'class_area': timetable.classs.registration_class_id
-                }
-            }
-            timetable_data.append(timetable_dict)
+        # for timetable in timetables:
+        #     timetable_dict = {
+        #         'course': {
+        #             'acronym': timetable.course.acronym,
+        #             'name': timetable.course.name_course,
+        #         },
+        #         'classs': {
+        #             'id': timetable.classs.registration_class_id,
+        #             'class_area': timetable.classs.registration_class_id
+        #         }
+        #     }
+        #     timetable_data.append(timetable_dict)
 
         for classe in classes_da_area:
             all_classes.append({
@@ -337,6 +337,7 @@ def final_assignments_classs(request, name_block):
                         "course": timetable_user.timetable.course.name_course,
                         "acronym": timetable_user.timetable.course.acronym,
                         "professor": professor,
+                        "class_area": timetable_user.timetable.classs.registration_class_id
                     }
                     print("professor passando dentro do loop", professor)
                     timetables_professor.append(timetable_professor)
@@ -347,8 +348,8 @@ def final_assignments_classs(request, name_block):
     # print("timeslots", timeslots_all)
     # print("timetables_professor", timetables_professor_json)
     all_classes = json.dumps(all_classes)
-    timetable_json = json.dumps(timetable_data)
-    print("objeto itmetable", timetable_json )
+
+
     # print("JSON DATA2", json_data)
 
     python_data = all_classes
@@ -362,7 +363,6 @@ def final_assignments_classs(request, name_block):
         'json_data': python_data,
         'timeslots': timeslots_all,
         'timetables_professor': timetables_professor_json,
-        'timetable_json': timetable_json
     }
 
     return render(request, 'professor/final_assignments_class_list.html', data)

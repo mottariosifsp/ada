@@ -5,9 +5,6 @@ console.log("timetables_user", timetables_user);
 var timeslots = document.currentScript.getAttribute("timeslots");
 console.log("Timeslots", timeslots);
 
-var timetable_json = document.currentScript.getAttribute("timetable_json");
-console.log("timetable_json data", JSON.parse(timetable_json));
-
 var json_data = document.currentScript.getAttribute("jsonData");
 json_data = decodeURIComponent(JSON.parse('"' + json_data + '"'));
 console.log("Json data", JSON.parse(json_data));
@@ -43,6 +40,9 @@ $.each(timetables_user, function (index, value) {
 $(document).ready(function () {
 
     $('#rectangle-container').hide();
+    var timetablesData = timetables_user;
+    // var timetables_array = Array.isArray(timetablesData) ? timetablesData : [timetablesData];
+
     var jsonData = JSON.parse(json_data);
     var json_array = Array.isArray(jsonData) ? jsonData : [jsonData];
 
@@ -69,7 +69,16 @@ $(document).ready(function () {
 
             rectangle.click(function () {
                 showCard();
+
+            var valorDoElementoClicado = $(event.target).text().trim();
+            console.log("valor do elemento clicado 2", valorDoElementoClicado )
+
+            const objetosFiltrados = timetablesData.filter(objetoY => objetoY.class_area === valorDoElementoClicado);
+
+            console.log("Resultado do filtro:", objetosFiltrados);
             });
+
+
 
             $('#rectangle-container').append(rectangle);
         });
