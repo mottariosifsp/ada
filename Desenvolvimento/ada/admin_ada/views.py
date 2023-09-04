@@ -41,6 +41,10 @@ def deadline_configuration_confirm(request):
 @transaction.atomic
 
 def save_deadline(data):
+
+    Timetable_user.objects.all().update(user=None)
+
+
     Deadline.objects.all().delete()   
     
     for blockk_obj in Blockk.objects.all():
