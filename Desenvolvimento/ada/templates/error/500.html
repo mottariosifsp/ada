@@ -5,7 +5,7 @@
 {% block head %}
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 <link rel="stylesheet" href="{% static 'error/css/500_error.css' %}">
-<title>{% trans "Erro interno" %}</title>
+<title>{% trans "Erro 500 - Manutenção Interna" %}</title>
 
 {% endblock %}
 
@@ -23,7 +23,7 @@
         {% endif %}
         <p
             class="element error-message text-center {% if user.is_authenticated %}text-black{% else %}text-white{% endif %}">
-            Erro interno. Nossa equipe já está trabalhando nisso.</p>
+            Erro interno. A equipe da ADA já está trabalhando nisso.</p>
         <a href="{% url 'home' %}" class="btn custom-btn text-white">Voltar ao início</a>
     </div>
 

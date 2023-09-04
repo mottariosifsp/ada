@@ -4,7 +4,7 @@
 
 {% block head %}
 {{ block.super }}
-<title>{% trans "Grade horária" %}</title>
+<title>{% trans "Grade Horária Final" %}</title>
 <link rel="stylesheet" href="{% static 'attribution/css/attribution_detail.css' %}">
 
 {% endblock %}
@@ -12,7 +12,8 @@
 {% block body %}
 {{ block.super }}
 <div class="container">
-  <h1 class="title-page">{% trans "Grade" %}</h1>
+  <h1 class="title-page mt-4">{% trans "Grade Horária Final" %} {{ request.GET.class }}</h1>
+  <hr>
   <nav>
     <ol class="breadcrumb">
       <li class="breadcrumb-item"><a href="{% url 'home' %}"><i class="bi bi-house-door"></i></a></li>
@@ -21,7 +22,6 @@
       <li class="breadcrumb-item active">{% trans "Grade" %} {{ request.GET.class }}</li>
     </ol>
   </nav>
-  <h1 class="text-center">{{ request.GET.class }}</h1>
   <div class="tabela">
     <table class="table table-bordered editable" id="blocks_list">
       <thead class="thead-dark">

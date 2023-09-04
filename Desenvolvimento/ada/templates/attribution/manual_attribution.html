@@ -27,8 +27,9 @@
 {% block body %}
 
 <section class="section dashboard">
-  <h1 class="title-page">{% trans "Escolha as suas preferências novamente" %}</h1>
+  <h1 class="title-page mt-4">{% trans "Atribuição Manual" %}</h1>
   <hr>
+  <p>Escolha as suas preferências novamente.</p>
   <form id="sendDisponibilityForm" method="post">
     {% csrf_token %}
     <div id="error-alert-form" class="alert alert-danger" style="display: none;">

@@ -5,7 +5,7 @@
 {% block head %}
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 <link rel="stylesheet" href="{% static 'user/css/login.css' %}">
-<title>{% trans "Acessar conta" %}</title>
+<title>{% trans "Cadastrar-se" %}</title>
 <style>
     .ada-logo-login {
         background-image: url("{% static '/images/login_back.jpg' %}");
@@ -19,7 +19,7 @@
         <div class="card inputs">
             <div class="card-body">
                 <div class="pt-4 pb-2">
-                    <h2 class="card-title text-center">{% trans "Acessar Conta" %}</h2>
+                    <h2 class="card-title text-center">{% trans "Cadastrar-se" %}</h2>
                 </div>
                 <form class="row" id="form-login" method="post" action="{% url 'signup' %}" novalidate>
                     {% csrf_token %}
