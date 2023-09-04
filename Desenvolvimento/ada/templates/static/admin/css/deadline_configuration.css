@@ -1,8 +1,9 @@
-table{
+table {
     margin-bottom: 2rem;
 }
 
-.row, th{
+.row,
+th {
     align-items: center !important;
     vertical-align: middle !important;
 }
@@ -13,6 +14,7 @@ table{
     border: 1px solid transparent;
     border-radius: 4px;
 }
+
 .alert-danger {
     background-color: #f2dede;
     border-color: #ebccd1;
@@ -40,7 +42,7 @@ table{
     background-color: var(--primary);
 }
 
-.content{
+.content {
     display: flex;
     justify-content: center;
     align-items: center;

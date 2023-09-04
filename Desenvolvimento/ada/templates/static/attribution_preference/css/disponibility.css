@@ -1,26 +1,32 @@
-.btn span.glyphicon {    			
-	opacity: 0;				
+.btn span.glyphicon {
+  opacity: 0;
 }
-.btn.active span.glyphicon {				
-	opacity: 1;				
+
+.btn.active span.glyphicon {
+  opacity: 1;
 }
+
 #work-availability .btn-group-toggle .btn-success:not(.active) {
-    background-color: #2a5a4f5f;
-    border-color: #2a5a4f66;
+  background-color: #2a5a4f5f;
+  border-color: #2a5a4f66;
 }
+
 #work-availability .btn-group-toggle .btn-success {
-    background-color: #3F927E;
+  background-color: #3F927E;
 }
+
 .checkbox input[type="checkbox"].unchecked {
   background-color: initial !important;
 }
+
 .check {
-  visibility: hidden;   
+  visibility: hidden;
 }
 
-input[type="checkbox"]:checked + .check{
-  visibility: visible;   
+input[type="checkbox"]:checked+.check {
+  visibility: visible;
 }
+
 abbr[title] {
   border-bottom: none !important;
   cursor: help !important;
@@ -32,7 +38,8 @@ abbr[title] {
   color: #2f7363;
 }
 
-.cel, .cel-plus {
+.cel,
+.cel-plus {
   font-size: 12pt;
   color: #2f7363;
 }
@@ -45,28 +52,34 @@ th {
   height: 100px;
   font-weight: 700;
   color: #124136e6;
-} 
+}
 
-.btn-notchecked, .btn-notchecked input {
+.btn-notchecked,
+.btn-notchecked input {
   background-color: #79b9aa;
   color: white
 }
+
 .btn-checked:hover {
   font-weight: 700;
   color: white;
 }
+
 .btn-notchecked:hover {
   color: white;
   font-weight: 100;
 }
+
 .btn-checked {
   background-color: #2f7363;
   color: white;
 }
+
 .modal-backdrop {
   opacity: 0.5;
   background-color: #0000002d;
 }
+
 .my-custom-modal .modal-backdrop {
   opacity: 0.5;
   background-color: #0000002d;

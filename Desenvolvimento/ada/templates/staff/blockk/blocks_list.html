@@ -3,56 +3,63 @@
 {% load static %}
 
 {% block head %}
-    {{ block.super }}
-    <title>{% trans "Blocos" %}</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fomantic-ui/2.9.2/semantic.min.css" />
-    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/dataTables.semanticui.min.css" />
-    <link rel="stylesheet" href="https://datatables.net/release-datatables/extensions/FixedColumns/css/fixedColumns.bootstrap4.css" />
-    <link rel="stylesheet" href="https://datatables.net/release-datatables/media/css/dataTables.bootstrap4.css" />
-    <link rel="stylesheet" href="{% static 'staff/blockk/css/block_list.css' %}">
-    <script src="{% static 'staff/blockk/js/blocks_list.js' %}" data-lang={{LANGUAGE_CODE}}></script>
+{{ block.super }}
+<title>{% trans "Blocos" %}</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fomantic-ui/2.9.2/semantic.min.css" />
+<link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/dataTables.semanticui.min.css" />
+<link rel="stylesheet"
+    href="https://datatables.net/release-datatables/extensions/FixedColumns/css/fixedColumns.bootstrap4.css" />
+<link rel="stylesheet" href="https://datatables.net/release-datatables/media/css/dataTables.bootstrap4.css" />
+<link rel="stylesheet" href="{% static 'staff/blockk/css/block_list.css' %}">
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"
+    integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous">
+</script>
+<script src="{% static 'staff/blockk/js/blocks_list.js' %}" data-lang={{LANGUAGE_CODE}}></script>
 {% endblock %}
 
 {% block body %}
-    {{ block.super }}
-    <h1 class="title-page">{% trans "Blocos" %}</h1>
-    <nav>
-      <ol class="breadcrumb">
+{{ block.super }}
+<h1 class="title-page mt-4">{% trans "Blocos" %}</h1>
+<hr>
+<nav>
+    <ol class="breadcrumb">
         <li class="breadcrumb-item"><a href="{% url 'home' %}"><i class="bi bi-house-door"></i></a></li>
         <li class="breadcrumb-item active" aria-current="page">{% trans "Configurar Blocos" %}</li>
         <li class="breadcrumb-item active">{% trans "Blocos" %}</li>
-      </ol>
-    </nav>
-    <div class="card">
-        <div class="card-body">
-            <div class="tabela">
-                <table class="table display editable" id="blocks_list">
-                    <thead>
-                        <tr>
-                            <th scope="col">{% trans "Registro" %}</th>
-                            <th scope="col">{% trans "Nome" %}</th>
-                            <th scope="col">{% trans "Sigla" %}</th>
-                            <th scope="col">{% trans "Ação" %}</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {% csrf_token %}
-                        {% for blockk in blocks %}
-                            <!-- Lista -->
-                                <tr>
-                                    <td>{{ blockk.registration_block_id }}</td>
-                                    {% blocktrans with name_block_text=blockk.name_block %}
-                                    <td>{{ name_block_text }}</td>
-                                    {% endblocktrans %}
-                                    {% blocktrans with acronym_text=blockk.acronym %}
-                                    <td>{{ acronym_text }}</td>
-                                    {% endblocktrans %}
-                                    <td><a href="{% url 'block_detail' blockk.registration_block_id %}"><button type="button" class="btn btn-primary editProfessorBtn"><i class="bi bi-eye"></i></button></a></td>
-                                </tr>
-                        {% endfor %}
-                    </tbody>
-                </table>
-            </div>
+    </ol>
+</nav>
+<div class="card">
+    <div class="card-body">
+        <div class="tabela">
+            <table class="table table-hover table-bordered editable display" id="blocks_list">
+                <thead class="thead-dark">
+                    <tr>
+                        <th scope="col">{% trans "Registro" %}</th>
+                        <th scope="col">{% trans "Nome" %}</th>
+                        <th scope="col">{% trans "Sigla" %}</th>
+                        <th scope="col">{% trans "Ação" %}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% csrf_token %}
+                    {% for blockk in blocks %}
+                    <!-- Lista -->
+                    <tr>
+                        <td>{{ blockk.registration_block_id }}</td>
+                        {% blocktrans with name_block_text=blockk.name_block %}
+                        <td>{{ name_block_text }}</td>
+                        {% endblocktrans %}
+                        {% blocktrans with acronym_text=blockk.acronym %}
+                        <td>{{ acronym_text }}</td>
+                        {% endblocktrans %}
+                        <td class="text-center"><a href="{% url 'block_detail' blockk.registration_block_id %}"><button
+                                    type="button" class="btn btn-primary editProfessorBtn"><i
+                                        class="bi bi-eye"></i></button></a></td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
         </div>
     </div>
+</div>
 {% endblock %}

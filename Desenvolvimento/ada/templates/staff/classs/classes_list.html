@@ -3,197 +3,212 @@
 {% load static %}
 
 {% block head %}
-    {{ block.super }}
-    <title>{% trans "Turmas" %}</title>
-    <link rel="stylesheet" href="{% static 'staff/classs/css/classes_list.css' %}">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fomantic-ui/2.9.2/semantic.min.css" />
-    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/dataTables.semanticui.min.css" />
-    <link rel="stylesheet" href="https://datatables.net/release-datatables/extensions/FixedColumns/css/fixedColumns.bootstrap4.css" />
-    <link rel="stylesheet" href="https://datatables.net/release-datatables/media/css/dataTables.bootstrap4.css" />
-    <script src="{% static 'staff/classs/js/classes_list.js' %}" data-lang={{LANGUAGE_CODE}}></script>
+{{ block.super }}
+<title>{% trans "Turmas" %}</title>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"
+    integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous">
+</script>
+<link rel="stylesheet" href="{% static 'staff/classs/css/classes_list.css' %}">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fomantic-ui/2.9.2/semantic.min.css" />
+<link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/dataTables.semanticui.min.css" />
+<link rel="stylesheet"
+    href="https://datatables.net/release-datatables/extensions/FixedColumns/css/fixedColumns.bootstrap4.css" />
+<link rel="stylesheet" href="https://datatables.net/release-datatables/media/css/dataTables.bootstrap4.css" />
+<script src="{% static 'staff/classs/js/classes_list.js' %}" data-lang={{LANGUAGE_CODE}}></script>
 {% endblock %}
 
 {% block body %}
-    {{ block.super }}
-    <h1 class="title-page">{% trans "Turmas" %}</h1>
-    <nav>
-      <ol class="breadcrumb">
+{{ block.super }}
+<h1 class="title-page mt-4">{% trans "Turmas" %}</h1>
+<hr>
+<nav>
+    <ol class="breadcrumb">
         <li class="breadcrumb-item"><a href="{% url 'home' %}"><i class="bi bi-house-door"></i></a></li>
         <li class="breadcrumb-item active" aria-current="page">{% trans "Configurar Turmas" %}</li>
         <li class="breadcrumb-item active">{% trans "Turmas" %}</li>
-      </ol>
-    </nav>
-    {% if has_permission %}
-    <div class="row ml-auto">
-        <div class="ml-auto mr-3 mb-3">
-            <button type="button" class="btn btn-success float-right createClassBtn" data-toggle="modal" data-target="#createClassModal"><i class="bi bi-plus"></i> {% trans "Criar Turma" %} </button>
+    </ol>
+</nav>
+{% if has_permission %}
+<div class="row ml-auto">
+    <div class="ml-auto mr-3 mb-3">
+        <button type="button" class="btn btn-success float-right createClassBtn" data-toggle="modal"
+            data-target="#createClassModal"><i class="bi bi-plus"></i> {% trans "Criar Turma" %} </button>
+    </div>
+</div>
+{% endif %}
+<div class="card">
+    <div class="card-body">
+        <div class="tabela">
+            <table class="table display editable table-bordered" id="classes_list">
+                <thead class="thead-dark">
+                    <tr>
+                        <th scope="col">{% trans "Registro" %}</th>
+                        <th scope="col">{% trans "Período" %}</th>
+                        <th scope="col">{% trans "Semestre" %}</th>
+                        <th scope="col">{% trans "Área" %}</th>
+                        {% if has_permission %}
+                        <th scope="col">{% trans "Ação" %}</th>
+                        {% endif %}
+                    </tr>
+                </thead>
+                <tbody>
+                    {% csrf_token %}
+                    {% for classs in classes %}
+                    <!-- Lista -->
+                    <tr>
+                        <td>{{ classs.registration_class_id }}</td>
+                        {% blocktrans with period_text=classs.period %}
+                        <td>{{ period_text }}</td>
+                        {% endblocktrans %}
+                        <td>{{ classs.semester }}</td>
+                        {% blocktrans with name_area_text=classs.area.name_area acronym_text=classs.area.acronym %}
+                        <td>{{ name_area_text }} ({{ acronym_text }})</td>
+                        {% endblocktrans %}
+                        {% if has_permission %}
+                        <td class="text-center"><button type="button" data-toggle="modal" data-target="#editClassModal"
+                                data-counter="{{ counter }}" class="btn btn-warning editClassBtn"><i
+                                    class="bi bi-pencil"></i></button>
+                            <button type="button" class="btn btn-danger deleteClassBtn" data-class-id="{{ classs.id }}"
+                                data-registration-class-id="{{ classs.registration_class_id }}"><i
+                                    class="bi bi-trash"></i></button></td>
+                    </tr>
+                    {% endif %}
+                    {% endfor %}
+                </tbody>
+            </table>
         </div>
     </div>
-    {% endif %}
-    <div class="card">
-        <div class="card-body">
-            <div class="tabela">
-                <table class="table display editable" id="classes_list">
-                    <thead>
-                        <tr>
-                            <th scope="col">{% trans "Registro" %}</th>
-                            <th scope="col">{% trans "Período" %}</th>
-                            <th scope="col">{% trans "Semestre" %}</th>
-                            <th scope="col">{% trans "Área" %}</th>
-                            {% if has_permission %}
-                            <th scope="col">{% trans "Ação" %}</th>
-                            {% endif %}
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {% csrf_token %}
-                        {% for classs in classes %}
-                            <!-- Lista -->
-                            <tr>
-                                <td>{{ classs.registration_class_id }}</td>
-                                {% blocktrans with period_text=classs.period %}
-                                <td>{{ period_text }}</td>
-                                {% endblocktrans %}
-                                <td>{{ classs.semester }}</td>
-                                {% blocktrans with name_area_text=classs.area.name_area acronym_text=classs.area.acronym %}
-                                <td>{{ name_area_text }} ({{ acronym_text }})</td>
-                                {% endblocktrans %}
-                                {% if has_permission %}
-                                    <td><button type="button" data-toggle="modal" data-target="#editClassModal" data-counter="{{ counter }}" class="btn btn-warning editClassBtn"><i class="bi bi-pencil"></i></button>
-                                        <button type="button" class="btn btn-danger deleteClassBtn" data-class-id="{{ classs.id }}" data-registration-class-id="{{ classs.registration_class_id }}"><i class="bi bi-trash"></i></button></td>
-                                </tr>
-                                {% endif %}
-                        {% endfor %}
-                    </tbody>
-                </table>
-            </div>
-        </div>
-    </div>
+</div>
 
-    <!-- Modal criação turma -->
-    <div class="modal fade" id="createClassModal" tabindex="-1" role="dialog" aria-labelledby="createClassModelLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="addCreateClassModal">{% trans "Criar Turma" %}</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <form>
-                        <input type="hidden" class="form-control" id="id">
-                        <div class="form-group">
-                            <label for="registration_class_id_create">{% trans "Registro" %}</label>
-                            <input type="text" class="form-control" id="registration_class_id_create" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="period_create">{% trans "Período" %}</label>
-                            <select class="form-control" id="period_create" required>
-                                <option value="">{% trans "Selecione uma opção" %}</option>
-                                {% for period in periods %}
-                                {% blocktrans with value_text=period.value label_text=period.label %}
-                                    <option value="{{ value_text }}">{{ label_text }}</option>
-                                {% endblocktrans %}
-                                {% endfor %}
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label for="semester_create">{% trans "Semestre" %}</label>
-                            <input type="number" class="form-control" id="semester_create" required>
-                        </div>
-                        <label for="area_create">{% trans "Área" %}</label>
-                        <select class="form-control" id="area_create" required>
+<!-- Modal criação turma -->
+<div class="modal fade" id="createClassModal" tabindex="-1" role="dialog" aria-labelledby="createClassModelLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="addCreateClassModal">{% trans "Criar Turma" %}</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <input type="hidden" class="form-control" id="id">
+                    <div class="form-group">
+                        <label for="registration_class_id_create">{% trans "Registro" %}</label>
+                        <input type="text" class="form-control" id="registration_class_id_create" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="period_create">{% trans "Período" %}</label>
+                        <select class="form-control" id="period_create" required>
                             <option value="">{% trans "Selecione uma opção" %}</option>
-                            {% for area in areas %}
-                                <option value="{{ area.id }}">
-                                {% blocktrans with name_area_text=area.name_area acronym_text=area.acronym %}
-                                    {{ name_area_text }} ({{ acronym_text }})</option>
-                                {% endblocktrans %}
+                            {% for period in periods %}
+                            {% blocktrans with value_text=period.value label_text=period.label %}
+                            <option value="{{ value_text }}">{{ label_text }}</option>
+                            {% endblocktrans %}
                             {% endfor %}
                         </select>
-                    </form>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">{% trans "Fechar" %}</button>
-                    <button type="button" class="btn btn-primary" data-area-id="{{ area.id }}" id="saveCreateBtn">{% trans "Criar" %}</button>
-                </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="semester_create">{% trans "Semestre" %}</label>
+                        <input type="number" class="form-control" id="semester_create" required>
+                    </div>
+                    <label for="area_create">{% trans "Área" %}</label>
+                    <select class="form-control" id="area_create" required>
+                        <option value="">{% trans "Selecione uma opção" %}</option>
+                        {% for area in areas %}
+                        <option value="{{ area.id }}">
+                            {% blocktrans with name_area_text=area.name_area acronym_text=area.acronym %}
+                            {{ name_area_text }} ({{ acronym_text }})</option>
+                        {% endblocktrans %}
+                        {% endfor %}
+                    </select>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">{% trans "Fechar" %}</button>
+                <button type="button" class="btn btn-primary" data-area-id="{{ area.id }}"
+                    id="saveCreateBtn">{% trans "Criar" %}</button>
             </div>
         </div>
     </div>
+</div>
 
-    <!-- Modal para edição turma -->
-    <div class="modal fade" id="editClassModal" tabindex="-1" role="dialog" aria-labelledby="editClassModal" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="editClassModal">{% trans "Editar Turma" %}</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <form>
-                        <div class="form-group">
-                            <label for="registration_class_id_edit">{% trans "Registro" %}</label>
-                            <input type="text" class="form-control" id="registration_class_id_edit">
-                        </div>
-                        <div class="form-group">
-                            <label for="period_edit">{% trans "Período" %}</label>
-                            <select class="form-control" id="period_edit" required>
-                                <option value="">{% trans "Selecione uma opção" %}</option>
-                                {% for period in periods %}
-                                    <option value="{{ period.value }}">
-                                    {% blocktrans with label_text=period.label %}
-                                        {{ label_text }}</option>
-                                    {% endblocktrans %}
-                                {% endfor %}
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label for="semester_edit">{% trans "Semestre" %}</label>
-                            <input type="number" class="form-control" id="semester_edit" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="area_edit">{% trans "Área" %}</label>
-                            <select class="form-control" id="area_edit" required>
-                                <option value="">{% trans "Selecione uma opção" %}</option>
-                                {% for area in areas %}
-                                    <option value="{{ area.id }}">
-                                    {% blocktrans with name_area_text=area.name_area acronym_text=area.acronym %}
-                                        {{ name_area_text }} ({{ acronym_text }})</option>
-                                    {% endblocktrans %}
-                                {% endfor %}
-                            </select>
-                        </div>
-                    </form>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">{% trans "Fechar" %}</button>
-                    <button type="button" class="btn btn-primary" id="saveUpdateClassBtn">{% trans "Salvar" %}</button>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Modal confirmação deletar turma -->
-    <div class="modal fade" id="confirmDeleteModal" tabindex="-1" role="dialog" aria-labelledby="confirmDeleteModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-          <div class="modal-content">
+<!-- Modal para edição turma -->
+<div class="modal fade" id="editClassModal" tabindex="-1" role="dialog" aria-labelledby="editClassModal"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
             <div class="modal-header">
-              <h5 class="modal-title" id="confirmDeleteModalLabel">{% trans "Confirmar Exclusão" %}</h5>
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-              </button>
+                <h5 class="modal-title" id="editClassModal">{% trans "Editar Turma" %}</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div class="form-group">
+                        <label for="registration_class_id_edit">{% trans "Registro" %}</label>
+                        <input type="text" class="form-control" id="registration_class_id_edit">
+                    </div>
+                    <div class="form-group">
+                        <label for="period_edit">{% trans "Período" %}</label>
+                        <select class="form-control" id="period_edit" required>
+                            <option value="">{% trans "Selecione uma opção" %}</option>
+                            {% for period in periods %}
+                            <option value="{{ period.value }}">
+                                {% blocktrans with label_text=period.label %}
+                                {{ label_text }}</option>
+                            {% endblocktrans %}
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="semester_edit">{% trans "Semestre" %}</label>
+                        <input type="number" class="form-control" id="semester_edit" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="area_edit">{% trans "Área" %}</label>
+                        <select class="form-control" id="area_edit" required>
+                            <option value="">{% trans "Selecione uma opção" %}</option>
+                            {% for area in areas %}
+                            <option value="{{ area.id }}">
+                                {% blocktrans with name_area_text=area.name_area acronym_text=area.acronym %}
+                                {{ name_area_text }} ({{ acronym_text }})</option>
+                            {% endblocktrans %}
+                            {% endfor %}
+                        </select>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">{% trans "Fechar" %}</button>
+                <button type="button" class="btn btn-primary" id="saveUpdateClassBtn">{% trans "Salvar" %}</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal confirmação deletar turma -->
+<div class="modal fade" id="confirmDeleteModal" tabindex="-1" role="dialog" aria-labelledby="confirmDeleteModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="confirmDeleteModalLabel">{% trans "Confirmar Exclusão" %}</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
             </div>
             <div class="modal-body">
                 <p>{% trans "Tem certeza de que quer deletar a turma" %} <span id="registrationClassId"></span>?</p>
             </div>
             <div class="modal-footer">
-              <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">{% trans "Cancelar" %}</button>
-              <button type="button" class="btn btn-danger" id="confirmDeleteClassBtn">{% trans "Excluir" %}</a>
+                <button type="button" class="btn btn-outline-secondary"
+                    data-dismiss="modal">{% trans "Cancelar" %}</button>
+                <button type="button" class="btn btn-danger" id="confirmDeleteClassBtn">{% trans "Excluir" %}</a>
             </div>
-          </div> 
         </div>
-      </div>
+    </div>
+</div>
 {% endblock %}
