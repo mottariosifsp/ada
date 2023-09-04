@@ -17,19 +17,7 @@
     </ol>
     </nav>
 
-    {% if not is_fpa_done %}
-    <div class="container">
-        <div id="card-no-fpa" class="card text-center centered-object">
-          <div class="card-body">
-            <h5 class="card-title">{% trans "Nenhum FPA relacionado ao usuário foi encontrado no sistema" %}</h5>
-            <hr>
-            <a href="{% url 'disponibility_attribution_preference' %}">
-              <button class="btn btn-success">{% trans "Comece o seu FPA" %}</button>
-            </a>
-          </div>
-        </div>
-    </div>
-    {% else %}
+    
     <div class="container">
         <div class="card centered-object">
           <div class="card-body">
@@ -487,7 +475,6 @@
             </div>
         </div>
     </div>
-    {% endif %}
   </div>
 {% endblock %}
 

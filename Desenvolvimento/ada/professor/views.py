@@ -7,6 +7,7 @@ from django.core import serializers
 
 from django.utils.decorators import method_decorator
 from timetable.models import Timeslot, Timetable_user
+from attribution_preference.models import Attribution_preference
 from staff.models import Deadline, Alert
 from datetime import datetime, timedelta
 
@@ -239,11 +240,22 @@ def profile(request):
     timetables_professor_json = json.dumps(timetables_professor, ensure_ascii=False).encode('utf8').decode()
     print(timetables_professor_json)
 
+    user = request.user
+    user_blocks = user.blocks.all()
+
+    fpa_history = []
+    for atrribution_user in Attribution_preference.objects.filter(user=user):
+        year = atrribution_user.year
+        fpa_history.append(year)
+
     data = {
+        'fpas': fpa_history,
+        'user_blocks': user_blocks,
         'professor': professor,
         'timeslots': timeslots_all,
         'timetables_professor': timetables_professor_json   
     }
+    print(data)
 
     return render(request, 'professor/profile.html', data)
 
