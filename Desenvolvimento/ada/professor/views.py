@@ -332,6 +332,11 @@ def assignments_classs_list(request, name_block):
 
     return render(request, 'professor/assignments_classs_list.html', data)
 
+@login_required
+def professor_blocks_list(request):
+    blocks = request.user.blocks.all()
+    return render(request, 'professor/blockk/blocks_list.html', {'blocks': blocks})
+
 def day_to_number(day):
     number = {
         'monday': 1,
