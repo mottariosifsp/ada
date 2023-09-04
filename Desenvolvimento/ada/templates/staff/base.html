@@ -56,8 +56,8 @@
     <nav class="navbar navbar-nav navbar-expand-lg fixed-top navbar-dark nav-color">
       <div class="d-flex justify-content-between align-items-center w-100">
         <div class="nav-brand mr-auto">
-          <a class="logo" href="{% url 'home' %}">
-            <img class="ada-logo" src="{% static 'images/logo_bg.png' %}" alt="logo do site ADA">
+          <a class="logo" href="{% url 'home' %}" style="font-size: larger;">
+            &nbsp;<img class="ada-logo" src="{% static 'images/logo_bg.png' %}" alt="logo do site ADA"> &emsp; | &emsp; Representante
           </a>
         </div>
         <div id="sidebar-icon" data-toggle="modal" data-target="#myModal">
@@ -65,7 +65,7 @@
         </div>
       </div>
       <div class="collapse navbar-collapse justify-content-end" id="navbarToggler">
-        <ul class="navbar-nav mx-auto ">          
+        <ul class="navbar-nav mx-auto " style="font-size: larger;">          
           <li class="nav-item word-topic"><a class="nav-link title" href="{% url 'timetables' %}">{% trans "Grade" %}</a></li>
           <li class="nav-item word-topic"><a class="nav-link title" href="{% url 'professors_list' %}">{% trans "Professor" %}</a></li>
           <li class="nav-item word-topic"><a class="nav-link title" href="{% url 'classes_list' %}">{% trans "Turma" %}</a></li>

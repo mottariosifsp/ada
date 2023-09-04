@@ -92,7 +92,7 @@
     <div class="col-12 col-md-6">
       <div class="mt-4 card info-card sales-card">
         <div class="card-body">
-          <h4 class="card-title">{% trans "Atualizações Legislação" %} <i class="far fa-file custom-icon"></i></h4>
+          <h4 class="card-title">{% trans "Atualizações Legislação" %} <i class="bi bi-file-earmark-post"></i></h4>
           <hr>
           <div>
             <div class="no-alert">
@@ -125,7 +125,7 @@
             {% elif period.status == 'finished' %}
             <p class="m-5 p-4"><b>{% trans "A atribuição terminou, todas permutas que foram pedidas foram resolvidas" %}</b>.</p>
             {% else %}
-            <p class="m-5 p-4"><b>{% trans "Permuta não foi habilitada" %}</b>.</p>
+            <p class="m-5 p-4 text-justify">{% trans "Permuta não foi habilitada" %}.</p>
             {% endif %}
           </div>
         </div>
@@ -142,7 +142,7 @@
         <div class="row">
           <!-- blocos bonitinhos -->
           {% for block in blockks %}
-            <div class="col-lg-6 mb-1 mb-lg-4 block-card" onclick="redirect({{block.block.registration_block_id}})">
+            <div class="col-lg-6 mb-1 mb-lg-4 block-card" onclick="redirect('{{block.block.registration_block_id}}')">
               <div class="hover hover-5 text-white rounded"><img src="{{block.image}}" alt="">
                 <div class="hover-overlay"></div>
                 <div class="hover-5-content">
