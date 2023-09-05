@@ -24,14 +24,14 @@
 {% block usertools %}
 
 <div id="user-tools">
-    Bem-vindo(a),
-    <strong>D</strong>.
-    <a href="/">Ver o site</a> /
-    <a href="/admin/password_change/">Alterar senha</a> /
+    {% trans "Bem-vindo(a)," %}
+    <strong>{% trans "D" %}</strong>.
+    <a href="/">{% trans "Ver o site" %}</a> /
+    <a href="/admin/password_change/">{% trans "Alterar senha" %}</a> /
     <form id="logout-form" method="post" action="/admin/logout/">
         <input type="hidden" name="csrfmiddlewaretoken"
             value="jTEE6gPNIqua1iKKcrAprUYsA8C2cdESKzpouFJaMRHi74fewwqr4A303z6XoHe3">
-        <button type="submit">Encerrar sessão</button>
+        <button type="submit">{% trans "Encerrar sessão" %}</button>
     </form>
 </div>
 
@@ -46,7 +46,7 @@
 
 {% block content %}
 <div class="container">
-    <h1>configuração Salva</h1>
+    <h1>{% trans "configuração Salva" %}</h1>
 </div>
 
 {% endblock %}

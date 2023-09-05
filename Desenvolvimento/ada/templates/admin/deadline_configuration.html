@@ -6,7 +6,7 @@
 <link rel="stylesheet" href="{% static "admin/css/admin_style.css" %}">
 <link rel="stylesheet" href="{% static "admin/css/deadline_configuration.css" %}">
 <link rel="stylesheet" href="{% static "admin/css/dashboard.css" %}">
-
+</style>
 {% endblock %}
 
 {% block extrahead %}
@@ -14,96 +14,94 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
 {% endblock %}
 
-{% block title %}Configuração de prazos | Django site admin{% endblock %}
-
-
-
+{% block title %}{% trans 'Configuração de prazos | Django site admin' %}{% endblock %}
 
 {% block bodyclass %}{{ block.super }} dashboard{% endblock %}
 
 {% block usertools %}
 
 <div id="user-tools">
-   Bem-vindo(a),
-   <strong>D</strong>.
-   <a href="/">Ver o site</a> /
-   <a href="/admin/password_change/">Alterar senha</a> /
+   {% trans "Bem-vindo(a)," %}
+   <strong>{% trans "D" %}</strong>.
+   <a href="/">{% trans "Ver o site" %}</a> /
+   <a href="/admin/password_change/">{% trans "Alterar senha" %}</a> /
    <form id="logout-form" method="post" action="/admin/logout/">
-      <input type="hidden" name="csrfmiddlewaretoken"
-         value="jTEE6gPNIqua1iKKcrAprUYsA8C2cdESKzpouFJaMRHi74fewwqr4A303z6XoHe3">
-      <button type="submit">Encerrar sessão</button>
+       <input type="hidden" name="csrfmiddlewaretoken"
+           value="jTEE6gPNIqua1iKKcrAprUYsA8C2cdESKzpouFJaMRHi74fewwqr4A303z6XoHe3">
+       <button type="submit">{% trans "Encerrar sessão" %}</button>
    </form>
 </div>
+
 
 {% endblock %}
 
 {% block breadcrumbs %}
 <div class="breadcrumbs">
-   <a href="{% url 'admin:index' %}">{% translate 'Home' %}</a>
-   &rsaquo; <a>{% translate 'Configuração de prazos' %}</a>
+   <a href="{% url 'admin:index' %}">{% trans 'Home' %}</a>
+   &rsaquo; <a>{% trans 'Configuração de prazos' %}</a>
 </div>
 {% endblock %}
 
 {% block content %}
 
 <div class="app-area module">
-   <h1>{% translate 'Configuração de prazos' %}</h1>
+   <h1>{% trans 'Configuração de prazos' %}</h1>
 
-   <div class="alert alert-danger" id="error-message-form">Mensagem de erro</div>
+   <div class="alert alert-danger" id="error-message-form">{% trans 'Mensagem de erro' %}</div>
    <form action="{% url 'deadline_configuration_confirm' %}" method="POST" id="form">
       {% csrf_token %}
       <table>
          <caption>
-            Semestral
+            {% trans 'Semestral' %}
          </caption>
          <tbody>
             <tr class="model-area">
-               <th scope="row"><a href="/admin/staff/deadline/">Ano</a></th>
+               <th scope="row"><a href="/admin/staff/deadline/">{% trans 'Ano' %}</a></th>
                <td><input type="text" name="year" class="form-control" id="year" /></td>
             </tr>
             <tr class="model-area">
-               <th scope="row"><a href="/admin/staff/deadline/">Semestre</a></th>
+               <th scope="row"><a href="/admin/staff/deadline/">{% trans 'Semestre' %}</a></th>
                <td>
-                  <input type="radio" name="semester" value="1" id="semester1"  checked/> <label for="semester1">1</label>
-                  <input type="radio" name="semester" value="2" id="semester2"/> <label for="semester2">2</label>
+                  <input type="radio" name="semester" value="1" id="semester1"  checked/> <label for="semester1">{% trans '1' %}</label>
+                  <input type="radio" name="semester" value="2" id="semester2"/> <label for="semester2">{% trans '2' %}</label>
                </td>
             </tr>
          </tbody>
       </table>
       <table>
          <caption>
-            Prazo para o envio de FPA
+            {% trans 'Prazo para o envio de FPA' %}
          </caption>
          <tbody>
             <tr class="model-area">
-               <th scope="row"><a href="/admin/staff/deadline/">Ínicio</a></th>
+               <th scope="row"><a href="/admin/staff/deadline/">{% trans 'Ínicio' %}</a></th>
                <td><input type="datetime-local" name="startFPADeadline" class="form-control" id="startFPADeadline" />
                </td>
             </tr>
             <tr class="model-area">
-               <th scope="row"><a href="/admin/staff/deadline/">Fim</a></th>
+               <th scope="row"><a href="/admin/staff/deadline/">{% trans 'Fim' %}</a></th>
                <td><input type="datetime-local" name="endFPADeadline" class="form-control" id="endFPADeadline" /></td>
             </tr>
          </tbody>
       </table>
       <table>
          <caption>
-            Prazo do processo de atribuição
+            {% trans 'Prazo do processo de atribuição' %}
          </caption>
          <tbody>
             <tr class="model-area">
-               <th scope="row"><a href="/admin/staff/deadline/">Ínicio</a></th>
+               <th scope="row"><a href="/admin/staff/deadline/">{% trans 'Ínicio' %}</a></th>
                <td><input type="datetime-local" name="startAssignmentDeadline" class="form-control"
                      id="startAssignmentDeadline" /></td>
             </tr>
             <tr class="model-area">
-               <th scope="row"><a href="/admin/staff/deadline/">Fim</a></th>
+               <th scope="row"><a href="/admin/staff/deadline/">{% trans 'Fim' %}</a></th>
                <td><input type="datetime-local" name="endAssignmentDeadline" class="form-control"
                      id="endAssignmentDeadline" /></td>
             </tr>
          </tbody>
       </table>
-      <button id="submit-button" class="custom-button" style="float: right;">Enviar</button>
+      <button id="submit-button" class="custom-button" style="float: right;">{% trans 'Enviar' %}</button>
    </form>
 </div>
 <script src="{% static "admin/js/deadline_configuration.js" %}"></script>

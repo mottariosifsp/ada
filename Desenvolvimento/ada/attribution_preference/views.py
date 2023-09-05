@@ -77,7 +77,7 @@ def attribution_preference(request):
                     break
                 elif now >= attribution_deadline.deadline_start and now <= attribution_deadline.deadline_end:
                     status = 'started'
-                    semester = attribution_deadline.semester
+                    semester = attribution_deadline.year
                     year = attribution_deadline.year
                     break
                 else:
@@ -164,7 +164,7 @@ def disponibility_attribution_preference(request):
 
             for attribution_deadline in attribution_deadlines:
                 if now >= attribution_deadline.deadline_start and now <= attribution_deadline.deadline_end:
-                    semester = attribution_deadline.semester
+                    semester = attribution_deadline.year
                     year = attribution_deadline.year
                     break
     except Deadline.DoesNotExist:
@@ -316,7 +316,7 @@ def courses_attribution_preference(request):
 
             for attribution_deadline in attribution_deadlines:
                 if now >= attribution_deadline.deadline_start and now <= attribution_deadline.deadline_end:
-                    semester = attribution_deadline.semester
+                    semester = attribution_deadline.year
                     year = attribution_deadline.year
                     break
     except Deadline.DoesNotExist:
@@ -871,7 +871,7 @@ def save_disponiility_preference(user_timeslots, user_regime, user):
 
             for attribution_deadline in attribution_deadlines:
                 if now >= attribution_deadline.deadline_start and now <= attribution_deadline.deadline_end:
-                    semester = attribution_deadline.semester
+                    semester = attribution_deadline.year
                     year = attribution_deadline.year
                     break
     except Deadline.DoesNotExist:
@@ -927,7 +927,7 @@ def save_courses_preference(work_courses, user):
 
             for attribution_deadline in attribution_deadlines:
                 if now >= attribution_deadline.deadline_start and now <= attribution_deadline.deadline_end:
-                    semester = attribution_deadline.semester
+                    semester = attribution_deadline.year
                     year = attribution_deadline.year
                     break
     except Deadline.DoesNotExist:
