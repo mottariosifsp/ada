@@ -4,18 +4,17 @@
 
 {% block head %}
 <link rel="stylesheet" href="{% static 'attribution_preference/css/courses.css' %}">
-<title>{% trans "Meu FPA" %}</title>
-<script src="{% static 'attribution_preference/js/index.js' %}" seconds='{{context.seconds}}'
-    disponilibity_done='{{disponilibity_done}}' data-lang={{LANGUAGE_CODE}}></script>
+<title>{% trans "FPA" %}</title>
+<script src="{% static 'attribution_preference/js/index.js' %}" seconds='{{context.seconds}}' disponilibity_done='{{disponilibity_done}}' data-lang={{LANGUAGE_CODE}}></script>
 {% endblock %}
 
 {% block body %}
-<h1 class="title-page mt-4">{% trans "Meu FPA" %}</h1>
+<h1 class="title-page mt-4">{% trans "FPA" %}</h1>
 <hr>
 <nav>
     <ol class="breadcrumb hidden-itens">
-        <li class="breadcrumb-item"><a href="{% url 'home' %}"><i class="bi bi-house-door"></i></a></li>
-        <li class="breadcrumb-item active">{% trans "FPA Usuário" %}</li>
+        <li class="breadcrumb-item"><a href="{% url 'home_professor' %}"><i class="bi bi-house-door"></i></a></li>
+        <li class="breadcrumb-item active"><a href="{% url 'attribution_preference' %}">{% trans "FPA" %}</li></a>
     </ol>
 </nav>
 

@@ -13,11 +13,10 @@
 <h1 class="title-page">{% trans "Configuração da atribuição" %}</h1>
 <nav>
    <ol class="breadcrumb">
-      <li class="breadcrumb-item"><a href="{% url 'home' %}"><i class="bi bi-house-door"></i></a></li>
-      <li class="breadcrumb-item active" aria-current="page">{% trans "Configurar Atribuições" %}</li>
-      <li class="breadcrumb-item active"><a
-            href="{% url 'attribution_configuration_index' %}">{% trans "Seus Blocos" %}</a></li>
-      <li class="breadcrumb-item active" aria-current="page">{% trans "Prazos" %}</li>
+      <li class="breadcrumb-item"><a href="{% url 'home_staff' %}"><i class="bi bi-house-door"></i></a></li>
+      <li class="breadcrumb-item active" aria-current="page"><a href="{% url 'attribution_configuration_index' %}">{% trans "Configurar Atribuições" %}</li></a>
+      <li class="breadcrumb-item active">{% trans "Seus Blocos" %}</a></li>
+      <li class="breadcrumb-item active" aria-current="page">{% trans "Fila" %}</li>
    </ol>
 </nav>
 <div id="error-alert-form" class="alert alert-danger" style="display: none;">
@@ -28,11 +27,11 @@
       <form action="{% url 'attribution_configuration_confirm' %}" method="POST" id="form">
          {% csrf_token %}
          <div class="row">
-            <div class="configuracoes col-6">
-               <h4>{% trans "Bloco" %}</h4>
-               <hr />
+            <div class="configuracoes col-12">
                <input type="hidden" name="blockk" id="blockk" value="{{blockk.registration_block_id}}"></input>
                <h2 id="blockName">{{ blockk.name_block }}</h2>
+               <hr>
+               <p class="text-justify" style="font-size: larger; font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif"">Para a atribuição ocorrer, configure a fila dos docentes de acordo com o critério de prioridade estabelecido neste semestre.</p>
                <!-- <div class="col-sm-12">
                <h5>{% trans "Envio das preferências" %}</h5>
                <div class="row">
@@ -49,7 +48,7 @@
                </div>
             </div> -->
             </div>
-            <div class="fila col-6 ">
+            <div class="fila col-12 ">
                <div class="my-custom-scrollbar">
                   <table class="table">
                      <thead class="thead-dark">
@@ -72,7 +71,6 @@
                   class="btn btn-primary btn-block" id="edit-queue-button">{% trans "Editar fila" %} </a>
             </div>
          </div>
-         <button id="submit-button" class="btn btn-success btn-block mt-4">{% trans "Salvar configurações" %}</button>
       </form>
    </div>
 </div>

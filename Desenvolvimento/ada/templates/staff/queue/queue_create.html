@@ -7,20 +7,19 @@
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.datatables.net/v/dt/jq-3.6.0/dt-1.13.4/rr-1.3.3/datatables.min.js"></script>
 <link rel="stylesheet" href="{% static 'staff/queue/css/queue_create.css' %}">
-<title>{% trans "Criar Fila Atribuição" %}</title>
+<title>{% trans "Editar Fila Atribuição" %}</title>
 {% endblock %}
 
 {% block body %}
 
-<h1 class="title-page">{% trans "Fila de Professores" %}</h1>
+<h1 class="title-page">{% trans "Fila de Docentes" %}</h1>
 <nav>
     <ol class="breadcrumb">
-        <li class="breadcrumb-item"><a href="{% url 'home' %}"><i class="bi bi-house-door"></i></a></li>
-        <li class="breadcrumb-item active" aria-current="page">{% trans "Configurar Atribuições" %}</li>
-        <li class="breadcrumb-item active"><a
-                href="{% url 'attribution_configuration_index' %}">{% trans "Seus Blocos" %}</a></li>
-        <li class="breadcrumb-item active" aria-current="page">{% trans "Prazos" %}</li>
-        <li class="breadcrumb-item active" aria-current="page">{% trans "Fila" %}</li>
+        <li class="breadcrumb-item"><a href="{% url 'home_staff' %}"><i class="bi bi-house-door"></i></a></li>
+        <li class="breadcrumb-item" aria-current="page"><a href="{% url 'attribution_configuration_index' %}">{% trans "Configurar Atribuições" %}</a></li>
+        <li class="breadcrumb-item">{% trans "Seus Blocos" %}</li>
+        <li class="breadcrumb-item" aria-current="page"><a href="{% url 'attribution_configuration' %}">{% trans "Fila" %}</a></li>
+        <li class="breadcrumb-item" aria-current="page">{% trans "Editar Fila" %}</li>
     </ol>
 </nav>
 <hr />
@@ -33,7 +32,7 @@
     <div class="row mb-3">
         <div class="col m-0 p-0 mr-3">
             <h5>{% trans "Bloco" %}:</h5>
-            <div class="card">
+            <div class="card queue-field">
                 <div class="card-body">
                     <h2 id="blockk-id" value="{{ data.blockk.registration_block_id }}">
                         {% blocktrans with name_block_text=data.blockk.name_block %}
@@ -45,7 +44,7 @@
         <div class="col m-0 p-0">
             {% if data.field != "" %}
             <h5>{% trans "Critério definido pela direção" %}:</h5>
-            <div class="card">
+            <div class="card queue-field">
                 <div class="card-body">
                     <div class="tipx{% if not data.error_field %} no-border{% endif %}">
                         <h2>{{ data.field }}</h2>

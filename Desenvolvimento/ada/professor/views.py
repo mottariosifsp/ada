@@ -207,7 +207,7 @@ def profile(request):
                 }
                 timetables_professor.append(timetable_professor)
     timetables_professor_json = json.dumps(timetables_professor, ensure_ascii=False).encode('utf8').decode()
-    print(timetables_professor_json)
+    # print(timetables_professor_json)
 
     user = request.user
     user_blocks = user.blocks.all()
@@ -283,6 +283,7 @@ def assignments(request):
             "block": blockk,
             "image": None
         }
+
         if blockk.registration_block_id == "CNA.151515":
             blockk_images["image"] = "https://media.discordapp.net/attachments/1081682716531118151/1117328326533595207/OIG.png?width=473&height=473"
         elif blockk.registration_block_id == "HUM.141414":
@@ -297,23 +298,12 @@ def assignments(request):
             blockk_images["image"] = "https://media.discordapp.net/attachments/1081682716531118151/1117348338254233680/image.png"
         blockks_images.append(blockk_images)
 
-    # user_timetables = Timetable_user.objects.filter(user=user).values_list('timetable_id', flat=True)
-    #
-    # user_classes = Classs.objects.filter(timetable__in=user_timetables)
-    #
-    # # Pega todas as áreas das classes
-    # user_areas = Area.objects.filter(classs__in=user_classes).distinct()
-    # print("Areasss", user_areas)
-
-    # user_blockks = blocks = Blockk.objects.all()
-
     return render(request, 'professor/assignments.html', {'blockks': blockks_images})
 
 
 @login_required
-def final_assignments_classs(request, name_block):
+def assignments_classs_list(request, name_block):
     blockk = Blockk.objects.get(name_block=name_block)
-    print("BLOCO", blockk.name_block)
 
     areas_associadas = Area.objects.filter(blocks=blockk)
 
@@ -340,9 +330,27 @@ def final_assignments_classs(request, name_block):
         'json_data': all_classes,
     }
 
-    print("Tamanho de timetable_professor depois:", len(timetables_professor))
+    return render(request, 'professor/assignments_classs_list.html', data)
 
-    return render(request, 'professor/final_assignments_class_list.html', data)
+@login_required
+def professor_blocks_list(request):
+    blocks = request.user.blocks.all()
+    return render(request, 'professor/blockk/blocks_list.html', {'blocks': blocks})
+
+@login_required
+def professor_block_detail(request, registration_block_id):
+    user_blocks = request.user.blocks.all()
+    blockk = Blockk.objects.get(registration_block_id=registration_block_id)
+    area = blockk.areas.values_list('name_area', flat=True)
+    courses = Course.objects.filter(blockk=blockk)
+    data = {
+        'user_blocks': user_blocks,
+        'blockk': blockk,
+        'areas': list(area),
+        'courses': courses
+    }
+
+    return render(request, 'professor/blockk/block_detail.html', data)
 
 def day_to_number(day):
     number = {

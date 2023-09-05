@@ -405,13 +405,19 @@ function area_options() {
 function timetables_options() {
     var span_value = $("#cel-position").text();
 
+<<<<<<< HEAD
     var filtered_element = user_disponibility.find(function (element) {
         return element.id === span_value;
+=======
+    var filteredElement = disponibility_array_obj.find(function (element) {
+        return element.frase === spanValue;
+>>>>>>> f197f8f429b843c1556acf6d4394a3e6522a4f9f
     });
 
     var filtered_timetables = user_timetables.filter(function (timetable) {
         var day_combos = timetable.day_combo;
 
+<<<<<<< HEAD
         for (var i = 0; i < day_combos.length; i++) {
             var day_combo = day_combos[i];
             var timeslot_day = day_combo.day.substring(0, 3);
@@ -421,6 +427,17 @@ function timetables_options() {
                 var timeslot = timeslots[j];
                 var timeslot_hour = timeslot.timeslot_begin_hour;
                 if (timeslot_hour === filtered_element.timeslot_begin_hour && timeslot_day === filtered_element.day) {
+=======
+        for (var i = 0; i < dayCombos.length; i++) {
+            var dayCombo = dayCombos[i];
+            var timeslotDay = dayCombo.day.substring(0, 3);
+            var timeslots = dayCombo.timeslots;
+
+            for (var j = 0; j < timeslots.length; j++) {
+                var timeslot = timeslots[j];
+                var timeslotHour = timeslot.timeslot_begin_hour;
+                if (timeslotHour === filteredElement.timeslot_begin_hour && timeslotDay === filteredElement.dia) {
+>>>>>>> f197f8f429b843c1556acf6d4394a3e6522a4f9f
                     return true;
                 }
             }
@@ -429,7 +446,18 @@ function timetables_options() {
         return false;
     });
 
+<<<<<<< HEAD
     timatables_datalist_options = filtered_timetables;
+=======
+    console.log(filteredTimetables);
+
+    timatables_options = filteredTimetables;
+
+    // filteredTimetables = timetables_array_obj
+    // Criar a lista de options para datalist com base nos disciplinas filtrados
+    var timetableOptionsDatalist = document.getElementById("course-options");
+    timetableOptionsDatalist.innerHTML = "";
+>>>>>>> f197f8f429b843c1556acf6d4394a3e6522a4f9f
 
     // Criar a lista de options para datalist com base nos disciplinas filtrados
     var timetable_datalist_options = document.getElementById("course-options");
