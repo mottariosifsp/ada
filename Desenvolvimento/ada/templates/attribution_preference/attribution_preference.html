@@ -48,6 +48,40 @@
             </div>
         </div>
     </div>
+    {% elif status_fpa == 'configured_assignment' %}
+    <div class="col-12">
+        <div class="card mt-2 info-card sales-card">
+            <div class="card-body">
+                <div id="work-regime">
+                    <div class="float-right message-info-done"><i class="fas fa-check-circle"></i>
+                        {% trans 'PRÓXIMA ETAPA: ATRIBUIÇÃO'%}</div>
+                    <h4 class="card-title mt-2">{% trans "Status" %}</h4>
+                    <hr class="my-0">
+                    <div class="mt-4">
+                        <p>{% trans 'O envio de FPAs já finalizou, veja seu FPA e outros em seu perfil' %}.
+                            <i>{% trans 'Até a próxima atribuição' %}</i>.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% elif status_fpa == 'finished_assignment' %}
+    <div class="col-12">
+        <div class="card mt-2 info-card sales-card">
+            <div class="card-body">
+                <div id="work-regime">
+                    <div class="float-right message-info-done"><i class="fas fa-check-circle"></i>
+                        {% trans 'ATRIBUIÇÃO CONCLUÍDA'%}</div>
+                    <h4 class="card-title mt-2">{% trans "Status" %}</h4>
+                    <hr class="my-0">
+                    <div class="mt-4">
+                        <p>{% trans 'O envio de FPAs já finalizou, veja seu FPA e outros em seu perfil' %}.
+                            <i>{% trans 'Até a próxima atribuição' %}</i>.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
     {% else %}
     <div class="col-xxl-4 col-md-6">
         <div class="card mt-2 info-card sales-card">
@@ -120,6 +154,24 @@
     <h5><i class="button-3 float-left fa-solid fa-caret-down p-1 ml-2 mr-2"></i>{% trans 'Preferência Escolhida'%}</h5>
 </div>
 <hr>
+{% elif status_fpa == 'configured_assignment' or status_fpa == 'finished_assignment' %}
+<div>
+    <div class="float-right message-info-done"><i class="fa-solid fa-lock"></i> {% trans 'FINALIZADO'%}</div>
+    <h5><i
+            class="button-3 float-left fa-solid fa-caret-down p-1 ml-2 mr-2"></i>{% trans 'Preferência de Disponibilidade'%}
+    </h5>
+</div>
+<hr>
+<div>
+    <div class="float-right message-info-done"><i class="fa-solid fa-lock"></i> {% trans 'FINALIZADO'%}</div>
+    <h5><i class="button-3 float-left fa-solid fa-caret-down p-1 ml-2 mr-2"></i>{% trans 'Preferência de Disciplinas'%}
+    </h5>
+</div>
+<hr>
+<div>
+    <div class="float-right message-info-done"><i class="fa-solid fa-lock"></i> {% trans 'FINALIZADO'%}</div>
+    <h5><i class="button-3 float-left fa-solid fa-caret-down p-1 ml-2 mr-2"></i>{% trans 'Preferência Escolhida'%}</h5>
+</div>
 {% elif status_fpa == 'finished' %}
 <div>
     <div class="float-right message-info-done"><i class="fa-solid fa-lock"></i> {% trans 'FINALIZADO'%}</div>

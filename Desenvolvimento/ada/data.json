@@ -2770,8 +2770,7 @@
             "name": "STARTFPADEADLINE",
             "deadline_start": "2023-09-01T06:03:00",
             "deadline_end": "2023-09-03T06:03:00",
-            "semester": 1,
-            "year": 2023,
+            "year": "2023.1",
             "blockk": 1
         }
     },
@@ -2782,8 +2781,7 @@
             "name": "STARTASSIGNMENTDEADLINE",
             "deadline_start": "2023-09-05T06:03:00",
             "deadline_end": "2023-09-06T06:03:00",
-            "semester": 1,
-            "year": 2023,
+            "year": "2023.1",
             "blockk": 1
         }
     },
@@ -2794,8 +2792,7 @@
             "name": "STARTFPADEADLINE",
             "deadline_start": "2023-09-01T06:03:00",
             "deadline_end": "2023-09-03T06:03:00",
-            "semester": 1,
-            "year": 2023,
+            "year": "2023.1",
             "blockk": 2
         }
     },
@@ -2806,8 +2803,7 @@
             "name": "STARTASSIGNMENTDEADLINE",
             "deadline_start": "2023-09-05T06:03:00",
             "deadline_end": "2023-09-06T06:03:00",
-            "semester": 1,
-            "year": 2023,
+            "year": "2023.1",
             "blockk": 2
         }
     },
@@ -2818,8 +2814,7 @@
             "name": "STARTFPADEADLINE",
             "deadline_start": "2023-09-01T06:03:00",
             "deadline_end": "2023-09-03T06:03:00",
-            "semester": 1,
-            "year": 2023,
+            "year": "2023.1",
             "blockk": 3
         }
     },
@@ -2830,8 +2825,7 @@
             "name": "STARTASSIGNMENTDEADLINE",
             "deadline_start": "2023-09-05T06:03:00",
             "deadline_end": "2023-09-06T06:03:00",
-            "semester": 1,
-            "year": 2023,
+            "year": "2023.1",
             "blockk": 3
         }
     },
@@ -2842,8 +2836,7 @@
             "name": "STARTFPADEADLINE",
             "deadline_start": "2023-09-01T06:03:00",
             "deadline_end": "2023-09-03T06:03:00",
-            "semester": 1,
-            "year": 2023,
+            "year": "2023.1",
             "blockk": 4
         }
     },
@@ -2854,8 +2847,7 @@
             "name": "STARTASSIGNMENTDEADLINE",
             "deadline_start": "2023-09-05T06:03:00",
             "deadline_end": "2023-09-06T06:03:00",
-            "semester": 1,
-            "year": 2023,
+            "year": "2023.1",
             "blockk": 4
         }
     },
@@ -2866,8 +2858,7 @@
             "name": "STARTFPADEADLINE",
             "deadline_start": "2023-09-01T06:03:00",
             "deadline_end": "2023-09-03T06:03:00",
-            "semester": 1,
-            "year": 2023,
+            "year": "2023.1",
             "blockk": 5
         }
     },
@@ -2878,8 +2869,7 @@
             "name": "STARTASSIGNMENTDEADLINE",
             "deadline_start": "2023-09-05T06:03:00",
             "deadline_end": "2023-09-06T06:03:00",
-            "semester": 1,
-            "year": 2023,
+            "year": "2023.1",
             "blockk": 5
         }
     },
