@@ -175,7 +175,8 @@ $('#cel-hour').text('21')
 
 $("#timetable-courses input").on("click", function () {
     var dataId = $(this).closest("div[data-id]").data("id");
-    $("#cel-position").text(dataId).css("visibility", "hidden");
+    // $("#cel-position").text(dataId).css("visibility", "hidden");
+    $("#cel-position").text(dataId)
 
     $("#area-filter").val("");
     $("#block-filter").val("");
@@ -248,8 +249,6 @@ function block_options() {
 function timetables_options() {
     var spanValue = $("#cel-position").text();
 
-    console.log(timetables_array_obj);
-
     var filteredElement = disponibility_array_obj.find(function (element) {
         return element.frase === spanValue;
     });
@@ -259,16 +258,13 @@ function timetables_options() {
 
         for (var i = 0; i < dayCombos.length; i++) {
             var dayCombo = dayCombos[i];
-            console.log('dayCombo: ',dayCombo);
             var timeslotDay = dayCombo.day.substring(0, 3);
             var timeslots = dayCombo.timeslots;
 
             for (var j = 0; j < timeslots.length; j++) {
                 var timeslot = timeslots[j];
-                console.log('timeslot: ',timeslot);
-                var timeslotHour = timeslot.hour_start;
-                console.log(timeslotHour, filteredElement.hour, timeslotDay, filteredElement.dia)
-                if (timeslotHour === filteredElement.hour && timeslotDay === filteredElement.dia) {
+                var timeslotHour = timeslot.timeslot_begin_hour;
+                if (timeslotHour === filteredElement.timeslot_begin_hour && timeslotDay === filteredElement.dia) {
                     return true;
                 }
             }
@@ -277,7 +273,11 @@ function timetables_options() {
         return false;
     });
 
+    console.log(filteredTimetables);
+
     timatables_options = filteredTimetables;
+
+    // filteredTimetables = timetables_array_obj
     // Criar a lista de options para datalist com base nos disciplinas filtrados
     var timetableOptionsDatalist = document.getElementById("course-options");
     timetableOptionsDatalist.innerHTML = "";

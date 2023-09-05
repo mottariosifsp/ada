@@ -1,0 +1,22 @@
+#hideId {
+  display: none;
+}
+
+body{
+  background-color: #def2fc81 !important;
+}
+
+tr:hover>td {
+  background-color: #edecec;
+  font-weight:500;
+}
+
+.custom-list-group-item {
+    position: relative;
+    display: block;
+    padding: .75rem 1.25rem;
+    margin-bottom: -1px;
+    background-color: #fff;
+    border: 1px solid rgba(0,0,0,.125);
+}
+

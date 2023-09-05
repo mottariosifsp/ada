@@ -12,7 +12,6 @@
 {% block extrahead %}
 {{ block.super }}
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
-<script src="{% static "admin/js/deadline_configuration.js" %}"></script>
 {% endblock %}
 
 {% block title %}Configuração de prazos | Django site admin{% endblock %}
@@ -64,8 +63,10 @@
             </tr>
             <tr class="model-area">
                <th scope="row"><a href="/admin/staff/deadline/">Semestre</a></th>
-               <td><input type="number" min="1" max="2" name="semester" class="form-control" id="semester" /></td>
-
+               <td>
+                  <input type="radio" name="semester" value="1" id="semester1"  checked/> <label for="semester1">1</label>
+                  <input type="radio" name="semester" value="2" id="semester2"/> <label for="semester2">2</label>
+               </td>
             </tr>
          </tbody>
       </table>
@@ -105,4 +106,6 @@
       <button id="submit-button" class="custom-button" style="float: right;">Enviar</button>
    </form>
 </div>
+<script src="{% static "admin/js/deadline_configuration.js" %}"></script>
+
 {% endblock %}

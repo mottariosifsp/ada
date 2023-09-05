@@ -1,0 +1,55 @@
+.area-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.area {
+    flex: 1;
+    min-width: 200px;
+    padding: 20px;
+    background-color: #3F927E;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: color 0.3s ease-in-out;
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    word-wrap: break-word;
+}
+
+.area.selected {
+    background-color: #366b5f;
+}
+
+.area:hover {
+    background-color: #366b5f;
+}
+
+.classs {
+    display: inline-block;
+    padding: 10px 20px;
+    width: 100%;
+    background-color: #366b76;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    text-align: center;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.3s;
+    margin: 12px 0;
+}
+
+.classs:hover {
+    background-color: #134350;
+    transform: translateY(-2px);
+}
+
+.hidden {
+    display: none;
+}
