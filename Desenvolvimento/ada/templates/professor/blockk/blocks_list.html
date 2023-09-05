@@ -14,7 +14,7 @@
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"
     integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous">
 </script>
-<script src="{% static 'staff/blockk/js/blocks_list.js' %}" data-lang={{LANGUAGE_CODE}}></script>
+<script src="{% static 'professor/blockk/js/blocks_list.js' %}" data-lang={{LANGUAGE_CODE}}></script>
 {% endblock %}
 
 {% block body %}
@@ -52,7 +52,7 @@
                         {% blocktrans with acronym_text=blockk.acronym %}
                         <td>{{ acronym_text }}</td>
                         {% endblocktrans %}
-                        <td class="text-center"><a href="{% url 'block_detail' blockk.registration_block_id %}"><button
+                        <td class="text-center"><a href="{% url 'professor_block_detail' blockk.registration_block_id %}"><button
                                     type="button" class="btn btn-primary"><i
                                         class="bi bi-eye"></i></button></a></td>
                     </tr>

@@ -1,0 +1,84 @@
+{% extends "staff/base.html" %}
+{% load i18n %}
+{% load static %}
+
+{% block head %}
+    {{ block.super }}
+    <title>{% trans "Detalhes Bloco" %}</title>
+    <link rel="stylesheet" href="{% static 'professor/blockk/css/block_detail.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fomantic-ui/2.9.2/semantic.min.css"/>
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/dataTables.semanticui.min.css"/>
+    <link rel="stylesheet"
+          href="https://datatables.net/release-datatables/extensions/FixedColumns/css/fixedColumns.bootstrap4.css"/>
+    <link rel="stylesheet" href="https://datatables.net/release-datatables/media/css/dataTables.bootstrap4.css"/>
+    <script src="{% static 'professor/blockk/js/block_detail.js' %}" data-lang={{ LANGUAGE_CODE }}></script>
+{% endblock %}
+
+
+{% block body %}
+    {{ block.super }}
+    <h1 class="title-page">{% trans "Detalhes Bloco" %}</h1>
+    <nav>
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="{% url 'home' %}"><i class="bi bi-house-door"></i></a></li>
+            <li class="breadcrumb-item active" aria-current="page">{% trans "Configurar Blocos" %}</li>
+            <li class="breadcrumb-item active"><a href="{% url 'professor_blocks_list' %}">{% trans "Blocos" %}</a></li>
+            <li class="breadcrumb-item active" aria-current="page">{{ blockk.acronym }}</li>
+        </ol>
+    </nav>
+
+    <div class="mb-4">
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">{% trans "Detalhes" %}</h5>
+                        <ul class="list-group">
+                            <li class="list-group-item"><strong>{% trans 'Áreas' %}:</strong>
+                                {% for area in areas %}{{ area }} {% if not forloop.last %}|{% endif %}{% endfor %}
+                            </li>
+                            <li class="list-group-item"><strong>{% trans "Registro" %}:</strong>
+                                {% trans blockk.registration_block_id %}
+                            </li>
+                            {% blocktrans with acronym_text=blockk.acronym acronym_label="Sigla" %}
+                                <li class="list-group-item"><strong>{{ acronym_label }}:</strong> {{ acronym_text }}
+                                </li>
+                            {% endblocktrans %}
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="card-body">
+            <div class="tabela">
+                <table class="table display editable" id="blocks_list">
+                    <thead>
+                    <tr>
+                        <th scope="col">{% trans "Registro" %}</th>
+                        <th scope="col">{% trans "Nome" %}</th>
+                        <th scope="col">{% trans "Sigla" %}</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% csrf_token %}
+                    {% for course in courses %}
+                        <!-- Lista -->
+                        <tr>
+                            <td>{{ course.registration_course_id }}</td>
+                            {% blocktrans with name_course_text=course.name_course %}
+                                <td>{{ name_course_text }}</td>
+                            {% endblocktrans %}
+                            {% blocktrans with acronym_text=course.acronym %}
+                                <td>{{ acronym_text }}</td>
+                            {% endblocktrans %}
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+{% endblock %}

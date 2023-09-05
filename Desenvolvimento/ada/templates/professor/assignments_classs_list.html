@@ -4,7 +4,7 @@
 
 {% block head %}
 <title>{% trans "Área x" %}</title>
-<link rel="stylesheet" href="{% static 'professor/css/assignments_classs_list.css' %}">
+<link rel="stylesheet" href="{% static 'professor/assignment/css/assignments_classs_list.css' %}">
 <link rel="stylesheet" href="{% static 'common/table_window/css/table_window.css' %}" />
 {% endblock %}
 
@@ -31,6 +31,6 @@
         <div class="classs"></div>
     </div>
 
-<script src="{% static 'professor/js/assignments_classs_list.js' %}" jsonData='{{ json_data|escapejs }}'></script>
+<script src="{% static 'professor/assignment/js/assignments_classs_list.js' %}" jsonData='{{ json_data|escapejs }}'></script>
 <script src="{% static 'common/table_window/js/table_window.js' %}"></script>
 {% endblock %}

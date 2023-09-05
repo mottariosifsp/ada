@@ -337,6 +337,21 @@ def professor_blocks_list(request):
     blocks = request.user.blocks.all()
     return render(request, 'professor/blockk/blocks_list.html', {'blocks': blocks})
 
+@login_required
+def professor_block_detail(request, registration_block_id):
+    user_blocks = request.user.blocks.all()
+    blockk = Blockk.objects.get(registration_block_id=registration_block_id)
+    area = blockk.areas.values_list('name_area', flat=True)
+    courses = Course.objects.filter(blockk=blockk)
+    data = {
+        'user_blocks': user_blocks,
+        'blockk': blockk,
+        'areas': list(area),
+        'courses': courses
+    }
+
+    return render(request, 'professor/blockk/block_detail.html', data)
+
 def day_to_number(day):
     number = {
         'monday': 1,
