@@ -1,4 +1,4 @@
-var current_language = document.currentScript.getAttribute('data-lang');
+var lang = document.currentScript.getAttribute('data-lang');
 var timeslots = []
 var cell_left_number = 0
 var cell_type_choosed = 0
@@ -263,6 +263,8 @@ $(document).ready(function() {
 
      eight_hours_passed = eight_work_hours_rule();
      eleven_hours_passed = eleven_hours_rule();
+     console.log(eleven_hours_passed)
+     console.log(eight_hours_passed)
 
     let csrftoken = get_cookie('csrftoken');
 
@@ -272,7 +274,7 @@ $(document).ready(function() {
           if (!eight_hours_passed) {
             $.ajax({
               type: 'post',
-              url: '/' + current_language + '/professor/preferencia-atribuicao/',
+              url: '/' + lang + '/professor/preferencia-atribuicao/',
               data: {
                 user_regime: user_regime,
                 user_timeslots: json_data
@@ -283,7 +285,7 @@ $(document).ready(function() {
               success: function (response) {
                 $('input[name="regime"]:checked').prop('checked', false);
                 $('#error-alert-form').hide();
-                window.location.href = '/' + current_language + '/professor/preferencia-atribuicao'
+                window.location.href = '/' + lang + '/professor/preferencia-atribuicao'
               },
               error: function (xhr, status, error) {
                 $('#error-message-form').text('Ocorreu um erro no envio de FPA.');
@@ -308,6 +310,7 @@ $(document).ready(function() {
             });
           }
         } else {
+          alert("fff")
           if(lang == 'pt-br' || lang == '') {
             $('#error-message-form').text('A seleção da disponibilidade deve permitir no mínimo 11 horas de intervalo entre a hora inicial do trabalho de um dia e a hora final de trabalho do dia seguinte.');
           } else {
