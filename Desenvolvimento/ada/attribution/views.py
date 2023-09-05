@@ -334,92 +334,57 @@ def manual_attribution(request):
             
             return JsonResponse({'redirect_url': '/atribuicao/atribuicao-manual-confirmar/?blockk='+str(blockk.registration_block_id)}) 
     else:
-        blockk = Blockk.objects.get(registration_block_id=request.GET.get('blockk'))
+        user_regime = request.POST.get('user_regime')
+    user_timeslots = request.POST.getlist('user_timeslots')
+    json_data = [json.loads(item) for item in user_timeslots]
+
+    try:
+        attribution_deadlines = Deadline.objects.filter(name='STARTFPADEADLINE')
+
+        if attribution_deadlines.exists():
+            now = datetime.datetime.today()
+            status = None
+
+            for attribution_deadline in attribution_deadlines:
+                if now >= attribution_deadline.deadline_start and now <= attribution_deadline.deadline_end:
+                    semester = attribution_deadline.semester
+                    year = attribution_deadline.year
+                    break
+    except Deadline.DoesNotExist:
+        Exception('Deadline does not exist')
+
+    year_str = str(year)
+    semester_str = str(semester)
+    id_show = year_str +"."+ semester_str
+
+    timeslots = []
+
+    for obj in json_data:
+        for item in obj:
+            timeslot_begin_hour = convert_string_to_datetime(item["timeslot_begin_hour"])
+            day_of_week = item["day_of_week"]
+
+            timeslot_preference = {
+                "timeslot_begin_hour": timeslot_begin_hour,
+                "day_of_week": day_of_week
+            }
+
+            timeslots.append(timeslot_preference)
+
+    if request.method == 'POST':
+        save_disponiility_preference(timeslots, user_regime, request.user)
+
+        return render(request, 'attribution_preference/courses_attribution_preference.html')
+    else:
         user = request.user
-        timetables_user = Timetable_user.objects.filter(user=None).all()
 
-        timetables_current_user = Timetable_user.objects.filter(user=user).all()
-
-        # print(timetables_current_user)
-
-        timetable = []
-        courses = []
-        timetable_user_c = []
-
-        for timetable_current_user in timetables_current_user:
-            timetable_user_c.append(timetable_current_user.timetable)
-
-        # print(timetable_user_c)
-
-        for timetable_user in timetables_user:
-            courses.append(timetable_user.timetable.course)
-
-        # print(courses)
-        for timetable_user in timetables_user:
-            timetable.append(timetable_user.timetable)
-
-        blocks = user.blocks.all().distinct()
-        areas = Area.objects.filter(blocks__in=blocks).distinct()
-
-        user_area = []
-        user_blocks = []
-
-        for area in areas:
-            area_obj = {
-                'id': area.registration_area_id,
-                'name_area': area.name_area,
-                'acronym': area.acronym,
-                'blocks': [block.registration_block_id for block in area.blocks.all()]
-            }
-            user_area.append(area_obj)
-
-        for block in blocks:
-            block_obj = {
-                'id': block.registration_block_id,
-                'name_block': block.name_block,
-                'acronym': block.acronym
-            }
-            user_blocks.append(block_obj)
-
-        user_blocks_ids = [block['id'] for block in user_blocks]
-
-        timetable_array = []
-
-        for id_block in user_blocks_ids:
-            block_obj = Blockk.objects.get(registration_block_id=id_block)
-            for timetable_object in Timetable.objects.filter(course__blockk=block_obj):
-                day_combo_objects = timetable_object.day_combo.all()
-                day_combo_data = []
-
-                for day_combo in day_combo_objects:
-                    day = day_combo.day
-                    timeslots = day_combo.timeslots.all()
-                    timeslot_data = []
-
-                    for timeslot in timeslots:
-                        timeslot_data.append({
-                            'timeslot_begin_hour': timeslot.hour_start.strftime('%H:%M:%S'),
-                            'timeslot_end_hour': timeslot.hour_end.strftime('%H:%M:%S'),
-                        })
-
-                    day_combo_data.append({
-                        'day': day,
-                        'timeslots': timeslot_data,
-                    })
-
-                timetable_item = {
-                    'id': timetable_object.id,
-                    'day_combo': day_combo_data,
-                    'course_acronym': timetable_object.course.acronym,
-                    'course_name': timetable_object.course.name_course,
-                    'course_id': timetable_object.course.registration_course_id,
-                    'classs': timetable_object.classs.registration_class_id,
-                }
-
-
-            timetable_array.append(timetable_item)
-
-        timetable_user_array = []
+        user_regime = user.job
+        courses = Course.objects.all()
+        user_is_fgfcc = False
+        user_is_fgfcc = user.is_fgfcc
+        
+        user_block = Blockk.objects.get(registration_block_id=request.GET.get('blockk'))
+        timetables_current_user = Timetable_user.objects.filter(user=user, timetable__course__blockk=user_block).all()
 
         dias_semana = {
             'monday': 'mon',
@@ -430,9 +395,11 @@ def manual_attribution(request):
             'saturday': 'sat'
         }
 
-        if timetable_user_c:
-            for timetable_object in timetable_user_c:
-                day_combo_objects = timetable_object.day_combo.all()
+        timetable_current_user_array = []
+        if timetables_current_user:
+            for timetable_object in timetables_current_user:
+                timetable = timetable_object.timetable
+                day_combo_objects = timetable.day_combo.all()
 
                 for day_combo in day_combo_objects:
                     day = day_combo.day
@@ -457,8 +424,8 @@ def manual_attribution(request):
                         else:
                             posicao_calc = posicao
 
-                        course_name = timetable_object.course.name_course
-                        course_acronym = timetable_object.course.acronym
+                        course_name = timetable.course.name_course
+                        course_acronym = timetable.course.acronym
                         day_string = dias_semana[day]
 
                         timetable_item = {
@@ -466,12 +433,44 @@ def manual_attribution(request):
                             'course_acronym': course_acronym,
                             'course_name': course_name,
                         }
-                        # print('timetable_item', timetable_item)
-                        timetable_user_array.append(timetable_item)
+                        timetable_current_user_array.append(timetable_item)
 
-        courses_array = []
+        user_timetable = []
+        timetables = Timetable.objects.filter(user=None)
+        print(timetables)
+        for timetable_object in Timetable.objects.filter(user=None):
+            day_combo_objects = timetable_object.day_combo.all()
+            day_combo_data = []
 
-        for course_object in courses:
+            for day_combo in day_combo_objects:
+                day = day_combo.day
+                timeslots = day_combo.timeslots.all()
+                timeslot_data = []
+
+                for timeslot in timeslots:
+                    timeslot_data.append({
+                        'timeslot_begin_hour': timeslot.hour_start.strftime('%H:%M:%S'),
+                        'timeslot_end_hour': timeslot.hour_end.strftime('%H:%M:%S'),
+                    })
+
+                day_combo_data.append({
+                    'day': day,
+                    'timeslots': timeslot_data,
+                })
+
+            timetable_item = {
+                'id': timetable_object.id,
+                'day_combo': day_combo_data,
+                'course_acronym': timetable_object.course.acronym,
+                'course_name': timetable_object.course.name_course,
+                'course_id': timetable_object.course.registration_course_id,
+                'classs': timetable_object.classs.registration_class_id,
+            }
+
+            user_timetable.append(timetable_item)
+
+        user_courses = []
+        for course_object in Course.objects.all():
             course_item = {
                 'id': course_object.registration_course_id,
                 'name': course_object.name_course,
@@ -479,84 +478,359 @@ def manual_attribution(request):
                 'area': course_object.area.registration_area_id,
                 'block': course_object.blockk.registration_block_id
             }
-            courses_array.append(course_item)
+            user_courses.append(course_item)
 
-        turno = {
-            'matutino': [],
-            'matutinoAulas': 0,
-            'vespertino': [],
-            'vespertinoAulas': 0,
-            'noturno': [],
-            'noturnoAulas': 0
+        shift = {
+            'morning': [],
+            'morning_classes': 0,
+            'afternoon': [],
+            'afternoon_classes': 0,
+            'nocturnal': [],
+            'nocturnal_classes': 0
         }
 
         for timeslot in Timeslot.objects.all():
             if timeslot.hour_start >= datetime.time(7, 0, 0) and timeslot.hour_end <= datetime.time(12, 0, 0):
-                turno['matutino'].append(timeslot)
+                shift['morning'].append(timeslot)
             elif timeslot.hour_start >= datetime.time(13, 0, 0) and timeslot.hour_end <= datetime.time(18, 0, 0):
-                turno['vespertino'].append(timeslot)
+                shift['afternoon'].append(timeslot)
             elif timeslot.hour_start >= datetime.time(18, 0, 0) and timeslot.hour_end <= datetime.time(23, 0, 0):
-                turno['noturno'].append(timeslot)
+                shift['nocturnal'].append(timeslot)
 
-            turno['matutinoAulas'] = len(turno['matutino']) + 1
-            turno['vespertinoAulas'] = len(turno['vespertino']) + 1
-            turno['noturnoAulas'] = len(turno['noturno']) + 1
+            shift['morning_classes'] = len(shift['morning']) + 1
+            shift['afternoon_classes'] = len(shift['afternoon']) + 1
+            shift['nocturnal_classes'] = len(shift['nocturnal']) + 1
 
-        user_timeslot_hour = []        
-        user_timeslot_traceback = []
-        timeslots = Timeslot.objects.all()
+        user_timeslot_table = []
+        user_preference_schedules = Preference_schedule.objects.filter(attribution_preference__user=request.user,attribution_preference__year=id_show)
+        for schedule in user_preference_schedules:
+            timeslot_begin_hour = (schedule.timeslot.hour_start)
 
-        dias_semana = {
-            'monday': 'mon',
-            'tuesday': 'tue',
-            'wednesday': 'wed',
-            'thursday': 'thu',
-            'friday': 'fri',
-            'saturday': 'sat'
-        }
+            shift_type = None
+            shift_position = None
 
-        for dia in dias_semana.values():
-            for posicao in range(1, 19):  # 18 horários possíveis
-                timeslot = timeslots[posicao-1]  # Assumindo que timeslots esteja ordenado corretamente
+            if timeslot_begin_hour >= datetime.time(7, 0, 0) and timeslot_begin_hour <= datetime.time(12, 0, 0):
+                shift_type = 'mor'
+                shift_position = next((i for i, slot in enumerate(shift['morning']) if slot.hour_start == timeslot_begin_hour), None)
+            elif timeslot_begin_hour >= datetime.time(13, 0, 0) and timeslot_begin_hour < datetime.time(18, 0, 0):
+                shift_type = 'aft'
+                shift_position = next((i for i, slot in enumerate(shift['afternoon']) if slot.hour_start == timeslot_begin_hour),
+                                     None)
+            elif timeslot_begin_hour >= datetime.time(18, 0, 0) and timeslot_begin_hour <= datetime.time(23, 0, 0):
+                shift_type = 'noc'
+                shift_position = next((i for i, slot in enumerate(shift['nocturnal']) if slot.hour_start == timeslot_begin_hour), None)
 
-                if timeslot.hour_start < datetime.time(12, 0, 0):
-                    turno_sessao = 'mat'
-                elif timeslot.hour_start < datetime.time(18, 0, 0):
-                    turno_sessao = 'ves'
-                else:
-                    turno_sessao = 'not'
-                if posicao > 12:
-                    posicao_calc = posicao - 12
-                elif posicao > 6:
-                    posicao_calc = posicao - 6
-                else:
-                    posicao_calc = posicao
-                string = {
-                    'frase': f'{dia}-{turno_sessao}-{posicao_calc}',
-                    'posicao': posicao_calc,
-                    'sessao': turno_sessao,
-                    'dia': dia,
-                    'hour': timeslot.hour_start.strftime('%H:%M:%S'),
-                }
-                user_timeslot_traceback.append(string)
+            if shift_position is not None:
+                shift_position += 1
 
-        # print(user_timeslot_traceback)
+            if schedule.day == 'monday':
+                shift_day = 'mon'
+            elif schedule.day == 'tuesday':
+                shift_day = 'tue'
+            elif schedule.day == 'wednesday':
+                shift_day = 'wed'
+            elif schedule.day == 'thursday':
+                shift_day = 'thu'
+            elif schedule.day == 'friday':
+                shift_day = 'fri'
+            else:
+                shift_day = 'sat'
 
-        regime = request.user.job
-        print(timetable_array)
-        data = {
-            'regime': regime,
-            'turno': turno,
-            'user_disponibility': user_timeslot_traceback,
-            'user_blocks': user_blocks,
-            'user_areas': user_area,
-            'timetables': timetable_array,
-            'courses': courses_array,
-            'timetables_user': timetable_user_array,
-            'blockk': blockk,
-        }
+            string = {
+                'id': f'{shift_day}-{shift_type}-{shift_position}-pri',
+                'priority': 'pri',
+                'position': shift_position,
+                'type': shift_type,
+                'day': shift_day,
+                'timeslot_begin_hour': timeslot_begin_hour.strftime('%H:%M:%S'),
+            }
+            user_timeslot_table.append(string)
+        
+        for schedule in user_preference_schedules:
+            timeslot_begin_hour = (schedule.timeslot.hour_start)
 
-        return render(request, 'attribution/manual_attribution.html', data)
+            shift_type = None
+            shift_position = None
+
+            if timeslot_begin_hour >= datetime.time(7, 0, 0) and timeslot_begin_hour <= datetime.time(12, 0, 0):
+                shift_type = 'mor'
+                shift_position = next((i for i, slot in enumerate(shift['morning']) if slot.hour_start == timeslot_begin_hour), None)
+            elif timeslot_begin_hour >= datetime.time(13, 0, 0) and timeslot_begin_hour < datetime.time(18, 0, 0):
+                shift_type = 'aft'
+                shift_position = next((i for i, slot in enumerate(shift['afternoon']) if slot.hour_start == timeslot_begin_hour),
+                                     None)
+            elif timeslot_begin_hour >= datetime.time(18, 0, 0) and timeslot_begin_hour <= datetime.time(23, 0, 0):
+                shift_type = 'noc'
+                shift_position = next((i for i, slot in enumerate(shift['nocturnal']) if slot.hour_start == timeslot_begin_hour), None)
+
+            if shift_position is not None:
+                shift_position += 1
+
+            if schedule.day == 'monday':
+                shift_day = 'mon'
+            elif schedule.day == 'tuesday':
+                shift_day = 'tue'
+            elif schedule.day == 'wednesday':
+                shift_day = 'wed'
+            elif schedule.day == 'thursday':
+                shift_day = 'thu'
+            elif schedule.day == 'friday':
+                shift_day = 'fri'
+            else:
+                shift_day = 'sat'
+
+            string = {
+                'id': f'{shift_day}-{shift_type}-{shift_position}-sec',
+                'priority': 'sec',
+                'position': shift_position,
+                'type': shift_type,
+                'day': shift_day,
+                'timeslot_begin_hour': timeslot_begin_hour.strftime('%H:%M:%S'),
+            }
+            user_timeslot_table.append(string)
+        
+        if user_regime.name_job == "RDE" or user_regime.name_job == "FORTY_HOURS" or user_regime.name_job == "TEMPORARY":
+            user_regime_choosed = user_regime
+            user_regime_choosed.name_job = '40'
+        elif user_regime.name_job == "TWENTY_HOURS" or user_regime.name_job == "SUBSTITUTE":
+            user_regime_choosed = user_regime
+            user_regime_choosed.name_job = '20'
+        else:
+            user_regime_choosed = user_regime
+
+    data = {
+        'user_regime': user_regime_choosed,
+        'user_is_fgfcc': user_is_fgfcc,
+        'shift': shift,
+        'user_disponibility': user_timeslot_table,
+        'user_blockk': user_block, # apenas um block
+        'user_current_timetables': timetable_current_user_array,
+        'user_timetables': user_timetable, # pega todos nao atribuidos e dps pega so do bloco
+        'user_courses': user_courses,
+    }
+
+    return render(request, 'attribution/manual_attribution.html', data)
+        # # --
+
+        
+
+        # user = request.user
+        # timetables_user = Timetable_user.objects.filter(user=None).all()
+
+        # timetables_current_user = Timetable_user.objects.filter(user=user).all()
+
+        # timetable = []
+        # courses = []
+        # timetable_user_c = []
+
+        # for timetable_current_user in timetables_current_user:
+        #     timetable_user_c.append(timetable_current_user.timetable)
+
+        # for timetable_user in timetables_user:
+        #     courses.append(timetable_user.timetable.course)
+
+        # for timetable_user in timetables_user:
+        #     timetable.append(timetable_user.timetable)
+
+        
+
+        # blocks = user.blocks.all().distinct()
+        # areas = Area.objects.filter(blocks__in=blocks).distinct()
+
+        # user_area = []
+        # user_blocks = []
+
+        # for area in areas:
+        #     area_obj = {
+        #         'id': area.registration_area_id,
+        #         'name_area': area.name_area,
+        #         'acronym': area.acronym,
+        #         'blocks': [block.registration_block_id for block in area.blocks.all()]
+        #     }
+        #     user_area.append(area_obj)
+
+        # for block in blocks:
+        #     block_obj = {
+        #         'id': block.registration_block_id,
+        #         'name_block': block.name_block,
+        #         'acronym': block.acronym
+        #     }
+        #     user_blocks.append(block_obj)
+
+        # user_blocks_ids = [block['id'] for block in user_blocks]
+
+        # timetable_array = []
+
+        # for id_block in user_blocks_ids:
+        #     block_obj = Blockk.objects.get(registration_block_id=id_block)
+        #     for timetable_object in Timetable.objects.filter(course__blockk=block_obj):
+        #         day_combo_objects = timetable_object.day_combo.all()
+        #         day_combo_data = []
+
+        #         for day_combo in day_combo_objects:
+        #             day = day_combo.day
+        #             timeslots = day_combo.timeslots.all()
+        #             timeslot_data = []
+
+        #             for timeslot in timeslots:
+        #                 timeslot_data.append({
+        #                     'timeslot_begin_hour': timeslot.hour_start.strftime('%H:%M:%S'),
+        #                     'timeslot_end_hour': timeslot.hour_end.strftime('%H:%M:%S'),
+        #                 })
+
+        #             day_combo_data.append({
+        #                 'day': day,
+        #                 'timeslots': timeslot_data,
+        #             })
+
+        #         timetable_item = {
+        #             'id': timetable_object.id,
+        #             'day_combo': day_combo_data,
+        #             'course_acronym': timetable_object.course.acronym,
+        #             'course_name': timetable_object.course.name_course,
+        #             'course_id': timetable_object.course.registration_course_id,
+        #             'classs': timetable_object.classs.registration_class_id,
+        #         }
+
+
+        #     timetable_array.append(timetable_item)
+
+        # timetable_user_array = []
+
+        # dias_semana = {
+        #     'monday': 'mon',
+        #     'tuesday': 'tue',
+        #     'wednesday': 'wed',
+        #     'thursday': 'thu',
+        #     'friday': 'fri',
+        #     'saturday': 'sat'
+        # }
+
+        # if timetable_user_c:
+        #     for timetable_object in timetable_user_c:
+        #         day_combo_objects = timetable_object.day_combo.all()
+
+        #         for day_combo in day_combo_objects:
+        #             day = day_combo.day
+        #             timeslots = day_combo.timeslots.all()
+
+        #             for timeslot in timeslots:
+        #                 turno = None
+
+        #                 if timeslot.hour_start >= datetime.time(7, 0, 0) and timeslot.hour_end <= datetime.time(12, 0, 0):
+        #                     turno = 'mat'
+        #                 elif timeslot.hour_start >= datetime.time(13, 0, 0) and timeslot.hour_end <= datetime.time(18, 0, 0):
+        #                     turno = 'ves'
+        #                 elif timeslot.hour_start >= datetime.time(18, 0, 0) and timeslot.hour_end <= datetime.time(23, 0, 0):
+        #                     turno = 'not'
+
+        #                 posicao = timeslot.position
+
+        #                 if posicao > 12:
+        #                     posicao_calc = posicao - 12
+        #                 elif posicao > 6:
+        #                     posicao_calc = posicao - 6
+        #                 else:
+        #                     posicao_calc = posicao
+
+        #                 course_name = timetable_object.course.name_course
+        #                 course_acronym = timetable_object.course.acronym
+        #                 day_string = dias_semana[day]
+
+        #                 timetable_item = {
+        #                     'phrase': f'{day_string}-{turno}-{posicao_calc}', #sub-fri-mat-4
+        #                     'course_acronym': course_acronym,
+        #                     'course_name': course_name,
+        #                 }
+        #                 print('timetable_item', timetable_item)
+        #                 timetable_user_array.append(timetable_item)
+
+        # courses_array = []
+
+        # for course_object in courses:
+        #     course_item = {
+        #         'id': course_object.registration_course_id,
+        #         'name': course_object.name_course,
+        #         'acronym': course_object.acronym,
+        #         'area': course_object.area.registration_area_id,
+        #         'block': course_object.blockk.registration_block_id
+        #     }
+        #     courses_array.append(course_item)
+
+        # turno = {
+        #     'matutino': [],
+        #     'matutinoAulas': 0,
+        #     'vespertino': [],
+        #     'vespertinoAulas': 0,
+        #     'noturno': [],
+        #     'noturnoAulas': 0
+        # }
+
+        # for timeslot in Timeslot.objects.all():
+        #     if timeslot.hour_start >= datetime.time(7, 0, 0) and timeslot.hour_end <= datetime.time(12, 0, 0):
+        #         turno['matutino'].append(timeslot)
+        #     elif timeslot.hour_start >= datetime.time(13, 0, 0) and timeslot.hour_end <= datetime.time(18, 0, 0):
+        #         turno['vespertino'].append(timeslot)
+        #     elif timeslot.hour_start >= datetime.time(18, 0, 0) and timeslot.hour_end <= datetime.time(23, 0, 0):
+        #         turno['noturno'].append(timeslot)
+
+        #     turno['matutinoAulas'] = len(turno['matutino']) + 1
+        #     turno['vespertinoAulas'] = len(turno['vespertino']) + 1
+        #     turno['noturnoAulas'] = len(turno['noturno']) + 1
+
+        # user_timeslot_hour = []        
+        # user_timeslot_traceback = []
+        # timeslots = Timeslot.objects.all()
+
+        # dias_semana = {
+        #     'monday': 'mon',
+        #     'tuesday': 'tue',
+        #     'wednesday': 'wed',
+        #     'thursday': 'thu',
+        #     'friday': 'fri',
+        #     'saturday': 'sat'
+        # }
+
+        # for dia in dias_semana.values():
+        #     for posicao in range(1, 19):  # 18 horários possíveis
+        #         timeslot = timeslots[posicao-1]  # Assumindo que timeslots esteja ordenado corretamente
+
+        #         if timeslot.hour_start < datetime.time(12, 0, 0):
+        #             turno_sessao = 'mat'
+        #         elif timeslot.hour_start < datetime.time(18, 0, 0):
+        #             turno_sessao = 'ves'
+        #         else:
+        #             turno_sessao = 'not'
+        #         if posicao > 12:
+        #             posicao_calc = posicao - 12
+        #         elif posicao > 6:
+        #             posicao_calc = posicao - 6
+        #         else:
+        #             posicao_calc = posicao
+        #         string = {
+        #             'frase': f'{dia}-{turno_sessao}-{posicao_calc}',
+        #             'posicao': posicao_calc,
+        #             'sessao': turno_sessao,
+        #             'dia': dia,
+        #             'hour': timeslot.hour_start.strftime('%H:%M:%S'),
+        #         }
+        #         user_timeslot_traceback.append(string)
+
+        # # print(user_timeslot_traceback)
+
+        # regime = request.user.job
+        # print(timetable_array)
+        # data = {
+        #     'regime': regime,
+        #     'turno': turno,
+        #     'user_disponibility': user_timeslot_traceback,
+        #     'user_blocks': user_blocks,
+        #     'user_areas': user_area,
+        #     'timetables': timetable_array,
+        #     'courses': courses_array,
+        #     'timetables_user': timetable_user_array,
+        #     'blockk': blockk,
+        # }
 
 def manual_attribution_save(timetables, professor, blockk):
     print(f'Atual professor {TeacherQueuePosition.objects.get(position=0, blockk=blockk).teacher.first_name} e professor sendo atualizado {professor.first_name}')
