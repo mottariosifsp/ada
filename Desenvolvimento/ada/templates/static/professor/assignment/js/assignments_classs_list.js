@@ -30,7 +30,7 @@ $(document).ready(function () {
             classs.click(function () {
                 var registration_class_id = $(event.target).text().trim();
 
-                var url = "/professor/ver/?registration_class_id=" + registration_class_id;
+                var url = "/professor/ver-atribuicoes/?registration_class_id=" + registration_class_id;
                 window.location.href = url;
 
             });

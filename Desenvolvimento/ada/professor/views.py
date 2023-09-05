@@ -260,7 +260,7 @@ def show_assignment(request):
 
             for timeslot in timeslots:
                 position = timeslot.position
-                print("timetable user", timetable_user.user)
+                # print("timetable user", timetable_user.user)
                 timetable_professor = {
                     "cord": f'{position}-{day}',
                     "course": timetable_user.timetable.course.name_course,
