@@ -17,6 +17,7 @@ from course.models import Course
 from user.models import User
 from django.core.mail import send_mail, EmailMessage
 from professor.models import ContatoForm
+from django.utils.translation import gettext_lazy as _
 
 def is_not_staff(user):
     return not user.is_staff
@@ -363,16 +364,16 @@ def contact(request):
     if request.method == 'POST':
         form = ContatoForm(request.POST)
         if form.is_valid():
-            name = form.cleaned_data['nome']
+            name = form.cleaned_data['name']
             email = form.cleaned_data['email']
-            message = form.cleaned_data['mensagem']
-            assunto = 'Contato do seu site'
+            message = form.cleaned_data['message']
+            assunto = 'Contato da aplicação ADA'
 
-            # Enviar o e-mail
-            send_mail(assunto, mensagem, email, ['seu_email_destino@example.com'], fail_silently=False)
+            send_mail(name, message, email, ['ada.ifsp@gmail.com'], fail_silently=False)
 
-            # Redirecionar para uma página de sucesso
-            return redirect('sucesso')
+            messages.success(request, _('Email enviado com sucesso.'))
+
+        return redirect('sucesso')
     else:
         form = ContatoForm()
 

@@ -4,6 +4,7 @@
 
 {% block head %}
     <title>{% trans "Contato" %}</title>
+    <link rel="stylesheet" href="{% static 'professor/contact/css/contact.css' %}">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
 {% endblock %}
 
@@ -17,11 +18,31 @@
     </nav>
 
 
-    <form method="post">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit">Enviar</button>
-    </form>
+<form method="post">
+    {% csrf_token %}
+    <div class="form-group">
+        <label for="{{ form.name.id_for_label }}">{% trans "Nome" %}:</label>
+        {{ form.name }}
+    </div>
+    <div class="form-group">
+        <label for="{{ form.email.id_for_label }}">{% trans "E-mail" %}:</label>
+        {{ form.email }}
+    </div>
+    <div class="form-group">
+        <label for="{{ form.message.id_for_label }}">{% trans "Mensagem" %}:</label>
+        {{ form.message }}
+    </div>
+    <button type="submit" class="btn btn-primary">Enviar</button>
+</form>
+
+{% if messages %}
+    <ul class="messages">
+        {% for message in messages %}
+            <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+        {% endfor %}
+    </ul>
+{% endif %}
+
 
 {% endblock %}
 
