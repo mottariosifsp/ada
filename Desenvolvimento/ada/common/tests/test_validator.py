@@ -40,5 +40,3 @@ def test_convert_to_uppercase(monkeypatch):
     assert model.field1 == "LOWERCASE"
     assert model.field2 == "MIXEDCASE"
     assert model.field3 == "UPPERCASE"
-
-# TODO  - Os outros métodos do validator serão testados no timetable com teste unitário (apagar depois)

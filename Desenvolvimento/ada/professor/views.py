@@ -187,6 +187,10 @@ def home(request):
 def privacy_policy(request):
     return render(request, 'privacy_policy.html')
 
+@login_required
+def terms_and_conditions (request):
+    return render(request, 'terms_and_conditions.html')
+
 def profile(request):
     professor = request.user
     timeslots_all = Timeslot.objects.all()
@@ -256,7 +260,7 @@ def show_assignment(request):
 
             for timeslot in timeslots:
                 position = timeslot.position
-                print("timetable user", timetable_user.user)
+                # print("timetable user", timetable_user.user)
                 timetable_professor = {
                     "cord": f'{position}-{day}',
                     "course": timetable_user.timetable.course.name_course,
@@ -275,7 +279,7 @@ def show_assignment(request):
                     'classs': classs
                 }
 
-    return render(request, 'professor/show_assignment.html', data)
+    return render(request, 'professor/assignment/show_assignment.html', data)
 @login_required
 def assignments(request):
     blockks = request.user.blocks.all()
@@ -301,8 +305,7 @@ def assignments(request):
             blockk_images["image"] = "https://media.discordapp.net/attachments/1081682716531118151/1117348338254233680/image.png"
         blockks_images.append(blockk_images)
 
-    return render(request, 'professor/assignments.html', {'blockks': blockks_images})
-
+    return render(request, 'professor/assignment/assignments.html', {'blockks': blockks_images})
 
 @login_required
 def assignments_classs_list(request, name_block):
@@ -333,7 +336,7 @@ def assignments_classs_list(request, name_block):
         'json_data': all_classes,
     }
 
-    return render(request, 'professor/assignments_classs_list.html', data)
+    return render(request, 'professor/assignment/assignments_classs_list.html', data)
 
 @login_required
 def professor_blocks_list(request):
