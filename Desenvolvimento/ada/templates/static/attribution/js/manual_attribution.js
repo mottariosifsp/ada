@@ -72,8 +72,8 @@ for (var i = 0; i < timetables_array.length; i++) {
         for (var k = 0; k < timeslots.length; k++) {
             var timeslot = timeslots[k];
             timeslot_data.push({
-                hour_start: timeslot.hour_start,
-                hour_end: timeslot.hour_end,
+                hour_start: timeslot.timeslot_begin_hour,
+                hour_end: timeslot.timeslot_end_hour,
             });
         }
 
@@ -248,6 +248,8 @@ function block_options() {
 function timetables_options() {
     var spanValue = $("#cel-position").text();
 
+    console.log(timetables_array_obj);
+
     var filteredElement = disponibility_array_obj.find(function (element) {
         return element.frase === spanValue;
     });
@@ -257,13 +259,15 @@ function timetables_options() {
 
         for (var i = 0; i < dayCombos.length; i++) {
             var dayCombo = dayCombos[i];
+            console.log('dayCombo: ',dayCombo);
             var timeslotDay = dayCombo.day.substring(0, 3);
             var timeslots = dayCombo.timeslots;
 
             for (var j = 0; j < timeslots.length; j++) {
                 var timeslot = timeslots[j];
+                console.log('timeslot: ',timeslot);
                 var timeslotHour = timeslot.hour_start;
-                //alert(timeslotDay)
+                console.log(timeslotHour, filteredElement.hour, timeslotDay, filteredElement.dia)
                 if (timeslotHour === filteredElement.hour && timeslotDay === filteredElement.dia) {
                     return true;
                 }
@@ -274,12 +278,9 @@ function timetables_options() {
     });
 
     timatables_options = filteredTimetables;
-
     // Criar a lista de options para datalist com base nos disciplinas filtrados
     var timetableOptionsDatalist = document.getElementById("course-options");
     timetableOptionsDatalist.innerHTML = "";
-
-
 
     if (filteredTimetables.length == 0) {
         $("#course-filter").val("Nenhuma disciplina disponível neste horário.");
@@ -332,7 +333,7 @@ function block_filter() {
 
         var courseOptionsDatalist = document.getElementById("course-options");
         courseOptionsDatalist.innerHTML = "";
-
+        alert("oi");
         for (var i = 0; i < filtered_timetables.length; i++) {
             $("#course-filter").prop("disabled", false);
             var timetable = filtered_timetables[i];
@@ -370,9 +371,10 @@ function area_filter() {
 
             var courseOptionsDatalist = document.getElementById("course-options");
             courseOptionsDatalist.innerHTML = "";
-
+            alert("oi");
             for (var i = 0; i < filtered_timetables.length; i++) {
                 $("#course-filter").prop("disabled", false);
+                
                 var timetable = filtered_timetables[i];
                 var option = document.createElement("option");
                 option.value = timetable.id;
@@ -390,7 +392,7 @@ function area_filter() {
                     return course.block === block_value && course.area === area_value && course.id === timetable.course_id;
                 });
             });
-
+            alert("oi");
             var courseOptionsDatalist = document.getElementById("course-options");
             courseOptionsDatalist.innerHTML = "";
 
@@ -502,7 +504,7 @@ $(document).ready(function () {
         $(this).css('opacity', ''); // Redefine a opacidade para o valor normal
     });
 
-    $("#addCourseButton").on("click", function () {
+    $("#add-course-button").on("click", function () {
         var timetable_id = parseInt($("#course-filter").val());
         var grade_position = $("#cel-position").text(); //mon-mat-1 mon-mat-2 mon-mat-3
 
@@ -680,11 +682,12 @@ $(document).ready(function () {
             $("#error-alert").show();
         }
     });
-
+    
     $("#sendCourses").on("click", function () {
         let csrftoken = getCookie("csrftoken");
         var jsonData = JSON.stringify(timetable_global);
         var blockk = $("#blockk").attr("value");
+        console.log(timetable_global.length);
         if (timetable_global.length != 0) {
             $.ajax({
                 type: "post",
@@ -765,6 +768,11 @@ function getDiaCompleto(abreviacao_dia) {
 
     return dias[abreviacao_dia] || "Nenhum dia correspondente";
 }
+
+$("#teste").on("click", function () {
+    console.log('Timetable global: ', timetable_global);
+    console.log('Btn checked global: ', btn_checked_global);
+});
 
 function info_button(value) {
     var infoMessage = $("#info-input-message").text();

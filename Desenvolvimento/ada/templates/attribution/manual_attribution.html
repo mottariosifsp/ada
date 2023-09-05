@@ -28,6 +28,8 @@
 
 <section class="section dashboard">
   <h1 class="title-page mt-4">{% trans "Atribuição Manual" %}</h1>
+  <button type="button" class="btn btn-danger float-right mt-4 mb-5 mr-2" name="teste" style=""
+    id="teste">{% trans "teste" %}</button>
   <hr>
   <p>Escolha as suas preferências novamente.</p>
   <form id="sendDisponibilityForm" method="post">
@@ -481,6 +483,7 @@
       id="sendCourses">{% trans "Enviar" %}</button>
     <button type="button" class="btn btn-danger float-right mt-4 mb-5 mr-2" name="cleanFPA" style="display: none"
       id="cleanFPA">{% trans "Limpar" %}</button>
+    
   </form>
 </section>
 {% endblock %}
