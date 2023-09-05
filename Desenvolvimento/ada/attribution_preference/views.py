@@ -881,11 +881,12 @@ def save_disponiility_preference(user_timeslots, user_regime, user):
     semester_str = str(semester)
     id_show = year_str +"."+ semester_str
 
-    print(id_show)
+    if not Attribution_preference.objects.filter(user=user,year=id_show,name_job=user.job.name_job).exists():
+        Attribution_preference.objects.create(user=user,year=id_show,name_job=user.job.name_job)
 
-
-    if not Attribution_preference.objects.filter(user=user,year=id_show).exists():
-        Attribution_preference.objects.create(user=user,year=id_show, job=user.job)
+    # attribution_preference = Attribution_preference.objects.filter(user=user,year=id_show).first()
+    # attribution_preference.job = name_job
+    # attribution_preference.save()
 
     if Preference_schedule.objects.filter(attribution_preference__user=user, attribution_preference__year=id_show).exists():
         Preference_schedule.objects.filter(attribution_preference__user=user, attribution_preference__year=id_show).delete()
