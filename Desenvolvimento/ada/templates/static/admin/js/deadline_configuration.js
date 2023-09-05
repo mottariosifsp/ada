@@ -1,14 +1,12 @@
 $("document").ready(function () {
 
-    $('#year').mask('0000');
 
     $("#error-message-form").hide();
     $("#submit-button").click(function (event) {
         event.preventDefault(); // Impede o envio padrão do formulário
         $("#error-message-form").hide();
 
-        alert("Aqui");
-
+        
         let semester = $("input[name=semester]").val();
         let startFPA = $("#startFPADeadline").val();
         let endFPA = $("#endFPADeadline").val();

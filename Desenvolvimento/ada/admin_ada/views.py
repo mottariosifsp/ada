@@ -17,13 +17,13 @@ def deadline_configuration_confirm(request):
         date_format = "%Y-%m-%dT%H:%M"
         year = request.POST.get('year')
         semester = request.POST.get('semester')
-        year = year+'.'+semester
+        year = str(year)+'.'+str(semester)
         startFPADeadline = datetime.strptime(request.POST.get('startFPADeadline'), date_format)
         endFPADeadline = datetime.strptime(request.POST.get('endFPADeadline'), date_format)
         startAssignmentDeadline = datetime.strptime(request.POST.get('startAssignmentDeadline'), date_format)
         endAssignmentDeadline = datetime.strptime(request.POST.get('endAssignmentDeadline'), date_format)
 
-        print(startFPADeadline)
+        print(year)
 
         data = {
             'year': year,
