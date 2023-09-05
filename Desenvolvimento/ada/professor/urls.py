@@ -1,5 +1,6 @@
 from django.urls import path, include
-from .views import home, profile, assignments, assignments_classs_list, show_assignment, professor_blocks_list, professor_block_detail, privacy_policy, terms_and_conditions
+from .views import home, profile, assignments, assignments_classs_list, show_assignment, professor_blocks_list, \
+    professor_block_detail, privacy_policy, terms_and_conditions, contact
 
 urlpatterns = [
     path("", home, name="home_professor"),
@@ -11,5 +12,6 @@ urlpatterns = [
     path("blocos/", professor_blocks_list, name="professor_blocks_list"),
     path("detalhes-bloco/<str:registration_block_id>/", professor_block_detail, name="professor_block_detail"),
     path("politica-de-privacidade/", privacy_policy, name="privacy_policy"),
-    path("termos-e-condições-de-uso/", terms_and_conditions, name="terms_and_conditions")
+    path("termos-e-condições-de-uso/", terms_and_conditions, name="terms_and_conditions"),
+    path("contato", contact, name="contact")
 ]

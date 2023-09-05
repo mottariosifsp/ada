@@ -1,8 +1,8 @@
 {% extends "professor/base.html" %}
 {% load i18n %}
 {% load static %}
-{% block head %}
 
+{% block head %}
     <title>{% trans "Política de Privacidade" %}</title>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
 {% endblock %}
@@ -21,7 +21,7 @@
         }
     </style>
 
-        <nav>
+    <nav>
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="{% url 'home_staff' %}"><i class="bi bi-house-door"></i></a></li>
             <li class="breadcrumb-item active">{% trans "Política de Privacidade" %}</li>

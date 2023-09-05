@@ -16,6 +16,8 @@ from course.models import Course
 
 from user.models import User
 from django.core.mail import send_mail, EmailMessage
+from professor.models import ContatoForm
+from django.utils.translation import gettext_lazy as _
 
 def is_not_staff(user):
     return not user.is_staff
@@ -357,6 +359,25 @@ def professor_block_detail(request, registration_block_id):
     }
 
     return render(request, 'professor/blockk/block_detail.html', data)
+
+def contact(request):
+    if request.method == 'POST':
+        form = ContatoForm(request.POST)
+        if form.is_valid():
+            name = form.cleaned_data['name']
+            email = form.cleaned_data['email']
+            message = form.cleaned_data['message']
+            assunto = 'Contato da aplicação ADA'
+
+            send_mail(name, message, email, ['ada.ifsp@gmail.com'], fail_silently=False)
+
+            messages.success(request, _('Email enviado com sucesso.'))
+
+        return redirect('sucesso')
+    else:
+        form = ContatoForm()
+
+    return render(request, 'contact.html', {'form': form})
 
 def day_to_number(day):
     number = {
