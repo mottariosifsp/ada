@@ -23,7 +23,7 @@
         {% endif %}
         <p
             class="element error-message text-center {% if user.is_authenticated %}text-black{% else %}text-white{% endif %}">
-            Erro interno. A equipe da ADA já está trabalhando nisso.</p>
+            {% trans "Erro interno" %}. {% trans "A equipe da ADA já está trabalhando nisso" %}.</p>
         <a href="{% url 'home' %}" class="btn custom-btn text-white">Voltar ao início</a>
     </div>
 
