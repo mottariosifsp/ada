@@ -187,6 +187,10 @@ def home(request):
 def privacy_policy(request):
     return render(request, 'privacy_policy.html')
 
+@login_required
+def terms_and_conditions (request):
+    return render(request, 'terms_and_conditions.html')
+
 def profile(request):
     professor = request.user
     timeslots_all = Timeslot.objects.all()
