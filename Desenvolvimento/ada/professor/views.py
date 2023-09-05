@@ -307,7 +307,6 @@ def assignments(request):
 
     return render(request, 'professor/assignment/assignments.html', {'blockks': blockks_images})
 
-
 @login_required
 def assignments_classs_list(request, name_block):
     blockk = Blockk.objects.get(name_block=name_block)

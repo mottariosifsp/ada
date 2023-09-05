@@ -23,6 +23,7 @@ $(document).ready(function () {
 
         $('#classs-container').empty();
 
+        // TODO - mudar para post para passar a area e atualiazar o breadcrump
         filteredData.forEach(function (object) {
             var classs = $('<div class="classs"></div>').text(object.registration_class_id);
             let isUpdating = false;
