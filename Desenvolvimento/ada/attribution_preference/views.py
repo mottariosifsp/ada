@@ -66,6 +66,7 @@ def attribution_preference(request):
     
     try:
         attribution_deadlines = Deadline.objects.filter(name='STARTFPADEADLINE')
+        attribution_assignment_deadlines = Deadline.objects.filter(name='STARTASSIGNMENTDEADLINE')
 
         if attribution_deadlines.exists():
             now = datetime.datetime.today()
@@ -76,14 +77,21 @@ def attribution_preference(request):
                     status = 'configured'
                     break
                 elif now >= attribution_deadline.deadline_start and now <= attribution_deadline.deadline_end:
-                    status = 'started'
-                    
+                    status = 'started'                    
                     year = attribution_deadline.year
                     break
                 else:
                     status = 'finished'
-                    semester = '0'
-                    year = 'year'
+                    year = 'none'
+
+            if year == 'none':
+                for attribution_assignment_deadline in attribution_assignment_deadlines:
+                    if now < attribution_assignment_deadline.deadline_start:
+                        status = 'configured_assignment'
+                        break
+                    elif now > attribution_assignment_deadline.deadline_end:
+                        status = 'finished_assignment'
+                        break
                     break
 
             if status:
@@ -99,7 +107,7 @@ def attribution_preference(request):
 
     
     if Deadline.objects.filter(name='STARTFPADEADLINE').exists():
-        id_show = year_str + "." + semester_str
+        id_show = year
     else:
         id_show = 'none'
 
@@ -628,11 +636,6 @@ def courses_attribution_preference(request):
 def show_attribution_preference(request, year):
     if request.method == 'GET':
         user = request.user
-        
-        if user.job is None:
-            user_regime = " "
-        else:
-            user_regime = user.job.name_job
 
         shift = {
             'morning': [],
@@ -655,8 +658,16 @@ def show_attribution_preference(request, year):
             shift['afternoon_classes'] = len(shift['afternoon']) + 1
             shift['nocturnal_classes'] = len(shift['nocturnal']) + 1
 
+        attribution = Attribution_preference.objects.filter(user=user, year=year).first()
+
+        if user.job is None:
+            user_regime = " "
+        else:
+            user_regime = attribution.name_job
+
         user_timeslot_traceback = []
         user_preference_schedules = Preference_schedule.objects.filter(attribution_preference__user=request.user,attribution_preference__year=year)
+        
         for schedule in user_preference_schedules:
             begin = (schedule.timeslot.hour_start)
 
@@ -835,6 +846,7 @@ def show_attribution_preference(request, year):
             'user_disponibility_choosed': user_timeslot_traceback,
             'user_courses_choosed': user_courses_traceback,
         }
+        print(data)
 
         return render(request, 'attribution_preference/show_attribution_preference.html', data)
 
