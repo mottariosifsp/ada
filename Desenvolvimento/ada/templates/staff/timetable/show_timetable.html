@@ -3,16 +3,13 @@
 <link rel="stylesheet" href="{% static 'staff/timetable/css/show_timetable.css' %}" />
 <link rel="stylesheet" href="{% static 'common/table_window/css/table_window.css' %}" />
 {% endblock %} {% block body %} {{ block.super }}
-<h1 class="title-page mt-4">{% trans "Detalhe Grade" %} {{ request.GET.class }}</h1>
+<h1 class="title-page mt-4">{% trans "Detalhes Grade" %} {{ request.GET.class }}</h1>
 <hr>
 <nav>
     <ol class="breadcrumb">
-        <li class="breadcrumb-item">
-            <a href="{% url 'home' %}"><i class="bi bi-house-door"></i></a>
-        </li>
-        <li class="breadcrumb-item active" aria-current="page">{% trans "Listar Grades" %}</li>
+        <li class="breadcrumb-item"><a href="{% url 'home_staff' %}"><i class="bi bi-house-door"></i></a></li>
         <li class="breadcrumb-item active"><a href="{% url 'timetables' %}">{% trans "Grades" %}</a></li>
-        <li class="breadcrumb-item active">{% trans "Grade" %} {{ request.GET.class }}</li>
+        <li class="breadcrumb-item active">{% trans "Detalhes Grade da" %} {{ request.GET.class }}</li>
     </ol>
 </nav>
 <div

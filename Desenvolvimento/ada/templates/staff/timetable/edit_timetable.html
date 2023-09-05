@@ -15,10 +15,9 @@
 <hr>
 <nav>
   <ol class="breadcrumb">
-    <li class="breadcrumb-item"><a href="{% url 'home' %}"><i class="bi bi-house-door"></i></a></li>
-    <li class="breadcrumb-item active" aria-current="page">{% trans "Configurar Grades Horárias" %}</li>
-    <li class="breadcrumb-item active"><a href="{% url 'timetables' %}">{% trans "Grades Horárias" %}</a></li>
-    <li class="breadcrumb-item active">{% trans "Editar" %} {{ request.GET.class }}</li>
+    <li class="breadcrumb-item"><a href="{% url 'home_staff' %}"><i class="bi bi-house-door"></i></a></li>
+    <li class="breadcrumb-item"><a href="{% url 'timetables' %}">{% trans "Grades" %}</a></li>
+    <li class="breadcrumb-item active">{% trans "Editar Grade" %} {{ request.GET.class }}</li>
   </ol>
 </nav>
 <h1><span id="selected_class" class="d-flex justify-content-center">{{ request.GET.class }}</span></h1>

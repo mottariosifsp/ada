@@ -7,9 +7,9 @@ from django.utils.translation import gettext_lazy as _
 class Attribution_preference(models.Model):  # fpa
     user = models.ForeignKey('user.User', on_delete=models.CASCADE)
     year = models.CharField(_('year'), max_length=45, null=False, blank=False)
-    job = models.ForeignKey(
-        'user.Job',
-        on_delete=models.CASCADE,)
+    # job = models.ForeignKey(
+    #     'user.Job',
+    #     on_delete=models.CASCADE,)
 
     class Meta:
         verbose_name = _('attribution_preference')

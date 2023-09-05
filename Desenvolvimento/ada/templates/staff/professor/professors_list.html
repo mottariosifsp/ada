@@ -23,15 +23,12 @@
 <hr>
 <nav>
     <ol class="breadcrumb">
-        <li class="breadcrumb-item">
-            <a href="{% url 'home' %}"><i class="bi bi-house-door"></i></a>
-        </li>
-        <li class="breadcrumb-item active" aria-current="page">{% trans "Configurar Lista de Professores" %}</li>
-        <li class="breadcrumb-item active">{% trans "Professores" %}</li>
+        <li class="breadcrumb-item"><a href="{% url 'home_staff' %}"><i class="bi bi-house-door"></i></a></li>
+        <li class="breadcrumb-item active" aria-current="page">{% trans "Professores" %}</li>
     </ol>
 </nav>
 <div class="row d-flex flex-row-reverse addprofdiv">
-    <button type="button" class="btn btn-success" id="add-professor">Adicionar professor</button>
+    <button type="button" class="btn btn-success" id="add-professor">Adicionar Professor</button>
 </div>
 <div class="card">
     <div class="card-body">
