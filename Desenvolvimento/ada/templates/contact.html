@@ -1,0 +1,31 @@
+{% extends "professor/base.html" %}
+{% load i18n %}
+{% load static %}
+
+{% block head %}
+    <title>{% trans "Contato" %}</title>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+{% endblock %}
+
+{% block body %}
+
+    <nav>
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="{% url 'home_staff' %}"><i class="bi bi-house-door"></i></a></li>
+            <li class="breadcrumb-item active">{% trans "Contato" %}</li>
+        </ol>
+    </nav>
+
+
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Enviar</button>
+    </form>
+
+{% endblock %}
+
+{% block endbody %}
+
+
+{% endblock %}
