@@ -1,5 +1,5 @@
 from django.urls import path, include
-from .views import home, profile, assignments, assignments_classs_list, show_assignment, professor_blocks_list, professor_block_detail
+from .views import home, profile, assignments, assignments_classs_list, show_assignment, professor_blocks_list, professor_block_detail, privacy_policy
 
 urlpatterns = [
     path("", home, name="home_professor"),
@@ -10,4 +10,5 @@ urlpatterns = [
     path("ver/", show_assignment, name='show_assignment'),
     path("blocos/", professor_blocks_list, name="professor_blocks_list"),
     path("detalhes-bloco/<str:registration_block_id>/", professor_block_detail, name="professor_block_detail"),
+    path("politica-de-privacidade/", privacy_policy, name="privacy_policy"),
 ]

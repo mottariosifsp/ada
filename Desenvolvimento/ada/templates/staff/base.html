@@ -117,7 +117,7 @@
             <button class="btn btn-language" readonly>{{ request.user.get_first_name_and_last_initial }}</button>
           </a>
           <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownPerfil">
-            <a class="dropdown-item disabled" href="#">{{ request.user.get_full_name }}</a>
+            <a class="dropdown-item disabled">{{ request.user.get_full_name }}</a>
             <a class="dropdown-item" href="{% url 'profile' %}">{% trans "Perfil" %}</a>
             <div class="dropdown-divider"></div>
             <a class="dropdown-item" data-toggle="modal" data-target="#logoutModal"><i
@@ -215,10 +215,10 @@
           </div>
         </div>
         <div class="col-lg-6 col-xs-12 links-footer align-middle">
-          <h4 class="mt-lg-0 mt-sm-4">Links</h4>
-          <!-- <a href="" class="mr-2 footer-link"><span>{% trans "Sobre"%}</span></a> -->
+          <h4 class="mt-lg-0 mt-sm-4">{% trans "Links" %}</h4>
+          <a href="" class="mr-2 footer-link"><span>{% trans "Sobre"%}</span></a>
           <a href="" class="mr-2 footer-link"><span>{% trans "Contato"%}</span></a>
-          <a href="" class="mr-2 footer-link"><span>{% trans "Política de Privacidade"%}</span></a>
+          <a href="{% url 'privacy_policy' %}" class="mr-2 footer-link"><span>{% trans "Política de Privacidade" %}</span></a>
           <a href="" class="mr-2 footer-link"><span>{% trans "Termos e Condições de Uso"%}</span></a>
           <div class="row">
             <div class="col copyright">
@@ -261,7 +261,7 @@
             <img src="{% static 'images/icon_logout_ada.png' %}" style="width: 7rem;">
             <div class="text-center">
               <div class="div" style="margin-top: 2rem">
-                <h4>Deseja realmente sair?</h4>
+                <h4>{% trans "Deseja realmente sair" %}?</h4>
                 <button type="button" class="btn mt-4 btn-outline-secondary btn-lg rounded-pill" data-dismiss="modal"
                   style="width:80%;">{% trans "Cancelar" %}</button><br>
                 <a class="btn btn-danger btn-lg rounded-pill m-2" href="{% url 'logout' %}"
