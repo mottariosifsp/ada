@@ -249,14 +249,14 @@
       </div>
     </div>
     <br />
-    <button class="collapsible"><span class="ml-1 icon-minimize" style="float: left;"><i
+    <!-- <button class="collapsible"><span class="ml-1 icon-minimize" style="float: left;"><i
           class="fa fa-chevron-down pull-right"></i></span>Vespertino</button>
     <div class="content_collapsible">
       <div class="tabela">
         <table class="table table-bordered editable" id="blocks_list">
           <thead class="thead-dark">
             <tr class="header-days">
-              <!-- <th scope="col" class="align-middle">Período</th> -->
+               <th scope="col" class="align-middle">Período</th>
               <th scope="col" class="text-center" style="width: 7.7rem">{% trans "Horário" %}</th>
               <th scope="col" class="text-center">{% trans "Segunda-feira" %}</th>
               <th scope="col" class="text-center">{% trans "Terça-feira" %}</th>
@@ -273,7 +273,6 @@
               <th scope="row" class="align-middle text-center">{{ timeslot.hour_start|date:"H:i" }} -
                 {{ timeslot.hour_end|date:"H:i" }}</th>
               {% for cell in "012345" %}
-              <!-- blocktrans? batatinha -->
               <td class="text-center p-2" id="cel-{{ timeslot_counter }}-{{ forloop.counter }}">{{ cell.content }}
               </td>
               {% endfor %}
@@ -292,7 +291,7 @@
         <table class="table table-bordered editable" id="blocks_list">
           <thead class="thead-dark">
             <tr class="header-days">
-              <!-- <th scope="col" class="align-middle">Período</th> -->
+              <th scope="col" class="align-middle">Período</th>
               <th scope="col" class="text-center" style="width: 7.7rem">{% trans "Horário" %}</th>
               <th scope="col" class="text-center">{% trans "Segunda-feira" %}</th>
               <th scope="col" class="text-center">{% trans "Terça-feira" %}</th>
@@ -309,7 +308,6 @@
               <th scope="row" class="align-middle text-center">{{ timeslot.hour_start|date:"H:i" }} -
                 {{ timeslot.hour_end|date:"H:i" }}</th>
               {% for cell in "012345" %}
-              <!-- blocktrans? batatinha -->
               <td class="align-middle text-center p-2" id="cel-{{ timeslot_counter }}-{{ forloop.counter }}">
                 {{ cell.content }}</td>
               {% endfor %}
@@ -319,8 +317,8 @@
           </tbody>
         </table>
       </div>
-    </div>
-  </div>
+    </div> 
+  </div>-->
 </div>
 </div>
 
