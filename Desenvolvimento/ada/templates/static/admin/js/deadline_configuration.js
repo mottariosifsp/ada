@@ -7,7 +7,9 @@ $("document").ready(function () {
         event.preventDefault(); // Impede o envio padrão do formulário
         $("#error-message-form").hide();
 
-        let semester = $("#semester").val();
+        alert("Aqui");
+
+        let semester = $("input[name=semester]").val();
         let startFPA = $("#startFPADeadline").val();
         let endFPA = $("#endFPADeadline").val();
         let startAssignment = $("#startAssignmentDeadline").val();
