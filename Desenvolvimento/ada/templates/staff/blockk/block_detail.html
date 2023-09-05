@@ -32,8 +32,8 @@
     <div class="mb-4">
         <div class="row">
             <div class="col-12">
-                {% blocktrans with name_block_text=blockk.name_block %}
                 <div class="row ml-1">
+                    {% blocktrans with name_block_text=blockk.name_block %}
                     <h1>{{ name_block_text }}</h1>
                     {% endblocktrans %}
                     {% if blockk in user_blocks %}

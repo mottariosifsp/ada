@@ -25,7 +25,7 @@
 <hr />
 {% if data.recover_queue %}
 <div class="alert alert-success" role="alert">
-    Fila anterior recuperada. Caso deseje mantê-la, clique em enviar.
+    {% trans "Fila anterior recuperada. Caso deseje mantê-la, clique em enviar" %}.
 </div>
 {% endif %}
 <div class="container">
@@ -49,8 +49,8 @@
                     <div class="tipx{% if not data.error_field %} no-border{% endif %}">
                         <h2>{{ data.field }}</h2>
                         {% if data.error_field %}
-                        <span class="tooltiptext">Nenhum critério foi escolhido ou não corresponde aos campos dos
-                            professores. Um critério padrão foi determinado.</span>
+                        <span class="tooltiptext">{% trans "Nenhum critério foi escolhido ou não corresponde aos campos dos
+                            professores. Um critério padrão foi determinado" %}.</span>
                         {% endif %}
                     </div>
                 </div>
