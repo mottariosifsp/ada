@@ -1,0 +1,35 @@
+{% extends "professor/base.html" %}
+{% load i18n %}
+{% load static %}
+
+{% block head %}
+<title>{% trans "Grades" %}</title>
+<link rel="stylesheet" href="{% static 'professor/css/final_assignments_classs_list.css' %}">
+<link rel="stylesheet" href="{% static 'common/table_window/css/table_window.css' %}" />
+{% endblock %}
+
+{% block body %}
+<h1 class="title-page mt-4">{% trans "Grades" %}</h1>
+<hr>
+<nav>
+  <ol class="breadcrumb hidden-itens">
+      <li class="breadcrumb-item"><a href="{% url 'home_professor' %}"><i class="bi bi-house-door"></i></a></li>
+      <li class="breadcrumb-item active">{% trans "Grades" %}</li>
+  </ol>
+</nav>
+
+<div class="squares">
+  {% for area in areas %}
+  <div class="square" data-registration_area_id="{{ area.registration_area_id }}">
+    {{ area.name_area }}
+  </div>
+  {% endfor %}
+</div>
+
+<div id="rectangle-container" class="hidden">
+  <div class="rectangle"></div>
+</div>
+
+<script src="{% static 'professor/js/final_assignments_classs_list.js' %}" jsonData='{{ json_data|escapejs }}'></script>
+<script src="{% static 'common/table_window/js/table_window.js' %}"></script>
+{% endblock %}

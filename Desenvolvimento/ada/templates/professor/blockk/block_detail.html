@@ -20,10 +20,10 @@
     <h1 class="title-page">{% trans "Detalhes Bloco" %}</h1>
     <nav>
         <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="{% url 'home' %}"><i class="bi bi-house-door"></i></a></li>
-            <li class="breadcrumb-item active" aria-current="page">{% trans "Configurar Blocos" %}</li>
-            <li class="breadcrumb-item active"><a href="{% url 'professor_blocks_list' %}">{% trans "Blocos" %}</a></li>
-            <li class="breadcrumb-item active" aria-current="page">{{ blockk.acronym }}</li>
+            <li class="breadcrumb-item"><a href="{% url 'home_professor' %}"><i class="bi bi-house-door"></i></a></li>
+            <li class="breadcrumb-item" aria-current="page"><a href="{% url 'blocks_list' %}">{% trans "Blocos" %}</li></a>
+            <li class="breadcrumb-item active">{% trans "Detalhes Bloco" %} {{blockk.acronym}}</li>
+            <!-- blocktrans? batatinha -->
         </ol>
     </nav>
 

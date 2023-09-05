@@ -108,7 +108,8 @@ label {
 
 .modern-font {
     padding: 20px 40px 0px 40px;
-    font-family: 'Raleway', sans-serif;
+    /* font-family: 'Raleway', sans-serif; */
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
     font-size: 14px;
     line-height: 1.5;
     color: white;
@@ -159,7 +160,7 @@ label {
 }
 
 .card-title {
-    font-family: 'Josefin Sans', sans-serif;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
     font-weight: bolder;
     margin-bottom: 60px;
 }

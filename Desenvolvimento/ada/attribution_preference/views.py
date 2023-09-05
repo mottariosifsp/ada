@@ -77,7 +77,7 @@ def attribution_preference(request):
                     break
                 elif now >= attribution_deadline.deadline_start and now <= attribution_deadline.deadline_end:
                     status = 'started'
-                    semester = attribution_deadline.semester
+                    
                     year = attribution_deadline.year
                     break
                 else:
@@ -97,8 +97,7 @@ def attribution_preference(request):
     except Deadline.DoesNotExist:
         status = 'not_configured'
 
-    year_str = str(year)
-    semester_str = str(semester)
+    
     if Deadline.objects.filter(name='STARTFPADEADLINE').exists():
         id_show = year_str + "." + semester_str
     else:
@@ -164,15 +163,14 @@ def disponibility_attribution_preference(request):
 
             for attribution_deadline in attribution_deadlines:
                 if now >= attribution_deadline.deadline_start and now <= attribution_deadline.deadline_end:
-                    semester = attribution_deadline.semester
+                    
                     year = attribution_deadline.year
                     break
     except Deadline.DoesNotExist:
         Exception('Deadline does not exist')
 
-    year_str = str(year)
-    semester_str = str(semester)
-    id_show = year_str +"."+ semester_str
+    
+    id_show = year
 
     if Course_preference.objects.filter(attribution_preference__user=user, attribution_preference__year=id_show).exists():
         Course_preference.objects.filter(attribution_preference__user=user, attribution_preference__year=id_show).delete()
@@ -316,15 +314,14 @@ def courses_attribution_preference(request):
 
             for attribution_deadline in attribution_deadlines:
                 if now >= attribution_deadline.deadline_start and now <= attribution_deadline.deadline_end:
-                    semester = attribution_deadline.semester
+                    
                     year = attribution_deadline.year
                     break
     except Deadline.DoesNotExist:
         Exception('Deadline does not exist')
 
-    year_str = str(year)
-    semester_str = str(semester)
-    id_show = year_str +"."+ semester_str
+    
+    id_show = year
 
     timeslots = []
 
@@ -871,21 +868,21 @@ def save_disponiility_preference(user_timeslots, user_regime, user):
 
             for attribution_deadline in attribution_deadlines:
                 if now >= attribution_deadline.deadline_start and now <= attribution_deadline.deadline_end:
-                    semester = attribution_deadline.semester
+                    
                     year = attribution_deadline.year
                     break
     except Deadline.DoesNotExist:
         Exception('Deadline does not exist')
 
-    year_str = str(year)
-    semester_str = str(semester)
-    id_show = year_str +"."+ semester_str
+    
+    id_show = year
 
-    print(id_show)
+    if not Attribution_preference.objects.filter(user=user,year=id_show,name_job=user.job.name_job).exists():
+        Attribution_preference.objects.create(user=user,year=id_show,name_job=user.job.name_job)
 
-
-    if not Attribution_preference.objects.filter(user=user,year=id_show).exists():
-        Attribution_preference.objects.create(user=user,year=id_show, job=user.job)
+    # attribution_preference = Attribution_preference.objects.filter(user=user,year=id_show).first()
+    # attribution_preference.job = name_job
+    # attribution_preference.save()
 
     if Preference_schedule.objects.filter(attribution_preference__user=user, attribution_preference__year=id_show).exists():
         Preference_schedule.objects.filter(attribution_preference__user=user, attribution_preference__year=id_show).delete()
@@ -927,15 +924,14 @@ def save_courses_preference(work_courses, user):
 
             for attribution_deadline in attribution_deadlines:
                 if now >= attribution_deadline.deadline_start and now <= attribution_deadline.deadline_end:
-                    semester = attribution_deadline.semester
+                    
                     year = attribution_deadline.year
                     break
     except Deadline.DoesNotExist:
         Exception('Deadline does not exist')
 
-    year_str = str(year)
-    semester_str = str(semester)
-    id_show = year_str +"."+ semester_str
+    
+    id_show = year
 
     if Course_preference.objects.filter(attribution_preference__user=user, attribution_preference__year=id_show).exists():
         Course_preference.objects.filter(attribution_preference__user=user, attribution_preference__year=id_show).delete()

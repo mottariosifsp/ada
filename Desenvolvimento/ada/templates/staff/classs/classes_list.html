@@ -23,9 +23,8 @@
 <hr>
 <nav>
     <ol class="breadcrumb">
-        <li class="breadcrumb-item"><a href="{% url 'home' %}"><i class="bi bi-house-door"></i></a></li>
-        <li class="breadcrumb-item active" aria-current="page">{% trans "Configurar Turmas" %}</li>
-        <li class="breadcrumb-item active">{% trans "Turmas" %}</li>
+        <li class="breadcrumb-item"><a href="{% url 'home_staff' %}"><i class="bi bi-house-door"></i></a></li>
+        <li class="breadcrumb-item active" aria-current="page">{% trans "Turmas" %}</li>
     </ol>
 </nav>
 {% if has_permission %}

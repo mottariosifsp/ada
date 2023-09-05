@@ -60,7 +60,10 @@ CELERY_TASK_SERIALIZER = "json"
 CELERY_TASK_TRACK_STARTED = True
 CELERY_TIMEZONE = 'America/Sao_Paulo'
 CELERY_CREATE_MISSING_QUEUES = True
-BROKER_HEARTBEAT=0
+
+# BROKER_HEARTBEAT=0
+
+
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
