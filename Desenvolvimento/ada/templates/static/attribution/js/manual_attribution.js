@@ -405,13 +405,8 @@ function area_options() {
 function timetables_options() {
     var span_value = $("#cel-position").text();
 
-<<<<<<< HEAD
     var filtered_element = user_disponibility.find(function (element) {
         return element.id === span_value;
-=======
-    var filteredElement = disponibility_array_obj.find(function (element) {
-        return element.frase === spanValue;
->>>>>>> f197f8f429b843c1556acf6d4394a3e6522a4f9f
     });
 
     var filtered_timetables = user_timetables.filter(function (timetable) {

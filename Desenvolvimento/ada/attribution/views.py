@@ -433,12 +433,7 @@ def manual_attribution(request):
                             'course_acronym': course_acronym,
                             'course_name': course_name,
                         }
-<<<<<<< HEAD
                         timetable_current_user_array.append(timetable_item)
-=======
-                        # print('timetable_item', timetable_item)
-                        timetable_user_array.append(timetable_item)
->>>>>>> f197f8f429b843c1556acf6d4394a3e6522a4f9f
 
         user_timetable = []
         timetables = Timetable.objects.filter(user=None)
