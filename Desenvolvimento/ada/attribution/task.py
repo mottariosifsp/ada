@@ -45,13 +45,13 @@ def times_up(professor_id, blockk_id):
     views.timestup(professor, blockk)
     print(f'Tempo do professor {professor} acabou!')
 
-def schedule_task(seconds, professor, blockk):
+def schedule_task(seconds, professor, blockk, queue):
     i.scheduled()
     i.active()
 
     now = datetime.utcnow()
     eta = now + timedelta(seconds=seconds)
-    task = times_up.apply_async(eta=now + timedelta(seconds=seconds), args=[professor.id, blockk.id])
+    task = times_up.apply_async(eta=now + timedelta(seconds=seconds), args=[professor.id, blockk.id], queue=queue)
     # Store task information in Redis
     redis_client.set('task', task.id)
     redis_client.set('task_eta', eta.isoformat())

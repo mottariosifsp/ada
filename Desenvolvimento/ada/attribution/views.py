@@ -178,7 +178,7 @@ def next_attribution(timetables_preference, next_professor_in_queue, blockk):
         if len(cord_assigned_timetables) < len(primary_timetable_ids):
             print(f'professor { professor.first_name }: faltou aulas para cumprir a quantidade desejada')
             # send_email(professor)
-            schedule_task(SECONDS_TO_PROFESSOR_CHOOSE, professor, blockk)
+            schedule_task(SECONDS_TO_PROFESSOR_CHOOSE, professor, blockk, blockk.registration_block_id)
             return
         elif len(invalidated_timetables) == 0:
             professor_to_end_queue(professor, blockk)
@@ -189,7 +189,7 @@ def next_attribution(timetables_preference, next_professor_in_queue, blockk):
         else:
             print(f'Conflito na atribuição do professor { professor.first_name }')
             # send_email(professor)
-            schedule_task(SECONDS_TO_PROFESSOR_CHOOSE, professor, blockk)
+            schedule_task(SECONDS_TO_PROFESSOR_CHOOSE, professor, blockk, blockk.registration_block_id)
             return
     else:
         professor_to_end_queue(professor, blockk)
@@ -296,7 +296,7 @@ def float_to_time(seconds):
     return time.time()
 
 def schedule_attributtion_deadline_staff(seconds, name, queue,*args):
-    # cancel_scheduled_task(name)
+    # cancel_scheduled_task('task')
     schedule_deadline(attribution_deadline_start, seconds, name, queue, *args)
 
 import datetime
@@ -354,7 +354,7 @@ def manual_attribution(request):
         for timetable_user in timetables_user:
             courses.append(timetable_user.timetable.course)
 
-        print(courses)
+        # print(courses)
         for timetable_user in timetables_user:
             timetable.append(timetable_user.timetable)
 
@@ -466,7 +466,7 @@ def manual_attribution(request):
                             'course_acronym': course_acronym,
                             'course_name': course_name,
                         }
-                        print('timetable_item', timetable_item)
+                        # print('timetable_item', timetable_item)
                         timetable_user_array.append(timetable_item)
 
         courses_array = []
