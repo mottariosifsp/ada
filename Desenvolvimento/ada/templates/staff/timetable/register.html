@@ -32,7 +32,7 @@
   <form id="course_select">
     {% csrf_token %}
     <button type="button" class="collapsible"><span class="ml-1 icon-minimize" style="float: left;"><i
-          class="fa fa-chevron-down pull-right"></i></span>Matutino</button>
+          class="fa fa-chevron-down pull-right"></i></span>{% trans "Matutino" %}</button>
     <div class="content_collapsible">
       <table class="table" id="timetable_table">
         <thead class="thead-dark">
@@ -76,7 +76,7 @@
     </div>
     <br />
     <button type="button" class="collapsible"><span class="ml-1 icon-minimize" style="float: left;"><i
-          class="fa fa-chevron-down pull-right"></i></span>Vespertino</button>
+          class="fa fa-chevron-down pull-right"></i></span>{% trans "Vespertino" %}</button>
     <div class="content_collapsible">
       <table class="table" id="timetable_table">
         <thead class="thead-dark">
@@ -120,7 +120,7 @@
     </div>
     <br />
     <button type="button" class="collapsible"><span class="ml-1 icon-minimize" style="float: left;"><i
-          class="fa fa-chevron-down pull-right"></i></span>Noturno</button>
+          class="fa fa-chevron-down pull-right"></i></span>{% trans "Noturno" %}</button>
     <div class="content_collapsible">
       <table class="table" id="timetable_table">
         <thead class="thead-dark">
