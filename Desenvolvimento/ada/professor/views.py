@@ -183,6 +183,9 @@ def home(request):
 
     return render(request, 'professor/home_professor.html', data)
 
+@login_required
+def privacy_policy(request):
+    return render(request, 'privacy_policy.html')
 
 def profile(request):
     professor = request.user

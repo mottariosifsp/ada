@@ -33,9 +33,8 @@ def home(request):
     else:
         return render(request, 'user/home.html')
 
-@login_required
-def privacy_policy(request, user):
-    return render(request, 'privacy_policy.html')
+
+
 
 def register(request):
     if request.method == 'POST':
