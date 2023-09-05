@@ -5,11 +5,11 @@
 }
 
 .no-border {
-    border-bottom: none; /* Remove bottom border when .no-border class is present */
+    border-bottom: none;
 }
 
 .tipx h2 {
-    margin: 0; /* Remove default margin to avoid extra spacing */
+    margin: 0;
 }
 
 .tipx .tooltiptext {
@@ -28,7 +28,10 @@
     margin-left: 40px;
 }
 
-/* When hovering over .tipx, show the tooltip */
 .tipx:hover .tooltiptext {
     visibility: visible;
+}
+
+.queue-field{
+    height: 5rem;
 }

@@ -1,0 +1,36 @@
+{% extends "professor/base.html" %}
+{% load i18n %}
+{% load static %}
+
+{% block head %}
+<title>{% trans "Área x" %}</title>
+<link rel="stylesheet" href="{% static 'professor/assignment/css/assignments_classs_list.css' %}">
+<link rel="stylesheet" href="{% static 'common/table_window/css/table_window.css' %}" />
+{% endblock %}
+
+{% block body %}
+    <h1 class="title-page mt-4">{% trans "Atribuições dos Professores" %}</h1>
+    <hr>
+    <nav>
+        <ol class="breadcrumb hidden-itens">
+            <li class="breadcrumb-item"><a href="{% url 'home' %}"><i class="bi bi-house-door"></i></a></li>
+            <li class="breadcrumb-item active">{% trans "Atribuições" %}</li>
+            <li class="breadcrumb-item active">{% trans "Bloco" %}</li>
+        </ol>
+    </nav>
+
+    <div class="area-container">
+        {% for area in areas %}
+            <div class="area" data-registration_area_id="{{ area.registration_area_id }}">
+                {{ area.name_area }}
+            </div>
+        {% endfor %}
+    </div>
+
+    <div id="classs-container" class="hidden">
+        <div class="classs"></div>
+    </div>
+
+<script src="{% static 'professor/assignment/js/assignments_classs_list.js' %}" jsonData='{{ json_data|escapejs }}'></script>
+<script src="{% static 'common/table_window/js/table_window.js' %}"></script>
+{% endblock %}
