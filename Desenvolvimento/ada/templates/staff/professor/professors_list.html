@@ -27,6 +27,14 @@
         <li class="breadcrumb-item active" aria-current="page">{% trans "Professores" %}</li>
     </ol>
 </nav>
+
+    {% if professors_inactive > 0 %}
+        <p>Há {{ professors_inactive }} professor(es) com o cadastro não finalizado. Clique no botão abaixo para finalizar o processo.</p>
+        <button type="button" class="btn btn-success">
+            <a href="{% url 'register' %}">Finalizar processo</a>
+        </button>
+    {% endif %}
+
 <div class="row d-flex flex-row-reverse addprofdiv">
     <button type="button" class="btn btn-success" id="add-professor">{% trans "Adicionar Professor" %}</button>
 </div>
