@@ -20,41 +20,45 @@
     <h1 class="title-page">{% trans "Detalhes Bloco" %}</h1>
     <nav>
         <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="{% url 'home' %}"><i class="bi bi-house-door"></i></a></li>
-            <li class="breadcrumb-item active" aria-current="page">{% trans "Configurar Blocos" %}</li>
-            <li class="breadcrumb-item active"><a href="{% url 'professor_blocks_list' %}">{% trans "Blocos" %}</a></li>
-            <li class="breadcrumb-item active" aria-current="page">{{ blockk.acronym }}</li>
+            <li class="breadcrumb-item"><a href="{% url 'home_professor' %}"><i class="bi bi-house-door"></i></a></li>
+            <li class="breadcrumb-item" aria-current="page"><a href="{% url 'blocks_list' %}">{% trans "Blocos" %}</li></a>
+            <li class="breadcrumb-item active">{% trans "Detalhes Bloco" %} {{blockk.acronym}}</li>
+            <!-- blocktrans? batatinha -->
         </ol>
     </nav>
 
-<div class="mb-4">
+    <div class="mb-4">
         <div class="row">
             <div class="col-12">
                 {% blocktrans with name_block_text=blockk.name_block %}
-                <div class="row ml-1 mb-3">
+                    <div class="row ml-1 mb-3">
                     <h1>{{ name_block_text }}</h1>
-                    {% endblocktrans %}
+                {% endblocktrans %}
                 </div>
                 <div class="card">
                     <div class="card-body">
                         <h5 class="card-title">{% trans "Detalhes" %}</h5>
                         <ul class="list-group">
-                            <li class="custom-list-group-item"><strong>{% trans 'Áreas' %}:</strong>{% for area in areas %}
-                                {{area}} {% if not forloop.last %}|{% endif %}{% endfor %}</li>
+                            <li class="custom-list-group-item"><strong>{% trans 'Áreas' %}:</strong>
+                                {% for area in areas %}
+                                    {{ area }} {% if not forloop.last %}|{% endif %}{% endfor %}</li>
                             <li class="custom-list-group-item"><strong>{% trans "Registro" %}:</strong>
                                 {% trans blockk.registration_block_id %}</li>
                             {% blocktrans with acronym_text=blockk.acronym acronym_label="Sigla" %}
-                            <li class="custom-list-group-item"><strong>{{ acronym_label }}:</strong> {{ acronym_text }}</li>
+                                <li class="custom-list-group-item">
+                                    <strong>{{ acronym_label }}:</strong> {{ acronym_text }}</li>
                             {% endblocktrans %}
                             {% comment %}
-                            {% blocktrans with exchange_area_text=area.exchange_area exchange_text="Permuta" %}
-                            <li class="custom-list-group-item"><strong>{{ exchange_text }}:</strong> {{ exchange_area_text }}
-                            </li>
-                            {% endblocktrans %}
-                            {% blocktrans with is_high_school_text=area.is_high_school high_school="Ensino Médio" %}
-                            <li class="custom-list-group-item"><strong>{{ high_school }}:</strong> {{ is_high_school_text }}
-                            </li>
-                            {% endblocktrans %} {% endcomment %}
+                                {% blocktrans with exchange_area_text=area.exchange_area exchange_text="Permuta" %}
+                                    <li class="custom-list-group-item">
+                                        <strong>{{ exchange_text }}:</strong> {{ exchange_area_text }}
+                                    </li>
+                                {% endblocktrans %}
+                                {% blocktrans with is_high_school_text=area.is_high_school high_school="Ensino Médio" %}
+                                    <li class="custom-list-group-item">
+                                        <strong>{{ high_school }}:</strong> {{ is_high_school_text }}
+                                    </li>
+                                {% endblocktrans %} {% endcomment %}
                         </ul>
                     </div>
                 </div>

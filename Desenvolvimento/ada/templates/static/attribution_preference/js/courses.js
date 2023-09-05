@@ -744,7 +744,7 @@ $(document).ready(function () {
 
                         timeslots.forEach(function(timeslot) {
                             var timeslot_begin_hour = timeslot.timeslot_begin_hour;
-                        
+                            
                             var filtered_disponibility = user_disponibility.filter(function(disponibility) {
                               return disponibility.day === get_full_day_of_week(day) && disponibility.timeslot_begin_hour === timeslot_begin_hour && priority == disponibility.priority;
                             });

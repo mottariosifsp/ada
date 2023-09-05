@@ -14,10 +14,9 @@
 <h1 class="title-page">{% trans "Grade" %}</h1>
 <nav>
   <ol class="breadcrumb">
-    <li class="breadcrumb-item"><a href="{% url 'home' %}"><i class="bi bi-house-door"></i></a></li>
-    <li class="breadcrumb-item active" aria-current="page">{% trans "Configurar Grades Horárias" %}</li>
-    <li class="breadcrumb-item active"><a href="{% url 'timetables' %}">{% trans "Grades Horárias" %}</a></li>
-    <li class="breadcrumb-item active">{% trans "Registrar" %} {{ request.GET.class }}</li>
+    <li class="breadcrumb-item"><a href="{% url 'home_staff' %}"><i class="bi bi-house-door"></i></a></li>
+    <li class="breadcrumb-item active"><a href="{% url 'timetables' %}">{% trans "Grades" %}</a></li>
+    <li class="breadcrumb-item active">{% trans "Criar Grade da" %} {{ request.GET.class }}</li>
   </ol>
 </nav>
 <div class="spinner-border" role="status"
@@ -33,7 +32,7 @@
   <form id="course_select">
     {% csrf_token %}
     <button type="button" class="collapsible"><span class="ml-1 icon-minimize" style="float: left;"><i
-          class="fa fa-chevron-down pull-right"></i></span>Matutino</button>
+          class="fa fa-chevron-down pull-right"></i></span>{% trans "Matutino" %}</button>
     <div class="content_collapsible">
       <table class="table" id="timetable_table">
         <thead class="thead-dark">
@@ -77,7 +76,7 @@
     </div>
     <br />
     <button type="button" class="collapsible"><span class="ml-1 icon-minimize" style="float: left;"><i
-          class="fa fa-chevron-down pull-right"></i></span>Vespertino</button>
+          class="fa fa-chevron-down pull-right"></i></span>{% trans "Vespertino" %}</button>
     <div class="content_collapsible">
       <table class="table" id="timetable_table">
         <thead class="thead-dark">
@@ -121,7 +120,7 @@
     </div>
     <br />
     <button type="button" class="collapsible"><span class="ml-1 icon-minimize" style="float: left;"><i
-          class="fa fa-chevron-down pull-right"></i></span>Noturno</button>
+          class="fa fa-chevron-down pull-right"></i></span>{% trans "Noturno" %}</button>
     <div class="content_collapsible">
       <table class="table" id="timetable_table">
         <thead class="thead-dark">

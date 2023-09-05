@@ -23,6 +23,7 @@ $(document).ready(function () {
 
         $('#classs-container').empty();
 
+        // TODO - mudar para post para passar a area e atualiazar o breadcrump
         filteredData.forEach(function (object) {
             var classs = $('<div class="classs"></div>').text(object.registration_class_id);
             let isUpdating = false;
@@ -30,7 +31,7 @@ $(document).ready(function () {
             classs.click(function () {
                 var registration_class_id = $(event.target).text().trim();
 
-                var url = "/professor/ver/?registration_class_id=" + registration_class_id;
+                var url = "/professor/ver-atribuicoes/?registration_class_id=" + registration_class_id;
                 window.location.href = url;
 
             });

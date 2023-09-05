@@ -33,6 +33,7 @@ def home(request):
     else:
         return render(request, 'user/home.html')
 
+
 def register(request):
     if request.method == 'POST':
         professors_inactive = User.objects.filter(is_professor=True, is_active=False).all()

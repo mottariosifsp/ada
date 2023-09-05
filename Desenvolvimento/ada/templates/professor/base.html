@@ -19,7 +19,20 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
   <link rel="stylesheet" href="{% static 'layout.css' %}">
   <link href="https://cdn.datatables.net/v/dt/jq-3.6.0/dt-1.13.4/rr-1.3.3/datatables.min.css" rel="stylesheet" />
-  <script src="https://cdn.datatables.net/v/dt/jq-3.6.0/dt-1.13.4/rr-1.3.3/datatables.min.js"></script>
+  <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/dataTables.semanticui.min.css" />
+  <link rel="stylesheet"
+      href="https://datatables.net/release-datatables/extensions/FixedColumns/css/fixedColumns.bootstrap4.css" />
+  <link rel="stylesheet" href="https://datatables.net/release-datatables/media/css/dataTables.bootstrap4.css" />
+  <link rel="stylesheet" href="{% static 'staff/blockk/css/block_list.css' %}">
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"
+      integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous">
+  </script>
+  <!-- <script src="https://cdn.datatables.net/v/dt/jq-3.6.0/dt-1.13.4/rr-1.3.3/datatables.min.js"></script> -->
+    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fomantic-ui/2.9.2/semantic.min.css" />
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/dataTables.semanticui.min.css" />
+    <link rel="stylesheet"
+        href="https://datatables.net/release-datatables/extensions/FixedColumns/css/fixedColumns.bootstrap4.css" />
+    <link rel="stylesheet" href="https://datatables.net/release-datatables/media/css/dataTables.bootstrap4.css" /> -->
   {% block head %}
 
   {% endblock %}
@@ -108,7 +121,7 @@
           </div>
         </li>
         <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownLangLogin" data-toggle="dropdown"
+          <a class="nav-link dropdown-toggle" id="navbarDropdownLangLogin" data-toggle="dropdown"
             aria-haspopup="true" aria-expanded="false">
             {% get_current_language as LANGUAGE_CODE %}
             <button class="btn btn-language" readonly>{{ request.user.get_first_name_and_last_initial }}</button>
@@ -139,7 +152,7 @@
           </div>
           <div class="modal-body">
             <div class="modal-line profile-icon">
-              <a class="d-flex align-items-center justify-content-start" href="#">
+              <a class="d-flex align-items-center justify-content-start" href="{% url 'profile' %}">
                 <span class="user-name">{{ request.user.get_full_name }}</span>
               </a>
             </div>
@@ -211,9 +224,9 @@
         </div>
         <div class="col-lg-6 col-xs-12 links-footer align-middle">
           <h4 class="mt-lg-0 mt-sm-4">Links</h4>
-          <a href="" class="mr-2 footer-link"><span>{% trans "Sobre"%}</span></a>
+          <!-- <a href="" class="mr-2 footer-link"><span>{% trans "Sobre"%}</span></a> -->
           <a href="" class="mr-2 footer-link"><span>{% trans "Contato"%}</span></a>
-          <a href="" class="mr-2 footer-link"><span>{% trans "Política de Privacidade"%}</span></a>
+          <a href="{% url 'privacy_policy' %}" class="mr-2 footer-link"><span>{% trans "Política de Privacidade" %}</span></a>
           <a href="" class="mr-2 footer-link"><span>{% trans "Termos e Condições de Uso"%}</span></a>
           <div class="row">
             <div class="col copyright">

@@ -6,6 +6,7 @@
 <title>{% trans "Página inicial - Professor(a)" %}</title>
 <link rel="stylesheet" href="{% static 'professor/css/home_professor.css' %}">
 <script src="{% static 'professor/js/home_professor.js' %}" data-lang='{{ LANGUAGE_CODE }}'></script>
+
 {% endblock %}
 
 {% block body %}
@@ -14,10 +15,10 @@
 <hr>
 <nav>
   <ol class="breadcrumb hidden-itens">
-    <li class="breadcrumb-item active"><i class="mr-2 bi bi-house-door"></i> {% trans "Home" %}</li>
+    <li class="breadcrumb-item active"><a href="{% url 'home_professor' %}"><i class="mr-2 bi bi-house-door"></i> {% trans "Página inicial" %}</li></a>
   </ol>
 </nav>
-
+<nav>
 
 <div class="container">
   <div class="row">

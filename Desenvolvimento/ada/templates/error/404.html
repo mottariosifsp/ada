@@ -23,9 +23,9 @@
         {% endif %}
         <p
             class="element error-message text-center {% if user.is_authenticated %}text-black{% else %}text-white{% endif %}">
-            Não encontramos a página que você tentou acessar.</p>
+            {% trans "Não encontramos a página que você tentou acessar" %}.</p>
 
-        <a href="{% url 'home' %}" class="btn custom-btn text-white">Voltar ao início</a>
+        <a href="{% url 'home' %}" class="btn custom-btn text-white">{% trans "Voltar ao início" %}</a>
     </div>
 
     {#    <a href="https://storyset.com/people">People illustrations by Storyset</a>#}

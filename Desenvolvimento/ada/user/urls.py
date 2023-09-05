@@ -1,5 +1,6 @@
 from django.urls import path
 from django.contrib.auth import views as auth_views
+from django.utils.translation import gettext_lazy as _
 from .views import home, signup, logout_view, provocar_erro_500, register
 
 urlpatterns = [
@@ -10,3 +11,4 @@ urlpatterns = [
     path('provocar-erro-500/', provocar_erro_500, name='provocar_erro_500'), #apagar
     path('register/', register, name='register'),
 ]
+

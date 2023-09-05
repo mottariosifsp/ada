@@ -1,5 +1,5 @@
 body {
-  font-family: Helvetica, Arial, sans-serif;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
   font-size: 12px;
   /* do not increase min-width as some may use split screens */
   min-width: 800px;
@@ -100,7 +100,7 @@ span.xpassed,
   border: 1px solid #e6e6e6;
   color: black;
   display: block;
-  font-family: "Courier New", Courier, monospace;
+  font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
   height: 230px;
   overflow-y: scroll;
   padding: 5px;

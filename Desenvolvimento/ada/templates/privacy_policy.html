@@ -1,0 +1,136 @@
+{% extends "professor/base.html" %}
+{% load i18n %}
+{% load static %}
+{% block head %}
+
+    <title>{% trans "Política de Privacidade" %}</title>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+{% endblock %}
+
+
+{% block body %}
+    <style>
+        h4 {
+            margin-top: 20px;
+        }
+
+        p {
+            font-size: 16px;
+            margin-top: 10px;
+            text-align: justify;
+        }
+    </style>
+
+        <nav>
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="{% url 'home_staff' %}"><i class="bi bi-house-door"></i></a></li>
+            <li class="breadcrumb-item active">{% trans "Política de Privacidade" %}</li>
+        </ol>
+    </nav>
+
+    <div class="card">
+        <div class="card-body">
+            <h1>Política de Privacidade</h1>
+
+            <h4>SEÇÃO 1 - INFORMAÇÕES GERAIS</h4>
+            <p>
+                Esta Política de Privacidade contém informações sobre como coletamos, usamos, armazenamos, tratamos
+                e protegemos
+                os
+                dados pessoais dos usuários e visitantes do site ADA. Nosso objetivo é garantir total transparência
+                sobre a
+                coleta
+                de dados, os motivos por trás dela e como os usuários podem gerenciar ou excluir suas informações
+                pessoais.
+
+                Este documento foi elaborado em conformidade com a Lei Geral de Proteção de Dados Pessoais (Lei
+                13.709/18), o
+                Marco
+                Civil da Internet (Lei 12.965/14) e o Regulamento da UE n. 2016/679. É importante notar que esta
+                política pode
+                ser
+                atualizada conforme necessário, e convidamos os usuários a consultá-la regularmente.
+            </p>
+
+            <h4>SEÇÃO 2 - QUAIS DADOS PESSOAIS RECOLHEMOS SOBRE O USUÁRIO E VISITANTE?</h4>
+            <p>
+                Ao criar uma conta/perfil na plataforma ADA, coletamos os seguintes dados pessoais do usuário:
+            <ul>
+                <li>Nome completo (primeiro nome e sobrenome).</li>
+                <li>Endereço de e-mail.</li>
+                <li>Número de telefone (opcional).</li>
+                <li>Número de celular.</li>
+            </ul>
+            Essas informações são coletadas para permitir o acesso e uso dos serviços oferecidos pela plataforma ADA
+            e para
+            proporcionar uma experiência personalizada aos nossos usuários.
+            </p>
+
+            <h4>SEÇÃO 3 - PARA QUE FINALIDADES UTILIZAMOS OS DADOS PESSOAIS DO USUÁRIO?</h4>
+            <p>
+                Utilizamos os dados de cadastro do usuário para permitir o acesso a conteúdos específicos da
+                plataforma,
+                reservados
+                exclusivamente para usuários cadastrados.
+            </p>
+
+            <h4>SEÇÃO 4 - SEGURANÇA DOS DADOS PESSOAIS ARMAZENADOS</h4>
+            <p>
+                Comprometemo-nos a aplicar medidas técnicas e organizacionais para proteger os dados pessoais contra
+                acessos não
+                autorizados, perdas, alterações, comunicações ou divulgações não autorizadas. Além disso, os dados
+                relativos a
+                cartões de crédito são criptografados usando a tecnologia "secure socket layer" (SSL) para garantir
+                transmissões
+                seguras e confidenciais.
+
+                Fique ciente de que não nos eximimos da responsabilidade em caso de ação de terceiros, como ataques
+                de hackers
+                ou
+                falhas do usuário ao transferir seus dados a terceiros. Comprometemo-nos a informar os usuários em
+                caso de
+                violação
+                de segurança dos seus dados pessoais. Tratamos seus dados com confidencialidade, conforme os limites
+                legais, mas
+                podemos divulgar suas informações pessoais se a lei assim o exigir ou se você violar nossos Termos
+                de Serviço.
+            </p>
+
+            <h4>SEÇÃO 5 - COMPARTILHAMENTO DOS DADOS</h4>
+            <p>
+                Não compartilhamos os dados pessoais com terceiros, exceto em situações excepcionais (descrição das
+                situações em
+                que podem ser compartilhados).
+            </p>
+
+            <h4>SEÇÃO 6 - OS DADOS PESSOAIS ARMAZENADOS SERÃO TRANSFERIDOS A TERCEIROS?</h4>
+            <p>
+                Não transferimos os dados pessoais a terceiros.
+            </p>
+
+            <h4>SEÇÃO 7 - CONSENTIMENTO</h4>
+            <p>
+                Ao usar o site ADA, você consente com nossa política de privacidade.
+            </p>
+
+            <h4>SEÇÃO 8 - ALTERAÇÕES PARA ESSA POLÍTICA DE PRIVACIDADE</h4>
+            <p>
+                Reservamos o direito de modificar esta Política de Privacidade a qualquer momento. Recomendamos que
+                você a
+                reveja
+                regularmente. As alterações e esclarecimentos terão efeito imediato após sua publicação na
+                plataforma. Quando
+                realizamos alterações, notificamos os usuários. Ao continuar a utilizar o serviço ou fornecer
+                informações
+                pessoais
+                após as modificações, você está concordando com as novas normas.
+            </p>
+        </div>
+    </div>
+
+{% endblock %}
+
+{% block endbody %}
+
+
+{% endblock %}

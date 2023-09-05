@@ -18,13 +18,12 @@
     {% block body %}
     {{ block.super }}
     <h1 class="title-page">{% trans "Detalhes Bloco" %}</h1>
+
     <nav>
         <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="{% url 'home' %}"><i class="bi bi-house-door"></i></a></li>
-            <li class="breadcrumb-item active" aria-current="page">{% trans "Configurar Blocos" %}</li>
-            <li class="breadcrumb-item active"><a href="{% url 'blocks_list' %}">{% trans "Blocos" %}</a></li>
-            <!-- blocktrans? batatinha -->
-            <li class="breadcrumb-item active" aria-current="page">{{blockk.acronym}}</li>
+            <li class="breadcrumb-item"><a href="{% url 'home_staff' %}"><i class="bi bi-house-door"></i></a></li>
+            <li class="breadcrumb-item" aria-current="page"><a href="{% url 'blocks_list' %}">{% trans "Blocos" %}</li></a>
+            <li class="breadcrumb-item active">{% trans "Detalhes Bloco" %} {{blockk.acronym}}</li>
         </ol>
     </nav>
 
@@ -33,8 +32,8 @@
     <div class="mb-4">
         <div class="row">
             <div class="col-12">
-                {% blocktrans with name_block_text=blockk.name_block %}
                 <div class="row ml-1">
+                    {% blocktrans with name_block_text=blockk.name_block %}
                     <h1>{{ name_block_text }}</h1>
                     {% endblocktrans %}
                     {% if blockk in user_blocks %}
@@ -42,11 +41,11 @@
 
                         <a href="{% url 'queue_create' %}?blockk={{ blockk.registration_block_id }}" class="mr-3">
                             <button type="button"
-                                class="btn btn-success float-right createCourseBtn ml-3">{% trans "Criar fila" %}</button>
+                                class="btn btn-success float-right createCourseBtn ml-3">{% trans "Criar Fila" %}</button>
                         </a>
 
                         <a href="{% url 'queue_show' %}?blockk={{ blockk.registration_block_id }}"><button type="button"
-                                class="btn btn-success float-right createCourseBtn"> {% trans "Ver fila" %}
+                                class="btn btn-success float-right createCourseBtn"> {% trans "Ver Fila" %}
                             </button></a>
                     </div>
                     {% endif %}
