@@ -213,7 +213,7 @@
           <h4 class="mt-lg-0 mt-sm-4">Links</h4>
           <a href="" class="mr-2 footer-link"><span>{% trans "Sobre"%}</span></a>
           <a href="" class="mr-2 footer-link"><span>{% trans "Contato"%}</span></a>
-          <a href="" class="mr-2 footer-link"><span>{% trans "Política de Privacidade"%}</span></a>
+          <a href="{% url 'privacy_policy' user='professor' %}" class="mr-2 footer-link"><span>{% trans "Política de Privacidade" %}</span></a>
           <a href="" class="mr-2 footer-link"><span>{% trans "Termos e Condições de Uso"%}</span></a>
           <div class="row">
             <div class="col copyright">
