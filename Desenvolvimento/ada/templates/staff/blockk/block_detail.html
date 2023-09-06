@@ -143,6 +143,14 @@
                             <label for="acronym">{% trans "Sigla" %}</label>
                             <input type="text" class="form-control" id="acronym_create" required>
                         </div>
+                        <label for="area_create">{% trans "Área" %}</label>
+                        <select class="form-control" id="area_create" required>
+                            <option value="">{% trans "Selecione uma opção" %}</option>
+                            {% for area in all_areas %}
+                            <option value="{{ area.id }}">
+                                {% trans area.acronym %} ({% trans area.name_area %})</option>
+                            {% endfor %}
+                        </select>
                     </form>
                 </div>
                 <div class="modal-footer">

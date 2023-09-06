@@ -19,124 +19,124 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 #: .\area\models.py:8
 msgid "registration area id"
-msgstr ""
+msgstr "registro id área"
 
 #: .\area\models.py:14
 msgid "name area"
-msgstr ""
+msgstr "nome área"
 
 #: .\area\models.py:20 .\area\models.py:63 .\course\models.py:11
 msgid "acronym"
-msgstr ""
+msgstr "acrônimo"
 
 #: .\area\models.py:25
 msgid "exchange area"
-msgstr ""
+msgstr "area permuta"
 
 #: .\area\models.py:26
 msgid "is high school"
-msgstr ""
+msgstr "é ensino médio"
 
 #: .\area\models.py:30
 msgid "area"
-msgstr ""
+msgstr "área"
 
 #: .\area\models.py:31
 msgid "areas"
-msgstr ""
+msgstr "áreas"
 
 #: .\area\models.py:51
 msgid "registration block id"
-msgstr ""
+msgstr "registro id bloco"
 
 #: .\area\models.py:57
 msgid "name block"
-msgstr ""
+msgstr "nome bloco"
 
 #: .\area\models.py:73
 msgid "blockk"
-msgstr ""
+msgstr "bloco"
 
 #: .\area\models.py:74
 msgid "blocks"
-msgstr ""
+msgstr "blocos"
 
 #: .\attribution_preference\models.py:9 .\staff\models.py:13
 #: .\timetable\models.py:84
 msgid "year"
-msgstr ""
+msgstr "ano"
 
 #: .\attribution_preference\models.py:11 .\user\models.py:249
 msgid "name job"
-msgstr ""
+msgstr "nome regime trabalho"
 
 #: .\attribution_preference\models.py:14
 msgid "attribution_preference"
-msgstr ""
+msgstr "preferência atribuição"
 
 #: .\attribution_preference\models.py:15
 msgid "attribution_preferences"
-msgstr ""
+msgstr "preferênci atribuições"
 
 #: .\attribution_preference\models.py:28 .\timetable\models.py:61
 msgid "day"
-msgstr ""
+msgstr "dia"
 
 #: .\attribution_preference\models.py:32
 msgid "preference_schedule"
-msgstr ""
+msgstr "preferencia disponibilidade"
 
 #: .\attribution_preference\models.py:33
 msgid "preference_schedules"
-msgstr ""
+msgstr "preferencias disponibilidade"
 
 #: .\attribution_preference\models.py:47
 msgid "priority"
-msgstr ""
+msgstr "prioridade"
 
 #: .\attribution_preference\models.py:51
 msgid "course_preference"
-msgstr ""
+msgstr "preferencia disciplina"
 
 #: .\attribution_preference\models.py:52
 msgid "course_preferences"
-msgstr ""
+msgstr "preferencias disciplinas"
 
 #: .\classs\models.py:9
 msgid "registration class id"
-msgstr ""
+msgstr "registro id turma"
 
 #: .\classs\models.py:11
 msgid "period"
-msgstr ""
+msgstr "periodo"
 
 #: .\classs\models.py:13
 msgid "semester"
-msgstr ""
+msgstr "semestre"
 
 #: .\classs\models.py:17
 msgid "classs"
-msgstr ""
+msgstr "turma"
 
 #: .\classs\models.py:18
 msgid "classes"
-msgstr ""
+msgstr "turmas"
 
 #: .\course\models.py:8
 msgid "registration course id"
-msgstr ""
+msgstr "registro id disciplina"
 
 #: .\course\models.py:9
 msgid "course name"
-msgstr ""
+msgstr "disciplina nome"
 
 #: .\course\models.py:22
 msgid "course"
-msgstr ""
+msgstr "disciplina"
 
 #: .\course\models.py:23
 msgid "courses"
-msgstr ""
+msgstr "disciplinas"
 
 #: .\professor\views.py:385
 msgid "Email enviado com sucesso."
@@ -144,55 +144,55 @@ msgstr ""
 
 #: .\setup\settings.py:159
 msgid "English"
-msgstr ""
+msgstr "inglês"
 
 #: .\setup\settings.py:160
 msgid "Brazilian Portuguese"
-msgstr ""
+msgstr "Português Brasileiro"
 
 #: .\staff\models.py:9 .\user\models.py:226
 msgid "name"
-msgstr ""
+msgstr "nome"
 
 #: .\staff\models.py:10
 msgid "deadline start"
-msgstr ""
+msgstr "inicio prazo"
 
 #: .\staff\models.py:11
 msgid "deadline end"
-msgstr ""
+msgstr "fim prazo"
 
 #: .\staff\models.py:17
 msgid "deadline"
-msgstr ""
+msgstr "prazo"
 
 #: .\staff\models.py:18
 msgid "deadlines"
-msgstr ""
+msgstr "prazos"
 
 #: .\staff\models.py:42
 msgid "name alert"
-msgstr ""
+msgstr "nome aviso"
 
 #: .\staff\models.py:44
 msgid "title"
-msgstr ""
+msgstr "título"
 
 #: .\staff\models.py:45
 msgid "description"
-msgstr ""
+msgstr "descrição"
 
 #: .\staff\models.py:49
 msgid "alert"
-msgstr ""
+msgstr "aviso"
 
 #: .\staff\models.py:50
 msgid "alerts"
-msgstr ""
+msgstr "avisos"
 
 #: .\templates\admin\base_site.html:7
 msgid "Django site admin"
-msgstr ""
+msgstr "Django administração site"
 
 #: .\templates\admin\deadline_configuration.html:17
 #: .\templates\admin\deadline_configuration_confirm.html:18
@@ -315,31 +315,31 @@ msgstr ""
 
 #: .\templates\admin\index.html:36
 msgid "Recent actions"
-msgstr ""
+msgstr "Ações recentes"
 
 #: .\templates\admin\index.html:37
 msgid "My actions"
-msgstr ""
+msgstr "Minhas ações"
 
 #: .\templates\admin\index.html:41
 msgid "None available"
-msgstr ""
+msgstr "Nenhum disponível"
 
 #: .\templates\admin\index.html:48
 msgid "Added:"
-msgstr ""
+msgstr "Adicionado:"
 
 #: .\templates\admin\index.html:48
 msgid "Changed:"
-msgstr ""
+msgstr "Alterado:"
 
 #: .\templates\admin\index.html:48
 msgid "Deleted:"
-msgstr ""
+msgstr "Deletado:"
 
 #: .\templates\admin\index.html:58
 msgid "Unknown content"
-msgstr ""
+msgstr "Conteúdo desconhecido"
 
 #: .\templates\attribution\attribution.html:6
 #: .\templates\staff\attribution\attribution_configuration.html:6
@@ -2264,7 +2264,7 @@ msgstr ""
 
 #: .\templates\staff\professor\professors_list.html:67
 msgid "Staff"
-msgstr ""
+msgstr "Representante"
 
 #: .\templates\staff\professor\professors_list.html:68
 #: .\templates\staff\professor\professors_list.html:314
@@ -2534,128 +2534,128 @@ msgstr ""
 
 #: .\timetable\models.py:23
 msgid "timetable"
-msgstr ""
+msgstr "grade"
 
 #: .\timetable\models.py:24
 msgid "timetables"
-msgstr ""
+msgstr "grades"
 
 #: .\timetable\models.py:31
 msgid "position"
-msgstr ""
+msgstr "posição"
 
 #: .\timetable\models.py:32
 msgid "hour start"
-msgstr ""
+msgstr "início hora"
 
 #: .\timetable\models.py:33
 msgid "hour end"
-msgstr ""
+msgstr "fim hora"
 
 #: .\timetable\models.py:37
 msgid "timeslot"
-msgstr ""
+msgstr "duração aula"
 
 #: .\timetable\models.py:38
 msgid "timeslots"
-msgstr ""
+msgstr "durações aulas"
 
 #: .\timetable\models.py:66
 msgid "day_combo"
-msgstr ""
+msgstr "combo dia"
 
 #: .\timetable\models.py:67
 msgid "day_combos"
-msgstr ""
+msgstr "combo dia"
 
 #: .\timetable\models.py:86
 msgid "timetable_user"
-msgstr ""
+msgstr "grade usuário"
 
 #: .\timetable\models.py:87
 msgid "timetable_users"
-msgstr ""
+msgstr "grades usuários"
 
 #: .\user\models.py:44
 msgid "registration id"
-msgstr ""
+msgstr "registro id"
 
 #: .\user\models.py:50
 msgid "first name"
-msgstr ""
+msgstr "primeiro nome"
 
 #: .\user\models.py:55
 msgid "last name"
-msgstr ""
+msgstr "sobrenome"
 
 #: .\user\models.py:60
 msgid "email address"
-msgstr ""
+msgstr "endereço de email"
 
 #: .\user\models.py:66
 msgid "telephone"
-msgstr ""
+msgstr "telefone"
 
 #: .\user\models.py:71
 msgid "cell phone"
-msgstr ""
+msgstr "celular"
 
 #: .\user\models.py:76
 msgid "date joined"
-msgstr ""
+msgstr "data de entrada"
 
 #: .\user\models.py:77
 msgid "superuser status"
-msgstr ""
+msgstr "estatus superusuário"
 
 #: .\user\models.py:78
 msgid "staff status"
-msgstr ""
+msgstr "estatus staff"
 
 #: .\user\models.py:79
 msgid "active"
-msgstr ""
+msgstr "ativo"
 
 #: .\user\models.py:80
 msgid "fgfcc"
-msgstr ""
+msgstr "fgfcc"
 
 #: .\user\models.py:81
 msgid "professor"
-msgstr ""
+msgstr "professor"
 
 #: .\user\models.py:103
 msgid "user"
-msgstr ""
+msgstr "usuário"
 
 #: .\user\models.py:104
 msgid "users"
-msgstr ""
+msgstr "usuários"
 
 #: .\user\models.py:176
 msgid "birth"
-msgstr ""
+msgstr "nascimento"
 
 #: .\user\models.py:177
 msgid "date career"
-msgstr ""
+msgstr "data de carreira"
 
 #: .\user\models.py:178
 msgid "date campus"
-msgstr ""
+msgstr "data de campus"
 
 #: .\user\models.py:180
 msgid "date professor"
-msgstr ""
+msgstr "data de professor"
 
 #: .\user\models.py:181
 msgid "date area"
-msgstr ""
+msgstr "data de área"
 
 #: .\user\models.py:183
 msgid "date institute"
-msgstr ""
+msgstr "data de instituto"
 
 #: .\user\models.py:262
 msgid "is competent"
-msgstr ""
+msgstr "é competente"

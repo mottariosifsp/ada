@@ -319,7 +319,6 @@ def attribution_configuration_confirm(request):
         return render(request, 'staff/attribution/attribution_configuration_confirm.html', data)
     return render(request, 'staff/attribution/attribution_configuration_confirm.html')
 
-@transaction.atomic
 def save_deadline(data):
     Deadline.objects.create(
         name="STARTFPADEADLINE",
@@ -351,8 +350,7 @@ def professors_list(request):
 
     return render(request, 'staff/professor/professors_list.html', data)
 
-
-@login_required
+@transaction.atomic
 @user_passes_test(is_staff)
 def add_new_professor(request):
     if request.method == 'POST':
@@ -424,7 +422,7 @@ def add_new_professor(request):
             new_user.save()
             return JsonResponse({'message': 'Histórico criado com sucesso.'})
 
-@login_required
+@transaction.atomic
 @user_passes_test(is_staff)
 def update_save(request):
     if request.method == 'POST':
@@ -498,7 +496,7 @@ def update_save(request):
             return JsonResponse({'message': 'Histórico criado com sucesso.'})
 
         return JsonResponse({'message': 'Alterações salvas com sucesso.'})
-
+@transaction.atomic
 def create_job(user_regime, user):
     if Job.objects.filter(user=user).exists():
         job = User.objects.filter(id=user.id).first().job
@@ -537,19 +535,17 @@ def classes_list(request):
     return render(request, 'staff/classs/classes_list.html', {'classes': classes, 'periods': periods, 'areas': areas, 'has_permission': has_permission}) 
 
 # ERRO - TODO
-@login_required
 @user_passes_test(is_staff)
 def classes_list_saved(request):
     if request.method == 'POST':
         print("funcionou o if")
+        old_registration_class_id = request.POST.get('old_registration_class_id')
         registration_class_id = request.POST.get('registration_class_id')
         period = request.POST.get('period')
         semester = request.POST.get('semester')
         area = request.POST.get('area')
-        print(area)
         print(registration_class_id)
-
-        classs = Classs.objects.filter(registration_class_id=registration_class_id).all()
+        classs = Classs.objects.filter(registration_class_id=old_registration_class_id).all()
         print(classs)
         if classs is not None:
             classs.update(registration_class_id=registration_class_id, period=period, semester=semester, area=area)
@@ -563,7 +559,6 @@ def classes_list_saved(request):
         return JsonResponse({'message': 'Alterações salvas com sucesso.'})
 
 # Erro - TODO
-@login_required
 @user_passes_test(is_staff)
 def class_create(request):
     if request.method == 'POST':
@@ -581,7 +576,6 @@ def class_create(request):
         return JsonResponse({'message': 'Turma criada com sucesso.'})
 
 # Erro - TODO
-@login_required
 @user_passes_test(is_staff)
 def class_delete(request):
     if request.method == 'POST':
@@ -618,13 +612,13 @@ def block_detail(request, registration_block_id):
         'user_blocks': user_blocks,
         'blockk': blockk, 
         'areas': list(area), 
+        'all_areas': Area.objects.all(),
         'courses': courses
     }
 
     return render(request, 'staff/blockk/block_detail.html', data)
 
 # course views
-@login_required
 @user_passes_test(is_staff)
 def course_create(request):
     user_blocks = request.user.blocks.all()
@@ -632,8 +626,8 @@ def course_create(request):
         registration_course_id = request.POST.get('registration_course_id')
         name_course = request.POST.get('name_course')
         acronym = request.POST.get('acronym')
-        area_id = request.POST.get('areaId')
         block_id = request.POST.get('blockId')
+        area_id = request.POST.get('areaId')
 
         area = Area.objects.get(id=area_id)
         blockk = Blockk.objects.get(id=block_id)
@@ -646,7 +640,6 @@ def course_create(request):
         else:
             return JsonResponse({'message': 'Você não tem permissão para criar disciplinas nesse bloco.'})
 
-@login_required
 @user_passes_test(is_staff)
 def course_update_save(request):
     if request.method == 'POST':
@@ -665,7 +658,6 @@ def course_update_save(request):
         else:
             return JsonResponse({'message': 'Você não tem permissão para editar disciplinas nesse bloco.'})
 
-@login_required
 @user_passes_test(is_staff)
 def course_delete(request):
     if request.method == 'POST':
@@ -681,7 +673,7 @@ def course_delete(request):
             return JsonResponse({'message': 'O disciplina não existe.'}, status=404)
 
 # timetable views
-
+@transaction.atomic
 @login_required
 @user_passes_test(is_staff)
 def timetables(request):
@@ -704,12 +696,12 @@ def timetables(request):
 
     return render(request, 'staff/timetable/timetables.html', {'timetables': timetables, 'user_blocks': user_blocks, 'classes': classes})
 
-
+@transaction.atomic
 @login_required
 @user_passes_test(is_staff)
 def create_timetable(request):
     if request.method == 'GET':
-        selected_class = Classs.objects.get(registration_class_id__icontains=(request.GET.get('class')))
+        selected_class = Classs.objects.get(registration_class_id=(request.GET.get('class')))
         if Timetable.objects.filter(classs=selected_class).count() > 0:
             print('já existe')
             url = reverse('edit_timetable') + f'?classs={selected_class.registration_class_id}'
@@ -754,13 +746,14 @@ def create_timetable(request):
         timetable_combo_saver(selected_courses, selected_class)
 
         return JsonResponse({'erro': False, 'mensagem': message})
-    
+
+@transaction.atomic
 @login_required
 @user_passes_test(is_staff)
 def edit_timetable(request):
     print(request)
     if request.method == 'GET':
-        selected_class = Classs.objects.get(registration_class_id__icontains=(request.GET.get('class')))
+        selected_class = Classs.objects.get(registration_class_id=(request.GET.get('class')))
         selected_courses = Course.objects.filter(area=selected_class.area)
 
         timetables = Timetable.objects.filter(classs=selected_class)
@@ -1064,6 +1057,7 @@ def get_string_field(campo):
     return campos.get(campo, "campo")
 
 def calculate_total_score(user, is_in_teacher_queue):
+    print(user)
     if is_in_teacher_queue:
         if user.teacher.history and user.teacher.history.academic_degrees.exists():
             return user.teacher.history.academic_degrees.aggregate(Sum('punctuation'))['punctuation__sum']
