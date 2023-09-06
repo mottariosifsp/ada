@@ -4,8 +4,8 @@
 
 body {
     background: linear-gradient(to top right, #3F927E, #2c436e);
-    margin: 0;
-    padding: 0;
+    /* margin: 0;
+    padding: 0; */
     color: white;
 }
 
