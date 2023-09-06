@@ -19,7 +19,22 @@
 
 {% block body %}
 {{ block.super }}
+    <h1 class="title-page mt-4">{% trans "Professores com o cadastro não finalizado" %}</h1>
+    <hr>
+    <nav>
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="{% url 'home_staff' %}"><i class="bi bi-house-door"></i></a></li>
+            <li class="breadcrumb-item active" aria-current="page">{% trans "Professores" %}</li>
+        </ol>
+    </nav>
 
+    <form action="" method="post">
+        {% csrf_token %}
+        <div class="row d-flex flex-row-reverse addprofdiv">
+            <button type="submit" class="btn btn-success">Enviar e-mail</button>
+        </div>
+    </form>
+    <br/>
     <div class="card">
     <div class="card-body">
         <div class="tabela d-flex justify-content-center align-items-center table-hover editable display">
@@ -47,10 +62,5 @@
         </div>
     </div>
 </div>
-
-<form action="" method="post">
-    {% csrf_token %}
-    <input type="submit" value="Enviar">
-</form>
 
 {% endblock %}
