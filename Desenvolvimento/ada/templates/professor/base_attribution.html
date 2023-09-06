@@ -263,7 +263,7 @@
             <img src="{% static 'images/icon_logout_ada.png' %}" style="width: 7rem;">
             <div class="text-center">
               <div class="div" style="margin-top: 2rem">
-                <h4>Deseja realmente sair?</h4>
+                <h4>{% trans 'Deseja realmente sair?' %}</h4>
                 <button type="button" class="btn mt-4 btn-outline-secondary btn-lg rounded-pill" data-dismiss="modal"
                   style="width:80%;">{% trans "Cancelar" %}</button><br>
                 <a class="btn btn-danger btn-lg rounded-pill m-2" href="{% url 'logout' %}"
