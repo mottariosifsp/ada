@@ -82,10 +82,10 @@
     </div>
     <div class="collapse navbar-collapse justify-content-end" id="navbarToggler">
       <ul class="navbar-nav mx-auto ">
-        <li class="nav-item word-topic"><a class="nav-link title" href="#">{% trans "Bloco" %}</a></li>
+        <li class="nav-item word-topic"><a class="nav-link title" href="{% url 'professor_blocks_list' %}">{% trans "Bloco" %}</a></li>
         <li class="nav-item word-topic"><a class="nav-link title"
             href="{% url 'attribution_preference' %}">{% trans "FPA" %}</a></li>
-        <li class="nav-item word-topic"><a class="nav-link title" href="#">{% trans "Grade" %}</a></li>
+        <li class="nav-item word-topic"><a class="nav-link title" href="{% url 'assignments' %}">{% trans "Grade" %}</a></li>
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownLangLogin" data-toggle="dropdown"
             aria-haspopup="true" aria-expanded="false">
@@ -151,11 +151,11 @@
               </a>
             </div>
             <hr>
-            <div class="modal-line"><a class="nav-link title" href="#"><i class="bi bi-people-fill lang-icon"></i>
+            <div class="modal-line"><a class="nav-link title" href="{% url 'professor_blocks_list' %}"><i class="bi bi-people-fill lang-icon"></i>
                 {% trans "Bloco" %}</a></div>
             <div class="modal-line"><a class="nav-link title" href="{% url 'attribution_preference' %}"><i
                   class="bi bi-people lang-icon"></i> {% trans "FPA" %}</a></div>
-            <div class="modal-line"><a class="nav-link title" href="#"><i class="bi bi-bar-chart-line lang-icon"></i>
+            <div class="modal-line"><a class="nav-link title" href="{% url 'assignments' %}"><i class="bi bi-bar-chart-line lang-icon"></i>
                 {% trans "Grade" %}</a></div>
             <div class="modal-line dropdown">
               <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownLangSidebar" data-toggle="dropdown"
