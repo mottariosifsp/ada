@@ -1,10 +1,14 @@
 
 $(document).ready(function() {
     let table = new DataTable('#classes_list', {
-        responsive: true
+        responsive: true,
+        "paging": false,
+        "scrollY": "400px",
     });
 
     // Criar turma
+
+    let classEditing = null;
 
     $('.createClassBtn').click(function() {
         $('#createClassModal').modal('show');
@@ -44,26 +48,50 @@ $(document).ready(function() {
         });
     });
 
+    
 
     // Editar turma
 
     $('.editClassBtn').click(function() {
         var row = $(this).closest('tr');
+        var rowData = table.row(row).data(); // Obtenha os dados da linha usando DataTables
+
+        console.log(rowData);
+
         var classData = {
-            registration_class_id: row.find('td:eq(0)').text(),
-            period: row.find('td:eq(1)').text(),
-            semester: row.find('td:eq(2)').text(),
-            area: row.find('td:eq(3)').text()
+            registration_class_id: rowData[0],
+            period: rowData[1],
+            semester: rowData[2],
+            area: rowData[3]
         };
+
+        console.log(classData);
+
         populateModal(classData);
         $('#editClassModal').modal('show');
     });
 
     function populateModal(classData) {
+        classEditing = classData.registration_class_id;
         $('#editClassModal').find('#registration_class_id_edit').val(classData.registration_class_id);
         $('#editClassModal').find('#period_edit').val(classData.period);
         $('#editClassModal').find('#semester_edit').val(classData.semester);
-        $('#editClassModal').find('#area_edit').val(classData.area);
+
+        var select = null;
+        var selectedOption = $('#area_edit option').filter(function() {
+            let str = $(this).text().replace(/\s/g, '').toUpperCase();
+            let area = classData.area.replace(/\s/g, '').toUpperCase();
+            console.log(str,'-' ,area)
+            if (str === area){
+                select = $(this).val(); 
+            }
+        });
+
+        $('#editClassModal').find('#area_edit').val(select);
+    }
+
+    function change_val(){
+        
     }
 
     $('#saveUpdateClassBtn').click(function() {
@@ -73,6 +101,7 @@ $(document).ready(function() {
         var area = $('#area_edit').val();
         
         var data = {
+            old_registration_class_id: classEditing,
             registration_class_id: registration_class_id,
             period: period,
             semester: semester,
@@ -100,6 +129,7 @@ $(document).ready(function() {
             }
         });
         console.log("funcionou o ajax")
+        classEditing = null;
     });
 
     // Deletar turma
