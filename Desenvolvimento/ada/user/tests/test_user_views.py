@@ -87,7 +87,6 @@ def test_logout_view(client):
     assert response.status_code == 302
     response = client.get(reverse('logout'), HTTP_ACCEPT_LANGUAGE='pt-br') # alguma coisa da tradução está bugando
 
-# Precisa de teste para logs?
 # Teste para as páginas de erro
 def test_404_handler(client):
     response = client.get('/nonexistent-url/')

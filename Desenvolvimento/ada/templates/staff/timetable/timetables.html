@@ -3,25 +3,28 @@
 {% load static %}
 
 {% block head %}
-  {{ block.super }}
-    <title>{% trans "Grades" %}</title>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-    <script src="{% static 'staff/timetable/js/create_timetable.js' %}" data-lang={{LANGUAGE_CODE}}></script>
-    <script src="{% static 'staff/timetable/js/timetables.js' %}" data-lang={{LANGUAGE_CODE}}></script>
+{{ block.super }}
+<title>{% trans "Grades" %}</title>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"
+  integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="{% static 'staff/timetable/js/create_timetable.js' %}" data-lang={{LANGUAGE_CODE}}></script>
+<script src="{% static 'staff/timetable/js/timetables.js' %}" data-lang={{LANGUAGE_CODE}}></script>
 {% endblock %}
 
 {% block body %}
-  {{ block.super }}
-  <h1 class="title-page">{% trans "Grades Horárias" %}</h1>
-    <nav>
-      <ol class="breadcrumb">
-        <li class="breadcrumb-item"><a href="{% url 'home' %}"><i class="bi bi-house-door"></i></a></li>
-        <li class="breadcrumb-item active" aria-current="page">{% trans "Configurar Grades Horárias" %}</li>
-        <li class="breadcrumb-item active">{% trans "Grades Horárias" %}</li>
-      </ol>
-    </nav>
+{{ block.super }}
+<h1 class="title-page mt-4">{% trans "Grades" %}</h1>
+<hr>
+<nav>
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="{% url 'home_staff' %}"><i class="bi bi-house-door"></i></a></li>
+    <li class="breadcrumb-item active">{% trans "Grades" %}</li>
+  </ol>
+</nav>
+<div class="card">
+  <div class="card-body">
     <div class="tabela">
-      <table class="table table-bordered editable" id="timetable_list">
+      <table class="table table-hover table-bordered editable display" id="timetable_list">
         <thead class="thead-dark">
           <tr>
             <th scope="col">{% trans "Registro" %}</th>
@@ -31,21 +34,28 @@
         </thead>
         <tbody>
           {% for classs in classes %}
-            <tr>
-                <td>{{ classs.registration_class_id }}</td>
-                {% blocktrans with name_area_text=classs.area.name_area %}
-                  <td>{{ name_area_text }}</td>
-                {% endblocktrans %}
-                <td>
-                  {% if classs.timetable.exists %}
-                    <a href="{% url 'show_timetable' %}?class={{classs.registration_class_id}}" class="btn btn-primary"><i class="bi bi-eye"></i></a>
-                  {% else %}
-                    <a href="{% url 'create_timetable' %}?class={{classs.registration_class_id}}" class="btn btn-success"><i class="bi bi-calendar-plus"></i></a>
-                  {% endif %}
-                </td>
-            </tr>
+          <tr>
+            <td>{{ classs.registration_class_id }}</td>
+            <td>{% trans classs.area.name_area %}</td>
+            <td class="text-center">
+              {% if classs.timetable.exists %}
+              <a href="{% url 'show_timetable' %}?class={{classs.registration_class_id}}" class="btn btn-primary"><i
+                  class="bi bi-eye"></i></a>
+              <a href="{% url 'edit_timetable' %}?class={{classs.registration_class_id}}" class="btn btn-warning"><i
+                  class="bi bi-pencil"></i></a>
+              {% else %}
+              <a href="{% url 'create_timetable' %}?class={{classs.registration_class_id}}" class="btn btn-success"><i
+                  class="bi bi-calendar-plus"></i></a>
+              {% endif %}
+            </td>
+          </tr>
           {% endfor %}
         </tbody>
       </table>
     </div>
+  </div>
+</div>
+
+<script src="{% static 'staff/timetable/js/show_timetable.js' %}" data-lang={{LANGUAGE_CODE}} timetables-complete="{{timetables}}"></script>
+<script src="{% static 'staff/timetable/js/edit_timetable.js' %}" data-lang={{ LANGUAGE_CODE }} timetables-complete="{{ timetable }}"></script>
 {% endblock %}

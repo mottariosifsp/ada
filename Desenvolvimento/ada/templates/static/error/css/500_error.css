@@ -3,19 +3,12 @@ body {
     margin: 0;
     padding: 0;
     color: white;
-    justify-content: center;
-    align-items: center;
     background-color: #ffffff;
 }
 
-
 .container.base {
     display: flex;
-    position: absolute;
-    margin: -2% 2% 0 2%;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+    margin-top: 1%;
 }
 
 .container-inside {
@@ -44,7 +37,8 @@ body {
     left: 10%;
 }
 
-img {
+.logo {
+    margin-top: -50%;
     margin-bottom: 12px;
 }
 

@@ -1,13 +1,15 @@
 $(document).ready(function() {
     let table = new DataTable('#blocks_list', {
-        responsive: true
+        responsive: true,
+        "paging": false,
+        "scrollY": "400px",
     });
 
     $('#saveCreateBtn').click(function() {
         var registration_course_id = $('#registration_course_id_create').val();
         var name_course = $('#name_course_create').val();
         var acronym = $('#acronym_create').val();
-        var areaId = $(this).data('area-id');
+        var areaId = $('#area_create').val();
         var blockId = $(this).data('block-id');
 
         var data = {

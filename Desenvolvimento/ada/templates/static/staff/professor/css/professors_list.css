@@ -1,4 +1,57 @@
-tr:hover>td {
-    background-color: #edecec;
-    font-weight:500;
+
+
+body{
+  background-color: #def2fc81 !important;
 }
+
+tr:hover > td {
+  background-color: #edecec;
+  font-weight: 500;
+}
+
+#add-professor {
+  margin-bottom: 1rem;
+}
+
+.addprofdiv {
+  padding-right: 15px;
+}
+
+.item {
+    background-color: white !important;
+}
+
+
+options:checked{
+    background-color: #ff0000 !important;
+}
+
+div.dataTables_wrapper {
+  width: 100%;
+  margin: 0 auto;
+}
+
+.bi-check-circle-fill{
+    color: #20d420;
+}
+
+.bi-x{
+    color: #ff0000;
+} 
+
+.coluna-fixada {
+  position: sticky;
+  left: 0;
+  background-color: white;
+  z-index: 1;
+}
+/* 
+.form-select:focus {
+    border-color: #86b7fe;
+    outline: 0;
+    box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.25);
+} */
+/* .checked{
+    background-color: #2064d4;
+    font-weight: 500;
+} */

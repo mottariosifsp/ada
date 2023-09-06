@@ -22,12 +22,42 @@
     {% endblock %}
   </head>
   <body>
-    {% if user.is_authenticated %}
+    {% if not user.is_authenticated %}
+    <nav class="navbar navbar-expand-lg fixed-top">
+      <div class="nav-item dropdown language-icon-notlogged top-right justify-content-end">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownLangLogin" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          {% get_current_language as LANGUAGE_CODE %}
+          <button class="btn-home btn-language" readonly>{% if LANGUAGE_CODE == 'en' %}EN{% else %}PT{% endif %}</button>
+        </a>
+        <div class="dropdown-menu dropdown-menu-right dropdown-login" aria-labelledby="navbarDropdownLangLogin">
+          {% get_current_language as LANGUAGE_CODE %}
+          {% get_available_languages as LANGUAGES %}
+          {% get_language_info_list for LANGUAGES as languages %}
+
+          {% for lang in LANGUAGES %}
+            {% if lang.0 == LANGUAGE_CODE %}
+              {% if LANGUAGE_CODE == "en" %}
+                <a class="dropdown-item active" href="/{{ lang.0 }}{{ request.path_info|slice:'3:' }}">{{ lang.1 }}</a>
+              {% else %}
+                <a class="dropdown-item active" href="/{{ lang.0 }}{{ request.path_info|slice:'6:' }}">{{ lang.1 }}</a>
+              {% endif %}
+            {% else %}
+              {% if LANGUAGE_CODE == "en" %}
+                <a class="dropdown-item" href="/{{ lang.0 }}{{ request.path_info|slice:'3:' }}">{{ lang.1 }}</a>
+              {% else %}
+                <a class="dropdown-item" href="/{{ lang.0 }}{{ request.path_info|slice:'6:' }}">{{ lang.1 }}</a>
+              {% endif %}
+            {% endif %}
+          {% endfor %}
+        </div>
+      </div>
+    </nav>
+    {% else %}
     <nav class="navbar navbar-expand-lg fixed-top">
       <div class="d-flex justify-content-between align-items-center w-100">
         <div class="nav-brand mr-auto mt-3">
           <a class="logo" href="{% url 'home' %}">
-            <img class="ada-logo" src="{% static 'images/logo_bg.png' %}" alt="logo do site ADA">
+            <img class="ada-logo" src="{% static 'images/logo_bg.png' %}" alt="logo ADA">
           </a>
         </div>
       </div>

@@ -15,7 +15,7 @@
 <script src="{% static "admin/js/deadline_configuration.js" %}"></script>
 {% endblock %}
 
-{% block title %}Configuração de prazos | Django site admin{% endblock %}
+{% block title %}{% trans "Configuração de prazos | Django site admin" %}{% endblock %}
 
 
 
@@ -24,28 +24,29 @@
 {% block usertools %}
 
 <div id="user-tools">
-   Bem-vindo(a),
-   <strong>D</strong>.
-       <a href="/">Ver o site</a> /
-   <a href="/admin/password_change/">Alterar senha</a> /
-   <form id="logout-form" method="post" action="/admin/logout/">
-       <input type="hidden" name="csrfmiddlewaretoken" value="jTEE6gPNIqua1iKKcrAprUYsA8C2cdESKzpouFJaMRHi74fewwqr4A303z6XoHe3">
-       <button type="submit">Encerrar sessão</button>
-   </form>
+    {% trans "Bem-vindo(a)" %},
+    <strong>D</strong>.
+    <a href="/">{% trans "Ver o site" %}</a> /
+    <a href="/admin/password_change/">{% trans "Alterar senha" %}</a> /
+    <form id="logout-form" method="post" action="/admin/logout/">
+        <input type="hidden" name="csrfmiddlewaretoken"
+            value="jTEE6gPNIqua1iKKcrAprUYsA8C2cdESKzpouFJaMRHi74fewwqr4A303z6XoHe3">
+        <button type="submit">{% trans "Encerrar sessão" %}</button>
+    </form>
 </div>
 
 {% endblock %}
 
 {% block breadcrumbs %}
 <div class="breadcrumbs">
-<a href="{% url 'admin:index' %}">{% translate 'Home' %}</a>
-&rsaquo; <a>{% translate 'Configuração de prazos' %}</a>
+    <a href="{% url 'admin:index' %}">{% trans 'Página inicial' %}</a>
+    &rsaquo; <a>{% translate 'Configuração de prazos' %}</a>
 </div>
 {% endblock %}
 
 {% block content %}
-    <div class="container">
-        <h1>configuração Salva</h1>
-    </div>
+<div class="container">
+    <h1>{% trans "Configuração Salva" %}.</h1>
+</div>
 
-{% endblock %} 
+{% endblock %}

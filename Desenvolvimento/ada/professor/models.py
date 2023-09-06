@@ -1,3 +1,10 @@
-from django.db import models
+from django import forms
 
-# Create your models here.
+class ContatoForm(forms.Form):
+    name = forms.CharField()
+    email = forms.EmailField()
+    message = forms.CharField(
+        widget=forms.Textarea,
+        min_length=10,
+        max_length=300,
+    )

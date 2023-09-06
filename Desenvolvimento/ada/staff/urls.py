@@ -1,11 +1,16 @@
 from django.urls import path
-from .views import attribution_configuration, attribution_configuration_confirm, attribution_configuration_index, class_create, class_delete, classes_list, classes_list_saved, create_timetable, edit_timetable, show_timetable, home,\
-    show_current_deadline, professors_list, timetables, update_save, blocks_list, block_detail, course_update_save, course_delete, course_create, queue_create, queue_show
+
+from . import views
+from .views import attribution_configuration, attribution_configuration_confirm, attribution_configuration_index, \
+    class_create, class_delete, classes_list, classes_list_saved, create_timetable, edit_timetable, show_timetable, \
+    home, \
+    professors_list, timetables, update_save, blocks_list, block_detail, course_update_save, course_delete, \
+    course_create, queue_create, queue_show, add_new_professor, register
 
 urlpatterns = [
     path("", home, name="home_staff"),
-    path("prazo/atual/", show_current_deadline, name="show_current_deadline"),
     path("professores/", professors_list, name="professors_list"),
+    path("professor-adiciondo/", add_new_professor, name="add_new_professor"),
     path("alteracoes-salvas/", update_save, name="update_save"),
     path("turmas/", classes_list, name="classes_list"),
     path("turmas/alteracoes-salvas/", classes_list_saved, name="classes_list_saved"),
@@ -24,5 +29,6 @@ urlpatterns = [
     path("grade/", timetables, name="timetables"),
     path("atribuicao/configuracao/", attribution_configuration, name="attribution_configuration"),
     path("atribuicao/confirmar/", attribution_configuration_confirm, name="attribution_configuration_confirm"),
-    path("atribuicao/", attribution_configuration_index, name="attribution_configuration_index")
+    path("atribuicao/", attribution_configuration_index, name="attribution_configuration_index"),
+    path('professor/register/', register, name='register'),
 ]

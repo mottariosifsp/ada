@@ -71,7 +71,7 @@ i, h1, h3 {
 {% endblock %} 
 
 {% block body %}
-<div cclass="container align-items-center justify-content-center">
+<div class="container align-items-center justify-content-center">
     <div class="text-center">
         <h1>{% trans "Olá, bem-vindo(a) à ADA" %}.</h1>
         <h3>{% trans "Você quer acessar o sistema como" %}: </h3>
@@ -86,8 +86,7 @@ i, h1, h3 {
             {% if request.user.is_staff or request.user.is_superuser%}
             <div class="col-12 mt-2">
                 <button type="button" id="to-staff" url="/staff/"  class="btn btn-blue btn-lg btn-block hover-button">
-                    <span class="button-text"><i class="fas fa-users"></i> {% trans "Staff" %}</span>
-                    
+                    <span class="button-text"><i class="fas fa-users"></i> {% trans "Representante" %}</span>
                 </button>
             </div>
             {% endif %}

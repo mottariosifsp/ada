@@ -1,15 +1,22 @@
 $("document").ready(function () {
+
+
     $("#error-message-form").hide();
     $("#submit-button").click(function (event) {
         event.preventDefault(); // Impede o envio padrão do formulário
         $("#error-message-form").hide();
+
         
+        let semester = $("input[name=semester]").val();
         let startFPA = $("#startFPADeadline").val();
         let endFPA = $("#endFPADeadline").val();
         let startAssignment = $("#startAssignmentDeadline").val();
         let endAssignment = $("#endAssignmentDeadline").val();
 
-        if (startFPA == "" || endFPA == "" || startAssignment == "" || endAssignment == "") {
+        if (semester <= 0 || semester > 2) {
+            error_message("O semestre deve ser 1 ou 2");
+        } else
+        if (startFPA == "" || endFPA == "" || startAssignment == "" || endAssignment == "" || $("#year").val() == "" || $("#semester").val() == "") {
             error_message("Todos os campos devem ser preenchidos.");
         } else if (startFPA >= endFPA) {
             error_message("O início da submissão de FPA não pode ocorrer após o término de seu prazo.");

@@ -1,0 +1,68 @@
+{% extends "professor/base.html" %}
+{% load i18n %}
+{% load static %}
+
+{% block head %}
+    <title>{% trans "Contato" %}</title>
+    <link rel="stylesheet" href="{% static 'professor/contact/css/contact.css' %}">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+
+{% endblock %}
+
+{% block body %}
+
+    <nav>
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="{% url 'home' %}"><i class="bi bi-house-door"></i></a></li>
+            <li class="breadcrumb-item active">{% trans "Contato" %}</li>
+        </ol>
+    </nav>
+
+    <div class="card">
+        <div class="card-body">
+            <div class="left-content">
+                <img class="center" src="/assets/images/logo_bg.png" alt="">
+                <p class="contact-heading">{% trans "Entre em contato conosco" %}</p>
+            </div>
+
+            <div class="right-content">
+                <form method="post" novalidate>
+                    {% csrf_token %}
+
+                    <div class="form-group">
+                        <label class="form-label" for="{{ form.name.id_for_label }}">{% trans "Nome" %}:</label>
+                        <input type="text" id="{{ form.name.id_for_label }}" name="{{ form.name.name }}"
+                               value="{{ form.name.value }}" readonly>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label" for="{{ form.email.id_for_label }}">{% trans "E-mail" %}:</label>
+                        <input type="email" id="{{ form.email.id_for_label }}" name="{{ form.email.name }}"
+                               value="{{ form.email.value }}" readonly>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label" for="{{ form.message.id_for_label }}">{% trans "Mensagem" %}:</label>
+                        {{ form.message }}
+                        <div id="messageError" style="display: none;"></div>
+                    </div>
+
+                {% if messages %}
+                    {% for message in messages %}
+                        <div class="message{% if message.tags %} {{ message.tags }}{% endif %}">
+                            {{ message }}
+                        </div>
+                    {% endfor %}
+                {% endif %}
+
+                    <button type="submit" class="btn btn-primary">{% trans "Enviar" %}</button>
+
+                </form>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
+
+{% block endbody %}
+    <script src="{% static 'professor/contact/js/contact.js' %}"></script>
+{% endblock %}

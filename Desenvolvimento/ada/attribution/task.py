@@ -14,13 +14,15 @@ app = Celery('tasks', broker='redis://localhost:6379')
 
 redis_client = redis.Redis(host='localhost', port=6379)
 
+i = app.control.inspect()
+
 @app.task
 def finalization_deadline_start():
     print("finalization_deadline_start")
 
 @app.task
 def attribution_deadline_start(blockk_id):
-    blockk = Blockk.objects.get(id=blockk_id)
+    blockk = Blockk.objects.get(registration_block_id=blockk_id)
     views.start_attribution(blockk)
     views.remove_professors_without_preference(blockk)
     print("attribution_deadline_start")
@@ -29,11 +31,11 @@ def attribution_deadline_start(blockk_id):
 def attribution_preference_deadline_start():
     print("attribution_preference_deadline_start")
 
-def schedule_deadline(task, dateperiod, name, *args):
+def schedule_deadline(task, dateperiod, name, queue, *args):
     now_today = datetime.today()
     now = datetime.utcnow()
     eta = (dateperiod - now_today).total_seconds()
-    regis_task = task.apply_async(eta=now + timedelta(seconds=eta), args=list(args))
+    regis_task = task.apply_async(eta=now + timedelta(seconds=eta), args=list(args), queue=queue)
     redis_client.set(name, regis_task.id)
 
 @app.task
@@ -43,10 +45,13 @@ def times_up(professor_id, blockk_id):
     views.timestup(professor, blockk)
     print(f'Tempo do professor {professor} acabou!')
 
-def schedule_task(seconds, professor, blockk):
+def schedule_task(seconds, professor, blockk, queue):
+    i.scheduled()
+    i.active()
+
     now = datetime.utcnow()
     eta = now + timedelta(seconds=seconds)
-    task = times_up.apply_async(eta=now + timedelta(seconds=seconds), args=[professor.id, blockk.id])
+    task = times_up.apply_async(eta=now + timedelta(seconds=seconds), args=[professor.id, blockk.id], queue=queue)
     # Store task information in Redis
     redis_client.set('task', task.id)
     redis_client.set('task_eta', eta.isoformat())

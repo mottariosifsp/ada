@@ -20,6 +20,13 @@ class Day_combo_admin(admin.ModelAdmin):
     def timeslot(self, obj):
         return ", ".join([str(Timeslot.position) for Timeslot in obj.timeslots.all()])
 
+actions = ['action_remove_all_attribution']
+
+@admin.action(description='Remove all attribution from user')
+def action_remove_all_attribution(modeladmin, request, queryset):
+    for obj in queryset:
+        obj.update(user=None)
+
 class Timetable_user_admin(admin.ModelAdmin):
     list_display = ('timetable', 'user')
 

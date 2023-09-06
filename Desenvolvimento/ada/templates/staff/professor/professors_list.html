@@ -3,124 +3,481 @@
 {% load static %}
 
 {% block head %}
-    {{ block.super }}
-    <title>{% trans "Professores" %}</title>
-    <link rel="stylesheet" href="{% static 'staff/professor/css/professors_list.css' %}">
-    <script src="{% static 'staff/professor/js/professors_list.js' %}" data-lang={{ LANGUAGE_CODE }}></script>
+{{ block.super }}
+<title>{% trans "Professores" %}</title>
+<link rel="stylesheet" href="{% static 'staff/professor/css/professors_list.css' %}" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fomantic-ui/2.9.2/semantic.min.css" />
+<link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/dataTables.semanticui.min.css" />
+<link rel="stylesheet"    href="https://datatables.net/release-datatables/extensions/FixedColumns/css/fixedColumns.bootstrap4.css" />
+<link rel="stylesheet" href="https://datatables.net/release-datatables/media/css/dataTables.bootstrap4.css" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.2/moment.min.js"></script>
+<script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.js"></script>
+<link href="https://cdn.datatables.net/v/dt/jq-3.6.0/dt-1.13.4/rr-1.3.3/datatables.min.css" rel="stylesheet" />
+<script src="https://cdn.datatables.net/v/dt/jq-3.6.0/dt-1.13.4/rr-1.3.3/datatables.min.js"></script>
+<script src="{% static 'staff/professor/js/professors_list.js' %}" data-lang="{{' LANGUAGE_CODE '}}"></script>
+<script type="text/javascript" src="https://cdn.datatables.net/fixedcolumns/3.2.1/js/dataTables.fixedColumns.min.js">
+</script>
 {% endblock %}
 
 {% block body %}
-    {{ block.super }}
-    <h1 class="title-page">{% trans "Professores" %}</h1>
-    <nav>
-        <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="{% url 'home' %}"><i class="bi bi-house-door"></i></a></li>
-            <li class="breadcrumb-item active" aria-current="page">{% trans "Configurar Lista de Professores" %}</li>
-            <li class="breadcrumb-item active">{% trans "Professores" %}</li>
-        </ol>
-    </nav>
-    <div class="tabela">
-        <table class="table table-bordered editable" id="professors_list">
-            <thead>
-            <tr>
-                <th scope="col">{% trans "Registro" %}</th>
-                <th scope="col">{% trans "Nome" %}</th>
-                <th scope="col">{% trans "Data de Nascimento" %}</th>
-                <th scope="col">{% trans "Data de Carreira" %}</th>
-                <th scope="col">{% trans "Data no Campus" %}</th>
-                <th scope="col">{% trans "Data como Professor" %}</th>
-                <th scope="col">{% trans "Data na Área" %}</th>
-                <th scope="col">{% trans "Data no Instituto" %}</th>
-                <th scope="col">{% trans "Diploma Pontuação" %}</th>
-                <th scope="col">{% trans "Ações" %}</th>
-            </tr>
-            </thead>
-            <tbody>
-            {% csrf_token %}
-            {% for professor in professors %}
-                <!-- Lista -->
-                <tr>
-                    <td>{{ professor.registration_id }}</td>
-                    <td>{{ professor.get_full_name }}</td>
-                    <td>{{ professor.history.birth|date:"Y-m-d" }}</td>
-                    <td>{{ professor.history.date_career|date:"Y-m-d" }}</td>
-                    <td>{{ professor.history.date_campus|date:"Y-m-d" }}</td>
-                    <td>{{ professor.history.date_professor|date:"Y-m-d" }}</td>
-                    <td>{{ professor.history.date_area|date:"Y-m-d" }}</td>
-                    <td>{{ professor.history.date_institute|date:"Y-m-d" }}</td>
-                    <td>
-                        {% for academic_degree in professor.history.academic_degrees.all %}
+{{ block.super }}
+<h1 class="title-page mt-4">{% trans "Professores" %}</h1>
+<hr>
+<nav>
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="{% url 'home_staff' %}"><i class="bi bi-house-door"></i></a></li>
+        <li class="breadcrumb-item active" aria-current="page">{% trans "Professores" %}</li>
+    </ol>
+</nav>
+
+    {% if professors_inactive > 0 %}
+        <nav>
+            <div class="alert alert-info" role="alert">
+                <p style="font-size: 16px">Há {{ professors_inactive }} professor(es) com o cadastro não finalizado. Clique no botão abaixo para finalizar o processo.</p>
+               <button type="button" class="btn btn-outline-secondary"><a href="{% url 'register' %}">Finalizar processo</a></button>
+            </div>
+        </nav>
+    {% endif %}
+
+<div class="row d-flex flex-row-reverse addprofdiv">
+    <button type="button" class="btn btn-success" id="add-professor">{% trans "Adicionar Professor" %}</button>
+</div>
+<div class="card">
+    <div class="card-body">
+        <div class="tabela d-flex justify-content-center align-items-center">
+            <table class="table table-bordered table-hover editable display" id="professors_list">
+                <thead class="thead-dark">
+                    <tr>
+                        <th scope="col" class="coluna-fixada">{% trans "Nome" %}</th>
+                        <th scope="col">{% trans "Sobrenome" %}</th>
+                        <th scope="col">{% trans "Registro" %}</th>
+                        <th scope="col">{% trans "Email" %}</th>
+                        <th scope="col">{% trans "Telefone" %}</th>
+                        <th scope="col">{% trans "Celular" %}</th>
+                        <th scope="col">{% trans "Data de Nascimento" %}</th>
+                        <th scope="col">{% trans "Data de Carreira" %}</th>
+                        <th scope="col">{% trans "Data no Campus" %}</th>
+                        <th scope="col">{% trans "Data como Professor" %}</th>
+                        <th scope="col">{% trans "Data na Área" %}</th>
+                        <th scope="col">{% trans "Data no Instituto" %}</th>
+                        <th scope="col">{% trans "Regime de trabalho" %}</th>
+                        <th scope="col">{% trans "Blocos" %}</th>
+                        <th scope="col">{% trans "Diploma Pontuação" %}</th>
+                        <th scope="col">{% trans "Professor" %}</th>
+                        <th scope="col">{% trans "Staff" %}</th>
+                        <th scope="col">{% trans "FG / FCC" %}</th>
+                        <th scope="col">{% trans "Ações" %}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% csrf_token %} {% for professor in professors %}
+                    <!-- Lista -->
+                    <tr>
+                        <td>{{ professor.first_name }}</td>
+                        <td>{{ professor.last_name }}</td>
+                        <td>{{ professor.registration_id }}</td>
+                        <td>{{ professor.email }}</td>
+                        <td class="text-center">
+                            {% if professor.telephone == None %}
+                            -
+                            {% else %}
+                            {{ professor.telephone }}
+                            {% endif %}
+                        </td>
+                        <td class="text-center">
+                            {% if professor.cell_phone == None %}
+                            -
+                            {% else %}
+                            {{ professor.cell_phone }}
+                            {% endif %}
+                        </td>
+                        <td>{{ professor.history.birth|date:"Y-m-d" }}</td>
+                        <td>{{ professor.history.date_career|date:"Y-m-d" }}</td>
+                        <td>{{ professor.history.date_campus|date:"Y-m-d" }}</td>
+                        <td>{{ professor.history.date_professor|date:"Y-m-d" }}</td>
+                        <td>{{ professor.history.date_area|date:"Y-m-d" }}</td>
+                        <td>{{ professor.history.date_institute|date:"Y-m-d" }}</td>
+                        <td class="text-center">
+                            {% if professor.job == None %}
+                            -
+                            {% elif "RDE" in professor.job.name_job %}
+                            {% trans "RDE" %}
+                            {% elif "SUBSTITUTE" in professor.job.name_job%}
+                            {% trans "Substituto" %}
+                            {% elif "TEMPORARY" in professor.job.name_job%}
+                            {% trans "Temporário" %}
+                            {% elif  "TWENTY_HOURS" in professor.job.name_job%}
+                            20 {% trans "Horas" %}
+                            {% elif "FORTY_HOURS" in professor.job.name_job %}
+                            40 {% trans "Horas" %}
+                            {% else %}
+                            oier <!--cute-->
+                            {% endif %}
+                        </td>
+                        <td>
+                            {% for block in professor.blocks.all %}
+                            <span block-id="{{ block.id }}" block-name="{{block.name_block}}">{{ block }}</span>
+                            <br />
+                            {% endfor %}
+                        </td>
+                        <td>
+                            {% for academic_degree in professor.history.academic_degrees.all %}
                             <span data-degree-id="{{ academic_degree.id_academic_degree }}"
-                                  data-degree-name="{{ academic_degree.name }}"
-                                  data-degree-punctuation="{{ academic_degree.punctuation }}">{{ academic_degree.name }}</span>
-                            <br>
-                        {% endfor %}
-                    </td>
-                    <td>
-                        <button type="button" data-toggle="modal" data-target="#editProfessorModal"
+                                data-degree-name="{{ academic_degree.name }}"
+                                data-degree-punctuation="{{ academic_degree.punctuation }}">{% trans academic_degree.name %}</span>
+                            <br />
+                            {% endfor %}
+                        </td>
+                        <td class="text-center">
+                            {% if professor.is_professor %}
+                            <i class="bi bi-check-circle-fill fa-lg" is="true"></i>
+                            {% else %}
+                            <i class="bi bi-x fa-lg" is="false"></i>
+                            {% endif %}
+                        </td>
+                        <td class="text-center">
+                            {% if professor.is_staff %}
+                            <i class="bi bi-check-circle-fill fa-lg" is="true"></i>
+                            {% else %}
+                            <i class="bi bi-x fa-lg" is="false"></i>
+                            {% endif %}
+                        </td>
+                        <td class="text-center">
+                            {% if professor.is_fgfcc %}
+                            <i class="bi bi-check-circle-fill fa-lg" is="true"></i>
+                            {% else %}
+                            <i class="bi bi-x fa-lg" is="false"></i>
+                            {% endif %}
+                        </td>
+                        <td>
+                            <button type="button" data-toggle="modal" data-target="#editProfessorModal"
                                 data-counter="{{ counter }}" class="btn btn-warning editProfessorBtn"><i
-                                class="bi bi-pencil"></i></button>
-                    </td>
-                </tr>
-            {% endfor %}
-            </tbody>
-        </table>
+                                    class="bi bi-pencil"></i></button>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
     </div>
+</div>
 
-    <!-- Modal para edição de professor -->
-    <div class="modal fade" id="editProfessorModal" tabindex="-1" role="dialog"
-         aria-labelledby="editProfessorModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="addEditProfessorModal">{% trans "Editar Professor" %}</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <form>
-                        <div class="form-group">
-                            <label for="registration_id">{% trans "Registro" %}</label>
-                            <input type="text" class="form-control" id="registration_id" readonly>
+<div class="modal fade" id="createProfessorModal" tabindex="-1" role="dialog" aria-labelledby="editProfessorModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="addcreateProfessorModal">{% trans "Adicionar novo professor" %}</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <h3>{% trans "Informações do professor" %}</h3>
+                    <div class="form-group">
+                        <label for="add_registration_id">{% trans "Prontuário" %}</label>
+                        <input type="text" class="form-control" id="add_registration_id" />
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <div class="form-group">
+                                <label for="add_first_name">{% trans "Nome" %}</label>
+                                <input type="text" class="form-control" id="add_first_name" />
+                            </div>
                         </div>
-                        <div class="form-group">
-                            <label for="first_name">{% trans "Nome" %}</label>
-                            <input type="text" class="form-control" id="first_name" readonly>
+                        <div class="col">
+                            <div class="form-group">
+                                <label for="add_last_name">{% trans "Sobrenome" %}</label>
+                                <input type="text" class="form-control" id="add_last_name" />
+                            </div>
                         </div>
-                        <div class="form-group">
-                            <label for="birth">{% trans "Data de Nascimento" %}</label>
-                            <input type="date" class="form-control" id="birth">
+                    </div>
+                    <div class="form-group">
+                        <label for="add_email">{% trans "Email" %}</label>
+                        <input type="email" class="form-control" id="add_email" />
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <label for="add_telephone">{% trans "Telefone" %}</label>
+                            <input type="text" data-js="telephone" class="form-control telephone-input"
+                                id="add_telephone" />
                         </div>
-                        <div class="form-group">
-                            <label for="date_career">{% trans "Data de Carreira" %}</label>
-                            <input type="date" class="form-control" id="date_career">
+                        <div class="col">
+                            <label for="add_celphone">{% trans "Celular" %}</label>
+                            <input type="text" data-js="celphone" class="form-control phone-input" id="add_celphone" />
                         </div>
-                        <div class="form-group">
-                            <label for="date_campus">{% trans "Data de Ingresso no Campus" %}</label>
-                            <input type="date" class="form-control" id="date_campus">
+                    </div>
+                    <h3>{% trans "Histórico do professor" %}</h3>
+                    <div class="form-group" style="margin-top: 15px">
+                        <label for="add_birth">{% trans "Data de Nascimento" %}</label>
+                        <input type="date" class="form-control" id="add_birth" />
+                    </div>
+                    <div class="form-group">
+                        <label for="add_date_career">{% trans "Data de Carreira" %}</label>
+                        <input type="date" class="form-control" id="add_date_career" />
+                    </div>
+                    <div class="form-group">
+                        <label for="add_date_campus">{% trans "Data de Ingresso no Campus" %}</label>
+                        <input type="date" class="form-control" id="add_date_campus" />
+                    </div>
+                    <div class="form-group">
+                        <label for="add_date_professor">{% trans "Data de Ingresso como Professor" %}</label>
+                        <input type="date" class="form-control" id="add_date_professor" />
+                    </div>
+                    <div class="form-group">
+                        <label for="add_date_area">{% trans "Data da Área" %}</label>
+                        <input type="date" class="form-control" id="add_date_area" />
+                    </div>
+                    <div class="form-group">
+                        <label for="add_date_institute">{% trans "Data do Instituto" %}</label>
+                        <input type="date" class="form-control" id="add_date_institute" />
+                    </div>
+                    <div class="form-group">
+                        <label for="add_job">{% trans "Regime de trabalho" %}</label>
+                        <select class="form-control" id="add_job">
+                            <option hidden>{% trans "Defina um regime" %}</option>
+                            <option value='RDE'>{% trans "RDE" %}</option>
+                            <option value='SUBSTITUE'>{% trans "Substituto" %}</option>
+                            <option value='TEMPORARY'>{% trans "Temporário" %}</option>
+                            <option value='HOURS20'>20 {% trans "Horas" %}</option>
+                            <option value='HOURS40'>40 {% trans "Horas" %}</option>
+                        </select>
+                    </div>
+                    <label for="add_blocks" id="block-title">{% trans "Blocos do usuário" %}</label>
+                    <ul id="currentBlocksList" class="list-group currentBlocksList"></ul>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group" id="newBlocksFieldsContainer">
+                                <label for="blockInput">{% trans "Adicionar um novo bloco" %}</label>
+                                <div class="d-flex">
+                                    <input id="blockInput" list="blocks" name="block"
+                                        class="flex-grow-1 form-control blockInput" autocomplete="off"
+                                        style="text-align: center;">
+                                    <datalist id="blocks" class="blocks-datalist">
+                                        {% for block in blockks %}
+                                        <option class="dropdown-item-class" value="{{block.name_block}}">
+                                        </option>
+                                        {% endfor %}
+                                    </datalist>
+                                    <button type="button" id="addBlockBtn" style="margin-left:15px"
+                                        class="btn btn-success addBlockBtn"><img
+                                            src="{% static 'images/icon-add-block.png' %}" alt="Adicionar Bloco"
+                                            style="width:22px"></button>
+                                </div>
+                            </div>
                         </div>
-                        <div class="form-group">
-                            <label for="date_professor">{% trans "Data de Ingresso como Professor" %}</label>
-                            <input type="date" class="form-control" id="date_professor">
+                    </div>
+                    <label for="academic_degrees" id="academic-title">{% trans "Diplomas do Usuário" %}</label>
+                    <ul id="currentAcademicDegreesList" class="list-group currentAcademicDegreesList"></ul>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group" id="newAcademicDegreeFieldsContainer">
+                                <label for="degreeInput">{% trans "Adicionar um novo diploma" %}</label>
+                                <div class="d-flex">
+                                    <input id="degreeInput" list="degrees" name="degree"
+                                        class="flex-grow-1 form-control degreeInput" autocomplete="off"
+                                        style="text-align: center;">
+                                    <datalist id="degrees">
+                                        {% for degree in degrees %}
+                                        <option class="dropdown-item-class"
+                                            value="{{ degree.name }}" 
+                                            score="{{ degree.punctuation }}">{% trans "pontuação" %}:
+                                            {{ degree.punctuation }}
+                                        </option>
+                                        {% endfor %}
+                                    </datalist>
+                                    <button type="button" id="addCertificateBtn" style="margin-left:15px"
+                                        class="btn btn-success addCertificateBtn"><img
+                                            src="{% static 'images/icon-add-certificate.png' %}"
+                                            alt="Adicionar Certificado" style="width:22px"></button>
+                                </div>
+                            </div>
                         </div>
-                        <div class="form-group">
-                            <label for="date_area">{% trans "Data da Área" %}</label>
-                            <input type="date" class="form-control" id="date_area">
-                        </div>
-                        <div class="form-group">
-                            <label for="date_institute">{% trans "Data do Instituto" %}</label>
-                            <input type="date" class="form-control" id="date_institute">
-                        </div>
+                    </div>
+                    <h3 class="mt-1">{% trans "Cargos do professor" %}</h3>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="checkbox" value="" id="add_isProfessor">
+                        <label class="form-check-label" for="add_isProfessor">
+                            {% trans "Professor" %}
+                        </label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="checkbox" value="" id="add_isStaff" checked>
+                        <label class="form-check-label" for="add_isStaff">
+                            {% trans "Representante" %}
+                        </label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="checkbox" value="" id="add_isFGFCC" checked>
+                        <label class="form-check-label" for="add_isFGFCC">
+                            {% trans "FG / FCC" %}
+                        </label>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">{% trans "Fechar" %}</button>
+                <button type="button" class="btn btn-primary" id="saveNewProfessorBtn">{% trans "Salvar" %}</button>
+            </div>
+        </div>
+    </div>
+</div>
 
-                        <div class="form-group">
-                            <label for="academic_degrees" id="academic-title">Diplomas do Usuário</label>
-                            <ul id="currentAcademicDegreesList" class="list-group"></ul>
+<!-- Modal para edição de professor -->
+<div class="modal fade" id="editProfessorModal" tabindex="-1" role="dialog" aria-labelledby="editProfessorModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="addEditProfessorModal">{% trans "Editar Professor" %}</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <h3>{% trans "Informações do professor" %}</h3>
+                    <div class="form-group">
+                        <label for="registration_id">{% trans "Prontuário" %}</label>
+                        <input type="text" class="form-control" id="registration_id" readonly />
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <div class="form-group">
+                                <label for="first_name">{% trans "Nome" %}</label>
+                                <input type="text" class="form-control" id="first_name" />
+                            </div>
                         </div>
-
-                        <div class="form-group" id="newAcademicDegreeFieldsContainer"></div>
-
-                        <button type="button" class="btn btn-primary" id="addAcademicDegreeBtn">Adicionar Diploma</button>
+                        <div class="col">
+                            <div class="form-group">
+                                <label for="last_name">{% trans "Sobrenome" %}</label>
+                                <input type="text" class="form-control" id="last_name" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">{% trans "Email" %}</label>
+                        <input type="email" class="form-control" id="email" />
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <label for="telephone">{% trans "Telefone" %}</label>
+                            <input type="text" data-js="telephone" class="form-control telephone-input"
+                                id="telephone" />
+                        </div>
+                        <div class="col">
+                            <label for="celphone">{% trans "Celular" %}</label>
+                            <input type="text" data-js="celphone" class="form-control phone-input" id="celphone" />
+                        </div>
+                    </div>
+                    <h3>{% trans "Histórico do professor" %}</h3>
+                    <div class="form-group" style="margin-top: 15px">
+                        <label for="birth">{% trans "Data de Nascimento" %}</label>
+                        <input type="date" class="form-control" id="birth" />
+                    </div>
+                    <div class="form-group">
+                        <label for="date_career">{% trans "Data de Carreira" %}</label>
+                        <input type="date" class="form-control" id="date_career" />
+                    </div>
+                    <div class="form-group">
+                        <label for="date_campus">{% trans "Data de Ingresso no Campus" %}</label>
+                        <input type="date" class="form-control" id="date_campus" />
+                    </div>
+                    <div class="form-group">
+                        <label for="date_professor">{% trans "Data de Ingresso como Professor" %}</label>
+                        <input type="date" class="form-control" id="date_professor" />
+                    </div>
+                    <div class="form-group">
+                        <label for="date_area">{% trans "Data da Área" %}</label>
+                        <input type="date" class="form-control" id="date_area" />
+                    </div>
+                    <div class="form-group">
+                        <label for="date_institute">{% trans "Data do Instituto" %}</label>
+                        <input type="date" class="form-control" id="date_institute" />
+                    </div>
+                    <div class="form-group">
+                        <label for="job">{% trans "Regime de trabalho" %}</label>
+                        <select class="form-control" id="job">
+                            <option hidden>{% trans "Defina um regime" %}</option>
+                            <option value='RDE'>{% trans "RDE" %}</option>
+                            <option value='SUBSTITUTE'>{% trans "Substituto" %}</option>
+                            <option value='TEMPORARY'>{% trans "Temporário" %}</option>
+                            <option value='TWENTY_HOURS'>20 {% trans "Horas" %}</option>
+                            <option value='FORTY_HOURS'>40 {% trans "Horas" %}</option>
+                        </select>
+                    </div>
+                    <label for="blocks" id="block-title">{% trans "Blocos do usuário" %}</label>
+                    <ul id="currentBlocksList" class="list-group currentBlocksList"></ul>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group" id="newBlocksFieldsContainer">
+                                <label for="blockInput">{% trans "Adicionar um novo bloco" %}</label>
+                                <div class="d-flex">
+                                    <input id="blockInput" list="blocks" name="block"
+                                        class="flex-grow-1 form-control blockInput" autocomplete="off"
+                                        style="text-align: center;">
+                                    <datalist id="blocks" class="blocks-datalist">
+                                        {% for block in blockks %}
+                                        <option class="dropdown-item-class"
+                                            value="{{ block.name_block }}">
+                                        </option>
+                                        {% endfor %}
+                                    </datalist>
+                                    <button type="button" id="addBlockBtn" style="margin-left:15px"
+                                        class="btn btn-success addBlockBtn"><img
+                                            src="{% static 'images/icon-add-block.png' %}"
+                                            alt="Adicionar Bloco" style="width:22px"></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <label for="academic_degrees" id="academic-title">{% trans "Diplomas do Usuário" %}</label>
+                    <ul id="currentAcademicDegreesList" class="list-group currentAcademicDegreesList"></ul>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group" id="newAcademicDegreeFieldsContainer">
+                                <label for="degreeInput">{% trans "Adicionar um novo diploma" %}</label>
+                                <div class="d-flex">
+                                    <input id="degreeInput" list="degrees" name="degree"
+                                        class="flex-grow-1 form-control degreeInput" autocomplete="off"
+                                        style="text-align: center;">
+                                    <datalist id="degrees">
+                                        {% for degree in degrees %}
+                                        <option class="dropdown-item-class"
+                                            value="{{ degree.name }}"
+                                            score="{{ degree.punctuation }}">{% trans "pontuação" %}:
+                                            {{ degree.punctuation }}
+                                        </option>
+                                        {% endfor %}
+                                    </datalist>
+                                    <button type="button" id="addCertificateBtn" style="margin-left:15px"
+                                        class="btn btn-success addCertificateBtn"><img
+                                            src="{% static 'images/icon-add-certificate.png' %}"
+                                            alt="Adicionar Certificado" style="width:22px"></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <h3 class="mt-1">{% trans "Cargos do professor" %}</h3>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="checkbox" value="" id="isProfessor">
+                        <label class="form-check-label" for="isProfessor">
+                            {% trans "Professor" %}
+                        </label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="checkbox" value="" id="isStaff" checked>
+                        <label class="form-check-label" for="isStaff">
+                            {% trans "Representante" %}
+                        </label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="checkbox" value="" id="isFGFCC" checked>
+                        <label class="form-check-label" for="isFGFCC">
+                            {% trans "FG / FCC" %}
+                        </label>
+                    </div>
 
                         <div class="form-group mt-6">
                             <label for="searchInput" id="block-title">Matérias bloqueadas</label><br>
@@ -151,13 +508,13 @@
                             }
                         </script>
 
-                    </form>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">{% trans "Fechar" %}</button>
-                    <button type="button" class="btn btn-primary" id="saveUpdateBtn">{% trans "Salvar" %}</button>
-                </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">{% trans "Fechar" %}</button>
+                <button type="button" class="btn btn-primary" id="saveUpdateBtn">{% trans "Salvar" %}</button>
             </div>
         </div>
     </div>
+</div>
 {% endblock %}

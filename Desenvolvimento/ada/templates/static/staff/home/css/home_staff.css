@@ -1,15 +1,48 @@
-.redirect-button {
-    width: 16rem; 
-    height: 12rem; 
-    background-color: #39a8f3; 
-    color: #ffffff; 
-    border: 0;
+.message-info-not-started-home {
     transition: all 0.2s ease;
+    background-color: #2B597C;
+    font-weight: 500;
+    padding: 5px 10px 5px 10px;
+    border-radius: 6px;
+    color: #cee6f9;
 }
 
-.redirect-button:hover {
-    background-color: #329ee6;
-    width: 16.5rem;
-    height: 12.5rem;
-    transform: scale(1.03);
+
+
+.alerts, .no-alerts, .links, .no-links {
+    background-color: #39a9f319; 
+    border-radius: 3px;
+    padding: 10px;
+}
+
+i {
+    color: #0000008a !important;}
+
+.link {
+    color: #1b2a9b !important;
+}
+
+a.link {
+    text-decoration: none;
+    position: relative; 
+}
+
+a.link:hover::before {
+    content: "";
+    display: block;
+    position: absolute;
+    bottom: -2px; 
+    left: 0;
+    width: 100%;
+    height: 1px; 
+    background-color: #000; 
+}
+
+.big-text {
+    padding-top: 2px;
+      font-size:smaller;
+  }
+
+.message-info-not-started-home:hover {
+    transform: scale(1.03) !important;
 }

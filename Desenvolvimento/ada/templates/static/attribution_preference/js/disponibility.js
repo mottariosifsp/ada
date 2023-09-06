@@ -1,4 +1,4 @@
-var current_language = document.currentScript.getAttribute('data-lang');
+var lang = document.currentScript.getAttribute('data-lang');
 var timeslots = []
 var cell_left_number = 0
 var cell_type_choosed = 0
@@ -7,7 +7,7 @@ var cell_situation = "not_checked"
 var user_blocks = document.currentScript.getAttribute('blocks');
 var user_timetables = document.currentScript.getAttribute('timetables');
 var timeslot_minutes = document.currentScript.getAttribute('variation_minutes');
-var max_quantity_cells = document.currentScript.getAttribute('max_quantity_cells');
+var max_quantity_cells = 11;
 var cells_3_hours = document.currentScript.getAttribute('quantity_cells_3_hours');
 var user_disponibility = JSON.parse(document.currentScript.getAttribute("user_disponibility").replace(/'/g, '"'));
 var user_regime = document.currentScript.getAttribute("user_regime");
@@ -31,13 +31,29 @@ var checkboxes = [];
     cell_left_number = this_duration
     cell_type_choosed = 40;
     cell_situation = "not_checked"
-  } else if (user_regime == 'rde'){
+  } else if (user_regime == 'RDE'){
     const checkbox_element = document.querySelector('input[id="rde"]');
     checkbox_element.checked = true;
     var this_duration = 24*60/timeslot_minutes;
     $('#cel-regime').text(this_duration);
     cell_left_number = this_duration
     cell_type_choosed = 40;
+    cell_situation = "not_checked"
+  } else if (user_regime == 'Temporário'){
+    const checkbox_element = document.querySelector('input[id="temporario"]');
+    checkbox_element.checked = true;
+    var this_duration = 24*60/timeslot_minutes;
+    $('#cel-regime').text(this_duration);
+    cell_left_number = this_duration
+    cell_type_choosed = 40;
+    cell_situation = "not_checked"
+  } else if (user_regime == 'Substituto') {
+    const checkbox_element = document.querySelector('input[id="substituto"]');
+    checkbox_element.checked = true;
+    var this_duration = 12*60/timeslot_minutes;
+    $('#cel-regime').text(this_duration);
+    cell_left_number = this_duration
+    cell_type_choosed = 20;
     cell_situation = "not_checked"
   }
 
@@ -86,12 +102,11 @@ $(document).ready(function() {
     $('.custom-icon').css('display', 'none');
     $('.cel-plus').css('display', 'none');
   }
-  //console.log("timeslot minutos", timeslot_minutes);
 
   $('input[name="regime"]').click(function() {
     $('#cel-regime').val('');
     var value = $(this).val();
-    if (value == 'rde' || value == '40') {
+    if (value == 'RDE' || value == '40' || value == 'Substituto' ) {
       var this_duration = 24*60/timeslot_minutes;
       $('#cel-regime').text(this_duration);
       cell_left_number = this_duration
@@ -100,7 +115,7 @@ $(document).ready(function() {
       $('.checkbox input[type="checkbox"]').prop('checked', false);
       $('label.checkbox').removeClass('active');
       timeslots = []
-    } else {
+    } else if (value == '20' || value == 'Temporário'){
       var this_duration = 12*60/timeslot_minutes;
       $('#cel-regime').text(this_duration);
       cell_left_number = this_duration
@@ -156,7 +171,6 @@ $(document).ready(function() {
 
     var input_id = $(this).attr('for');
     var [input_day_of_week, input_period, input_timeslot] = input_id.split('-');
-    console.log(eleven_hours_rule());
 
     if(cell_left_number == 0 && cell_type_choosed == 0) {
       block_options();
@@ -258,7 +272,7 @@ $(document).ready(function() {
           if (!eight_hours_passed) {
             $.ajax({
               type: 'post',
-              url: '/' + current_language + '/professor/preferencia-atribuicao/',
+              url: '/' + lang + '/professor/preferencia-atribuicao/',
               data: {
                 user_regime: user_regime,
                 user_timeslots: json_data
@@ -269,7 +283,7 @@ $(document).ready(function() {
               success: function (response) {
                 $('input[name="regime"]:checked').prop('checked', false);
                 $('#error-alert-form').hide();
-                window.location.href = '/' + current_language + '/professor/preferencia-atribuicao'
+                window.location.href = '/' + lang + '/professor/preferencia-atribuicao'
               },
               error: function (xhr, status, error) {
                 $('#error-message-form').text('Ocorreu um erro no envio de FPA.');
@@ -281,7 +295,12 @@ $(document).ready(function() {
               }
             });
           } else {
-            $('#error-alert-form').text('A seleção da disponibilidade de horário não pode ultrapassar 8 horas de trabalho diárias.');
+            if(lang == 'pt-br' || lang == '') {
+              $('#error-message-form').text('A seleção da disponibilidade de horário não pode ultrapassar 8 horas de trabalho diárias.');
+            } else {
+              $('#error-message-form').text('The selection of time availability cannot exceed 8 hours of work per day.');
+            }
+            
             $('#error-alert-form').show();
             window.scrollTo({
               top: $('#error-alert-form').offset().top - $('.navbar').outerHeight() - 30,
@@ -289,7 +308,11 @@ $(document).ready(function() {
             });
           }
         } else {
-          $('#error-alert-form').text('A seleção da disponibilidade deve permitir no mínimo 11 horas de intervalo entre a hora inicial do trabalho de um dia e a hora final de trabalho do dia seguinte.');
+          if(lang == 'pt-br' || lang == '') {
+            $('#error-message-form').text('A seleção da disponibilidade deve permitir no mínimo 11 horas de intervalo entre a hora inicial do trabalho de um dia e a hora final de trabalho do dia seguinte.');
+          } else {
+            $('#error-message-form').text("The availability selection must allow for a minimum of 11 hours between the start time of one day's work and the end time of the next day's work.");
+          }
             $('#error-alert-form').show();
             window.scrollTo({
               top: $('#error-alert-form').offset().top - $('.navbar').outerHeight() - 30,
@@ -297,7 +320,11 @@ $(document).ready(function() {
             });
           }
       } else {
-        $('#error-message-form').text('Por favor insira todas as células.');
+        if(lang == 'pt-br' || lang == '') {
+          $('#error-message-form').text('Por favor insira todas as células.');
+        } else {
+          $('#error-message-form').text('Please enter all cells.');
+        }
         $('#error-alert-form').show();
         window.scrollTo({
           top: $('#error-alert-form').offset().top - $('.navbar').outerHeight() - 30,
@@ -305,7 +332,11 @@ $(document).ready(function() {
         });
       }
     } else {
-      $('#error-message-form').text('Insira as informações pedidas em cada seção.');
+      if(lang == 'pt-br' || lang == '') {
+        $('#error-message-form').text('Insira as informações pedidas em cada seção.');
+      } else {
+        $('#error-message-form').text('Enter the information requested in each section.');
+      }
       $('#error-alert-form').show();
       window.scrollTo({
         top: $('#error-alert-form').offset().top - $('.navbar').outerHeight() - 30,
@@ -519,10 +550,23 @@ function period_input(value) {
       "color": "",
       "font-weight": ''
     })
+
+    for (var i = 1; i <= 6; i++) {
+      $('#timeslot-' + value + '-' + i).css({
+          "background-color": "",
+          "color": "",
+          "font-weight": ""
+      });
+  }
   } else {
     if(cell_left_number == 0 && cell_type_choosed == 0) {
       block_options();
-      $('#error-message-form').text('Insira o regime de trabalho acrescestar sua disponibilidade.');
+      if(lang == 'pt-br' || lang == '') {
+        $('#error-message-form').text('Insira o regime de trabalho para poder acrescestar sua disponibilidade.');
+      } else {
+        $('#error-message-form').text('Enter the work regime so you can add your availability.');
+      }
+      
     } else {
       $('#period-' + value).css({
         "background-color": "#507c75",
@@ -558,7 +602,11 @@ function timeslot_input(value) {
   } else {
     if(cell_left_number == 0 && cell_type_choosed == 0) {
       block_options();
-      $('#error-message-form').text('Insira o regime de trabalho acrescestar sua disponibilidade.');
+      if(lang == 'pt-br' || lang == '') {
+        $('#error-message-form').text('Insira o regime de trabalho para poder acrescestar sua disponibilidade.');
+      } else {
+        $('#error-message-form').text('Enter the work regime so you can add your availability.');
+      }
     } else {
       $('#timeslot-' + value).css({
         "background-color": "#507c75",
@@ -593,7 +641,11 @@ function day_of_week_input(value) {
   } else {
     if(cell_left_number == 0 && cell_type_choosed == 0) {
       block_options();
-      $('#error-message-form').text('Insira o regime de trabalho acrescestar sua disponibilidade.');
+      if(lang == 'pt-br' || lang == '') {
+        $('#error-message-form').text('Insira o regime de trabalho para poder acrescestar sua disponibilidade.');
+      } else {
+        $('#error-message-form').text('Enter the work regime so you can add your availability.');
+      }
     } else {
       $('#day_of_week-' + value).css({
         "background-color": "#507c75",

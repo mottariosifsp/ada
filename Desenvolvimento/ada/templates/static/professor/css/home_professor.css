@@ -1,3 +1,7 @@
+body{
+  background-color: #def2fc81 !important;
+}
+
 .hover {
     overflow: hidden;
     position: relative;
@@ -13,7 +17,56 @@
     z-index: 90;
     transition: all 0.4s;
   }
-  
+  .message-info-not-started-home {
+    transition: all 0.2s ease;
+    background-color: #2B597C;
+    font-weight: 500;
+    padding: 5px 10px 5px 10px;
+    border-radius: 6px;
+    color: #cee6f9;
+}
+
+
+
+.alerts, .no-alerts, .links, .no-links {
+    background-color: #39a9f319; 
+    border-radius: 3px;
+    padding: 10px;
+}
+
+.link {
+    color: #1b2a9b !important;
+}
+
+a.link {
+    text-decoration: none;
+    position: relative; 
+}
+
+a.link:hover::before {
+    content: "";
+    display: block;
+    position: absolute;
+    bottom: -2px; 
+    left: 0;
+    width: 100%;
+    height: 1px; 
+    background-color: #000; 
+}
+
+.big-text {
+    padding-top: 2px;
+      font-size:smaller;
+  }
+
+  .created {
+    color: #00000077;
+  }
+
+.message-info-not-started-home:hover {
+    transform: scale(1.03) !important;
+}
+
   .hover img {
     width: 100%;
     position: absolute;

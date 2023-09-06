@@ -11,6 +11,8 @@ import traceback
 from pathlib import Path
 from django.contrib.auth import logout
 from datetime import datetime
+import re
+from django import forms
 
 def login(request):
     if request.method == 'POST':
@@ -29,9 +31,48 @@ def home(request):
     else:
         return render(request, 'user/home.html')
     
+def professor_authenticate(request, email, password):
+    try:
+        professor = User.objects.get(email=email)
+
+        if professor.check_password(password):
+            professor.is_active = True
+            professor.save()
+
+            return True
+    except User.DoesNotExist:
+        pass
+
+    return False
 
 def signup(request):
-    return render(request, 'registration/signup.html')
+    class RegistrationForm(forms.Form):
+        email = forms.EmailField(label='Email')
+        password = forms.CharField(widget=forms.PasswordInput, label='Senha')
+
+    if request.method == 'POST':
+        form = RegistrationForm(request.POST)
+        if form.is_valid():
+            email = form.cleaned_data['email']
+            password = form.cleaned_data['password']
+
+            if re.match(r'^[\w\.-]+@ifsp\.edu\.br$', email):
+
+                if professor_authenticate(request, email, password):
+                    return redirect('login')
+                else:
+                    error_message = 'E-mail ou senha incorreto(a)'
+                    return render(request, 'registration/signup.html', {'form': form, 'error_message': error_message})
+            else:
+                error_message = 'O email deve ser do tipo @ifsp.edu.br'
+                return render(request, 'registration/signup.html', {'form': form, 'error_message': error_message})
+        else:
+            error_message = 'Formulário inválido'
+            return render(request, 'registration/signup.html', {'form': form, 'error_message': error_message})
+    else:
+        form = RegistrationForm()
+
+    return render(request, 'registration/signup.html', {'form': form})
 
 def logout_view(request):
     logout(request)

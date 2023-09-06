@@ -5,6 +5,7 @@ from django.urls import reverse
 from attribution.models import TeacherQueuePosition, TeacherQueuePositionBackup
 # from attribution import task
 from attribution.views import schedule_attributtion_deadline_staff
+from attribution_preference.models import Attribution_preference, Course_preference
 from enums import enum
 from django.db import transaction
 from django.http import JsonResponse
@@ -16,28 +17,233 @@ from timetable.models import Day_combo, Timeslot, Timetable, Timetable_user
 from area.models import Blockk, Area
 from classs.models import Classs
 from course.models import Course
-from user.models import Proficiency, User, History, AcademicDegree
+from user.models import Proficiency, AcademicDegreeHistory, User, History, AcademicDegree, Job
 from .models import Deadline, Criteria
 from django.db.models import F, Sum, Value
+from staff.models import Deadline, Alert
+from datetime import datetime, timedelta
+from django.db.models import Max
 
 from django.contrib.auth.decorators import login_required
 
 from common.date_utils import day_to_number
+from django.core.mail import send_mail, EmailMessage
+import os
+
+@login_required
+def register(request):
+    professors_inactive = User.objects.filter(is_professor=True, is_active=False)
+    if request.method == 'POST':
+
+        for professor in professors_inactive:
+            send_email(professor)
+
+        return redirect('register')
+    return render(request, 'staff/professor/register.html', {'professors': professors_inactive})
+
+
+def send_email(professor):
+    subject = 'Ação requerida: Finalize seu cadastro'
+
+    nome = professor.first_name
+    email = professor.email
+
+    current_path = os.getcwd()
+    with open(current_path + '\\templates\static\email\professor_register_message.html', 'r', encoding='utf-8') as file:
+        message = file.read()
+        message = message.format(nome=nome)
+
+    email = EmailMessage(
+        subject,
+        message,
+        'ada.ifsp@gmail.com',
+        [email],
+    )
+
+    email.content_subtype = "html"
+
+    email.send()
 
 def is_staff(user):
     return user.is_staff
 
 # prazos views
+def ids_to_timetables(ids):
+    timetables = []
+    for id in ids:
+        timetables.append(Timetable.objects.get(id=id))
+    return timetables
 
 @login_required
 @user_passes_test(is_staff)
 def home(request):
-    return render(request, 'staff/home_staff.html')
+    if request.method == 'POST':
+        title = request.POST.get('title')
+        description = request.POST.get('description')
+        blockk_id = request.POST.get('block')
+        link = request.POST.get('link')
+        delete_id = request.POST.get('delete_id')
+
+        if delete_id:
+            Alert.objects.filter(id=delete_id).delete()   
+            print(delete_id)         
+        else:
+            if blockk_id:
+                name_alert = "ALERT"
+                blockk = Blockk.objects.get(id=blockk_id)
+                Alert.objects.filter(blockk=blockk).delete()
+                title = title.title()
+                describe = description
+            else:
+                name_alert = "LINK"
+                blockk = None
+                title = None
+                describe = link
+
+            Alert.objects.create(
+                name_alert=name_alert,
+                created_by=request.user,
+                title=title,
+                description=describe,
+                blockk=blockk,
+            )
+
+    user = request.user
+    status = 'not_configured'
+    period = {
+        'status': status,
+        'start_day': '',
+        'start_time': '',
+        'end_day': '',
+        'end_time': ''
+    }
+
+    def get_stage_status(stage_name):
+        deadlines = Deadline.objects.filter(name=stage_name)
+
+        if not deadlines.exists():
+            return 'not_configured'
+
+        now = datetime.today()
+        nearest_deadline = None
+        nearest_time_difference = timedelta(days=365)  # Set to a large value initially
+
+        for deadline in deadlines:
+            if deadline.deadline_start <= now <= deadline.deadline_end:                
+                return 'ongoing'
+            if now <= deadline.deadline_start:
+                time_difference = deadline.deadline_start - now                
+                if time_difference < nearest_time_difference:
+                    nearest_time_difference = time_difference
+                    nearest_deadline = deadline
+                
+
+        if nearest_deadline:
+            return 'configured_' + stage_name
+
+        return 'finished'
+
+    fpa_status = get_stage_status('STARTFPADEADLINE')
+    attribution_status = get_stage_status('STARTASSIGNMENTDEADLINE')
+    # enchange_status = get_stage_status('STARTENCHANGEDEADLINE')
+
+    if fpa_status == 'finished' and attribution_status == 'finished':
+        status = 'finished'
+    if fpa_status == 'ongoing':
+        status = 'fpa'
+    elif attribution_status == 'ongoing':
+        status = 'attribution'
+    # elif enchange_status == 'ongoing':
+    #     status = 'enchange'
+
+    if fpa_status.startswith('configured_'):
+        status = fpa_status
+    elif attribution_status.startswith('configured_'):
+        status = attribution_status
+    # elif enchange_status.startswith('configured_'):
+    #     status = enchange_status
+
+    if status != 'not_configured' and status != 'finished':
+        if fpa_status == 'ongoing':
+            status = 'fpa'
+            fpa_deadline = Deadline.objects.filter(name='STARTFPADEADLINE').first()
+            if fpa_deadline:
+                period['start_day'] = fpa_deadline.deadline_start.strftime("%d/%m/%Y")
+                period['start_time'] = fpa_deadline.deadline_start.strftime("%H:%M")
+                period['end_day'] = fpa_deadline.deadline_end.strftime("%d/%m/%Y")
+                period['end_time'] = fpa_deadline.deadline_end.strftime("%H:%M")
+        elif attribution_status == 'ongoing':
+            status = 'attribution'
+            attribution_deadline = Deadline.objects.filter(name='STARTASSIGNMENTDEADLINE').first()
+            if attribution_deadline:
+                period['start_day'] = attribution_deadline.deadline_start.strftime("%d/%m/%Y")
+                period['start_time'] = attribution_deadline.deadline_start.strftime("%H:%M")
+                period['end_day'] = attribution_deadline.deadline_end.strftime("%d/%m/%Y")
+                period['end_time'] = attribution_deadline.deadline_end.strftime("%H:%M")
+        # elif enchange_status == 'ongoing':
+        #     status = 'enchange'
+        #     enchange_deadline = Deadline.objects.filter(name='STARTENCHANGEDEADLINE').first()
+        #     if enchange_deadline:
+        #         period['start_day'] = enchange_deadline.deadline_start.strftime("%d/%m/%Y")
+        #         period['start_time'] = enchange_deadline.deadline_start.strftime("%H:%M")
+        #         period['end_day'] = enchange_deadline.deadline_end.strftime("%d/%m/%Y")
+        #         period['end_time'] = enchange_deadline.deadline_end.strftime("%H:%M")
+        else:
+            stage_name = status.split('_')[1]
+            nearest_deadline = Deadline.objects.filter(name=stage_name).first()
+            if nearest_deadline:
+                period['status'] = status
+                period['start_day'] = nearest_deadline.deadline_start.strftime("%d/%m/%Y")
+                period['start_time'] = nearest_deadline.deadline_start.strftime("%H:%M")
+                period['end_day'] = nearest_deadline.deadline_end.strftime("%d/%m/%Y")
+                period['end_time'] = nearest_deadline.deadline_end.strftime("%H:%M")
+
+    period['status'] = status
+
+    user_blocks = user.blocks.all()
+
+    user_alerts = []
+    for block in user_blocks:
+        alerts = Alert.objects.filter(name_alert='ALERT', blockk=block)
+        if alerts:
+            for alert in alerts:
+                alert = {
+                    'id': alert.id,
+                    'title': alert.title,
+                    'description': alert.description,
+                    'blockk': alert.blockk
+                }
+                user_alerts.append(alert)
+
+    links = Alert.objects.filter(name_alert='LINK')
+    user_links = []
+    for link in links:
+        link = {
+            'id': link.id,
+            'title': link.title,
+            'description': link.description
+        }
+        user_links.append(link)
+
+    count = {
+        'alerts': len(user_alerts),
+        'links': len(user_links)
+    }
+        
+    data = {        
+        'count': count,
+        'alerts': user_alerts,
+        'links': user_links,
+        'user_blocks': user_blocks,
+        'period': period
+    }
+    # print(data)
+    return render(request, 'staff/home_staff.html', data)
 
 @login_required
 @user_passes_test(is_staff)
 def attribution_configuration_index(request):
-   
+    print(Course_preference.objects.filter(priority=enum.Priority.primary.name))
     blockks = request.user.blocks.all()
     blockks_images = []
 
@@ -46,15 +252,15 @@ def attribution_configuration_index(request):
             "block": blockk,
             "image": None
         }
-        if blockk.registration_block_id == "721165":
+        if blockk.registration_block_id == "CNA.151515":
             blockk_images["image"] = "https://media.discordapp.net/attachments/1081682716531118151/1117328326533595207/OIG.png?width=473&height=473"
-        elif blockk.registration_block_id == "776291":
+        elif blockk.registration_block_id == "HUM.141414":
             blockk_images["image"] = "https://media.discordapp.net/attachments/1081682716531118151/1117321570101248030/OIG.png?width=473&height=473"
-        elif blockk.registration_block_id == "776293":
+        elif blockk.registration_block_id == "LNG.161616":
             blockk_images["image"] = "https://media.discordapp.net/attachments/1081682716531118151/1117321528380489789/OIG.png?width=473&height=473"
-        elif blockk.registration_block_id == "776294":
+        elif blockk.registration_block_id == "MAT.131313":
             blockk_images["image"] = "https://media.discordapp.net/attachments/1081682716531118151/1116866399952961586/dan-cristian-padure-h3kuhYUCE9A-unsplash.jpg?width=710&height=473"
-        elif blockk.registration_block_id == "776295":
+        elif blockk.registration_block_id == "TEC.121212":
             blockk_images["image"] = "https://media.discordapp.net/attachments/1081682716531118151/1116866399671951441/roonz-nl-2xEQDxB0ss4-unsplash.jpg?width=842&height=473"
         elif blockk.registration_block_id == "776292":
             blockk_images["image"] = "https://media.discordapp.net/attachments/1081682716531118151/1117348338254233680/image.png"
@@ -106,37 +312,13 @@ def attribution_configuration_confirm(request):
             time.user = None
             time.save()
 
-        save_deadline(data) 
-        schedule_attributtion_deadline_staff(startAssignmentDeadline, 'startAssignmentDeadline', blockk.id)       
+        # save_deadline(data) 
+        # schedule_attributtion_deadline_staff(startAssignmentDeadline, 'startAssignmentDeadline', blockk.id)       
 
 
         return render(request, 'staff/attribution/attribution_configuration_confirm.html', data)
     return render(request, 'staff/attribution/attribution_configuration_confirm.html')
 
-def show_current_deadline(request):
-    deadlines = Deadline.objects.all()
-    now = timezone.now()
-
-    if (deadlines.get(name="startFPADeadline").deadline_start <= now and deadlines.get(
-            name="startFPADeadline").deadline_end >= now):
-        actualDeadline = "FPA"
-    elif (deadlines.get(name="startAssignmentDeadline").deadline_start <= now and deadlines.get(
-            name="startAssignmentDeadline").deadline_end >= now):
-        actualDeadline = "Assignment"
-    elif (deadlines.get(name="startExchangeDeadline").deadline_start <= now and deadlines.get(
-            name="startExchangeDeadline").deadline_end >= now):
-        actualDeadline = "Exchange"
-    else:
-        actualDeadline = "none"
-
-    data = {
-        'actualDeadline': actualDeadline
-    }
-
-    return render(request, 'staff/deadline/show_current_deadline.html', data)
-
-
-@transaction.atomic
 def save_deadline(data):
     Deadline.objects.create(
         name="STARTFPADEADLINE",
@@ -151,9 +333,7 @@ def save_deadline(data):
         blockk=data['user_block'],
     )
 
-
 # professor views
-
 @login_required
 @user_passes_test(is_staff)
 def professors_list(request):
@@ -164,23 +344,137 @@ def professors_list(request):
 
 
 @login_required
+    professors = get_user_model().objects.filter(is_professor=True)
+    degrees = AcademicDegree.objects.all()
+    blockks = Blockk.objects.all()
+    professors_inactive = User.objects.filter(is_professor=True, is_active=False).count
+    data = {
+        'professors': professors,
+        'degrees': degrees,
+        'blockks': blockks,
+        'professors_inactive': professors_inactive
+    }
+
+    return render(request, 'staff/professor/professors_list.html', data)
+
+@transaction.atomic
+@user_passes_test(is_staff)
+def add_new_professor(request):
+    if request.method == 'POST':
+        registration_id = request.POST.get('add_registration_id')
+        first_name = request.POST.get('add_first_name')
+        last_name = request.POST.get('add_last_name')
+        email = request.POST.get('add_email')
+        telephone = request.POST.get('add_telephone')
+        celphone = request.POST.get('add_celphone')
+        birth = request.POST.get('add_birth')
+        date_career = request.POST.get('add_date_career')
+        date_campus = request.POST.get('add_date_campus')
+        date_professor = request.POST.get('add_date_professor')
+        date_area = request.POST.get('add_date_area')
+        date_institute = request.POST.get('add_date_institute')
+        job = request.POST.get('add_job')
+        academic_degrees_json = request.POST.get('add_academic_degrees')
+        blocks_json = request.POST.get('add_blocks')
+        is_professor = request.POST.get('add_is_professor') == 'true'
+        is_staff = request.POST.get('add_is_staff') == 'true'
+        is_fgfcc = request.POST.get('add_is_fgfcc') == 'true'   
+        
+
+        new_user = User.objects.create(
+            registration_id=registration_id,
+            first_name=first_name,
+            last_name=last_name,
+            email=email,
+            telephone=telephone,
+            cell_phone=celphone,
+            is_professor=is_professor,
+            is_staff=is_staff,
+            is_fgfcc=is_fgfcc
+            )
+        
+        create_job(job, new_user)
+        
+        
+        blocks = json.loads(blocks_json)
+        for block in blocks:
+            block_obj = Blockk.objects.get(name_block=block)
+            new_user.blocks.add(block_obj)
+        new_user.save()
+        
+        if new_user.history is not None:
+            academic_degrees = []
+            if academic_degrees_json:
+                academic_degrees = json.loads(academic_degrees_json)
+                for degree_data in academic_degrees:
+                    degree_obj = AcademicDegree.objects.get(name=degree_data)
+                    AcademicDegreeHistory.objects.create(history=new_user.history, academic_degree=degree_obj)
+
+            new_user.history.update_history(birth=birth, date_career=date_career, date_campus=date_campus,
+                                   date_professor=date_professor, date_area=date_area, date_institute=date_institute,
+                                   academic_degrees=academic_degrees)
+
+            new_user.history.save()
+        else:
+            new_user.history = History.objects.create(birth=birth, date_career=date_career, date_campus=date_campus,
+                                                  date_professor=date_professor, date_area=date_area,
+                                                  date_institute=date_institute)
+            academic_degrees = []
+            if academic_degrees_json:
+                academic_degrees = json.loads(academic_degrees_json)
+                for degree_data in academic_degrees:
+                    degree_obj = AcademicDegree.objects.get(name=degree_data)
+                    AcademicDegreeHistory.objects.create(history=new_user.history, academic_degree=degree_obj)
+
+            new_user.save()
+            return JsonResponse({'message': 'Histórico criado com sucesso.'})
+
+@transaction.atomic
 @user_passes_test(is_staff)
 def update_save(request):
     if request.method == 'POST':
         registration_id = request.POST.get('registration_id')
+        first_name = request.POST.get('first_name')
+        last_name = request.POST.get('last_name')
+        email = request.POST.get('email')
+        telephone = request.POST.get('telephone')
+        celphone = request.POST.get('celphone')
         birth = request.POST.get('birth')
         date_career = request.POST.get('date_career')
         date_campus = request.POST.get('date_campus')
         date_professor = request.POST.get('date_professor')
         date_area = request.POST.get('date_area')
         date_institute = request.POST.get('date_institute')
+        job = request.POST.get('job')
         academic_degrees_json = request.POST.get('academic_degrees')
         blocked_courses = request.POST.getlist('blocked_courses[]')
 
         print(blocked_courses)
+        blocks_json = request.POST.get('blocks')
+        is_professor = request.POST.get('is_professor') == 'true'
+        is_staff = request.POST.get('is_staff')  == 'true'
+        is_fgfcc = request.POST.get('is_fgfcc')  == 'true'
 
-        User = get_user_model()
+        
+        # User = get_user_model()
+
         user = User.objects.get(registration_id=registration_id)
+        create_job(job, user)
+        user.first_name = first_name
+        user.last_name = last_name
+        user.email = email
+        user.telephone = telephone
+        user.cell_phone = celphone
+        user.is_professor = is_professor
+        user.is_staff = is_staff
+        user.is_fgfcc = is_fgfcc
+
+        blocks = json.loads(blocks_json)
+        for block in blocks:
+            block_obj = Blockk.objects.get(name_block=block)
+            user.blocks.add(block_obj)
+        user.save()
+
         history = user.history
         print(blocked_courses)
         if blocked_courses:
@@ -188,20 +482,19 @@ def update_save(request):
                 course = Course.objects.get(registration_course_id=blocked_course_id)
                 a = Proficiency.objects.update_or_create(user=user, course=course, defaults={'is_competent': False})
                 print(a)
-
         if history is not None:
             academic_degrees = []
+            history.academic_degrees.clear()
+
             if academic_degrees_json:
                 academic_degrees = json.loads(academic_degrees_json)
                 for degree_data in academic_degrees:
-                    name = degree_data['name']
-                    punctuation = degree_data['punctuation']
-                    academic_degree, created = AcademicDegree.objects.get_or_create(name=name, punctuation=punctuation)
-                    history.academic_degrees.add(academic_degree)
+                    print('adicionando: ', degree_data, ' ao historico')
+                    degree_obj = AcademicDegree.objects.get(name=degree_data)
+                    AcademicDegreeHistory.objects.create(history=history, academic_degree=degree_obj)
 
             history.update_history(birth=birth, date_career=date_career, date_campus=date_campus,
-                                   date_professor=date_professor, date_area=date_area, date_institute=date_institute,
-                                   academic_degrees=academic_degrees)
+                                   date_professor=date_professor, date_area=date_area, date_institute=date_institute)
 
             history.save()
         else:
@@ -212,17 +505,35 @@ def update_save(request):
             if academic_degrees_json:
                 academic_degrees = json.loads(academic_degrees_json)
                 for degree_data in academic_degrees:
-                    name = degree_data['name']
-                    punctuation = degree_data['punctuation']
-                    academic_degree, created = AcademicDegree.objects.get_or_create(name=name, punctuation=punctuation)
-                    user.history.academic_degrees.add(academic_degree)
+                    degree_obj = AcademicDegree.objects.get(name=degree_data)
+                    history.academic_degrees.add(degree_obj)
 
-            AcademicDegree.clean_up_unused_degrees()
             user.save()
             return JsonResponse({'message': 'Histórico criado com sucesso.'})
 
-        AcademicDegree.clean_up_unused_degrees()
         return JsonResponse({'message': 'Alterações salvas com sucesso.'})
+@transaction.atomic
+def create_job(user_regime, user):
+    if Job.objects.filter(user=user).exists():
+        job = User.objects.filter(id=user.id).first().job
+        User.objects.filter(id=user.id).update(job=None)
+        job.delete()
+
+    print(user_regime)
+
+    if(user_regime == 'RDE'):
+        name_job = Job.objects.create(name_job=enum.Job.RDE.name)
+    elif(user_regime == 'TWENTY_HOURS'):
+        name_job = Job.objects.create(name_job=enum.Job.TWENTY_HOURS.name)
+    elif(user_regime == 'SUBSTITUTE'):
+        name_job = Job.objects.create(name_job=enum.Job.SUBSTITUTE.name)
+    elif(user_regime == 'FORTY_HOURS'):
+        name_job = Job.objects.create(name_job=enum.Job.FORTY_HOURS.name)
+    else:
+        name_job = Job.objects.create(name_job=enum.Job.TEMPORARY.name)
+
+    user.job = name_job
+    user.save()
 
 # class views
 @login_required
@@ -234,21 +545,23 @@ def classes_list(request):
         {'value': period.name, 'label': period.value}
         for period in enum.Period
     ]
-    return render(request, 'staff/classs/classes_list.html', {'classes': classes, 'periods': periods, 'areas': areas})
 
-@login_required
+    has_permission = False
+    has_permission = set(request.user.blocks.all()) == set(Blockk.objects.all()) or request.user.is_superuser
+    return render(request, 'staff/classs/classes_list.html', {'classes': classes, 'periods': periods, 'areas': areas, 'has_permission': has_permission}) 
+
+# ERRO - TODO
 @user_passes_test(is_staff)
 def classes_list_saved(request):
     if request.method == 'POST':
         print("funcionou o if")
+        old_registration_class_id = request.POST.get('old_registration_class_id')
         registration_class_id = request.POST.get('registration_class_id')
         period = request.POST.get('period')
         semester = request.POST.get('semester')
         area = request.POST.get('area')
-        print(area)
         print(registration_class_id)
-
-        classs = Classs.objects.filter(registration_class_id=registration_class_id).all()
+        classs = Classs.objects.filter(registration_class_id=old_registration_class_id).all()
         print(classs)
         if classs is not None:
             classs.update(registration_class_id=registration_class_id, period=period, semester=semester, area=area)
@@ -261,7 +574,7 @@ def classes_list_saved(request):
 
         return JsonResponse({'message': 'Alterações salvas com sucesso.'})
 
-@login_required
+# Erro - TODO
 @user_passes_test(is_staff)
 def class_create(request):
     if request.method == 'POST':
@@ -277,8 +590,8 @@ def class_create(request):
         classs.save()
 
         return JsonResponse({'message': 'Turma criada com sucesso.'})
-    
-@login_required
+
+# Erro - TODO
 @user_passes_test(is_staff)
 def class_delete(request):
     if request.method == 'POST':
@@ -306,36 +619,43 @@ def blocks_list(request):
 @login_required
 @user_passes_test(is_staff)
 def block_detail(request, registration_block_id):
+    user_blocks = request.user.blocks.all()
     blockk = Blockk.objects.get(registration_block_id=registration_block_id)
-    area = blockk.areas.first()
+    area = blockk.areas.values_list('name_area', flat=True)
     courses = Course.objects.filter(blockk=blockk)
     print("Materia", courses)
-    data = {'blockk': blockk, 'area': area, 'courses': courses}
+    data = {
+        'user_blocks': user_blocks,
+        'blockk': blockk, 
+        'areas': list(area), 
+        'all_areas': Area.objects.all(),
+        'courses': courses
+    }
 
     return render(request, 'staff/blockk/block_detail.html', data)
 
-
 # course views
-
-@login_required
 @user_passes_test(is_staff)
 def course_create(request):
+    user_blocks = request.user.blocks.all()
     if request.method == 'POST':
         registration_course_id = request.POST.get('registration_course_id')
         name_course = request.POST.get('name_course')
         acronym = request.POST.get('acronym')
-        area_id = request.POST.get('areaId')
         block_id = request.POST.get('blockId')
+        area_id = request.POST.get('areaId')
 
         area = Area.objects.get(id=area_id)
         blockk = Blockk.objects.get(id=block_id)
+        if blockk in user_blocks:
 
-        course = Course.objects.create(registration_course_id=registration_course_id, name_course=name_course, acronym=acronym, area=area, blockk=blockk)
-        course.save()
+            course = Course.objects.create(registration_course_id=registration_course_id, name_course=name_course, acronym=acronym, area=area, blockk=blockk)
+            course.save()
 
-        return JsonResponse({'message': 'Disciplina criada com sucesso.'})
+            return JsonResponse({'message': 'Disciplina criada com sucesso.'})
+        else:
+            return JsonResponse({'message': 'Você não tem permissão para criar disciplinas nesse bloco.'})
 
-@login_required
 @user_passes_test(is_staff)
 def course_update_save(request):
     if request.method == 'POST':
@@ -345,24 +665,31 @@ def course_update_save(request):
         acronym = request.POST.get('acronym')
 
         course = Course.objects.get(id=course_id)
-        course.update_course(registration_course_id=registration_course_id, name_course=name_course, acronym=acronym)
+        blockk = course.blockk
 
-        return JsonResponse({'message': 'Disciplina atualizada com sucesso.'})
+        if blockk in request.user.blocks.all():
+            course.update_course(registration_course_id=registration_course_id, name_course=name_course, acronym=acronym)
 
-@login_required
+            return JsonResponse({'message': 'Disciplina atualizada com sucesso.'})
+        else:
+            return JsonResponse({'message': 'Você não tem permissão para editar disciplinas nesse bloco.'})
+
 @user_passes_test(is_staff)
 def course_delete(request):
     if request.method == 'POST':
         course_id = request.POST.get('id')
         try:
             course = Course.objects.get(id=course_id)
-            course.delete()
-            return JsonResponse({'message': 'Disciplina deletado com sucesso.'})
+            if course.blockk in request.user.blocks.all():
+                course.delete()
+                return JsonResponse({'message': 'Disciplina deletado com sucesso.'})
+            else:
+                return JsonResponse({'message': 'Você não tem permissão para deletar disciplinas nesse bloco.'})
         except Course.DoesNotExist:
             return JsonResponse({'message': 'O disciplina não existe.'}, status=404)
 
 # timetable views
-
+@transaction.atomic
 @login_required
 @user_passes_test(is_staff)
 def timetables(request):
@@ -385,12 +712,12 @@ def timetables(request):
 
     return render(request, 'staff/timetable/timetables.html', {'timetables': timetables, 'user_blocks': user_blocks, 'classes': classes})
 
-
+@transaction.atomic
 @login_required
 @user_passes_test(is_staff)
 def create_timetable(request):
     if request.method == 'GET':
-        selected_class = Classs.objects.get(registration_class_id__icontains=(request.GET.get('class')))
+        selected_class = Classs.objects.get(registration_class_id=(request.GET.get('class')))
         if Timetable.objects.filter(classs=selected_class).count() > 0:
             print('já existe')
             url = reverse('edit_timetable') + f'?classs={selected_class.registration_class_id}'
@@ -435,13 +762,14 @@ def create_timetable(request):
         timetable_combo_saver(selected_courses, selected_class)
 
         return JsonResponse({'erro': False, 'mensagem': message})
-    
+
+@transaction.atomic
 @login_required
 @user_passes_test(is_staff)
 def edit_timetable(request):
     print(request)
     if request.method == 'GET':
-        selected_class = Classs.objects.get(registration_class_id__icontains=(request.GET.get('class')))
+        selected_class = Classs.objects.get(registration_class_id=(request.GET.get('class')))
         selected_courses = Course.objects.filter(area=selected_class.area)
 
         timetables = Timetable.objects.filter(classs=selected_class)
@@ -462,6 +790,7 @@ def edit_timetable(request):
                         "cord": f'{position}-{day}',
                         "course": timetable.course.name_course,
                         "acronym": timetable.course.acronym,
+                        "id": timetable.course.registration_course_id,
                     }
                     timetable_complete.append(timetable_professor)
 
@@ -744,6 +1073,7 @@ def get_string_field(campo):
     return campos.get(campo, "campo")
 
 def calculate_total_score(user, is_in_teacher_queue):
+    print(user)
     if is_in_teacher_queue:
         if user.teacher.history and user.teacher.history.academic_degrees.exists():
             return user.teacher.history.academic_degrees.aggregate(Sum('punctuation'))['punctuation__sum']
@@ -811,12 +1141,13 @@ def queue_create(request):
             professor = User.objects.get(registration_id=professor_registration_id)
 
             if TeacherQueuePositionBackup.objects.filter(teacher=professor, blockk=blockk).exists():
-                TeacherQueuePositionBackup.objects.filter(teacher=professor).update(position=position)
+                TeacherQueuePositionBackup.objects.filter(teacher=professor, blockk=blockk).update(position=position)
             else:
+                print(blockk)
                 add_teacher_to_queue_backup(professor, position, blockk)
 
             if TeacherQueuePosition.objects.filter(teacher=professor, blockk=blockk).exists():
-                TeacherQueuePosition.objects.filter(teacher=professor).update(position=position)
+                TeacherQueuePosition.objects.filter(teacher=professor, blockk=blockk).update(position=position)
             else:
                 add_teacher_to_queue(professor, position, blockk)
 

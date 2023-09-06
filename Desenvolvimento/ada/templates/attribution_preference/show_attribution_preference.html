@@ -3,453 +3,497 @@
 {% load static %}
 
 {% block head %}
-    <link rel="stylesheet" href="{% static 'attribution_preference/css/courses.css' %}">
-    <title>{% trans "FPA Usuário" %}</title>
+<link rel="stylesheet" href="{% static 'attribution_preference/css/courses.css' %}">
+<title>{% trans "FPA Final" %}</title>
 {% endblock %}
 
 {% block body %}
-    <h1 class="title-page">{% trans "FPA Usuário" %}</h1>
-    <nav>
-    <ol class="breadcrumb hidden-itens">
-        <li class="breadcrumb-item"><a href="{% url 'home' %}"><i class="bi bi-house-door"></i></a></li>
-        <li class="breadcrumb-item active">{% trans "Preferência Atribuição" %}</li>
-        <li class="breadcrumb-item active">{% trans "FPA Usuário" %}</li>
-    </ol>
-    </nav>
+<h1 class="title-page mt-4">{% trans "FPA Final" %}</h1>
+<hr>
+<nav>
+  <ol class="breadcrumb hidden-itens">
+    <li class="breadcrumb-item"><a href="{% url 'home_professor' %}"><i class="bi bi-house-door"></i></a></li>
+    <li class="breadcrumb-item active">{% trans "Preferência Atribuição" %}</li>
+    <li class="breadcrumb-item active">{% trans "FPA Usuário" %}</li>
+  </ol>
+</nav>
 
-    {% if not is_fpa_done %}
-    <div class="container">
-        <div id="card-no-fpa" class="card text-center centered-object">
-          <div class="card-body">
-            <h5 class="card-title">{% trans "Nenhum FPA relacionado ao usuário foi encontrado no sistema" %}</h5>
-            <hr>
-            <a href="{% url 'disponibility_attribution_preference' %}">
-              <button class="btn btn-success">{% trans "Comece o seu FPA" %}</button>
-            </a>
-          </div>
+<div class="container">
+  <div class="card centered-object">
+    <div class="card-body">
+      <h5 class="card-title">{% trans "Formulário de Preferência de Atividades - FPA" %}</h5>
+      <hr>
+      <div class="table-responsive">
+        <table class="table table-bordered table-sm text-center">
+          <tr>
+            <th colspan="6">{% trans "Identificação do Docente" %}</th>
+          </tr>
+          <tr>
+            <th>{% trans "Docente" %}:</th>
+            <td colspan="2">{{ request.user.get_full_name }}</td>
+            <th>{% trans "Conhecido como" %}:</th>
+            <td colspan="2">{{ request.user.first_name }}</td>
+          </tr>
+          <tr>
+            <th>{% trans "Prontuário" %}:</th>
+            <td colspan="2">{{ request.user.registration_id  }}</td>
+            <th>{% trans "Celular" %}:</th>
+            <td colspan="2">{{ request.user.cell_phone }}</td>
+          </tr>
+          <tr>
+            <th>{% trans "E-mail" %}:</th>
+            <td colspan="6">{{ request.user.email }}</td>
+          </tr>
+          <tr>
+            <th>{% trans "Regime de trabalho" %}:</th>
+            <td class="col-2 twenty_hours align-middle">20 {% trans "horas" %}</td>
+            <td class="col-2 forty_hours align-middle">40 {% trans "horas" %}</td>
+            <td class="col-2 rde align-middle">{% trans "RDE" %}</td>
+            <td class="col-2 substitute align-middle">{% trans "Substituto" %}</td>
+            <td class="col-2 temporary align-middle">{% trans "Temporário" %}</td>
+          </tr>
+        </table>
+
+
+        <table class="table table-bordered table-sm text-center">
+          <tr>
+            <th colspan="6">{% trans "Disponibilidade de horário para atribuição de componentes curriculares" %}</th>
+          </tr>
+          <tr>
+            <table class="regime table table-bordered table-sm text-center">
+              <thead>
+                <tr>
+                  <th colspan="2" class="priority-cell">{% trans "Prioridade de Escolha" %}:</th>
+                  <th colspan="12" class="priority-cell">{% trans "Prioritária" %}</th>
+                </tr>
+                <tr>
+                  <th class="col-1 text-center align-middle">{% trans "Período" %}</th>
+                  <th class="col-1 text-center align-middle">{% trans "Horários" %}</th>
+                  <th class="col-1 text-center align-middle">{% trans "Segunda-feira" %}</th>
+                  <th class="col-1 text-center align-middle">{% trans "Terça-feira" %}</th>
+                  <th class="col-1 text-center align-middle">{% trans "Quarta-feira" %}</th>
+                  <th class="col-1 text-center align-middle">{% trans "Quinta-feira" %}</th>
+                  <th class="col-1 text-center align-middle">{% trans "Sexta-feira" %}</th>
+                  <th class="col-1 text-center align-middle">{% trans "Sábado" %}</th> <!---feira-->
+                </tr>
+              </thead>
+              <tbody class="block" id="primary-timetable-courses">
+                {% for i in "MVN" %}
+                {% if i == "M" %}
+                <td class="text-center align-middle mor-pri" rowspan="{{ shift.morning_classes }}-pri">
+                  {% trans "Matutino" %}</td>
+                {% for timeslot in shift.morning %}
+                <tr>
+                  <td class="text-center hour-print align-middle mor-pri">{{ timeslot.hour_start|date:"H:i" }} -
+                    {{ timeslot.hour_end|date:"H:i" }}</td>
+
+                  <td class="text-center align-middle mor-pri" id="btn-mon-mor-{{ forloop.counter }}-pri">
+                    <div class="openModalBtn">
+                      <div data-id="mon-mor-{{ forloop.counter }}-pri" class="btn-group-toggle" data-toggle="buttons">
+                        <div id="mon-mor-{{ forloop.counter }}-pri"><i></i></div>
+                      </div>
+                    </div>
+                  </td>
+
+                  <td class="text-center align-middle mor-pri" id="btn-tue-mor-{{ forloop.counter }}-pri">
+                    <div class="openModalBtn">
+                      <div data-id="tue-mor-{{ forloop.counter }}-pri" class="btn-group-toggle" data-toggle="buttons">
+                        <div id="tue-mor-{{ forloop.counter }}-pri"><i></i></div>
+                      </div>
+                    </div>
+                  </td>
+
+                  <td class="text-center align-middle mor-pri" id="btn-wed-mor-{{ forloop.counter }}-pri">
+                    <div class="openModalBtn">
+                      <div data-id="wed-mor-{{ forloop.counter }}-pri" class="btn-group-toggle" data-toggle="buttons">
+                        <div id="wed-mor-{{ forloop.counter }}-pri"><i></i></div>
+                      </div>
+                    </div>
+                  </td>
+
+                  <td class="text-center align-middle mor-pri" id="btn-thu-mor-{{ forloop.counter }}-pri">
+                    <div class="openModalBtn">
+                      <div data-id="thu-mor-{{ forloop.counter }}-pri" class="btn-group-toggle" data-toggle="buttons">
+                        <div id="thu-mor-{{ forloop.counter }}-pri"><i></i></div>
+                      </div>
+                    </div>
+                  </td>
+
+                  <td class="text-center align-middle mor-pri" id="btn-fri-mor-{{ forloop.counter }}-pri">
+                    <div class="openModalBtn">
+                      <div data-id="fri-mor-{{ forloop.counter }}-pri" class="btn-group-toggle" data-toggle="buttons">
+                        <div id="fri-mor-{{ forloop.counter }}-pri"><i></i></div>
+                      </div>
+                    </div>
+                  </td>
+
+                  <td class="text-center align-middle mor-pri" id="btn-sat-mor-{{ forloop.counter }}-pri">
+                    <div class="openModalBtn">
+                      <div data-id="sat-mor-{{ forloop.counter }}-pri" class="btn-group-toggle" data-toggle="buttons">
+                        <div id="sat-mor-{{ forloop.counter }}-pri"><i></i></div>
+                      </div>
+                    </div>
+                  </td>
+
+                </tr>
+                {% endfor %}
+                {% elif i == "V" %}
+                <td class="text-center align-middle aft-pri" rowspan="{{ shift.afternoon_classes }}-pri">
+                  {% trans "Vespertino" %}</td>
+                {% for timeslot in shift.afternoon %}
+                <tr>
+                  <td class="text-center hour-print align-middle aft-pri">{{ timeslot.hour_start|date:"H:i" }} -
+                    {{ timeslot.hour_end|date:"H:i" }}</td>
+
+                  <td class="text-center align-middle aft-pri" id="btn-mon-aft-{{ forloop.counter }}-pri">
+                    <div class="openModalBtn">
+                      <div data-id="mon-aft-{{ forloop.counter }}-pri" class="btn-group-toggle" data-toggle="buttons">
+                        <div id="mon-aft-{{ forloop.counter }}-pri"><i></i></div>
+                      </div>
+                    </div>
+                  </td>
+
+                  <td class="text-center align-middle aft-pri" id="btn-tue-aft-{{ forloop.counter }}-pri">
+                    <div class="openModalBtn">
+                      <div data-id="tue-aft-{{ forloop.counter }}-pri" class="btn-group-toggle" data-toggle="buttons">
+                        <div id="tue-aft-{{ forloop.counter }}-pri"><i></i></div>
+                      </div>
+                    </div>
+                  </td>
+
+                  <td class="text-center align-middle aft-pri" id="btn-wed-aft-{{ forloop.counter }}-pri">
+                    <div class="openModalBtn">
+                      <div data-id="wed-aft-{{ forloop.counter }}-pri" class="btn-group-toggle" data-toggle="buttons">
+                        <div id="wed-aft-{{ forloop.counter }}-pri"><i></i></div>
+                      </div>
+                    </div>
+                  </td>
+
+                  <td class="text-center align-middle aft-pri" id="btn-thu-aft-{{ forloop.counter }}-pri">
+                    <div class="openModalBtn">
+                      <div data-id="thu-aft-{{ forloop.counter }}-pri" class="btn-group-toggle" data-toggle="buttons">
+                        <div id="thu-aft-{{ forloop.counter }}-pri"><i></i></div>
+                      </div>
+                    </div>
+                  </td>
+
+                  <td class="text-center align-middle aft-pri" id="btn-fri-aft-{{ forloop.counter }}-pri">
+                    <div class="openModalBtn">
+                      <div data-id="fri-aft-{{ forloop.counter }}-pri" class="btn-group-toggle" data-toggle="buttons">
+                        <div id="fri-aft-{{ forloop.counter }}-pri"><i></i></div>
+                      </div>
+                    </div>
+                  </td>
+
+                  <td class="text-center align-middle aft-pri" id="btn-sat-aft-{{ forloop.counter }}-pri">
+                    <div class="openModalBtn">
+                      <div data-id="sat-aft-{{ forloop.counter }}-pri" class="btn-group-toggle" data-toggle="buttons">
+                        <div id="sat-aft-{{ forloop.counter }}-pri"><i></i></div>
+                      </div>
+                    </div>
+                  </td>
+
+                </tr>
+                {% endfor %}
+                {% else %}
+                <td class="text-center align-middle noc-pri" rowspan="{{ shift.nocturnal_classes }}-pri">
+                  {% trans "Noturno" %}</td>
+                {% for timeslot in shift.nocturnal %}
+                <tr>
+                  <td class="text-center hour-print align-middle noc-pri">{{ timeslot.hour_start|date:"H:i" }} -
+                    {{ timeslot.hour_end|date:"H:i" }}</td>
+
+                  <td class="text-center align-middle noc-pri" id="btn-mon-noc-{{ forloop.counter }}-pri">
+                    <div class="openModalBtn">
+                      <div data-id="mon-noc-{{ forloop.counter }}-pri" class="btn-group-toggle" data-toggle="buttons">
+                        <div id="mon-noc-{{ forloop.counter }}-pri"><i></i></div>
+                      </div>
+                    </div>
+                  </td>
+
+                  <td class="text-center align-middle noc-pri" id="btn-tue-noc-{{ forloop.counter }}-pri">
+                    <div class="openModalBtn">
+                      <div data-id="tue-noc-{{ forloop.counter }}-pri" class="btn-group-toggle" data-toggle="buttons">
+                        <div id="tue-noc-{{ forloop.counter }}-pri"><i></i></div>
+                      </div>
+                    </div>
+                  </td>
+
+                  <td class="text-center align-middle noc-pri" id="btn-wed-noc-{{ forloop.counter }}-pri">
+                    <div class="openModalBtn">
+                      <div data-id="wed-noc-{{ forloop.counter }}-pri" class="btn-group-toggle" data-toggle="buttons">
+                        <div id="wed-noc-{{ forloop.counter }}-pri"><i></i></div>
+                      </div>
+                    </div>
+                  </td>
+
+                  <td class="text-center align-middle noc-pri" id="btn-thu-noc-{{ forloop.counter }}-pri">
+                    <div class="openModalBtn">
+                      <div data-id="thu-noc-{{ forloop.counter }}-pri" class="btn-group-toggle" data-toggle="buttons">
+                        <div id="thu-noc-{{ forloop.counter }}-pri"><i></i></div>
+                      </div>
+                    </div>
+                  </td>
+
+                  <td class="text-center align-middle noc-pri" id="btn-fri-noc-{{ forloop.counter }}-pri">
+                    <div class="openModalBtn">
+                      <div data-id="fri-noc-{{ forloop.counter }}-pri" class="btn-group-toggle" data-toggle="buttons">
+                        <div id="fri-noc-{{ forloop.counter }}-pri"><i></i></div>
+                      </div>
+                    </div>
+                  </td>
+
+                  <td class="text-center align-middle noc-pri" id="btn-sat-noc-{{ forloop.counter }}-pri">
+                    <div class="openModalBtn">
+                      <div data-id="sat-noc-{{ forloop.counter }}-pri" class="btn-group-toggle" data-toggle="buttons">
+                        <div id="sat-noc-{{ forloop.counter }}-pri"><i></i></div>
+                      </div>
+                    </div>
+                  </td>
+                </tr>
+                {% endfor %}
+                {% endif %}
+                {% endfor %}
+              </tbody>
+            </table>
+            <table class="regime table mt-2 table-bordered table-sm text-center">
+              <thead>
+                <tr>
+                  <th colspan="2" class="priority-cell">{% trans "Prioridade de Escolha" %}:</th>
+                  <th colspan="12" class="priority-cell">{% trans "Secundária" %}</th>
+                </tr>
+                <tr>
+                  <th class="col-1 text-center align-middle">{% trans "Período" %}</th>
+                  <th class="col-1 text-center align-middle">{% trans "Horários" %}</th>
+                  <th class="col-1 text-center align-middle">{% trans "Segunda-feira" %}</th>
+                  <th class="col-1 text-center align-middle">{% trans "Terça-feira" %}</th>
+                  <th class="col-1 text-center align-middle">{% trans "Quarta-feira" %}</th>
+                  <th class="col-1 text-center align-middle">{% trans "Quinta-feira" %}</th>
+                  <th class="col-1 text-center align-middle">{% trans "Sexta-feira" %}</th>
+                  <th class="col-1 text-center align-middle">{% trans "Sábado" %}</th> <!---feira-->
+                </tr>
+              </thead>
+              <tbody class="block" id="primary-timetable-courses">
+                {% for i in "MVN" %}
+                {% if i == "M" %}
+                <td class="text-center align-middle mor-sec" rowspan="{{ shift.morning_classes }}-pri">
+                  {% trans "Matutino" %}</td>
+                {% for timeslot in shift.morning %}
+                <tr>
+                  <td class="text-center hour-print align-middle mor-sec">{{ timeslot.hour_start|date:"H:i" }} -
+                    {{ timeslot.hour_end|date:"H:i" }}</td>
+
+
+                  <td class="text-center align-middle mor-sec" id="btn-mon-mor-{{ forloop.counter }}-sec">
+                    <div class="openModalBtn">
+                      <div data-id="mon-mor-{{ forloop.counter }}-sec" class="btn-group-toggle" data-toggle="buttons">
+                        <div id="mon-mor-{{ forloop.counter }}-sec"><i></i></div>
+                      </div>
+                    </div>
+                  </td>
+
+                  <td class="text-center align-middle mor-sec" id="btn-tue-mor-{{ forloop.counter }}-sec">
+                    <div class="openModalBtn">
+                      <div data-id="tue-mor-{{ forloop.counter }}-sec" class="btn-group-toggle" data-toggle="buttons">
+                        <div id="tue-mor-{{ forloop.counter }}-sec"><i></i></div>
+                      </div>
+                    </div>
+                  </td>
+
+                  <td class="text-center align-middle mor-sec" id="btn-wed-mor-{{ forloop.counter }}-sec">
+                    <div class="openModalBtn">
+                      <div data-id="wed-mor-{{ forloop.counter }}-sec" class="btn-group-toggle" data-toggle="buttons">
+                        <div id="wed-mor-{{ forloop.counter }}-sec"><i></i></div>
+                      </div>
+                    </div>
+                  </td>
+
+                  <td class="text-center align-middle mor-sec" id="btn-thu-mor-{{ forloop.counter }}-sec">
+                    <div class="openModalBtn">
+                      <div data-id="thu-mor-{{ forloop.counter }}-sec" class="btn-group-toggle" data-toggle="buttons">
+                        <div id="thu-mor-{{ forloop.counter }}-sec"><i></i></div>
+                      </div>
+                    </div>
+                  </td>
+
+                  <td class="text-center align-middle mor-sec" id="btn-fri-mor-{{ forloop.counter }}-sec">
+                    <div class="openModalBtn">
+                      <div data-id="fri-mor-{{ forloop.counter }}-sec" class="btn-group-toggle" data-toggle="buttons">
+                        <div id="fri-mor-{{ forloop.counter }}-sec"><i></i></div>
+                      </div>
+                    </div>
+                  </td>
+
+                  <td class="text-center align-middle mor-sec" id="btn-sat-mor-{{ forloop.counter }}-sec">
+                    <div class="openModalBtn">
+                      <div data-id="sat-mor-{{ forloop.counter }}-sec" class="btn-group-toggle" data-toggle="buttons">
+                        <div id="sat-mor-{{ forloop.counter }}-sec"><i></i></div>
+                      </div>
+                    </div>
+                  </td>
+                </tr>
+                {% endfor %}
+                {% elif i == "V" %}
+                <td class="text-center align-middle aft-sec" rowspan="{{ shift.afternoon_classes }}-pri">
+                  {% trans "Vespertino" %}</td>
+                {% for timeslot in shift.afternoon %}
+                <tr>
+                  <td class="text-center hour-print align-middle aft-sec">{{ timeslot.hour_start|date:"H:i" }} -
+                    {{ timeslot.hour_end|date:"H:i" }}</td>
+
+                  <td class="text-center align-middle aft-sec" id="btn-mon-aft-{{ forloop.counter }}-sec">
+                    <div class="openModalBtn">
+                      <div data-id="mon-aft-{{ forloop.counter }}-sec" class="btn-group-toggle" data-toggle="buttons">
+                        <div id="mon-aft-{{ forloop.counter }}-sec"><i></i></div>
+                      </div>
+                    </div>
+                  </td>
+
+                  <td class="text-center align-middle aft-sec" id="btn-tue-aft-{{ forloop.counter }}-sec">
+                    <div class="openModalBtn">
+                      <div data-id="tue-aft-{{ forloop.counter }}-sec" class="btn-group-toggle" data-toggle="buttons">
+                        <div id="tue-aft-{{ forloop.counter }}-sec"><i></i></div>
+                      </div>
+                    </div>
+                  </td>
+
+                  <td class="text-center align-middle aft-sec" id="btn-wed-aft-{{ forloop.counter }}-sec">
+                    <div class="openModalBtn">
+                      <div data-id="wed-aft-{{ forloop.counter }}-sec" class="btn-group-toggle" data-toggle="buttons">
+                        <div id="wed-aft-{{ forloop.counter }}-sec"><i></i></div>
+                      </div>
+                    </div>
+                  </td>
+
+                  <td class="text-center align-middle aft-sec" id="btn-thu-aft-{{ forloop.counter }}-sec">
+                    <div class="openModalBtn">
+                      <div data-id="thu-aft-{{ forloop.counter }}-sec" class="btn-group-toggle" data-toggle="buttons">
+                        <div id="thu-aft-{{ forloop.counter }}-sec"><i></i></div>
+                      </div>
+                    </div>
+                  </td>
+
+                  <td class="text-center align-middle aft-sec" id="btn-fri-aft-{{ forloop.counter }}-sec">
+                    <div class="openModalBtn">
+                      <div data-id="fri-aft-{{ forloop.counter }}-sec" class="btn-group-toggle" data-toggle="buttons">
+                        <div id="fri-aft-{{ forloop.counter }}-sec"><i></i></div>
+                      </div>
+                    </div>
+                  </td>
+
+                  <td class="text-center align-middle aft-sec" id="btn-sat-aft-{{ forloop.counter }}-sec">
+                    <div class="openModalBtn">
+                      <div data-id="sat-aft-{{ forloop.counter }}-sec" class="btn-group-toggle" data-toggle="buttons">
+                        <div id="sat-aft-{{ forloop.counter }}-sec"><i></i></div>
+                      </div>
+                    </div>
+                  </td>
+                </tr>
+                {% endfor %}
+                {% else %}
+                <td class="text-center align-middle noc-sec" rowspan="{{ shift.nocturnal_classes }}-pri">
+                  {% trans "Noturno" %}</td>
+                {% for timeslot in shift.nocturnal %}
+                <tr>
+                  <td class="text-center hour-print align-middle noc-sec">{{ timeslot.hour_start|date:"H:i" }} -
+                    {{ timeslot.hour_end|date:"H:i" }}</td>
+
+                  <td class="text-center align-middle noc-sec" id="btn-mon-noc-{{ forloop.counter }}-sec">
+                    <div class="openModalBtn">
+                      <div data-id="mon-noc-{{ forloop.counter }}-sec" class="btn-group-toggle" data-toggle="buttons">
+                        <div id="mon-noc-{{ forloop.counter }}-sec"><i></i></div>
+                      </div>
+                    </div>
+                  </td>
+
+                  <td class="text-center align-middle noc-sec" id="btn-tue-noc-{{ forloop.counter }}-sec">
+                    <div class="openModalBtn">
+                      <div data-id="tue-noc-{{ forloop.counter }}-sec" class="btn-group-toggle" data-toggle="buttons">
+                        <div id="tue-noc-{{ forloop.counter }}-sec"><i></i></div>
+                      </div>
+                    </div>
+                  </td>
+
+                  <td class="text-center align-middle noc-sec" id="btn-wed-noc-{{ forloop.counter }}-sec">
+                    <div class="openModalBtn">
+                      <div data-id="wed-noc-{{ forloop.counter }}-sec" class="btn-group-toggle" data-toggle="buttons">
+                        <div id="wed-noc-{{ forloop.counter }}-sec"><i></i></div>
+                      </div>
+                    </div>
+                  </td>
+
+                  <td class="text-center align-middle noc-sec" id="btn-thu-noc-{{ forloop.counter }}-sec">
+                    <div class="openModalBtn">
+                      <div data-id="thu-noc-{{ forloop.counter }}-sec" class="btn-group-toggle" data-toggle="buttons">
+                        <div id="thu-noc-{{ forloop.counter }}-sec"><i></i></div>
+                      </div>
+                    </div>
+                  </td>
+
+                  <td class="text-center align-middle noc-sec" id="btn-fri-noc-{{ forloop.counter }}-sec">
+                    <div class="openModalBtn">
+                      <div data-id="fri-noc-{{ forloop.counter }}-sec" class="btn-group-toggle" data-toggle="buttons">
+                        <div id="fri-noc-{{ forloop.counter }}-sec"><i></i></div>
+                      </div>
+                    </div>
+                  </td>
+
+                  <td class="text-center align-middle noc-sec" id="btn-sat-noc-{{ forloop.counter }}-sec">
+                    <div class="openModalBtn">
+                      <div data-id="sat-noc-{{ forloop.counter }}-sec" class="btn-group-toggle" data-toggle="buttons">
+                        <div id="sat-noc-{{ forloop.counter }}-sec"><i></i></div>
+                      </div>
+                    </div>
+                  </td>
+                </tr>
+                {% endfor %}
+                {% endif %}
+                {% endfor %}
+              </tbody>
+            </table>
+          </tr>
+        </table>
+
+        <table class="table table-bordered table-sm text-center">
+          <tr>
+            <th colspan="6">{% trans "Disciplinas escolhidas" %}</th>
+          </tr>
+          <table class="regime table table-bordered table-sm text-center">
+            <thead>
+              <th class="text-center align-middle">{% trans "Sigla" %}</th>
+              <th class="text-center align-middle">{% trans "Nome" %}</th>
+              <th class="text-center align-middle">{% trans "Disciplina" %}</th>
+              <th class="text-center align-middle">{% trans "Período" %}</th>
+              <th class="text-center align-middle">{% trans "Aulas" %}</th>
+              <th class="text-center align-middle">{% trans "Prioridade" %}</th>
+            </thead>
+            <tbody id="courses-list">
+
+            </tbody>
+          </table>
+
+        </table>
+      </div>
+
+      <div class="row">
+        <div class="col-6 text-right">
+          <a href="{% url 'attribution_preference' %}">
+            <button type="button" class="hidden-itens btn ada-btn-blue">{% trans "Voltar ao FPA Usuário" %}</button>
+          </a>
         </div>
-    </div>
-    {% else %}
-    <div class="container">
-        <div class="card centered-object">
-          <div class="card-body">
-            <h5 class="card-title">{% trans "Formulário de Preferência de Atividades - FPA (Anexo I - Resolução nº 109 de 4 de novembro de 2015)" %}</h5>
-            <hr>
-            <div class="table-responsive">
-                <table class="table table-bordered table-sm text-center">
-                <tr>
-                  <th colspan="6">{% trans "Identificação do Docente" %}</th>
-                </tr>
-                <tr>
-                  <th>{% trans "Docente" %}:</th>
-                  <td colspan="2">{{ request.user.get_full_name }}</td>
-                  <th>{% trans "Conhecido como" %}:</th>
-                  <td colspan="2">{{ request.user.first_name }}</td>
-                </tr>
-                <tr>
-                  <th>{% trans "Prontuário" %}:</th>
-                  <td colspan="2">{{ request.user.registration_id  }}</td>
-                  <th>{% trans "Celular" %}:</th>
-                  <td colspan="2">{{ request.user.cell_phone }}</td>
-                </tr>
-                <tr>
-                  <th>{% trans "E-mail" %}:</th>
-                  <td colspan="6">{{ request.user.email }}</td>
-                </tr>
-                <tr>
-                    <th>{% trans "Regime de trabalho" %}:</th>
-                    <td class="col-2 20">20 {% trans "horas" %}</td>
-                    <td class="col-2 40">40 {% trans "horas" %}</td>
-                    <td class="col-2 rde">{% trans "RDE" %}</td>
-                    <td class="col-2">{% trans "Substituto" %}</td>
-                    <td class="col-2">{% trans "Temporário" %}</td>
-                </tr>
-            </table>
-
-              
-            <table class="table table-bordered table-sm text-center">
-                <tr>
-                  <th colspan="6">{% trans "Disponibilidade de horário para atribuição de componentes curriculares" %}</th>
-                </tr>
-                <tr>
-                    <table class="regime table table-bordered table-sm text-center">
-                        <thead>
-                          <tr>
-                            <th colspan="2">{% trans "Prioridade de Escolha" %}:</th>
-                            <th colspan="6">{% trans "Prioritária" %}</th>
-                            <th colspan="6">{% trans "Secundária" %}</th>
-                          </tr>
-                          <tr>
-                            <th class="col-1 text-center align-middle">{% trans "Período" %}</th>
-                            <th class="col-2 text-center align-middle">{% trans "Horários" %}</th>
-                            <th class="col-1 text-center align-middle">{% trans "Segunda" %}</th>
-                            <th class="col-1 text-center align-middle">{% trans "Terça" %}</th>
-                            <th class="col-1 text-center align-middle">{% trans "Quarta" %}</th>
-                            <th class="col-1 text-center align-middle">{% trans "Quinta" %}</th>
-                            <th class="col-1 text-center align-middle">{% trans "Sexta" %}</th>
-                            <th class="col-1 text-center align-middle">{% trans "Sábado" %}</th>
-                            <th class="col-1 text-center align-middle">{% trans "Segunda" %}</th>
-                            <th class="col-1 text-center align-middle">{% trans "Terça" %}</th>
-                            <th class="col-1 text-center align-middle">{% trans "Quarta" %}</th>
-                            <th class="col-1 text-center align-middle">{% trans "Quinta" %}</th>
-                            <th class="col-1 text-center align-middle">{% trans "Sexta" %}</th>
-                            <th class="col-1 text-center align-middle">{% trans "Sábado" %}</th>
-                          </tr>
-                        </thead>
-                        <tbody class="block" id="primary-timetable-courses">
-                            {% for i in "MVN" %}
-                              {% if i == "M" %}
-                                <td class="text-center align-middle" rowspan="{{ shift.morning_classes }}-pri">{% trans "Matutino" %}</td>
-                                {% for timeslot in shift.morning %}
-                                  <tr>
-                                    <td class="text-center hour-print align-middle">{{ timeslot.hour_start|date:"H:i" }} - {{ timeslot.hour_end|date:"H:i" }}</td>
-                          
-                                    <td class="text-center" id="btn-mon-mor-{{ forloop.counter }}-pri">
-                                      <div class="openModalBtn">
-                                        <div data-id="mon-mor-{{ forloop.counter }}-pri" class="btn-group-toggle" data-toggle="buttons">
-                                          <div id="mon-mor-{{ forloop.counter }}-pri"><i></i></div>
-                                        </div>
-                                      </div>
-                                    </td>
-                          
-                                    <td class="text-center" id="btn-tue-mor-{{ forloop.counter }}-pri">
-                                      <div class="openModalBtn">
-                                        <div data-id="tue-mor-{{ forloop.counter }}-pri" class="btn-group-toggle" data-toggle="buttons">
-                                          <div id="tue-mor-{{ forloop.counter }}-pri"><i></i></div>
-                                        </div>
-                                      </div>
-                                    </td>
-                          
-                                    <td class="text-center" id="btn-wed-mor-{{ forloop.counter }}-pri">
-                                      <div class="openModalBtn">
-                                        <div data-id="wed-mor-{{ forloop.counter }}-pri" class="btn-group-toggle" data-toggle="buttons">
-                                          <div id="wed-mor-{{ forloop.counter }}-pri"><i></i></div>
-                                        </div>
-                                      </div>
-                                    </td>
-                          
-                                    <td class="text-center" id="btn-thu-mor-{{ forloop.counter }}-pri">
-                                      <div class="openModalBtn">
-                                        <div data-id="thu-mor-{{ forloop.counter }}-pri" class="btn-group-toggle" data-toggle="buttons">
-                                          <div id="thu-mor-{{ forloop.counter }}-pri"><i></i></div>
-                                        </div>
-                                      </div>
-                                    </td>
-                          
-                                    <td class="text-center" id="btn-fri-mor-{{ forloop.counter }}-pri">
-                                      <div class="openModalBtn">
-                                        <div data-id="fri-mor-{{ forloop.counter }}-pri" class="btn-group-toggle" data-toggle="buttons">
-                                          <div id="fri-mor-{{ forloop.counter }}-pri"><i></i></div>
-                                        </div>
-                                      </div>
-                                    </td>
-                          
-                                    <td class="text-center" id="btn-sat-mor-{{ forloop.counter }}-pri">
-                                      <div class="openModalBtn">
-                                        <div data-id="sat-mor-{{ forloop.counter }}-pri" class="btn-group-toggle" data-toggle="buttons">
-                                          <div id="sat-mor-{{ forloop.counter }}-pri"><i></i></div>
-                                        </div>
-                                      </div>
-                                    </td>
-
-                                    <td class="text-center" id="btn-mon-mor-{{ forloop.counter }}-sec">
-                                      <div class="openModalBtn">
-                                        <div data-id="mon-mor-{{ forloop.counter }}-sec" class="btn-group-toggle" data-toggle="buttons">
-                                          <div id="mon-mor-{{ forloop.counter }}-sec"><i></i></div>
-                                        </div>
-                                      </div>
-                                    </td>
-                          
-                                    <td class="text-center" id="btn-tue-mor-{{ forloop.counter }}-sec">
-                                      <div class="openModalBtn">
-                                        <div data-id="tue-mor-{{ forloop.counter }}-sec" class="btn-group-toggle" data-toggle="buttons">
-                                          <div id="tue-mor-{{ forloop.counter }}-sec"><i></i></div>
-                                        </div>
-                                      </div>
-                                    </td>
-                          
-                                    <td class="text-center" id="btn-wed-mor-{{ forloop.counter }}-sec">
-                                      <div class="openModalBtn">
-                                        <div data-id="wed-mor-{{ forloop.counter }}-sec" class="btn-group-toggle" data-toggle="buttons">
-                                          <div id="wed-mor-{{ forloop.counter }}-sec"><i></i></div>
-                                        </div>
-                                      </div>
-                                    </td>
-                          
-                                    <td class="text-center" id="btn-thu-mor-{{ forloop.counter }}-sec">
-                                      <div class="openModalBtn">
-                                        <div data-id="thu-mor-{{ forloop.counter }}-sec" class="btn-group-toggle" data-toggle="buttons">
-                                          <div id="thu-mor-{{ forloop.counter }}-sec"><i></i></div>
-                                        </div>
-                                      </div>
-                                    </td>
-                          
-                                    <td class="text-center" id="btn-fri-mor-{{ forloop.counter }}-sec">
-                                      <div class="openModalBtn">
-                                        <div data-id="fri-mor-{{ forloop.counter }}-sec" class="btn-group-toggle" data-toggle="buttons">
-                                          <div id="fri-mor-{{ forloop.counter }}-sec"><i></i></div>
-                                        </div>
-                                      </div>
-                                    </td>
-                          
-                                    <td class="text-center" id="btn-sat-mor-{{ forloop.counter }}-sec">
-                                      <div class="openModalBtn">
-                                        <div data-id="sat-mor-{{ forloop.counter }}-sec" class="btn-group-toggle" data-toggle="buttons">
-                                          <div id="sat-mor-{{ forloop.counter }}-sec"><i></i></div>
-                                        </div>
-                                      </div>
-                                    </td>
-                                  </tr>
-                                {% endfor %}
-                              {% elif i == "V" %}
-                                <td class="text-center align-middle" rowspan="{{ shift.afternoon_classes }}-pri">{% trans "Vespertino" %}</td>
-                                {% for timeslot in shift.afternoon %}
-                                  <tr>
-                                    <td class="text-center hour-print align-middle">{{ timeslot.hour_start|date:"H:i" }} - {{ timeslot.hour_end|date:"H:i" }}</td>
-                          
-                                    <td class="text-center" id="btn-mon-aft-{{ forloop.counter }}-pri">
-                                      <div class="openModalBtn">
-                                        <div data-id="mon-aft-{{ forloop.counter }}-pri" class="btn-group-toggle" data-toggle="buttons">
-                                          <div id="mon-aft-{{ forloop.counter }}-pri"><i></i></div>
-                                        </div>
-                                      </div>
-                                    </td>
-                          
-                                    <td class="text-center" id="btn-tue-aft-{{ forloop.counter }}-pri">
-                                      <div class="openModalBtn">
-                                        <div data-id="tue-aft-{{ forloop.counter }}-pri" class="btn-group-toggle" data-toggle="buttons">
-                                          <div id="tue-aft-{{ forloop.counter }}-pri"><i></i></div>
-                                        </div>
-                                      </div>
-                                    </td>
-                          
-                                    <td class="text-center" id="btn-wed-aft-{{ forloop.counter }}-pri">
-                                      <div class="openModalBtn">
-                                        <div data-id="wed-aft-{{ forloop.counter }}-pri" class="btn-group-toggle" data-toggle="buttons">
-                                          <div id="wed-aft-{{ forloop.counter }}-pri"><i></i></div>
-                                        </div>
-                                      </div>
-                                    </td>
-                          
-                                    <td class="text-center" id="btn-thu-aft-{{ forloop.counter }}-pri">
-                                      <div class="openModalBtn">
-                                        <div data-id="thu-aft-{{ forloop.counter }}-pri" class="btn-group-toggle" data-toggle="buttons">
-                                          <div id="thu-aft-{{ forloop.counter }}-pri"><i></i></div>
-                                        </div>
-                                      </div>
-                                    </td>
-                          
-                                    <td class="text-center" id="btn-fri-aft-{{ forloop.counter }}-pri">
-                                      <div class="openModalBtn">
-                                        <div data-id="fri-aft-{{ forloop.counter }}-pri" class="btn-group-toggle" data-toggle="buttons">
-                                          <div id="fri-aft-{{ forloop.counter }}-pri"><i></i></div>
-                                        </div>
-                                      </div>
-                                    </td>
-                          
-                                    <td class="text-center" id="btn-sat-aft-{{ forloop.counter }}-pri">
-                                      <div class="openModalBtn">
-                                        <div data-id="sat-aft-{{ forloop.counter }}-pri" class="btn-group-toggle" data-toggle="buttons">
-                                          <div id="sat-aft-{{ forloop.counter }}-pri"><i></i></div>
-                                        </div>
-                                      </div>
-                                    </td>
-
-                                    <td class="text-center" id="btn-mon-aft-{{ forloop.counter }}-sec">
-                                      <div class="openModalBtn">
-                                        <div data-id="mon-aft-{{ forloop.counter }}-sec" class="btn-group-toggle" data-toggle="buttons">
-                                          <div id="mon-aft-{{ forloop.counter }}-sec"><i></i></div>
-                                        </div>
-                                      </div>
-                                    </td>
-                          
-                                    <td class="text-center" id="btn-tue-aft-{{ forloop.counter }}-sec">
-                                      <div class="openModalBtn">
-                                        <div data-id="tue-aft-{{ forloop.counter }}-sec" class="btn-group-toggle" data-toggle="buttons">
-                                          <div id="tue-aft-{{ forloop.counter }}-sec"><i></i></div>
-                                        </div>
-                                      </div>
-                                    </td>
-                          
-                                    <td class="text-center" id="btn-wed-aft-{{ forloop.counter }}-sec">
-                                      <div class="openModalBtn">
-                                        <div data-id="wed-aft-{{ forloop.counter }}-sec" class="btn-group-toggle" data-toggle="buttons">
-                                          <div id="wed-aft-{{ forloop.counter }}-sec"><i></i></div>
-                                        </div>
-                                      </div>
-                                    </td>
-                          
-                                    <td class="text-center" id="btn-thu-aft-{{ forloop.counter }}-sec">
-                                      <div class="openModalBtn">
-                                        <div data-id="thu-aft-{{ forloop.counter }}-sec" class="btn-group-toggle" data-toggle="buttons">
-                                          <div id="thu-aft-{{ forloop.counter }}-sec"><i></i></div>
-                                        </div>
-                                      </div>
-                                    </td>
-                          
-                                    <td class="text-center" id="btn-fri-aft-{{ forloop.counter }}-sec">
-                                      <div class="openModalBtn">
-                                        <div data-id="fri-aft-{{ forloop.counter }}-sec" class="btn-group-toggle" data-toggle="buttons">
-                                          <div id="fri-aft-{{ forloop.counter }}-sec"><i></i></div>
-                                        </div>
-                                      </div>
-                                    </td>
-                          
-                                    <td class="text-center" id="btn-sat-aft-{{ forloop.counter }}-sec">
-                                      <div class="openModalBtn">
-                                        <div data-id="sat-aft-{{ forloop.counter }}-sec" class="btn-group-toggle" data-toggle="buttons">
-                                          <div id="sat-aft-{{ forloop.counter }}-sec"><i></i></div>
-                                        </div>
-                                      </div>
-                                    </td>
-                                  </tr>
-                                {% endfor %}
-                              {% else %}
-                                <td class="text-center align-middle" rowspan="{{ shift.nocturnal_classes }}-pri">{% trans "Noturno" %}</td>
-                                {% for timeslot in shift.nocturnal %}
-                                  <tr>
-                                    <td class="text-center hour-print align-middle">{{ timeslot.hour_start|date:"H:i" }} - {{ timeslot.hour_end|date:"H:i" }}</td>
-                          
-                                    <td class="text-center" id="btn-mon-noc-{{ forloop.counter }}-pri">
-                                      <div class="openModalBtn">
-                                        <div data-id="mon-noc-{{ forloop.counter }}-pri" class="btn-group-toggle" data-toggle="buttons">
-                                          <div id="mon-noc-{{ forloop.counter }}-pri"><i></i></div>
-                                        </div>
-                                      </div>
-                                    </td>
-                          
-                                    <td class="text-center" id="btn-tue-noc-{{ forloop.counter }}-pri">
-                                      <div class="openModalBtn">
-                                        <div data-id="tue-noc-{{ forloop.counter }}-pri" class="btn-group-toggle" data-toggle="buttons">
-                                          <div id="tue-noc-{{ forloop.counter }}-pri"><i></i></div>
-                                        </div>
-                                      </div>
-                                    </td>
-                          
-                                    <td class="text-center" id="btn-wed-noc-{{ forloop.counter }}-pri">
-                                      <div class="openModalBtn">
-                                        <div data-id="wed-noc-{{ forloop.counter }}-pri" class="btn-group-toggle" data-toggle="buttons">
-                                          <div id="wed-noc-{{ forloop.counter }}-pri"><i></i></div>
-                                        </div>
-                                      </div>
-                                    </td>
-                          
-                                    <td class="text-center" id="btn-thu-noc-{{ forloop.counter }}-pri">
-                                      <div class="openModalBtn">
-                                        <div data-id="thu-noc-{{ forloop.counter }}-pri" class="btn-group-toggle" data-toggle="buttons">
-                                          <div id="thu-noc-{{ forloop.counter }}-pri"><i></i></div>
-                                        </div>
-                                      </div>
-                                    </td>
-                          
-                                    <td class="text-center" id="btn-fri-noc-{{ forloop.counter }}-pri">
-                                      <div class="openModalBtn">
-                                        <div data-id="fri-noc-{{ forloop.counter }}-pri" class="btn-group-toggle" data-toggle="buttons">
-                                          <div id="fri-noc-{{ forloop.counter }}-pri"><i></i></div>
-                                        </div>
-                                      </div>
-                                    </td>
-                          
-                                    <td class="text-center" id="btn-sat-noc-{{ forloop.counter }}-pri">
-                                      <div class="openModalBtn">
-                                        <div data-id="sat-noc-{{ forloop.counter }}-pri" class="btn-group-toggle" data-toggle="buttons">
-                                          <div id="sat-noc-{{ forloop.counter }}-pri"><i></i></div>
-                                        </div>
-                                      </div>
-                                    </td>
-
-                                    <td class="text-center" id="btn-mon-noc-{{ forloop.counter }}-sec">
-                                      <div class="openModalBtn">
-                                        <div data-id="mon-noc-{{ forloop.counter }}-sec" class="btn-group-toggle" data-toggle="buttons">
-                                          <div id="mon-noc-{{ forloop.counter }}-sec"><i></i></div>
-                                        </div>
-                                      </div>
-                                    </td>
-                          
-                                    <td class="text-center" id="btn-tue-noc-{{ forloop.counter }}-sec">
-                                      <div class="openModalBtn">
-                                        <div data-id="tue-noc-{{ forloop.counter }}-sec" class="btn-group-toggle" data-toggle="buttons">
-                                          <div id="tue-noc-{{ forloop.counter }}-sec"><i></i></div>
-                                        </div>
-                                      </div>
-                                    </td>
-                          
-                                    <td class="text-center" id="btn-wed-noc-{{ forloop.counter }}-sec">
-                                      <div class="openModalBtn">
-                                        <div data-id="wed-noc-{{ forloop.counter }}-sec" class="btn-group-toggle" data-toggle="buttons">
-                                          <div id="wed-noc-{{ forloop.counter }}-sec"><i></i></div>
-                                        </div>
-                                      </div>
-                                    </td>
-                          
-                                    <td class="text-center" id="btn-thu-noc-{{ forloop.counter }}-sec">
-                                      <div class="openModalBtn">
-                                        <div data-id="thu-noc-{{ forloop.counter }}-sec" class="btn-group-toggle" data-toggle="buttons">
-                                          <div id="thu-noc-{{ forloop.counter }}-sec"><i></i></div>
-                                        </div>
-                                      </div>
-                                    </td>
-                          
-                                    <td class="text-center" id="btn-fri-noc-{{ forloop.counter }}-sec">
-                                      <div class="openModalBtn">
-                                        <div data-id="fri-noc-{{ forloop.counter }}-sec" class="btn-group-toggle" data-toggle="buttons">
-                                          <div id="fri-noc-{{ forloop.counter }}-sec"><i></i></div>
-                                        </div>
-                                      </div>
-                                    </td>
-                          
-                                    <td class="text-center" id="btn-sat-noc-{{ forloop.counter }}-sec">
-                                      <div class="openModalBtn">
-                                        <div data-id="sat-noc-{{ forloop.counter }}-sec" class="btn-group-toggle" data-toggle="buttons">
-                                          <div id="sat-noc-{{ forloop.counter }}-sec"><i></i></div>
-                                        </div>
-                                      </div>
-                                    </td>
-                                  </tr>
-                                {% endfor %}
-                              {% endif %}
-                            {% endfor %}
-                          </tbody>
-                    </table>
-                </tr>
-            </table>
-
-            <table class="table table-bordered table-sm text-center">
-                <tr>
-                    <th colspan="6">{% trans "Disciplinas escolhidas" %}</th>
-                </tr>
-                <table class="regime table table-bordered table-sm text-center">
-                    <thead>
-                        <th class="text-center align-middle">{% trans "Sigla" %}</th>
-                        <th class="text-center align-middle">{% trans "Nome" %}</th>
-                        <th class="text-center align-middle">{% trans "Disciplina" %}</th>
-                        <th class="text-center align-middle">{% trans "Prioridade" %}</th>
-                        <th class="text-center align-middle">{% trans "Período" %}</th>
-                        <th class="text-center align-middle">{% trans "Aulas" %}</th>
-                    </thead>
-                    <tbody id="courses-list">
-
-                    </tbody>
-                </table>
-                    
-            </table>
-            </div>
-            
-            <div class="row">
-              <div class="col-6 text-right">
-                <a href="{% url 'attribution_preference' %}">
-                  <button type="button" class="hidden-itens btn ada-btn-blue">{% trans "Volter a FPA Usuário" %}</button>
-                </a>
-              </div>
-              <div class="col-6">
-                <button type="button" onClick="window.print();" class="hidden-itens btn ada-btn-sucess">{% trans "Imprimir PDF" %}</button>
-              </div>
-            </div>
+        <div class="col-6">
+          <button type="button" onClick="window.print();"
+            class="hidden-itens btn ada-btn-sucess">{% trans "Imprimir PDF" %}</button>
         </div>
+      </div>
     </div>
-    {% endif %}
+  </div>
+</div>
+</div>
 {% endblock %}
 
 {% block endbody %}
-  <script src="{% static 'attribution_preference/js/show.js' %}" user_regime='{{ user_regime }}' user_disponibility_choosed='{{user_disponibility_choosed}}' user_courses_choosed='{{user_courses_choosed}}' data-lang={{LANGUAGE_CODE}}></script>
+<script src="{% static 'attribution_preference/js/show.js' %}" user_regime='{{ user_regime }}'
+  user_disponibility_choosed='{{user_disponibility_choosed}}' user_courses_choosed='{{user_courses_choosed}}'
+  data-lang={{LANGUAGE_CODE}}></script>
 {% endblock %}
