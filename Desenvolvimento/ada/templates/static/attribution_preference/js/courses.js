@@ -101,6 +101,7 @@ if(user_courses_from_blockk.length > 0) {
         timetable_choosed_objects.push(user_courses_from_blockk[i])
         user_timetables = user_timetables.filter(timetable => timetable.id !== user_courses_from_blockk[i].id);
     }
+    show_table(1)
 }
 
 function show_table(value) {
