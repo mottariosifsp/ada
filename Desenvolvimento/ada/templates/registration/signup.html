@@ -26,7 +26,7 @@
 
                     {% if error_message %}
                     <div id="errorMessage" class="alert alert-danger alert-dismissible fade show w-100">
-                        <i class="fas fa-exclamation-circle mr-2"></i><b>{% trans "Erro" %}:</b> {{ error_message }}.
+                        <i class="fas fa-exclamation-circle mr-2"></i><b>{% trans "Erro" %}:</b> {% trans error_message %}.
                         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
@@ -50,7 +50,7 @@
                                 <i class="fa fa-user"></i>
                             </label>
                             <input type="text" name="email" class="form-control" id="yourEmail" required
-                                placeholder="E-mail" />
+                                placeholder="{% trans 'E-mail institucional' %}" />
                             <div id="emailError" class="invalid-feedback">
                                 {% trans "Por favor, insira o seu e-mail institucional" %}.
                             </div>
@@ -65,7 +65,7 @@
                                 <i class="fa fa-lock"></i>
                             </label>
                             <input type="password" name="password" class="form-control" id="yourPassword" required
-                                placeholder="Senha" />
+                                placeholder="{% trans 'E-mail' %}" />
                             <div id="passwordError" class="invalid-feedback">
                                 {% trans "Por favor, insira a sua senha" %}.
                             </div>

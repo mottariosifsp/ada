@@ -32,8 +32,8 @@
 </div>
 <div class="card">
     <div class="card-body">
-        <div class="tabela d-flex justify-content-center align-items-center table-hover editable display">
-            <table class="table editable display" id="professors_list">
+        <div class="tabela d-flex justify-content-center align-items-center">
+            <table class="table table-bordered table-hover editable display" id="professors_list">
                 <thead class="thead-dark">
                     <tr>
                         <th scope="col" class="coluna-fixada">{% trans "Nome" %}</th>
@@ -112,7 +112,7 @@
                             {% for academic_degree in professor.history.academic_degrees.all %}
                             <span data-degree-id="{{ academic_degree.id_academic_degree }}"
                                 data-degree-name="{{ academic_degree.name }}"
-                                data-degree-punctuation="{{ academic_degree.punctuation }}">{{ academic_degree.name }}</span>
+                                data-degree-punctuation="{{ academic_degree.punctuation }}">{% trans academic_degree.name %}</span>
                             <br />
                             {% endfor %}
                         </td>
@@ -244,13 +244,13 @@
                                         style="text-align: center;">
                                     <datalist id="blocks" class="blocks-datalist">
                                         {% for block in blockks %}
-                                        <option class="dropdown-item-class" {% blocktrans with name_block_text=block.name_block %} value="{{ name_block_text }}" {% endblocktrans %}>
+                                        <option class="dropdown-item-class" value="{{block.name_block}}">
                                         </option>
                                         {% endfor %}
                                     </datalist>
                                     <button type="button" id="addBlockBtn" style="margin-left:15px"
                                         class="btn btn-success addBlockBtn"><img
-                                            src="{% static 'images/icon-add-block.png' %}" alt="Adicionar bloco"
+                                            src="{% static 'images/icon-add-block.png' %}" alt="{% trans 'Adicionar Bloco' %}"
                                             style="width:22px"></button>
                                 </div>
                             </div>
@@ -269,8 +269,7 @@
                                     <datalist id="degrees">
                                         {% for degree in degrees %}
                                         <option class="dropdown-item-class"
-                                            {% blocktrans with name_degree_text=degree.name %}
-                                            value="{{ name_degree_text }}" {% endblocktrans %}
+                                            value="{{ degree.name }}" 
                                             score="{{ degree.punctuation }}">{% trans "pontuação" %}:
                                             {{ degree.punctuation }}
                                         </option>
@@ -279,7 +278,7 @@
                                     <button type="button" id="addCertificateBtn" style="margin-left:15px"
                                         class="btn btn-success addCertificateBtn"><img
                                             src="{% static 'images/icon-add-certificate.png' %}"
-                                            alt="Adicionar Certificado" style="width:22px"></button>
+                                            alt="{% trans 'Adicionar Certificado' %}" style="width:22px"></button>
                                 </div>
                             </div>
                         </div>
@@ -409,15 +408,14 @@
                                     <datalist id="blocks" class="blocks-datalist">
                                         {% for block in blockks %}
                                         <option class="dropdown-item-class"
-                                            {% blocktrans with name_block_text=block.name_block %}
-                                            value="{{ name_block_text }}" {% endblocktrans %}>
+                                            value="{{ block.name_block }}">
                                         </option>
                                         {% endfor %}
                                     </datalist>
                                     <button type="button" id="addBlockBtn" style="margin-left:15px"
                                         class="btn btn-success addBlockBtn"><img
                                             src="{% static 'images/icon-add-block.png' %}"
-                                            alt="Adicionar bloco" style="width:22px"></button>
+                                            alt="{% trans 'Adicionar Bloco' %}" style="width:22px"></button>
                                 </div>
                             </div>
                         </div>
@@ -435,8 +433,7 @@
                                     <datalist id="degrees">
                                         {% for degree in degrees %}
                                         <option class="dropdown-item-class"
-                                            {% blocktrans with name_degree_text=degree.name %}
-                                            value="{{ name_degree_text }}" {% endblocktrans %}
+                                            value="{{ degree.name }}"
                                             score="{{ degree.punctuation }}">{% trans "pontuação" %}:
                                             {{ degree.punctuation }}
                                         </option>
@@ -445,7 +442,7 @@
                                     <button type="button" id="addCertificateBtn" style="margin-left:15px"
                                         class="btn btn-success addCertificateBtn"><img
                                             src="{% static 'images/icon-add-certificate.png' %}"
-                                            alt="Adicionar Certificado" style="width:22px"></button>
+                                            alt="{% trans 'Adicionar Certificado' %}" style="width:22px"></button>
                                 </div>
                             </div>
                         </div>

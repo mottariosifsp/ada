@@ -70,7 +70,7 @@
     <div class="d-flex justify-content-between align-items-center w-100">
       <div class="nav-brand mr-auto">
         <a class="logo" href="{% url 'home' %}" style="font-size: larger;">
-          &nbsp;<img class="ada-logo" src="{% static 'images/logo_bg.png' %}" alt="logo do site ADA"> &emsp; | &emsp;
+          &nbsp;<img class="ada-logo" src="{% static 'images/logo_bg.png' %}" alt="{% trans 'logo ADA' %}"> &emsp; | &emsp;
           Representante
         </a>
       </div>
@@ -139,9 +139,9 @@
         <div class="modal-content">
           <div class="modal-header">
             <a class="logo" href="{% url 'home' %}">
-              <img class="ada-logo" src="{% static 'images/logo_bg.png' %}" alt="logo do site ADA">
+              <img class="ada-logo" src="{% static 'images/logo_bg.png' %}" alt="{% trans 'logo ADA' %}">
             </a>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
               <span class="hide-sidebar" aria-hidden="true">&times;</span>
             </button>
           </div>
@@ -215,7 +215,7 @@
         <div class="col-6 col-lg-2 about-company mt-4">
           <div class="nav-brand mr-auto">
             <a class="logo" onclick="backToTop()">
-              <img class="w-100" src="{% static 'images/logo_bg.png' %}" alt="logo do site ADA">
+              <img class="w-100" src="{% static 'images/logo_bg.png' %}" alt="{% trans 'logo ADA' %}">
             </a>
           </div>
         </div>

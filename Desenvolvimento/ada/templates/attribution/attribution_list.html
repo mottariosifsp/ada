@@ -12,9 +12,16 @@
 {{ block.super }}
 <h1 class="title-page mt-4">{% trans "Blocos Atribuídos" %}</h1>
 <hr>
+<nav>
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="{% url 'home_professor' %}"><i class="bi bi-house-door"></i></a></li>
+    <li class="breadcrumb-item" aria-current="page"><a href="{% url 'attribution' %}"> {% trans "Atribuição" %}</a></li>
+    <li class="breadcrumb-item active" aria-current="page"> {% trans "Blocos Atribuídos" %} </li>
+  </ol>
+</nav>
 <div class="tabela">
-  <table class="table table-bordered editable" id="blocks_list">
-    <thead>
+  <table class="table table-hover table-bordered editable display" id="blocks_list">
+    <thead class="thead-dark">
       <tr>
         <th scope="col">{% trans "Registro" %}</th>
         <th scope="col">{% trans "Nome" %}</th>
@@ -28,12 +35,8 @@
       <!-- Lista -->
       <tr>
         <td>{{ blockk.registration_block_id }}</td>
-        {% blocktrans with name_block_text=blockk.name_block %}
-        <td>{{ name_block_text }}</td>
-        {% endblocktrans %}
-        {% blocktrans with acronym_text=blockk.acronym %}
-        <td>{{ acronym_text }}</td>
-        {% endblocktrans %}
+        <td>{% trans blockk.name_block %}</td>
+        <td>{% trans blockk.acronym %}</td>
         <td><a href="{% url 'block_detail' blockk.registration_block_id %}"><button type="button"
               class="btn btn-primary editProfessorBtn"><i class="bi bi-eye"></i></button></a></td>
       </tr>
