@@ -7,6 +7,7 @@
   link-count="{{count.link}}"></script>
 <link rel="stylesheet" href="{% static 'staff/home/css/home_staff.css' %}">
 </link>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 {% endblock %}
 
 {% block body %}
@@ -173,7 +174,7 @@
             {% else %}
             <div class="links mt-3 mb-3 pb-4" style="display: none;"></div>
             {% endif %}
-            {% if count.links < 4 %}
+            {% if count.links < 3 %}
             <button type="button" class="btn w-100 ada-btn-sucess" data-toggle="modal"
               data-target="#add-link">{% trans "Adicionar atualização" %}</button>
             {% endif %}
