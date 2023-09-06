@@ -130,6 +130,10 @@ div#navbarToggler ul.navbar-nav > li.nav-item:hover {
     margin-left: 10px;
 }
 
+.description {
+  color: #000000e5 !important;
+}
+
 nav .nav-link{
     letter-spacing: 3px;
     color: #f9fefd;

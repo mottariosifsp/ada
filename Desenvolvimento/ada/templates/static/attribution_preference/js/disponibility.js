@@ -308,7 +308,6 @@ $(document).ready(function() {
             });
           }
         } else {
-          alert("fff")
           if(lang == 'pt-br' || lang == '') {
             $('#error-message-form').text('A seleção da disponibilidade deve permitir no mínimo 11 horas de intervalo entre a hora inicial do trabalho de um dia e a hora final de trabalho do dia seguinte.');
           } else {
