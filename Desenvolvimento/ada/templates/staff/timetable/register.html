@@ -63,7 +63,7 @@
                 {% for course in courses %}
                 <option class="dropdown-item-class"
                   value="{{ course.acronym }}" course-id={{course.registration_course_id}}>
-                  {{course.name_course}}
+                  {% trans course.name_course %}
                 </option>
                 {% endfor %}
               </datalist>
@@ -107,7 +107,7 @@
                 {% for course in courses %}
                 <option class="dropdown-item-class"
                   value="{{ course.acronym }}" course-id={{course.registration_course_id}}>
-                  {{course.name_course}}
+                  {% trans course.name_course %}
                 </option>
                 {% endfor %}
               </datalist>
@@ -151,7 +151,7 @@
                 {% for course in courses %}
                 <option class="dropdown-item-class"
                   value="{{ course.acronym }}" course-id={{course.registration_course_id}}>
-                  {{course.name_course}}
+                  {% trans course.name_course %}
                 </option>
                 {% endfor %}
               </datalist>

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-06-21 15:41-0300\n"
+"POT-Creation-Date: 2023-09-06 04:06-0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,123 +17,140 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-#: .\area\models.py:6
+#: .\area\models.py:8
 msgid "registration area id"
 msgstr ""
 
-#: .\area\models.py:7
+#: .\area\models.py:14
 msgid "name area"
 msgstr ""
 
-#: .\area\models.py:8 .\area\models.py:32 .\course\models.py:8
+#: .\area\models.py:20 .\area\models.py:63 .\course\models.py:11
 msgid "acronym"
 msgstr ""
 
-#: .\area\models.py:9
+#: .\area\models.py:25
 msgid "exchange area"
 msgstr ""
 
-#: .\area\models.py:10
+#: .\area\models.py:26
 msgid "is high school"
 msgstr ""
 
-#: .\area\models.py:14
+#: .\area\models.py:30
 msgid "area"
 msgstr ""
 
-#: .\area\models.py:15
+#: .\area\models.py:31
 msgid "areas"
 msgstr ""
 
-#: .\area\models.py:30
+#: .\area\models.py:51
 msgid "registration block id"
 msgstr ""
 
-#: .\area\models.py:31
+#: .\area\models.py:57
 msgid "name block"
 msgstr ""
 
-#: .\area\models.py:35
+#: .\area\models.py:73
 msgid "blockk"
 msgstr ""
 
-#: .\area\models.py:36
+#: .\area\models.py:74
 msgid "blocks"
 msgstr ""
 
-#: .\attribution_preference\models.py:9
+#: .\attribution_preference\models.py:9 .\staff\models.py:13
+#: .\timetable\models.py:84
+msgid "year"
+msgstr ""
+
+#: .\attribution_preference\models.py:11 .\user\models.py:249
+msgid "name job"
+msgstr ""
+
+#: .\attribution_preference\models.py:14
 msgid "attribution_preference"
 msgstr ""
 
-#: .\attribution_preference\models.py:10
+#: .\attribution_preference\models.py:15
 msgid "attribution_preferences"
 msgstr ""
 
-#: .\attribution_preference\models.py:18 .\timetable\models.py:44
+#: .\attribution_preference\models.py:28 .\timetable\models.py:61
 msgid "day"
 msgstr ""
 
-#: .\attribution_preference\models.py:21
+#: .\attribution_preference\models.py:32
 msgid "preference_schedule"
 msgstr ""
 
-#: .\attribution_preference\models.py:22
+#: .\attribution_preference\models.py:33
 msgid "preference_schedules"
 msgstr ""
 
-#: .\attribution_preference\models.py:33
+#: .\attribution_preference\models.py:47
+msgid "priority"
+msgstr ""
+
+#: .\attribution_preference\models.py:51
 msgid "course_preference"
 msgstr ""
 
-#: .\attribution_preference\models.py:34
+#: .\attribution_preference\models.py:52
 msgid "course_preferences"
 msgstr ""
 
-#: .\classs\models.py:7
+#: .\classs\models.py:9
 msgid "registration class id"
 msgstr ""
 
-#: .\classs\models.py:8
+#: .\classs\models.py:11
 msgid "period"
 msgstr ""
 
-#: .\classs\models.py:9
+#: .\classs\models.py:13
 msgid "semester"
 msgstr ""
 
-#: .\classs\models.py:13
+#: .\classs\models.py:17
 msgid "classs"
 msgstr ""
 
-#: .\classs\models.py:14
+#: .\classs\models.py:18
 msgid "classes"
 msgstr ""
 
-#: .\course\models.py:6
+#: .\course\models.py:8
 msgid "registration course id"
 msgstr ""
 
-#: .\course\models.py:7
+#: .\course\models.py:9
 msgid "course name"
 msgstr ""
 
-#: .\course\models.py:13
+#: .\course\models.py:22
 msgid "course"
 msgstr ""
 
-#: .\course\models.py:14
+#: .\course\models.py:23
 msgid "courses"
 msgstr ""
 
-#: .\setup\settings.py:155
+#: .\professor\views.py:385
+msgid "Email enviado com sucesso."
+msgstr ""
+
+#: .\setup\settings.py:159
 msgid "English"
 msgstr ""
 
-#: .\setup\settings.py:156
+#: .\setup\settings.py:160
 msgid "Brazilian Portuguese"
 msgstr ""
 
-#: .\staff\models.py:9 .\user\models.py:108
+#: .\staff\models.py:9 .\user\models.py:226
 msgid "name"
 msgstr ""
 
@@ -145,1553 +162,2500 @@ msgstr ""
 msgid "deadline end"
 msgstr ""
 
-#: .\staff\models.py:15
+#: .\staff\models.py:17
 msgid "deadline"
 msgstr ""
 
-#: .\staff\models.py:16
+#: .\staff\models.py:18
 msgid "deadlines"
+msgstr ""
+
+#: .\staff\models.py:42
+msgid "name alert"
+msgstr ""
+
+#: .\staff\models.py:44
+msgid "title"
+msgstr ""
+
+#: .\staff\models.py:45
+msgid "description"
+msgstr ""
+
+#: .\staff\models.py:49
+msgid "alert"
+msgstr ""
+
+#: .\staff\models.py:50
+msgid "alerts"
+msgstr ""
+
+#: .\templates\admin\base_site.html:7
+msgid "Django site admin"
+msgstr ""
+
+#: .\templates\admin\deadline_configuration.html:17
+#: .\templates\admin\deadline_configuration_confirm.html:18
+msgid "Configuração de prazos | Django site admin"
+msgstr ""
+
+#: .\templates\admin\deadline_configuration.html:24
+#: .\templates\admin\deadline_configuration_confirm.html:27
+msgid "Bem-vindo(a)"
+msgstr ""
+
+#: .\templates\admin\deadline_configuration.html:26
+#: .\templates\admin\deadline_configuration_confirm.html:29
+msgid "Ver o site"
+msgstr ""
+
+#: .\templates\admin\deadline_configuration.html:27
+#: .\templates\admin\deadline_configuration_confirm.html:30
+msgid "Alterar senha"
+msgstr ""
+
+#: .\templates\admin\deadline_configuration.html:31
+#: .\templates\admin\deadline_configuration_confirm.html:34
+msgid "Encerrar sessão"
+msgstr ""
+
+#: .\templates\admin\deadline_configuration.html:40
+#: .\templates\admin\deadline_configuration_confirm.html:42
+#: .\templates\professor\home_professor.html:14
+#: .\templates\professor\home_professor.html:18
+#: .\templates\staff\home_staff.html:14 .\templates\staff\home_staff.html:18
+msgid "Página inicial"
+msgstr ""
+
+#: .\templates\admin\deadline_configuration.html:41
+#: .\templates\admin\deadline_configuration.html:48
+#: .\templates\admin\deadline_configuration_confirm.html:43
+msgid "Configuração de prazos"
+msgstr ""
+
+#: .\templates\admin\deadline_configuration.html:50
+msgid "Mensagem de erro"
+msgstr ""
+
+#: .\templates\admin\deadline_configuration.html:55
+msgid "Semestral"
+msgstr ""
+
+#: .\templates\admin\deadline_configuration.html:59
+msgid "Ano"
+msgstr ""
+
+#: .\templates\admin\deadline_configuration.html:63
+#: .\templates\staff\classs\classes_list.html:46
+#: .\templates\staff\classs\classes_list.html:106
+#: .\templates\staff\classs\classes_list.html:156
+msgid "Semestre"
+msgstr ""
+
+#: .\templates\admin\deadline_configuration.html:73
+msgid "Prazo para o envio de FPA"
+msgstr ""
+
+#: .\templates\admin\deadline_configuration.html:77
+#: .\templates\admin\deadline_configuration.html:93
+msgid "Ínicio"
+msgstr ""
+
+#: .\templates\admin\deadline_configuration.html:82
+#: .\templates\admin\deadline_configuration.html:98
+#: .\templates\attribution_preference\attribution_preference.html:97
+#: .\templates\attribution_preference\attribution_preference.html:106
+#: .\templates\attribution_preference\attribution_preference.html:115
+#: .\templates\professor\home_professor.html:53
+#: .\templates\professor\home_professor.html:68
+#: .\templates\professor\home_professor.html:81
+#: .\templates\professor\home_professor.html:94
+#: .\templates\staff\attribution\attribution_configuration.html:39
+#: .\templates\staff\attribution\attribution_configuration.html:47
+#: .\templates\staff\deadline\confirm_deadline_configuration.html:15
+#: .\templates\staff\deadline\confirm_deadline_configuration.html:18
+#: .\templates\staff\deadline\confirm_deadline_configuration.html:21
+#: .\templates\staff\deadline\deadline_configuration.html:18
+#: .\templates\staff\deadline\deadline_configuration.html:21
+#: .\templates\staff\deadline\deadline_configuration.html:24
+#: .\templates\staff\home_staff.html:60 .\templates\staff\home_staff.html:75
+#: .\templates\staff\home_staff.html:88 .\templates\staff\home_staff.html:101
+msgid "Fim"
+msgstr ""
+
+#: .\templates\admin\deadline_configuration.html:89
+msgid "Prazo do processo de atribuição"
+msgstr ""
+
+#: .\templates\admin\deadline_configuration.html:104
+#: .\templates\attribution\email_test.html:3
+#: .\templates\attribution\manual_attribution.html:481
+#: .\templates\contact.html:57 .\templates\staff\queue\queue_create.html:109
+#: .\templates\staff\timetable\edit_timetable.html:162
+#: .\templates\staff\timetable\register.html:167
+#: .\templates\user\register.html:3
+msgid "Enviar"
+msgstr ""
+
+#: .\templates\admin\deadline_configuration_confirm.html:49
+msgid "Configuração Salva"
+msgstr ""
+
+#: .\templates\admin\index.html:30
+msgid "IMPORTANTE"
+msgstr ""
+
+#: .\templates\admin\index.html:31
+msgid "Tarefas a serem realizadas"
+msgstr ""
+
+#: .\templates\admin\index.html:33
+msgid "Configurar prazos"
+msgstr ""
+
+#: .\templates\admin\index.html:36
+msgid "Recent actions"
+msgstr ""
+
+#: .\templates\admin\index.html:37
+msgid "My actions"
+msgstr ""
+
+#: .\templates\admin\index.html:41
+msgid "None available"
+msgstr ""
+
+#: .\templates\admin\index.html:48
+msgid "Added:"
+msgstr ""
+
+#: .\templates\admin\index.html:48
+msgid "Changed:"
+msgstr ""
+
+#: .\templates\admin\index.html:48
+msgid "Deleted:"
+msgstr ""
+
+#: .\templates\admin\index.html:58
+msgid "Unknown content"
 msgstr ""
 
 #: .\templates\attribution\attribution.html:6
 #: .\templates\staff\attribution\attribution_configuration.html:6
 msgid "Configuração Atribuição"
-msgstr "Configuration Attribution"
-
-#: .\templates\attribution\attribution.html:22
-#, python-format
-msgid ""
-"\n"
-"    %(text)s %(name_block_text)s</h1>\n"
-"  "
 msgstr ""
 
-#: .\templates\attribution\attribution.html:28
-msgid "Professor sendo atribuído"
-msgstr "Professor being assigned"
+#: .\templates\attribution\attribution.html:22
+msgid "Atribuição do Bloco"
+msgstr ""
+
+#: .\templates\attribution\attribution.html:27
+#: .\templates\attribution\attribution_class_list.html:16
+#: .\templates\attribution\attribution_detail.html:22
+#: .\templates\attribution\attribution_list.html:18
+#: .\templates\attribution\manual_attribution.html:38
+msgid "Atribuição"
+msgstr ""
 
 #: .\templates\attribution\attribution.html:32
+msgid "Professor sendo atribuído"
+msgstr ""
+
+#: .\templates\attribution\attribution.html:36
 msgid "Você"
-msgstr "You"
+msgstr ""
 
-#: .\templates\attribution\attribution.html:40
+#: .\templates\attribution\attribution.html:44
 msgid "Tempo restante"
-msgstr "Time left"
+msgstr ""
 
-#: .\templates\attribution\attribution.html:49
+#: .\templates\attribution\attribution.html:54
 msgid "Escolher novas disciplinas"
-msgstr "Choose new subjects"
+msgstr ""
 
-#: .\templates\attribution\attribution.html:60
-#: .\templates\attribution\queueSetup.html:42
-#: .\templates\staff\attribution\attribution_configuration.html:54
-#: .\templates\staff\queue\queue_create.html:57
+#: .\templates\attribution\attribution.html:65
+#: .\templates\staff\attribution\attribution_configuration.html:56
+#: .\templates\staff\queue\queue_create.html:66
 #: .\templates\staff\queue\queue_show.html:26
 msgid "Posição"
-msgstr "Position"
+msgstr ""
 
-#: .\templates\attribution\attribution.html:61
-#: .\templates\attribution\attribution_list.html:19
-#: .\templates\attribution\queueSetup.html:44
-#: .\templates\attribution_preference\attribution_preference.html:289
-#: .\templates\staff\attribution\attribution_configuration.html:55
-#: .\templates\staff\blockk\block_detail.html:71
-#: .\templates\staff\blockk\block_detail.html:116
-#: .\templates\staff\blockk\block_detail.html:151
-#: .\templates\staff\blockk\blocks_list.html:27
-#: .\templates\staff\professor\professors_list.html:27
-#: .\templates\staff\professor\professors_list.html:82
-#: .\templates\staff\queue\queue_create.html:59
+#: .\templates\attribution\attribution.html:66
+#: .\templates\attribution\attribution_list.html:27
+#: .\templates\attribution_preference\show_attribution_preference.html:464
+#: .\templates\contact.html:33
+#: .\templates\professor\blockk\block_detail.html:70
+#: .\templates\professor\blockk\blocks_list.html:37
+#: .\templates\staff\attribution\attribution_configuration.html:57
+#: .\templates\staff\blockk\block_detail.html:88
+#: .\templates\staff\blockk\block_detail.html:140
+#: .\templates\staff\blockk\block_detail.html:177
+#: .\templates\staff\blockk\blocks_list.html:37
+#: .\templates\staff\professor\professors_list.html:51
+#: .\templates\staff\professor\professors_list.html:185
+#: .\templates\staff\professor\professors_list.html:348
+#: .\templates\staff\professor\register.html:44
+#: .\templates\staff\queue\queue_create.html:68
 #: .\templates\staff\queue\queue_show.html:28
 msgid "Nome"
-msgstr "Name"
+msgstr ""
 
-#: .\templates\attribution\attribution.html:62
-#: .\templates\attribution_preference\attribution_preference.html:70
+#: .\templates\attribution\attribution.html:67
+#: .\templates\attribution_preference\show_attribution_preference.html:44
+#: .\templates\contact.html:38 .\templates\professor\profile.html:68
+#: .\templates\registration\signup.html:68
 msgid "E-mail"
-msgstr "Email"
+msgstr ""
 
 #: .\templates\attribution\attribution_class_list.html:6
-msgid "Classes Atribuídas"
-msgstr "Assigned Classes"
-
 #: .\templates\attribution\attribution_class_list.html:11
-#: .\templates\attribution\attribution_class_list.html:16
-msgid "Classes"
-msgstr "Classes"
-
 #: .\templates\attribution\attribution_class_list.html:17
-#: .\templates\attribution_preference\attribution_preference.html:66
-#: .\templates\staff\classs\classes_list.html:30
-#: .\templates\staff\classs\classes_list.html:87
-#: .\templates\staff\classs\classes_list.html:140
-#: .\templates\staff\timetable\timetables.html:28
-msgid "Área"
-msgstr "Area"
+#: .\templates\attribution\attribution_detail.html:23
+msgid "Turmas Atribuídas"
+msgstr ""
 
-#: .\templates\attribution\attribution_class_list.html:18
-#: .\templates\staff\professor\professors_list.html:35
+#: .\templates\attribution\attribution_class_list.html:24
+#: .\templates\staff\classs\classes_list.html:7
+#: .\templates\staff\classs\classes_list.html:22
+#: .\templates\staff\classs\classes_list.html:27
+msgid "Turmas"
+msgstr ""
+
+#: .\templates\attribution\attribution_class_list.html:25
+#: .\templates\staff\classs\classes_list.html:47
+#: .\templates\staff\classs\classes_list.html:109
+#: .\templates\staff\classs\classes_list.html:160
+#: .\templates\staff\timetable\timetables.html:31
+msgid "Área"
+msgstr ""
+
+#: .\templates\attribution\attribution_class_list.html:26
+#: .\templates\staff\professor\professors_list.html:69
 msgid "Ações"
-msgstr "Actions"
+msgstr ""
 
 #: .\templates\attribution\attribution_detail.html:7
-msgid "Grade horária"
-msgstr "Timetable"
-
-#: .\templates\attribution\attribution_detail.html:15
-msgid "Grade horária da "
-msgstr "Timetable of"
-
-#: .\templates\attribution\attribution_detail.html:20
-#: .\templates\attribution\manual_attribution.html:400
-#: .\templates\attribution_preference\courses_attribution_preference.html:397
-#: .\templates\professor\profile.html:21
-#: .\templates\staff\timetable\edit_timetable.html:20
-#: .\templates\staff\timetable\register.html:39
-#: .\templates\staff\timetable\show_timetable.html:41
-msgid "Horário"
-msgstr "Timeslot"
-
-#: .\templates\attribution\attribution_detail.html:21
-#: .\templates\professor\profile.html:22
-#: .\templates\staff\timetable\edit_timetable.html:21
-#: .\templates\staff\timetable\register.html:40
-#: .\templates\staff\timetable\show_timetable.html:42
-msgid "Segunda-feira"
-msgstr "Monday"
-
-#: .\templates\attribution\attribution_detail.html:22
-#: .\templates\professor\profile.html:23
-#: .\templates\staff\timetable\edit_timetable.html:22
-#: .\templates\staff\timetable\register.html:41
-#: .\templates\staff\timetable\show_timetable.html:43
-msgid "Terça-feira"
-msgstr "Tuesday"
-
-#: .\templates\attribution\attribution_detail.html:23
-#: .\templates\professor\profile.html:24
-#: .\templates\staff\timetable\edit_timetable.html:23
-#: .\templates\staff\timetable\register.html:42
-#: .\templates\staff\timetable\show_timetable.html:44
-msgid "Quarta-feira"
-msgstr "Wednesday"
+#: .\templates\attribution\attribution_detail.html:17
+msgid "Grade Horária Final"
+msgstr ""
 
 #: .\templates\attribution\attribution_detail.html:24
-#: .\templates\professor\profile.html:25
-#: .\templates\staff\timetable\edit_timetable.html:24
+#: .\templates\professor\base.html:93 .\templates\professor\base.html:164
+#: .\templates\professor\base_attribution.html:88
+#: .\templates\professor\base_attribution.html:159
+#: .\templates\staff\base.html:85 .\templates\staff\base.html:159
+#: .\templates\staff\timetable\register.html:14
+msgid "Grade"
+msgstr ""
+
+#: .\templates\attribution\attribution_detail.html:32
+#: .\templates\attribution\manual_attribution.html:109
+#: .\templates\attribution_preference\courses_attribution_preference.html:111
+#: .\templates\attribution_preference\courses_attribution_preference.html:399
+#: .\templates\attribution_preference\disponibility_attribution_preference.html:122
+#: .\templates\attribution_preference\show_attribution_preference.html:84
+#: .\templates\attribution_preference\show_attribution_preference.html:280
+#: .\templates\professor\assignment\show_assignment.html:29
+#: .\templates\professor\profile.html:146
+#: .\templates\staff\timetable\edit_timetable.html:30
+#: .\templates\staff\timetable\register.html:35
+#: .\templates\staff\timetable\show_timetable.html:30
+msgid "Matutino"
+msgstr ""
+
+#: .\templates\attribution\attribution_detail.html:36
+#: .\templates\attribution\attribution_detail.html:69
+#: .\templates\attribution\attribution_detail.html:102
+#: .\templates\professor\assignment\show_assignment.html:35
+#: .\templates\professor\assignment\show_assignment.html:70
+#: .\templates\professor\assignment\show_assignment.html:105
+#: .\templates\professor\profile.html:152
+#: .\templates\professor\profile.html:187
+#: .\templates\professor\profile.html:222
+#: .\templates\professor\profile.html:258
+#: .\templates\professor\profile.html:293
+#: .\templates\staff\timetable\edit_timetable.html:36
+#: .\templates\staff\timetable\edit_timetable.html:80
+#: .\templates\staff\timetable\edit_timetable.html:124
+#: .\templates\staff\timetable\register.html:41
+#: .\templates\staff\timetable\register.html:85
+#: .\templates\staff\timetable\register.html:129
+#: .\templates\staff\timetable\show_timetable.html:37
+#: .\templates\staff\timetable\show_timetable.html:71
+#: .\templates\staff\timetable\show_timetable.html:105
+msgid "Horário"
+msgstr ""
+
+#: .\templates\attribution\attribution_detail.html:37
+#: .\templates\attribution\attribution_detail.html:70
+#: .\templates\attribution\attribution_detail.html:103
+#: .\templates\attribution_preference\show_attribution_preference.html:72
+#: .\templates\attribution_preference\show_attribution_preference.html:268
+#: .\templates\professor\assignment\show_assignment.html:36
+#: .\templates\professor\assignment\show_assignment.html:71
+#: .\templates\professor\assignment\show_assignment.html:106
+#: .\templates\professor\profile.html:153
+#: .\templates\professor\profile.html:188
+#: .\templates\professor\profile.html:223
+#: .\templates\professor\profile.html:259
+#: .\templates\professor\profile.html:294
+#: .\templates\staff\timetable\edit_timetable.html:37
+#: .\templates\staff\timetable\edit_timetable.html:81
+#: .\templates\staff\timetable\edit_timetable.html:125
+#: .\templates\staff\timetable\register.html:42
+#: .\templates\staff\timetable\register.html:86
+#: .\templates\staff\timetable\register.html:130
+#: .\templates\staff\timetable\show_timetable.html:38
+#: .\templates\staff\timetable\show_timetable.html:72
+#: .\templates\staff\timetable\show_timetable.html:106
+msgid "Segunda-feira"
+msgstr ""
+
+#: .\templates\attribution\attribution_detail.html:38
+#: .\templates\attribution\attribution_detail.html:71
+#: .\templates\attribution\attribution_detail.html:104
+#: .\templates\attribution_preference\show_attribution_preference.html:73
+#: .\templates\attribution_preference\show_attribution_preference.html:269
+#: .\templates\professor\assignment\show_assignment.html:37
+#: .\templates\professor\assignment\show_assignment.html:72
+#: .\templates\professor\assignment\show_assignment.html:107
+#: .\templates\professor\profile.html:154
+#: .\templates\professor\profile.html:189
+#: .\templates\professor\profile.html:224
+#: .\templates\professor\profile.html:260
+#: .\templates\professor\profile.html:295
+#: .\templates\staff\timetable\edit_timetable.html:38
+#: .\templates\staff\timetable\edit_timetable.html:82
+#: .\templates\staff\timetable\edit_timetable.html:126
 #: .\templates\staff\timetable\register.html:43
-#: .\templates\staff\timetable\show_timetable.html:45
-msgid "Quinta-feira"
-msgstr "Thursday"
+#: .\templates\staff\timetable\register.html:87
+#: .\templates\staff\timetable\register.html:131
+#: .\templates\staff\timetable\show_timetable.html:39
+#: .\templates\staff\timetable\show_timetable.html:73
+#: .\templates\staff\timetable\show_timetable.html:107
+msgid "Terça-feira"
+msgstr ""
 
-#: .\templates\attribution\attribution_detail.html:25
-#: .\templates\professor\profile.html:26
-#: .\templates\staff\timetable\edit_timetable.html:25
+#: .\templates\attribution\attribution_detail.html:39
+#: .\templates\attribution\attribution_detail.html:72
+#: .\templates\attribution\attribution_detail.html:105
+#: .\templates\attribution_preference\show_attribution_preference.html:74
+#: .\templates\attribution_preference\show_attribution_preference.html:270
+#: .\templates\professor\assignment\show_assignment.html:38
+#: .\templates\professor\assignment\show_assignment.html:73
+#: .\templates\professor\assignment\show_assignment.html:108
+#: .\templates\professor\profile.html:155
+#: .\templates\professor\profile.html:190
+#: .\templates\professor\profile.html:225
+#: .\templates\professor\profile.html:261
+#: .\templates\professor\profile.html:296
+#: .\templates\staff\timetable\edit_timetable.html:39
+#: .\templates\staff\timetable\edit_timetable.html:83
+#: .\templates\staff\timetable\edit_timetable.html:127
 #: .\templates\staff\timetable\register.html:44
-#: .\templates\staff\timetable\show_timetable.html:46
-msgid "Sexta-feira"
-msgstr "Friday"
+#: .\templates\staff\timetable\register.html:88
+#: .\templates\staff\timetable\register.html:132
+#: .\templates\staff\timetable\show_timetable.html:40
+#: .\templates\staff\timetable\show_timetable.html:74
+#: .\templates\staff\timetable\show_timetable.html:108
+msgid "Quarta-feira"
+msgstr ""
 
-#: .\templates\attribution\attribution_detail.html:26
-msgid "Sábado-feira"
-msgstr "Saturday"
+#: .\templates\attribution\attribution_detail.html:40
+#: .\templates\attribution\attribution_detail.html:73
+#: .\templates\attribution\attribution_detail.html:106
+#: .\templates\attribution_preference\show_attribution_preference.html:75
+#: .\templates\attribution_preference\show_attribution_preference.html:271
+#: .\templates\professor\assignment\show_assignment.html:39
+#: .\templates\professor\assignment\show_assignment.html:74
+#: .\templates\professor\assignment\show_assignment.html:109
+#: .\templates\professor\profile.html:156
+#: .\templates\professor\profile.html:191
+#: .\templates\professor\profile.html:226
+#: .\templates\professor\profile.html:262
+#: .\templates\professor\profile.html:297
+#: .\templates\staff\timetable\edit_timetable.html:40
+#: .\templates\staff\timetable\edit_timetable.html:84
+#: .\templates\staff\timetable\edit_timetable.html:128
+#: .\templates\staff\timetable\register.html:45
+#: .\templates\staff\timetable\register.html:89
+#: .\templates\staff\timetable\register.html:133
+#: .\templates\staff\timetable\show_timetable.html:41
+#: .\templates\staff\timetable\show_timetable.html:75
+#: .\templates\staff\timetable\show_timetable.html:109
+msgid "Quinta-feira"
+msgstr ""
+
+#: .\templates\attribution\attribution_detail.html:41
+#: .\templates\attribution\attribution_detail.html:74
+#: .\templates\attribution\attribution_detail.html:107
+#: .\templates\attribution_preference\show_attribution_preference.html:76
+#: .\templates\attribution_preference\show_attribution_preference.html:272
+#: .\templates\professor\assignment\show_assignment.html:40
+#: .\templates\professor\assignment\show_assignment.html:75
+#: .\templates\professor\assignment\show_assignment.html:110
+#: .\templates\professor\profile.html:157
+#: .\templates\professor\profile.html:192
+#: .\templates\professor\profile.html:227
+#: .\templates\professor\profile.html:263
+#: .\templates\professor\profile.html:298
+#: .\templates\staff\timetable\edit_timetable.html:41
+#: .\templates\staff\timetable\edit_timetable.html:85
+#: .\templates\staff\timetable\edit_timetable.html:129
+#: .\templates\staff\timetable\register.html:46
+#: .\templates\staff\timetable\register.html:90
+#: .\templates\staff\timetable\register.html:134
+#: .\templates\staff\timetable\show_timetable.html:42
+#: .\templates\staff\timetable\show_timetable.html:76
+#: .\templates\staff\timetable\show_timetable.html:110
+msgid "Sexta-feira"
+msgstr ""
+
+#: .\templates\attribution\attribution_detail.html:42
+#: .\templates\attribution\attribution_detail.html:75
+#: .\templates\attribution\attribution_detail.html:108
+#: .\templates\attribution\manual_attribution.html:103
+#: .\templates\attribution_preference\courses_attribution_preference.html:91
+#: .\templates\attribution_preference\disponibility_attribution_preference.html:114
+#: .\templates\attribution_preference\show_attribution_preference.html:77
+#: .\templates\attribution_preference\show_attribution_preference.html:273
+#: .\templates\professor\assignment\show_assignment.html:41
+#: .\templates\professor\assignment\show_assignment.html:76
+#: .\templates\professor\assignment\show_assignment.html:111
+#: .\templates\professor\profile.html:158
+#: .\templates\professor\profile.html:193
+#: .\templates\professor\profile.html:228
+#: .\templates\professor\profile.html:264
+#: .\templates\professor\profile.html:299
+#: .\templates\staff\timetable\edit_timetable.html:42
+#: .\templates\staff\timetable\edit_timetable.html:86
+#: .\templates\staff\timetable\edit_timetable.html:130
+#: .\templates\staff\timetable\register.html:47
+#: .\templates\staff\timetable\register.html:91
+#: .\templates\staff\timetable\register.html:135
+#: .\templates\staff\timetable\show_timetable.html:43
+#: .\templates\staff\timetable\show_timetable.html:77
+#: .\templates\staff\timetable\show_timetable.html:111
+msgid "Sábado"
+msgstr ""
+
+#: .\templates\attribution\attribution_detail.html:65
+#: .\templates\attribution\manual_attribution.html:203
+#: .\templates\attribution_preference\courses_attribution_preference.html:205
+#: .\templates\attribution_preference\courses_attribution_preference.html:493
+#: .\templates\attribution_preference\disponibility_attribution_preference.html:205
+#: .\templates\attribution_preference\show_attribution_preference.html:142
+#: .\templates\attribution_preference\show_attribution_preference.html:338
+#: .\templates\professor\assignment\show_assignment.html:63
+#: .\templates\professor\profile.html:180
+#: .\templates\staff\timetable\edit_timetable.html:74
+#: .\templates\staff\timetable\register.html:79
+#: .\templates\staff\timetable\show_timetable.html:64
+msgid "Vespertino"
+msgstr ""
+
+#: .\templates\attribution\attribution_detail.html:98
+#: .\templates\attribution\manual_attribution.html:299
+#: .\templates\attribution_preference\courses_attribution_preference.html:301
+#: .\templates\attribution_preference\courses_attribution_preference.html:589
+#: .\templates\attribution_preference\disponibility_attribution_preference.html:289
+#: .\templates\attribution_preference\show_attribution_preference.html:200
+#: .\templates\attribution_preference\show_attribution_preference.html:395
+#: .\templates\professor\assignment\show_assignment.html:98
+#: .\templates\professor\profile.html:215
+#: .\templates\staff\timetable\edit_timetable.html:118
+#: .\templates\staff\timetable\register.html:123
+#: .\templates\staff\timetable\show_timetable.html:98
+msgid "Noturno"
+msgstr ""
 
 #: .\templates\attribution\attribution_error_page_after.html:6
 msgid "Fim Atribuição"
-msgstr "Attribution Ended"
+msgstr ""
 
-#: .\templates\attribution\attribution_error_page_after.html:15
+#: .\templates\attribution\attribution_error_page_after.html:14
 msgid "A atribuição já acabou"
-msgstr "Attribution is over"
+msgstr ""
 
 #: .\templates\attribution\attribution_error_page_after.html:17
-#: .\templates\attribution\attribution_error_page_before.html:23
-#: .\templates\attribution\manual_attribution_confirm.html:19
-#: .\templates\attribution\manual_attribution_timesup.html:19
-#: .\templates\staff\attribution\attribution_configuration_confirm.html:19
-msgid "Voltar à página inicial"
-msgstr "Return to home page"
+msgid "Veja a grade horária das turmas"
+msgstr ""
 
 #: .\templates\attribution\attribution_error_page_before.html:6
 msgid "Atribuição Não Começou"
-msgstr "Attribution Not Started"
+msgstr ""
 
 #: .\templates\attribution\attribution_error_page_before.html:15
 msgid "Você chegou muito cedo"
-msgstr "You arrived too early"
+msgstr ""
 
 #: .\templates\attribution\attribution_error_page_before.html:16
 msgid "A atribuição ainda não começou, por favor aguarde"
-msgstr "Attribution has not started yet, please wait"
+msgstr ""
 
 #: .\templates\attribution\attribution_error_page_before.html:18
-#, python-format
-msgid ""
-"\n"
-"            <p>%(text)s <strong>%(day_text)s</strong> %(text2)s <strong>"
-"%(time_text)s<strong></p>\n"
-"         "
+msgid "Está prevista para se iniciar"
+msgstr ""
+
+#: .\templates\attribution\attribution_error_page_before.html:18
+#: .\templates\attribution_preference\attribution_preference.html:96
+#: .\templates\attribution_preference\attribution_preference.html:97
+#: .\templates\attribution_preference\attribution_preference.html:105
+#: .\templates\attribution_preference\attribution_preference.html:106
+#: .\templates\attribution_preference\attribution_preference.html:114
+#: .\templates\attribution_preference\attribution_preference.html:115
+#: .\templates\professor\home_professor.html:48
+#: .\templates\professor\home_professor.html:52
+#: .\templates\professor\home_professor.html:63
+#: .\templates\professor\home_professor.html:67
+#: .\templates\professor\home_professor.html:76
+#: .\templates\professor\home_professor.html:80
+#: .\templates\professor\home_professor.html:89
+#: .\templates\professor\home_professor.html:93
+#: .\templates\staff\home_staff.html:55 .\templates\staff\home_staff.html:59
+#: .\templates\staff\home_staff.html:70 .\templates\staff\home_staff.html:74
+#: .\templates\staff\home_staff.html:83 .\templates\staff\home_staff.html:87
+#: .\templates\staff\home_staff.html:96 .\templates\staff\home_staff.html:100
+msgid "às"
+msgstr ""
+
+#: .\templates\attribution\attribution_error_page_before.html:21
+#: .\templates\attribution\manual_attribution_confirm.html:20
+#: .\templates\attribution\manual_attribution_timesup.html:24
+#: .\templates\staff\attribution\attribution_configuration_confirm.html:17
+msgid "Voltar à página inicial"
 msgstr ""
 
 #: .\templates\attribution\attribution_list.html:7
-msgid "Blocos Atribuídos"
-msgstr "Assigned Blocks"
-
 #: .\templates\attribution\attribution_list.html:13
-#: .\templates\staff\blockk\block_detail.html:20
-#: .\templates\staff\blockk\blocks_list.html:7
-#: .\templates\staff\blockk\blocks_list.html:14
-#: .\templates\staff\blockk\blocks_list.html:19
-#: .\templates\staff\home_staff.html:29
-msgid "Blocos"
-msgstr "Blocks"
-
-#: .\templates\attribution\attribution_list.html:18
-#: .\templates\attribution\queueSetup.html:43
-#: .\templates\staff\blockk\block_detail.html:46
-#: .\templates\staff\blockk\block_detail.html:70
-#: .\templates\staff\blockk\block_detail.html:112
-#: .\templates\staff\blockk\block_detail.html:147
-#: .\templates\staff\blockk\blocks_list.html:26
-#: .\templates\staff\classs\classes_list.html:27
-#: .\templates\staff\classs\classes_list.html:69
-#: .\templates\staff\classs\classes_list.html:120
-#: .\templates\staff\professor\professors_list.html:26
-#: .\templates\staff\professor\professors_list.html:78
-#: .\templates\staff\queue\queue_create.html:58
-#: .\templates\staff\queue\queue_show.html:27
-#: .\templates\staff\timetable\timetables.html:27
-msgid "Registro"
-msgstr "Registration Id"
-
-#: .\templates\attribution\attribution_list.html:20
-#: .\templates\attribution\manual_attribution.html:401
-#: .\templates\attribution_preference\attribution_preference.html:288
-#: .\templates\attribution_preference\courses_attribution_preference.html:398
-#: .\templates\staff\blockk\block_detail.html:72
-#: .\templates\staff\blockk\block_detail.html:120
-#: .\templates\staff\blockk\block_detail.html:155
-#: .\templates\staff\blockk\blocks_list.html:28
-msgid "Sigla"
-msgstr "Acronym"
-
-#: .\templates\attribution\attribution_list.html:21
-#: .\templates\staff\blockk\block_detail.html:73
-#: .\templates\staff\blockk\blocks_list.html:29
-#: .\templates\staff\classs\classes_list.html:31
-#: .\templates\staff\timetable\timetables.html:29
-msgid "Ação"
-msgstr "Action"
-
-#: .\templates\attribution\attribution_list.html:30
-#, python-format
-msgid ""
-"\n"
-"                            <td>%(name_block_text)s</td>\n"
-"                          "
+#: .\templates\attribution\attribution_list.html:19
+msgid "Blocos Atribuídos"
 msgstr ""
 
-#: .\templates\attribution\attribution_list.html:33
-#, python-format
-msgid ""
-"\n"
-"                            <td>%(acronym_text)s</td>\n"
-"                          "
+#: .\templates\attribution\attribution_list.html:26
+#: .\templates\professor\blockk\block_detail.html:43
+#: .\templates\professor\blockk\block_detail.html:69
+#: .\templates\professor\blockk\blocks_list.html:36
+#: .\templates\staff\blockk\block_detail.html:57
+#: .\templates\staff\blockk\block_detail.html:87
+#: .\templates\staff\blockk\block_detail.html:136
+#: .\templates\staff\blockk\block_detail.html:173
+#: .\templates\staff\blockk\blocks_list.html:36
+#: .\templates\staff\classs\classes_list.html:44
+#: .\templates\staff\classs\classes_list.html:93
+#: .\templates\staff\classs\classes_list.html:142
+#: .\templates\staff\professor\professors_list.html:53
+#: .\templates\staff\professor\register.html:46
+#: .\templates\staff\queue\queue_create.html:67
+#: .\templates\staff\queue\queue_show.html:27
+#: .\templates\staff\timetable\timetables.html:30
+msgid "Registro"
+msgstr ""
+
+#: .\templates\attribution\attribution_list.html:28
+#: .\templates\attribution_preference\show_attribution_preference.html:463
+#: .\templates\professor\blockk\block_detail.html:46
+#: .\templates\professor\blockk\block_detail.html:71
+#: .\templates\professor\blockk\blocks_list.html:38
+#: .\templates\staff\blockk\block_detail.html:59
+#: .\templates\staff\blockk\block_detail.html:89
+#: .\templates\staff\blockk\block_detail.html:144
+#: .\templates\staff\blockk\block_detail.html:181
+#: .\templates\staff\blockk\blocks_list.html:38
+msgid "Sigla"
+msgstr ""
+
+#: .\templates\attribution\attribution_list.html:29
+#: .\templates\professor\blockk\blocks_list.html:39
+#: .\templates\staff\blockk\block_detail.html:91
+#: .\templates\staff\blockk\blocks_list.html:39
+#: .\templates\staff\classs\classes_list.html:49
+#: .\templates\staff\timetable\timetables.html:32
+msgid "Ação"
 msgstr ""
 
 #: .\templates\attribution\manual_attribution.html:6
+#: .\templates\attribution\manual_attribution.html:33
 msgid "Atribuição Manual"
-msgstr "Manual Attribution"
-
-#: .\templates\attribution\manual_attribution.html:29
-msgid "Escolha as suas preferências novamente"
-msgstr "Choose your preferences again"
-
-#: .\templates\attribution\manual_attribution.html:41
-#: .\templates\professor\base.html:68 .\templates\professor\base.html:132
-#: .\templates\professor\base_attribution.html:70
-#: .\templates\professor\base_attribution.html:134
-#: .\templates\staff\base.html:67 .\templates\staff\base.html:132
-#: .\templates\staff\deadline\deadline_configuration.html:27
-#: .\templates\staff\deadline\deadline_configuration.html:28
-#: .\templates\staff\queue\queue_create.html:27 .\templates\user\base.html:68
-#: .\templates\user\base.html:132
-msgid "Bloco"
-msgstr "Block"
-
-#: .\templates\attribution\manual_attribution.html:52
-#: .\templates\attribution_preference\courses_attribution_preference.html:46
-msgid "Células de horas restantes"
-msgstr "Hours remaining cells"
-
-#: .\templates\attribution\manual_attribution.html:55
-#: .\templates\attribution_preference\courses_attribution_preference.html:49
-#: .\templates\attribution_preference\disponibility_attribution_preference.html:68
-msgid "células"
-msgstr "cells"
-
-#: .\templates\attribution\manual_attribution.html:64
-#: .\templates\attribution\manual_attribution.html:385
-#: .\templates\attribution_preference\courses_attribution_preference.html:58
-#: .\templates\attribution_preference\courses_attribution_preference.html:382
-msgid "Disciplinas"
-msgstr "Courses"
-
-#: .\templates\attribution\manual_attribution.html:74
-#: .\templates\attribution_preference\attribution_preference.html:98
-#: .\templates\attribution_preference\attribution_preference.html:291
-#: .\templates\attribution_preference\courses_attribution_preference.html:69
-#: .\templates\attribution_preference\disponibility_attribution_preference.html:84
-#: .\templates\staff\classs\classes_list.html:28
-#: .\templates\staff\classs\classes_list.html:73
-#: .\templates\staff\classs\classes_list.html:124
-msgid "Período"
-msgstr "Period"
-
-#: .\templates\attribution\manual_attribution.html:75
-#: .\templates\attribution_preference\attribution_preference.html:99
-#: .\templates\attribution_preference\courses_attribution_preference.html:70
-#: .\templates\attribution_preference\disponibility_attribution_preference.html:85
-msgid "Horários"
-msgstr "Timeslots"
-
-#: .\templates\attribution\manual_attribution.html:76
-#: .\templates\attribution_preference\attribution_preference.html:100
-#: .\templates\attribution_preference\courses_attribution_preference.html:71
-#: .\templates\attribution_preference\disponibility_attribution_preference.html:86
-msgid "Segunda-Feira"
-msgstr "Monday"
-
-#: .\templates\attribution\manual_attribution.html:77
-#: .\templates\attribution_preference\attribution_preference.html:101
-#: .\templates\attribution_preference\courses_attribution_preference.html:72
-#: .\templates\attribution_preference\disponibility_attribution_preference.html:87
-msgid "Terça-Feira"
-msgstr "Tuesday"
-
-#: .\templates\attribution\manual_attribution.html:78
-#: .\templates\attribution_preference\attribution_preference.html:102
-#: .\templates\attribution_preference\courses_attribution_preference.html:73
-#: .\templates\attribution_preference\disponibility_attribution_preference.html:88
-msgid "Quarta-Feira"
-msgstr "Wednesday"
-
-#: .\templates\attribution\manual_attribution.html:79
-#: .\templates\attribution_preference\attribution_preference.html:103
-#: .\templates\attribution_preference\courses_attribution_preference.html:74
-#: .\templates\attribution_preference\disponibility_attribution_preference.html:89
-msgid "Quinta-Feira"
-msgstr "Thursday"
-
-#: .\templates\attribution\manual_attribution.html:80
-#: .\templates\attribution_preference\attribution_preference.html:104
-#: .\templates\attribution_preference\courses_attribution_preference.html:75
-#: .\templates\attribution_preference\disponibility_attribution_preference.html:90
-msgid "Sexta-Feira"
-msgstr "Friday"
-
-#: .\templates\attribution\manual_attribution.html:81
-#: .\templates\attribution_preference\attribution_preference.html:105
-#: .\templates\attribution_preference\courses_attribution_preference.html:76
-#: .\templates\attribution_preference\disponibility_attribution_preference.html:91
-#: .\templates\professor\profile.html:27
-#: .\templates\staff\timetable\edit_timetable.html:26
-#: .\templates\staff\timetable\register.html:45
-#: .\templates\staff\timetable\show_timetable.html:47
-msgid "Sábado"
-msgstr "Saturday"
-
-#: .\templates\attribution\manual_attribution.html:87
-#: .\templates\attribution_preference\attribution_preference.html:111
-#: .\templates\attribution_preference\courses_attribution_preference.html:82
-#: .\templates\attribution_preference\disponibility_attribution_preference.html:97
-msgid "Matutino"
-msgstr "Morning"
-
-#: .\templates\attribution\manual_attribution.html:170
-#: .\templates\attribution_preference\attribution_preference.html:166
-#: .\templates\attribution_preference\courses_attribution_preference.html:167
-#: .\templates\attribution_preference\disponibility_attribution_preference.html:183
-msgid "Vespertino"
-msgstr "Afternoon"
-
-#: .\templates\attribution\manual_attribution.html:257
-#: .\templates\attribution_preference\attribution_preference.html:221
-#: .\templates\attribution_preference\courses_attribution_preference.html:254
-#: .\templates\attribution_preference\disponibility_attribution_preference.html:270
-msgid "Noturno"
-msgstr "Night"
-
-#: .\templates\attribution\manual_attribution.html:350
-#: .\templates\attribution_preference\courses_attribution_preference.html:347
-msgid "Adicionar Disciplina"
-msgstr "Add Course"
-
-#: .\templates\attribution\manual_attribution.html:364
-#: .\templates\attribution_preference\courses_attribution_preference.html:361
-msgid "Filtrar bloco"
-msgstr "Filter block"
-
-#: .\templates\attribution\manual_attribution.html:375
-#: .\templates\attribution_preference\courses_attribution_preference.html:372
-msgid "Filtrar área"
-msgstr "Filter area"
-
-#: .\templates\attribution\manual_attribution.html:389
-#, python-format
-msgid ""
-"\n"
-"                                <option class=\"w-100\" value="
-"\"%(acronym_text)s\">%(name_course_text)s</option>\n"
-"                              "
 msgstr ""
 
-#: .\templates\attribution\manual_attribution.html:399
-#: .\templates\attribution_preference\courses_attribution_preference.html:396
-msgid "Dia"
-msgstr "Day"
+#: .\templates\attribution\manual_attribution.html:39
+msgid "Atribuição Manual de"
+msgstr ""
 
-#: .\templates\attribution\manual_attribution.html:402
-#: .\templates\attribution_preference\courses_attribution_preference.html:399
-#: .\templates\staff\base.html:66 .\templates\staff\base.html:131
-msgid "Turma"
-msgstr "Classs"
+#: .\templates\attribution\manual_attribution.html:49
+#: .\templates\attribution\manual_attribution.html:412
+#: .\templates\attribution_preference\courses_attribution_preference.html:33
+#: .\templates\attribution_preference\courses_attribution_preference.html:702
+#: .\templates\attribution_preference\disponibility_attribution_preference.html:39
+#: .\templates\registration\login.html:37
+#: .\templates\registration\signup.html:29
+#: .\templates\staff\home_staff.html:28
+ .\templates\staff\home_staff.html:243
+#: .\templates\staff\home_staff.html:303
+msgid "Erro"
+msgstr ""
 
-#: .\templates\attribution\manual_attribution.html:417
-#: .\templates\attribution_preference\courses_attribution_preference.html:414
-#: .\templates\staff\blockk\block_detail.html:126
-#: .\templates\staff\blockk\block_detail.html:161
-#: .\templates\staff\classs\classes_list.html:100
-#: .\templates\staff\classs\classes_list.html:154
-#: .\templates\staff\professor\professors_list.html:112
-msgid "Fechar"
-msgstr "Close"
+#: .\templates\attribution\manual_attribution.html:57
+#: .\templates\professor\base.html:89 .\templates\professor\base.html:160
+#: .\templates\professor\base_attribution.html:85
+#: .\templates\professor\base_attribution.html:155
+#: .\templates\staff\base.html:91 .\templates\staff\base.html:166
+#: .\templates\staff\deadline\deadline_configuration.html:25
+#: .\templates\staff\deadline\deadline_configuration.html:26
+#: .\templates\staff\home_staff.html:265
+#: .\templates\staff\queue\queue_create.html:34
+msgid "Bloco"
+msgstr ""
 
-#: .\templates\attribution\manual_attribution.html:418
-#: .\templates\attribution_preference\courses_attribution_preference.html:415
-msgid "Adicionar"
-msgstr "Add"
+#: .\templates\attribution\manual_attribution.html:68
+msgid "Células de horas restantes"
+msgstr ""
 
+#: .\templates\attribution\manual_attribution.html:71
+#: .\templates\attribution_preference\courses_attribution_preference.html:58
+#: .\templates\attribution_preference\disponibility_attribution_preference.html:86
+msgid "células"
+msgstr ""
+
+#: .\templates\attribution\manual_attribution.html:80
 #: .\templates\attribution\manual_attribution.html:427
-#: .\templates\attribution\queueSetup.html:94
-#: .\templates\attribution_preference\courses_attribution_preference.html:424
-#: .\templates\staff\queue\queue_create.html:98
-#: .\templates\staff\timetable\edit_timetable.html:54
-#: .\templates\staff\timetable\register.html:70
-msgid "Enviar"
-msgstr "Send"
+#: .\templates\attribution_preference\courses_attribution_preference.html:760
+msgid "Disciplinas"
+msgstr ""
 
-#: .\templates\attribution\manual_attribution.html:428
+#: .\templates\attribution\manual_attribution.html:87
+#: .\templates\attribution_preference\courses_attribution_preference.html:74
+msgid "Aviso"
+msgstr ""
+
+#: .\templates\attribution\manual_attribution.html:96
+#: .\templates\attribution_preference\courses_attribution_preference.html:84
+#: .\templates\attribution_preference\disponibility_attribution_preference.html:102
+#: .\templates\attribution_preference\show_attribution_preference.html:70
+#: .\templates\attribution_preference\show_attribution_preference.html:266
+#: .\templates\attribution_preference\show_attribution_preference.html:466
+#: .\templates\professor\home_professor.html:34
+#: .\templates\professor\home_professor.html:43
+#: .\templates\professor\home_professor.html:58
+#: .\templates\professor\home_professor.html:73
+#: .\templates\professor\home_professor.html:86
+#: .\templates\professor\home_professor.html:98
+#: .\templates\staff\classs\classes_list.html:45
+#: .\templates\staff\classs\classes_list.html:97
+#: .\templates\staff\classs\classes_list.html:146
+#: .\templates\staff\home_staff.html:41 .\templates\staff\home_staff.html:50
+#: .\templates\staff\home_staff.html:65 .\templates\staff\home_staff.html:80
+#: .\templates\staff\home_staff.html:93 .\templates\staff\home_staff.html:105
+msgid "Período"
+msgstr ""
+
+#: .\templates\attribution\manual_attribution.html:97
+#: .\templates\attribution_preference\courses_attribution_preference.html:85
+#: .\templates\attribution_preference\disponibility_attribution_preference.html:103
+#: .\templates\attribution_preference\show_attribution_preference.html:71
+#: .\templates\attribution_preference\show_attribution_preference.html:267
+msgid "Horários"
+msgstr ""
+
+#: .\templates\attribution\manual_attribution.html:98
+#: .\templates\attribution_preference\courses_attribution_preference.html:86
+#: .\templates\attribution_preference\disponibility_attribution_preference.html:105
+msgid "Segunda-Feira"
+msgstr ""
+
+#: .\templates\attribution\manual_attribution.html:99
+#: .\templates\attribution_preference\courses_attribution_preference.html:87
+#: .\templates\attribution_preference\disponibility_attribution_preference.html:107
+msgid "Terça-Feira"
+msgstr ""
+
+#: .\templates\attribution\manual_attribution.html:100
+#: .\templates\attribution_preference\courses_attribution_preference.html:88
+#: .\templates\attribution_preference\disponibility_attribution_preference.html:109
+msgid "Quarta-Feira"
+msgstr ""
+
+#: .\templates\attribution\manual_attribution.html:101
+#: .\templates\attribution_preference\courses_attribution_preference.html:89
+#: .\templates\attribution_preference\disponibility_attribution_preference.html:111
+msgid "Quinta-Feira"
+msgstr ""
+
+#: .\templates\attribution\manual_attribution.html:102
+#: .\templates\attribution_preference\courses_attribution_preference.html:90
+#: .\templates\attribution_preference\disponibility_attribution_preference.html:113
+msgid "Sexta-Feira"
+msgstr ""
+
+#: .\templates\attribution\manual_attribution.html:400
+#: .\templates\attribution_preference\courses_attribution_preference.html:690
+msgid "Adicionar Disciplina"
+msgstr ""
+
+#: .\templates\attribution\manual_attribution.html:421
+#: .\templates\attribution_preference\courses_attribution_preference.html:711
+msgid "Info"
+msgstr ""
+
+#: .\templates\attribution\manual_attribution.html:431
+#: .\templates\attribution_preference\courses_attribution_preference.html:764
+msgid ""
+"\n"
+"                          <datalist id=\"course-options\">\n"
+"\n"
+"                          </datalist>\n"
+"                          "
+msgstr ""
+
+#: .\templates\attribution\manual_attribution.html:443
+#: .\templates\attribution_preference\courses_attribution_preference.html:776
+msgid "Sigla Disciplina"
+msgstr ""
+
+#: .\templates\attribution\manual_attribution.html:447
+#: .\templates\attribution_preference\courses_attribution_preference.html:780
+msgid "Turma e Parte"
+msgstr ""
+
+#: .\templates\attribution\manual_attribution.html:451
+#: .\templates\attribution_preference\courses_attribution_preference.html:784
+msgid "Dia da Semana"
+msgstr ""
+
+#: .\templates\attribution\manual_attribution.html:455
+#: .\templates\attribution_preference\courses_attribution_preference.html:788
+msgid "Horário Início"
+msgstr ""
+
+#: .\templates\attribution\manual_attribution.html:459
+#: .\templates\attribution_preference\courses_attribution_preference.html:792
+msgid "Horário Fim"
+msgstr ""
+
+#: .\templates\attribution\manual_attribution.html:469
+#: .\templates\attribution_preference\courses_attribution_preference.html:802
+#: .\templates\staff\blockk\block_detail.html:150
+#: .\templates\staff\blockk\block_detail.html:187
+#: .\templates\staff\classs\classes_list.html:120
+#: .\templates\staff\classs\classes_list.html:172
+#: .\templates\staff\home_staff.html:278 .\templates\staff\home_staff.html:318
+#: .\templates\staff\professor\professors_list.html:320
+#: .\templates\staff\professor\professors_list.html:485
+msgid "Fechar"
+msgstr ""
+
+#: .\templates\attribution\manual_attribution.html:471
+#: .\templates\attribution_preference\courses_attribution_preference.html:804
+msgid "Adicionar"
+msgstr ""
+
+#: .\templates\attribution\manual_attribution.html:483
 msgid "Limpar"
-msgstr "Clean"
+msgstr ""
 
 #: .\templates\attribution\manual_attribution_confirm.html:6
 #: .\templates\staff\attribution\attribution_configuration_confirm.html:6
+#: .\templates\staff\attribution\attribution_configuration_confirm.html:13
 msgid "Atribuição Concluída"
-msgstr "Completed Attribution"
-
-#: .\templates\attribution\manual_attribution_confirm.html:16
-#: .\templates\attribution\manual_attribution_timesup.html:16
-msgid "Sua atribuição foi finalizada com sucesso!"
-msgstr "Your attribution has been completed successfully!"
+msgstr ""
 
 #: .\templates\attribution\manual_attribution_confirm.html:17
 #: .\templates\attribution\manual_attribution_timesup.html:17
-msgid "Suas aulas já foram enviadas, validadas e atribuidas a você"
-msgstr "Your lessons have already been submitted, validated and assigned to you"
+msgid "Sua atribuição foi finalizada com sucesso"
+msgstr ""
+
+#: .\templates\attribution\manual_attribution_confirm.html:18
+#: .\templates\attribution\manual_attribution_timesup.html:18
+msgid "Suas aulas já foram enviadas, validadas e atribuídas a você"
+msgstr ""
 
 #: .\templates\attribution\manual_attribution_timesup.html:6
 msgid "Tempo Encerrado"
-msgstr "Closed Time"
-
-#: .\templates\attribution\queueSetup.html:6
-msgid "Criar Fila"
-msgstr "Create Queue"
-
-#: .\templates\attribution\queueSetup.html:14
-msgid "Fila de professores"
-msgstr "Professors Queue"
-
-#: .\templates\attribution\queueSetup.html:16
-#, python-format
-msgid ""
-"\n"
-"            %(name_block_text)s</h1>\n"
-"        "
 msgstr ""
 
-#: .\templates\attribution\queueSetup.html:21
-#, python-format
-msgid ""
-"\n"
-"        <h3>%(text)s: %(campo_text)s</h3>\n"
-"    "
+#: .\templates\attribution\manual_attribution_timesup.html:20
+msgid "Tempo acabou!"
 msgstr ""
 
-#: .\templates\attribution\queueSetup.html:45
-#: .\templates\staff\professor\professors_list.html:28
-#: .\templates\staff\professor\professors_list.html:86
-#: .\templates\staff\queue\queue_create.html:60
-#: .\templates\staff\queue\queue_show.html:29
-msgid "Data de Nascimento"
-msgstr "Birth"
-
-#: .\templates\attribution\queueSetup.html:46
-#: .\templates\staff\professor\professors_list.html:29
-#: .\templates\staff\professor\professors_list.html:90
-#: .\templates\staff\queue\queue_create.html:61
-#: .\templates\staff\queue\queue_show.html:30
-msgid "Data de Carreira"
-msgstr "Date Career"
-
-#: .\templates\attribution\queueSetup.html:47
-#: .\templates\staff\professor\professors_list.html:30
-#: .\templates\staff\queue\queue_create.html:62
-#: .\templates\staff\queue\queue_show.html:31
-msgid "Data no Campus"
-msgstr "Date Campus"
-
-#: .\templates\attribution\queueSetup.html:48
-#: .\templates\staff\professor\professors_list.html:31
-#: .\templates\staff\queue\queue_create.html:63
-#: .\templates\staff\queue\queue_show.html:32
-msgid "Data como Professor"
-msgstr "Date Professor"
-
-#: .\templates\attribution\queueSetup.html:49
-#: .\templates\staff\professor\professors_list.html:32
-#: .\templates\staff\queue\queue_create.html:64
-#: .\templates\staff\queue\queue_show.html:33
-msgid "Data na Área"
-msgstr "Date Area"
-
-#: .\templates\attribution\queueSetup.html:50
-#: .\templates\staff\professor\professors_list.html:33
-#: .\templates\staff\queue\queue_create.html:65
-#: .\templates\staff\queue\queue_show.html:34
-msgid "Data no Instituto"
-msgstr "Date institute"
-
-#: .\templates\attribution\queueSetup.html:51
-#: .\templates\staff\professor\professors_list.html:34
-#: .\templates\staff\queue\queue_create.html:66
-#: .\templates\staff\queue\queue_show.html:35
-msgid "Diploma Pontuação"
-msgstr "Academic Degree Score"
+#: .\templates\attribution\manual_attribution_timesup.html:21
+msgid ""
+"Você não conseguiu enviar suas aulas a tempo, você foi direcionado ao final "
+"da fila"
+msgstr ""
 
 #: .\templates\attribution_preference\attribution_preference.html:7
-#: .\templates\attribution_preference\attribution_preference.html:27
-#: .\templates\attribution_preference\attribution_preference.html:32
-msgid "FPA Usuário"
-msgstr "User FPA"
-
-#: .\templates\attribution_preference\attribution_preference.html:31
-#: .\templates\attribution_preference\courses_attribution_preference.html:16
-#: .\templates\attribution_preference\disponibility_attribution_preference.html:26
-msgid "Preferência Atribuição"
-msgstr "Attribution Preference"
-
-#: .\templates\attribution_preference\attribution_preference.html:40
-msgid "Nenhum FPA relacionado ao usuário foi encontrado no sistema"
-msgstr "No user-related FPA found on the system"
-
-#: .\templates\attribution_preference\attribution_preference.html:43
-msgid "Comece o seu FPA"
-msgstr "Start your FPA"
-
-#: .\templates\attribution_preference\attribution_preference.html:52
-msgid ""
-"Formulário de Preferência de Atividades - FPA (Anexo I - Resolução nº 109 de "
-"4 de novembro de 2015)"
-msgstr "Activity Preference Form - FPA (Annex I - Resolution No. 109 of November 4, 2015)"
-
-#: .\templates\attribution_preference\attribution_preference.html:57
-msgid "Identificação do Docente"
-msgstr "Professor Identification"
-
-#: .\templates\attribution_preference\attribution_preference.html:60
-msgid "Docente"
-msgstr "Professor"
-
-#: .\templates\attribution_preference\attribution_preference.html:62
-msgid "Conhecido como"
-msgstr "Known as"
-
-#: .\templates\attribution_preference\attribution_preference.html:67
-#, python-format
-msgid ""
-"\n"
-"                  <td colspan=\"2\">%(name_block_text)s</td>\n"
-"                  "
-msgstr ""
-
-#: .\templates\attribution_preference\attribution_preference.html:74
-#: .\templates\registration\login.html:35
-msgid "Prontuário"
-msgstr "Registration Id"
-
-#: .\templates\attribution_preference\attribution_preference.html:75
-#: .\templates\registration\login.html:37
-msgid "CJ"
-msgstr ""
-
-#: .\templates\attribution_preference\attribution_preference.html:76
-msgid "Celular"
-msgstr "Cellphone"
-
-#: .\templates\attribution_preference\attribution_preference.html:80
-msgid "Regime de trabalho"
-msgstr "Job"
-
-#: .\templates\attribution_preference\attribution_preference.html:81
-#: .\templates\attribution_preference\attribution_preference.html:82
-#: .\templates\attribution_preference\disponibility_attribution_preference.html:47
-#: .\templates\attribution_preference\disponibility_attribution_preference.html:51
-msgid "horas"
-msgstr "hours"
-
-#: .\templates\attribution_preference\attribution_preference.html:83
-#: .\templates\attribution_preference\disponibility_attribution_preference.html:55
-msgid "RDE"
-msgstr "EDR"
-
-#: .\templates\attribution_preference\attribution_preference.html:84
-msgid "Substituto"
-msgstr "Substitute"
-
-#: .\templates\attribution_preference\attribution_preference.html:85
-msgid "Temporário"
-msgstr "Temporary"
-
-#: .\templates\attribution_preference\attribution_preference.html:92
-msgid "Disponibilidade de horário para atribuição de componentes curriculares"
-msgstr "Availability of schedule for attribution of curricular components"
-
-#: .\templates\attribution_preference\attribution_preference.html:284
-msgid "Disciplinas escolhidas"
-msgstr "Chosen courses"
-
-#: .\templates\attribution_preference\attribution_preference.html:290
-msgid "Disciplina"
-msgstr "Course"
-
-#: .\templates\attribution_preference\attribution_preference.html:292
-msgid "Aulas"
-msgstr ""
-
-#: .\templates\attribution_preference\attribution_preference.html:305
-msgid "Refazer FPA"
-msgstr "Redo FPA"
-
-#: .\templates\attribution_preference\attribution_preference.html:309
-msgid "Imprimir PDF"
-msgstr "Print PDF"
-
-#: .\templates\attribution_preference\courses_attribution_preference.html:7
-#: .\templates\attribution_preference\disponibility_attribution_preference.html:7
-msgid "Envio FPA"
-msgstr "Send FPA"
-
-#: .\templates\attribution_preference\courses_attribution_preference.html:12
-msgid "Declaração de disciplinas"
-msgstr "Declaration of courses"
-
-#: .\templates\attribution_preference\courses_attribution_preference.html:17
+#: .\templates\attribution_preference\attribution_preference.html:12
+#: .\templates\attribution_preference\attribution_preference.html:17
+#: .\templates\attribution_preference\courses_attribution_preference.html:20
 #: .\templates\attribution_preference\disponibility_attribution_preference.html:27
-msgid "Criar FPA"
-msgstr "Create FPA"
-
-#: .\templates\attribution_preference\courses_attribution_preference.html:18
-msgid "Editar Disciplinas"
-msgstr "Edit Courses"
-
-#: .\templates\attribution_preference\courses_attribution_preference.html:32
-msgid "Regime escolhido"
-msgstr "Job chosen"
-
-#: .\templates\attribution_preference\courses_attribution_preference.html:36
-#, python-format
-msgid ""
-"\n"
-"                  <input name=\"work_regime\" value='%(work_regime_text)s "
-"%(hour_text)s' readonly class=\"text-center form-check-inline form-check "
-"form-control-plaintext custom-border\">\n"
-"                "
-msgstr ""
-
-#: .\templates\attribution_preference\courses_attribution_preference.html:385
-msgid ""
-"\n"
-"                              <datalist id=\"course-options\">\n"
-"                                \n"
-"                              </datalist>\n"
-"                            "
-msgstr ""
-
-#: .\templates\attribution_preference\courses_attribution_preference.html:425
-msgid "Retornar Disponibilidade"
-msgstr "Return Disponibility"
-
-#: .\templates\attribution_preference\disponibility_attribution_preference.html:22
-msgid "Declaração de disponibilidade"
-msgstr "Declaration of disponibility"
-
-#: .\templates\attribution_preference\disponibility_attribution_preference.html:28
-msgid "Editar Disponibilidade"
-msgstr "Edit Disponibility"
-
-#: .\templates\attribution_preference\disponibility_attribution_preference.html:42
-msgid "Regime de Trabalho"
-msgstr "Job"
-
-#: .\templates\attribution_preference\disponibility_attribution_preference.html:65
-msgid "Células restantes"
-msgstr "Remaining cells"
-
-#: .\templates\attribution_preference\disponibility_attribution_preference.html:77
-msgid "Disponibilidade de horários"
-msgstr "Disponibility of schedules"
-
-#: .\templates\attribution_preference\disponibility_attribution_preference.html:363
-msgid "Enviar Disponibilidade"
-msgstr "Send Disponibility"
-
-#: .\templates\attribution_preference\disponibility_attribution_preference.html:364
-msgid "Limpar Disponibilidade"
-msgstr "Clean Disponibility"
-
-#: .\templates\professor\base.html:69 .\templates\professor\base.html:133
-#: .\templates\professor\base_attribution.html:71
-#: .\templates\professor\base_attribution.html:135
-#: .\templates\user\base.html:69 .\templates\user\base.html:133
+#: .\templates\professor\base.html:91 .\templates\professor\base.html:162
+#: .\templates\professor\base_attribution.html:87
+#: .\templates\professor\base_attribution.html:157
 msgid "FPA"
 msgstr ""
 
-#: .\templates\professor\base.html:70 .\templates\professor\base.html:134
-#: .\templates\professor\base_attribution.html:72
-#: .\templates\professor\base_attribution.html:136
-#: .\templates\staff\base.html:68 .\templates\staff\base.html:133
-#: .\templates\staff\home_staff.html:54
-#: .\templates\staff\timetable\register.html:13
-#: .\templates\staff\timetable\show_timetable.html:15
-#: .\templates\staff\timetable\show_timetable.html:21
-#: .\templates\user\base.html:70 .\templates\user\base.html:134
-msgid "Grade"
-msgstr "Timetable"
-
-#: .\templates\professor\base.html:103
-#: .\templates\professor\base_attribution.html:105
-#: .\templates\professor\profile.html:6 .\templates\staff\base.html:101
-#: .\templates\user\base.html:103
-msgid "Perfil"
-msgstr "Profile"
-
-#: .\templates\professor\base.html:105 .\templates\professor\base.html:166
-#: .\templates\professor\base.html:210
-#: .\templates\professor\base_attribution.html:107
-#: .\templates\professor\base_attribution.html:168
-#: .\templates\professor\base_attribution.html:212
-#: .\templates\staff\base.html:103 .\templates\staff\base.html:165
-#: .\templates\staff\base.html:209 .\templates\user\base.html:105
-#: .\templates\user\base.html:166 .\templates\user\base.html:210
-msgid "Sair"
-msgstr "Logout"
-
-#: .\templates\professor\base.html:137
-#: .\templates\professor\base_attribution.html:139
-#: .\templates\staff\base.html:136 .\templates\user\base.html:137
-msgid "Línguas"
-msgstr "Languages"
-
-#: .\templates\professor\base.html:172
-#: .\templates\professor\base_attribution.html:174
-#: .\templates\staff\base.html:171 .\templates\user\base.html:172
-msgid "Todos os direitos reservados"
-msgstr "All rights reserved"
-
-#: .\templates\professor\base.html:209
-#: .\templates\professor\base_attribution.html:211
-#: .\templates\staff\base.html:208
-#: .\templates\staff\blockk\block_detail.html:182
-#: .\templates\staff\classs\classes_list.html:175
-#: .\templates\user\base.html:209
-msgid "Cancelar"
-msgstr "Cancel"
-
-#: .\templates\professor\home_professor.html:6
-msgid "Home Professor(a)"
-msgstr "Professor Home"
-
-#: .\templates\professor\home_professor.html:14
-msgid "Suas atribuições"
-msgstr "Yours attributions"
-
-#: .\templates\professor\home_professor.html:15
-msgid "Clique em um bloco para ver o andamento de sua atribuição"
-msgstr "Click on a block to see the progress of your assignment"
-
-#: .\templates\professor\home_professor.html:23
-#, python-format
-msgid ""
-"\n"
-"              <h3 class=\"hover-5-title text-uppercase font-weight-light "
-"mb-0\"><strong class=\"font-weight-bold text-white\">%(block_text)s</"
-"strong><br><span>%(access_text)s</span></h3>\n"
-"              "
+#: .\templates\attribution_preference\attribution_preference.html:28
+msgid "FINALIZADA"
 msgstr ""
 
-#: .\templates\professor\home_professor.html:36
-#: .\templates\professor\home_professor.html:43
-msgid "Olá, professor(a)"
-msgstr "Hello, professor"
+#: .\templates\attribution_preference\attribution_preference.html:29
+#: .\templates\attribution_preference\attribution_preference.html:41
+#: .\templates\attribution_preference\attribution_preference.html:58
+#: .\templates\attribution_preference\attribution_preference.html:75
+#: .\templates\attribution_preference\attribution_preference.html:93
+#: .\templates\attribution_preference\attribution_preference.html:102
+#: .\templates\attribution_preference\attribution_preference.html:111
+msgid "Status"
+msgstr ""
 
-#: .\templates\professor\home_professor.html:37
-msgid "Crie a fila da atribuição"
-msgstr "Create the attribution queue"
+#: .\templates\attribution_preference\attribution_preference.html:40
+msgid "NÃO CONFIGURADO"
+msgstr ""
 
-#: .\templates\professor\home_professor.html:44
-msgid "Entre no processo de atribuição"
-msgstr "Enter the attribution process"
+#: .\templates\attribution_preference\attribution_preference.html:44
+msgid "Não foi configurado nenhum período de envio de FPAs"
+msgstr ""
 
-#: .\templates\professor\profile.html:15
-msgid "Sua atribuição"
-msgstr "Your attribution"
+#: .\templates\attribution_preference\attribution_preference.html:45
+msgid "Volte mais tarde"
+msgstr ""
 
-#: .\templates\registration\login.html:8
-msgid "Login"
-msgstr "Login"
+#: .\templates\attribution_preference\attribution_preference.html:57
+msgid "PRÓXIMA ETAPA: ATRIBUIÇÃO"
+msgstr ""
 
-#: .\templates\registration\login.html:24
-msgid "Entre com a sua conta"
-msgstr "Enter with your account"
+#: .\templates\attribution_preference\attribution_preference.html:61
+#: .\templates\attribution_preference\attribution_preference.html:78
+msgid "O envio de FPAs já finalizou, veja seu FPA e outros em seu perfil"
+msgstr ""
 
-#: .\templates\registration\login.html:25
-msgid "Insira o seu prontuário e a sua senha"
-msgstr "Enter your login and password"
+#: .\templates\attribution_preference\attribution_preference.html:62
+#: .\templates\attribution_preference\attribution_preference.html:79
+msgid "Até a próxima atribuição"
+msgstr ""
 
-#: .\templates\registration\login.html:31
-msgid "Usuário ou senha incorretos"
-msgstr "Incorrect username or password"
+#: .\templates\attribution_preference\attribution_preference.html:74
+msgid "ATRIBUIÇÃO CONCLUÍDA"
+msgstr ""
 
-#: .\templates\registration\login.html:39
-msgid "Por favor, insira o seu prontuário"
-msgstr "Please, enter your registration id"
+#: .\templates\attribution_preference\attribution_preference.html:92
+msgid "CONFIGURADO"
+msgstr ""
 
-#: .\templates\registration\login.html:44
-msgid "Senha"
-msgstr "Password"
-
-#: .\templates\registration\login.html:46
-msgid "Por favor, insira a sua senha"
-msgstr "Please, enter your password"
-
-#: .\templates\registration\login.html:50
-msgid "Entrar"
-msgstr "Login"
-
-#: .\templates\registration\login.html:55
-msgid "Entre com"
-msgstr "Login with"
-
-#: .\templates\staff\attribution\attribution_configuration.html:12
-msgid "Configuração da atribuição"
-msgstr "Configuration of Attribution"
-
-#: .\templates\staff\attribution\attribution_configuration.html:16
-#: .\templates\staff\attribution\attribution_configuration_index.html:15
-#: .\templates\staff\queue\queue_create.html:17
-#: .\templates\staff\queue\queue_show.html:16
-msgid "Configurar Atribuições"
-msgstr "Configure Attributions"
-
-#: .\templates\staff\attribution\attribution_configuration.html:17
-#: .\templates\staff\attribution\attribution_configuration_index.html:16
-#: .\templates\staff\queue\queue_create.html:18
-#: .\templates\staff\queue\queue_show.html:17
-msgid "Seus Blocos"
-msgstr "Your Blocs"
-
-#: .\templates\staff\attribution\attribution_configuration.html:18
-#: .\templates\staff\deadline\confirm_deadline_configuration.html:7
-#: .\templates\staff\queue\queue_create.html:19
-#: .\templates\staff\queue\queue_show.html:18
-msgid "Prazos"
-msgstr "Deadlines"
-
-#: .\templates\staff\attribution\attribution_configuration.html:30
-msgid "Configurações dos prazos"
-msgstr "Configuration of deadlines"
-
-#: .\templates\staff\attribution\attribution_configuration.html:34
-msgid "Envio das preferências"
-msgstr "Send the preferences"
-
-#: .\templates\staff\attribution\attribution_configuration.html:36
-#: .\templates\staff\attribution\attribution_configuration.html:44
+#: .\templates\attribution_preference\attribution_preference.html:96
+#: .\templates\attribution_preference\attribution_preference.html:105
+#: .\templates\attribution_preference\attribution_preference.html:114
+#: .\templates\professor\home_professor.html:49
+#: .\templates\professor\home_professor.html:64
+#: .\templates\professor\home_professor.html:77
+#: .\templates\professor\home_professor.html:90
+#: .\templates\staff\attribution\attribution_configuration.html:38
+#: .\templates\staff\attribution\attribution_configuration.html:46
 #: .\templates\staff\deadline\confirm_deadline_configuration.html:14
 #: .\templates\staff\deadline\confirm_deadline_configuration.html:17
 #: .\templates\staff\deadline\confirm_deadline_configuration.html:20
-#: .\templates\staff\deadline\deadline_configuration.html:19
-#: .\templates\staff\deadline\deadline_configuration.html:22
-#: .\templates\staff\deadline\deadline_configuration.html:25
-msgid "Início"
-msgstr "Start"
-
-#: .\templates\staff\attribution\attribution_configuration.html:37
-#: .\templates\staff\attribution\attribution_configuration.html:45
-#: .\templates\staff\deadline\confirm_deadline_configuration.html:15
-#: .\templates\staff\deadline\confirm_deadline_configuration.html:18
-#: .\templates\staff\deadline\confirm_deadline_configuration.html:21
+#: .\templates\staff\deadline\deadline_configuration.html:17
 #: .\templates\staff\deadline\deadline_configuration.html:20
 #: .\templates\staff\deadline\deadline_configuration.html:23
-#: .\templates\staff\deadline\deadline_configuration.html:26
-msgid "Fim"
-msgstr "End"
+#: .\templates\staff\home_staff.html:56 .\templates\staff\home_staff.html:71
+#: .\templates\staff\home_staff.html:84 .\templates\staff\home_staff.html:97
+msgid "Início"
+msgstr ""
 
-#: .\templates\staff\attribution\attribution_configuration.html:42
+#: .\templates\attribution_preference\attribution_preference.html:101
+#: .\templates\attribution_preference\attribution_preference.html:286
+#: .\templates\attribution_preference\attribution_preference.html:321
+msgid "AGUARDANDO ENVIO"
+msgstr ""
+
+#: .\templates\attribution_preference\attribution_preference.html:109
+#: .\templates\attribution_preference\attribution_preference.html:216
+#: .\templates\attribution_preference\attribution_preference.html:251
+#: .\templates\attribution_preference\attribution_preference.html:347
+msgid "ENVIADO"
+msgstr ""
+
+#: .\templates\attribution_preference\attribution_preference.html:125
+msgid "Tempo Restante"
+msgstr ""
+
+#: .\templates\attribution_preference\attribution_preference.html:128
+msgid "dias"
+msgstr ""
+
+#: .\templates\attribution_preference\attribution_preference.html:129
+#: .\templates\attribution_preference\disponibility_attribution_preference.html:51
+#: .\templates\attribution_preference\disponibility_attribution_preference.html:55
+#: .\templates\attribution_preference\show_attribution_preference.html:49
+#: .\templates\attribution_preference\show_attribution_preference.html:50
+msgid "horas"
+msgstr ""
+
+#: .\templates\attribution_preference\attribution_preference.html:130
+msgid "minutos"
+msgstr ""
+
+#: .\templates\attribution_preference\attribution_preference.html:140
+#: .\templates\attribution_preference\attribution_preference.html:147
+#: .\templates\attribution_preference\attribution_preference.html:153
+#: .\templates\attribution_preference\attribution_preference.html:314
+#: .\templates\attribution_preference\attribution_preference.html:400
+msgid "AÇÃO BLOQUEADA"
+msgstr ""
+
+#: .\templates\attribution_preference\attribution_preference.html:142
+#: .\templates\attribution_preference\attribution_preference.html:161
+#: .\templates\attribution_preference\attribution_preference.html:179
+#: .\templates\attribution_preference\attribution_preference.html:218
+#: .\templates\attribution_preference\attribution_preference.html:253
+#: .\templates\attribution_preference\disponibility_attribution_preference.html:22
+#: .\templates\attribution_preference\disponibility_attribution_preference.html:28
+msgid "Disponibilidade de Horário"
+msgstr ""
+
+#: .\templates\attribution_preference\attribution_preference.html:148
+#: .\templates\attribution_preference\attribution_preference.html:167
+#: .\templates\attribution_preference\attribution_preference.html:185
+#: .\templates\attribution_preference\attribution_preference.html:315
+#: .\templates\attribution_preference\attribution_preference.html:322
+#: .\templates\attribution_preference\attribution_preference.html:348
+#: .\templates\attribution_preference\courses_attribution_preference.html:15
+#: .\templates\attribution_preference\courses_attribution_preference.html:21
+msgid "Preferência de Disciplinas"
+msgstr ""
+
+#: .\templates\attribution_preference\attribution_preference.html:154
+#: .\templates\attribution_preference\attribution_preference.html:173
+#: .\templates\attribution_preference\attribution_preference.html:191
+#: .\templates\attribution_preference\attribution_preference.html:376
+#: .\templates\attribution_preference\attribution_preference.html:401
+msgid "Preferência Escolhida"
+msgstr ""
+
+#: .\templates\attribution_preference\attribution_preference.html:159
+#: .\templates\attribution_preference\attribution_preference.html:166
+#: .\templates\attribution_preference\attribution_preference.html:172
+#: .\templates\attribution_preference\attribution_preference.html:177
+#: .\templates\attribution_preference\attribution_preference.html:184
+#: .\templates\attribution_preference\attribution_preference.html:190
+#: .\templates\attribution_preference\attribution_preference.html:375
+msgid "FINALIZADO"
+msgstr ""
+
+#: .\templates\attribution_preference\attribution_preference.html:198
+#: .\templates\attribution_preference\attribution_preference.html:383
+#: .\templates\attribution_preference\show_attribution_preference.html:7
+#: .\templates\attribution_preference\show_attribution_preference.html:11
+msgid "FPA Final"
+msgstr ""
+
+#: .\templates\attribution_preference\attribution_preference.html:200
+#: .\templates\attribution_preference\attribution_preference.html:228
+#: .\templates\attribution_preference\attribution_preference.html:263
+#: .\templates\attribution_preference\attribution_preference.html:297
+#: .\templates\attribution_preference\attribution_preference.html:332
+#: .\templates\attribution_preference\attribution_preference.html:358
+#: .\templates\attribution_preference\attribution_preference.html:385
+#: .\templates\professor\home_professor.html:36
+#: .\templates\professor\home_professor.html:45
+#: .\templates\professor\home_professor.html:60
+#: .\templates\professor\home_professor.html:74
+#: .\templates\professor\home_professor.html:87
+#: .\templates\professor\home_professor.html:102
+#: .\templates\staff\home_staff.html:43 .\templates\staff\home_staff.html:52
+#: .\templates\staff\home_staff.html:67 .\templates\staff\home_staff.html:81
+#: .\templates\staff\home_staff.html:94 .\templates\staff\home_staff.html:109
+msgid "Situação"
+msgstr ""
+
+#: .\templates\attribution_preference\attribution_preference.html:201
+#: .\templates\attribution_preference\attribution_preference.html:386
+msgid ""
+"Você finalizou seu FPA, nesta seção veja como ficou no final ou seja livre "
+"para mudar qualquer preferência"
+msgstr ""
+
+#: .\templates\attribution_preference\attribution_preference.html:206
+#: .\templates\attribution_preference\attribution_preference.html:391
+msgid "Veja seu FPA Final"
+msgstr ""
+
+#: .\templates\attribution_preference\attribution_preference.html:226
+#: .\templates\attribution_preference\attribution_preference.html:261
+#: .\templates\attribution_preference\attribution_preference.html:295
+msgid "Envio da Disponibilidade Geral"
+msgstr ""
+
+#: .\templates\attribution_preference\attribution_preference.html:229
+msgid ""
+"Você enviou sua preferência de horários. Agora pode atualizar ou enviar suas "
+"preferências em relação as disciplinas abaixo"
+msgstr ""
+
+#: .\templates\attribution_preference\attribution_preference.html:236
+msgid "Edite sua Disponibilidade Geral"
+msgstr ""
+
+#: .\templates\attribution_preference\attribution_preference.html:242
+msgid "Próxima Etapa"
+msgstr ""
+
+#: .\templates\attribution_preference\attribution_preference.html:264
+msgid ""
+"Você enviou sua preferência de horários e disciplinas. Para controle de "
+"erros não é mais possível editar sua disponibilidade, caso queira será "
+"nescessário voltar a etapa e apagar qaulquer envio feito na segunda etapa"
+msgstr ""
+
+#: .\templates\attribution_preference\attribution_preference.html:271
+msgid "Recomeçar seu FPA pela Disponibilidade"
+msgstr ""
+
+#: .\templates\attribution_preference\attribution_preference.html:277
+msgid "Etapa Final"
+msgstr ""
+
+#: .\templates\attribution_preference\attribution_preference.html:287
+msgid "Preferência de Disponibilidade"
+msgstr ""
+
+#: .\templates\attribution_preference\attribution_preference.html:298
+msgid ""
+"Iniciou o envio de FPAs para o sistema. Primeiro envie sua disponibilidade "
+"geral abaixo e espere os próximos passos"
+msgstr ""
+
+#: .\templates\attribution_preference\attribution_preference.html:303
+msgid "Enviar sua Disponibilidade Geral"
+msgstr ""
+
+#: .\templates\attribution_preference\attribution_preference.html:330
+#: .\templates\attribution_preference\attribution_preference.html:356
+msgid "Envio da Preferência de Disciplinas"
+msgstr ""
+
+#: .\templates\attribution_preference\attribution_preference.html:333
+#: .\templates\attribution_preference\attribution_preference.html:359
+msgid ""
+"Você enviou sua disponibilidade, o próximo passo é enviar com base na sua "
+"disponibilidade quais são suas preferências de disciplinas"
+msgstr ""
+
+#: .\templates\attribution_preference\attribution_preference.html:338
+msgid "Enviar sua Preferência de Disciplinas"
+msgstr ""
+
+#: .\templates\attribution_preference\attribution_preference.html:364
+msgid "Edite sua Preferência de Disciplinas"
+msgstr ""
+
+#: .\templates\attribution_preference\courses_attribution_preference.html:10
+msgid "Envio FPA - Disciplinas"
+msgstr ""
+
+#: .\templates\attribution_preference\courses_attribution_preference.html:40
+msgid "Regime escolhido"
+msgstr ""
+
+#: .\templates\attribution_preference\courses_attribution_preference.html:53
+msgid "Células primárias restantes"
+msgstr ""
+
+#: .\templates\attribution_preference\courses_attribution_preference.html:54
+msgid "Células secundárias restantes"
+msgstr ""
+
+#: .\templates\attribution_preference\courses_attribution_preference.html:67
+msgid "Disciplinas do Bloco"
+msgstr ""
+
+#: .\templates\attribution_preference\courses_attribution_preference.html:101
+msgid "Prioridade da Preferência"
+msgstr ""
+
+#: .\templates\attribution_preference\courses_attribution_preference.html:104
+msgid "Primária"
+msgstr ""
+
+#: .\templates\attribution_preference\courses_attribution_preference.html:106
+#: .\templates\attribution_preference\show_attribution_preference.html:263
+msgid "Secundária"
+msgstr ""
+
+#: .\templates\attribution_preference\courses_attribution_preference.html:719
+msgid "Filtrar bloco"
+msgstr ""
+
+#: .\templates\attribution_preference\courses_attribution_preference.html:740
+msgid "Filtrar área"
+msgstr ""
+
+#: .\templates\attribution_preference\courses_attribution_preference.html:814
+msgid "Enviar Disciplinas"
+msgstr ""
+
+#: .\templates\attribution_preference\courses_attribution_preference.html:817
+msgid "Retornar a Disponibilidade"
+msgstr ""
+
+#: .\templates\attribution_preference\disponibility_attribution_preference.html:7
+msgid "Envio FPA - Disponibilidade"
+msgstr ""
+
+#: .\templates\attribution_preference\disponibility_attribution_preference.html:46
+msgid "Regime de Trabalho"
+msgstr ""
+
+#: .\templates\attribution_preference\disponibility_attribution_preference.html:60
+#: .\templates\attribution_preference\show_attribution_preference.html:51
+#: .\templates\staff\professor\professors_list.html:104
+#: .\templates\staff\professor\professors_list.html:240
+#: .\templates\staff\professor\professors_list.html:403
+msgid "RDE"
+msgstr ""
+
+#: .\templates\attribution_preference\disponibility_attribution_preference.html:65
+#: .\templates\attribution_preference\show_attribution_preference.html:52
+#: .\templates\staff\professor\professors_list.html:106
+#: .\templates\staff\professor\professors_list.html:241
+#: .\templates\staff\professor\professors_list.html:404
+msgid "Substituto"
+msgstr ""
+
+#: .\templates\attribution_preference\disponibility_attribution_preference.html:70
+#: .\templates\attribution_preference\show_attribution_preference.html:53
+#: .\templates\staff\professor\professors_list.html:108
+#: .\templates\staff\professor\professors_list.html:242
+#: .\templates\staff\professor\professors_list.html:405
+msgid "Temporário"
+msgstr ""
+
+#: .\templates\attribution_preference\disponibility_attribution_preference.html:81
+msgid "Células restantes"
+msgstr ""
+
+#: .\templates\attribution_preference\disponibility_attribution_preference.html:85
+msgid "células mínimas"
+msgstr ""
+
+#: .\templates\attribution_preference\disponibility_attribution_preference.html:95
+msgid "Disponibilidade de horários"
+msgstr ""
+
+#: .\templates\attribution_preference\disponibility_attribution_preference.html:379
+msgid "Enviar Disponibilidade"
+msgstr ""
+
+#: .\templates\attribution_preference\disponibility_attribution_preference.html:381
+msgid "Limpar Disponibilidade"
+msgstr ""
+
+#: .\templates\attribution_preference\show_attribution_preference.html:16
+msgid "Preferência Atribuição"
+msgstr ""
+
+#: .\templates\attribution_preference\show_attribution_preference.html:17
+msgid "FPA Usuário"
+msgstr ""
+
+#: .\templates\attribution_preference\show_attribution_preference.html:24
+msgid "Formulário de Preferência de Atividades - FPA"
+msgstr ""
+
+#: .\templates\attribution_preference\show_attribution_preference.html:29
+msgid "Identificação do Docente"
+msgstr ""
+
+#: .\templates\attribution_preference\show_attribution_preference.html:32
+msgid "Docente"
+msgstr ""
+
+#: .\templates\attribution_preference\show_attribution_preference.html:34
+msgid "Conhecido como"
+msgstr ""
+
+#: .\templates\attribution_preference\show_attribution_preference.html:38
+#: .\templates\registration\login.html:47
+#: .\templates\registration\login.html:53
+#: .\templates\staff\professor\professors_list.html:179
+#: .\templates\staff\professor\professors_list.html:342
+msgid "Prontuário"
+msgstr ""
+
+#: .\templates\attribution_preference\show_attribution_preference.html:40
+#: .\templates\professor\profile.html:76
+#: .\templates\staff\professor\professors_list.html:56
+#: .\templates\staff\professor\professors_list.html:207
+#: .\templates\staff\professor\professors_list.html:370
+msgid "Celular"
+msgstr ""
+
+#: .\templates\attribution_preference\show_attribution_preference.html:48
+#: .\templates\staff\professor\professors_list.html:63
+#: .\templates\staff\professor\professors_list.html:237
+#: .\templates\staff\professor\professors_list.html:400
+msgid "Regime de trabalho"
+msgstr ""
+
+#: .\templates\attribution_preference\show_attribution_preference.html:60
+msgid "Disponibilidade de horário para atribuição de componentes curriculares"
+msgstr ""
+
+#: .\templates\attribution_preference\show_attribution_preference.html:66
+#: .\templates\attribution_preference\show_attribution_preference.html:262
+msgid "Prioridade de Escolha"
+msgstr ""
+
+#: .\templates\attribution_preference\show_attribution_preference.html:67
+msgid "Prioritária"
+msgstr ""
+
+#: .\templates\attribution_preference\show_attribution_preference.html:459
+msgid "Disciplinas escolhidas"
+msgstr ""
+
+#: .\templates\attribution_preference\show_attribution_preference.html:465
+msgid "Disciplina"
+msgstr ""
+
+#: .\templates\attribution_preference\show_attribution_preference.html:467
+msgid "Aulas"
+msgstr ""
+
+#: .\templates\attribution_preference\show_attribution_preference.html:468
+msgid "Prioridade"
+msgstr ""
+
+#: .\templates\attribution_preference\show_attribution_preference.html:481
+msgid "Voltar ao FPA Usuário"
+msgstr ""
+
+#: .\templates\attribution_preference\show_attribution_preference.html:486
+msgid "Imprimir PDF"
+msgstr ""
+
+#: .\templates\contact.html:6 .\templates\contact.html:17
+#: .\templates\professor\base.html:228
+#: .\templates\professor\base_attribution.html:222
+#: .\templates\staff\base.html:227
+msgid "Contato"
+msgstr ""
+
+#: .\templates\contact.html:25
+msgid "Entre em contato conosco"
+msgstr ""
+
+#: .\templates\contact.html:44
+msgid "Mensagem"
+msgstr ""
+
+#: .\templates\error\404.html:8
+msgid "Erro 404 - Página Não Encontrada"
+msgstr ""
+
+#: .\templates\error\404.html:26
+msgid "Não encontramos a página que você tentou acessar"
+msgstr ""
+
+#: .\templates\error\404.html:28 .\templates\error\500.html:27
+msgid "Voltar ao início"
+msgstr ""
+
+#: .\templates\error\500.html:8
+msgid "Erro 500 - Manutenção Interna"
+msgstr ""
+
+#: .\templates\error\500.html:26
+msgid "Erro interno"
+msgstr ""
+
+#: .\templates\error\500.html:26
+msgid "A equipe da ADA já está trabalhando nisso"
+msgstr ""
+
+#: .\templates\privacy_policy.html:6 .\templates\privacy_policy.html:28
+#: .\templates\professor\base.html:229
+#: .\templates\professor\base_attribution.html:223
+#: .\templates\staff\base.html:228
+msgid "Política de Privacidade"
+msgstr ""
+
+#: .\templates\privacy_policy.html:34
+msgid "SEÇÃO 1 - INFORMAÇÕES GERAIS"
+msgstr ""
+
+#: .\templates\privacy_policy.html:36
+msgid ""
+"Esta Política de Privacidade contém informações sobre como coletamos, "
+"usamos, armazenamos, tratamos e protegemos os dados pessoais dos usuários e "
+"visitantes do site ADA. Nosso objetivo é garantir total transparência sobre "
+"a coleta de dados, os motivos por trás dela e como os usuários podem "
+"gerenciar ou excluir suas informações pessoais. Este documento foi elaborado "
+"em conformidade com a Lei Geral de Proteção de Dados Pessoais (Lei "
+"13.709/18), o Marco Civil da Internet (Lei 12.965/14) e o Regulamento da UE "
+"n. 2016/679. É importante notar que esta política pode ser atualizada "
+"conforme necessário, e convidamos os usuários a consultá-la regularmente."
+msgstr ""
+
+#: .\templates\privacy_policy.html:39
+msgid "SEÇÃO 2 - QUAIS DADOS PESSOAIS RECOLHEMOS SOBRE O USUÁRIO E VISITANTE"
+msgstr ""
+
+#: .\templates\privacy_policy.html:41
+msgid ""
+"Ao criar uma conta/perfil na plataforma ADA, coletamos os seguintes dados "
+"pessoais do usuário"
+msgstr ""
+
+#: .\templates\privacy_policy.html:43
+msgid "Nome completo (primeiro nome e sobrenome)"
+msgstr ""
+
+#: .\templates\privacy_policy.html:44
+msgid "Endereço de e-mail"
+msgstr ""
+
+#: .\templates\privacy_policy.html:45
+msgid "Número de telefone (opcional)"
+msgstr ""
+
+#: .\templates\privacy_policy.html:46
+msgid "Número de celular"
+msgstr ""
+
+#: .\templates\privacy_policy.html:48
+msgid ""
+"Essas informações são coletadas para permitir o acesso e uso dos serviços "
+"oferecidos pela plataforma ADA e para proporcionar uma experiência "
+"personalizada aos nossos usuários"
+msgstr ""
+
+#: .\templates\privacy_policy.html:51
+msgid "SEÇÃO 3 - PARA QUE FINALIDADES UTILIZAMOS OS DADOS PESSOAIS DO USUÁRIO"
+msgstr ""
+
+#: .\templates\privacy_policy.html:53
+msgid ""
+"Utilizamos os dados de cadastro do usuário para permitir o acesso a "
+"conteúdos específicos da plataforma, reservados exclusivamente para usuários "
+"cadastrados."
+msgstr ""
+
+#: .\templates\privacy_policy.html:56
+msgid "SEÇÃO 4 - SEGURANÇA DOS DADOS PESSOAIS ARMAZENADOS"
+msgstr ""
+
+#: .\templates\privacy_policy.html:58
+msgid ""
+"Comprometemo-nos a aplicar medidas técnicas e organizacionais para proteger "
+"os dados pessoais contra acessos não autorizados, perdas, alterações, "
+"comunicações ou divulgações não autorizadas. Além disso, os dados relativos "
+"a cartões de crédito são criptografados usando a tecnologia "
+msgstr ""
+
+#: .\templates\privacy_policy.html:61
+msgid "SEÇÃO 5 - COMPARTILHAMENTO DOS DADOS"
+msgstr ""
+
+#: .\templates\privacy_policy.html:63
+msgid ""
+"Não compartilhamos os dados pessoais com terceiros, exceto em situações "
+"excepcionais (descrição das situações em que podem ser compartilhados)"
+msgstr ""
+
+#: .\templates\privacy_policy.html:66
+msgid "SEÇÃO 6 - OS DADOS PESSOAIS ARMAZENADOS SERÃO TRANSFERIDOS A TERCEIROS?"
+msgstr ""
+
+#: .\templates\privacy_policy.html:68
+msgid "Não transferimos os dados pessoais a terceiros"
+msgstr ""
+
+#: .\templates\privacy_policy.html:71
+msgid "SEÇÃO 7 - CONSENTIMENTO"
+msgstr ""
+
+#: .\templates\privacy_policy.html:73
+msgid "Ao usar o site ADA, você consente com nossa política de privacidade"
+msgstr ""
+
+#: .\templates\privacy_policy.html:76
+msgid "SEÇÃO 8 - ALTERAÇÕES PARA ESSA POLÍTICA DE PRIVACIDADE"
+msgstr ""
+
+#: .\templates\privacy_policy.html:78
+msgid ""
+"Reservamos o direito de modificar esta Política de Privacidade a qualquer "
+"momento. Recomendamos que você a reveja regularmente. As alterações e "
+"esclarecimentos terão efeito imediato após sua publicação na plataforma. "
+"Quando realizamos alterações, notificamos os usuários. Ao continuar a "
+"utilizar o serviço ou fornecer informações pessoais após as modificações, "
+"você está concordando com as novas normas"
+msgstr ""
+
+#: .\templates\professor\assignment\assignments.html:6
+#: .\templates\professor\assignment\assignments.html:11
+#: .\templates\professor\assignment\assignments.html:16
+#: .\templates\professor\assignment\assignments_classs_list.html:17
+#: .\templates\professor\assignment\show_assignment.html:18
+#: .\templates\staff\timetable\edit_timetable.html:19
+#: .\templates\staff\timetable\register.html:18
+#: .\templates\staff\timetable\show_timetable.html:11
+#: .\templates\staff\timetable\timetables.html:7
+#: .\templates\staff\timetable\timetables.html:16
+#: .\templates\staff\timetable\timetables.html:21
+msgid "Grades"
+msgstr ""
+
+#: .\templates\professor\assignment\assignments.html:31
+msgid "Ver atribuições"
+msgstr ""
+
+#: .\templates\professor\assignment\assignments_classs_list.html:6
+msgid "Áreas Grades"
+msgstr ""
+
+#: .\templates\professor\assignment\assignments_classs_list.html:12
+msgid "Áreas das Grades"
+msgstr ""
+
+#: .\templates\professor\assignment\assignments_classs_list.html:18
+#: .\templates\professor\blockk\block_detail.html:40
+#: .\templates\staff\blockk\block_detail.html:55
+msgid "Áreas"
+msgstr ""
+
+#: .\templates\professor\assignment\show_assignment.html:6
+msgid "Turmas Grades"
+msgstr ""
+
+#: .\templates\professor\assignment\show_assignment.html:13
+msgid "Grades da turma"
+msgstr ""
+
+#: .\templates\professor\assignment\show_assignment.html:19
+#: .\templates\staff\base.html:90 .\templates\staff\base.html:164
+msgid "Turma"
+msgstr ""
+
+#: .\templates\professor\base.html:79 .\templates\staff\base.html:88
+#: .\templates\staff\base.html:161
+#: .\templates\staff\professor\professors_list.html:66
+#: .\templates\staff\professor\professors_list.html:302
+#: .\templates\staff\professor\professors_list.html:466
+#: .\templates\user\home.html:82
+msgid "Professor"
+msgstr ""
+
+#: .\templates\professor\base.html:130
+#: .\templates\professor\base_attribution.html:125
+#: .\templates\professor\profile.html:6 .\templates\professor\profile.html:13
+#: .\templates\professor\profile.html:18 .\templates\staff\base.html:128
+msgid "Perfil"
+msgstr ""
+
+#: .\templates\professor\base.html:133 .\templates\professor\base.html:197
+#: .\templates\professor\base.html:279
+#: .\templates\professor\base_attribution.html:128
+#: .\templates\professor\base_attribution.html:192
+#: .\templates\professor\base_attribution.html:271
+#: .\templates\staff\base.html:131 .\templates\staff\base.html:199
+#: .\templates\staff\base.html:276
+msgid "Sair"
+msgstr ""
+
+#: .\templates\professor\base.html:168
+#: .\templates\professor\base_attribution.html:163
+#: .\templates\staff\base.html:170
+msgid "Línguas"
+msgstr ""
+
+#: .\templates\professor\base.html:226
+#: .\templates\professor\base_attribution.html:221
+#: .\templates\staff\base.html:226
+msgid "Sobre"
+msgstr ""
+
+#: .\templates\professor\base.html:230 .\templates\terms_and_conditions.html:6
+#: .\templates\terms_and_conditions.html:24
+#: .\templates\terms_and_conditions.html:28
+msgid "Termos de Uso"
+msgstr ""
+
+#: .\templates\professor\base.html:233
+#: .\templates\professor\base_attribution.html:227
+#: .\templates\staff\base.html:233
+msgid "Todos os direitos são reservados"
+msgstr ""
+
+#: .\templates\professor\base.html:235
+msgid "Ícones por Flaticon e Bootstrap"
+msgstr ""
+
+#: .\templates\professor\base.html:241
+#: .\templates\professor\base_attribution.html:233
+#: .\templates\staff\base.html:238
+msgid "Mais informações"
+msgstr ""
+
+#: .\templates\professor\base.html:275
+#: .\templates\professor\base_attribution.html:267
+#: .\templates\staff\base.html:272
+msgid "Deseja realmente sair"
+msgstr ""
+
+#: .\templates\professor\base.html:277
+#: .\templates\professor\base_attribution.html:269
+#: .\templates\staff\base.html:274
+#: .\templates\staff\blockk\block_detail.html:211
+#: .\templates\staff\classs\classes_list.html:195
+msgid "Cancelar"
+msgstr ""
+
+#: .\templates\professor\base_attribution.html:224
+#: .\templates\staff\base.html:229
+msgid "Termos e Condições de Uso"
+msgstr ""
+
+#: .\templates\professor\blockk\block_detail.html:7
+#: .\templates\professor\blockk\block_detail.html:20
+#: .\templates\professor\blockk\block_detail.html:26
+#: .\templates\staff\blockk\block_detail.html:7
+#: .\templates\staff\blockk\block_detail.html:20
+#: .\templates\staff\blockk\block_detail.html:26
+msgid "Detalhes Bloco"
+msgstr ""
+
+#: .\templates\professor\blockk\block_detail.html:25
+#: .\templates\professor\blockk\blocks_list.html:7
+#: .\templates\professor\blockk\blocks_list.html:22
+#: .\templates\professor\blockk\blocks_list.html:27
+#: .\templates\professor\profile.html:102
+#: .\templates\staff\blockk\block_detail.html:25
+#: .\templates\staff\blockk\blocks_list.html:7
+#: .\templates\staff\blockk\blocks_list.html:22
+#: .\templates\staff\blockk\blocks_list.html:27
+#: .\templates\staff\professor\professors_list.html:64
+msgid "Blocos"
+msgstr ""
+
+#: .\templates\professor\blockk\block_detail.html:38
+#: .\templates\professor\profile.html:46
+#: .\templates\staff\blockk\block_detail.html:53
+msgid "Detalhes"
+msgstr ""
+
+#: .\templates\professor\home_professor.html:6
+msgid "Página inicial - Professor(a)"
+msgstr ""
+
+#: .\templates\professor\home_professor.html:28
+#: .\templates\staff\deadline\confirm_deadline_configuration.html:7
+#: .\templates\staff\home_staff.html:35
+msgid "Prazos"
+msgstr ""
+
+#: .\templates\professor\home_professor.html:33
+#: .\templates\staff\home_staff.html:40
+msgid "Não Configurado"
+msgstr ""
+
+#: .\templates\professor\home_professor.html:38
+#: .\templates\staff\home_staff.html:45
+msgid "Espere até que seja emitido pelo administrador as datas da atribuição"
+msgstr ""
+
+#: .\templates\professor\home_professor.html:42
+#: .\templates\professor\home_professor.html:72
+#: .\templates\staff\home_staff.html:49 .\templates\staff\home_staff.html:79
+msgid "Formulário de Preferências"
+msgstr ""
+
+#: .\templates\professor\home_professor.html:46
+#: .\templates\professor\home_professor.html:61
+#: .\templates\staff\home_staff.html:53 .\templates\staff\home_staff.html:68
+msgid "Prazo configurado"
+msgstr ""
+
+#: .\templates\professor\home_professor.html:57
+#: .\templates\professor\home_professor.html:85
+#: .\templates\staff\home_staff.html:64 .\templates\staff\home_staff.html:92
+msgid "Atribuição de Aulas"
+msgstr ""
+
+#: .\templates\professor\home_professor.html:74
+#: .\templates\professor\home_professor.html:87
+#: .\templates\staff\home_staff.html:81 .\templates\staff\home_staff.html:94
+msgid "Iniciado"
+msgstr ""
+
+#: .\templates\professor\home_professor.html:98
+#: .\templates\staff\home_staff.html:105
+msgid "Finalizado"
+msgstr ""
+
+#: .\templates\professor\home_professor.html:101
+#: .\templates\staff\home_staff.html:108
+msgid "A atribuição de aulas terminou"
+msgstr ""
+
+#: .\templates\professor\home_professor.html:102
+#: .\templates\staff\home_staff.html:109
+msgid "até próxima atribuição"
+msgstr ""
+
+#: .\templates\professor\home_professor.html:110
+#: .\templates\staff\home_staff.html:117
+msgid "Alertas"
+msgstr ""
+
+#: .\templates\professor\home_professor.html:115
+#: .\templates\staff\home_staff.html:122
+msgid "Nenhum alerta configurado para seus blocos"
+msgstr ""
+
+#: .\templates\professor\home_professor.html:139
+msgid "Atualizações Legislação"
+msgstr ""
+
+#: .\templates\professor\home_professor.html:144
+#: .\templates\staff\home_staff.html:158
+msgid "Nenhum link da legislação configurado"
+msgstr ""
+
+#: .\templates\professor\home_professor.html:152
+msgid "Criado por"
+msgstr ""
+
+#: .\templates\professor\home_professor.html:165
+msgid "Permutações para você"
+msgstr ""
+
+#: .\templates\professor\home_professor.html:170
+msgid "Permutação ocorrendo"
+msgstr ""
+
+#: .\templates\professor\home_professor.html:173
+msgid ""
+"A atribuição terminou, todas permutas que foram pedidas foram resolvidas"
+msgstr ""
+
+#: .\templates\professor\home_professor.html:175
+#: .\templates\staff\home_staff.html:194
+msgid "Permuta não foi habilitada"
+msgstr ""
+
+#: .\templates\professor\home_professor.html:185
+msgid "Suas atribuições"
+msgstr ""
+
+#: .\templates\professor\home_professor.html:188
+msgid "Clique em um bloco para ver o andamento de sua atribuição"
+msgstr ""
+
+#: .\templates\professor\home_professor.html:198
+msgid "Acessar"
+msgstr ""
+
+#: .\templates\professor\profile.html:50
+msgid "Histórico de FPAs"
+msgstr ""
+
+#: .\templates\professor\profile.html:57
+msgid "Detalhes Perfil"
+msgstr ""
+
+#: .\templates\professor\profile.html:60
+msgid "Nome Completo"
+msgstr ""
+
+#: .\templates\professor\profile.html:64
+msgid "Nascimento"
+msgstr ""
+
+#: .\templates\professor\profile.html:72
+#: .\templates\staff\professor\professors_list.html:55
+#: .\templates\staff\professor\professors_list.html:202
+#: .\templates\staff\professor\professors_list.html:365
+msgid "Telefone"
+msgstr ""
+
+#: .\templates\professor\profile.html:81
+msgid "Diploma"
+msgstr ""
+
+#: .\templates\professor\profile.html:86 .\templates\professor\profile.html:92
+#: .\templates\professor\profile.html:97
+msgid "Regime"
+msgstr ""
+
+#: .\templates\professor\profile.html:114
+msgid "Histórico"
+msgstr ""
+
+#: .\templates\professor\profile.html:122
+msgid "Ver"
+msgstr ""
+
+#: .\templates\professor\profile.html:141
+msgid "Sua atribuição"
+msgstr ""
+
+#: .\templates\registration\login.html:8
+#: .\templates\registration\login.html:30
+msgid "Acessar Conta"
+msgstr ""
+
+#: .\templates\registration\login.html:22
+msgid "Dê um"
+msgstr ""
+
+#: .\templates\registration\login.html:23
+msgid ""
+"na praticidade: a nossa plataforma torna a atribuição de aulas uma lição "
+"fácil"
+msgstr ""
+
+#: .\templates\registration\login.html:38
+msgid "Preencha os campos corretamente"
+msgstr ""
+
+#: .\templates\registration\login.html:55
+msgid "Por favor, insira o seu prontuário"
+msgstr ""
+
+#: .\templates\registration\login.html:62
+#: .\templates\registration\login.html:68
+#: .\templates\registration\signup.html:62
+msgid "Senha"
+msgstr ""
+
+#: .\templates\registration\login.html:70
+#: .\templates\registration\signup.html:70
+msgid "Por favor, insira a sua senha"
+msgstr ""
+
+#: .\templates\registration\login.html:77
+#: .\templates\registration\signup.html:77
+msgid "Entrar"
+msgstr ""
+
+#: .\templates\registration\login.html:82
+#: .\templates\registration\signup.html:82
+msgid "Entre com"
+msgstr ""
+
+#: .\templates\registration\signup.html:8
+#: .\templates\registration\signup.html:22
+msgid "Cadastrar-se"
+msgstr ""
+
+#: .\templates\registration\signup.html:47
+#: .\templates\registration\signup.html:53
+msgid "E-mail institucional"
+msgstr ""
+
+#: .\templates\registration\signup.html:55
+msgid "Por favor, insira o seu e-mail institucional"
+msgstr ""
+
+#: .\templates\staff\attribution\attribution_configuration.html:13
+msgid "Configuração da atribuição"
+msgstr ""
+
+#: .\templates\staff\attribution\attribution_configuration.html:17
+#: .\templates\staff\queue\queue_create.html:19
+#: .\templates\staff\queue\queue_show.html:16
+msgid "Configurar Atribuições"
+msgstr ""
+
+#: .\templates\staff\attribution\attribution_configuration.html:18
+#: .\templates\staff\attribution\attribution_configuration_index.html:18
+#: .\templates\staff\queue\queue_create.html:20
+#: .\templates\staff\queue\queue_show.html:17
+msgid "Seus Blocos"
+msgstr ""
+
+#: .\templates\staff\attribution\attribution_configuration.html:19
+#: .\templates\staff\queue\queue_create.html:21
+#: .\templates\staff\queue\queue_show.html:18
+msgid "Fila"
+msgstr ""
+
+#: .\templates\staff\attribution\attribution_configuration.html:36
+msgid "Envio das preferências"
+msgstr ""
+
+#: .\templates\staff\attribution\attribution_configuration.html:44
 msgid "Processo de atribuição de aulas"
-msgstr "Class attribution process"
-
-#: .\templates\staff\attribution\attribution_configuration.html:68
-msgid "Editar fila"
-msgstr "Edit queue"
+msgstr ""
 
 #: .\templates\staff\attribution\attribution_configuration.html:71
-msgid "Salvar configurações"
-msgstr "Save configurations"
+msgid "Editar fila"
+msgstr ""
 
-#: .\templates\staff\attribution\attribution_configuration_confirm.html:16
-msgid "Configuração salva"
-msgstr "Configuration save"
-
-#: .\templates\staff\attribution\attribution_configuration_confirm.html:17
+#: .\templates\staff\attribution\attribution_configuration_confirm.html:15
 msgid ""
 "As atividades foram devidamente configuradas, os prazos estabelecidos e a "
 "fila organizada"
-msgstr "The activities were properly configured, the deadlines established and the queue organized"
+msgstr ""
 
 #: .\templates\staff\attribution\attribution_configuration_index.html:6
-msgid "Configuração de Atribuição"
-msgstr "Configuration of Attribution"
+#: .\templates\staff\attribution\attribution_configuration_index.html:12
+#: .\templates\staff\attribution\attribution_configuration_index.html:17
+msgid "Configurar Atribuição"
+msgstr ""
 
-#: .\templates\staff\attribution\attribution_configuration_index.html:11
-msgid "Blocos Atribuição"
-msgstr "Attribution Blocks"
-
-#: .\templates\staff\attribution\attribution_configuration_index.html:20
+#: .\templates\staff\attribution\attribution_configuration_index.html:22
 msgid "Escolha um bloco para configurar"
-msgstr "Choose a block to configure"
+msgstr ""
 
-#: .\templates\staff\attribution\attribution_configuration_index.html:21
+#: .\templates\staff\attribution\attribution_configuration_index.html:23
 msgid "Crie ou edite as filas e os prazos dos seus blocos"
-msgstr "Create or edit queues and deadlines for your blocks"
-
-#: .\templates\staff\attribution\attribution_configuration_index.html:29
-#, python-format
-msgid ""
-"\n"
-"                <h3 class=\"hover-5-title text-uppercase font-weight-light "
-"mb-0\"><strong class=\"font-weight-bold text-white\">%(block_text)s</"
-"strong><br><span>%(config_text)s</span></h3>\n"
-"              "
 msgstr ""
 
-#: .\templates\staff\base.html:65 .\templates\staff\base.html:130
-#: .\templates\staff\home_staff.html:37
-#: .\templates\staff\professor\professors_list.html:7
-#: .\templates\staff\professor\professors_list.html:14
-#: .\templates\staff\professor\professors_list.html:19
-msgid "Professores"
-msgstr "Professors"
-
-#: .\templates\staff\blockk\block_detail.html:7
-#: .\templates\staff\blockk\block_detail.html:15
-msgid "Detalhes Bloco"
-msgstr "Details Block"
-
-#: .\templates\staff\blockk\block_detail.html:19
-#: .\templates\staff\blockk\blocks_list.html:18
-msgid "Configurar Blocos"
-msgstr "Configure Blocks"
-
-#: .\templates\staff\blockk\block_detail.html:27
-msgid "Criar fila"
-msgstr "Create queue"
-
-#: .\templates\staff\blockk\block_detail.html:30
-msgid "Ver fila"
-msgstr "Show queue"
-
-#: .\templates\staff\blockk\block_detail.html:36
-#, python-format
-msgid ""
-"\n"
-"                <h1>%(name_block_text)s</h1>\n"
-"                "
+#: .\templates\staff\attribution\attribution_configuration_index.html:33
+msgid "Configurar"
 msgstr ""
 
-#: .\templates\staff\blockk\block_detail.html:41
-msgid "Detalhes"
-msgstr "Details"
-
-#: .\templates\staff\blockk\block_detail.html:43
-#, python-format
-msgid ""
-"\n"
-"                                <li class=\"list-group-item\"><strong>"
-"%(name_text)s:</strong> %(name_area_text)s</li>\n"
-"                                "
+#: .\templates\staff\base.html:76
+#: .\templates\staff\professor\professors_list.html:308
+#: .\templates\staff\professor\professors_list.html:472
+#: .\templates\user\home.html:89
+msgid "Representante"
 msgstr ""
 
-#: .\templates\staff\blockk\block_detail.html:47
-#, python-format
-msgid ""
-"\n"
-"                                <li class=\"list-group-item\"><strong>"
-"%(acronym_label)s:</strong> %(acronym_text)s</li>\n"
-"                                "
+#: .\templates\staff\base.html:225
+msgid "Links"
 msgstr ""
 
-#: .\templates\staff\blockk\block_detail.html:50
-#, python-format
-msgid ""
-"\n"
-"                                <li class=\"list-group-item\"><strong>"
-"%(exchange_text)s:</strong> %(exchange_area_text)s</li>\n"
-"                                "
+#: .\templates\staff\blockk\block_detail.html:42
+msgid "Criar Fila"
 msgstr ""
 
-#: .\templates\staff\blockk\block_detail.html:53
-#, python-format
-msgid ""
-"\n"
-"                                <li class=\"list-group-item\"><strong>"
-"%(high_school)s:</strong> %(is_high_school_text)s</li>\n"
-"                                "
+#: .\templates\staff\blockk\block_detail.html:46
+#: .\templates\staff\queue\queue_show.html:20
+msgid "Ver Fila"
 msgstr ""
 
-#: .\templates\staff\blockk\block_detail.html:63
+#: .\templates\staff\blockk\block_detail.html:77
 msgid "Criar Disciplina"
-msgstr "Create Course"
-
-#: .\templates\staff\blockk\block_detail.html:82
-#, python-format
-msgid ""
-"\n"
-"                            <td>%(name_course_text)s</td>\n"
-"                            "
 msgstr ""
 
-#: .\templates\staff\blockk\block_detail.html:85
-#: .\templates\staff\blockk\blocks_list.html:41
-#, python-format
-msgid ""
-"\n"
-"                            <td>%(acronym_text)s</td>\n"
-"                            "
-msgstr ""
-
-#: .\templates\staff\blockk\block_detail.html:103
 #: .\templates\staff\blockk\block_detail.html:127
-#: .\templates\staff\classs\classes_list.html:101
+#: .\templates\staff\blockk\block_detail.html:152
+#: .\templates\staff\classs\classes_list.html:122
 msgid "Criar"
-msgstr "Create"
+msgstr ""
 
-#: .\templates\staff\blockk\block_detail.html:138
+#: .\templates\staff\blockk\block_detail.html:164
+#: .\templates\staff\timetable\show_timetable.html:26
 msgid "Editar"
-msgstr "Edit"
+msgstr ""
 
-#: .\templates\staff\blockk\block_detail.html:162
-#: .\templates\staff\classs\classes_list.html:155
-#: .\templates\staff\deadline\deadline_configuration.html:37
-#: .\templates\staff\professor\professors_list.html:113
+#: .\templates\staff\blockk\block_detail.html:188
+#: .\templates\staff\classs\classes_list.html:173
+#: .\templates\staff\deadline\deadline_configuration.html:33
+#: .\templates\staff\home_staff.html:280 .\templates\staff\home_staff.html:320
+#: .\templates\staff\professor\professors_list.html:321
+#: .\templates\staff\professor\professors_list.html:486
 msgid "Salvar"
-msgstr "Save"
+msgstr ""
 
-#: .\templates\staff\blockk\block_detail.html:173
-#: .\templates\staff\classs\classes_list.html:166
+#: .\templates\staff\blockk\block_detail.html:200
+#: .\templates\staff\classs\classes_list.html:185
 msgid "Confirmar Exclusão"
-msgstr "Confirm Deletion"
+msgstr ""
 
-#: .\templates\staff\blockk\block_detail.html:179
+#: .\templates\staff\blockk\block_detail.html:206
 msgid "Tem certeza de que quer deletar a disciplina"
-msgstr "Are you sure you want to delete the course"
+msgstr ""
 
-#: .\templates\staff\blockk\block_detail.html:183
-#: .\templates\staff\classs\classes_list.html:176
+#: .\templates\staff\blockk\block_detail.html:212
+#: .\templates\staff\classs\classes_list.html:196
 msgid "Excluir"
-msgstr "Delete"
-
-#: .\templates\staff\blockk\blocks_list.html:38
-#, python-format
-msgid ""
-"\n"
-"                            <td>%(name_block_text)s</td>\n"
-"                            "
 msgstr ""
 
-#: .\templates\staff\classs\classes_list.html:7
-#: .\templates\staff\classs\classes_list.html:14
-#: .\templates\staff\classs\classes_list.html:19
-#: .\templates\staff\home_staff.html:45
-msgid "Turmas"
-msgstr "Classes"
-
-#: .\templates\staff\classs\classes_list.html:18
-msgid "Configurar Turmas"
-msgstr "Configure Classes"
-
-#: .\templates\staff\classs\classes_list.html:22
-#: .\templates\staff\classs\classes_list.html:60
-msgid "Criar Turma"
-msgstr "Create Classs"
-
-#: .\templates\staff\classs\classes_list.html:29
+#: .\templates\staff\classs\classes_list.html:34
 #: .\templates\staff\classs\classes_list.html:84
-#: .\templates\staff\classs\classes_list.html:136
-msgid "Semestre"
-msgstr "Semester"
-
-#: .\templates\staff\classs\classes_list.html:40
-#, python-format
-msgid ""
-"\n"
-"                        <td>%(period_text)s</td>\n"
-"                        "
+msgid "Criar Turma"
 msgstr ""
 
-#: .\templates\staff\classs\classes_list.html:44
-#, python-format
-msgid ""
-"\n"
-"                        <td>%(name_area_text)s (%(acronym_text)s)</td>\n"
-"                        "
-msgstr ""
-
-#: .\templates\staff\classs\classes_list.html:75
-#: .\templates\staff\classs\classes_list.html:89
-#: .\templates\staff\classs\classes_list.html:126
-#: .\templates\staff\classs\classes_list.html:142
+#: .\templates\staff\classs\classes_list.html:99
+#: .\templates\staff\classs\classes_list.html:111
+#: .\templates\staff\classs\classes_list.html:148
+#: .\templates\staff\classs\classes_list.html:162
 msgid "Selecione uma opção"
-msgstr "Select an option"
-
-#: .\templates\staff\classs\classes_list.html:77
-#, python-format
-msgid ""
-"\n"
-"                                    <option value=\"%(value_text)s\">"
-"%(label_text)s</option>\n"
-"                                "
 msgstr ""
 
-#: .\templates\staff\classs\classes_list.html:92
-#, python-format
-msgid ""
-"\n"
-"                                    %(name_area_text)s (%(acronym_text)s)</"
-"option>\n"
-"                                "
-msgstr ""
-
-#: .\templates\staff\classs\classes_list.html:112
+#: .\templates\staff\classs\classes_list.html:134
 msgid "Editar Turma"
-msgstr "Edit Classs"
-
-#: .\templates\staff\classs\classes_list.html:129
-#, python-format
-msgid ""
-"\n"
-"                                        %(label_text)s</option>\n"
-"                                    "
 msgstr ""
 
-#: .\templates\staff\classs\classes_list.html:145
-#, python-format
-msgid ""
-"\n"
-"                                        %(name_area_text)s "
-"(%(acronym_text)s)</option>\n"
-"                                    "
-msgstr ""
-
-#: .\templates\staff\classs\classes_list.html:172
+#: .\templates\staff\classs\classes_list.html:191
 msgid "Tem certeza de que quer deletar a turma"
-msgstr "Are you sure you want to delete the course"
+msgstr ""
 
 #: .\templates\staff\deadline\confirm_deadline_configuration.html:12
 msgid "Prazos Cadastrados!"
-msgstr "Deadlines Saved!"
+msgstr ""
 
 #: .\templates\staff\deadline\confirm_deadline_configuration.html:13
-#: .\templates\staff\deadline\deadline_configuration.html:18
+#: .\templates\staff\deadline\deadline_configuration.html:16
 msgid "Prazo para o envio do FPA"
-msgstr "Deadline for sending the FPA"
+msgstr ""
 
 #: .\templates\staff\deadline\confirm_deadline_configuration.html:16
-#: .\templates\staff\deadline\deadline_configuration.html:21
+#: .\templates\staff\deadline\deadline_configuration.html:19
 msgid "Prazo para a atribuição de aulas"
-msgstr "Deadline for course attribution"
+msgstr ""
 
 #: .\templates\staff\deadline\confirm_deadline_configuration.html:19
-#: .\templates\staff\deadline\deadline_configuration.html:24
+#: .\templates\staff\deadline\deadline_configuration.html:22
 msgid "Prazo para o período de permuta"
-msgstr "Deadline for the exchange period"
+msgstr ""
 
 #: .\templates\staff\deadline\deadline_configuration.html:7
 msgid "Criar Prazo"
-msgstr "Create Deadline"
-
-#: .\templates\staff\deadline\deadline_configuration.html:12
-#, python-format
-msgid ""
-"\n"
-"    <h1>%(text)s ( %(name_block_text)s )</h1>\n"
-"    "
 msgstr ""
 
-#: .\templates\staff\deadline\deadline_configuration.html:31
-#, python-format
-msgid ""
-"\n"
-"                    <option value=\"%(blockk.id)s\">%(name_block_text)s</"
-"option>\n"
-"                    "
+#: .\templates\staff\deadline\deadline_configuration.html:12
+msgid "Painel de configuração da atribuição de aulas"
 msgstr ""
 
 #: .\templates\staff\home_staff.html:5
-msgid "Home Administrador"
-msgstr "Home Admin"
-
-#: .\templates\staff\home_staff.html:12
-msgid "Painel de controle"
-msgstr "Control Panel"
-
-#: .\templates\staff\home_staff.html:13
-msgid "Olá"
-msgstr "Hello"
-
-#: .\templates\staff\home_staff.html:13
-msgid "Bem-vindo(a) ao painel de controle do sistema ADA"
-msgstr "Welcome to the ADA System Dashboard"
-
-#: .\templates\staff\home_staff.html:20
-msgid "Atribuições"
-msgstr "Attributions"
-
-#: .\templates\staff\professor\professors_list.html:18
-msgid "Configurar Lista de Professores"
-msgstr "Configure Professor Queue"
-
-#: .\templates\staff\professor\professors_list.html:53
-#, python-format
-msgid ""
-"\n"
-"                                        %(name_text)s\n"
-"                                    "
+msgid "Página Inicial - Representante"
 msgstr ""
 
-#: .\templates\staff\professor\professors_list.html:70
-msgid "Editar Professor"
-msgstr "Edit Professor"
+#: .\templates\staff\home_staff.html:142 .\templates\staff\home_staff.html:232
+msgid "Adicionar alerta"
+msgstr ""
 
-#: .\templates\staff\professor\professors_list.html:94
+#: .\templates\staff\home_staff.html:153
+msgid "Atualizações legislação"
+msgstr ""
+
+#: .\templates\staff\home_staff.html:178 .\templates\staff\home_staff.html:292
+msgid "Adicionar atualização"
+msgstr ""
+
+#: .\templates\staff\home_staff.html:185
+msgid "Permutas"
+msgstr ""
+
+#: .\templates\staff\home_staff.html:189
+msgid "Permutas ocorrendo"
+msgstr ""
+
+#: .\templates\staff\home_staff.html:192
+msgid ""
+"A atribuição terminou, todas as permutas que foram pedidas foram resolvidas"
+msgstr ""
+
+#: .\templates\staff\home_staff.html:204
+msgid "Atividades a serem concluídas"
+msgstr ""
+
+#: .\templates\staff\home_staff.html:215
+msgid "Organize as filas de atribuição de seus blocos"
+msgstr ""
+
+#: .\templates\staff\home_staff.html:249
+msgid "Título"
+msgstr ""
+
+#: .\templates\staff\home_staff.html:252
+msgid "Ex: Prazo de Atribuição Estendido"
+msgstr ""
+
+#: .\templates\staff\home_staff.html:257
+msgid "Descrição"
+msgstr ""
+
+#: .\templates\staff\home_staff.html:260
+msgid "Escreva aqui sua descrição"
+msgstr ""
+
+#: .\templates\staff\home_staff.html:268
+msgid "Selecione o bloco"
+msgstr ""
+
+#: .\templates\staff\home_staff.html:309
+msgid "Link"
+msgstr ""
+
+#: .\templates\staff\home_staff.html:312
+msgid "Insira a URL do documento aqui"
+msgstr ""
+
+#: .\templates\staff\professor\professors_list.html:7
+#: .\templates\staff\professor\professors_list.html:24
+#: .\templates\staff\professor\professors_list.html:29
+#: .\templates\staff\professor\register.html:7
+#: .\templates\staff\professor\register.html:27
+msgid "Professores"
+msgstr ""
+
+#: .\templates\staff\professor\professors_list.html:43
+msgid "Adicionar Professor"
+msgstr ""
+
+#: .\templates\staff\professor\professors_list.html:52
+#: .\templates\staff\professor\professors_list.html:191
+#: .\templates\staff\professor\professors_list.html:354
+#: .\templates\staff\professor\register.html:45
+msgid "Sobrenome"
+msgstr ""
+
+#: .\templates\staff\professor\professors_list.html:54
+#: .\templates\staff\professor\professors_list.html:197
+#: .\templates\staff\professor\professors_list.html:360
+#: .\templates\staff\professor\register.html:47
+msgid "Email"
+msgstr ""
+
+#: .\templates\staff\professor\professors_list.html:57
+#: .\templates\staff\professor\professors_list.html:213
+#: .\templates\staff\professor\professors_list.html:376
+#: .\templates\staff\queue\queue_create.html:69
+#: .\templates\staff\queue\queue_show.html:29
+msgid "Data de Nascimento"
+msgstr ""
+
+#: .\templates\staff\professor\professors_list.html:58
+#: .\templates\staff\professor\professors_list.html:217
+#: .\templates\staff\professor\professors_list.html:380
+#: .\templates\staff\queue\queue_create.html:70
+#: .\templates\staff\queue\queue_show.html:30
+msgid "Data de Carreira"
+msgstr ""
+
+#: .\templates\staff\professor\professors_list.html:59
+#: .\templates\staff\queue\queue_create.html:71
+#: .\templates\staff\queue\queue_show.html:31
+msgid "Data no Campus"
+msgstr ""
+
+#: .\templates\staff\professor\professors_list.html:60
+#: .\templates\staff\queue\queue_create.html:72
+#: .\templates\staff\queue\queue_show.html:32
+msgid "Data como Professor"
+msgstr ""
+
+#: .\templates\staff\professor\professors_list.html:61
+#: .\templates\staff\queue\queue_create.html:73
+#: .\templates\staff\queue\queue_show.html:33
+msgid "Data na Área"
+msgstr ""
+
+#: .\templates\staff\professor\professors_list.html:62
+#: .\templates\staff\queue\queue_create.html:74
+#: .\templates\staff\queue\queue_show.html:34
+msgid "Data no Instituto"
+msgstr ""
+
+#: .\templates\staff\professor\professors_list.html:65
+#: .\templates\staff\queue\queue_create.html:75
+#: .\templates\staff\queue\queue_show.html:35
+msgid "Diploma Pontuação"
+msgstr ""
+
+#: .\templates\staff\professor\professors_list.html:67
+msgid "Staff"
+msgstr ""
+
+#: .\templates\staff\professor\professors_list.html:68
+#: .\templates\staff\professor\professors_list.html:314
+#: .\templates\staff\professor\professors_list.html:478
+msgid "FG / FCC"
+msgstr ""
+
+#: .\templates\staff\professor\professors_list.html:110
+#: .\templates\staff\professor\professors_list.html:112
+#: .\templates\staff\professor\professors_list.html:243
+#: .\templates\staff\professor\professors_list.html:244
+#: .\templates\staff\professor\professors_list.html:406
+#: .\templates\staff\professor\professors_list.html:407
+msgid "Horas"
+msgstr ""
+
+#: .\templates\staff\professor\professors_list.html:170
+msgid "Adicionar novo professor"
+msgstr ""
+
+#: .\templates\staff\professor\professors_list.html:177
+#: .\templates\staff\professor\professors_list.html:340
+msgid "Informações do professor"
+msgstr ""
+
+#: .\templates\staff\professor\professors_list.html:211
+#: .\templates\staff\professor\professors_list.html:374
+msgid "Histórico do professor"
+msgstr ""
+
+#: .\templates\staff\professor\professors_list.html:221
+#: .\templates\staff\professor\professors_list.html:384
 msgid "Data de Ingresso no Campus"
-msgstr "Campus Entry Date"
-
-#: .\templates\staff\professor\professors_list.html:98
-msgid "Data de Ingresso como Professor"
-msgstr "Date of Admission as a Professor"
-
-#: .\templates\staff\professor\professors_list.html:102
-msgid "Data da Área"
-msgstr "Date of Area"
-
-#: .\templates\staff\professor\professors_list.html:106
-msgid "Data do Instituto"
-msgstr "Date of Institute"
-
-#: .\templates\staff\queue\queue_create.html:9
-msgid "Criar Fila Atribuição"
-msgstr "Create Attribution Queue"
-
-#: .\templates\staff\queue\queue_create.html:13
-#: .\templates\staff\queue\queue_show.html:12
-msgid "Fila de Professores"
-msgstr "Professors Queue"
-
-#: .\templates\staff\queue\queue_create.html:20
-#: .\templates\staff\queue\queue_show.html:19
-msgid "Fila"
-msgstr "Queue"
-
-#: .\templates\staff\queue\queue_create.html:31
-#, python-format
-msgid ""
-"\n"
-"                %(name_block_text)s</h2>\n"
-"            "
 msgstr ""
 
-#: .\templates\staff\queue\queue_create.html:39
-msgid "Critério definido pela direção"
-msgstr "Criteria defined by management"
+#: .\templates\staff\professor\professors_list.html:225
+#: .\templates\staff\professor\professors_list.html:388
+msgid "Data de Ingresso como Professor"
+msgstr ""
 
-#: .\templates\staff\queue\queue_create.html:42
-#, python-format
-msgid ""
-"\n"
-"                <h2>%(campo_text)s</h2>\n"
-"                "
+#: .\templates\staff\professor\professors_list.html:229
+#: .\templates\staff\professor\professors_list.html:392
+msgid "Data da Área"
+msgstr ""
+
+#: .\templates\staff\professor\professors_list.html:233
+#: .\templates\staff\professor\professors_list.html:396
+msgid "Data do Instituto"
+msgstr ""
+
+#: .\templates\staff\professor\professors_list.html:239
+#: .\templates\staff\professor\professors_list.html:402
+msgid "Defina um regime"
+msgstr ""
+
+#: .\templates\staff\professor\professors_list.html:247
+#: .\templates\staff\professor\professors_list.html:410
+msgid "Blocos do usuário"
+msgstr ""
+
+#: .\templates\staff\professor\professors_list.html:252
+#: .\templates\staff\professor\professors_list.html:415
+msgid "Adicionar um novo bloco"
+msgstr ""
+
+#: .\templates\staff\professor\professors_list.html:271
+#: .\templates\staff\professor\professors_list.html:435
+msgid "Diplomas do Usuário"
+msgstr ""
+
+#: .\templates\staff\professor\professors_list.html:276
+#: .\templates\staff\professor\professors_list.html:440
+msgid "Adicionar um novo diploma"
+msgstr ""
+
+#: .\templates\staff\professor\professors_list.html:285
+#: .\templates\staff\professor\professors_list.html:449
+msgid "pontuação"
+msgstr ""
+
+#: .\templates\staff\professor\professors_list.html:298
+#: .\templates\staff\professor\professors_list.html:462
+msgid "Cargos do professor"
+msgstr ""
+
+#: .\templates\staff\professor\professors_list.html:333
+msgid "Editar Professor"
+msgstr ""
+
+#: .\templates\staff\professor\register.html:22
+msgid "Professores com o cadastro não finalizado"
+msgstr ""
+
+#: .\templates\staff\professor\register.html:34
+msgid "Enviar e-mail"
+msgstr ""
+
+#: .\templates\staff\queue\queue_create.html:10
+msgid "Editar Fila Atribuição"
+msgstr ""
+
+#: .\templates\staff\queue\queue_create.html:15
+msgid "Fila de Docentes"
+msgstr ""
+
+#: .\templates\staff\queue\queue_create.html:22
+#: .\templates\staff\queue\queue_show.html:19
+msgid "Editar Fila"
+msgstr ""
+
+#: .\templates\staff\queue\queue_create.html:28
+msgid "Fila anterior recuperada. Caso deseje mantê-la, clique em enviar"
+msgstr ""
+
+#: .\templates\staff\queue\queue_create.html:44
+msgid "Critério definido pela direção"
 msgstr ""
 
 #: .\templates\staff\queue\queue_show.html:8
-msgid "Fila Atribuição"
-msgstr "Attribution Queue"
+#: .\templates\staff\queue\queue_show.html:12
+msgid "Detalhes Fila"
+msgstr ""
 
 #: .\templates\staff\timetable\edit_timetable.html:7
+#: .\templates\staff\timetable\edit_timetable.html:14
+#: .\templates\staff\timetable\edit_timetable.html:20
+msgid "Editar Grade"
+msgstr ""
+
 #: .\templates\staff\timetable\register.html:7
 msgid "Criar Grade"
-msgstr "Create Timetable"
-
-#: .\templates\staff\timetable\edit_timetable.html:34
-#, python-format
-msgid ""
-"\n"
-"            <th scope=\"row\">%(field_text)s</th>\n"
-"            "
 msgstr ""
-
-#: .\templates\staff\timetable\edit_timetable.html:42
-#, python-format
-msgid ""
-"\n"
-"                            <option class=\"dropdown-item-class\" value="
-"\"%(name_course_text)s\">\n"
-"                        "
-msgstr ""
-
-#: .\templates\staff\timetable\register.html:17
-#: .\templates\staff\timetable\show_timetable.html:19
-#: .\templates\staff\timetable\timetables.html:19
-msgid "Configurar Grades Horárias"
-msgstr "Configure Timetables"
-
-#: .\templates\staff\timetable\register.html:18
-#: .\templates\staff\timetable\show_timetable.html:20
-#: .\templates\staff\timetable\timetables.html:15
-#: .\templates\staff\timetable\timetables.html:20
-msgid "Grades Horárias"
-msgstr "Timetables"
 
 #: .\templates\staff\timetable\register.html:19
-msgid "Registrar"
-msgstr "Register"
+msgid "Criar Grade da"
+msgstr ""
 
-#: .\templates\staff\timetable\register.html:23
+#: .\templates\staff\timetable\register.html:24
 msgid "Carregando"
-msgstr "Loading"
-
-#: .\templates\staff\timetable\register.html:59
-#, python-format
-msgid ""
-"\n"
-"                      <option class=\"dropdown-item-class\" value="
-"\"%(name_course_text)s\">\n"
-"                    "
 msgstr ""
 
-#: .\templates\staff\timetable\show_timetable.html:7
+#: .\templates\staff\timetable\show_timetable.html:2
 msgid "Detalhe Grade"
-msgstr "Show Timetable"
+msgstr ""
 
-#: .\templates\staff\timetable\show_timetable.html:26
+#: .\templates\staff\timetable\show_timetable.html:6
+msgid "Detalhes Grade"
+msgstr ""
+
+#: .\templates\staff\timetable\show_timetable.html:12
+msgid "Detalhes Grade da"
+msgstr ""
+
+#: .\templates\staff\timetable\show_timetable.html:19
 msgid "Tabela salva"
-msgstr "Table saved"
-
-#: .\templates\staff\timetable\show_timetable.html:30
-msgid "Grade horária salva"
-msgstr "Timetable saved"
-
-#: .\templates\staff\timetable\show_timetable.html:34
-msgid "Editar Grade"
-msgstr "Edit Timetable"
-
-#: .\templates\staff\timetable\show_timetable.html:55
-#, python-format
-msgid ""
-"\n"
-"                  <th scope=\"row\">%(field_text)s</th>\n"
-"                  "
 msgstr ""
 
-#: .\templates\staff\timetable\show_timetable.html:60
-#, python-format
-msgid ""
-"\n"
-"                    %(field_text)s\n"
-"                  "
+#: .\templates\terms_and_conditions.html:34
+msgid "SEÇÃO 1 - ACEITAÇÃO DOS TERMOS"
 msgstr ""
 
-#: .\templates\staff\timetable\timetables.html:7
-msgid "Grades"
-msgstr "Timetables"
-
-#: .\templates\staff\timetable\timetables.html:36
-#, python-format
+#: .\templates\terms_and_conditions.html:36
 msgid ""
-"\n"
-"                  <td>%(name_area_text)s</td>\n"
-"                "
+"Estes Termos de Uso constituem um contrato legal entre você e a plataforma "
+"ADA. Ao acessar ou utilizar nossos serviços, você concorda em cumprir estes "
+"termos e todas as leis e regulamentos aplicáveis. Se você não concorda com "
+"estes termos, por favor, não utilize nossos serviços"
+msgstr ""
+
+#: .\templates\terms_and_conditions.html:39
+msgid "SEÇÃO 2 - USO DOS NOSSOS SERVIÇOS"
+msgstr ""
+
+#: .\templates\terms_and_conditions.html:41
+msgid ""
+"Você concorda em utilizar nossos serviços apenas para fins legais e de "
+"acordo com estes Termos de Uso. Você não deve usar nossos serviços de "
+"maneira que possa danificar, desabilitar, sobrecarregar ou prejudicar a "
+"plataforma ADA ou interferir no uso de nossos serviços por terceiros. Você "
+"não pode tentar obter acesso não autorizado aos nossos sistemas ou redes"
+msgstr ""
+
+#: .\templates\terms_and_conditions.html:44
+msgid "SEÇÃO 3 - CONTA DO USUÁRIO"
+msgstr ""
+
+#: .\templates\terms_and_conditions.html:46
+msgid ""
+"Ao criar uma conta na plataforma ADA, você é responsável por manter a "
+"confidencialidade de suas credenciais de acesso e por todas as atividades "
+"que ocorrem em sua conta. Você concorda em nos notificar imediatamente caso "
+"suspeite de qualquer uso não autorizado de sua conta"
+msgstr ""
+
+#: .\templates\terms_and_conditions.html:49
+msgid "SEÇÃO 4 - LIMITAÇÕES DE RESPONSABILIDADE"
+msgstr ""
+
+#: .\templates\terms_and_conditions.html:51
+msgid ""
+"A plataforma ADA não se responsabiliza por quaisquer danos diretos, "
+"indiretos, incidentais, consequenciais ou especiais, incluindo perda de "
+"lucros, de dados ou de reputação, decorrentes do uso de nossos serviços ou "
+"da impossibilidade de utilizá-los"
+msgstr ""
+
+#: .\templates\terms_and_conditions.html:54
+msgid "SEÇÃO 5 - MODIFICAÇÕES DOS TERMOS DE USO"
+msgstr ""
+
+#: .\templates\terms_and_conditions.html:56
+msgid ""
+"Reservamos o direito de modificar estes Termos de Uso a qualquer momento. As "
+"alterações entrarão em vigor imediatamente após a publicação. Recomendamos "
+"que você revise periodicamente estes termos para se manter informado sobre "
+"as atualizações"
+msgstr ""
+
+#: .\templates\terms_and_conditions.html:59
+msgid "SEÇÃO 6 - ENCERRAMENTO"
+msgstr ""
+
+#: .\templates\terms_and_conditions.html:61
+msgid ""
+"Podemos encerrar ou suspender sua conta ou acesso aos nossos serviços a "
+"qualquer momento, por qualquer motivo, incluindo se você violar estes Termos "
+"de Uso. Em caso de encerramento, você concorda em cessar imediatamente o uso "
+"dos nossos serviços"
+msgstr ""
+
+#: .\templates\terms_and_conditions.html:64
+msgid "SEÇÃO 7 - LEI APLICÁVEL"
+msgstr ""
+
+#: .\templates\terms_and_conditions.html:66
+msgid ""
+"Estes Termos de Uso serão regidos e interpretados de acordo com as leis do "
+"Brasil. Qualquer disputa decorrente ou relacionada a estes termos estará "
+"sujeita à jurisdição exclusiva dos tribunais brasileiros"
+msgstr ""
+
+#: .\templates\terms_and_conditions.html:69
+msgid "SEÇÃO 8 - CONTATO"
+msgstr ""
+
+#: .\templates\terms_and_conditions.html:71
+msgid ""
+"Se tiver alguma dúvida sobre estes Termos de Uso, entre em contato conosco "
+"pelo e-mail"
 msgstr ""
 
 #: .\templates\user\home.html:6
 msgid "Home Usuário"
-msgstr "Home User"
+msgstr ""
 
-#: .\templates\user\home.html:14
+#: .\templates\user\home.html:76
 msgid "Olá, bem-vindo(a) à ADA"
-msgstr "Hello, welcome to the ADA"
+msgstr ""
 
-#: .\templates\user\home.html:15
+#: .\templates\user\home.html:77
 msgid "Você quer acessar o sistema como"
-msgstr "Do you want to access the system as"
-
-#: .\templates\user\home.html:19
-msgid "Professor"
 msgstr ""
 
-#: .\templates\user\home.html:24
-msgid "Staff"
-msgstr ""
-
-#: .\templates\user\home.html:29
+#: .\templates\user\home.html:96
 msgid "Administrador"
-msgstr "Administrator"
+msgstr ""
 
-#: .\timetable\models.py:13
+#: .\timetable\models.py:23
 msgid "timetable"
 msgstr ""
 
-#: .\timetable\models.py:14
+#: .\timetable\models.py:24
 msgid "timetables"
 msgstr ""
 
-#: .\timetable\models.py:20
+#: .\timetable\models.py:31
 msgid "position"
 msgstr ""
 
-#: .\timetable\models.py:21
+#: .\timetable\models.py:32
 msgid "hour start"
 msgstr ""
 
-#: .\timetable\models.py:22
+#: .\timetable\models.py:33
 msgid "hour end"
 msgstr ""
 
-#: .\timetable\models.py:26
+#: .\timetable\models.py:37
 msgid "timeslot"
 msgstr ""
 
-#: .\timetable\models.py:27
+#: .\timetable\models.py:38
 msgid "timeslots"
 msgstr ""
 
-#: .\timetable\models.py:48
+#: .\timetable\models.py:66
 msgid "day_combo"
 msgstr ""
 
-#: .\timetable\models.py:49
+#: .\timetable\models.py:67
 msgid "day_combos"
 msgstr ""
 
-#: .\timetable\models.py:59
+#: .\timetable\models.py:86
 msgid "timetable_user"
 msgstr ""
 
-#: .\timetable\models.py:60
+#: .\timetable\models.py:87
 msgid "timetable_users"
 msgstr ""
 
-#: .\user\models.py:39
+#: .\user\models.py:44
 msgid "registration id"
 msgstr ""
 
-#: .\user\models.py:40
+#: .\user\models.py:50
 msgid "first name"
 msgstr ""
 
-#: .\user\models.py:41
+#: .\user\models.py:55
 msgid "last name"
 msgstr ""
 
-#: .\user\models.py:42
+#: .\user\models.py:60
 msgid "email address"
 msgstr ""
 
-#: .\user\models.py:43
+#: .\user\models.py:66
 msgid "telephone"
 msgstr ""
 
-#: .\user\models.py:44
+#: .\user\models.py:71
 msgid "cell phone"
 msgstr ""
 
-#: .\user\models.py:45
+#: .\user\models.py:76
 msgid "date joined"
 msgstr ""
 
-#: .\user\models.py:46
+#: .\user\models.py:77
 msgid "superuser status"
 msgstr ""
 
-#: .\user\models.py:47
+#: .\user\models.py:78
 msgid "staff status"
 msgstr ""
 
-#: .\user\models.py:48
+#: .\user\models.py:79
 msgid "active"
 msgstr ""
 
-#: .\user\models.py:49
+#: .\user\models.py:80
+msgid "fgfcc"
+msgstr ""
+
+#: .\user\models.py:81
 msgid "professor"
 msgstr ""
 
-#: .\user\models.py:59
+#: .\user\models.py:103
 msgid "user"
 msgstr ""
 
-#: .\user\models.py:60
+#: .\user\models.py:104
 msgid "users"
 msgstr ""
 
-#: .\user\models.py:85
+#: .\user\models.py:176
 msgid "birth"
 msgstr ""
 
-#: .\user\models.py:86
+#: .\user\models.py:177
 msgid "date career"
 msgstr ""
 
-#: .\user\models.py:87
+#: .\user\models.py:178
 msgid "date campus"
 msgstr ""
 
-#: .\user\models.py:88
+#: .\user\models.py:180
 msgid "date professor"
 msgstr ""
 
-#: .\user\models.py:89
+#: .\user\models.py:181
 msgid "date area"
 msgstr ""
 
-#: .\user\models.py:90
+#: .\user\models.py:183
 msgid "date institute"
 msgstr ""
 
-#: .\user\models.py:117
-msgid "name job"
-msgstr ""
-
-#: .\user\models.py:128
+#: .\user\models.py:262
 msgid "is competent"
 msgstr ""

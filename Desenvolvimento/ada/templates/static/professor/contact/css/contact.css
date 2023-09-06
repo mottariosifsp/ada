@@ -1,31 +1,18 @@
-form {
-    max-width: 400px;
-    margin: 0 auto;
-    padding: 20px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    background-color: #f9f9f9;
-}
-
-
-label {
-    font-weight: bold;
-}
-
 input[type="text"],
 input[type="email"],
 textarea {
     width: 100%;
     padding: 10px;
     margin-bottom: 10px;
-    border: 1px solid #ccc;
+    border: 1px solid #ffffff;
     border-radius: 3px;
     box-sizing: border-box;
     resize: none;
+    background-color: #f0ecec;
 }
 
 button[type="submit"] {
-    background-color: #007bff;
+    background-color: #517ca7;
     color: #fff;
     padding: 10px 20px;
     border: none;
@@ -34,5 +21,79 @@ button[type="submit"] {
 }
 
 button[type="submit"]:hover {
-    background-color: #0056b3;
+    background-color: #5158a8;
+}
+
+.card {
+    width: 96%;
+    margin: 0 auto;
+    margin-top: 20px;
+}
+
+input[type="text"]:focus, input[type="email"]:focus {
+    outline: none;
+    border: none;
+    caret-color: transparent;
+}
+
+.card-body {
+    display: flex;
+    align-items: stretch;
+}
+
+form {
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 0;
+    border: none;
+    border-radius: 5px;
+    background-color: #ffffff;
+}
+
+.form-label {
+    font-weight: bold;
+}
+
+.left-content {
+    background-color: #517ca7;
+    padding: 20px;
+    width: 35%;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.left-content img {
+    max-width: 100%;
+}
+
+.right-content {
+    background-color: white;
+    padding: 20px;
+    width: 75%;
+}
+
+.contact-heading {
+    color: white;
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+.card-body {
+    padding: 0;
+}
+
+.success-message {
+    display: none;
+}
+
+.success-message.visible {
+    display: block;
+}
+
+.message{
+    margin-top: -20px;
+    margin-bottom: 10px;
 }

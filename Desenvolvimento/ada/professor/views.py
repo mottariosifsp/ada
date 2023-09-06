@@ -14,11 +14,11 @@ from datetime import datetime, timedelta
 from classs.models import Classs
 from course.models import Course
 from professor.models import ContatoForm
-
 from user.models import User
 from django.core.mail import send_mail, EmailMessage
 from django.utils.translation import gettext_lazy as _
 from django.contrib import messages
+from django.template.loader import render_to_string
 def is_not_staff(user):
     return not user.is_staff
 
@@ -363,24 +363,33 @@ def professor_block_detail(request, registration_block_id):
 
 @login_required
 def contact(request):
-    form = ContatoForm()
+    full_name_camel_case = request.user.get_full_name_camel_case()
+    nome_do_usuario = full_name_camel_case
+    email_do_usuario = request.user.email
+
     success_message = None
 
     if request.method == 'POST':
-        form = ContatoForm(request.POST)
+        form = ContatoForm(request.POST, initial={'name': nome_do_usuario, 'email': email_do_usuario})
         if form.is_valid():
             name = form.cleaned_data['name']
             email = form.cleaned_data['email']
             message = form.cleaned_data['message']
-            assunto = 'Contato da aplicação ADA'
+            subject = 'Contato da aplicação ADA'
 
-            send_mail(name, message, email, ['ada.ifsp@gmail.com'], fail_silently=False)
+            # Renderize seu template de e-mail personalizado
+            message_html = render_to_string('contact_email.html', {'name': name, 'message': message, 'email': email})
 
-            success_message = _('Email enviado com sucesso.')
+            send_mail(subject, message, email, ['ada.ifsp@gmail.com'], html_message=message_html, fail_silently=False)
 
-            form = ContatoForm()
+            messages.success(request, _('Email enviado com sucesso.'))
+
+            form = ContatoForm(initial={'name': nome_do_usuario, 'email': email_do_usuario})
+    else:
+        form = ContatoForm(initial={'name': nome_do_usuario, 'email': email_do_usuario})
 
     return render(request, 'contact.html', {'form': form, 'success_message': success_message})
+
 
 def day_to_number(day):
     number = {

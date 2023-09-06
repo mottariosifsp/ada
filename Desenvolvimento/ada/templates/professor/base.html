@@ -75,7 +75,7 @@
     <div class="d-flex justify-content-between align-items-center w-100">
       <div class="nav-brand mr-auto">
         <a class="logo" href="{% url 'home' %}" style="font-size: larger;">
-          &nbsp;<img class="ada-logo" src="{% static 'images/logo_bg.png' %}" alt="{% trans 'logo ADA' %}"> &emsp; | &emsp;
+          &nbsp;<img class="ada-logo" src="{% static 'images/logo_bg.png' %}" alt="logo ADA"> &emsp; | &emsp;
           {% trans "Professor" %}
         </a>
       </div>
@@ -85,13 +85,12 @@
     </div>
     <div class="collapse navbar-collapse justify-content-end" id="navbarToggler">
       <ul class="navbar-nav mx-auto" style="font-size: larger;">
-        <li class="nav-item word-topic"><a class="nav-link title" href="#">{% trans "Informação" %}</a></li>
+        <li class="nav-item word-topic"><a class="nav-link title"
+          href="{% url 'professor_blocks_list' %}">{% trans "Bloco" %}</a></li>
         <li class="nav-item word-topic"><a class="nav-link title"
             href="{% url 'attribution_preference' %}">{% trans "FPA" %}</a></li>
         <li class="nav-item word-topic"><a class="nav-link title"
-            href="{% url 'assignments' %}">{% trans "Atribuições" %}</a></li>
-        <li class="nav-item word-topic"><a class="nav-link title"
-            href="{% url 'professor_blocks_list' %}">{% trans "Blocos" %}</a></li>
+            href="{% url 'assignments' %}">{% trans "Grade" %}</a></li>
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownLangLogin" data-toggle="dropdown"
             aria-haspopup="true" aria-expanded="false">
@@ -144,7 +143,7 @@
         <div class="modal-content">
           <div class="modal-header">
             <a class="logo" href="{% url 'home' %}">
-              <img class="ada-logo" src="{% static 'images/logo_bg.png' %}" alt="{% trans 'logo ADA' %}">
+              <img class="ada-logo" src="{% static 'images/logo_bg.png' %}" alt="logo ADA">
             </a>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
               <span class="hide-sidebar" aria-hidden="true">&times;</span>
@@ -157,11 +156,11 @@
               </a>
             </div>
             <hr>
-            <div class="modal-line"><a class="nav-link title" href="#"><i class="bi bi-info-square"></i>
-                {% trans "Informação" %}</a></div>
+            <div class="modal-line"><a class="nav-link title" href="{% url 'professor_blocks_list' %}"><i class="bi bi-info-square"></i>
+                {% trans "Bloco" %}</a></div>
             <div class="modal-line"><a class="nav-link title" href="{% url 'attribution_preference' %}"><i
                   class="bi bi-ui-checks-grid"></i> {% trans "FPA" %}</a></div>
-            <div class="modal-line"><a class="nav-link title" href="#"><i class="bi bi-layout-text-window-reverse"></i>
+            <div class="modal-line"><a class="nav-link title" href="{% url 'assignments' %}"><i class="bi bi-layout-text-window-reverse"></i>
                 {% trans "Grade" %}</a></div>
             <div class="modal-line dropdown">
               <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownLangSidebar" data-toggle="dropdown"
@@ -218,7 +217,7 @@
         <div class="col-6 col-lg-2 about-company mt-4 text-center">
           <div class="nav-brand">
             <a class="logo" onclick="backToTop()">
-              <img class="w-100" src="{% static 'images/logo_bg.png' %}" alt="{% trans 'logo ADA' %}">
+              <img class="w-100" src="{% static 'images/logo_bg.png' %}" alt="logo ADA">
             </a>
           </div>
         </div>
@@ -228,7 +227,7 @@
 
           <a href="{% url 'contact' %}" class="mr-2 footer-link"><span>{% trans "Contato" %}</span></a>
           <a href="{% url 'privacy_policy' %}" class="mr-2 footer-link"><span>{% trans "Política de Privacidade" %}</span></a>
-          <a href="{% url 'terms_and_conditions' %}" class="mr-2 footer-link"><span>{% trans "Termos e Condições de Uso" %}</span></a>
+          <a href="{% url 'terms_and_conditions' %}" class="mr-2 footer-link"><span>{% trans "Termos de Uso" %}</span></a>
           <div class="row">
             <div class="col copyright">
               <p class=""><small class="text-white-50">© 2023 Mottarios. {% trans "Todos os direitos são reservados"%}. |
