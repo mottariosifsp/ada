@@ -14,7 +14,6 @@ from datetime import datetime, timedelta
 from classs.models import Classs
 from course.models import Course
 from professor.models import ContatoForm
-
 from user.models import User
 from django.core.mail import send_mail, EmailMessage
 from django.utils.translation import gettext_lazy as _
@@ -193,6 +192,7 @@ def privacy_policy(request):
 def terms_and_conditions (request):
     return render(request, 'terms_and_conditions.html')
 
+@login_required
 def profile(request):
     professor = request.user
     timeslots_all = Timeslot.objects.all()
@@ -360,12 +360,17 @@ def professor_block_detail(request, registration_block_id):
 
     return render(request, 'professor/blockk/block_detail.html', data)
 
+@login_required
 def contact(request):
-    form = ContatoForm()
+    full_name_camel_case = request.user.get_full_name_camel_case()
+
+    nome_do_usuario = full_name_camel_case
+    email_do_usuario = request.user.email
+
     success_message = None
 
     if request.method == 'POST':
-        form = ContatoForm(request.POST)
+        form = ContatoForm(request.POST, initial={'name': nome_do_usuario, 'email': email_do_usuario})
         if form.is_valid():
             name = form.cleaned_data['name']
             email = form.cleaned_data['email']
@@ -376,7 +381,9 @@ def contact(request):
 
             success_message = _('Email enviado com sucesso.')
 
-            form = ContatoForm()
+            form = ContatoForm(initial={'name': nome_do_usuario, 'email': email_do_usuario})
+    else:
+        form = ContatoForm(initial={'name': nome_do_usuario, 'email': email_do_usuario})
 
     return render(request, 'contact.html', {'form': form, 'success_message': success_message})
 
