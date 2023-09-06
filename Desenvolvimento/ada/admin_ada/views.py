@@ -8,6 +8,7 @@ from staff.models import Deadline
 from timetable.models import Timetable_user
 
 def deadline_configuration(request):
+    
     return render(request, 'admin/deadline_configuration.html')
 
 
@@ -66,8 +67,8 @@ def save_deadline(data):
             deadline_end=data['endAssignmentDeadline'],
             blockk=blockk_obj,
         )
-        # if Course_preference.objects.filter(blockk=blockk_obj).exists():
-        #     print('Atribuição iniciada')
-        #     schedule_attributtion_deadline_staff(data['startAssignmentDeadline'], 'startAssignmentDeadline', blockk_obj.registration_block_id, blockk_obj.registration_block_id) 
-        # else:
-        #     print('Atribuição recusa por falta de preferências')
+        if Course_preference.objects.filter(blockk=blockk_obj).exists():
+            print('Atribuição iniciada')
+            schedule_attributtion_deadline_staff(data['startAssignmentDeadline'], 'startAssignmentDeadline', blockk_obj.registration_block_id, blockk_obj.registration_block_id) 
+        else:
+            print('Atribuição recusa por falta de preferências')

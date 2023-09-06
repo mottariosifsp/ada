@@ -61,7 +61,7 @@ CELERY_TASK_TRACK_STARTED = True
 CELERY_TIMEZONE = 'America/Sao_Paulo'
 CELERY_CREATE_MISSING_QUEUES = True
 
-# BROKER_HEARTBEAT=0
+BROKER_HEARTBEAT=0
 
 
 MIDDLEWARE = [
@@ -177,7 +177,7 @@ LOGIN_URL = "/user/login"
 LOGOUT_REDIRECT_URL = '/user/sair'
 
 #email_backend to console
-#EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+# EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 # DEFAULT_FROM_EMAIL = 'ada.ifsp@gmail.com'
 # EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 # EMAIL_HOST_USER = config('EMAIL_HOST_USER')

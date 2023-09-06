@@ -1,5 +1,5 @@
 import json
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import user_passes_test
 from django.contrib.auth.decorators import login_required
 from django.core import serializers
@@ -13,10 +13,12 @@ from area.models import Area, Blockk
 from datetime import datetime, timedelta
 from classs.models import Classs
 from course.models import Course
+from professor.models import ContatoForm
 
 from user.models import User
 from django.core.mail import send_mail, EmailMessage
-
+from django.utils.translation import gettext_lazy as _
+from django.contrib import messages
 def is_not_staff(user):
     return not user.is_staff
 
@@ -357,6 +359,26 @@ def professor_block_detail(request, registration_block_id):
     }
 
     return render(request, 'professor/blockk/block_detail.html', data)
+
+def contact(request):
+    form = ContatoForm()
+    success_message = None
+
+    if request.method == 'POST':
+        form = ContatoForm(request.POST)
+        if form.is_valid():
+            name = form.cleaned_data['name']
+            email = form.cleaned_data['email']
+            message = form.cleaned_data['message']
+            assunto = 'Contato da aplicação ADA'
+
+            send_mail(name, message, email, ['ada.ifsp@gmail.com'], fail_silently=False)
+
+            success_message = _('Email enviado com sucesso.')
+
+            form = ContatoForm()
+
+    return render(request, 'contact.html', {'form': form, 'success_message': success_message})
 
 def day_to_number(day):
     number = {

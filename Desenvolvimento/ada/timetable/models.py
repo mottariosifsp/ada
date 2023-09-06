@@ -81,7 +81,7 @@ class Timetable_user(models.Model):
         related_name='timetable_user',
         null=True,
         blank=True)
-
+    year = models.CharField(_('year'), max_length=45, null=True, blank=True)
     class Meta:
         verbose_name = _('timetable_user')
         verbose_name_plural = _('timetable_users')

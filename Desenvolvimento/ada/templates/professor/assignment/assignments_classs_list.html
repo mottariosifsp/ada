@@ -22,6 +22,7 @@
     <div class="area-container">
         {% for area in areas %}
             <div class="area" data-registration_area_id="{{ area.registration_area_id }}">
+                {% comment %} {% blocktrans with area=area.name_area %}{{ area }}{% endblocktrans %} {% endcomment %}
                 {% trans area.name_area %}
             </div>
         {% endfor %}
