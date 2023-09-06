@@ -45,19 +45,21 @@
                         {{ form.message }}
                         <div id="messageError" style="display: none;"></div>
                     </div>
+
+                {% if messages %}
+                    {% for message in messages %}
+                        <div class="message{% if message.tags %} {{ message.tags }}{% endif %}">
+                            {{ message }}
+                        </div>
+                    {% endfor %}
+                {% endif %}
+
                     <button type="submit" class="btn btn-primary">{% trans "Enviar" %}</button>
+
                 </form>
             </div>
         </div>
     </div>
-
-    {% if messages %}
-        <ul class="messages">
-            {% for message in messages %}
-                <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
-            {% endfor %}
-        </ul>
-    {% endif %}
 
 {% endblock %}
 
