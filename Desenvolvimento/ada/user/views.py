@@ -56,15 +56,15 @@ def signup(request):
             email = form.cleaned_data['email']
             password = form.cleaned_data['password']
 
-            if re.match(r'^[\w\.-]+@aluno\.ifsp\.edu\.br$', email):
+            if re.match(r'^[\w\.-]+@ifsp\.edu\.br$', email):
 
                 if professor_authenticate(request, email, password):
                     return redirect('login')
                 else:
-                    error_message = 'E-mail ou senha incorretos'
+                    error_message = 'E-mail ou senha incorreto(a)'
                     return render(request, 'registration/signup.html', {'form': form, 'error_message': error_message})
             else:
-                error_message = 'O email deve ser do tipo @aluno.ifsp.edu.br'
+                error_message = 'O email deve ser do tipo @ifsp.edu.br'
                 return render(request, 'registration/signup.html', {'form': form, 'error_message': error_message})
         else:
             error_message = 'Formulário inválido'

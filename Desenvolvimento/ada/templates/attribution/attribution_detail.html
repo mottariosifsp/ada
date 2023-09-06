@@ -6,7 +6,9 @@
 {{ block.super }}
 <title>{% trans "Grade Horária Final" %}</title>
 <link rel="stylesheet" href="{% static 'attribution/css/attribution_detail.css' %}">
-
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script src="path-to-bootstrap/bootstrap.min.js"></script>
+<link rel="stylesheet" href="path-to-bootstrap/bootstrap.min.css">
 {% endblock %}
 
 {% block body %}
@@ -16,9 +18,9 @@
   <hr>
   <nav>
     <ol class="breadcrumb">
-      <li class="breadcrumb-item"><a href="{% url 'home' %}"><i class="bi bi-house-door"></i></a></li>
-      <li class="breadcrumb-item active" aria-current="page"> {% trans "Atribuição" %}</li>
-      <li class="breadcrumb-item active" aria-current="page"> {% trans "Lista de classes" %} </li>
+      <li class="breadcrumb-item"><a href="{% url 'home_professor' %}"><i class="bi bi-house-door"></i></a></li>
+      <li class="breadcrumb-item" aria-current="page"><a href="{% url 'attribution' %}"> {% trans "Atribuição" %}</a></li>
+      <li class="breadcrumb-item" aria-current="page"><a href="{% url 'attribution_class_list' %}"> {% trans "Turmas Atribuídas" %} </a></li>
       <li class="breadcrumb-item active">{% trans "Grade" %} {{ request.GET.class }}</li>
     </ol>
   </nav>
@@ -47,7 +49,6 @@
           <th scope="row" class="align-middle text-center">{{ timeslot.hour_start|date:"H:i" }} -
             {{ timeslot.hour_end|date:"H:i" }}</th>
           {% for cell in "012345" %}
-          <!-- blocktrans? batatinha -->
           <td class="text-center p-2" id="cel-{{ timeslot_counter }}-{{ forloop.counter }}">{{ cell.content }}</td>
           {% endfor %}
           {% endwith %}
@@ -81,7 +82,6 @@
           <th scope="row" class="align-middle text-center">{{ timeslot.hour_start|date:"H:i" }} -
             {{ timeslot.hour_end|date:"H:i" }}</th>
           {% for cell in "012345" %}
-          <!-- blocktrans? batatinha -->
           <td class="text-center p-2" id="cel-{{ timeslot_counter }}-{{ forloop.counter }}">{{ cell.content }}</td>
           {% endfor %}
           {% endwith %}
@@ -115,7 +115,6 @@
           <th scope="row" class="align-middle text-center">{{ timeslot.hour_start|date:"H:i" }} -
             {{ timeslot.hour_end|date:"H:i" }}</th>
           {% for cell in "012345" %}
-          <!-- blocktrans? batatinha -->
           <td class="text-center p-2" id="cel-{{ timeslot_counter }}-{{ forloop.counter }}">{{ cell.content }}</td>
           {% endfor %}
           {% endwith %}

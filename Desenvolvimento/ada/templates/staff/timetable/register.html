@@ -61,9 +61,9 @@
                 autocomplete="off" style="text-align: center;" course-id>
               <datalist id="courses{{ i }}">
                 {% for course in courses %}
-                <option class="dropdown-item-class" {% blocktrans with name_course_text=course.acronym %}
-                  value="{{ name_course_text }}" {% endblocktrans %} course-id={{course.registration_course_id}}>
-                  {{course.name_course}}
+                <option class="dropdown-item-class"
+                  value="{{ course.acronym }}" course-id={{course.registration_course_id}}>
+                  {% trans course.name_course %}
                 </option>
                 {% endfor %}
               </datalist>
@@ -105,9 +105,9 @@
                 autocomplete="off" style="text-align: center;" course-id>
               <datalist id="courses{{ i }}">
                 {% for course in courses %}
-                <option class="dropdown-item-class" {% blocktrans with name_course_text=course.acronym %}
-                  value="{{ name_course_text }}" {% endblocktrans %} course-id={{course.registration_course_id}}>
-                  {{course.name_course}}
+                <option class="dropdown-item-class"
+                  value="{{ course.acronym }}" course-id={{course.registration_course_id}}>
+                  {% trans course.name_course %}
                 </option>
                 {% endfor %}
               </datalist>
@@ -149,9 +149,9 @@
                 autocomplete="off" style="text-align: center;" course-id>
               <datalist id="courses{{ i }}">
                 {% for course in courses %}
-                <option class="dropdown-item-class" {% blocktrans with name_course_text=course.acronym %}
-                  value="{{ name_course_text }}" {% endblocktrans %} course-id={{course.registration_course_id}}>
-                  {{course.name_course}}
+                <option class="dropdown-item-class"
+                  value="{{ course.acronym }}" course-id={{course.registration_course_id}}>
+                  {% trans course.name_course %}
                 </option>
                 {% endfor %}
               </datalist>

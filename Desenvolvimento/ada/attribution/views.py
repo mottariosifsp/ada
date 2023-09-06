@@ -1,3 +1,4 @@
+from django.urls import reverse
 from django.http import JsonResponse
 from area.models import Area, Blockk
 from attribution.task import attribution_deadline_start, cancel_all_tasks, cancel_scheduled_task, get_time_left, schedule_task, schedule_deadline
@@ -26,7 +27,7 @@ from attribution_preference.models import Course_preference, Attribution_prefere
 from django.utils.decorators import method_decorator
 
 from common.date_utils import day_to_number
-
+@login_required
 def attribution(request):
     
     # cancel_all_tasks()
@@ -98,14 +99,15 @@ def attribution(request):
             next_attribution(timetables_preference, next_professor, blockk)    
 
     return render(request, 'attribution/attribution.html')
-
+@login_required
 def timestup(professor, blockk):
     if TeacherQueuePosition.objects.count() > 1:
         professor_to_end_queue(professor, blockk)
         start_attribution(blockk)
     else:
+        TeacherQueuePosition.objects.filter(teacher=professor, blockk=blockk).delete()
         Deadline.objects.filter(blockk=blockk, name='STARTASSIGNMENTDEADLINE').update(deadline_end=datetime.datetime.now())
-
+@login_required
 def start_attribution(blockk):
     if TeacherQueuePosition.objects.filter(blockk=blockk).exists():
         queue = TeacherQueuePosition.objects.filter(blockk=blockk).order_by('position').all()
@@ -119,13 +121,19 @@ def start_attribution(blockk):
     else:
         Deadline.objects.filter(blockk=blockk, name='STARTASSIGNMENTDEADLINE').update(deadline_end=datetime.datetime.now())
 
+@login_required
 def next_attribution(timetables_preference, next_professor_in_queue, blockk):
     print(f'Analisando professor { next_professor_in_queue.teacher.first_name }')
+    
+    professor = next_professor_in_queue.teacher
 
-    primary_timetable_ids = Course_preference.objects.filter(priority=Priority.primary.name, blockk=blockk).values_list('timetable', flat=True)
-    secondary_timetable_ids = Course_preference.objects.filter(priority=Priority.secondary.name, blockk=blockk).values_list('timetable', flat=True)
+    fpa_current_user = Attribution_preference.objects.get(user=professor)
 
-    other_primary_timetables_ids = Course_preference.objects.filter(priority=Priority.primary.name).exclude(blockk=blockk).values_list('timetable', flat=True)
+    primary_timetable_ids = Course_preference.objects.filter(priority=Priority.primary.name, blockk=blockk, attribution_preference=fpa_current_user).values_list('timetable', flat=True)
+    secondary_timetable_ids = Course_preference.objects.filter(priority=Priority.secondary.name, blockk=blockk, attribution_preference=fpa_current_user).values_list('timetable', flat=True)
+
+    other_primary_timetables_ids = Course_preference.objects.filter(priority=Priority.primary.name, attribution_preference=fpa_current_user).exclude(blockk=blockk).values_list('timetable', flat=True)
+
 
     primary_timetable = ids_to_timetables(primary_timetable_ids)
     secondary_timetable = ids_to_timetables(secondary_timetable_ids)
@@ -136,12 +144,14 @@ def next_attribution(timetables_preference, next_professor_in_queue, blockk):
     for timetable in other_primary_timetables:
         cord_other_timetables.extend(create_cord(timetable))
 
-    professor = next_professor_in_queue.teacher
+    cord_primary_timetables = []
+    for timetable in primary_timetable:
+        cord_primary_timetables.extend(create_cord(timetable))
 
     SECONDS_TO_PROFESSOR_CHOOSE = 50
     
     invalidated_timetables = []
-
+    
     cord_assigned_timetables = []
 
     for timetable in primary_timetable:
@@ -152,30 +162,31 @@ def next_attribution(timetables_preference, next_professor_in_queue, blockk):
             assign_timetable_professor(timetable, professor)
             cord_assigned_timetables.extend(create_cord(timetable))
 
-
     for timetable in secondary_timetable:
-        qnt_primary = len(primary_timetable_ids)
+        qnt_primary = len(cord_primary_timetables)
         qnt_timetables_assigned = len(cord_assigned_timetables)
         
         timetable_cord = create_cord(timetable)
 
         if (qnt_timetables_assigned + len(timetable_cord)) <= qnt_primary:
 
-            if set(timetable_cord).intersection(cord_assigned_timetables) or set(timetable_cord).intersection(cord_other_timetables):
+            if not set(timetable_cord).intersection(cord_assigned_timetables) or not set(timetable_cord).intersection(cord_other_timetables):
 
                 if validate_timetable(timetable, professor) != True:
+                    print(f'Professor { professor.first_name }: [{ timetable.course }] secundária: falhou')
                     invalidated_timetables.append(timetable)
                 else:
+                    print(f'Professor { professor.first_name }: [{ timetable.course }] secundária: sucesso')
                     cord_assigned_timetables.extend(timetable_cord)
                     assign_timetable_professor(timetable, professor)
             
 
-    other_secondary_timetables = timetables_preference.filter(priority=Priority.secondary.name).exclude(blockk=blockk).values_list('timetable', flat=True)
+    other_secondary_timetables = timetables_preference.filter(priority=Priority.secondary.name, attribution_preference=fpa_current_user).exclude(blockk=blockk).values_list('timetable', flat=True)
 
 
     if not other_secondary_timetables or other_primary_timetables:
 
-        if len(cord_assigned_timetables) < len(primary_timetable_ids):
+        if len(cord_assigned_timetables) < len(cord_primary_timetables):
             print(f'professor { professor.first_name }: faltou aulas para cumprir a quantidade desejada')
             # send_email(professor)
             schedule_task(SECONDS_TO_PROFESSOR_CHOOSE, professor, blockk, blockk.registration_block_id)
@@ -192,18 +203,25 @@ def next_attribution(timetables_preference, next_professor_in_queue, blockk):
             schedule_task(SECONDS_TO_PROFESSOR_CHOOSE, professor, blockk, blockk.registration_block_id)
             return
     else:
+        if len(cord_assigned_timetables) < len(cord_primary_timetables):
+            print(f'professor { professor.first_name }: faltou aulas para cumprir a quantidade desejada')
+            # send_email(professor)
+            schedule_task(SECONDS_TO_PROFESSOR_CHOOSE, professor, blockk, blockk.registration_block_id)
+            return
         professor_to_end_queue(professor, blockk)
         next_professor_in_queue.delete()
         cancel_scheduled_task('task')
         print(f'Atribuição do professor { professor.first_name } no bloco { blockk } finalizada, aguardando atribuição de outros blocos')
         return start_attribution(blockk)
-    
+
+@login_required    
 def ids_to_timetables(ids):
     timetables = []
     for id in ids:
         timetables.append(Timetable.objects.get(id=id))
     return timetables
 
+@login_required
 def create_cord(timetable):
     day_combos = timetable.day_combo.all()
 
@@ -221,13 +239,14 @@ def create_cord(timetable):
     return list_cords
 
 
-
+@login_required
 def validate_timetable(timetable, professor):
     if validations(timetable, professor):
         return True
     else:
         return timetable
 
+@login_required
 def validations(timetable, professor):
     timetable_user = None
     if Timetable_user.objects.filter(timetable=timetable).exists():
@@ -240,6 +259,7 @@ def validations(timetable, professor):
         return False
     # future validations
 
+@login_required
 def email_test(request):
     if request.method == 'POST':
         superusers = User.objects.filter(is_superuser=True).all()
@@ -249,6 +269,7 @@ def email_test(request):
         return redirect('attribution:email_test')
     return render(request, 'attribution/email_test.html')
 
+@login_required
 def send_email(professor):
     subject = 'Ação requerida: Escolha de disciplina alternativa até o prazo estipulado'
     
@@ -271,22 +292,23 @@ def send_email(professor):
 
     email.send()
 
+@login_required
 def assign_timetable_professor(timetable, professor):
     print(f'professor { professor.first_name } escolheu a grade { timetable }')
     Timetable_user.objects.filter(timetable=timetable).update(user=professor)
 
+@login_required
 def professor_to_end_queue(professor, blockk):
 
     size_queue = len(TeacherQueuePosition.objects.filter(blockk=blockk).all())
 
     TeacherQueuePosition.objects.filter(teacher=professor, blockk=blockk).update(position=size_queue )
 
-    print('fila: ', TeacherQueuePosition.objects.filter(blockk=blockk).all().values_list('teacher__first_name', 'position'))
     for professor_in_queue in TeacherQueuePosition.objects.filter(blockk=blockk).all():
-        print('Professor: ', professor_in_queue.teacher.first_name, 'Posição: ', professor_in_queue.position)
         professor_in_queue.position = professor_in_queue.position - 1
         professor_in_queue.save()
 
+@login_required
 def float_to_time(seconds):
     print(seconds)
     if seconds < 0:
@@ -295,16 +317,20 @@ def float_to_time(seconds):
     time = datetime.datetime(1, 1, 1) + delta
     return time.time()
 
+@login_required
 def schedule_attributtion_deadline_staff(seconds, name, queue,*args):
     # cancel_scheduled_task('task')
     schedule_deadline(attribution_deadline_start, seconds, name, queue, *args)
 
+
 import datetime
+@login_required
 def manual_attribution(request):   
 
     if request.method == 'POST':
         get_block = request.POST.get('blockk')
         blockk = Blockk.objects.get(registration_block_id=get_block)
+        print(blockk)
 
         work_courses = request.POST.get('timetable')
 
@@ -324,7 +350,7 @@ def manual_attribution(request):
 
         timetables_invalidate = manual_attribution_save(timetables, request.user, blockk)
 
-        print(timetables_invalidate)
+        # print(timetables_invalidate)
 
         if timetables_invalidate == False:
             return JsonResponse({'redirect_url': '/atribuicao/atribuicao-manual-erro'}) 
@@ -334,47 +360,14 @@ def manual_attribution(request):
             
             return JsonResponse({'redirect_url': '/atribuicao/atribuicao-manual-confirmar/?blockk='+str(blockk.registration_block_id)}) 
     else:
-        user_regime = request.POST.get('user_regime')
-    user_timeslots = request.POST.getlist('user_timeslots')
-    json_data = [json.loads(item) for item in user_timeslots]
-
-    try:
-        attribution_deadlines = Deadline.objects.filter(name='STARTFPADEADLINE')
-
-        if attribution_deadlines.exists():
-            now = datetime.datetime.today()
-            status = None
-
-            for attribution_deadline in attribution_deadlines:
-                if now >= attribution_deadline.deadline_start and now <= attribution_deadline.deadline_end:
-                    year = attribution_deadline.year
-                    break
-    except Deadline.DoesNotExist:
-        Exception('Deadline does not exist')
-
-    semester = 'ddf'
-    id_show = year
-
-    timeslots = []
-
-    for obj in json_data:
-        for item in obj:
-            timeslot_begin_hour = convert_string_to_datetime(item["timeslot_begin_hour"])
-            day_of_week = item["day_of_week"]
-
-            timeslot_preference = {
-                "timeslot_begin_hour": timeslot_begin_hour,
-                "day_of_week": day_of_week
-            }
-
-            timeslots.append(timeslot_preference)
-
-    if request.method == 'POST':
-        save_disponiility_preference(timeslots, user_regime, request.user)
-
-        return render(request, 'attribution_preference/courses_attribution_preference.html')
-    else:
         user = request.user
+        get_block = request.GET.get('blockk')
+        blockk = Blockk.objects.get(registration_block_id=get_block)
+        if TeacherQueuePosition.objects.get(position=0, blockk=blockk).teacher != user:
+            base_url = reverse('attribution:attribution')
+            target_url = f'{base_url}?blockk={blockk.registration_block_id}'
+
+            return redirect(target_url)
 
         user_regime = user.job
         courses = Course.objects.all()
@@ -556,13 +549,17 @@ def manual_attribution(request):
 
     return render(request, 'attribution/manual_attribution.html', data)
 
+@transaction.atomic
+@login_required
 def manual_attribution_save(timetables, professor, blockk):
     print(f'Atual professor {TeacherQueuePosition.objects.get(position=0, blockk=blockk).teacher.first_name} e professor sendo atualizado {professor.first_name}')
     if TeacherQueuePosition.objects.get(position=0, blockk=blockk).teacher == professor:
+        print(timetables)
         invalidated_timetables = []
 
         for timetable in timetables:
             if validate_timetable(timetable, professor) != True:
+                print(f'professor { professor.first_name } não pode escolher a grade { timetable.course }')
                 invalidated_timetables.append(timetable)
             else:
                 assign_timetable_professor(timetable, professor)
@@ -577,11 +574,13 @@ def manual_attribution_save(timetables, professor, blockk):
             return invalidated_timetables
     else:
         return False
-
+    
+@login_required
 def manual_attribution_timesup(request):
     
     return render(request, 'attribution/manual_attribution_timesup.html')
 
+@login_required
 def manual_attribution_confirm(request):
     blockk = Blockk.objects.get(registration_block_id=request.GET.get('blockk'))
     cancel_scheduled_task('task')
@@ -589,6 +588,7 @@ def manual_attribution_confirm(request):
 
     return render(request, 'attribution/manual_attribution_confirm.html')
 
+@login_required
 def attribution_class_list(request, blockk):
     areas = Blockk.objects.get(registration_block_id=blockk).areas.all()
     print(f'Areas: {areas}')
@@ -600,6 +600,7 @@ def attribution_class_list(request, blockk):
 
     return render(request, 'attribution/attribution_class_list.html', data)
 
+@login_required
 def attribution_detail(request):
     classs = Classs.objects.get(registration_class_id=request.GET.get('class'))
     timetables = Timetable.objects.filter(classs=classs).all()
@@ -639,6 +640,7 @@ def attribution_detail(request):
     }
     return render(request, 'attribution/attribution_detail.html', data)
 
+@login_required
 def remove_professors_without_preference(blockk):
     queue = TeacherQueuePosition.objects.filter(blockk=blockk).order_by('position').all()
     for professor_in_queue in queue:

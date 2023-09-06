@@ -64,7 +64,7 @@ class User(AbstractBaseUser, PermissionsMixin):
         blank=False)
     telephone = models.CharField(
         _('telephone'),
-        max_length=11,
+        max_length=13,
         null=True,
         blank=True)
     cell_phone = models.CharField(

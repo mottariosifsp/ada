@@ -52,11 +52,11 @@
             <p class="home-begin"><b>{% trans "Situação" %}</b> <i
                 class="float-right">{% trans "Prazo configurado" %}</i></p>
             <p class="home-begin">
-              <div class=" float-right">{{period.start_day}} {% trans "às" %} {{period.start_time}}</div>
+              <div class=" float-right">{% trans period.start_day %} {% trans "às" %} {{period.start_time}}</div>
               <b>{% trans "Início" %}</b>
             </p>
             <p class="">
-              <div class=" float-right">{{period.end_day}} {% trans "às" %} {{period.end_time}}</div>
+              <div class=" float-right">{% trans period.end_day %} {% trans "às" %} {{period.end_time}}</div>
               <b>{% trans "Fim" %}</b>
             </p>
             {% elif period.status == 'configured_STARTASSIGNMENTDEADLINE' %}
@@ -67,11 +67,11 @@
             <p class="home-begin"><b>{% trans "Situação" %}</b> <i
                 class="float-right">{% trans "Prazo configurado" %}</i></p>
             <p class="home-begin">
-              <div class=" float-right">{{period.start_day}} {% trans "às" %} {{period.start_time}}</div>
+              <div class=" float-right">{% trans period.start_day %} {% trans "às" %} {{period.start_time}}</div>
               <b>{% trans "Início" %}</b>
             </p>
             <p class="">
-              <div class=" float-right">{{period.end_day}} {% trans "às" %} {{period.end_time}}</div>
+              <div class=" float-right">{% trans period.end_day %} {% trans "às" %} {{period.end_time}}</div>
               <b>{% trans "Fim" %}</b>
             </p>
             {% elif period.status == 'fpa' %}
@@ -80,11 +80,11 @@
               </a> <b>{% trans "Período" %}</b> </p>
             <p class="home-begin"><b>{% trans "Situação" %}</b> <i class="float-right">{% trans "Iniciado" %}</i></p>
             <p class="home-begin">
-              <div class="float-right">{{period.start_day}} {% trans "às" %} {{period.start_time}}</div>
+              <div class="float-right">{% trans period.start_day %} {% trans "às" %} {{period.start_time}}</div>
               <b>{% trans "Início" %}</b>
             </p>
             <p class="">
-              <div class=" float-right">{{period.end_day}} {% trans "às" %} {{period.end_time}}</div>
+              <div class=" float-right">{% trans period.end_day %} {% trans "às" %} {{period.end_time}}</div>
               <b>{% trans "Fim" %}</b>
             </p>
             {% elif period.status == 'attribution' %}
@@ -93,11 +93,11 @@
               </a> <b>{% trans "Período" %}</b> </p>
             <p class="home-begin"><b>{% trans "Situação" %}</b> <i class="float-right">{% trans "Iniciado" %}</i></p>
             <p>
-              <div class="float-right">{{period.start_day}} {% trans "às" %} {{period.start_time}}</div>
+              <div class="float-right">{% trans period.start_day %} {% trans "às" %} {{period.start_time}}</div>
               <b>{% trans "Início" %}</b>
             </p>
             <p class="home-begin">
-              <div class=" float-right">{{period.end_day}} {% trans "às" %} {{period.end_time}}</div>
+              <div class=" float-right">{% trans period.end_day %} {% trans "às" %} {{period.end_time}}</div>
               <b>{% trans "Fim" %}</b>
             </p>
             {% else %}
@@ -130,11 +130,7 @@
                   onclick="mostrarAlerta('{{alert.id}}')">
                   <i class="fas fa-trash"></i>
                 </button>
-                {% with alert_title=alert.title alert_block_name=alert.blockk.name_block %}
-                {% blocktrans %}
-                <b class="title">{{ alert_title }} | {{ alert_block_name }}</b>
-                {% endblocktrans %}
-                {% endwith %}
+                <b class="title">{% trans alert.title %} | {% trans alert.blockk.name_block %}</b>
               </div>
               {% endfor %}
             </div>
@@ -170,7 +166,7 @@
                   onclick="mostrarAlerta('{{link.id}}')">
                   <i class="fas fa-trash"></i>
                 </button>
-                <a target="_blank" href="{{link.description}}" class="link">{{link.description}}</a>
+                <a target="_blank" href="{{link.description}}" class="link">{% trans link.description %}</a>
               </div>
               {% endfor %}
             </div>
@@ -271,9 +267,7 @@
               <select required class="w-100 form-control" name="block" id="block">
                 <option selected disabled>{% trans 'Selecione o bloco' %}</option>
                 {% for blockk in user_blocks %}
-                {% blocktrans with name_block_text=blockk.name_block id=blockk.id %}
-                <option value="{{ id }}">{{ name_block_text }}</option>
-                {% endblocktrans %}
+                <option value="{{ blockk.id }}">{% trans blockk.name_block %}</option>
                 {% endfor %}
               </select>
             </div>
@@ -315,7 +309,7 @@
             <label for="link-input" class="form-label"><b>{% trans "Link" %}</b></label>
             <div class="input-group">
               <input required id="link-input" type="text" maxlength="90" name="link" class="form-control w-100"
-                placeholder="{% trans 'Insira a url do documento aqui' %}">
+                placeholder="{% trans 'Insira a URL do documento aqui' %}">
             </div>
           </div>
         </form>

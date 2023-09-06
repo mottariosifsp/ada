@@ -5,7 +5,7 @@ from django.urls import reverse
 from attribution.models import TeacherQueuePosition, TeacherQueuePositionBackup
 # from attribution import task
 from attribution.views import schedule_attributtion_deadline_staff
-from attribution_preference.models import Course_preference
+from attribution_preference.models import Attribution_preference, Course_preference
 from enums import enum
 from django.db import transaction
 from django.http import JsonResponse
@@ -30,6 +30,7 @@ from common.date_utils import day_to_number
 from django.core.mail import send_mail, EmailMessage
 import os
 
+@login_required
 def register(request):
     professors_inactive = User.objects.filter(is_professor=True, is_active=False)
     if request.method == 'POST':
@@ -67,6 +68,11 @@ def is_staff(user):
     return user.is_staff
 
 # prazos views
+def ids_to_timetables(ids):
+    timetables = []
+    for id in ids:
+        timetables.append(Timetable.objects.get(id=id))
+    return timetables
 
 @login_required
 @user_passes_test(is_staff)
@@ -231,7 +237,7 @@ def home(request):
         'user_blocks': user_blocks,
         'period': period
     }
-    print(data)
+    # print(data)
     return render(request, 'staff/home_staff.html', data)
 
 @login_required

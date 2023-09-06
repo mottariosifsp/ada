@@ -93,8 +93,8 @@
                     <h4 class="card-title">{% trans "Status" %}</h4>
                     <hr class="my-0">
                     <div class="mt-4 ml-2">
-                        <p><b>{% trans "Início" %}:</b> {{start_day}} {% trans "às" %} {{start_time}}</p>
-                        <p><b>{% trans "Fim" %}:</b> {{end_day}} {% trans "às" %} {{end_time}}</p>
+                        <p><b>{% trans "Início" %}:</b> {% trans start_day %} {% trans "às" %} {{start_time}}</p>
+                        <p><b>{% trans "Fim" %}:</b> {% trans end_day %} {% trans "às" %} {{end_time}}</p>
                     </div>
                     {% elif status_fpa == 'started' and courses_done == 'False' %}
                     <div class="float-right message-info-not-done"><i class="fas fa-clock"></i>
@@ -102,8 +102,8 @@
                     <h4 class="card-title">{% trans "Status" %}</h4>
                     <hr class="my-0">
                     <div class="mt-4 ml-2">
-                        <p><b>{% trans "Início" %}:</b> {{start_day}} {% trans "às" %} {{start_time}}</p>
-                        <p><b>{% trans "Fim" %}:</b> {{end_day}} {% trans "às" %} {{end_time}}</p>
+                        <p><b>{% trans "Início" %}:</b> {% trans start_day %} {% trans "às" %} {{start_time}}</p>
+                        <p><b>{% trans "Fim" %}:</b> {% trans end_day %} {% trans "às" %} {{end_time}}</p>
                     </div>
                     {% else %}
                     <div class="float-right message-info-done"><i class="far fa-check-circle"></i> {% trans 'ENVIADO'%}
@@ -111,8 +111,8 @@
                     <h4 class="card-title">{% trans "Status" %}</h4>
                     <hr class="my-0">
                     <div class="mt-4 ml-2">
-                        <p><b>{% trans "Início" %}:</b> {{start_day}} {% trans "às" %} {{start_time}}</p>
-                        <p><b>{% trans "Fim" %}:</b> {{end_day}} {% trans "às" %} {{end_time}}</p>
+                        <p><b>{% trans "Início" %}:</b> {% trans start_day %} {% trans "às" %} {{start_time}}</p>
+                        <p><b>{% trans "Fim" %}:</b> {% trans end_day %} {% trans "às" %} {{end_time}}</p>
                     </div>
                     {% endif %}
                 </div>
@@ -139,7 +139,7 @@
 <div>
     <div class="float-right message-info-blocked"><i class="fa-solid fa-lock"></i> {% trans 'AÇÃO BLOQUEADA'%}</div>
     <h5><i
-            class="button-3 float-left fa-solid fa-caret-down p-1 ml-2 mr-2"></i>{% trans 'Preferência de Disponibilidade'%}
+            class="button-3 float-left fa-solid fa-caret-down p-1 ml-2 mr-2"></i>{% trans 'Disponibilidade de Horário'%}
     </h5>
 </div>
 <hr>
@@ -158,7 +158,7 @@
 <div>
     <div class="float-right message-info-done"><i class="fa-solid fa-lock"></i> {% trans 'FINALIZADO'%}</div>
     <h5><i
-            class="button-3 float-left fa-solid fa-caret-down p-1 ml-2 mr-2"></i>{% trans 'Preferência de Disponibilidade'%}
+            class="button-3 float-left fa-solid fa-caret-down p-1 ml-2 mr-2"></i>{% trans 'Disponibilidade de Horário'%}
     </h5>
 </div>
 <hr>
@@ -176,7 +176,7 @@
 <div>
     <div class="float-right message-info-done"><i class="fa-solid fa-lock"></i> {% trans 'FINALIZADO'%}</div>
     <h5><i
-            class="button-3 float-left fa-solid fa-caret-down p-1 ml-2 mr-2"></i>{% trans 'Preferência de Disponibilidade'%}
+            class="button-3 float-left fa-solid fa-caret-down p-1 ml-2 mr-2"></i>{% trans 'Disponibilidade de Horário'%}
     </h5>
 </div>
 <hr>
@@ -215,7 +215,7 @@
 <div onclick="open_case(1)">
     <div class="float-right message-info-done"><i class="far fa-check-circle"></i> {% trans 'ENVIADO'%}</div>
     <h5><i
-            class="button-1 float-left fa-solid fa-caret-down p-1 ml-2 mr-2"></i>{% trans 'Preferência de Disponibilidade'%}
+            class="button-1 float-left fa-solid fa-caret-down p-1 ml-2 mr-2"></i>{% trans 'Disponibilidade de Horário'%}
     </h5>
 </div>
 <hr>
@@ -250,7 +250,7 @@
 <div onclick="open_case(1)">
     <div class="float-right message-info-done"><i class="far fa-check-circle"></i> {% trans 'ENVIADO'%}</div>
     <h5><i
-            class="button-1 float-left fa-solid fa-caret-down p-1 ml-2 mr-2"></i>{% trans 'Preferência de Disponibilidade'%}
+            class="button-1 float-left fa-solid fa-caret-down p-1 ml-2 mr-2"></i>{% trans 'Disponibilidade de Horário'%}
     </h5>
 </div>
 <hr>
@@ -330,7 +330,7 @@
             <h5 class="card-title">{% trans 'Envio da Preferência de Disciplinas'%}</h5>
             <hr>
             <p><b>{% trans 'Situação' %}:</b>
-                {% trans 'Você enviou sua disponibilidade, próximo passo é enviar com base na sua disponibilidade quais são suas preferências de disciplinas' %}.
+                {% trans 'Você enviou sua disponibilidade, o próximo passo é enviar com base na sua disponibilidade quais são suas preferências de disciplinas' %}.
             </p>
             <div class="center-btn">
                 <a href="{% url 'courses_attribution_preference' %}">
@@ -356,7 +356,7 @@
             <h5 class="card-title">{% trans 'Envio da Preferência de Disciplinas'%}</h5>
             <hr>
             <p><b>{% trans 'Situação' %}:</b>
-                {% trans 'Você enviou sua disponibilidade, próximo passo é enviar com base na sua disponibilidade quais são suas preferências de disciplinas' %}.
+                {% trans 'Você enviou sua disponibilidade, o próximo passo é enviar com base na sua disponibilidade quais são suas preferências de disciplinas' %}.
             </p>
             <div class="center-btn">
                 <a href="{% url 'courses_attribution_preference' %}">

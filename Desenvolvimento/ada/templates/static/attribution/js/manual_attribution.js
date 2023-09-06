@@ -85,6 +85,7 @@ if (user_regime == '20' || user_regime == 'Temporário') {
 $('#cel-hour').text('21')
 
 $("label input[type='checkbox']")
+
     .removeClass("disabled")
     .removeClass("btn-notchecked")
     .css({
@@ -153,6 +154,7 @@ function show_table(value) {
         $('h4.secondary-item').css({'display': 'none'})
         cell_left_number.time = 21 - type_discipline.primary_choosed
         $('#cel-hour').text(cell_left_number.time)
+        
     } else {       
         if(type_discipline.primary_choosed > 0) {
             if(cell_left_number.type == '20h') {
@@ -231,6 +233,7 @@ function show_table(value) {
             $('h4.secondary-item').css({'display': ''})
             cell_left_number.time = Math.floor(type_discipline.primary_choosed / 2)
             $('#cel-hour').text(cell_left_number.time)
+
         } else {
             if(cell_left_number.type == '20h') {
                 if(lang == 'pt-br' || lang == '') {
@@ -266,6 +269,7 @@ if(type_discipline.primary_choosed > 0){
 
 // Ao cliar no button
 $("#timetable-courses input").on("click", function (event) {
+    
     var data_id = $(this).closest("div[data-id]").data("id");
     $("#cel-position").text(data_id).css("visibility", "hidden");
 
@@ -664,6 +668,7 @@ console.log(s);
 
 $(document).ready(function () {
     $("#add-course-button").on("click", function () {
+        
         var timetable_acronym = $("#course-filter").val();
         var timetable_id = timatables_datalist_options.find(timetable => timetable.course_name === timetable_acronym)?.id;
         var grade_position = $("#cel-position").text(); //mon-mor-1 mon-mor-2 mon-mor-3
@@ -915,121 +920,114 @@ $(document).ready(function () {
                 behavior: "smooth",
             });
         }
+        
     });
     $("#send-courses").on("click", function () {
+        
         let csrftoken = get_cookie("csrftoken");
         var json_data = JSON.stringify(timetable_choosed);
-
-        if (timetable_choosed.length != 0) {
-            if(type_discipline.secondary_choosed == 0) {
-                if(lang == 'pt-br' || lang == '') {
-                    $("#warning-alert-message").text("Você não selecionou nenhuma disciplina secundária. Conforme o escolhido, você deve inserir " + Math.floor(type_discipline.primary_choosed/2) + " células secundárias.");
-                } else {
-                    $("#warning-alert-message").text("You have not selected any secondary disciplines. As chosen, you must insert " + Math.floor(type_discipline.primary_choosed/2) + " secondary cells.");
-                }
-                
-                $("#warning-alert").show();                
-                show_table(2)
-                window.scrollTo({
-                    top: $("#warning-alert").offset().top - $(".navbar").outerHeight() - 30,
-                    behavior: "smooth",
-                });
-                return false;
-            }
-            if(cell_left_number.type == '20h' || user_is_fgfcc == 'True') {
-                if(type_discipline.primary_choosed >= 8) {
-                    $.ajax({
-                        type: "post",
-                        url: "/" + lang + "/professor/preferencia-atribuicao/",
-                        data: {
-                            timetable: json_data,
-                        },
-                        headers: {
-                            "X-CSRFToken": csrftoken,
-                        },
-                        success: function (response) {
-                            $("#course-filter-form").val("");
-                            $("#error-alert-form").hide();
-                            window.location.href = "/" + lang + "/professor/preferencia-atribuicao/";
-                        },
-                        error: function (xhr, textStatus, errorThrown) {
-                            if(lang == 'pt-br' || lang == '') {
-                                $("#error-message-form").text("Erro ao tentar suas preferências de disciplinas.");
-                            } else {
-                                $("#error-message-form").text("Error trying your subject preferences.");
-                            }
-                            $("#error-alert-form").show();
-                            window.scrollTo({
-                                top: $("#error-alert-form").offset().top - $(".navbar").outerHeight() - 30,
-                                behavior: "smooth",
-                            });
-                        },
-                    });
-                } else {
-                    if(lang == 'pt-br' || lang == '') {
-                        $("#error-message-form").text("Quantidade de células minímas para seu FPA segundo seu regime é 8 células.");
-                    } else {
-                        $("#error-message-form").text("Minimum amount of cells for your FPA according to your regime is 8 cells.");
-                    }
-                    $("#error-alert-form").show();
-                    window.scrollTo({
-                        top: $("#error-alert-form").offset().top - $(".navbar").outerHeight() - 30,
-                        behavior: "smooth",
-                    });
-                }
-            } else {
-                if(type_discipline.primary_choosed >= 12) {
-                    $.ajax({
-                        type: "post",
-                        url: "/" + lang + "/professor/preferencia-atribuicao/",
-                        data: {
-                            timetable: json_data,
-                        },
-                        headers: {
-                            "X-CSRFToken": csrftoken,
-                        },
-                        success: function (response) {
-                            $("#course-filter-form").val("");
-                            $("#error-alert-form").hide();
-                            window.location.href = "/" + lang + "/professor/preferencia-atribuicao/";
-                        },
-                        error: function (xhr, textStatus, errorThrown) {
-                            if(lang == 'pt-br' || lang == '') {
-                                $("#error-message-form").text("Erro ao tentar suas preferências de disciplinas.");
-                            } else {
-                                $("#error-message-form").text("Error trying your subject preferences.");
-                            }
-                            $("#error-alert-form").show();
-                            window.scrollTo({
-                                top: $("#error-alert-form").offset().top - $(".navbar").outerHeight() - 30,
-                                behavior: "smooth",
-                            });
-                        },
-                    });
-                } else {
-                    if(lang == 'pt-br' || lang == '') {
-                        $("#error-message-form").text("Quantidade de células minímas para seu FPA segundo seu regime é 12 células.");
-                    } else {
-                        $("#error-message-form").text("Minimum cell count for your FPA according to your regimen is 12 cells.");
-                    }
-                    $("#error-alert-form").show();
-                    window.scrollTo({
-                        top: $("#error-alert-form").offset().top - $(".navbar").outerHeight() - 30,
-                        behavior: "smooth",
-                    });
-                }
-            }
-        } else {
+        var blockk = $("#blockk").attr("value");
+        if(type_discipline.secondary_choosed == 0) {
             if(lang == 'pt-br' || lang == '') {
-                $("#error-message-form").text("Por favor, selecione suas disciplinas.");
+                $("#warning-alert-message").text("Você não selecionou nenhuma disciplina secundária. Conforme o escolhido, você deve inserir " + Math.floor(type_discipline.primary_choosed/2) + " células secundárias.");
             } else {
-                $("#error-message-form").text("Please select your subjects.");
+                $("#warning-alert-message").text("You have not selected any secondary disciplines. As chosen, you must insert " + Math.floor(type_discipline.primary_choosed/2) + " secondary cells.");
             }
-            $("#error-alert-form").show();
+            
+            $("#warning-alert").show();                
+            show_table(2)
             window.scrollTo({
-                top: $("#error-alert-form").offset().top - $(".navbar").outerHeight() - 30,
+                top: $("#warning-alert").offset().top - $(".navbar").outerHeight() - 30,
                 behavior: "smooth",
             });
+            return false;
+        }
+        if(cell_left_number.type == '20h' || user_is_fgfcc == 'True') {
+            
+            if(21 - cell_left_number.time >= 8) {
+                $.ajax({
+                    type: "post",
+                    url: "/" + lang + "/atribuicao/atribuicao-manual/?blockk=" + blockk,
+                    data: {
+                        timetable: json_data,
+                        blockk: blockk,
+                    },
+                    headers: {
+                        "X-CSRFToken": csrftoken,
+                    },
+                    success: function (response) {
+                        $("#course-filter-form").val("");
+                        $("#error-alert-form").hide();
+                        window.location.href = response.redirect_url;
+                    },
+                    error: function (xhr, textStatus, errorThrown) {
+                        if(lang == 'pt-br' || lang == '') {
+                            $("#error-message-form").text("Erro ao tentar suas preferências de disciplinas.");
+                        } else {
+                            $("#error-message-form").text("Error trying your subject preferences.");
+                        }
+                        $("#error-alert-form").show();
+                        window.scrollTo({
+                            top: $("#error-alert-form").offset().top - $(".navbar").outerHeight() - 30,
+                            behavior: "smooth",
+                        });
+                    },
+                });
+            } else {
+                if(lang == 'pt-br' || lang == '') {
+                    $("#error-message-form").text("Quantidade de células minímas para seu FPA segundo seu regime é 8 células.");
+                } else {
+                    $("#error-message-form").text("Minimum amount of cells for your FPA according to your regime is 8 cells.");
+                }
+                $("#error-alert-form").show();
+                window.scrollTo({
+                    top: $("#error-alert-form").offset().top - $(".navbar").outerHeight() - 30,
+                    behavior: "smooth",
+                });
+            }
+        } else {
+            console.log(cell_left_number.time)
+            if(21 - cell_left_number.time >= 12) {
+                $.ajax({
+                    type: "post",
+                    url: "/" + lang + "/atribuicao/atribuicao-manual/?blockk=" + blockk,
+                    data: {
+                        timetable: json_data,
+                        blockk: blockk,
+                    },
+                    headers: {
+                        "X-CSRFToken": csrftoken,
+                    },
+                    success: function (response) {
+                        $("#course-filter-form").val("");
+                        $("#error-alert-form").hide();
+                        window.location.href = response.redirect_url;
+                    },
+                    error: function (xhr, textStatus, errorThrown) {
+                        if(lang == 'pt-br' || lang == '') {
+                            $("#error-message-form").text("Erro ao tentar suas preferências de disciplinas.");
+                        } else {
+                            $("#error-message-form").text("Error trying your subject preferences.");
+                        }
+                        $("#error-alert-form").show();
+                        window.scrollTo({
+                            top: $("#error-alert-form").offset().top - $(".navbar").outerHeight() - 30,
+                            behavior: "smooth",
+                        });
+                    },
+                });
+            } else {
+                if(lang == 'pt-br' || lang == '') {
+                    $("#error-message-form").text("Quantidade de células minímas para seu FPA segundo seu regime é 12 células.");
+                } else {
+                    $("#error-message-form").text("Minimum cell count for your FPA according to your regimen is 12 cells.");
+                }
+                $("#error-alert-form").show();
+                window.scrollTo({
+                    top: $("#error-alert-form").offset().top - $(".navbar").outerHeight() - 30,
+                    behavior: "smooth",
+                });
+            }
         }
     });
 
@@ -1119,5 +1117,3 @@ function info_button(value) {
     }
 }
 $('#cel-hour').text(cell_left_number.time)
-
-

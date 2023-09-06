@@ -14,16 +14,19 @@
 
 {% block body %}
 {% comment %}
-{% blocktrans with name_block_text=blockk.name_block text="Fila de professores" %}
-<h1 class="title-page mt-4">{{ text }} ( {{ name_block_text }} )</h1>
+<h1 class="title-page mt-4">{% trans "Fila de Professores" %} ( {% trans blockk.name_block %} )</h1>
 <hr>
-{% endblocktrans %}
+<!--caminhozin-->
 {% endcomment %}
-<h1 id="blockk" value="{{ blockk.registration_block_id }}">
-  {% blocktrans with name_block_text=blockk.name_block text="Atribuição do bloco" %}
-  {{ text }} {{ name_block_text }}</h1>
-{% endblocktrans %}
-<hr />
+
+<h1 id="blockk" value="{{ blockk.registration_block_id }}">{% trans "Atribuição do Bloco" %} {% trans blockk.name_block %}</h1>
+<hr>
+<nav>
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="{% url 'home_professor' %}"><i class="bi bi-house-door"></i></a></li>
+    <li class="breadcrumb-item active" aria-current="page">{% trans "Atribuição" %}</li>
+  </ol>
+</nav>
 <div class="row mb-3">
   <div class="col m-0 p-0">
     <h5>{% trans "Professor sendo atribuído" %}:</h5>
@@ -32,7 +35,6 @@
         {% if request.user == queue.first.teacher %}
         <h2 class="card-text">{% trans "Você" %}</h2>
         {% else %}
-        <!-- blocktrans no? batatinha -->
         <h4 class="card-text">{{ queue.first.teacher.get_full_name_camel_case }}<h4>
             {% endif %}
       </div>
@@ -57,8 +59,8 @@
   <div class="container m-0 p-0" style="height: 24rem;">
     <div class="card info-card sales-card" style="height: 100%;">
       <div class="card-body">
-        <table class="table">
-          <thead>
+        <table class="table table-bordered editable display">
+          <thead class="thead-dark">
             <tr>
               <th scope="col">{% trans "Posição" %}</th>
               <th scope="col">{% trans "Nome" %}</th>

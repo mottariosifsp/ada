@@ -4,8 +4,6 @@
 
 {% block head %}
 <title>{% trans "Fim Atribuição" %}</title>
-<script src="{% static 'attribution/js/back_home.js' %}"
-   url="{% url 'attribution:attribution_class_list' blockk=blockk %}"></script>
 {% endblock %}
 
 {% block body %}
@@ -16,6 +14,8 @@
    <h1>{% trans "A atribuição já acabou" %}</h1>
    <br>
    <button type="button" id="return-button"
-      class="btn btn-outline-primary btn-lg rounded-pill">{% trans "Veja a grade horária das turmas" %}</button>
+      class="btn btn-outline-primary btn-lg rounded-pill"><a href="{% url 'assignments' %}">{% trans "Veja a grade horária das turmas" %}</a>
+      </button>
+</div>
 </div>
 {% endblock %}

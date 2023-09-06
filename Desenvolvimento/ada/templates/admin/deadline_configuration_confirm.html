@@ -15,7 +15,7 @@
 <script src="{% static "admin/js/deadline_configuration.js" %}"></script>
 {% endblock %}
 
-{% block title %}Configuração de prazos | Django site admin{% endblock %}
+{% block title %}{% trans "Configuração de prazos | Django site admin" %}{% endblock %}
 
 
 
@@ -24,8 +24,8 @@
 {% block usertools %}
 
 <div id="user-tools">
-    {% trans "Bem-vindo(a)," %}
-    <strong>{% trans "D" %}</strong>.
+    {% trans "Bem-vindo(a)" %},
+    <strong>D</strong>.
     <a href="/">{% trans "Ver o site" %}</a> /
     <a href="/admin/password_change/">{% trans "Alterar senha" %}</a> /
     <form id="logout-form" method="post" action="/admin/logout/">
@@ -39,14 +39,14 @@
 
 {% block breadcrumbs %}
 <div class="breadcrumbs">
-    <a href="{% url 'admin:index' %}">{% trans 'Home' %}</a>
+    <a href="{% url 'admin:index' %}">{% trans 'Página inicial' %}</a>
     &rsaquo; <a>{% translate 'Configuração de prazos' %}</a>
 </div>
 {% endblock %}
 
 {% block content %}
 <div class="container">
-    <h1>{% trans "configuração Salva" %}</h1>
+    <h1>{% trans "Configuração Salva" %}.</h1>
 </div>
 
 {% endblock %}
