@@ -263,8 +263,6 @@ $(document).ready(function() {
 
      eight_hours_passed = eight_work_hours_rule();
      eleven_hours_passed = eleven_hours_rule();
-     console.log(eleven_hours_passed)
-     console.log(eight_hours_passed)
 
     let csrftoken = get_cookie('csrftoken');
 

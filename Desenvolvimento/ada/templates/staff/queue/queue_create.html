@@ -35,9 +35,7 @@
             <div class="card queue-field">
                 <div class="card-body">
                     <h2 id="blockk-id" value="{{ data.blockk.registration_block_id }}">
-                        {% blocktrans with name_block_text=data.blockk.name_block %}
-                        {{ name_block_text }}</h2>
-                    {% endblocktrans %}
+                        {% trans data.blockk.name_block %}</h2>
                 </div>
             </div>
         </div>

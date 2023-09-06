@@ -15,9 +15,11 @@ import math
 import re
 import datetime, time
 from django.db import transaction
+from django.contrib.auth.decorators import login_required
 
 from django.utils.decorators import method_decorator
 
+@login_required
 def attribution_preference(request):
     # disponibility
     user_regime = request.POST.get('user_regime')
@@ -157,7 +159,7 @@ def attribution_preference(request):
     print(data)
     return render(request, 'attribution_preference/attribution_preference.html', data)
 
-
+@login_required
 def disponibility_attribution_preference(request):
     user = request.user
     user_blocks = user.blocks.all()
@@ -308,6 +310,7 @@ def disponibility_attribution_preference(request):
 
     return render(request, 'attribution_preference/disponibility_attribution_preference.html', data)
 
+@login_required
 def courses_attribution_preference(request):
     user_regime = request.POST.get('user_regime')
     user_timeslots = request.POST.getlist('user_timeslots')
@@ -633,6 +636,7 @@ def courses_attribution_preference(request):
 
     return render(request, 'attribution_preference/courses_attribution_preference.html', data)
 
+@login_required
 def show_attribution_preference(request, year):
     if request.method == 'GET':
         user = request.user

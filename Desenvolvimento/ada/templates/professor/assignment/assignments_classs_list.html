@@ -3,19 +3,19 @@
 {% load static %}
 
 {% block head %}
-<title>{% trans "Áreas Atribuições" %}</title>
+<title>{% trans "Áreas Grades" %}</title>
 <link rel="stylesheet" href="{% static 'professor/assignment/css/assignments_classs_list.css' %}">
 <link rel="stylesheet" href="{% static 'common/table_window/css/table_window.css' %}" />
 {% endblock %}
 
 {% block body %}
-    <h1 class="title-page mt-4">{% trans "Áreas das Atribuições" %}</h1>
+    <h1 class="title-page mt-4">{% trans "Áreas das Grades" %}</h1>
     <hr>
     <nav>
         <ol class="breadcrumb hidden-itens">
             <li class="breadcrumb-item"><a href="{% url 'home_professor' %}"><i class="bi bi-house-door"></i></a></li>
-            <li class="breadcrumb-item active"><a href="{% url 'assignments' %}">{% trans "Atribuições" %}</a></li>
-            <li class="breadcrumb-item active">{% trans "Área" %}</li>
+            <li class="breadcrumb-item active"><a href="{% url 'assignments' %}">{% trans "Grades" %}</a></li>
+            <li class="breadcrumb-item active">{% trans "Áreas" %}</li>
         </ol>
     </nav>
 

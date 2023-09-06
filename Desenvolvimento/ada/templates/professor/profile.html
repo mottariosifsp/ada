@@ -84,7 +84,7 @@
                 {% else %}
                 <div class="row">
                   <div class="col-lg-3 col-md-4 label">{% trans 'Regime' %}:</div>
-                  <div class="col-lg-9 col-md-8">{{user.job.name_job}}</div>
+                  <div class="col-lg-9 col-md-8">{% trans user.job.name_job %}}</div>
                 </div>
                 {% endif %}
                 {% if user.job.name_job == None %}
@@ -200,7 +200,6 @@
                 <th scope="row" class="align-middle text-center">{{ timeslot.hour_start|date:"H:i" }} -
                   {{ timeslot.hour_end|date:"H:i" }}</th>
                 {% for cell in "012345" %}
-                <!-- blocktrans? batatinha -->
                 <td class="text-center p-2" id="cel-{{ timeslot_counter }}-{{ forloop.counter }}">{{ cell.content }}
                 </td>
                 {% endfor %}
@@ -236,7 +235,6 @@
                 <th scope="row" class="align-middle text-center">{{ timeslot.hour_start|date:"H:i" }} -
                   {{ timeslot.hour_end|date:"H:i" }}</th>
                 {% for cell in "012345" %}
-                <!-- blocktrans? batatinha -->
                 <td class="align-middle text-center p-2" id="cel-{{ timeslot_counter }}-{{ forloop.counter }}">
                   {{ cell.content }}</td>
                 {% endfor %}

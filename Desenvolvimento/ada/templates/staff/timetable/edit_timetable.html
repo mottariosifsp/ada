@@ -49,15 +49,14 @@
                 <th scope="row" class="align-middle text-center">{{ timeslot.hour_start|date:"H:i" }} -
                   {{ timeslot.hour_end|date:"H:i" }}</th>
                 {% for cell in "012345" %}
-                <!-- blocktrans? batatinha -->
                 <td rowspan="">
                   <input list="courses{{ cell }}" id="cel-{{ timeslot_counter }}-{{ forloop.counter }}" name="course"
                     class="form-control datalist{{cell}} course-input" autocomplete="off" style="text-align: center;"
                     course-id>
                   <datalist id="courses{{ cell }}">
                     {% for course in courses %}
-                    <option class="dropdown-item-class" {% blocktrans with name_course_text=course.acronym %}
-                      value="{{ name_course_text }}" {% endblocktrans %} course-id={{course.registration_course_id}}>
+                    <option class="dropdown-item-class"
+                      value="{{ course.acronym }}" course-id={{course.registration_course_id}}>
                       {{course.name_course}}
                     </option>
                     {% endfor %}
@@ -94,15 +93,14 @@
                 <th scope="row" class="align-middle text-center">{{ timeslot.hour_start|date:"H:i" }} -
                   {{ timeslot.hour_end|date:"H:i" }}</th>
                 {% for cell in "012345" %}
-                <!-- blocktrans? batatinha -->
                 <td rowspan="">
                   <input list="courses{{ cell }}" id="cel-{{ timeslot_counter }}-{{ forloop.counter }}" name="course"
                     class="form-control datalist{{cell}} course-input" autocomplete="off" style="text-align: center;"
                     course-id>
                   <datalist id="courses{{ cell }}">
                     {% for course in courses %}
-                    <option class="dropdown-item-class" {% blocktrans with name_course_text=course.acronym %}
-                      value="{{ name_course_text }}" {% endblocktrans %} course-id={{course.registration_course_id}}>
+                    <option class="dropdown-item-class"
+                      value="{{ course.acronym }}" course-id={{course.registration_course_id}}>
                       {{course.name_course}}
                     </option>
                     {% endfor %}
@@ -139,15 +137,14 @@
                 <th scope="row" class="align-middle text-center">{{ timeslot.hour_start|date:"H:i" }} -
                   {{ timeslot.hour_end|date:"H:i" }}</th>
                 {% for cell in "012345" %}
-                <!-- blocktrans? batatinha -->
                 <td rowspan="">
                   <input list="courses{{ cell }}" id="cel-{{ timeslot_counter }}-{{ forloop.counter }}" name="course"
                     class="form-control datalist{{cell}} course-input" autocomplete="off" style="text-align: center;"
                     course-id>
                   <datalist id="courses{{ cell }}">
                     {% for course in courses %}
-                    <option class="dropdown-item-class" {% blocktrans with name_course_text=course.acronym %}
-                      value="{{ name_course_text }}" {% endblocktrans %} course-id={{course.registration_course_id}}>
+                    <option class="dropdown-item-class"
+                      value="{{ course.acronym }}" course-id={{course.registration_course_id}}>
                       {{course.name_course}}
                     </option>
                     {% endfor %}

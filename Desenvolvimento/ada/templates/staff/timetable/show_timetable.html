@@ -15,7 +15,7 @@
 <div
     style="display: none; position: fixed; top: calc(50% - (20rem / 2)); left: calc(50% - (20rem / 2)); width: 20rem; height: 20rem;">
     <img src="https://cdn.awsli.com.br/300x300/1594/1594408/produto/1482066500b9bac0fff.jpg" class="img-fluid"
-        alt="Responsive image" />
+        alt="" />
     <h3 class="row d-flex justify-content-center">{% trans 'Tabela salva' %}🙏🙏🙏</h3> <!--cute-->
 </div>
 <div class="card">
@@ -50,7 +50,6 @@
                                 <th scope="row" class="align-middle text-center">{{ timeslot.hour_start|date:"H:i" }} -
                                     {{ timeslot.hour_end|date:"H:i" }}</th>
                                 {% for cell in "012345" %}
-                                <!-- blocktrans? batatinha -->
                                 <td class="text-center p-2" id="cel-{{ timeslot_counter }}-{{ forloop.counter }}">
                                     {{ cell.content }}</td>
                                 {% endfor %} {% endwith %}
@@ -85,7 +84,6 @@
                                 <th scope="row" class="align-middle text-center">{{ timeslot.hour_start|date:"H:i" }} -
                                     {{ timeslot.hour_end|date:"H:i" }}</th>
                                 {% for cell in "012345" %}
-                                <!-- blocktrans? batatinha -->
                                 <td class="text-center p-2" id="cel-{{ timeslot_counter }}-{{ forloop.counter }}">
                                     {{ cell.content }}</td>
                                 {% endfor %} {% endwith %}
@@ -120,7 +118,6 @@
                                 <th scope="row" class="align-middle text-center">{{ timeslot.hour_start|date:"H:i" }} -
                                     {{ timeslot.hour_end|date:"H:i" }}</th>
                                 {% for cell in "012345" %}
-                                <!-- blocktrans? batatinha -->
                                 <td class="align-middle text-center p-2"
                                     id="cel-{{ timeslot_counter }}-{{ forloop.counter }}">{{ cell.content }}</td>
                                 {% endfor %} {% endwith %}

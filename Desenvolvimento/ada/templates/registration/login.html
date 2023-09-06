@@ -35,7 +35,7 @@
                         {% if form.non_field_errors %}
                         <div id="loginError" class="alert alert-danger alert-dismissible fade show w-100">
                             <i class="fas fa-exclamation-circle mr-2"></i><b>{% trans "Erro" %}:</b>
-                            {% trans "Usuário ou senha incorretos" %}.
+                            {% trans "Preencha os campos corretamente" %}.
                             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
@@ -50,7 +50,7 @@
                                     <i class="fa fa-user"></i>
                                 </label>
                                 <input type="text" name="username" class="form-control" maxlength='9' id="yourUsername"
-                                    required placeholder="Prontuário" />
+                                    required placeholder="{% trans 'Prontuário' %}" />
                                 <div id="usernameError" class="invalid-feedback">
                                     {% trans "Por favor, insira o seu prontuário" %}.
                                 </div>
@@ -65,7 +65,7 @@
                                     <i class="fa fa-lock"></i>
                                 </label>
                                 <input type="password" name="password" class="form-control" id="yourPassword" required
-                                    placeholder="Senha" />
+                                    placeholder="{% trans 'Senha' %}" />
                                 <div id="passwordError" class="invalid-feedback">
                                     {% trans "Por favor, insira a sua senha" %}.
                                 </div>

@@ -31,12 +31,12 @@
 
 <section class="section dashboard">
   <h1 class="title-page mt-4">{% trans "Atribuição Manual" %}</h1>
+  <hr>
   <nav>
     <ol class="breadcrumb hidden-itens">
         <li class="breadcrumb-item"><a href="{% url 'home_professor' %}"><i class="bi bi-house-door"></i></a></li>
-        <li class="breadcrumb-item active">{% trans "Atribuição" %}</li>
-        <li class="breadcrumb-item active">{% trans "Atribuição Manual" %}</li>
-        <li class="breadcrumb-item active">{% trans user_blockk.name_block %}</li>
+        <li class="breadcrumb-item"><a href="{% url 'attribution' %}">{% trans "Atribuição" %}</a></li>
+        <li class="breadcrumb-item active">{% trans "Atribuição Manual de" %} {% trans user_blockk.name_block %}</li>
     </ol>
   </nav>
   <form id="sendDisponibilityForm" method="post">
@@ -90,8 +90,8 @@
 
           </div>
           <div class="table-responsive">
-            <table class="table table-bordered table-sm text-center">
-              <thead>
+            <table class="table table-bordered editable display table-sm text-center">
+              <thead class="thead-dark">
                 <tr>
                   <th class="col-1 column text-center align-middle">{% trans "Período" %}</th>
                   <th class="col-2 text-center align-middle">{% trans "Horários" %}</th>
