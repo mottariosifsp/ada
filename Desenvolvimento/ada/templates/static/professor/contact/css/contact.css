@@ -84,3 +84,11 @@ form {
 .card-body {
     padding: 0;
 }
+
+.success-message {
+    display: none;
+}
+
+.success-message.visible {
+    display: block;
+}

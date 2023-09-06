@@ -363,11 +363,10 @@ def professor_block_detail(request, registration_block_id):
 @login_required
 def contact(request):
     full_name_camel_case = request.user.get_full_name_camel_case()
-
     nome_do_usuario = full_name_camel_case
     email_do_usuario = request.user.email
 
-    success_message = None
+    success_message = None  # Inicialize como None aqui
 
     if request.method == 'POST':
         form = ContatoForm(request.POST, initial={'name': nome_do_usuario, 'email': email_do_usuario})
@@ -379,13 +378,14 @@ def contact(request):
 
             send_mail(name, message, email, ['ada.ifsp@gmail.com'], fail_silently=False)
 
-            success_message = _('Email enviado com sucesso.')
+            messages.success(request, _('Email enviado com sucesso.'))
 
             form = ContatoForm(initial={'name': nome_do_usuario, 'email': email_do_usuario})
     else:
         form = ContatoForm(initial={'name': nome_do_usuario, 'email': email_do_usuario})
 
     return render(request, 'contact.html', {'form': form, 'success_message': success_message})
+
 
 def day_to_number(day):
     number = {
