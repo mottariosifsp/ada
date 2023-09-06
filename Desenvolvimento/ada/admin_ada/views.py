@@ -6,12 +6,14 @@ from attribution.views import schedule_attributtion_deadline_staff
 from attribution_preference.models import Course_preference
 from staff.models import Deadline
 from timetable.models import Timetable_user
+from django.contrib.auth.decorators import login_required
 
+@login_required
 def deadline_configuration(request):
     
     return render(request, 'admin/deadline_configuration.html')
 
-
+@login_required
 def deadline_configuration_confirm(request):
     if request.method == 'POST':       
 
@@ -43,7 +45,7 @@ def deadline_configuration_confirm(request):
         return render(request, 'admin/deadline_configuration_confirm.html', data)
 
 @transaction.atomic
-
+@login_required
 def save_deadline(data):
 
     Timetable_user.objects.all().update(user=None)
