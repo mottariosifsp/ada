@@ -44,7 +44,7 @@ def deadline_configuration_confirm(request):
 
         return render(request, 'admin/deadline_configuration_confirm.html', data)
 
-# @login_required
+@transaction.atomic
 def save_deadline(data):
 
     Timetable_user.objects.all().update(user=None)

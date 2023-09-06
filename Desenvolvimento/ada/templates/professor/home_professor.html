@@ -167,10 +167,9 @@
           <hr class="my-0">
           <div class="text-center">
             {% if period.status == 'configured_STARTEXCHANGEDEADLINE' %}
-            <p class="m-5 p-4"><b>{% trans "Permutação ocorrendo" %}</b>.</p>
+            <p class="m-5 p-4 text-justify">{% trans "Permutas ocorrendo" %}.</p>
             {% elif period.status == 'finished' %}
-            <p class="m-5 p-4">
-              <b>{% trans "A atribuição terminou, todas permutas que foram pedidas foram resolvidas" %}</b>.</p>
+            <p class="m-5 p-4 text-justify">{% trans "A atribuição terminou, todas as permutas que foram pedidas foram resolvidas" %}.</p>
             {% else %}
             <p class="m-5 p-4 text-justify">{% trans "Permuta não foi habilitada" %}.</p>
             {% endif %}

@@ -2,13 +2,13 @@
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-# 
+#
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-09-06 04:07-0300\n"
+"POT-Creation-Date: 2023-09-06 06:33-0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,6 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
+
 #: .\area\models.py:8
 msgid "registration area id"
 msgstr "registro id área"
@@ -223,7 +224,7 @@ msgstr ""
 #: .\templates\admin\deadline_configuration_confirm.html:42
 #: .\templates\professor\home_professor.html:14
 #: .\templates\professor\home_professor.html:18
-#: .\templates\staff\home_staff.html:14 .\templates\staff\home_staff.html:18
+#: .\templates\staff\home_staff.html:15 .\templates\staff\home_staff.html:19
 msgid "Página inicial"
 msgstr ""
 
@@ -278,8 +279,8 @@ msgstr ""
 #: .\templates\staff\deadline\deadline_configuration.html:18
 #: .\templates\staff\deadline\deadline_configuration.html:21
 #: .\templates\staff\deadline\deadline_configuration.html:24
-#: .\templates\staff\home_staff.html:60 .\templates\staff\home_staff.html:75
-#: .\templates\staff\home_staff.html:88 .\templates\staff\home_staff.html:101
+#: .\templates\staff\home_staff.html:61 .\templates\staff\home_staff.html:76
+#: .\templates\staff\home_staff.html:89 .\templates\staff\home_staff.html:102
 msgid "Fim"
 msgstr ""
 
@@ -713,10 +714,10 @@ msgstr ""
 #: .\templates\professor\home_professor.html:80
 #: .\templates\professor\home_professor.html:89
 #: .\templates\professor\home_professor.html:93
-#: .\templates\staff\home_staff.html:55 .\templates\staff\home_staff.html:59
-#: .\templates\staff\home_staff.html:70 .\templates\staff\home_staff.html:74
-#: .\templates\staff\home_staff.html:83 .\templates\staff\home_staff.html:87
-#: .\templates\staff\home_staff.html:96 .\templates\staff\home_staff.html:100
+#: .\templates\staff\home_staff.html:56 .\templates\staff\home_staff.html:60
+#: .\templates\staff\home_staff.html:71 .\templates\staff\home_staff.html:75
+#: .\templates\staff\home_staff.html:84 .\templates\staff\home_staff.html:88
+#: .\templates\staff\home_staff.html:97 .\templates\staff\home_staff.html:101
 msgid "às"
 msgstr ""
 
@@ -790,10 +791,8 @@ msgstr ""
 #: .\templates\attribution_preference\courses_attribution_preference.html:702
 #: .\templates\attribution_preference\disponibility_attribution_preference.html:39
 #: .\templates\registration\login.html:37
-#: .\templates\registration\signup.html:29
-#: .\templates\staff\home_staff.html:28
- .\templates\staff\home_staff.html:243
-#: .\templates\staff\home_staff.html:303
+#: .\templates\registration\signup.html:29 .\templates\staff\home_staff.html:29
+#: .\templates\staff\home_staff.html:244 .\templates\staff\home_staff.html:304
 msgid "Erro"
 msgstr ""
 
@@ -804,7 +803,7 @@ msgstr ""
 #: .\templates\staff\base.html:91 .\templates\staff\base.html:166
 #: .\templates\staff\deadline\deadline_configuration.html:25
 #: .\templates\staff\deadline\deadline_configuration.html:26
-#: .\templates\staff\home_staff.html:265
+#: .\templates\staff\home_staff.html:266
 #: .\templates\staff\queue\queue_create.html:34
 msgid "Bloco"
 msgstr ""
@@ -845,9 +844,9 @@ msgstr ""
 #: .\templates\staff\classs\classes_list.html:45
 #: .\templates\staff\classs\classes_list.html:97
 #: .\templates\staff\classs\classes_list.html:146
-#: .\templates\staff\home_staff.html:41 .\templates\staff\home_staff.html:50
-#: .\templates\staff\home_staff.html:65 .\templates\staff\home_staff.html:80
-#: .\templates\staff\home_staff.html:93 .\templates\staff\home_staff.html:105
+#: .\templates\staff\home_staff.html:42 .\templates\staff\home_staff.html:51
+#: .\templates\staff\home_staff.html:66 .\templates\staff\home_staff.html:81
+#: .\templates\staff\home_staff.html:94 .\templates\staff\home_staff.html:106
 msgid "Período"
 msgstr ""
 
@@ -940,7 +939,7 @@ msgstr ""
 #: .\templates\staff\blockk\block_detail.html:187
 #: .\templates\staff\classs\classes_list.html:120
 #: .\templates\staff\classs\classes_list.html:172
-#: .\templates\staff\home_staff.html:278 .\templates\staff\home_staff.html:318
+#: .\templates\staff\home_staff.html:279 .\templates\staff\home_staff.html:319
 #: .\templates\staff\professor\professors_list.html:320
 #: .\templates\staff\professor\professors_list.html:485
 msgid "Fechar"
@@ -1059,8 +1058,8 @@ msgstr ""
 #: .\templates\staff\deadline\deadline_configuration.html:17
 #: .\templates\staff\deadline\deadline_configuration.html:20
 #: .\templates\staff\deadline\deadline_configuration.html:23
-#: .\templates\staff\home_staff.html:56 .\templates\staff\home_staff.html:71
-#: .\templates\staff\home_staff.html:84 .\templates\staff\home_staff.html:97
+#: .\templates\staff\home_staff.html:57 .\templates\staff\home_staff.html:72
+#: .\templates\staff\home_staff.html:85 .\templates\staff\home_staff.html:98
 msgid "Início"
 msgstr ""
 
@@ -1164,9 +1163,9 @@ msgstr ""
 #: .\templates\professor\home_professor.html:74
 #: .\templates\professor\home_professor.html:87
 #: .\templates\professor\home_professor.html:102
-#: .\templates\staff\home_staff.html:43 .\templates\staff\home_staff.html:52
-#: .\templates\staff\home_staff.html:67 .\templates\staff\home_staff.html:81
-#: .\templates\staff\home_staff.html:94 .\templates\staff\home_staff.html:109
+#: .\templates\staff\home_staff.html:44 .\templates\staff\home_staff.html:53
+#: .\templates\staff\home_staff.html:68 .\templates\staff\home_staff.html:82
+#: .\templates\staff\home_staff.html:95 .\templates\staff\home_staff.html:110
 msgid "Situação"
 msgstr ""
 
@@ -1552,7 +1551,13 @@ msgid ""
 "Comprometemo-nos a aplicar medidas técnicas e organizacionais para proteger "
 "os dados pessoais contra acessos não autorizados, perdas, alterações, "
 "comunicações ou divulgações não autorizadas. Além disso, os dados relativos "
-"a cartões de crédito são criptografados usando a tecnologia "
+"a cartões de crédito são criptografados usando a tecnologia secure socket "
+"layer (SSL) para garantir transmissões seguras e confidenciais. Fique ciente "
+"de que não nos eximimos da responsabilidade em caso de ação de terceiros, "
+"como ataques de hackers ou falhas do usuário ao transferir seus dados a "
+"terceiros. Comprometemo-nos a informar os usuários em caso de violação de "
+"segurança dos seus dados pessoais. Tratamos seus dados com "
+"confidencialidade, conforme os limites legais, mas de Serviço."
 msgstr ""
 
 #: .\templates\privacy_policy.html:61
@@ -1753,66 +1758,66 @@ msgstr ""
 
 #: .\templates\professor\home_professor.html:28
 #: .\templates\staff\deadline\confirm_deadline_configuration.html:7
-#: .\templates\staff\home_staff.html:35
+#: .\templates\staff\home_staff.html:36
 msgid "Prazos"
 msgstr ""
 
 #: .\templates\professor\home_professor.html:33
-#: .\templates\staff\home_staff.html:40
+#: .\templates\staff\home_staff.html:41
 msgid "Não Configurado"
 msgstr ""
 
 #: .\templates\professor\home_professor.html:38
-#: .\templates\staff\home_staff.html:45
+#: .\templates\staff\home_staff.html:46
 msgid "Espere até que seja emitido pelo administrador as datas da atribuição"
 msgstr ""
 
 #: .\templates\professor\home_professor.html:42
 #: .\templates\professor\home_professor.html:72
-#: .\templates\staff\home_staff.html:49 .\templates\staff\home_staff.html:79
+#: .\templates\staff\home_staff.html:50 .\templates\staff\home_staff.html:80
 msgid "Formulário de Preferências"
 msgstr ""
 
 #: .\templates\professor\home_professor.html:46
 #: .\templates\professor\home_professor.html:61
-#: .\templates\staff\home_staff.html:53 .\templates\staff\home_staff.html:68
+#: .\templates\staff\home_staff.html:54 .\templates\staff\home_staff.html:69
 msgid "Prazo configurado"
 msgstr ""
 
 #: .\templates\professor\home_professor.html:57
 #: .\templates\professor\home_professor.html:85
-#: .\templates\staff\home_staff.html:64 .\templates\staff\home_staff.html:92
+#: .\templates\staff\home_staff.html:65 .\templates\staff\home_staff.html:93
 msgid "Atribuição de Aulas"
 msgstr ""
 
 #: .\templates\professor\home_professor.html:74
 #: .\templates\professor\home_professor.html:87
-#: .\templates\staff\home_staff.html:81 .\templates\staff\home_staff.html:94
+#: .\templates\staff\home_staff.html:82 .\templates\staff\home_staff.html:95
 msgid "Iniciado"
 msgstr ""
 
 #: .\templates\professor\home_professor.html:98
-#: .\templates\staff\home_staff.html:105
+#: .\templates\staff\home_staff.html:106
 msgid "Finalizado"
 msgstr ""
 
 #: .\templates\professor\home_professor.html:101
-#: .\templates\staff\home_staff.html:108
+#: .\templates\staff\home_staff.html:109
 msgid "A atribuição de aulas terminou"
 msgstr ""
 
 #: .\templates\professor\home_professor.html:102
-#: .\templates\staff\home_staff.html:109
+#: .\templates\staff\home_staff.html:110
 msgid "até próxima atribuição"
 msgstr ""
 
 #: .\templates\professor\home_professor.html:110
-#: .\templates\staff\home_staff.html:117
+#: .\templates\staff\home_staff.html:118
 msgid "Alertas"
 msgstr ""
 
 #: .\templates\professor\home_professor.html:115
-#: .\templates\staff\home_staff.html:122
+#: .\templates\staff\home_staff.html:123
 msgid "Nenhum alerta configurado para seus blocos"
 msgstr ""
 
@@ -1821,7 +1826,7 @@ msgid "Atualizações Legislação"
 msgstr ""
 
 #: .\templates\professor\home_professor.html:144
-#: .\templates\staff\home_staff.html:158
+#: .\templates\staff\home_staff.html:159
 msgid "Nenhum link da legislação configurado"
 msgstr ""
 
@@ -1843,7 +1848,7 @@ msgid ""
 msgstr ""
 
 #: .\templates\professor\home_professor.html:175
-#: .\templates\staff\home_staff.html:194
+#: .\templates\staff\home_staff.html:195
 msgid "Permuta não foi habilitada"
 msgstr ""
 
@@ -1903,8 +1908,7 @@ msgstr ""
 msgid "Sua atribuição"
 msgstr ""
 
-#: .\templates\registration\login.html:8
-#: .\templates\registration\login.html:30
+#: .\templates\registration\login.html:8 .\templates\registration\login.html:30
 msgid "Acessar Conta"
 msgstr ""
 
@@ -2058,7 +2062,7 @@ msgstr ""
 #: .\templates\staff\blockk\block_detail.html:188
 #: .\templates\staff\classs\classes_list.html:173
 #: .\templates\staff\deadline\deadline_configuration.html:33
-#: .\templates\staff\home_staff.html:280 .\templates\staff\home_staff.html:320
+#: .\templates\staff\home_staff.html:281 .\templates\staff\home_staff.html:321
 #: .\templates\staff\professor\professors_list.html:321
 #: .\templates\staff\professor\professors_list.html:486
 msgid "Salvar"
@@ -2129,64 +2133,64 @@ msgstr ""
 msgid "Página Inicial - Representante"
 msgstr ""
 
-#: .\templates\staff\home_staff.html:142 .\templates\staff\home_staff.html:232
+#: .\templates\staff\home_staff.html:143 .\templates\staff\home_staff.html:233
 msgid "Adicionar alerta"
 msgstr ""
 
-#: .\templates\staff\home_staff.html:153
+#: .\templates\staff\home_staff.html:154
 msgid "Atualizações legislação"
 msgstr ""
 
-#: .\templates\staff\home_staff.html:178 .\templates\staff\home_staff.html:292
+#: .\templates\staff\home_staff.html:179 .\templates\staff\home_staff.html:293
 msgid "Adicionar atualização"
 msgstr ""
 
-#: .\templates\staff\home_staff.html:185
+#: .\templates\staff\home_staff.html:186
 msgid "Permutas"
 msgstr ""
 
-#: .\templates\staff\home_staff.html:189
+#: .\templates\staff\home_staff.html:190
 msgid "Permutas ocorrendo"
 msgstr ""
 
-#: .\templates\staff\home_staff.html:192
+#: .\templates\staff\home_staff.html:193
 msgid ""
 "A atribuição terminou, todas as permutas que foram pedidas foram resolvidas"
 msgstr ""
 
-#: .\templates\staff\home_staff.html:204
+#: .\templates\staff\home_staff.html:205
 msgid "Atividades a serem concluídas"
 msgstr ""
 
-#: .\templates\staff\home_staff.html:215
+#: .\templates\staff\home_staff.html:216
 msgid "Organize as filas de atribuição de seus blocos"
 msgstr ""
 
-#: .\templates\staff\home_staff.html:249
+#: .\templates\staff\home_staff.html:250
 msgid "Título"
 msgstr ""
 
-#: .\templates\staff\home_staff.html:252
+#: .\templates\staff\home_staff.html:253
 msgid "Ex: Prazo de Atribuição Estendido"
 msgstr ""
 
-#: .\templates\staff\home_staff.html:257
+#: .\templates\staff\home_staff.html:258
 msgid "Descrição"
 msgstr ""
 
-#: .\templates\staff\home_staff.html:260
+#: .\templates\staff\home_staff.html:261
 msgid "Escreva aqui sua descrição"
 msgstr ""
 
-#: .\templates\staff\home_staff.html:268
+#: .\templates\staff\home_staff.html:269
 msgid "Selecione o bloco"
 msgstr ""
 
-#: .\templates\staff\home_staff.html:309
+#: .\templates\staff\home_staff.html:310
 msgid "Link"
 msgstr ""
 
-#: .\templates\staff\home_staff.html:312
+#: .\templates\staff\home_staff.html:313
 msgid "Insira a URL do documento aqui"
 msgstr ""
 

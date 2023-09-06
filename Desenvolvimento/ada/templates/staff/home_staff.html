@@ -7,6 +7,7 @@
   link-count="{{count.link}}"></script>
 <link rel="stylesheet" href="{% static 'staff/home/css/home_staff.css' %}">
 </link>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 {% endblock %}
 
 {% block body %}
@@ -173,7 +174,7 @@
             {% else %}
             <div class="links mt-3 mb-3 pb-4" style="display: none;"></div>
             {% endif %}
-            {% if count.links < 4 %}
+            {% if count.links < 3 %}
             <button type="button" class="btn w-100 ada-btn-sucess" data-toggle="modal"
               data-target="#add-link">{% trans "Adicionar atualização" %}</button>
             {% endif %}
@@ -186,10 +187,9 @@
           <hr class="my-0">
           <div class="text-center">
             {% if period.status == 'configured_STARTEXCHANGEDEADLINE' %}
-            <p class="m-5 p-4"><b>{% trans "Permutas ocorrendo" %}</b>.</p>
+            <p class="m-5 p-4 text-justify">{% trans "Permutas ocorrendo" %}.</p>
             {% elif period.status == 'finished' %}
-            <p class="m-5 p-4">
-              <b>{% trans "A atribuição terminou, todas as permutas que foram pedidas foram resolvidas" %}</b>.</p>
+            <p class="m-5 p-4 text-justify">{% trans "A atribuição terminou, todas as permutas que foram pedidas foram resolvidas" %}.</p>
             {% else %}
             <p class="m-5 p-4 text-justify">{% trans "Permuta não foi habilitada" %}.</p>
             {% endif %}

@@ -19,7 +19,7 @@
 
     <div class="container-inside">
         {% if not user.is_authenticated %}
-        <img src="{% static 'images/logo_bg.png' %}" alt="logo ADA">
+        <img src="{% static 'images/logo_bg.png' %}" class="logo" id="logo" alt="logo ADA">
         {% endif %}
         <p
             class="element error-message text-center {% if user.is_authenticated %}text-black{% else %}text-white{% endif %}">
@@ -27,7 +27,7 @@
         <a href="{% url 'home' %}" class="btn custom-btn text-white">{% trans "Voltar ao início" %}</a>
     </div>
 
-    {#    <a href="https://storyset.com/people">People illustrations by Storyset</a>#}
+{#        <a href="https://storyset.com/people">People illustrations by Storyset</a>#}
 
     {% if not user.is_authenticated %}
     <svg class="animated svg" id="freepik_stories-computer-troubleshooting" xmlns="http://www.w3.org/2000/svg"

@@ -15,6 +15,9 @@
     padding: 10px;
 }
 
+i {
+    color: #0000008a !important;}
+
 .link {
     color: #1b2a9b !important;
 }
