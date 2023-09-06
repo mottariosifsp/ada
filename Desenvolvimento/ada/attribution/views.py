@@ -101,7 +101,7 @@ def attribution(request):
     return render(request, 'attribution/attribution.html')
 
 def timestup(professor, blockk):
-    if TeacherQueuePosition.objects.count() > 1:
+    if TeacherQueuePosition.objects.filter(blockk=blockk).count() > 1:
         professor_to_end_queue(professor, blockk)
         start_attribution(blockk)
     else:
