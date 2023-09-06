@@ -121,6 +121,10 @@ div#navbarToggler ul.navbar-nav > li.word-topic:hover {
     padding: 8px;
 }
 
+.description {
+  color: #052d4b !important; 
+}
+
 div#navbarToggler ul.navbar-nav > li.nav-item:hover {
     border-radius: 5px;
     background-color: #213b5f;

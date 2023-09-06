@@ -2,13 +2,13 @@
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-# 
+#
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-09-06 04:06-0300\n"
+"POT-Creation-Date: 2023-09-06 06:33-0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,6 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
 #: .\area\models.py:8
 msgid "registration area id"
 msgstr ""
@@ -223,7 +224,7 @@ msgstr "Logoff"
 #: .\templates\admin\deadline_configuration_confirm.html:42
 #: .\templates\professor\home_professor.html:14
 #: .\templates\professor\home_professor.html:18
-#: .\templates\staff\home_staff.html:14 .\templates\staff\home_staff.html:18
+#: .\templates\staff\home_staff.html:15 .\templates\staff\home_staff.html:19
 msgid "Página inicial"
 msgstr "Home"
 
@@ -278,8 +279,8 @@ msgstr "Start"
 #: .\templates\staff\deadline\deadline_configuration.html:18
 #: .\templates\staff\deadline\deadline_configuration.html:21
 #: .\templates\staff\deadline\deadline_configuration.html:24
-#: .\templates\staff\home_staff.html:60 .\templates\staff\home_staff.html:75
-#: .\templates\staff\home_staff.html:88 .\templates\staff\home_staff.html:101
+#: .\templates\staff\home_staff.html:61 .\templates\staff\home_staff.html:76
+#: .\templates\staff\home_staff.html:89 .\templates\staff\home_staff.html:102
 msgid "Fim"
 msgstr "End"
 
@@ -713,10 +714,10 @@ msgstr "Is scheduled to start"
 #: .\templates\professor\home_professor.html:80
 #: .\templates\professor\home_professor.html:89
 #: .\templates\professor\home_professor.html:93
-#: .\templates\staff\home_staff.html:55 .\templates\staff\home_staff.html:59
-#: .\templates\staff\home_staff.html:70 .\templates\staff\home_staff.html:74
-#: .\templates\staff\home_staff.html:83 .\templates\staff\home_staff.html:87
-#: .\templates\staff\home_staff.html:96 .\templates\staff\home_staff.html:100
+#: .\templates\staff\home_staff.html:56 .\templates\staff\home_staff.html:60
+#: .\templates\staff\home_staff.html:71 .\templates\staff\home_staff.html:75
+#: .\templates\staff\home_staff.html:84 .\templates\staff\home_staff.html:88
+#: .\templates\staff\home_staff.html:97 .\templates\staff\home_staff.html:101
 msgid "às"
 msgstr "to"
 
@@ -790,10 +791,8 @@ msgstr "Manual Attribution of"
 #: .\templates\attribution_preference\courses_attribution_preference.html:702
 #: .\templates\attribution_preference\disponibility_attribution_preference.html:39
 #: .\templates\registration\login.html:37
-#: .\templates\registration\signup.html:29
-#: .\templates\staff\home_staff.html:28
- .\templates\staff\home_staff.html:243
-#: .\templates\staff\home_staff.html:303
+#: .\templates\registration\signup.html:29 .\templates\staff\home_staff.html:29
+#: .\templates\staff\home_staff.html:244 .\templates\staff\home_staff.html:304
 msgid "Erro"
 msgstr "Error"
 
@@ -804,7 +803,7 @@ msgstr "Error"
 #: .\templates\staff\base.html:91 .\templates\staff\base.html:166
 #: .\templates\staff\deadline\deadline_configuration.html:25
 #: .\templates\staff\deadline\deadline_configuration.html:26
-#: .\templates\staff\home_staff.html:265
+#: .\templates\staff\home_staff.html:266
 #: .\templates\staff\queue\queue_create.html:34
 msgid "Bloco"
 msgstr "Block"
@@ -845,9 +844,9 @@ msgstr "Alert"
 #: .\templates\staff\classs\classes_list.html:45
 #: .\templates\staff\classs\classes_list.html:97
 #: .\templates\staff\classs\classes_list.html:146
-#: .\templates\staff\home_staff.html:41 .\templates\staff\home_staff.html:50
-#: .\templates\staff\home_staff.html:65 .\templates\staff\home_staff.html:80
-#: .\templates\staff\home_staff.html:93 .\templates\staff\home_staff.html:105
+#: .\templates\staff\home_staff.html:42 .\templates\staff\home_staff.html:51
+#: .\templates\staff\home_staff.html:66 .\templates\staff\home_staff.html:81
+#: .\templates\staff\home_staff.html:94 .\templates\staff\home_staff.html:106
 msgid "Período"
 msgstr "Period"
 
@@ -940,7 +939,7 @@ msgstr "End Time"
 #: .\templates\staff\blockk\block_detail.html:187
 #: .\templates\staff\classs\classes_list.html:120
 #: .\templates\staff\classs\classes_list.html:172
-#: .\templates\staff\home_staff.html:278 .\templates\staff\home_staff.html:318
+#: .\templates\staff\home_staff.html:279 .\templates\staff\home_staff.html:319
 #: .\templates\staff\professor\professors_list.html:320
 #: .\templates\staff\professor\professors_list.html:485
 msgid "Fechar"
@@ -969,7 +968,8 @@ msgstr "Your attribution has been completed successfully"
 #: .\templates\attribution\manual_attribution_confirm.html:18
 #: .\templates\attribution\manual_attribution_timesup.html:18
 msgid "Suas aulas já foram enviadas, validadas e atribuídas a você"
-msgstr "Your preferences have already been submitted, validated and assigned to you"
+msgstr ""
+"Your preferences have already been submitted, validated and assigned to you"
 
 #: .\templates\attribution\manual_attribution_timesup.html:6
 msgid "Tempo Encerrado"
@@ -983,7 +983,9 @@ msgstr "Time is over"
 msgid ""
 "Você não conseguiu enviar suas aulas a tempo, você foi direcionado ao final "
 "da fila"
-msgstr "You failed to submit your preferences on time, you have been directed to the end of the queue"
+msgstr ""
+"You failed to submit your preferences on time, you have been directed to the "
+"end of the queue"
 
 #: .\templates\attribution_preference\attribution_preference.html:7
 #: .\templates\attribution_preference\attribution_preference.html:12
@@ -1059,8 +1061,8 @@ msgstr "CONFIGURED"
 #: .\templates\staff\deadline\deadline_configuration.html:17
 #: .\templates\staff\deadline\deadline_configuration.html:20
 #: .\templates\staff\deadline\deadline_configuration.html:23
-#: .\templates\staff\home_staff.html:56 .\templates\staff\home_staff.html:71
-#: .\templates\staff\home_staff.html:84 .\templates\staff\home_staff.html:97
+#: .\templates\staff\home_staff.html:57 .\templates\staff\home_staff.html:72
+#: .\templates\staff\home_staff.html:85 .\templates\staff\home_staff.html:98
 msgid "Início"
 msgstr "Start"
 
@@ -1164,9 +1166,9 @@ msgstr "Final APF"
 #: .\templates\professor\home_professor.html:74
 #: .\templates\professor\home_professor.html:87
 #: .\templates\professor\home_professor.html:102
-#: .\templates\staff\home_staff.html:43 .\templates\staff\home_staff.html:52
-#: .\templates\staff\home_staff.html:67 .\templates\staff\home_staff.html:81
-#: .\templates\staff\home_staff.html:94 .\templates\staff\home_staff.html:109
+#: .\templates\staff\home_staff.html:44 .\templates\staff\home_staff.html:53
+#: .\templates\staff\home_staff.html:68 .\templates\staff\home_staff.html:82
+#: .\templates\staff\home_staff.html:95 .\templates\staff\home_staff.html:110
 msgid "Situação"
 msgstr "Situation"
 
@@ -1175,7 +1177,9 @@ msgstr "Situation"
 msgid ""
 "Você finalizou seu FPA, nesta seção veja como ficou no final ou seja livre "
 "para mudar qualquer preferência"
-msgstr "You have finalized your APF, in this section see how it ended up or be free to change any preference"
+msgstr ""
+"You have finalized your APF, in this section see how it ended up or be free "
+"to change any preference"
 
 #: .\templates\attribution_preference\attribution_preference.html:206
 #: .\templates\attribution_preference\attribution_preference.html:391
@@ -1192,7 +1196,9 @@ msgstr "General Disponibility Send"
 msgid ""
 "Você enviou sua preferência de horários. Agora pode atualizar ou enviar suas "
 "preferências em relação as disciplinas abaixo"
-msgstr "You have submitted your time disponibility. You can now update or submit your preferences regarding the subjects below"
+msgstr ""
+"You have submitted your time disponibility. You can now update or submit "
+"your preferences regarding the subjects below"
 
 #: .\templates\attribution_preference\attribution_preference.html:236
 msgid "Edite sua Disponibilidade Geral"
@@ -1207,7 +1213,11 @@ msgid ""
 "Você enviou sua preferência de horários e disciplinas. Para controle de "
 "erros não é mais possível editar sua disponibilidade, caso queira será "
 "nescessário voltar a etapa e apagar qaulquer envio feito na segunda etapa"
-msgstr "You have submitted your preference for timetables and subjects. for control of errors it is no longer possible to edit your availability, if you want it will be necessary to go back to the step and delete any submission made in the second step"
+msgstr ""
+"You have submitted your preference for timetables and subjects. for control "
+"of errors it is no longer possible to edit your availability, if you want it "
+"will be necessary to go back to the step and delete any submission made in "
+"the second step"
 
 #: .\templates\attribution_preference\attribution_preference.html:271
 msgid "Recomeçar seu FPA pela Disponibilidade"
@@ -1225,7 +1235,9 @@ msgstr "Preference of Disponibility"
 msgid ""
 "Iniciou o envio de FPAs para o sistema. Primeiro envie sua disponibilidade "
 "geral abaixo e espere os próximos passos"
-msgstr "Started sending APFs to the system. First send your availability overview below and wait for the next steps"
+msgstr ""
+"Started sending APFs to the system. First send your availability overview "
+"below and wait for the next steps"
 
 #: .\templates\attribution_preference\attribution_preference.html:303
 msgid "Enviar sua Disponibilidade Geral"
@@ -1241,7 +1253,9 @@ msgstr "Submission of Courses Preferences"
 msgid ""
 "Você enviou sua disponibilidade, o próximo passo é enviar com base na sua "
 "disponibilidade quais são suas preferências de disciplinas"
-msgstr "You have submitted your disponibility, the next step is to submit based on your disponibility what are your courses preferences"
+msgstr ""
+"You have submitted your disponibility, the next step is to submit based on "
+"your disponibility what are your courses preferences"
 
 #: .\templates\attribution_preference\attribution_preference.html:338
 msgid "Enviar sua Preferência de Disciplinas"
@@ -1497,17 +1511,29 @@ msgid ""
 "13.709/18), o Marco Civil da Internet (Lei 12.965/14) e o Regulamento da UE "
 "n. 2016/679. É importante notar que esta política pode ser atualizada "
 "conforme necessário, e convidamos os usuários a consultá-la regularmente."
-msgstr "This Privacy Policy contains information about how we collect, we use, store, process and protect the personal data of users and ADA website visitors. Our aim is to ensure full transparency about data collection, the reasons behind it and how users can manage or delete your personal information. This document was prepared in accordance with the General Law on the Protection of Personal Data (Law 13.709/18), the Marco Civil da Internet (Law 12.965/14) and the EU Regulation n. 2016/679. It is important to note that this policy may be updated as needed, and we invite users to refer to it regularly."
+msgstr ""
+"This Privacy Policy contains information about how we collect, we use, "
+"store, process and protect the personal data of users and ADA website "
+"visitors. Our aim is to ensure full transparency about data collection, the "
+"reasons behind it and how users can manage or delete your personal "
+"information. This document was prepared in accordance with the General Law "
+"on the Protection of Personal Data (Law 13.709/18), the Marco Civil da "
+"Internet (Law 12.965/14) and the EU Regulation n. 2016/679. It is important "
+"to note that this policy may be updated as needed, and we invite users to "
+"refer to it regularly."
 
 #: .\templates\privacy_policy.html:39
 msgid "SEÇÃO 2 - QUAIS DADOS PESSOAIS RECOLHEMOS SOBRE O USUÁRIO E VISITANTE"
-msgstr "SECTION 2 - WHAT PERSONAL DATA DO WE COLLECT ABOUT THE USER AND VISITOR"
+msgstr ""
+"SECTION 2 - WHAT PERSONAL DATA DO WE COLLECT ABOUT THE USER AND VISITOR"
 
 #: .\templates\privacy_policy.html:41
 msgid ""
 "Ao criar uma conta/perfil na plataforma ADA, coletamos os seguintes dados "
 "pessoais do usuário"
-msgstr "When creating an account/profile on the ADA platform, we collect the following data user's personal"
+msgstr ""
+"When creating an account/profile on the ADA platform, we collect the "
+"following data user's personal"
 
 #: .\templates\privacy_policy.html:43
 msgid "Nome completo (primeiro nome e sobrenome)"
@@ -1530,7 +1556,10 @@ msgid ""
 "Essas informações são coletadas para permitir o acesso e uso dos serviços "
 "oferecidos pela plataforma ADA e para proporcionar uma experiência "
 "personalizada aos nossos usuários"
-msgstr "This information is collected to allow access and use of the services offered by the ADA platform and to provide a personalized experience to our users."
+msgstr ""
+"This information is collected to allow access and use of the services "
+"offered by the ADA platform and to provide a personalized experience to our "
+"users."
 
 #: .\templates\privacy_policy.html:51
 msgid "SEÇÃO 3 - PARA QUE FINALIDADES UTILIZAMOS OS DADOS PESSOAIS DO USUÁRIO"
@@ -1541,7 +1570,9 @@ msgid ""
 "Utilizamos os dados de cadastro do usuário para permitir o acesso a "
 "conteúdos específicos da plataforma, reservados exclusivamente para usuários "
 "cadastrados."
-msgstr "We use user registration data to allow access to specific content on the platform, reserved exclusively for registered users."
+msgstr ""
+"We use user registration data to allow access to specific content on the "
+"platform, reserved exclusively for registered users."
 
 #: .\templates\privacy_policy.html:56
 msgid "SEÇÃO 4 - SEGURANÇA DOS DADOS PESSOAIS ARMAZENADOS"
@@ -1552,8 +1583,22 @@ msgid ""
 "Comprometemo-nos a aplicar medidas técnicas e organizacionais para proteger "
 "os dados pessoais contra acessos não autorizados, perdas, alterações, "
 "comunicações ou divulgações não autorizadas. Além disso, os dados relativos "
-"a cartões de crédito são criptografados usando a tecnologia "
-msgstr "We are committed to applying technical and organizational measures to protect personal data against unauthorized access, loss, alteration, unauthorized communication or disclosure. In addition, data relating to credit cards is encrypted using technology"
+"a cartões de crédito são criptografados usando a tecnologia secure socket "
+"layer (SSL) para garantir transmissões seguras e confidenciais. Fique ciente "
+"de que não nos eximimos da responsabilidade em caso de ação de terceiros, "
+"como ataques de hackers ou falhas do usuário ao transferir seus dados a "
+"terceiros. Comprometemo-nos a informar os usuários em caso de violação de "
+"segurança dos seus dados pessoais. Tratamos seus dados com "
+"confidencialidade, conforme os limites legais, mas de Serviço."
+msgstr ""
+"We are committed to implementing technical and organizational measures to protect "
+"personal data against unauthorized access, loss, alteration, "
+"unauthorized disclosure, or communication. Additionally, data related to "
+"credit cards is encrypted using secure socket layer (SSL) technology to ensure secure and confidential transmissions. Please be aware that we do not absolve ourselves of responsibility in the event of third-party actions, "
+"such as hacker attacks or user errors when transferring their data to "
+"third parties. We commit to notifying users in case of a breach of "
+"security of their personal data. We handle your data with "
+"confidentiality, within the legal limits, but in the Service."
 
 #: .\templates\privacy_policy.html:61
 msgid "SEÇÃO 5 - COMPARTILHAMENTO DOS DADOS"
@@ -1563,11 +1608,14 @@ msgstr "SECTION 5 - DATA SHARING"
 msgid ""
 "Não compartilhamos os dados pessoais com terceiros, exceto em situações "
 "excepcionais (descrição das situações em que podem ser compartilhados)"
-msgstr "We do not share personal data with third parties, except in exceptional situations (description of situations in which they may be shared)"
+msgstr ""
+"We do not share personal data with third parties, except in exceptional "
+"situations (description of situations in which they may be shared)"
 
 #: .\templates\privacy_policy.html:66
 msgid "SEÇÃO 6 - OS DADOS PESSOAIS ARMAZENADOS SERÃO TRANSFERIDOS A TERCEIROS?"
-msgstr "SECTION 6 - WILL THE STORED PERSONAL DATA BE TRANSFERRED TO THIRD PARTIES?"
+msgstr ""
+"SECTION 6 - WILL THE STORED PERSONAL DATA BE TRANSFERRED TO THIRD PARTIES?"
 
 #: .\templates\privacy_policy.html:68
 msgid "Não transferimos os dados pessoais a terceiros"
@@ -1593,7 +1641,12 @@ msgid ""
 "Quando realizamos alterações, notificamos os usuários. Ao continuar a "
 "utilizar o serviço ou fornecer informações pessoais após as modificações, "
 "você está concordando com as novas normas"
-msgstr "We reserve the right to modify this Privacy Policy at any time. We recommend that you review it regularly. Changes and clarifications will take effect immediately after their publication on the platform. When we make changes, we notify users. By continuing to use the service or providing personal information after changes have been made, you are agreeing to the new rules"
+msgstr ""
+"We reserve the right to modify this Privacy Policy at any time. We recommend "
+"that you review it regularly. Changes and clarifications will take effect "
+"immediately after their publication on the platform. When we make changes, "
+"we notify users. By continuing to use the service or providing personal "
+"information after changes have been made, you are agreeing to the new rules"
 
 #: .\templates\professor\assignment\assignments.html:6
 #: .\templates\professor\assignment\assignments.html:11
@@ -1753,66 +1806,66 @@ msgstr "Home - Professor"
 
 #: .\templates\professor\home_professor.html:28
 #: .\templates\staff\deadline\confirm_deadline_configuration.html:7
-#: .\templates\staff\home_staff.html:35
+#: .\templates\staff\home_staff.html:36
 msgid "Prazos"
 msgstr "Deadlines"
 
 #: .\templates\professor\home_professor.html:33
-#: .\templates\staff\home_staff.html:40
+#: .\templates\staff\home_staff.html:41
 msgid "Não Configurado"
 msgstr "Not Configured"
 
 #: .\templates\professor\home_professor.html:38
-#: .\templates\staff\home_staff.html:45
+#: .\templates\staff\home_staff.html:46
 msgid "Espere até que seja emitido pelo administrador as datas da atribuição"
 msgstr "Wait until the attribution dates are issued by the administrator"
 
 #: .\templates\professor\home_professor.html:42
 #: .\templates\professor\home_professor.html:72
-#: .\templates\staff\home_staff.html:49 .\templates\staff\home_staff.html:79
+#: .\templates\staff\home_staff.html:50 .\templates\staff\home_staff.html:80
 msgid "Formulário de Preferências"
 msgstr "Preference Form"
 
 #: .\templates\professor\home_professor.html:46
 #: .\templates\professor\home_professor.html:61
-#: .\templates\staff\home_staff.html:53 .\templates\staff\home_staff.html:68
+#: .\templates\staff\home_staff.html:54 .\templates\staff\home_staff.html:69
 msgid "Prazo configurado"
 msgstr "Deadline configured"
 
 #: .\templates\professor\home_professor.html:57
 #: .\templates\professor\home_professor.html:85
-#: .\templates\staff\home_staff.html:64 .\templates\staff\home_staff.html:92
+#: .\templates\staff\home_staff.html:65 .\templates\staff\home_staff.html:93
 msgid "Atribuição de Aulas"
 msgstr "Classes Attribution"
 
 #: .\templates\professor\home_professor.html:74
 #: .\templates\professor\home_professor.html:87
-#: .\templates\staff\home_staff.html:81 .\templates\staff\home_staff.html:94
+#: .\templates\staff\home_staff.html:82 .\templates\staff\home_staff.html:95
 msgid "Iniciado"
 msgstr "Started"
 
 #: .\templates\professor\home_professor.html:98
-#: .\templates\staff\home_staff.html:105
+#: .\templates\staff\home_staff.html:106
 msgid "Finalizado"
 msgstr "Finished"
 
 #: .\templates\professor\home_professor.html:101
-#: .\templates\staff\home_staff.html:108
+#: .\templates\staff\home_staff.html:109
 msgid "A atribuição de aulas terminou"
 msgstr "Class attribution has ended"
 
 #: .\templates\professor\home_professor.html:102
-#: .\templates\staff\home_staff.html:109
+#: .\templates\staff\home_staff.html:110
 msgid "até próxima atribuição"
 msgstr "until next attribution"
 
 #: .\templates\professor\home_professor.html:110
-#: .\templates\staff\home_staff.html:117
+#: .\templates\staff\home_staff.html:118
 msgid "Alertas"
 msgstr "Alerts"
 
 #: .\templates\professor\home_professor.html:115
-#: .\templates\staff\home_staff.html:122
+#: .\templates\staff\home_staff.html:123
 msgid "Nenhum alerta configurado para seus blocos"
 msgstr "No alerts configured for your blocks"
 
@@ -1821,7 +1874,7 @@ msgid "Atualizações Legislação"
 msgstr "Legislation Updates"
 
 #: .\templates\professor\home_professor.html:144
-#: .\templates\staff\home_staff.html:158
+#: .\templates\staff\home_staff.html:159
 msgid "Nenhum link da legislação configurado"
 msgstr "No legislation link configured"
 
@@ -1843,7 +1896,7 @@ msgid ""
 msgstr "Attribution ended, all permutations that were requested were resolved"
 
 #: .\templates\professor\home_professor.html:175
-#: .\templates\staff\home_staff.html:194
+#: .\templates\staff\home_staff.html:195
 msgid "Permuta não foi habilitada"
 msgstr "Permutation has not been enabled"
 
@@ -1903,8 +1956,7 @@ msgstr "See"
 msgid "Sua atribuição"
 msgstr "Your attribution"
 
-#: .\templates\registration\login.html:8
-#: .\templates\registration\login.html:30
+#: .\templates\registration\login.html:8 .\templates\registration\login.html:30
 msgid "Acessar Conta"
 msgstr "Access Account"
 
@@ -1916,7 +1968,8 @@ msgstr "Give a"
 msgid ""
 "na praticidade: a nossa plataforma torna a atribuição de aulas uma lição "
 "fácil"
-msgstr "in practicality: our platform makes attribution classrooms an easy lesson"
+msgstr ""
+"in practicality: our platform makes attribution classrooms an easy lesson"
 
 #: .\templates\registration\login.html:38
 msgid "Preencha os campos corretamente"
@@ -2000,7 +2053,9 @@ msgstr "Edit queue"
 msgid ""
 "As atividades foram devidamente configuradas, os prazos estabelecidos e a "
 "fila organizada"
-msgstr "The activities were properly configured, the deadlines established and the queue organized"
+msgstr ""
+"The activities were properly configured, the deadlines established and the "
+"queue organized"
 
 #: .\templates\staff\attribution\attribution_configuration_index.html:6
 #: .\templates\staff\attribution\attribution_configuration_index.html:12
@@ -2058,7 +2113,7 @@ msgstr "Edit"
 #: .\templates\staff\blockk\block_detail.html:188
 #: .\templates\staff\classs\classes_list.html:173
 #: .\templates\staff\deadline\deadline_configuration.html:33
-#: .\templates\staff\home_staff.html:280 .\templates\staff\home_staff.html:320
+#: .\templates\staff\home_staff.html:281 .\templates\staff\home_staff.html:321
 #: .\templates\staff\professor\professors_list.html:321
 #: .\templates\staff\professor\professors_list.html:486
 msgid "Salvar"
@@ -2129,66 +2184,66 @@ msgstr "Class attribution configuration panel"
 msgid "Página Inicial - Representante"
 msgstr "Home - Staff"
 
-#: .\templates\staff\home_staff.html:142 .\templates\staff\home_staff.html:232
+#: .\templates\staff\home_staff.html:143 .\templates\staff\home_staff.html:233
 msgid "Adicionar alerta"
 msgstr "Add alert"
 
-#: .\templates\staff\home_staff.html:153
+#: .\templates\staff\home_staff.html:154
 msgid "Atualizações legislação"
-msgstr ""
+msgstr "Legislation updates"
 
-#: .\templates\staff\home_staff.html:178 .\templates\staff\home_staff.html:292
+#: .\templates\staff\home_staff.html:179 .\templates\staff\home_staff.html:293
 msgid "Adicionar atualização"
-msgstr ""
+msgstr "Add update"
 
-#: .\templates\staff\home_staff.html:185
+#: .\templates\staff\home_staff.html:186
 msgid "Permutas"
-msgstr ""
+msgstr "Exchanges"
 
-#: .\templates\staff\home_staff.html:189
+#: .\templates\staff\home_staff.html:190
 msgid "Permutas ocorrendo"
-msgstr ""
+msgstr "Exchanges now"
 
-#: .\templates\staff\home_staff.html:192
+#: .\templates\staff\home_staff.html:193
 msgid ""
 "A atribuição terminou, todas as permutas que foram pedidas foram resolvidas"
-msgstr ""
+msgstr "Assignment ended, all permutations that were requested were resolved"
 
-#: .\templates\staff\home_staff.html:204
+#: .\templates\staff\home_staff.html:205
 msgid "Atividades a serem concluídas"
-msgstr ""
+msgstr "Activities to be completed"
 
-#: .\templates\staff\home_staff.html:215
+#: .\templates\staff\home_staff.html:216
 msgid "Organize as filas de atribuição de seus blocos"
-msgstr ""
+msgstr "Organize your block assignment queues"
 
-#: .\templates\staff\home_staff.html:249
+#: .\templates\staff\home_staff.html:250
 msgid "Título"
-msgstr ""
+msgstr "Title"
 
-#: .\templates\staff\home_staff.html:252
+#: .\templates\staff\home_staff.html:253
 msgid "Ex: Prazo de Atribuição Estendido"
-msgstr ""
+msgstr "Ex: Extended Assignment Deadline"
 
-#: .\templates\staff\home_staff.html:257
+#: .\templates\staff\home_staff.html:258
 msgid "Descrição"
-msgstr ""
+msgstr "Description"
 
-#: .\templates\staff\home_staff.html:260
+#: .\templates\staff\home_staff.html:261
 msgid "Escreva aqui sua descrição"
-msgstr ""
+msgstr "Write your description here"
 
-#: .\templates\staff\home_staff.html:268
+#: .\templates\staff\home_staff.html:269
 msgid "Selecione o bloco"
-msgstr ""
+msgstr "Select your block"
 
-#: .\templates\staff\home_staff.html:309
+#: .\templates\staff\home_staff.html:310
 msgid "Link"
 msgstr ""
 
-#: .\templates\staff\home_staff.html:312
+#: .\templates\staff\home_staff.html:313
 msgid "Insira a URL do documento aqui"
-msgstr ""
+msgstr "Enter document URL here"
 
 #: .\templates\staff\professor\professors_list.html:7
 #: .\templates\staff\professor\professors_list.html:24
@@ -2196,25 +2251,25 @@ msgstr ""
 #: .\templates\staff\professor\register.html:7
 #: .\templates\staff\professor\register.html:27
 msgid "Professores"
-msgstr ""
+msgstr "Professors"
 
 #: .\templates\staff\professor\professors_list.html:43
 msgid "Adicionar Professor"
-msgstr ""
+msgstr "Add Professor"
 
 #: .\templates\staff\professor\professors_list.html:52
 #: .\templates\staff\professor\professors_list.html:191
 #: .\templates\staff\professor\professors_list.html:354
 #: .\templates\staff\professor\register.html:45
 msgid "Sobrenome"
-msgstr ""
+msgstr "Last name"
 
 #: .\templates\staff\professor\professors_list.html:54
 #: .\templates\staff\professor\professors_list.html:197
 #: .\templates\staff\professor\professors_list.html:360
 #: .\templates\staff\professor\register.html:47
 msgid "Email"
-msgstr ""
+msgstr "E-mail"
 
 #: .\templates\staff\professor\professors_list.html:57
 #: .\templates\staff\professor\professors_list.html:213
@@ -2222,7 +2277,7 @@ msgstr ""
 #: .\templates\staff\queue\queue_create.html:69
 #: .\templates\staff\queue\queue_show.html:29
 msgid "Data de Nascimento"
-msgstr ""
+msgstr "Date of birth"
 
 #: .\templates\staff\professor\professors_list.html:58
 #: .\templates\staff\professor\professors_list.html:217
@@ -2230,37 +2285,37 @@ msgstr ""
 #: .\templates\staff\queue\queue_create.html:70
 #: .\templates\staff\queue\queue_show.html:30
 msgid "Data de Carreira"
-msgstr ""
+msgstr "Career Date"
 
 #: .\templates\staff\professor\professors_list.html:59
 #: .\templates\staff\queue\queue_create.html:71
 #: .\templates\staff\queue\queue_show.html:31
 msgid "Data no Campus"
-msgstr ""
+msgstr "Date on campus"
 
 #: .\templates\staff\professor\professors_list.html:60
 #: .\templates\staff\queue\queue_create.html:72
 #: .\templates\staff\queue\queue_show.html:32
 msgid "Data como Professor"
-msgstr ""
+msgstr "Date as Teacher"
 
 #: .\templates\staff\professor\professors_list.html:61
 #: .\templates\staff\queue\queue_create.html:73
 #: .\templates\staff\queue\queue_show.html:33
 msgid "Data na Área"
-msgstr ""
+msgstr "Date in the Area"
 
 #: .\templates\staff\professor\professors_list.html:62
 #: .\templates\staff\queue\queue_create.html:74
 #: .\templates\staff\queue\queue_show.html:34
 msgid "Data no Instituto"
-msgstr ""
+msgstr "Date at the Institute"
 
 #: .\templates\staff\professor\professors_list.html:65
 #: .\templates\staff\queue\queue_create.html:75
 #: .\templates\staff\queue\queue_show.html:35
 msgid "Diploma Pontuação"
-msgstr ""
+msgstr "Diploma Score"
 
 #: .\templates\staff\professor\professors_list.html:67
 msgid "Staff"
@@ -2279,31 +2334,31 @@ msgstr ""
 #: .\templates\staff\professor\professors_list.html:406
 #: .\templates\staff\professor\professors_list.html:407
 msgid "Horas"
-msgstr ""
+msgstr "Hours"
 
 #: .\templates\staff\professor\professors_list.html:170
 msgid "Adicionar novo professor"
-msgstr ""
+msgstr "Add new professor"
 
 #: .\templates\staff\professor\professors_list.html:177
 #: .\templates\staff\professor\professors_list.html:340
 msgid "Informações do professor"
-msgstr ""
+msgstr "Teacher information"
 
 #: .\templates\staff\professor\professors_list.html:211
 #: .\templates\staff\professor\professors_list.html:374
 msgid "Histórico do professor"
-msgstr ""
+msgstr "Professor History"
 
 #: .\templates\staff\professor\professors_list.html:221
 #: .\templates\staff\professor\professors_list.html:384
 msgid "Data de Ingresso no Campus"
-msgstr ""
+msgstr "Campus Entry Date"
 
 #: .\templates\staff\professor\professors_list.html:225
 #: .\templates\staff\professor\professors_list.html:388
 msgid "Data de Ingresso como Professor"
-msgstr ""
+msgstr "Date of Admission as a Professor"
 
 #: .\templates\staff\professor\professors_list.html:229
 #: .\templates\staff\professor\professors_list.html:392
@@ -2313,118 +2368,118 @@ msgstr ""
 #: .\templates\staff\professor\professors_list.html:233
 #: .\templates\staff\professor\professors_list.html:396
 msgid "Data do Instituto"
-msgstr ""
+msgstr "Institute Date"
 
 #: .\templates\staff\professor\professors_list.html:239
 #: .\templates\staff\professor\professors_list.html:402
 msgid "Defina um regime"
-msgstr ""
+msgstr "Set your job"
 
 #: .\templates\staff\professor\professors_list.html:247
 #: .\templates\staff\professor\professors_list.html:410
 msgid "Blocos do usuário"
-msgstr ""
+msgstr "User blocks"
 
 #: .\templates\staff\professor\professors_list.html:252
 #: .\templates\staff\professor\professors_list.html:415
 msgid "Adicionar um novo bloco"
-msgstr ""
+msgstr "Add a new block"
 
 #: .\templates\staff\professor\professors_list.html:271
 #: .\templates\staff\professor\professors_list.html:435
 msgid "Diplomas do Usuário"
-msgstr ""
+msgstr "User Degrees"
 
 #: .\templates\staff\professor\professors_list.html:276
 #: .\templates\staff\professor\professors_list.html:440
 msgid "Adicionar um novo diploma"
-msgstr ""
+msgstr "Add a new degree"
 
 #: .\templates\staff\professor\professors_list.html:285
 #: .\templates\staff\professor\professors_list.html:449
 msgid "pontuação"
-msgstr ""
+msgstr "score"
 
 #: .\templates\staff\professor\professors_list.html:298
 #: .\templates\staff\professor\professors_list.html:462
 msgid "Cargos do professor"
-msgstr ""
+msgstr "Professor's position"
 
 #: .\templates\staff\professor\professors_list.html:333
 msgid "Editar Professor"
-msgstr ""
+msgstr "Edit Professor"
 
 #: .\templates\staff\professor\register.html:22
 msgid "Professores com o cadastro não finalizado"
-msgstr ""
+msgstr "Teachers with unfinished registration"
 
 #: .\templates\staff\professor\register.html:34
 msgid "Enviar e-mail"
-msgstr ""
+msgstr "Send e-mail"
 
 #: .\templates\staff\queue\queue_create.html:10
 msgid "Editar Fila Atribuição"
-msgstr ""
+msgstr "Edit Queue Assignment"
 
 #: .\templates\staff\queue\queue_create.html:15
 msgid "Fila de Docentes"
-msgstr ""
+msgstr "Queue of Professors"
 
 #: .\templates\staff\queue\queue_create.html:22
 #: .\templates\staff\queue\queue_show.html:19
 msgid "Editar Fila"
-msgstr ""
+msgstr "Edit Queue"
 
 #: .\templates\staff\queue\queue_create.html:28
 msgid "Fila anterior recuperada. Caso deseje mantê-la, clique em enviar"
-msgstr ""
+msgstr "Previous queue retrieved. If you want to keep it, click send"
 
 #: .\templates\staff\queue\queue_create.html:44
 msgid "Critério definido pela direção"
-msgstr ""
+msgstr "Criteria defined by management"
 
 #: .\templates\staff\queue\queue_show.html:8
 #: .\templates\staff\queue\queue_show.html:12
 msgid "Detalhes Fila"
-msgstr ""
+msgstr "Details Queue"
 
 #: .\templates\staff\timetable\edit_timetable.html:7
 #: .\templates\staff\timetable\edit_timetable.html:14
 #: .\templates\staff\timetable\edit_timetable.html:20
 msgid "Editar Grade"
-msgstr ""
+msgstr "Edit Timetable"
 
 #: .\templates\staff\timetable\register.html:7
 msgid "Criar Grade"
-msgstr ""
+msgstr "Create Timetable"
 
 #: .\templates\staff\timetable\register.html:19
 msgid "Criar Grade da"
-msgstr ""
+msgstr "Create Timetable of"
 
 #: .\templates\staff\timetable\register.html:24
 msgid "Carregando"
-msgstr ""
+msgstr "Loading"
 
 #: .\templates\staff\timetable\show_timetable.html:2
 msgid "Detalhe Grade"
-msgstr ""
+msgstr "Detail Timetable"
 
 #: .\templates\staff\timetable\show_timetable.html:6
 msgid "Detalhes Grade"
-msgstr ""
+msgstr "Deatils Timetable"
 
 #: .\templates\staff\timetable\show_timetable.html:12
 msgid "Detalhes Grade da"
-msgstr ""
+msgstr "Deatils Timatable of"
 
 #: .\templates\staff\timetable\show_timetable.html:19
 msgid "Tabela salva"
-msgstr ""
+msgstr "Table saved"
 
 #: .\templates\terms_and_conditions.html:34
 msgid "SEÇÃO 1 - ACEITAÇÃO DOS TERMOS"
-msgstr ""
+msgstr "SECTION 1 - ACCEPTANCE OF TERMS"
 
 #: .\templates\terms_and_conditions.html:36
 msgid ""
@@ -2433,10 +2488,14 @@ msgid ""
 "termos e todas as leis e regulamentos aplicáveis. Se você não concorda com "
 "estes termos, por favor, não utilize nossos serviços"
 msgstr ""
+"These Terms of Use constitute a legal contract between you and the ADA "
+"platform. By accessing or using our services, you agree to comply with these "
+"terms and all applicable laws and regulations. If you do not agree with "
+"these terms, please do not use our services"
 
 #: .\templates\terms_and_conditions.html:39
 msgid "SEÇÃO 2 - USO DOS NOSSOS SERVIÇOS"
-msgstr ""
+msgstr "SECTION 2 - USE OF OUR SERVICES"
 
 #: .\templates\terms_and_conditions.html:41
 msgid ""
@@ -2446,10 +2505,15 @@ msgid ""
 "plataforma ADA ou interferir no uso de nossos serviços por terceiros. Você "
 "não pode tentar obter acesso não autorizado aos nossos sistemas ou redes"
 msgstr ""
+"You agree to use our services only for lawful purposes and in accordance "
+"with these Terms of Use. You must not use our services in a way that could "
+"damage, disable, overburden, or impair the ADA Platform or interfere with "
+"any third party's use of our services. You may not attempt to gain "
+"unauthorized access to our systems or networks"
 
 #: .\templates\terms_and_conditions.html:44
 msgid "SEÇÃO 3 - CONTA DO USUÁRIO"
-msgstr ""
+msgstr "SECTION 3 - USER ACCOUNT"
 
 #: .\templates\terms_and_conditions.html:46
 msgid ""
@@ -2458,10 +2522,14 @@ msgid ""
 "que ocorrem em sua conta. Você concorda em nos notificar imediatamente caso "
 "suspeite de qualquer uso não autorizado de sua conta"
 msgstr ""
+"When creating an account on the ADA platform, you are responsible for "
+"maintaining the confidentiality of your login credentials and for all "
+"activities that occur under your account. You agree to notify us immediately "
+"if you suspect any unauthorized use of your account"
 
 #: .\templates\terms_and_conditions.html:49
 msgid "SEÇÃO 4 - LIMITAÇÕES DE RESPONSABILIDADE"
-msgstr ""
+msgstr "SECTION 4 - LIMITATIONS OF LIABILITY"
 
 #: .\templates\terms_and_conditions.html:51
 msgid ""
@@ -2470,10 +2538,13 @@ msgid ""
 "lucros, de dados ou de reputação, decorrentes do uso de nossos serviços ou "
 "da impossibilidade de utilizá-los"
 msgstr ""
+"The ADA platform is not responsible for any direct, indirect, incidental, "
+"consequential or special damages, including loss of profits, data or "
+"reputation, arising from the use of our services or the inability to use them"
 
 #: .\templates\terms_and_conditions.html:54
 msgid "SEÇÃO 5 - MODIFICAÇÕES DOS TERMOS DE USO"
-msgstr ""
+msgstr "SECTION 5 - MODIFICATIONS TO THE TERMS OF USE"
 
 #: .\templates\terms_and_conditions.html:56
 msgid ""
@@ -2482,10 +2553,13 @@ msgid ""
 "que você revise periodicamente estes termos para se manter informado sobre "
 "as atualizações"
 msgstr ""
+"We reserve the right to modify these Terms of Use at any time. Changes will "
+"be effective immediately upon publication. We recommend that you "
+"periodically review these terms to stay informed of updates"
 
 #: .\templates\terms_and_conditions.html:59
 msgid "SEÇÃO 6 - ENCERRAMENTO"
-msgstr ""
+msgstr "SECTION 6 - CLOSING"
 
 #: .\templates\terms_and_conditions.html:61
 msgid ""
@@ -2494,10 +2568,13 @@ msgid ""
 "de Uso. Em caso de encerramento, você concorda em cessar imediatamente o uso "
 "dos nossos serviços"
 msgstr ""
+"We may terminate or suspend your account or access to our services at any "
+"time, for any reason, including if you violate these Terms of Use. Upon "
+"termination, you agree to immediately cease using our services"
 
 #: .\templates\terms_and_conditions.html:64
 msgid "SEÇÃO 7 - LEI APLICÁVEL"
-msgstr ""
+msgstr "SECTION 7 - APPLICABLE LAW"
 
 #: .\templates\terms_and_conditions.html:66
 msgid ""
@@ -2505,32 +2582,37 @@ msgid ""
 "Brasil. Qualquer disputa decorrente ou relacionada a estes termos estará "
 "sujeita à jurisdição exclusiva dos tribunais brasileiros"
 msgstr ""
+"These Terms of Use will be governed and interpreted in accordance with the "
+"laws of Brazil. Any dispute arising out of or relating to these terms will "
+"be subject to the exclusive jurisdiction of the Brazilian courts"
 
 #: .\templates\terms_and_conditions.html:69
 msgid "SEÇÃO 8 - CONTATO"
-msgstr ""
+msgstr "SECTION 8 - CONTACT"
 
 #: .\templates\terms_and_conditions.html:71
 msgid ""
 "Se tiver alguma dúvida sobre estes Termos de Uso, entre em contato conosco "
 "pelo e-mail"
 msgstr ""
+"If you have any questions about these Terms of Use, please contact us by "
+"email"
 
 #: .\templates\user\home.html:6
 msgid "Home Usuário"
-msgstr ""
+msgstr "Home User"
 
 #: .\templates\user\home.html:76
 msgid "Olá, bem-vindo(a) à ADA"
-msgstr ""
+msgstr "Hello, welcome to the ADA"
 
 #: .\templates\user\home.html:77
 msgid "Você quer acessar o sistema como"
-msgstr ""
+msgstr "Do you want to access the system as"
 
 #: .\templates\user\home.html:96
 msgid "Administrador"
-msgstr ""
+msgstr "Administrador"
 
 #: .\timetable\models.py:23
 msgid "timetable"
