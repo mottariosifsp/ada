@@ -22,7 +22,7 @@
         <img src="{% static 'images/logo_bg.png' %}" alt="logo ADA">
         {% endif %}
         <p
-            class="element error-message text-center {% if user.is_authenticated %}text-black{% else %}text-white{% endif %}">
+            class="element mt-3 error-message text-center {% if user.is_authenticated %}text-black{% else %}text-white{% endif %}">
             {% trans "Não encontramos a página que você tentou acessar" %}.</p>
 
         <a href="{% url 'home' %}" class="btn custom-btn text-white">{% trans "Voltar ao início" %}</a>

@@ -269,7 +269,6 @@ def email_test(request):
         return redirect('attribution:email_test')
     return render(request, 'attribution/email_test.html')
 
-@login_required
 def send_email(professor):
     subject = 'Ação requerida: Escolha de disciplina alternativa até o prazo estipulado'
     
