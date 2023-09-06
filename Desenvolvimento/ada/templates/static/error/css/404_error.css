@@ -38,9 +38,21 @@ body {
     left: 10%;
 }
 
-img {
+.logo {
     margin-top: -12%;
     margin-bottom: 12px;
+}
+
+@media (max-width: 800px) {
+  .logo {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 800px) {
+    .hide-on-small-screen {
+        display: none;
+    }
 }
 
 .text-black {

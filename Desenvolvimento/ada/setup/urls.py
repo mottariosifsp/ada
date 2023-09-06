@@ -6,7 +6,7 @@ from user.views import home
 from django.conf.urls import handler404, handler500
 
 handler404 = 'user.views.handler404'
-# handler500 = 'user.views.handler500'
+handler500 = 'user.views.handler500'
 
 admin_patterns = [
     path('prazo/', include("admin_ada.urls")),
