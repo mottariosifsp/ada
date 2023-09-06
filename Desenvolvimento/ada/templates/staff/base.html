@@ -192,6 +192,7 @@
               </div>
             </div>
           </div>
+
           <div class="modal-footer">
             <div class="row">
               <div class="col">
@@ -206,11 +207,14 @@
     </div>
   </nav>
   {% endif %}
+
   <div class="container base">
     {% block body %}
 
     {% endblock %}
   </div>
+
+  {% if user.is_authenticated %}
   <div class="mt-5 pt-4 pb-5 footer fixed">
     <div class="container">
       <div class="row ">
@@ -246,6 +250,7 @@
       </div>
     </div>
   </div>
+ {% endif %}
 
   <!-- Logout modal -->
   <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="confirmLogoutModalLabel"
