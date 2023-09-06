@@ -225,9 +225,10 @@
         <div class="col-lg-6 col-xs-12 links-footer align-middle">
           <h4 class="mt-lg-0 mt-sm-4">Links</h4>
           <!-- <a href="" class="mr-2 footer-link"><span>{% trans "Sobre"%}</span></a> -->
-          <a href="" class="mr-2 footer-link"><span>{% trans "Contato"%}</span></a>
+
+          <a href="{% url 'contact' %}" class="mr-2 footer-link"><span>{% trans "Contato" %}</span></a>
           <a href="{% url 'privacy_policy' %}" class="mr-2 footer-link"><span>{% trans "Política de Privacidade" %}</span></a>
-          <a href="" class="mr-2 footer-link"><span>{% trans "Termos e Condições de Uso"%}</span></a>
+          <a href="{% url 'terms_and_conditions' %}" class="mr-2 footer-link"><span>{% trans "Termos e Condições de Uso" %}</span></a>
           <div class="row">
             <div class="col copyright">
               <p class=""><small class="text-white-50">© 2023 Mottarios. {% trans "Todos Os Direitos Reservados"%}. |

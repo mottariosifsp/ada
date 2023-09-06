@@ -1,6 +1,5 @@
 from multiprocessing import AuthenticationError
 from django.contrib.auth.decorators import login_required
-from django.core.mail import send_mail, EmailMessage
 from django.contrib.auth import get_user_model
 from django.utils.decorators import method_decorator
 from django.shortcuts import redirect, render
@@ -14,7 +13,6 @@ from django.contrib.auth import logout
 from datetime import datetime
 import re
 from django import forms
-import os
 
 def login(request):
     if request.method == 'POST':
@@ -32,40 +30,6 @@ def home(request):
         return redirect('home_professor')
     else:
         return render(request, 'user/home.html')
-
-
-def register(request):
-    if request.method == 'POST':
-        professors_inactive = User.objects.filter(is_professor=True, is_active=False).all()
-
-        for professor in professors_inactive:
-            send_email(professor)
-
-        return redirect('register')
-    return render(request, 'user/register.html')
-
-
-def send_email(professor):
-    subject = 'Ação requerida: Finalize seu cadastro'
-
-    nome = professor.first_name
-    email = professor.email
-
-    current_path = os.getcwd()
-    with open(current_path + '\\templates\static\email\professor_register_message.html', 'r', encoding='utf-8') as file:
-        message = file.read()
-        message = message.format(nome=nome)
-
-    email = EmailMessage(
-        subject,
-        message,
-        'ada.ifsp@gmail.com',
-        [email],
-    )
-
-    email.content_subtype = "html"
-
-    email.send()
     
 def professor_authenticate(request, email, password):
     try:
@@ -92,15 +56,15 @@ def signup(request):
             email = form.cleaned_data['email']
             password = form.cleaned_data['password']
 
-            if re.match(r'^[\w\.-]+@aluno\.ifsp\.edu\.br$', email):
+            if re.match(r'^[\w\.-]+@ifsp\.edu\.br$', email):
 
                 if professor_authenticate(request, email, password):
                     return redirect('login')
                 else:
-                    error_message = 'E-mail ou senha incorretos'
+                    error_message = 'E-mail ou senha incorreto(a)'
                     return render(request, 'registration/signup.html', {'form': form, 'error_message': error_message})
             else:
-                error_message = 'O email deve ser do tipo @aluno.ifsp.edu.br'
+                error_message = 'O email deve ser do tipo @ifsp.edu.br'
                 return render(request, 'registration/signup.html', {'form': form, 'error_message': error_message})
         else:
             error_message = 'Formulário inválido'

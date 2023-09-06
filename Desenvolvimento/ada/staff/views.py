@@ -27,6 +27,41 @@ from django.db.models import Max
 from django.contrib.auth.decorators import login_required
 
 from common.date_utils import day_to_number
+from django.core.mail import send_mail, EmailMessage
+import os
+
+def register(request):
+    professors_inactive = User.objects.filter(is_professor=True, is_active=False)
+    if request.method == 'POST':
+
+        for professor in professors_inactive:
+            send_email(professor)
+
+        return redirect('register')
+    return render(request, 'staff/professor/register.html', {'professors': professors_inactive})
+
+
+def send_email(professor):
+    subject = 'Ação requerida: Finalize seu cadastro'
+
+    nome = professor.first_name
+    email = professor.email
+
+    current_path = os.getcwd()
+    with open(current_path + '\\templates\static\email\professor_register_message.html', 'r', encoding='utf-8') as file:
+        message = file.read()
+        message = message.format(nome=nome)
+
+    email = EmailMessage(
+        subject,
+        message,
+        'ada.ifsp@gmail.com',
+        [email],
+    )
+
+    email.content_subtype = "html"
+
+    email.send()
 
 def is_staff(user):
     return user.is_staff
@@ -305,10 +340,12 @@ def professors_list(request):
     professors = get_user_model().objects.filter(is_professor=True)
     degrees = AcademicDegree.objects.all()
     blockks = Blockk.objects.all()
+    professors_inactive = User.objects.filter(is_professor=True, is_active=False).count
     data = {
         'professors': professors,
         'degrees': degrees,
-        'blockks': blockks
+        'blockks': blockks,
+        'professors_inactive': professors_inactive
     }
 
     return render(request, 'staff/professor/professors_list.html', data)
