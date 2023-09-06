@@ -3,18 +3,25 @@
 {% load static %}
 
 {% block head %}
-<title>{% trans "Classes Atribuídas" %}</title>
+<title>{% trans "Turmas Atribuídas" %}</title>
 <link rel="stylesheet" href="{% static 'staff/blockk/css/block_list.css' %}">
 {% endblock %}
 
 {% block body %}
-<h1 class="title-page mt-4">{% trans "Classes Atribuídas" %}</h1>
+<h1 class="title-page mt-4">{% trans "Turmas Atribuídas" %}</h1>
 <hr>
+<nav>
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="{% url 'home_professor' %}"><i class="bi bi-house-door"></i></a></li>
+    <li class="breadcrumb-item" aria-current="page"><a href="{% url 'attribution' %}"> {% trans "Atribuição" %}</a></li>
+    <li class="breadcrumb-item active" aria-current="page"> {% trans "Turmas Atribuídas" %} </li>
+  </ol>
+</nav>
 <div class="tabela">
-  <table class="table table-bordered editable" id="classes_list">
-    <thead>
+  <table class="table table-hover table-bordered editable display" id="classes_list">
+    <thead class="thead-dark">
       <tr>
-        <th scope="col">{% trans "Classes" %}</th>
+        <th scope="col">{% trans "Turmas" %}</th>
         <th scope="col">{% trans "Área" %}</th>
         <th scope="col">{% trans "Ações" %}</th>
       </tr>
@@ -22,9 +29,7 @@
     <tbody>
       {% for classs in classses %}
       <tr>
-        <td>{% blocktrans with class_registration_id=classs.registration_class_id %}{{ class_registration_id  }}{% endblocktrans %}</td>
-        <!-- blocktrans? batatinha [ cute ]-->
-        <td>{% blocktrans with area=class.area %}{{ area }}{% endblocktrans %}</td>
+        <td>{% trans classs.area %}</td>
         <td><a href="{% url 'attribution:attribution_detail' %}?class={{classs.registration_class_id}}"
             class="btn btn-primary"><i class="bi bi-eye"></i></a></td>
       </tr>

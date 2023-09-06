@@ -45,11 +45,11 @@
             <p class="home-begin"><b>{% trans "Situação" %}</b> <i
                 class="float-right">{% trans "Prazo configurado" %}</i></p>
             <p class="home-begin">
-              <div class=" float-right">{{period.start_day}} {% trans "às" %} {{period.start_time}}</div>
+              <div class=" float-right">{% trans period.start_day %} {% trans "às" %} {{period.start_time}}</div>
               <b>{% trans "Início" %}</b>
             </p>
             <p class="">
-              <div class=" float-right">{{period.end_day}} {% trans "às" %} {{period.end_time}}</div>
+              <div class=" float-right">{% trans period.start_day %} {% trans "às" %} {{period.end_time}}</div>
               <b>{% trans "Fim" %}</b>
             </p>
             {% elif period.status == 'configured_STARTASSIGNMENTDEADLINE' %}
@@ -60,11 +60,11 @@
             <p class="home-begin"><b>{% trans "Situação" %}</b> <i
                 class="float-right">{% trans "Prazo configurado" %}</i></p>
             <p class="home-begin">
-              <div class=" float-right">{{period.start_day}} {% trans "às" %} {{period.start_time}}</div>
+              <div class=" float-right">{% trans period.start_day %} {% trans "às" %} {{period.start_time}}</div>
               <b>{% trans "Início" %}</b>
             </p>
             <p class="">
-              <div class=" float-right">{{period.end_day}} {% trans "às" %} {{period.end_time}}</div>
+              <div class=" float-right">{% trans period.start_day %} {% trans "às" %} {{period.end_time}}</div>
               <b>{% trans "Fim" %}</b>
             </p>
             {% elif period.status == 'fpa' %}
@@ -73,11 +73,11 @@
               </a> <b>{% trans "Período" %}</b> </p>
             <p class="home-begin"><b>{% trans "Situação" %}</b> <i class="float-right">{% trans "Iniciado" %}</i></p>
             <p class="home-begin">
-              <div class="float-right">{{period.start_day}} {% trans "às" %} {{period.start_time}}</div>
+              <div class="float-right">{% trans period.start_day %} {% trans "às" %} {{period.start_time}}</div>
               <b>{% trans "Início" %}</b>
             </p>
             <p class="">
-              <div class=" float-right">{{period.end_day}} {% trans "às" %} {{period.end_time}}</div>
+              <div class=" float-right">{% trans period.start_day %} {% trans "às" %} {{period.end_time}}</div>
               <b>{% trans "Fim" %}</b>
             </p>
             {% elif period.status == 'attribution' %}
@@ -86,11 +86,11 @@
               </a> <b>{% trans "Período" %}</b> </p>
             <p class="home-begin"><b>{% trans "Situação" %}</b> <i class="float-right">{% trans "Iniciado" %}</i></p>
             <p>
-              <div class="float-right">{{period.start_day}} {% trans "às" %} {{period.start_time}}</div>
+              <div class="float-right">{% trans period.start_day %} {% trans "às" %} {{period.start_time}}</div>
               <b>{% trans "Início" %}</b>
             </p>
             <p class="home-begin">
-              <div class=" float-right">{{period.end_day}} {% trans "às" %} {{period.end_time}}</div>
+              <div class=" float-right">{% trans period.start_day %} {% trans "às" %} {{period.end_time}}</div>
               <b>{% trans "Fim" %}</b>
             </p>
             {% else %}
@@ -119,11 +119,8 @@
             <div class="alerts mt-3 mb-3 pb-4">
               {% for alert in alerts %}
               <div class="mr-3 ml-3 block p-2">
-                {% with alert_title=alert.title alert_block_name=alert.blockk.name_block description=alert.description %}
-                {% blocktrans %}
-                <b class="title">{{ alert_title }} | {{ alert_block_name }}</b></br>
-                <span class="description"><i>{{ description }}</i></span>
-                {% endblocktrans %}
+                <b class="title">{% trans alert.title %} | {% trans alert.blockk.name_block %}</b></br>
+                <span class="description"><i>{% trans alert.description %}</i></span>
                 {% endwith %}
               </div>
               {% endfor %}
@@ -152,9 +149,9 @@
             <div class="links mt-3 mb-3 pb-4">
               {% for link in links %}
               <div class="mr-3 ml-3 block p-2">
-                ▸ <a target="_blank" href="{{link.description}}" class="link">{{link.description}}</a></br>
-                <span class="created">{% trans 'Criado por:' %}<i>
-                    {{ link.created_by.get_first_name_and_last_initial }}</i></span>
+                <a target="_blank" href="{{link.description}}" class="link">{% trans link.description %}</a></br>
+                <span class="created">{% trans 'Criado por' %}:<i>
+                    {% trans link.created_by.get_first_name_and_last_initial %}</i></span>
               </div>
               {% endfor %}
             </div>
@@ -198,10 +195,8 @@
             <div class="hover hover-5 text-white rounded"><img src="{{block.image}}" alt="">
               <div class="hover-overlay"></div>
               <div class="hover-5-content">
-                {% blocktrans with block_text=block.block.name_block access_text="Acessar" %}
                 <h3 class="hover-5-title text-uppercase font-weight-light mb-0"><strong
-                    class="font-weight-bold text-white">{{ block_text }}</strong><br><span>{{access_text}}</span></h3>
-                {% endblocktrans %}
+                  class="font-weight-bold text-white">{% trans block.block.name_block %}</strong><br><span>{% trans "Acessar" %}</span></h3>
               </div>
             </div>
           </div>

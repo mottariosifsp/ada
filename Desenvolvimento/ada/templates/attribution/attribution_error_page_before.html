@@ -13,11 +13,9 @@
       <div class="text-center">
       </div>
       <h1>{% trans "Você chegou muito cedo" %}!</h1>
-      <h6>{% trans "A atribuição ainda não começou, por favor aguarde" %}</h6>
+      <h6>{% trans "A atribuição ainda não começou, por favor aguarde" %}.</h6>
       {% if day %}
-      {% blocktrans with day_text=day time_text=time text="Está prevista para se iniciar dia" text2="às" %}
-      <p>{{ text }} <strong>{{ day_text }}</strong> {{ text2 }} <strong>{{ time_text }}<strong></p>
-      {% endblocktrans %}
+      <p>{% trans "Está prevista para se iniciar" %} <strong>{% trans day %}</strong> {% trans "às" %} <strong>{{ time }}<strong></p>
       {% endif %}
       <br>
       <!-- <button type="button" id="return-button" class="btn btn-outline-primary btn-lg rounded-pill">{% trans "Voltar à página inicial" %}</button> -->

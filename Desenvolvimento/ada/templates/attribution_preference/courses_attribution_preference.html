@@ -41,10 +41,8 @@
             <hr class="my-0">
             <div class="text-center mt-4 mb-4 pr-2 pl-2 d-flex">
               <i class="form-check-inline fas fa-check-circle custom-icon"></i>
-              {% blocktrans with work_regime_text=user_regime hour_text="horas"%}
-              <input name="work_regime" value='{{ work_regime_text }} {{hour_text}}' readonly
+              <input name="work_regime" value="{{user_regime}} horas" readonly
                 class="text-center form-check-inline form-check form-control-plaintext custom-border">
-              {% endblocktrans %}
             </div>
           </div>
         </div>
@@ -66,7 +64,7 @@
     <div class="card info-card sales-card mt-4">
       <div class="card-body">
         <div id="work-availability">
-          <h4>{% trans "Disciplinas do Bloco" %}: {{ user_blockk.name_block }}</h4>
+          <h4>{% trans "Disciplinas do Bloco" %}: {% trans user_blockk.name_block %}</h4>
           <hr>
           <div id="warning-alert" class="alert alert-warning" style="display: none;">
             <button type="button" class="close" aria-label="Close" onclick="closeErrorAlert('warning-alert')">

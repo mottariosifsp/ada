@@ -23,7 +23,7 @@
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="{% url 'home_staff' %}"><i class="bi bi-house-door"></i></a></li>
             <li class="breadcrumb-item" aria-current="page"><a href="{% url 'blocks_list' %}">{% trans "Blocos" %}</li></a>
-            <li class="breadcrumb-item active">{% trans "Detalhes Bloco" %} {{blockk.acronym}}</li>
+            <li class="breadcrumb-item active">{% trans "Detalhes Bloco" %} {% trans blockk.acronym %}</li>
         </ol>
     </nav>
 
@@ -33,9 +33,7 @@
         <div class="row">
             <div class="col-12">
                 <div class="row ml-1">
-                    {% blocktrans with name_block_text=blockk.name_block %}
-                    <h1>{{ name_block_text }}</h1>
-                    {% endblocktrans %}
+                    <h1>{% trans blockk.name_block %}</h1>
                     {% if blockk in user_blocks %}
                     <div class="d-flex ml-auto mr-3">
 
@@ -55,21 +53,16 @@
                         <h5 class="card-title">{% trans "Detalhes" %}</h5>
                         <ul class="list-group">
                             <li class="list-group-item"><strong>{% trans 'Áreas' %}:</strong>{% for area in areas %}
-                                {{area}} {% if not forloop.last %}|{% endif %}{% endfor %}</li>
+                                {% trans area %} {% if not forloop.last %}|{% endif %}{% endfor %}</li>
                             <li class="list-group-item"><strong>{% trans "Registro" %}:</strong>
                                 {% trans blockk.registration_block_id %}</li>
-                            {% blocktrans with acronym_text=blockk.acronym acronym_label="Sigla" %}
-                            <li class="list-group-item"><strong>{{ acronym_label }}:</strong> {{ acronym_text }}</li>
-                            {% endblocktrans %}
+                            <li class="list-group-item"><strong>{% trans "Sigla" %}:</strong> {% trans blockk.acronym %}</li>
                             {% comment %}
-                            {% blocktrans with exchange_area_text=area.exchange_area exchange_text="Permuta" %}
-                            <li class="list-group-item"><strong>{{ exchange_text }}:</strong> {{ exchange_area_text }}
+                            <li class="list-group-item"><strong>{% trans "Permuta" %}:</strong> {% trans area.exchange_area %}
                             </li>
-                            {% endblocktrans %}
-                            {% blocktrans with is_high_school_text=area.is_high_school high_school="Ensino Médio" %}
-                            <li class="list-group-item"><strong>{{ high_school }}:</strong> {{ is_high_school_text }}
+                            <li class="list-group-item"><strong>{% trans "Ensino Médio" %}:</strong> {% trans area.is_high_school %}
                             </li>
-                            {% endblocktrans %} {% endcomment %}
+                            {% endcomment %}
                         </ul>
                     </div>
                 </div>
@@ -104,12 +97,8 @@
                         <!-- Lista -->
                         <tr>
                             <td>{{ course.registration_course_id }}</td>
-                            {% blocktrans with name_course_text=course.name_course %}
-                            <td>{{ name_course_text }}</td>
-                            {% endblocktrans %}
-                            {% blocktrans with acronym_text=course.acronym %}
-                            <td>{{ acronym_text }}</td>
-                            {% endblocktrans %}
+                            <td>{% trans course.name_course %}</td>
+                            <td>{% trans course.acronym %}</td>
                             {% if blockk in user_blocks %}
                             <td>
                                 <button type="button" data-toggle="modal" data-target="#editCourseModal"

@@ -18,22 +18,20 @@
 {% block body %}
     {{ block.super }}
     <h1 class="title-page">{% trans "Detalhes Bloco" %}</h1>
+    <hr>
     <nav>
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="{% url 'home_professor' %}"><i class="bi bi-house-door"></i></a></li>
             <li class="breadcrumb-item" aria-current="page"><a href="{% url 'blocks_list' %}">{% trans "Blocos" %}</li></a>
-            <li class="breadcrumb-item active">{% trans "Detalhes Bloco" %} {{blockk.acronym}}</li>
-            <!-- blocktrans? batatinha -->
+            <li class="breadcrumb-item active">{% trans "Detalhes Bloco" %} {% trans blockk.acronym %}</li>
         </ol>
     </nav>
 
     <div class="mb-4">
         <div class="row">
             <div class="col-12">
-                {% blocktrans with name_block_text=blockk.name_block %}
-                    <div class="row ml-1 mb-3">
-                    <h1>{{ name_block_text }}</h1>
-                {% endblocktrans %}
+                <div class="row ml-1 mb-3">
+                    <h1>{% trans blockk.name_block %}</h1>
                 </div>
                 <div class="card">
                     <div class="card-body">
@@ -41,24 +39,19 @@
                         <ul class="list-group">
                             <li class="custom-list-group-item"><strong>{% trans 'Áreas' %}:</strong>
                                 {% for area in areas %}
-                                    {{ area }} {% if not forloop.last %}|{% endif %}{% endfor %}</li>
+                                    {% trans area %} {% if not forloop.last %}|{% endif %}{% endfor %}</li>
                             <li class="custom-list-group-item"><strong>{% trans "Registro" %}:</strong>
                                 {% trans blockk.registration_block_id %}</li>
-                            {% blocktrans with acronym_text=blockk.acronym acronym_label="Sigla" %}
-                                <li class="custom-list-group-item">
-                                    <strong>{{ acronym_label }}:</strong> {{ acronym_text }}</li>
-                            {% endblocktrans %}
+                            <li class="custom-list-group-item">
+                                <strong>{% trans "Sigla" %}:</strong> {% trans blockk.acronym %}</li>
                             {% comment %}
-                                {% blocktrans with exchange_area_text=area.exchange_area exchange_text="Permuta" %}
-                                    <li class="custom-list-group-item">
-                                        <strong>{{ exchange_text }}:</strong> {{ exchange_area_text }}
-                                    </li>
-                                {% endblocktrans %}
-                                {% blocktrans with is_high_school_text=area.is_high_school high_school="Ensino Médio" %}
-                                    <li class="custom-list-group-item">
-                                        <strong>{{ high_school }}:</strong> {{ is_high_school_text }}
-                                    </li>
-                                {% endblocktrans %} {% endcomment %}
+                                <li class="custom-list-group-item">
+                                    <strong>{% trans "Permuta" %}:</strong> {% trans area.exchange_area %}
+                                </li>
+                                <li class="custom-list-group-item">
+                                    <strong>{% trans "Ensino Médio" %}:</strong> {% trans area.is_high_school %}
+                                </li>
+                            {% endcomment %}
                         </ul>
                     </div>
                 </div>
@@ -83,12 +76,8 @@
                         <!-- Lista -->
                         <tr>
                             <td>{{ course.registration_course_id }}</td>
-                            {% blocktrans with name_course_text=course.name_course %}
-                                <td>{{ name_course_text }}</td>
-                            {% endblocktrans %}
-                            {% blocktrans with acronym_text=course.acronym %}
-                                <td>{{ acronym_text }}</td>
-                            {% endblocktrans %}
+                            <td>{% trans course.name_course %}</td>
+                            <td>{% trans course.acronym %}</td>
                         </tr>
                     {% endfor %}
                     </tbody>

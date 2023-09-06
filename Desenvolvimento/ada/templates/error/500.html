@@ -19,12 +19,12 @@
 
     <div class="container-inside">
         {% if not user.is_authenticated %}
-        <img src="{% static 'images/logo_bg.png' %}" alt="logo ada">
+        <img src="{% static 'images/logo_bg.png' %}" alt="{% trans 'logo ADA' %}">
         {% endif %}
         <p
             class="element error-message text-center {% if user.is_authenticated %}text-black{% else %}text-white{% endif %}">
             {% trans "Erro interno" %}. {% trans "A equipe da ADA já está trabalhando nisso" %}.</p>
-        <a href="{% url 'home' %}" class="btn custom-btn text-white">Voltar ao início</a>
+        <a href="{% url 'home' %}" class="btn custom-btn text-white">{% trans "Voltar ao início" %}</a>
     </div>
 
     {#    <a href="https://storyset.com/people">People illustrations by Storyset</a>#}

@@ -75,8 +75,8 @@
     <div class="d-flex justify-content-between align-items-center w-100">
       <div class="nav-brand mr-auto">
         <a class="logo" href="{% url 'home' %}" style="font-size: larger;">
-          &nbsp;<img class="ada-logo" src="{% static 'images/logo_bg.png' %}" alt="logo do site ADA"> &emsp; | &emsp;
-          Professor
+          &nbsp;<img class="ada-logo" src="{% static 'images/logo_bg.png' %}" alt="{% trans 'logo ADA' %}"> &emsp; | &emsp;
+          {% trans "Professor" %}
         </a>
       </div>
       <div id="sidebar-icon" data-toggle="modal" data-target="#modalNavBar">
@@ -144,9 +144,9 @@
         <div class="modal-content">
           <div class="modal-header">
             <a class="logo" href="{% url 'home' %}">
-              <img class="ada-logo" src="{% static 'images/logo_bg.png' %}" alt="logo do site ADA">
+              <img class="ada-logo" src="{% static 'images/logo_bg.png' %}" alt="{% trans 'logo ADA' %}">
             </a>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
               <span class="hide-sidebar" aria-hidden="true">&times;</span>
             </button>
           </div>
@@ -218,7 +218,7 @@
         <div class="col-6 col-lg-2 about-company mt-4 text-center">
           <div class="nav-brand">
             <a class="logo" onclick="backToTop()">
-              <img class="w-100" src="{% static 'images/logo_bg.png' %}" alt="logo do site ADA">
+              <img class="w-100" src="{% static 'images/logo_bg.png' %}" alt="{% trans 'logo ADA' %}">
             </a>
           </div>
         </div>
@@ -231,7 +231,7 @@
           <a href="{% url 'terms_and_conditions' %}" class="mr-2 footer-link"><span>{% trans "Termos e Condições de Uso" %}</span></a>
           <div class="row">
             <div class="col copyright">
-              <p class=""><small class="text-white-50">© 2023 Mottarios. {% trans "Todos Os Direitos Reservados"%}. |
+              <p class=""><small class="text-white-50">© 2023 Mottarios. {% trans "Todos os direitos são reservados"%}. |
                 </small><a
                   href="https://www.flaticon.com/br/icones-gratis/ui"><small>{% trans "Ícones por Flaticon e Bootstrap" %}</small></a>
               </p>
@@ -272,7 +272,7 @@
             <img src="{% static 'images/icon_logout_ada.png' %}" style="width: 7rem;">
             <div class="text-center">
               <div class="div" style="margin-top: 2rem">
-                <h4>Deseja realmente sair?</h4>
+                <h4>{% trans "Deseja realmente sair" %}?</h4>
                 <button type="button" class="btn mt-4 btn-outline-secondary btn-lg rounded-pill" data-dismiss="modal"
                   style="width:80%;">{% trans "Cancelar" %}</button><br>
                 <a class="btn btn-danger btn-lg rounded-pill m-2" href="{% url 'logout' %}"
