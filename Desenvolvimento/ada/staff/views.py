@@ -1184,9 +1184,13 @@ def queue_create(request):
                 summed_users.append(user)
 
             scores_users = []
-            for user in final_list:
+            for user in list(teacher_positions):
                 user_score = calculate_total_score(user, True)
                 scores_users.append(user_score)
+            for user in missing_users:
+                user_score = calculate_total_score(user, False)
+                scores_users.append(user_score)
+
 
             data = {
                 'results': final_list,
