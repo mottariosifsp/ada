@@ -30,6 +30,7 @@ from common.date_utils import day_to_number
 from django.core.mail import send_mail, EmailMessage
 import os
 
+@login_required
 def register(request):
     professors_inactive = User.objects.filter(is_professor=True, is_active=False)
     if request.method == 'POST':

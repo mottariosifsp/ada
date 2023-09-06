@@ -193,6 +193,7 @@ def privacy_policy(request):
 def terms_and_conditions (request):
     return render(request, 'terms_and_conditions.html')
 
+@login_required
 def profile(request):
     professor = request.user
     timeslots_all = Timeslot.objects.all()
@@ -360,6 +361,7 @@ def professor_block_detail(request, registration_block_id):
 
     return render(request, 'professor/blockk/block_detail.html', data)
 
+@login_required
 def contact(request):
     form = ContatoForm()
     success_message = None
