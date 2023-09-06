@@ -19,7 +19,7 @@
 
     <div class="container-inside">
         {% if not user.is_authenticated %}
-        <img src="{% static 'images/logo_bg.png' %}" class="logo" id="logo" alt="logo ADA">
+        <img src="{% static 'images/logo_bg.png' %}" class="logo hide-on-small-screen" id="logo" alt="logo ADA">
         {% endif %}
         <p
             class="element error-message text-center {% if user.is_authenticated %}text-black{% else %}text-white{% endif %}">
