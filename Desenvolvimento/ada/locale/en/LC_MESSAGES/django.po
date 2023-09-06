@@ -2135,52 +2135,52 @@ msgstr "Add alert"
 
 #: .\templates\staff\home_staff.html:153
 msgid "Atualizações legislação"
-msgstr ""
+msgstr "Legislation updates"
 
 #: .\templates\staff\home_staff.html:178 .\templates\staff\home_staff.html:292
 msgid "Adicionar atualização"
-msgstr ""
+msgstr "Add update"
 
 #: .\templates\staff\home_staff.html:185
 msgid "Permutas"
-msgstr ""
+msgstr "Exchanges"
 
 #: .\templates\staff\home_staff.html:189
 msgid "Permutas ocorrendo"
-msgstr ""
+msgstr "Exchanges now"
 
 #: .\templates\staff\home_staff.html:192
 msgid ""
 "A atribuição terminou, todas as permutas que foram pedidas foram resolvidas"
-msgstr ""
+msgstr "Assignment ended, all permutations that were requested were resolved"
 
 #: .\templates\staff\home_staff.html:204
 msgid "Atividades a serem concluídas"
-msgstr ""
+msgstr "Activities to be completed"
 
 #: .\templates\staff\home_staff.html:215
 msgid "Organize as filas de atribuição de seus blocos"
-msgstr ""
+msgstr "Organize your block assignment queues"
 
 #: .\templates\staff\home_staff.html:249
 msgid "Título"
-msgstr ""
+msgstr "Title"
 
 #: .\templates\staff\home_staff.html:252
 msgid "Ex: Prazo de Atribuição Estendido"
-msgstr ""
+msgstr "Ex: Extended Assignment Deadline"
 
 #: .\templates\staff\home_staff.html:257
 msgid "Descrição"
-msgstr ""
+msgstr "Description"
 
 #: .\templates\staff\home_staff.html:260
 msgid "Escreva aqui sua descrição"
-msgstr ""
+msgstr "Write your description here"
 
 #: .\templates\staff\home_staff.html:268
 msgid "Selecione o bloco"
-msgstr ""
+msgstr "Select your block"
 
 #: .\templates\staff\home_staff.html:309
 msgid "Link"
@@ -2188,7 +2188,7 @@ msgstr ""
 
 #: .\templates\staff\home_staff.html:312
 msgid "Insira a URL do documento aqui"
-msgstr ""
+msgstr "Enter document URL here"
 
 #: .\templates\staff\professor\professors_list.html:7
 #: .\templates\staff\professor\professors_list.html:24
@@ -2196,25 +2196,25 @@ msgstr ""
 #: .\templates\staff\professor\register.html:7
 #: .\templates\staff\professor\register.html:27
 msgid "Professores"
-msgstr ""
+msgstr "Professors"
 
 #: .\templates\staff\professor\professors_list.html:43
 msgid "Adicionar Professor"
-msgstr ""
+msgstr "Add Professor"
 
 #: .\templates\staff\professor\professors_list.html:52
 #: .\templates\staff\professor\professors_list.html:191
 #: .\templates\staff\professor\professors_list.html:354
 #: .\templates\staff\professor\register.html:45
 msgid "Sobrenome"
-msgstr ""
+msgstr "Last name"
 
 #: .\templates\staff\professor\professors_list.html:54
 #: .\templates\staff\professor\professors_list.html:197
 #: .\templates\staff\professor\professors_list.html:360
 #: .\templates\staff\professor\register.html:47
 msgid "Email"
-msgstr ""
+msgstr "E-mail"
 
 #: .\templates\staff\professor\professors_list.html:57
 #: .\templates\staff\professor\professors_list.html:213
@@ -2222,7 +2222,7 @@ msgstr ""
 #: .\templates\staff\queue\queue_create.html:69
 #: .\templates\staff\queue\queue_show.html:29
 msgid "Data de Nascimento"
-msgstr ""
+msgstr "Date of birth"
 
 #: .\templates\staff\professor\professors_list.html:58
 #: .\templates\staff\professor\professors_list.html:217
@@ -2230,37 +2230,37 @@ msgstr ""
 #: .\templates\staff\queue\queue_create.html:70
 #: .\templates\staff\queue\queue_show.html:30
 msgid "Data de Carreira"
-msgstr ""
+msgstr "Career Date"
 
 #: .\templates\staff\professor\professors_list.html:59
 #: .\templates\staff\queue\queue_create.html:71
 #: .\templates\staff\queue\queue_show.html:31
 msgid "Data no Campus"
-msgstr ""
+msgstr "Date on campus"
 
 #: .\templates\staff\professor\professors_list.html:60
 #: .\templates\staff\queue\queue_create.html:72
 #: .\templates\staff\queue\queue_show.html:32
 msgid "Data como Professor"
-msgstr ""
+msgstr "Date as Teacher"
 
 #: .\templates\staff\professor\professors_list.html:61
 #: .\templates\staff\queue\queue_create.html:73
 #: .\templates\staff\queue\queue_show.html:33
 msgid "Data na Área"
-msgstr ""
+msgstr "Date in the Area"
 
 #: .\templates\staff\professor\professors_list.html:62
 #: .\templates\staff\queue\queue_create.html:74
 #: .\templates\staff\queue\queue_show.html:34
 msgid "Data no Instituto"
-msgstr ""
+msgstr "Date at the Institute"
 
 #: .\templates\staff\professor\professors_list.html:65
 #: .\templates\staff\queue\queue_create.html:75
 #: .\templates\staff\queue\queue_show.html:35
 msgid "Diploma Pontuação"
-msgstr ""
+msgstr "Diploma Score"
 
 #: .\templates\staff\professor\professors_list.html:67
 msgid "Staff"
@@ -2279,31 +2279,31 @@ msgstr ""
 #: .\templates\staff\professor\professors_list.html:406
 #: .\templates\staff\professor\professors_list.html:407
 msgid "Horas"
-msgstr ""
+msgstr "Hours"
 
 #: .\templates\staff\professor\professors_list.html:170
 msgid "Adicionar novo professor"
-msgstr ""
+msgstr "Add new professor"
 
 #: .\templates\staff\professor\professors_list.html:177
 #: .\templates\staff\professor\professors_list.html:340
 msgid "Informações do professor"
-msgstr ""
+msgstr "Teacher information"
 
 #: .\templates\staff\professor\professors_list.html:211
 #: .\templates\staff\professor\professors_list.html:374
 msgid "Histórico do professor"
-msgstr ""
+msgstr "Professor History"
 
 #: .\templates\staff\professor\professors_list.html:221
 #: .\templates\staff\professor\professors_list.html:384
 msgid "Data de Ingresso no Campus"
-msgstr ""
+msgstr "Campus Entry Date"
 
 #: .\templates\staff\professor\professors_list.html:225
 #: .\templates\staff\professor\professors_list.html:388
 msgid "Data de Ingresso como Professor"
-msgstr ""
+msgstr "Date of Admission as a Professor"
 
 #: .\templates\staff\professor\professors_list.html:229
 #: .\templates\staff\professor\professors_list.html:392
@@ -2313,118 +2313,118 @@ msgstr ""
 #: .\templates\staff\professor\professors_list.html:233
 #: .\templates\staff\professor\professors_list.html:396
 msgid "Data do Instituto"
-msgstr ""
+msgstr "Institute Date"
 
 #: .\templates\staff\professor\professors_list.html:239
 #: .\templates\staff\professor\professors_list.html:402
 msgid "Defina um regime"
-msgstr ""
+msgstr "Set your job"
 
 #: .\templates\staff\professor\professors_list.html:247
 #: .\templates\staff\professor\professors_list.html:410
 msgid "Blocos do usuário"
-msgstr ""
+msgstr "User blocks"
 
 #: .\templates\staff\professor\professors_list.html:252
 #: .\templates\staff\professor\professors_list.html:415
 msgid "Adicionar um novo bloco"
-msgstr ""
+msgstr "Add a new block"
 
 #: .\templates\staff\professor\professors_list.html:271
 #: .\templates\staff\professor\professors_list.html:435
 msgid "Diplomas do Usuário"
-msgstr ""
+msgstr "User Degrees"
 
 #: .\templates\staff\professor\professors_list.html:276
 #: .\templates\staff\professor\professors_list.html:440
 msgid "Adicionar um novo diploma"
-msgstr ""
+msgstr "Add a new degree"
 
 #: .\templates\staff\professor\professors_list.html:285
 #: .\templates\staff\professor\professors_list.html:449
 msgid "pontuação"
-msgstr ""
+msgstr "score"
 
 #: .\templates\staff\professor\professors_list.html:298
 #: .\templates\staff\professor\professors_list.html:462
 msgid "Cargos do professor"
-msgstr ""
+msgstr "Professor's position"
 
 #: .\templates\staff\professor\professors_list.html:333
 msgid "Editar Professor"
-msgstr ""
+msgstr "Edit Professor"
 
 #: .\templates\staff\professor\register.html:22
 msgid "Professores com o cadastro não finalizado"
-msgstr ""
+msgstr "Teachers with unfinished registration"
 
 #: .\templates\staff\professor\register.html:34
 msgid "Enviar e-mail"
-msgstr ""
+msgstr "Send e-mail"
 
 #: .\templates\staff\queue\queue_create.html:10
 msgid "Editar Fila Atribuição"
-msgstr ""
+msgstr "Edit Queue Assignment"
 
 #: .\templates\staff\queue\queue_create.html:15
 msgid "Fila de Docentes"
-msgstr ""
+msgstr "Queue of Professors"
 
 #: .\templates\staff\queue\queue_create.html:22
 #: .\templates\staff\queue\queue_show.html:19
 msgid "Editar Fila"
-msgstr ""
+msgstr "Edit Queue"
 
 #: .\templates\staff\queue\queue_create.html:28
 msgid "Fila anterior recuperada. Caso deseje mantê-la, clique em enviar"
-msgstr ""
+msgstr "Previous queue retrieved. If you want to keep it, click send"
 
 #: .\templates\staff\queue\queue_create.html:44
 msgid "Critério definido pela direção"
-msgstr ""
+msgstr "Criteria defined by management"
 
 #: .\templates\staff\queue\queue_show.html:8
 #: .\templates\staff\queue\queue_show.html:12
 msgid "Detalhes Fila"
-msgstr ""
+msgstr "Details Queue"
 
 #: .\templates\staff\timetable\edit_timetable.html:7
 #: .\templates\staff\timetable\edit_timetable.html:14
 #: .\templates\staff\timetable\edit_timetable.html:20
 msgid "Editar Grade"
-msgstr ""
+msgstr "Edit Timetable"
 
 #: .\templates\staff\timetable\register.html:7
 msgid "Criar Grade"
-msgstr ""
+msgstr "Create Timetable"
 
 #: .\templates\staff\timetable\register.html:19
 msgid "Criar Grade da"
-msgstr ""
+msgstr "Create Timetable of"
 
 #: .\templates\staff\timetable\register.html:24
 msgid "Carregando"
-msgstr ""
+msgstr "Loading"
 
 #: .\templates\staff\timetable\show_timetable.html:2
 msgid "Detalhe Grade"
-msgstr ""
+msgstr "Detail Timetable"
 
 #: .\templates\staff\timetable\show_timetable.html:6
 msgid "Detalhes Grade"
-msgstr ""
+msgstr "Deatils Timetable"
 
 #: .\templates\staff\timetable\show_timetable.html:12
 msgid "Detalhes Grade da"
-msgstr ""
+msgstr "Deatils Timatable of"
 
 #: .\templates\staff\timetable\show_timetable.html:19
 msgid "Tabela salva"
-msgstr ""
+msgstr "Table saved"
 
 #: .\templates\terms_and_conditions.html:34
 msgid "SEÇÃO 1 - ACEITAÇÃO DOS TERMOS"
-msgstr ""
+msgstr "SECTION 1 - ACCEPTANCE OF TERMS"
 
 #: .\templates\terms_and_conditions.html:36
 msgid ""
@@ -2432,11 +2432,12 @@ msgid ""
 "ADA. Ao acessar ou utilizar nossos serviços, você concorda em cumprir estes "
 "termos e todas as leis e regulamentos aplicáveis. Se você não concorda com "
 "estes termos, por favor, não utilize nossos serviços"
-msgstr ""
+msgstr "These Terms of Use constitute a legal contract between you and the ADA platform. By accessing or using our services, you agree to comply with these terms and all applicable laws and regulations. If you do not agree with these terms, please do not use our services
+"
 
 #: .\templates\terms_and_conditions.html:39
 msgid "SEÇÃO 2 - USO DOS NOSSOS SERVIÇOS"
-msgstr ""
+msgstr "SECTION 2 - USE OF OUR SERVICES"
 
 #: .\templates\terms_and_conditions.html:41
 msgid ""
@@ -2445,11 +2446,11 @@ msgid ""
 "maneira que possa danificar, desabilitar, sobrecarregar ou prejudicar a "
 "plataforma ADA ou interferir no uso de nossos serviços por terceiros. Você "
 "não pode tentar obter acesso não autorizado aos nossos sistemas ou redes"
-msgstr ""
+msgstr "You agree to use our services only for lawful purposes and in accordance with these Terms of Use. You must not use our services in a way that could damage, disable, overburden, or impair the ADA Platform or interfere with any third party's use of our services. You may not attempt to gain unauthorized access to our systems or networks"
 
 #: .\templates\terms_and_conditions.html:44
 msgid "SEÇÃO 3 - CONTA DO USUÁRIO"
-msgstr ""
+msgstr "SECTION 3 - USER ACCOUNT"
 
 #: .\templates\terms_and_conditions.html:46
 msgid ""
@@ -2457,11 +2458,11 @@ msgid ""
 "confidencialidade de suas credenciais de acesso e por todas as atividades "
 "que ocorrem em sua conta. Você concorda em nos notificar imediatamente caso "
 "suspeite de qualquer uso não autorizado de sua conta"
-msgstr ""
+msgstr "When creating an account on the ADA platform, you are responsible for maintaining the confidentiality of your login credentials and for all activities that occur under your account. You agree to notify us immediately if you suspect any unauthorized use of your account"
 
 #: .\templates\terms_and_conditions.html:49
 msgid "SEÇÃO 4 - LIMITAÇÕES DE RESPONSABILIDADE"
-msgstr ""
+msgstr "SECTION 4 - LIMITATIONS OF LIABILITY"
 
 #: .\templates\terms_and_conditions.html:51
 msgid ""
@@ -2469,11 +2470,11 @@ msgid ""
 "indiretos, incidentais, consequenciais ou especiais, incluindo perda de "
 "lucros, de dados ou de reputação, decorrentes do uso de nossos serviços ou "
 "da impossibilidade de utilizá-los"
-msgstr ""
+msgstr "The ADA platform is not responsible for any direct, indirect, incidental, consequential or special damages, including loss of profits, data or reputation, arising from the use of our services or the inability to use them"
 
 #: .\templates\terms_and_conditions.html:54
 msgid "SEÇÃO 5 - MODIFICAÇÕES DOS TERMOS DE USO"
-msgstr ""
+msgstr "SECTION 5 - MODIFICATIONS TO THE TERMS OF USE"
 
 #: .\templates\terms_and_conditions.html:56
 msgid ""
@@ -2481,11 +2482,11 @@ msgid ""
 "alterações entrarão em vigor imediatamente após a publicação. Recomendamos "
 "que você revise periodicamente estes termos para se manter informado sobre "
 "as atualizações"
-msgstr ""
+msgstr "We reserve the right to modify these Terms of Use at any time. Changes will be effective immediately upon publication. We recommend that you periodically review these terms to stay informed of updates"
 
 #: .\templates\terms_and_conditions.html:59
 msgid "SEÇÃO 6 - ENCERRAMENTO"
-msgstr ""
+msgstr "SECTION 6 - CLOSING"
 
 #: .\templates\terms_and_conditions.html:61
 msgid ""
@@ -2493,44 +2494,45 @@ msgid ""
 "qualquer momento, por qualquer motivo, incluindo se você violar estes Termos "
 "de Uso. Em caso de encerramento, você concorda em cessar imediatamente o uso "
 "dos nossos serviços"
-msgstr ""
+msgstr "We may terminate or suspend your account or access to our services at any time, for any reason, including if you violate these Terms of Use. Upon termination, you agree to immediately cease using our services"
 
 #: .\templates\terms_and_conditions.html:64
 msgid "SEÇÃO 7 - LEI APLICÁVEL"
-msgstr ""
+msgstr "
+SECTION 7 - APPLICABLE LAW"
 
 #: .\templates\terms_and_conditions.html:66
 msgid ""
 "Estes Termos de Uso serão regidos e interpretados de acordo com as leis do "
 "Brasil. Qualquer disputa decorrente ou relacionada a estes termos estará "
 "sujeita à jurisdição exclusiva dos tribunais brasileiros"
-msgstr ""
+msgstr "These Terms of Use will be governed and interpreted in accordance with the laws of Brazil. Any dispute arising out of or relating to these terms will be subject to the exclusive jurisdiction of the Brazilian courts"
 
 #: .\templates\terms_and_conditions.html:69
 msgid "SEÇÃO 8 - CONTATO"
-msgstr ""
+msgstr "SECTION 8 - CONTACT"
 
 #: .\templates\terms_and_conditions.html:71
 msgid ""
 "Se tiver alguma dúvida sobre estes Termos de Uso, entre em contato conosco "
 "pelo e-mail"
-msgstr ""
+msgstr "If you have any questions about these Terms of Use, please contact us by email"
 
 #: .\templates\user\home.html:6
 msgid "Home Usuário"
-msgstr ""
+msgstr "Home User"
 
 #: .\templates\user\home.html:76
 msgid "Olá, bem-vindo(a) à ADA"
-msgstr ""
+msgstr "Hello, welcome to the ADA"
 
 #: .\templates\user\home.html:77
 msgid "Você quer acessar o sistema como"
-msgstr ""
+msgstr "Do you want to access the system as"
 
 #: .\templates\user\home.html:96
 msgid "Administrador"
-msgstr ""
+msgstr "Administrador"
 
 #: .\timetable\models.py:23
 msgid "timetable"
