@@ -187,7 +187,7 @@ def next_attribution(timetables_preference, next_professor_in_queue, blockk):
 
         if len(cord_assigned_timetables) < len(cord_primary_timetables):
             print(f'professor { professor.first_name }: faltou aulas para cumprir a quantidade desejada')
-            # send_email(professor)
+            # send_email(professor, blockk)
             print(f'professor { professor.first_name }: entrando em atribuição manual')
             schedule_task(SECONDS_TO_PROFESSOR_CHOOSE, professor, blockk, blockk.registration_block_id)
             return
@@ -264,7 +264,7 @@ def email_test(request):
         return redirect('attribution:email_test')
     return render(request, 'attribution/email_test.html')
 
-def send_email(professor):
+def send_email(professor, blockk):
     print(f'Enviando email para { professor.first_name }')
     subject = 'Ação requerida: Escolha de disciplina alternativa até o prazo estipulado'
     
@@ -275,6 +275,7 @@ def send_email(professor):
     with open(current_path + '\\templates\static\email\message.html', 'r', encoding='utf-8') as file:
         message = file.read()
         message = message.format(nome=nome)
+        message = message.format(blockk=blockk)
     
     email = EmailMessage(
         subject,

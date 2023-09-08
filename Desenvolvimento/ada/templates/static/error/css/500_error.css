@@ -42,6 +42,18 @@ body {
     margin-bottom: 12px;
 }
 
+@media (max-width: 1195px) {
+  .svg {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 800px) {
+    .hide-on-small-screen {
+        display: none;
+    }
+}
+
 a.custom-btn {
   background-color: #0d2f4d;
   color: #ffffff;

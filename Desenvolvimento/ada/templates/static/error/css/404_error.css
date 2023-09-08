@@ -43,8 +43,8 @@ body {
     margin-bottom: 12px;
 }
 
-@media (max-width: 800px) {
-  .logo {
+@media (max-width: 1195px) {
+  .svg {
     display: none;
   }
 }

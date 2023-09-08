@@ -1,3 +1,6 @@
+var lang = document.currentScript.getAttribute("data-lang");
+$(".alert-danger").hide();
+
 $(document).ready(function () { 
     
     $('.phone-input').on('input', function() {
@@ -216,8 +219,18 @@ $(document).ready(function () {
                 location.reload();
                 console.log(response);
                 $('#editProfessorModal').modal('hide');
+                $(".alert-danger").hide();
             }, error: function (xhr, status, error) {
-                console.log(error);
+                $("#error-message-form").show();
+                if (lang == 'pt-br' || lang == '') {
+                    $("#error-message-form").text(xhr.responseJSON.error);
+                } else {
+                    $("#error-message-form").text("An error occurred.");
+                }
+                $('html, body').animate({
+                    scrollTop: $("#error-message-form").offset().top
+                }, 1000);
+
             }
         });
     });
@@ -406,7 +419,6 @@ $(document).ready(function () {
         } else {
             $('#editProfessorModal').find('#isFGFCC').prop('checked', false);
         }
-
     }
 
     $("#saveUpdateBtn").click(function () {
@@ -484,8 +496,15 @@ $(document).ready(function () {
                 location.reload();
                 console.log(response);
                 $('#editProfessorModal').modal('hide');
+                $(".alert-danger").hide();
             }, error: function (xhr, status, error) {
-                console.log(error);
+                $("#error-message-form-edit").show();
+                if (lang == 'pt-br' || lang == '') {
+                    $("#error-message-form-edit").text(xhr.responseJSON.error);
+                } else {
+                    $("#error-message-form-edit").text("An error occurred.");
+                }
+                
             }
         });
         academic_degrees = [];
