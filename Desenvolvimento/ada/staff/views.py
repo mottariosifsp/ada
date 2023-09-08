@@ -1,14 +1,13 @@
 from datetime import datetime, time, timezone
 import json
-
 from django.urls import reverse
 from attribution.models import TeacherQueuePosition, TeacherQueuePositionBackup
 # from attribution import task
 from attribution.views import schedule_attributtion_deadline_staff
 from attribution_preference.models import Attribution_preference, Course_preference
 from enums import enum
-from django.db import transaction
-from django.http import JsonResponse
+from django.db import DatabaseError, transaction
+from django.http import HttpResponseBadRequest, JsonResponse
 from django.shortcuts import get_object_or_404, redirect, render
 from django.contrib.auth.decorators import user_passes_test
 from django.contrib.auth import get_user_model
@@ -25,7 +24,9 @@ from datetime import datetime, timedelta
 from django.db.models import Max
 
 from django.contrib.auth.decorators import login_required
+from django.db import IntegrityError
 
+from common.form_validation import form_validation
 from common.date_utils import day_to_number
 from django.core.mail import send_mail, EmailMessage
 import os
@@ -373,6 +374,15 @@ def add_new_professor(request):
         is_staff = request.POST.get('add_is_staff') == 'true'
         is_fgfcc = request.POST.get('add_is_fgfcc') == 'true'   
         
+        form_fields_to_validation = [registration_id, first_name, 
+                                     last_name, email, telephone, 
+                                     birth, date_career, 
+                                     date_campus, date_professor, 
+                                     date_area, date_institute, job]
+
+        if form_validation.is_blank(form_fields_to_validation):
+            error = "Todos os campos devem ser preenchidos"
+            return JsonResponse({"error": error}, status=400)
 
         new_user = User.objects.create(
             registration_id=registration_id,
@@ -380,11 +390,20 @@ def add_new_professor(request):
             last_name=last_name,
             email=email,
             telephone=telephone,
-            cell_phone=celphone,
+            cell_phone='new_numberphone',
             is_professor=is_professor,
             is_staff=is_staff,
             is_fgfcc=is_fgfcc
-            )
+        )
+
+        try:
+            with transaction.atomic():       
+                new_user.cell_phone = celphone
+                new_user.save()
+        except IntegrityError as e:
+            new_user.delete()
+            error = "Número de celular/telefone inválido ou já consta no sistema "
+            return JsonResponse({"error": error}, status=400) 
         
         create_job(job, new_user)
         

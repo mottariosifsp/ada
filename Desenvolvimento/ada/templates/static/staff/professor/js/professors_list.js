@@ -1,3 +1,6 @@
+var lang = document.currentScript.getAttribute("data-lang");
+$("#error-message-form").hide();
+
 $(document).ready(function () { 
     
     $('.phone-input').on('input', function() {
@@ -216,8 +219,18 @@ $(document).ready(function () {
                 location.reload();
                 console.log(response);
                 $('#editProfessorModal').modal('hide');
+                $("#error-message-form").show();
             }, error: function (xhr, status, error) {
-                console.log(error);
+                $("#error-message-form").show();
+                if (lang == 'pt-br' || lang == '') {
+                    $("#error-message-form").text(xhr.responseJSON.error);
+                } else {
+                    $("#error-message-form").text("An error occurred.");
+                }
+                $('html, body').animate({
+                    scrollTop: $("#error-message-form").offset().top
+                }, 1000);
+
             }
         });
     });
@@ -367,7 +380,6 @@ $(document).ready(function () {
         } else {
             $('#editProfessorModal').find('#isFGFCC').prop('checked', false);
         }
-
     }
 
     $("#saveUpdateBtn").click(function () {
