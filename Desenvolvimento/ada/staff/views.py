@@ -464,8 +464,15 @@ def update_save(request):
         is_staff = request.POST.get('is_staff')  == 'true'
         is_fgfcc = request.POST.get('is_fgfcc')  == 'true'
 
-        
-        # User = get_user_model()
+        form_fields_to_validation = [registration_id, first_name, 
+                                     last_name, email, telephone, 
+                                     birth, date_career, 
+                                     date_campus, date_professor, 
+                                     date_area, date_institute, job]
+
+        if form_validation.is_blank(form_fields_to_validation):
+            error = "Todos os campos devem ser preenchidos"
+            return JsonResponse({"error": error}, status=400)
 
         user = User.objects.get(registration_id=registration_id)
         create_job(job, user)
@@ -473,11 +480,18 @@ def update_save(request):
         user.last_name = last_name
         user.email = email
         user.telephone = telephone
-        user.cell_phone = celphone
         user.is_professor = is_professor
         user.is_staff = is_staff
         user.is_fgfcc = is_fgfcc
-
+        
+        try:
+            with transaction.atomic():       
+                user.cell_phone = celphone
+                user.save()
+        except IntegrityError as e:
+            error = "Número de celular/telefone inválido ou já consta no sistema "
+            return JsonResponse({"error": error}, status=400) 
+        
         blocks = json.loads(blocks_json)
         for block in blocks:
             block_obj = Blockk.objects.get(name_block=block)

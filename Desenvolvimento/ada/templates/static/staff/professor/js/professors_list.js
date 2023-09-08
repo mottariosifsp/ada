@@ -1,5 +1,5 @@
 var lang = document.currentScript.getAttribute("data-lang");
-$("#error-message-form").hide();
+$(".alert-danger").hide();
 
 $(document).ready(function () { 
     
@@ -219,7 +219,7 @@ $(document).ready(function () {
                 location.reload();
                 console.log(response);
                 $('#editProfessorModal').modal('hide');
-                $("#error-message-form").show();
+                $(".alert-danger").hide();
             }, error: function (xhr, status, error) {
                 $("#error-message-form").show();
                 if (lang == 'pt-br' || lang == '') {
@@ -445,8 +445,15 @@ $(document).ready(function () {
                 location.reload();
                 console.log(response);
                 $('#editProfessorModal').modal('hide');
+                $(".alert-danger").hide();
             }, error: function (xhr, status, error) {
-                console.log(error);
+                $("#error-message-form-edit").show();
+                if (lang == 'pt-br' || lang == '') {
+                    $("#error-message-form-edit").text(xhr.responseJSON.error);
+                } else {
+                    $("#error-message-form-edit").text("An error occurred.");
+                }
+                
             }
         });
         academic_degrees = [];
