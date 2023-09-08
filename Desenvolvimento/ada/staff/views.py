@@ -338,22 +338,17 @@ def save_deadline(data):
 @login_required
 @user_passes_test(is_staff)
 def professors_list(request):
-    professors = User.objects.filter(is_superuser=False)
-    courses = Course.objects.all()
-
-    return render(request, 'staff/professor/professors_list.html', {'professors': professors, 'courses': courses})
-
-
-@login_required
     professors = get_user_model().objects.filter(is_professor=True)
     degrees = AcademicDegree.objects.all()
     blockks = Blockk.objects.all()
     professors_inactive = User.objects.filter(is_professor=True, is_active=False).count
+    courses = Course.objects.all()
     data = {
         'professors': professors,
         'degrees': degrees,
         'blockks': blockks,
-        'professors_inactive': professors_inactive
+        'professors_inactive': professors_inactive,
+        'courses': courses
     }
 
     return render(request, 'staff/professor/professors_list.html', data)
