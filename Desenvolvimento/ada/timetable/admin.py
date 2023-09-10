@@ -28,7 +28,8 @@ def action_remove_all_attribution(modeladmin, request, queryset):
         obj.update(user=None)
 
 class Timetable_user_admin(admin.ModelAdmin):
-    list_display = ('timetable', 'user')
+    list_display = ('timetable', 'user','year')
+    search_fields = ('timetable__course__name_course', 'user__first_name', 'user__last_name', 'year')
 
 admin.site.register(Day_combo, Day_combo_admin)
 admin.site.register(Timetable, Timetable_admin)

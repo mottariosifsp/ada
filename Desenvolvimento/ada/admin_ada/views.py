@@ -1,11 +1,13 @@
 from datetime import datetime
+from django.http import HttpResponseRedirect, JsonResponse
 from django.shortcuts import render
 from django.db import transaction
+from django.urls import reverse
 from area.models import Blockk
 from attribution.views import schedule_attributtion_deadline_staff
 from attribution_preference.models import Course_preference
 from staff.models import Deadline
-from timetable.models import Timetable_user
+from timetable.models import Timetable, Timetable_user
 from django.contrib.auth.decorators import login_required
 
 @login_required
@@ -16,7 +18,7 @@ def deadline_configuration(request):
 @login_required
 def deadline_configuration_confirm(request):
     if request.method == 'POST':       
-
+        print('POST')
         date_format = "%Y-%m-%dT%H:%M"
         year = request.POST.get('year')
         semester = request.POST.get('semester')
@@ -25,8 +27,10 @@ def deadline_configuration_confirm(request):
         endFPADeadline = datetime.strptime(request.POST.get('endFPADeadline'), date_format)
         startAssignmentDeadline = datetime.strptime(request.POST.get('startAssignmentDeadline'), date_format)
         endAssignmentDeadline = datetime.strptime(request.POST.get('endAssignmentDeadline'), date_format)
-
-        print(year)
+        overwrite = request.POST.get('overwrite')
+        if overwrite == 'false':
+            if year == Deadline.objects.all().first().year:
+                return JsonResponse({'error': 'Já houve uma atribuição para esse semetre neste ano.'}, status=400)
 
         data = {
             'year': year,
@@ -34,21 +38,29 @@ def deadline_configuration_confirm(request):
             'endFPADeadline': endFPADeadline,
             'startAssignmentDeadline': startAssignmentDeadline,
             'endAssignmentDeadline': endAssignmentDeadline,
+            'overwrite': overwrite,
         }
-        for time in Timetable_user.objects.all():
-            time.user = None
-            time.save()
 
         save_deadline(data) 
 
-
-        return render(request, 'admin/deadline_configuration_confirm.html', data)
+        return JsonResponse({'redirect':reverse(deadline_configuration_confirm)})
+        # return render(request, 'admin/deadline_configuration_confirm.html', data)
+    else:
+        return render(request, 'admin/deadline_configuration_confirm.html')
 
 @transaction.atomic
 def save_deadline(data):
-
-    Timetable_user.objects.all().update(user=None)
-
+    if data['overwrite'] == 'true':
+        Timetable_user.objects.filter(year=data['year']).update(user=None)
+    else:
+        print('oiers')
+        for timetable in Timetable.objects.all():
+            print(timetable)
+            Timetable_user.objects.create(
+                timetable=timetable,
+                user=None,
+                year=data['year'],
+            )
 
     Deadline.objects.all().delete()   
     
@@ -68,8 +80,8 @@ def save_deadline(data):
             deadline_end=data['endAssignmentDeadline'],
             blockk=blockk_obj,
         )
-        if Course_preference.objects.filter(blockk=blockk_obj).exists():
-            print('Atribuição iniciada')
-            schedule_attributtion_deadline_staff(data['startAssignmentDeadline'], 'startAssignmentDeadline', blockk_obj.registration_block_id, blockk_obj.registration_block_id) 
-        else:
-            print('Atribuição recusa por falta de preferências')
+        # if Course_preference.objects.filter(blockk=blockk_obj).exists():
+        #     print('Atribuição iniciada')
+        #     schedule_attributtion_deadline_staff(data['startAssignmentDeadline'], 'startAssignmentDeadline', blockk_obj.registration_block_id, blockk_obj.registration_block_id) 
+        # else:
+        #     print('Atribuição recusa por falta de preferências')

@@ -53,3 +53,36 @@
 .hidden {
     display: none;
 }
+
+.year-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 1rem;
+}
+
+.year {
+    flex: 1;
+    min-width: 200px;
+    padding: 20px;
+    background-color: #4a9dce;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: color 0.3s ease-in-out;
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    word-wrap: break-word;
+}
+
+.year.selected {
+    background-color: #2e5368;
+}
+
+.year:hover {
+    background-color: #2e5368;
+}

@@ -19,7 +19,15 @@
         </ol>
     </nav>
 
-    <div class="area-container">
+    <div class="year-container">
+        {% for year in years %}
+        <div class="year" year="{{ year }}">
+            {{ year }}
+        </div>
+        {% endfor %}
+    </div>
+
+    <div class="area-container" >
         {% for area in areas %}
             <div class="area" data-registration_area_id="{{ area.registration_area_id }}">
                 {% comment %} {% blocktrans with area=area.name_area %}{{ area }}{% endblocktrans %} {% endcomment %}

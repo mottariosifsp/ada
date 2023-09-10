@@ -286,6 +286,7 @@ def attribution_configuration(request):
 
         return render(request, 'staff/attribution/attribution_configuration.html', data)
 
+#desativar depois
 @login_required
 @user_passes_test(is_staff)
 def attribution_configuration_confirm(request):

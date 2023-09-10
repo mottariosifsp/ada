@@ -9,8 +9,9 @@ $.each(timetables_user, function (index, value) {
   let professor = value.professor;
 
   $("#cel-" + value.cord).html("<strong>" + value.acronym + "</strong>" + "<br>" + professor);
-  $("#cel-" + value.cord).closest('table').find('.header-days').show();
-  $("#cel-" + value.cord).closest('table').find('tbody').show();
+  
+  $("#cel-"+value.cord).closest('.content_collapsible').prev('.collapsible').addClass("default-open");
+  $("#cel-"+value.cord).closest('.content_collapsible').prev('.collapsible').addClass("active_collapse");
 });
 
 $(document).ready(function () {

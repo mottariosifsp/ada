@@ -6,6 +6,7 @@
 <link rel="stylesheet" href="{% static "admin/css/admin_style.css" %}">
 <link rel="stylesheet" href="{% static "admin/css/deadline_configuration.css" %}">
 <link rel="stylesheet" href="{% static "admin/css/dashboard.css" %}">
+
 </style>
 {% endblock %}
 
@@ -46,9 +47,20 @@
 
 <div class="app-area module">
    <h1>{% trans 'Configuração de prazos' %}</h1>
-
-   <div class="alert alert-danger" id="error-message-form">{% trans 'Mensagem de erro' %}</div>
-   <form action="{% url 'deadline_configuration_confirm' %}" method="POST" id="form">
+   <div class="error-line">
+      <div class="alert alert-danger" id="error-message-form" style="width: 100%; height: 20%">{% trans 'Mensagem de erro' %}</div>
+      <article class="feature3">
+         <input type="checkbox" id="feature3"/>
+         <div>
+           <span id="checkbox-text">
+               <svg xmlns="http://www.w3.org/2000/svg" id="overwrite" width="30" height="30" style="padding-top:9px;" fill="currentColor" class="bi bi-circle" viewBox="0 0 16 16">
+               <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+               </svg>
+           </span>
+         </div>
+       </article>
+   </div>
+   <form action="" method="" id="form">
       {% csrf_token %}
       <table>
          <caption>
@@ -104,6 +116,7 @@
       <button id="submit-button" class="custom-button" style="float: right;">{% trans 'Enviar' %}</button>
    </form>
 </div>
-<script src="{% static "admin/js/deadline_configuration.js" %}"></script>
+
+<script src="{% static "admin/js/deadline_configuration.js" %}" data-lang="{{LANGUAGE_CODE}}"></script>
 
 {% endblock %}

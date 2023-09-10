@@ -197,7 +197,8 @@ def terms_and_conditions (request):
 def profile(request):
     professor = request.user
     timeslots_all = Timeslot.objects.all()
-    timetables_user = Timetable_user.objects.filter(user=professor)
+    year = Deadline.objects.all().first().year
+    timetables_user = Timetable_user.objects.filter(user=professor, year=year)
 
     timetables_professor = []
 
@@ -241,11 +242,11 @@ def profile(request):
 
 @login_required
 def show_assignment(request):
+    year = request.GET.get('year')
     classs = Classs.objects.get(registration_class_id=request.GET.get('registration_class_id'))
-
     timetables = Timetable.objects.filter(classs=classs).all()
     timeslots_all = Timeslot.objects.all()
-    timetables_user = Timetable_user.objects.filter(timetable__in=timetables).all()  # vai buscar apenas da atribuição final definitiva
+    timetables_user = Timetable_user.objects.filter(timetable__in=timetables,year=year).all()  # vai buscar apenas da atribuição final definitiva
 
     timetables_professor = []
 
@@ -334,9 +335,14 @@ def assignments_classs_list(request, name_block):
 
     all_classes = json.dumps(all_classes)
 
+    years = []
+    for year in Timetable_user.objects.values_list('year', flat=True).distinct():
+        years.append(year)
+
     data = {
         'areas': areas_associadas,
         'json_data': all_classes,
+        'years': years,
     }
 
     return render(request, 'professor/assignment/assignments_classs_list.html', data)

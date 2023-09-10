@@ -31,10 +31,7 @@ from common.date_utils import day_to_number
 def attribution(request):
     
     # cancel_all_tasks()
-    # for time in Timetable_user.objects.all():
-    #     time.user = None
-    #     time.save()
-
+ 
     blockk = Blockk.objects.get(registration_block_id=request.GET.get('blockk'))
     consider_deadline = True
     
@@ -242,12 +239,12 @@ def validate_timetable(timetable, professor):
     else:
         return timetable
 
-def validations(timetable, professor):
+def validations(timetable, professor, year):
     timetable_user = None
-    if Timetable_user.objects.filter(timetable=timetable).exists():
-        timetable_user = Timetable_user.objects.get(timetable=timetable)
+    if Timetable_user.objects.filter(timetable=timetable, year=year).exists():
+        timetable_user = Timetable_user.objects.get(timetable=timetable, year=year)
     else:
-        timetable_user = Timetable_user.objects.create(timetable=timetable, user=None)
+        timetable_user = Timetable_user.objects.create(timetable=timetable, year=year, user=None)
     if timetable_user.user is None:
         return True
     else:
@@ -288,8 +285,8 @@ def send_email(professor, blockk):
 
     email.send()
 
-def assign_timetable_professor(timetable, professor):
-    Timetable_user.objects.filter(timetable=timetable).update(user=professor)
+def assign_timetable_professor(timetable, professor, year):
+    Timetable_user.objects.filter(timetable=timetable, year=year).update(user=professor)
 
 def professor_to_end_queue(professor, blockk):
 
@@ -317,10 +314,12 @@ def schedule_attributtion_deadline_staff(seconds, name, queue,*args):
 import datetime
 def manual_attribution(request):   
 
+    
+
     if request.method == 'POST':
         get_block = request.POST.get('blockk')
         blockk = Blockk.objects.get(registration_block_id=get_block)
-        print(blockk)
+        year = Deadline.objects.filter(blockk=blockk).first().year
 
         work_courses = request.POST.get('timetable')
 
@@ -353,6 +352,7 @@ def manual_attribution(request):
         user = request.user
         get_block = request.GET.get('blockk')
         blockk = Blockk.objects.get(registration_block_id=get_block)
+        year = Deadline.objects.filter(blockk=blockk).first().year
         if TeacherQueuePosition.objects.get(position=0, blockk=blockk).teacher != user:
             base_url = reverse('attribution:attribution')
             target_url = f'{base_url}?blockk={blockk.registration_block_id}'
@@ -365,7 +365,7 @@ def manual_attribution(request):
         user_is_fgfcc = user.is_fgfcc
         
         user_block = Blockk.objects.get(registration_block_id=request.GET.get('blockk'))
-        timetables_current_user = Timetable_user.objects.filter(user=user, timetable__course__blockk=user_block).all()
+        timetables_current_user = Timetable_user.objects.filter(user=user, year=year, timetable__course__blockk=user_block).all()
 
         dias_semana = {
             'monday': 'mon',
@@ -418,7 +418,7 @@ def manual_attribution(request):
 
         user_timetable = []
         timetables_without_user = []
-        timetables_user_without_user = Timetable_user.objects.filter(user=None)
+        timetables_user_without_user = Timetable_user.objects.filter(user=None, year=year)
         for timetable_user_without_user in timetables_user_without_user:
             timetable_without_user = timetable_user_without_user.timetable 
             timetables_without_user.append(timetable_without_user)
