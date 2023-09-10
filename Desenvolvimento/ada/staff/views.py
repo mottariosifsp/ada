@@ -86,8 +86,7 @@ def home(request):
         delete_id = request.POST.get('delete_id')
 
         if delete_id:
-            Alert.objects.filter(id=delete_id).delete()   
-            print(delete_id)         
+            Alert.objects.filter(id=delete_id).delete()  
         else:
             if blockk_id:
                 name_alert = "ALERT"
@@ -238,7 +237,6 @@ def home(request):
         'user_blocks': user_blocks,
         'period': period
     }
-    # print(data)
     return render(request, 'staff/home_staff.html', data)
 
 @login_required
@@ -299,8 +297,6 @@ def attribution_configuration_confirm(request):
         endFPADeadline = datetime.strptime(request.POST.get('endFPADeadline'), date_format)
         startAssignmentDeadline = datetime.strptime(request.POST.get('startAssignmentDeadline'), date_format)
         endAssignmentDeadline = datetime.strptime(request.POST.get('endAssignmentDeadline'), date_format)
-
-        print(startFPADeadline)
 
         data = {
             'startFPADeadline': startFPADeadline,
@@ -546,8 +542,6 @@ def create_job(user_regime, user):
         job = User.objects.filter(id=user.id).first().job
         User.objects.filter(id=user.id).update(job=None)
         job.delete()
-
-    print(user_regime)
 
     if(user_regime == 'RDE'):
         name_job = Job.objects.create(name_job=enum.Job.RDE.name)
