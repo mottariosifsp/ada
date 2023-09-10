@@ -16,7 +16,7 @@ from timetable.models import Day_combo, Timeslot, Timetable, Timetable_user
 from area.models import Blockk, Area
 from classs.models import Classs
 from course.models import Course
-from user.models import AcademicDegreeHistory, User, History, AcademicDegree, Job
+from user.models import Proficiency, AcademicDegreeHistory, User, History, AcademicDegree, Job
 from .models import Deadline, Criteria
 from django.db.models import F, Sum, Value
 from staff.models import Deadline, Alert
@@ -86,8 +86,7 @@ def home(request):
         delete_id = request.POST.get('delete_id')
 
         if delete_id:
-            Alert.objects.filter(id=delete_id).delete()   
-            print(delete_id)         
+            Alert.objects.filter(id=delete_id).delete()  
         else:
             if blockk_id:
                 name_alert = "ALERT"
@@ -238,7 +237,6 @@ def home(request):
         'user_blocks': user_blocks,
         'period': period
     }
-    # print(data)
     return render(request, 'staff/home_staff.html', data)
 
 @login_required
@@ -301,8 +299,6 @@ def attribution_configuration_confirm(request):
         startAssignmentDeadline = datetime.strptime(request.POST.get('startAssignmentDeadline'), date_format)
         endAssignmentDeadline = datetime.strptime(request.POST.get('endAssignmentDeadline'), date_format)
 
-        print(startFPADeadline)
-
         data = {
             'startFPADeadline': startFPADeadline,
             'endFPADeadline': endFPADeadline,
@@ -343,11 +339,13 @@ def professors_list(request):
     degrees = AcademicDegree.objects.all()
     blockks = Blockk.objects.all()
     professors_inactive = User.objects.filter(is_professor=True, is_active=False).count
+    courses = Course.objects.all()
     data = {
         'professors': professors,
         'degrees': degrees,
         'blockks': blockks,
-        'professors_inactive': professors_inactive
+        'professors_inactive': professors_inactive,
+        'courses': courses
     }
 
     return render(request, 'staff/professor/professors_list.html', data)
@@ -460,6 +458,9 @@ def update_save(request):
         date_institute = request.POST.get('date_institute')
         job = request.POST.get('job')
         academic_degrees_json = request.POST.get('academic_degrees')
+        blocked_courses = request.POST.getlist('blocked_courses[]')
+
+        print(blocked_courses)
         blocks_json = request.POST.get('blocks')
         is_professor = request.POST.get('is_professor') == 'true'
         is_staff = request.POST.get('is_staff')  == 'true'
@@ -500,6 +501,12 @@ def update_save(request):
         user.save()
 
         history = user.history
+        print(blocked_courses)
+        if blocked_courses:
+            for blocked_course_id in blocked_courses:
+                course = Course.objects.get(registration_course_id=blocked_course_id)
+                a = Proficiency.objects.update_or_create(user=user, course=course, defaults={'is_competent': False})
+                print(a)
         if history is not None:
             academic_degrees = []
             history.academic_degrees.clear()
@@ -536,8 +543,6 @@ def create_job(user_regime, user):
         job = User.objects.filter(id=user.id).first().job
         User.objects.filter(id=user.id).update(job=None)
         job.delete()
-
-    print(user_regime)
 
     if(user_regime == 'RDE'):
         name_job = Job.objects.create(name_job=enum.Job.RDE.name)

@@ -356,7 +356,7 @@ def courses_attribution_preference(request):
         user = request.user
 
         user_regime = user.job
-        courses = Course.objects.all()
+        courses = Course.objects.filter(proficiency__user=user, proficiency__is_competent=True)
         user_is_fgfcc = False
         user_is_fgfcc = user.is_fgfcc
         
@@ -415,7 +415,7 @@ def courses_attribution_preference(request):
                 user_timetable.append(timetable_item)
 
         user_courses = []
-        for course_object in Course.objects.all():
+        for course_object in Course.objects.filter(proficiency__user=user, proficiency__is_competent=True):
             course_item = {
                 'id': course_object.registration_course_id,
                 'name': course_object.name_course,

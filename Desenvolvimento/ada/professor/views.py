@@ -181,7 +181,6 @@ def home(request):
         'period': period
     }
 
-    print(data)
 
     return render(request, 'professor/home_professor.html', data)
 
@@ -235,7 +234,6 @@ def profile(request):
         'timeslots': timeslots_all,
         'timetables_professor': timetables_professor_json
     }
-    print(data)
 
     return render(request, 'professor/profile.html', data)
 

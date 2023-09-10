@@ -8,7 +8,7 @@ from course.models import Course
 from enums.enum import Priority
 from staff.models import Criteria, Deadline
 from timetable.models import Timeslot, Timetable, Timetable_user
-from user.models import User
+from user.models import Proficiency, User
 from attribution.models import TeacherQueuePosition
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import user_passes_test
@@ -245,10 +245,10 @@ def validations(timetable, professor, year):
         timetable_user = Timetable_user.objects.get(timetable=timetable, year=year)
     else:
         timetable_user = Timetable_user.objects.create(timetable=timetable, year=year, user=None)
-    if timetable_user.user is None:
-        return True
-    else:
+    if timetable_user.user is not None:
         return False
+    course = timetable.course
+    return Proficiency.objects.get(user=professor, course=course).is_competent
     # future validations
 
 @login_required

@@ -78,21 +78,21 @@ i, h1, h3 {
         <div class="row mt-5">
             {% if request.user.is_professor or request.user.is_superuser%}
             <div class="col-12 mt-2">
-                <button type="button" id="to-professor" url="/professor/" class="btn btn-blue btn-lg btn-block hover-button">
+                <button type="button" id="to-professor" url="{% url 'home_professor' %}" class="btn btn-blue btn-lg btn-block hover-button">
                     <span class="button-text"><i class="fas fa-chalkboard-teacher"></i> {% trans "Professor" %}</span>
-                </button>
+                </button>        
             </div>
             {% endif %}
             {% if request.user.is_staff or request.user.is_superuser%}
             <div class="col-12 mt-2">
-                <button type="button" id="to-staff" url="/staff/"  class="btn btn-blue btn-lg btn-block hover-button">
+                <button type="button" id="to-staff" url="{% url 'home_staff' %}" class="btn btn-blue btn-lg btn-block hover-button">
                     <span class="button-text"><i class="fas fa-users"></i> {% trans "Representante" %}</span>
-                </button>
+                </button>                
             </div>
             {% endif %}
             {% if request.user.is_superuser %}
             <div class="col-12 mt-2">
-                <button type="button" id="to-admin" url="/admin/"  class="btn btn-blue btn-lg btn-block hover-button">
+                <button type="button" id="to-admin" url="{% url 'admin:index' %}" class="btn btn-blue btn-lg btn-block hover-button">
                     <span class="button-text"><i class="fas fa-user-cog"></i> {% trans "Administrador" %}</span>
                 </button>
             </div>
