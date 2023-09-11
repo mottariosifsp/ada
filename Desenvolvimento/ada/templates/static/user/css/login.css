@@ -84,8 +84,30 @@ button[type="submit"] {
 input.form-control {
     border: none;
     border-bottom: 1px solid #999;
-    padding: 7px 37px;
     box-sizing: border-box;
+}
+
+.input-group-prepend span {
+    background-color: white !important;
+    border: none !important;
+    border-bottom: 1px solid #999 !important
+}
+
+span.password {
+    margin-bottom: 0px !important;
+}
+
+span#show-hide-password {
+    margin-bottom: -1px !important;
+}
+
+
+.input-group-append {
+    border-bottom: 1px solid #999;
+}
+
+#yourPassword {
+    padding: -1px;
 }
 
 section {
@@ -95,7 +117,6 @@ section {
 
 label {
     position: absolute;
-    left: 7%;
 }
 
 .logo-notlogged {
