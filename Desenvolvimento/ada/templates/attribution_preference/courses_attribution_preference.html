@@ -761,11 +761,9 @@
                         <div class="input-group">
                           <input list="course-options" autocomplete="off" id="course-filter" class="form-control w-100"
                             placeholder="{% trans Selecione %}">
-                          {% blocktrans with name_course_text=course.name_course acronym_text=course.acronym %}
                           <datalist id="course-options">
 
                           </datalist>
-                          {% endblocktrans %}
                         </div>
                       </div>
                       <div>

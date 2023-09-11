@@ -383,7 +383,7 @@ def courses_attribution_preference(request):
 
         user_timetable = []
         for id_block in user_blocks_ids:
-            for timetable_object in Timetable.objects.filter(course__blockk__registration_block_id=id_block):
+            for timetable_object in Timetable.objects.filter(course__blockk__registration_block_id=id_block, course__proficiency__user=user, course__proficiency__is_competent=True):
                 day_combo_objects = timetable_object.day_combo.all()
                 day_combo_data = []
 
@@ -633,6 +633,8 @@ def courses_attribution_preference(request):
         'user_courses': user_courses,
         'user_courses_from_blockk': courses_from_block
     }
+
+    print(user_timetable)
 
     return render(request, 'attribution_preference/courses_attribution_preference.html', data)
 
