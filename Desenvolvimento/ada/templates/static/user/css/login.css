@@ -196,6 +196,10 @@ i, input{
     color: #002119;
 }
 
+button.expand-button b{
+    color: white;
+}
+
 @media (max-width: 990px) {
     .card {
         padding: 0px;
