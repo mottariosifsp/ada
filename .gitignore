@@ -132,6 +132,7 @@ celerybeat.pid
 *.sage.py
 
 # Environments
+env
 .env
 .venv
 env/
@@ -176,6 +177,5 @@ cython_debug/
 #Secret key 
 .dotenv
 
-.env
 
 /migrations/*
