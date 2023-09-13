@@ -282,6 +282,8 @@ $(document).ready(function () {
 
     $('.btn-warning').click(function () {
         var row = $(this).closest('tr');
+        // $('#blockedCourses option:selected').removeAttr('selected');
+        $('#courseDropdown option').prop('selected', false);
         var professorData = {
             first_name: row.find('td:eq(0)').text(),
             last_name: row.find('td:eq(1)').text(),
