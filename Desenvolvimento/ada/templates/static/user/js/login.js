@@ -20,3 +20,15 @@ document.querySelector('form').addEventListener('submit', function(event) {
         passwordInput.classList.remove("is-invalid");
     }
 });
+
+function showPassword() {
+    const passwordInput = document.getElementById('yourPassword');
+    const showHideButton = document.getElementById('show-hide-password');
+
+    if (passwordInput.type === 'password') {
+        passwordInput.type = 'text';
+    } else {
+        passwordInput.type = 'password';
+    }
+ 
+}

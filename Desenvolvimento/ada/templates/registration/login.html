@@ -49,8 +49,16 @@
                                     class="form-label mt-2 {% if request.POST.username %}input-filled{% endif %}">
                                     <i class="fa fa-user"></i>
                                 </label>
-                                <input type="text" name="username" class="form-control" maxlength='9' id="yourUsername"
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text">
+                                            <i class="fa fa-user"></i>
+                                        </span>
+                                    </div>
+                                    <input type="text" name="username" class="form-control" maxlength='9' id="yourUsername"
                                     required placeholder="{% trans 'Prontuário' %}" />
+                                </div>
+                                
                                 <div id="usernameError" class="invalid-feedback">
                                     {% trans "Por favor, insira o seu prontuário" %}.
                                 </div>
@@ -60,12 +68,24 @@
                         <div class="col-12">
                             <div class="form-group has-validation">
                                 <!-- <div class="input-filled">{% trans 'Senha'%}</div> -->
-                                <label for="yourPassword"
-                                    class="mt-2 form-label {% if request.POST.password %}input-filled{% endif %}">
-                                    <i class="fa fa-lock"></i>
+                                
+                                <label for="yourPassword" class="mt-2 form-label {% if request.POST.password %}input-filled{% endif %}">
+                                    <i class="fa fa-lock"></i> Senha
                                 </label>
-                                <input type="password" name="password" class="form-control" id="yourPassword" required
-                                    placeholder="{% trans 'Senha' %}" />
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text password">
+                                            <i class="fa fa-lock"></i>
+                                        </span>
+                                    </div>
+                                    <input type="password" name="password" class="form-control" id="yourPassword" required
+                                        placeholder="{% trans 'Senha' %}" />
+                                    <div class="input-group-append" onclick="showPassword()">
+                                        <span type="button" id="show-hide-password" class="btn">
+                                            <i class="fa fa-eye"></i>
+                                        </span>
+                                    </div>
+                                </div>
                                 <div id="passwordError" class="invalid-feedback">
                                     {% trans "Por favor, insira a sua senha" %}.
                                 </div>
@@ -97,4 +117,5 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0/js/bootstrap.min.js"></script>
 <script src="{% static 'user/js/login.js' %}"></script>
 <script src="vendor/jquery/jquery.min.js"></script>
+
 {% endblock %}

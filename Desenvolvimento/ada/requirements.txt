@@ -4,3 +4,4 @@ python-dotenv
 celery==5.2.7
 redis
 python-decouple
+psycopg2-binary==2.9.1

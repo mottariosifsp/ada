@@ -468,6 +468,10 @@ $("#block-filter").on("input", function() {
                     return course.block === block_id && course.id === timetable.course_id;
                 });
             });
+
+            console.log(user_courses)
+            console.log(timatables_datalist_options)
+            console.log(filtered_timetables)
     
             var course_datalist_options = document.getElementById("course-options");
             course_datalist_options.innerHTML = "";
