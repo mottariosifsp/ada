@@ -488,7 +488,7 @@
                             <input type="text" id="blockedCourses" onkeyup="filterOptions()" placeholder="Pesquisar matéria" class="form-control">
                             <select id="courseDropdown" multiple class="form-control">
                                 {% for course in courses %}
-                                    <option value="{{ course.registration_course_id }}">{{ course.name_course }}</option>
+                                    <option value="{{ course.registration_course_id }}"><b>{{ course.acronym }}</b> - {{ course.name_course }}</option>
                                 {% endfor %}
                             </select>
                         </div>

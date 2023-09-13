@@ -25,7 +25,7 @@ $("document").ready(function () {
         event.preventDefault(); // Impede o envio padrão do formulário
         $("#error-message-form").hide();
         $(".feature3").hide();
-
+        $(this).prop('disabled', true);
         let year = $("#year").val()
         let semester = $("input[name=semester]").val();
         let startFPA = $("#startFPADeadline").val();
@@ -66,7 +66,7 @@ $("document").ready(function () {
                 headers: {
                     'X-CSRFToken': csrftoken
                 }, success: function (response) {
-                    $(this).prop('disabled', true);
+                    // $(this).prop('disabled', true);
                     window.location.href = response.redirect;
                     // console.log(response);
                     // $('#editProfessorModal').modal('hide');
@@ -76,6 +76,7 @@ $("document").ready(function () {
                     if (lang == 'pt-br' || lang == '') {
                         $(".feature3").hide();
                         if (xhr.responseJSON.error == "Já houve uma atribuição para esse semetre neste ano.") {
+                            $("#submit-button").prop('disabled', false);
                             $(".feature3").show();
                             error_message(`
                             Uma atribuição já foi feita no ano ${year} no semestre ${semester}. Para criar uma nova atribuição, selecione
