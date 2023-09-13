@@ -105,12 +105,12 @@ WSGI_APPLICATION = "setup.wsgi.application"
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-        # 'USER': 'ada_postgres',
-        # 'PASSWORD': SECRET_KEY,
-        # 'HOST': 'localhost',
-        # 'PORT': '5432',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'ada_database',
+        'USER': 'ada_postgres',
+        'PASSWORD': SECRET_KEY,
+        'HOST': 'localhost',
+        'PORT': '5432',
     }
 }
 
