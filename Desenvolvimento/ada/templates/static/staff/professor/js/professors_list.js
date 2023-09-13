@@ -41,9 +41,9 @@ $(document).ready(function () {
         
     });
     
-    const tabela = document.getElementById("professors_list");
+    const tabela = document.getElementById('professors_list');
+    tabela.style.width = "100%";
     table.columns.adjust().draw();
-    tabela.css("width", "100%");
 
 
     const linhas = tabela.getElementsByTagName("tr");
