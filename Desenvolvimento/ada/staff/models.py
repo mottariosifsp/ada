@@ -60,3 +60,10 @@ def on_change(sender, instance, **kwargs):
             if criteria != instance:
                 criteria.is_select = False
                 criteria.save()
+
+class Application_logs(models.Model):
+    log_time = models.DateTimeField(auto_now_add=True)
+    log_description = models.CharField(max_length=1000)
+
+    def __str__(self):
+        return f"{self.log_time} - {self.log_description}"

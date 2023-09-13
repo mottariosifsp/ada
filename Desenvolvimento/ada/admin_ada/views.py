@@ -4,11 +4,15 @@ from django.shortcuts import render
 from django.db import transaction
 from django.urls import reverse
 from area.models import Blockk
+from attribution.models import TeacherQueuePosition
 from attribution.views import schedule_attributtion_deadline_staff
-from attribution_preference.models import Course_preference
+from attribution_preference.models import Attribution_preference, Course_preference, Preference_schedule
+from course.models import Course
 from staff.models import Deadline
 from timetable.models import Timetable, Timetable_user
 from django.contrib.auth.decorators import login_required
+
+from user.models import Proficiency, User
 
 @login_required
 def deadline_configuration(request):
@@ -53,9 +57,7 @@ def save_deadline(data):
     if data['overwrite'] == 'true':
         Timetable_user.objects.filter(year=data['year']).update(user=None)
     else:
-        print('oiers')
         for timetable in Timetable.objects.all():
-            print(timetable)
             Timetable_user.objects.create(
                 timetable=timetable,
                 user=None,
@@ -63,7 +65,7 @@ def save_deadline(data):
             )
 
     Deadline.objects.all().delete()   
-    
+
     for blockk_obj in Blockk.objects.all():
         print(blockk_obj.name_block, end=': ')
         Deadline.objects.create(
@@ -80,8 +82,21 @@ def save_deadline(data):
             deadline_end=data['endAssignmentDeadline'],
             blockk=blockk_obj,
         )
-        # if Course_preference.objects.filter(blockk=blockk_obj).exists():
-        #     print('Atribuição iniciada')
-        #     schedule_attributtion_deadline_staff(data['startAssignmentDeadline'], 'startAssignmentDeadline', blockk_obj.registration_block_id, blockk_obj.registration_block_id) 
-        # else:
-        #     print('Atribuição recusa por falta de preferências')
+
+        for user in User.objects.all():
+            for course in Course.objects.all():
+                Proficiency.objects.get_or_create(
+                    user=user,
+                    is_competent=True,
+                    course=course,
+                )
+
+        # fpa = Attribution_preference.objects.filter(year=data['year'])
+
+        if Course_preference.objects.filter(blockk=blockk_obj, attribution_preference__year=data['year']).exists():
+            print('Atribuição iniciada')
+            schedule_attributtion_deadline_staff(data['startAssignmentDeadline'], 'startAssignmentDeadline', blockk_obj.registration_block_id, blockk_obj.registration_block_id) 
+        else:
+            print('Atribuição recusa por falta de preferências')
+
+

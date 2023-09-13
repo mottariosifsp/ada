@@ -31,4 +31,6 @@ urlpatterns = [
     path("atribuicao/confirmar/", attribution_configuration_confirm, name="attribution_configuration_confirm"),
     path("atribuicao/", attribution_configuration_index, name="attribution_configuration_index"),
     path('professor/register/', register, name='register'),
+    path('logs/', views.show_logs, name='show_logs'),
+    path('logs/deletar-logs/', views.delete_logs, name='delete_logs')
 ]

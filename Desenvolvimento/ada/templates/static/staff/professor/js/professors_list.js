@@ -27,7 +27,7 @@ $(document).ready(function () {
                     .replace(/(-\d{4})\d+?$/, '$1');
     }
 
-    $('#professors_list').DataTable({
+    var table = $('#professors_list').DataTable({
         "paging": false,
         "scrollY": "400px",
         "scrollCollapse": true,
@@ -40,8 +40,12 @@ $(document).ready(function () {
         ],
         
     });
-
+    
     const tabela = document.getElementById("professors_list");
+    table.columns.adjust().draw();
+    tabela.css("width", "100%");
+
+
     const linhas = tabela.getElementsByTagName("tr");
 
     for (let i = 1; i < linhas.length; i++) {
@@ -519,6 +523,7 @@ $(document).ready(function () {
             $(this).removeAttr('score');
         }
     });
+
 });
 
 function getCookie(name) {

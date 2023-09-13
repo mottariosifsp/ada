@@ -23,8 +23,8 @@ def finalization_deadline_start():
 @app.task
 def attribution_deadline_start(blockk_id):
     blockk = Blockk.objects.get(registration_block_id=blockk_id)
-    views.start_attribution(blockk)
     views.remove_professors_without_preference(blockk)
+    views.start_attribution(blockk)
     print("attribution_deadline_start")
 
 @app.task
@@ -43,8 +43,7 @@ def times_up(professor_id, blockk_id):
     professor = User.objects.get(id=professor_id)
     blockk = Blockk.objects.get(id=blockk_id)
     views.timestup(professor, blockk)
-    print(f'Tempo do professor {professor} acabou!')
-
+    
 def schedule_task(seconds, professor, blockk, queue):
     i.scheduled()
     i.active()

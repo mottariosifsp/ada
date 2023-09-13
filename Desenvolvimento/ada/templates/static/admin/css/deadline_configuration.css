@@ -92,3 +92,7 @@ article {
     background-color: var(--delete-button-bg);
     color: #fff;
   }
+
+  input:disable{
+      background-color: var(--primary);
+  }

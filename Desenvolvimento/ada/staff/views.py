@@ -17,7 +17,7 @@ from area.models import Blockk, Area
 from classs.models import Classs
 from course.models import Course
 from user.models import Proficiency, AcademicDegreeHistory, User, History, AcademicDegree, Job
-from .models import Deadline, Criteria
+from .models import Application_logs, Deadline, Criteria
 from django.db.models import F, Sum, Value
 from staff.models import Deadline, Alert
 from datetime import datetime, timedelta
@@ -1308,3 +1308,24 @@ def queue_create(request):
         }
 
         return render(request, 'staff/queue/queue_create.html', {'data': data})
+
+@login_required
+def show_logs(request):
+    logs = Application_logs.objects.all().order_by('-log_time')
+
+
+    for log in logs:
+        log.log_time = log.log_time.strftime("%d/%m/%Y %H:%M:%S")
+    return render(request, 'staff/logs/logs.html', {'logs': logs})
+
+@transaction.atomic
+def delete_logs(request):
+
+    logs = request.POST.get('logs')
+    logs = json.loads(logs)
+
+    if logs:
+        for log in logs:
+            Application_logs.objects.filter(id=log).delete()
+
+    return JsonResponse({'message': 'Logs deletados com sucesso.'})

@@ -19,7 +19,7 @@ $("document").ready(function () {
         }
     });
 
-    // $(".feature3").hide();
+    $(".feature3").hide();
     $("#error-message-form").hide();
     $("#submit-button").click(function (event) {
         event.preventDefault(); // Impede o envio padrão do formulário
@@ -66,6 +66,7 @@ $("document").ready(function () {
                 headers: {
                     'X-CSRFToken': csrftoken
                 }, success: function (response) {
+                    $(this).prop('disabled', true);
                     window.location.href = response.redirect;
                     // console.log(response);
                     // $('#editProfessorModal').modal('hide');
