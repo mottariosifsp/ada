@@ -85,12 +85,12 @@
     </div>
     <div class="collapse navbar-collapse justify-content-end" id="navbarToggler">
       <ul class="navbar-nav mx-auto " style="font-size: larger;">
-        <li class="nav-item word-topic"><a class="nav-link title" href="{% url 'show_logs' %}">{% trans "Logs" %}</a>
-        </li>
         <li class="nav-item word-topic"><a class="nav-link title" href="{% url 'timetables' %}">{% trans "Grade" %}</a>
         </li>
         <li class="nav-item word-topic"><a class="nav-link title"
             href="{% url 'professors_list' %}">{% trans "Professor" %}</a></li>
+        <li class="nav-item word-topic"><a class="nav-link title" href="{% url 'show_logs' %}">{% trans "Registro" %}</a>
+        </li>
         <li class="nav-item word-topic"><a class="nav-link title"
             href="{% url 'classes_list' %}">{% trans "Turma" %}</a></li>
         <li class="nav-item word-topic"><a class="nav-link title" href="{% url 'blocks_list' %}" style="color: white">{% trans "Bloco" %}</a>
@@ -164,6 +164,8 @@
                 <!--<i class="bi bi-grid-3x3"></i> <i class="bi bi-table"></i>--> {% trans "Grade" %}</a></div>
             <div class="modal-line"><a class="nav-link title" href="{% url 'professors_list' %}"><i
                   class="fas fa-chalkboard-teacher"></i> {% trans "Professor" %}</a></div>
+            <div class="modal-line"><a class="nav-link title" href="{% url 'show_logs' %}"><i 
+                  class="bi bi-list-task"></i> {% trans "Registro" %}</a></div>
             <div class="modal-line"><a class="nav-link title" href="{% url 'classes_list' %}"><i
                   class="bi bi-easel2"></i>
                 <!--<i class="bi bi-diagram-3"></i>--> {% trans "Turma" %}</a></div>
