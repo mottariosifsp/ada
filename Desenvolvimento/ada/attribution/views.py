@@ -14,7 +14,7 @@ from attribution.models import TeacherQueuePosition
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import user_passes_test
 import json
-from django.db.models import F, Sum, Value  
+from django.db.models import F, Sum, Value
 from django.db import transaction
 from django.utils import timezone
 from datetime import datetime, timedelta, timezone, time
@@ -122,7 +122,7 @@ def timestup(professor, blockk):
     year = Deadline.objects.filter(blockk=blockk).first().year
 
     Application_logs.objects.create(
-                log_description=f'{ year } - { blockk } - { professor.first_name }: tempo acabou, retornando ao final da fila')
+        log_description=f'{ year } - { blockk } - { professor.first_name }: tempo acabou, retornando ao final da fila')
 
     if TeacherQueuePosition.objects.filter(blockk=blockk).count() > 1:
         professor_to_end_queue(professor, blockk)
@@ -133,7 +133,6 @@ def timestup(professor, blockk):
         Deadline.objects.filter(
             blockk=blockk, name='STARTASSIGNMENTDEADLINE').update(
             deadline_end=datetime.now())
-
 
 
 def start_attribution(blockk):
@@ -151,7 +150,7 @@ def start_attribution(blockk):
                 attribution_preference=attribution_preference).all()
 
         Application_logs.objects.create(
-        log_description=f'{ year } - { blockk } - { next_professor_in_queue.teacher.first_name }: atribuicao iniciada')
+            log_description=f'{ year } - { blockk } - { next_professor_in_queue.teacher.first_name }: atribuicao iniciada')
 
         next_attribution(
             timetables_preference,
@@ -233,15 +232,18 @@ def next_attribution(timetables_preference, next_professor_in_queue, blockk):
 
         if (qnt_timetables_assigned + len(timetable_cord)) <= qnt_primary:
 
-            if not set(timetable_cord).intersection(cord_assigned_timetables) or not set(timetable_cord).intersection(cord_other_timetables):
+            if not set(timetable_cord).intersection(cord_assigned_timetables) or not set(
+                    timetable_cord).intersection(cord_other_timetables):
 
                 if validate_timetable(timetable, professor) != True:
-                    print(f'{ professor.first_name }: secundária - { timetable.course } [ falhou ]')
+                    print(
+                        f'{ professor.first_name }: secundária - { timetable.course } [ falhou ]')
                     Application_logs.objects.create(
                         log_description=f'{ year } - { blockk } - { professor.first_name }: secundária - { timetable.course } [ falhou ]')
                     invalidated_timetables.append(timetable)
                 else:
-                    print(f'{ professor.first_name }: secundária - { timetable.course } [ sucesso ]')
+                    print(
+                        f'{ professor.first_name }: secundária - { timetable.course } [ sucesso ]')
                     Application_logs.objects.create(
                         log_description=f'{ year } - { blockk } - { professor.first_name }: secundária - { timetable.course } [ sucesso ]')
                     cord_assigned_timetables.extend(timetable_cord)
@@ -284,25 +286,35 @@ def next_attribution(timetables_preference, next_professor_in_queue, blockk):
                 f'professor { professor.first_name }: entrando em atribuição manual')
             Application_logs.objects.create(
                 log_description=f'{ year } - { blockk } - { professor.first_name }: atribuicao manual iniciada - {SECONDS_TO_PROFESSOR_CHOOSE} segundos restantes')
-            # send_email(professor)
-            schedule_task(SECONDS_TO_PROFESSOR_CHOOSE,professor,blockk,blockk.registration_block_id)
+            # send_email(professor, blockk)
+            schedule_task(
+                SECONDS_TO_PROFESSOR_CHOOSE,
+                professor,
+                blockk,
+                blockk.registration_block_id)
             return
     else:
         if len(cord_assigned_timetables) < len(cord_primary_timetables):
-            print(f'professor { professor.first_name }: faltou aulas para cumprir a quantidade desejada')
-            # send_email(professor)
+            print(
+                f'professor { professor.first_name }: faltou aulas para cumprir a quantidade desejada')
+            # send_email(professor, blockk)
             Application_logs.objects.create(
                 log_description=f'{ year } - { blockk } - { professor.first_name }: atribuicao manual iniciada - {SECONDS_TO_PROFESSOR_CHOOSE} segundos restantes')
-            
-            schedule_task(SECONDS_TO_PROFESSOR_CHOOSE,professor,blockk,blockk.registration_block_id)
+
+            schedule_task(
+                SECONDS_TO_PROFESSOR_CHOOSE,
+                professor,
+                blockk,
+                blockk.registration_block_id)
             return
         professor_to_end_queue(professor, blockk)
         next_professor_in_queue.delete()
         cancel_scheduled_task('task')
-        print(f'professor { professor.first_name }: atribuição finalizada com sucesso!')
+        print(
+            f'professor { professor.first_name }: atribuição finalizada com sucesso!')
         Application_logs.objects.create(
-                log_description=f'{ year } - { blockk } - { professor.first_name }: atribuicao finalizada')
-        
+            log_description=f'{ year } - { blockk } - { professor.first_name }: atribuicao finalizada')
+
         return start_attribution(blockk)
 
 
@@ -353,7 +365,8 @@ def validations(timetable, professor, year):
     is_compentent = False
 
     try:
-        is_compentent = Proficiency.objects.get(user=professor, course=course).is_competent
+        is_compentent = Proficiency.objects.get(
+            user=professor, course=course).is_competent
     except Proficiency.DoesNotExist:
         Proficiency.objects.create(
             user=professor,
@@ -383,12 +396,12 @@ def send_email(professor, blockk):
 
     nome = professor.first_name
     email = professor.email
-
+    registration_block = blockk.registration_block_id
     current_path = os.getcwd()
     with open(current_path + '\\templates\\static\\email\\message.html', 'r', encoding='utf-8') as file:
         message = file.read()
         message = message.format(nome=nome)
-        message = message.format(blockk=blockk)
+        message = message.format(blockk=registration_block)
 
     email = EmailMessage(
         subject,
@@ -461,14 +474,15 @@ def manual_attribution(request):
         timetables = []
         for item in result:
             timetables.append(Timetable.objects.get(id=item['id_timetable']))
-        
-        if TeacherQueuePosition.objects.filter(teacher=request.user).first().position == 0:
+
+        if TeacherQueuePosition.objects.filter(
+                teacher=request.user).first().position == 0:
             timetables_invalidate = manual_attribution_save(
                 timetables, request.user, blockk)
         else:
             return JsonResponse(
                 {'redirect_url': '/atribuicao/atribuicao-manual-erro'})
-            
+
         if timetables_invalidate is not None:
             return render(request, 'attribution/manual_attribution.html')
         else:
@@ -719,18 +733,20 @@ def manual_attribution_save(timetables, professor, blockk):
             print(
                 f'professor { professor.first_name } não pode escolher a grade { timetable.course }')
             Application_logs.objects.create(
-                    log_description=f'{ year } - { blockk } - { professor.first_name }: manual - { timetable.course } [ falhou ]')
+                log_description=f'{ year } - { blockk } - { professor.first_name }: manual - { timetable.course } [ falhou ]')
             invalidated_timetables.append(timetable)
         else:
             Application_logs.objects.create(
-                    log_description=f'{ year } - { blockk } - { professor.first_name }: manual - { timetable.course } [ sucesso ]')
+                log_description=f'{ year } - { blockk } - { professor.first_name }: manual - { timetable.course } [ sucesso ]')
             assign_timetable_professor(timetable, professor)
 
     if len(invalidated_timetables) == 0:
         professor_to_end_queue(professor, blockk)
-        TeacherQueuePosition.objects.filter(teacher=professor, blockk=blockk).delete()
+        TeacherQueuePosition.objects.filter(
+            teacher=professor, blockk=blockk).delete()
 
-        print(f'Professor { professor.first_name } escolheu suas novas aulas com sucesso!')
+        print(
+            f'Professor { professor.first_name } escolheu suas novas aulas com sucesso!')
 
         Application_logs.objects.create(
             log_description=f'{ year } - { blockk } - { professor.first_name }: atribuicao finalizada com sucesso')
@@ -823,10 +839,16 @@ def attribution_detail(request):
 #     return
 def remove_professors_without_preference(blockk):
     year = Deadline.objects.filter(blockk=blockk).first().year
-    for teacherInQueue in TeacherQueuePosition.objects.filter(blockk=blockk).all():
-        fpa = Attribution_preference.objects.filter(user=teacherInQueue.teacher, year=year).first()
+    for teacherInQueue in TeacherQueuePosition.objects.filter(
+            blockk=blockk).all():
+        fpa = Attribution_preference.objects.filter(
+            user=teacherInQueue.teacher, year=year).first()
         if not fpa:
-            if not Course_preference.objects.filter(attribution_preference=fpa).exists() or not Preference_schedule.objects.filter(attribution_preference=fpa).exists():
+            if not Course_preference.objects.filter(
+                    attribution_preference=fpa).exists() or not Preference_schedule.objects.filter(
+                    attribution_preference=fpa).exists():
                 teacherInQueue.delete()
-                TeacherQueuePosition.objects.filter(blockk=blockk, position__gt=teacherInQueue.position).update(position=F('position') - 1)
+                TeacherQueuePosition.objects.filter(
+                    blockk=blockk, position__gt=teacherInQueue.position).update(
+                    position=F('position') - 1)
     return

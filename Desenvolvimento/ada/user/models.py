@@ -76,7 +76,7 @@ class User(AbstractBaseUser, PermissionsMixin):
     date_joined = models.DateTimeField(_('date joined'), auto_now_add=True)
     is_superuser = models.BooleanField(_('superuser status'), default=False)
     is_staff = models.BooleanField(_('staff status'), default=True)
-    is_active = models.BooleanField(_('active'), default=True)  # mudar depois
+    is_active = models.BooleanField(_('active'), default=False)
     is_fgfcc = models.BooleanField(_('fgfcc'), default=False)
     is_professor = models.BooleanField(_('professor'), default=False)
     history = models.ForeignKey(
