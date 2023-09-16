@@ -261,7 +261,7 @@ def next_attribution(timetables_preference, next_professor_in_queue, blockk):
         if len(cord_assigned_timetables) < len(cord_primary_timetables):
             print(
                 f'professor { professor.first_name }: faltou aulas para cumprir a quantidade desejada')
-            # send_email(professor, blockk)
+            send_email(professor, blockk)
             print(
                 f'professor { professor.first_name }: entrando em atribuição manual')
             Application_logs.objects.create(
@@ -286,7 +286,7 @@ def next_attribution(timetables_preference, next_professor_in_queue, blockk):
                 f'professor { professor.first_name }: entrando em atribuição manual')
             Application_logs.objects.create(
                 log_description=f'{ year } - { blockk } - { professor.first_name }: atribuicao manual iniciada - {SECONDS_TO_PROFESSOR_CHOOSE} segundos restantes')
-            # send_email(professor, blockk)
+            send_email(professor, blockk)
             schedule_task(
                 SECONDS_TO_PROFESSOR_CHOOSE,
                 professor,
@@ -297,7 +297,7 @@ def next_attribution(timetables_preference, next_professor_in_queue, blockk):
         if len(cord_assigned_timetables) < len(cord_primary_timetables):
             print(
                 f'professor { professor.first_name }: faltou aulas para cumprir a quantidade desejada')
-            # send_email(professor, blockk)
+            send_email(professor, blockk)
             Application_logs.objects.create(
                 log_description=f'{ year } - { blockk } - { professor.first_name }: atribuicao manual iniciada - {SECONDS_TO_PROFESSOR_CHOOSE} segundos restantes')
 
