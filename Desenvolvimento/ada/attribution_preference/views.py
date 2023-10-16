@@ -1,5 +1,5 @@
 from django.shortcuts import render
-
+# gource
 from .models import Attribution_preference, Preference_schedule, Course_preference
 from django.shortcuts import get_object_or_404
 from course.models import Course

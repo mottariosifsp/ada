@@ -1,5 +1,5 @@
 from enum import Enum
-
+# gource
 class Period(Enum):
     morning = 'MORNING'
     afternoon = 'AFTERNOON'

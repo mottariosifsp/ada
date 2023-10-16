@@ -3,7 +3,7 @@ from django.core.exceptions import ValidationError
 from classs.models import Classs
 from common.validator.validator import convert_to_uppercase
 from area.models import Area
-
+# gource
 
 # Teste que verifica se é ensino médio ou não e captura o semestre
 @pytest.mark.django_db

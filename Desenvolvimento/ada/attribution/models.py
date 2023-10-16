@@ -3,7 +3,7 @@ from area.models import Blockk
 from user.models import User
 from django.db import models
 from django.core.exceptions import ValidationError
-
+# gource
 
 class TeacherQueuePosition(models.Model):
     teacher = models.ForeignKey(User, on_delete=models.CASCADE)

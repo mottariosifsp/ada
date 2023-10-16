@@ -15,3 +15,4 @@ urlpatterns = [
     path("termos-e-condições-de-uso/", terms_and_conditions, name="terms_and_conditions"),
     path("contato", contact, name="contact")
 ]
+# gource

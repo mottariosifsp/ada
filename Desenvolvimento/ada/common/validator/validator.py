@@ -1,6 +1,6 @@
 from django import forms
 from django.core.exceptions import ValidationError
-
+# gource
 # validação campo
 def validate_uppercase(value):
     if value != value.upper():

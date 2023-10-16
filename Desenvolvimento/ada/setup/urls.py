@@ -4,7 +4,7 @@ from django.conf.urls.i18n import i18n_patterns
 from django.utils.translation import gettext_lazy as _
 from user.views import home
 from django.conf.urls import handler404, handler500
-
+# gource
 handler404 = 'user.views.handler404'
 handler500 = 'user.views.handler500'
 

@@ -11,7 +11,7 @@ from course.models import Course
 from staff.models import Deadline
 from timetable.models import Timetable, Timetable_user
 from django.contrib.auth.decorators import login_required
-
+# gource
 from user.models import Proficiency, User
 
 @login_required

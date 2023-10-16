@@ -16,4 +16,5 @@
 1687104194|Lógica atribuição automática com manual
 1687091180|Template para apresntar FPA final de cada usuário
 1687159919|Visualização da atribuição feita
+* para aparecer no gource
 

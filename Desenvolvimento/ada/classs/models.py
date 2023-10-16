@@ -2,7 +2,7 @@ from django.db import models
 from django.utils.translation import gettext_lazy as _
 from common.validator.validator import convert_to_uppercase
 from enums import enum
-
+# gource
 
 class Classs(models.Model):
     registration_class_id = models.CharField(

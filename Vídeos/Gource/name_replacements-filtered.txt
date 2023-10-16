@@ -2029,3 +2029,4 @@
 1687164209|Josineudo Arruda|M|/Desenvolvimento/ada/templates/attribution/attribution_list.html
 1687164209|Josineudo Arruda|A|/Desenvolvimento/ada/templates/static/attribution/js/attribution_list.js
 1687164209|Josineudo Arruda|M|/Desenvolvimento/ada/templates/static/attribution_preference/js/preferred_courses.js
+* para aparecer no gource

@@ -1,5 +1,5 @@
 from django.urls import path
-
+# gource
 from . import views
 from .views import attribution_configuration, attribution_configuration_confirm, attribution_configuration_index, \
     class_create, class_delete, classes_list, classes_list_saved, create_timetable, edit_timetable, show_timetable, \

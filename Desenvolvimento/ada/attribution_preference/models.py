@@ -2,7 +2,7 @@ from django.db import models
 from area.models import Blockk
 from enums import enum
 from django.utils.translation import gettext_lazy as _
-
+# gource
 
 class Attribution_preference(models.Model):  # fpa
     user = models.ForeignKey('user.User', on_delete=models.CASCADE)

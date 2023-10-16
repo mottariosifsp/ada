@@ -3,7 +3,7 @@ from datetime import time
 from django.core.exceptions import ValidationError
 from timetable.models import Timeslot
 from common.validator.validator import validate_incongruity_time, validate_interrupted_time
-
+# gource
 # Utilizado para simular um objeto que vem do banco de dados (QuerySet)
 class MockQuerySet(list): # Herda da classe list
     def all(self): # Retorna todos os objetos do "banco de dados"

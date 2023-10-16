@@ -2757,3 +2757,4 @@
 1687164209|Josineudo Arruda|M|/Desenvolvimento/ada/timetable/migrations/0001_initial.py
 1687164209|Josineudo Arruda|M|/Desenvolvimento/ada/timetable/migrations/0002_initial.py
 1687164209|Josineudo Arruda|M|/Desenvolvimento/ada/user/migrations/0001_initial.py
+* para aparecer no gource
