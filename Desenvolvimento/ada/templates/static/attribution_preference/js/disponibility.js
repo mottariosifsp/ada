@@ -345,6 +345,36 @@ $(document).ready(function() {
     }
   });
 
+  $("#id-year-history").click(function() {
+  
+    var year_id = $("#year-id").val();
+  
+    let csrftoken = get_cookie('csrftoken');
+    
+    $.ajax({
+        type: 'post',
+        url: '/' + lang + '/professor/preferencia-atribuicao/',
+        data: {
+          year_id: year_id
+        },
+        headers: {
+          'X-CSRFToken': csrftoken
+        },
+        success: function (response) {
+          window.location.href = '/' + lang + '/professor/preferencia-atribuicao'
+        },
+        error: function(xhr, textStatus, error) {
+          $('#error-message-form').text('Ocorreu um erro no envio do histórico do FPA.');
+            $('#error-alert-form').show();
+            window.scrollTo({
+              top: $('#error-alert-form').offset().top - $('.navbar').outerHeight() - 30,
+              behavior: 'smooth'
+            });
+            console.log(error);
+        }
+    });
+  });
+
   function get_cookie(name) {
     var cookieValue = null;
     if (document.cookie && document.cookie !== '') {
@@ -537,6 +567,8 @@ function eleven_hours_rule() {
        return true;
    }
 }
+
+
 
 function period_input(value) {
   var element = document.getElementById("period-" + value);

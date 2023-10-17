@@ -29,6 +29,29 @@
     </ol>
   </nav>
 
+  {% if history_fpa %}
+  <div class="col-12">
+    <div class="card mt-2 info-card sales-card">
+        <div class="card-body">
+            <div id="work-regime">
+                <span class="alert info-alert">{% trans 'Notamos que o usuário já fez o FPA em atribuições passada. Caso queira, o docente pode repetir preferências já escolhidas anteriormente.' %}</span>
+                <div class="input-group mt-3">
+                    <input type="text" class="form-control" id="year-id" list="years" placeholder="{% trans 'Selecione o semestre do FPA desejado' %}">
+                    <datalist id="years">
+                        {% for year in array_id_years %}
+                            <option value="{{ year }}">
+                        {% endfor %}
+                    </datalist>
+                    <div class="input-group-append">
+                        <button class="btn btn-primary" type="button" id="id-year-history">{% trans 'Enviar' %}</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+  {% endif %}
+
   <form id="send_disponibility_form" method="post">
     {% csrf_token %}
     <div id="error-alert-form" class="alert alert-danger" style="display: none;">
