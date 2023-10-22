@@ -193,6 +193,10 @@ def terms_and_conditions (request):
     return render(request, 'terms_and_conditions.html')
 
 @login_required
+def about (request):
+    return render(request, 'about.html')
+
+@login_required
 def profile(request):
     professor = request.user
     timeslots_all = Timeslot.objects.all()
