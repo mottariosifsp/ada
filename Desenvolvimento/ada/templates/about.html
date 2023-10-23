@@ -40,7 +40,6 @@
 
         .gallery img {
             width: 100%;
-            margin-top: 20px;
         }
 
     </style>
@@ -57,7 +56,7 @@
                 <div><img class="w-100" src="{% static 'images/about/about-pt.png' %}"></div>
             {% endif %}
 
-            <h3>Equipe</h3>
+            <h3>{% trans "Equipe" %}</h3>
 
             <div class="gallery">
                 {% if LANGUAGE_CODE == "en" %}
