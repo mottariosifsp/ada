@@ -6,6 +6,17 @@
 <title>{% trans "Turmas Atribuições Gerais" %}</title>
 <link rel="stylesheet" href="{% static 'professor/assignment/css/show_assignments.css' %}">
 <link rel="stylesheet" href="{% static 'common/table_window/css/table_window.css' %}" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fomantic-ui/2.9.2/semantic.min.css" />
+<link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/dataTables.semanticui.min.css" />
+<link rel="stylesheet"
+    href="https://datatables.net/release-datatables/extensions/FixedColumns/css/fixedColumns.bootstrap4.css" />
+<link rel="stylesheet" href="https://cdn.datatables.net/select/1.7.0/css/select.dataTables.min.css">
+<link rel="stylesheet" href="https://datatables.net/release-datatables/media/css/dataTables.bootstrap4.css" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.2/moment.min.js"></script>
+<script src="{% static 'staff/logs/js/logs.js' %}" data-lang="{{' LANGUAGE_CODE '}}"></script>
+<script type="text/javascript" src="https://cdn.datatables.net/fixedcolumns/3.2.1/js/dataTables.fixedColumns.min.js">    
+</script>
+<script src="https://cdn.datatables.net/select/1.7.0/js/dataTables.select.min.js"></script>
 {% endblock %}
 
 {% block body %}

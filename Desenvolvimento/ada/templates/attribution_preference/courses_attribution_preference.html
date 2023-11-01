@@ -7,6 +7,17 @@
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
 <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fomantic-ui/2.9.2/semantic.min.css" />
+<link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/dataTables.semanticui.min.css" />
+<link rel="stylesheet"
+    href="https://datatables.net/release-datatables/extensions/FixedColumns/css/fixedColumns.bootstrap4.css" />
+<link rel="stylesheet" href="https://cdn.datatables.net/select/1.7.0/css/select.dataTables.min.css">
+<link rel="stylesheet" href="https://datatables.net/release-datatables/media/css/dataTables.bootstrap4.css" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.2/moment.min.js"></script>
+<script src="{% static 'staff/logs/js/logs.js' %}" data-lang="{{' LANGUAGE_CODE '}}"></script>
+<script type="text/javascript" src="https://cdn.datatables.net/fixedcolumns/3.2.1/js/dataTables.fixedColumns.min.js">    
+</script>
+<script src="https://cdn.datatables.net/select/1.7.0/js/dataTables.select.min.js"></script>
 <title>{% trans "Envio FPA - Disciplinas" %}</title>
 {% endblock %}
 
@@ -78,7 +89,7 @@
           </div>
 
           <div class="table-responsive">
-            <table class="table table-bordered table-sm text-center">
+            <table class="table table-bordered table-sm text-center editable">
               <thead>
                 <tr>
                   <th class="col-1 column text-center align-middle">{% trans "Período" %}</th>
@@ -768,7 +779,7 @@
                       </div>
                       <div>
                         <div id="info-alert" style="display: none">
-                          <table class="table table-sm table-info text-center">
+                          <table class="table table-bordered editable table-sm table-info text-center">
                             <tbody>
                               <tr>
                                 <td>{% trans "Sigla Disciplina" %}</td>

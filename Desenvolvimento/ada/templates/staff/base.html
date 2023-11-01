@@ -85,15 +85,15 @@
     </div>
     <div class="collapse navbar-collapse justify-content-end" id="navbarToggler">
       <ul class="navbar-nav mx-auto " style="font-size: larger;">
+        <li class="nav-item word-topic"><a class="nav-link title" href="{% url 'blocks_list' %}">{% trans "Bloco" %}</a>
+        </li>
+        <li class="nav-item word-topic"><a class="nav-link title"
+          href="{% url 'classes_list' %}">{% trans "Turma" %}</a></li>
         <li class="nav-item word-topic"><a class="nav-link title" href="{% url 'timetables' %}">{% trans "Grade" %}</a>
         </li>
         <li class="nav-item word-topic"><a class="nav-link title"
             href="{% url 'professors_list_index' %}">{% trans "Professor" %}</a></li>
-        <li class="nav-item word-topic"><a class="nav-link title" href="{% url 'show_logs' %}">{% trans "Registro" %}</a>
-        </li>
-        <li class="nav-item word-topic"><a class="nav-link title"
-            href="{% url 'classes_list' %}">{% trans "Turma" %}</a></li>
-        <li class="nav-item word-topic"><a class="nav-link title" href="{% url 'blocks_list' %}" style="color: white">{% trans "Bloco" %}</a>
+        <li class="nav-item word-topic"><a class="nav-link title" href="{% url 'show_logs' %}" style="color: white">{% trans "Registro" %}</a>
         </li>
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownLangLogin" data-toggle="dropdown"
@@ -159,18 +159,18 @@
               </a>
             </div>
             <hr>
+            <div class="modal-line"><a class="nav-link title" href="{% url 'blocks_list' %}"><i class="bi bi-box"></i>
+              {% trans "Bloco" %}</a></div>
+            <div class="modal-line"><a class="nav-link title" href="{% url 'classes_list' %}"><i
+                class="bi bi-easel2"></i>
+                <!--<i class="bi bi-diagram-3"></i>--> {% trans "Turma" %}</a></div>
             <div class="modal-line"><a class="nav-link title" href="{% url 'timetables' %}"><i
-                  class="bi bi-layout-text-window-reverse"></i>
+                class="bi bi-layout-text-window-reverse"></i>
                 <!--<i class="bi bi-grid-3x3"></i> <i class="bi bi-table"></i>--> {% trans "Grade" %}</a></div>
             <div class="modal-line"><a class="nav-link title" href="{% url 'professors_list_index' %}"><i
-                  class="fas fa-chalkboard-teacher"></i> {% trans "Professor" %}</a></div>
+                class="fas fa-chalkboard-teacher"></i> {% trans "Professor" %}</a></div>
             <div class="modal-line"><a class="nav-link title" href="{% url 'show_logs' %}"><i 
-                  class="bi bi-list-task"></i> {% trans "Registro" %}</a></div>
-            <div class="modal-line"><a class="nav-link title" href="{% url 'classes_list' %}"><i
-                  class="bi bi-easel2"></i>
-                <!--<i class="bi bi-diagram-3"></i>--> {% trans "Turma" %}</a></div>
-            <div class="modal-line"><a class="nav-link title" href="{% url 'blocks_list' %}"><i class="bi bi-box"></i>
-                {% trans "Bloco" %}</a></div>
+              class="bi bi-list-task"></i> {% trans "Registro" %}</a></div>
             <div class="modal-line dropdown">
               <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownLangSidebar" data-toggle="dropdown"
                 aria-haspopup="true" aria-expanded="false">
