@@ -64,6 +64,7 @@
                         <th scope="col">{% trans "Regime de trabalho" %}</th>
                         <th scope="col">{% trans "Blocos" %}</th>
                         <th scope="col">{% trans "Diploma Pontuação" %}</th>
+                        <th scope="col">{% trans "Disciplinas bloqueadas" %}</th>
                         <th scope="col">{% trans "Professor" %}</th>
                         <th scope="col">{% trans "Staff" %}</th>
                         <th scope="col">{% trans "FG / FCC" %}</th>
@@ -127,6 +128,14 @@
                                 data-degree-name="{{ academic_degree.name }}"
                                 data-degree-punctuation="{{ academic_degree.punctuation }}">{% trans academic_degree.name %}</span>
                             <br />
+                            {% endfor %}
+                        </td>
+                        <td>
+                            {% for course in blocked_courses %}
+                            {% if course.user == professor%}
+                            <span course-id="{{ course.course.registration_course_id }}" course-name="{{course.course.acronym}} - {{ course.course_name }}">{{course.course.acronym}}</span>
+                            <br />
+                            {% endif %}	
                             {% endfor %}
                         </td>
                         <td class="text-center">
@@ -463,6 +472,33 @@
                             </div>
                         </div>
                     </div>
+                    <label for="blocked_courses" id="blocked-courses-title">{% trans "Disciplinas bloqueadas" %}</label>
+                    <ul id="currentBlockedCourses" class="list-group currentBlockedCourses"></ul>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group" id="newBlockedCoursesFieldsContainer">
+                                <label for="blockedCourseInput">{% trans "Adicionar uma nova disciplina" %}</label>
+                                <div class="d-flex">
+                                    <input id="blockedCourseInput" list="blockedCourses" name="blockeCourses"
+                                        class="flex-grow-1 form-control blockedCourseInput" autocomplete="off"
+                                        style="text-align: center;">
+                                    <datalist id="blockedCourses" class="blockedCoursesDataList">
+                                        {% for blockedCourse in courses %}
+                                        <option class="dropdown-item-class"
+                                            value="{{ blockedCourse.acronym }} - {{ blockedCourse.name_course }}"
+                                            course-id="{{ blockedCourse.registration_course_id }}"
+                                            >{{ blockedCourse.registration_course_id }}
+                                        </option>
+                                        {% endfor %}
+                                    </datalist>
+                                    <button type="button" id="addBlockedCourseBtn" style="margin-left:15px"
+                                        class="btn btn-success addBlockedCourseBtn"><img
+                                            src="{% static 'images/icon-add-certificate.png' %}"
+                                            alt="Adicionar disciplina bloqueada" style="width:22px"></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                     <h3 class="mt-1">{% trans "Cargos do professor" %}</h3>
                     <div class="form-check form-check-inline">
                         <input class="form-check-input" type="checkbox" value="" id="isProfessor">
@@ -483,16 +519,6 @@
                         </label>
                     </div>
 
-                        <div class="form-group mt-6">
-                            <h3 class="mt-3">{% trans "Matérias bloqueadas" %}</h3>
-                            <input type="text" id="blockedCourses" onkeyup="filterOptions()" placeholder="Pesquisar matéria" class="form-control">
-                            <select id="courseDropdown" multiple class="form-control">
-                                {% for course in courses %}
-                                    <option value="{{ course.registration_course_id }}"><b>{{ course.acronym }}</b> - {{ course.name_course }}</option>
-                                {% endfor %}
-                            </select>
-                        </div>
-                    
                         <script>
                             function filterOptions() {
                                 var input, filter, options, select, option, i;

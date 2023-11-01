@@ -1,4 +1,7 @@
 $(document).ready(function() {
+
+    $(".alert-danger").hide();
+
     let table = new DataTable('#blocks_list', {
         responsive: true,
         "paging": false,
@@ -34,9 +37,13 @@ $(document).ready(function() {
             success: function(response) {
                 location.reload();
                 $('#createCourseModal').modal('hide');
-            },
-            error: function(xhr, status, error) {
-                console.log(error);
+            }, error: function (xhr, status, error) {
+                $(".alert-danger").show();
+                if (xhr.responseJSON && xhr.responseJSON.error) {
+                    $(".alert-danger").text(xhr.responseJSON.error);
+                } else {
+                    $(".alert-danger").text("An error occurred.");
+                }
             }
         });
     });
@@ -84,9 +91,13 @@ $(document).ready(function() {
             success: function(response) {
                 location.reload();
                 $('#editCourseModal').modal('hide');
-            },
-            error: function(xhr, status, error) {
-                console.log(error);
+            }, error: function (xhr, status, error) {
+                $(".alert-danger").show();
+                if (xhr.responseJSON && xhr.responseJSON.error) {
+                    $(".alert-danger").text(xhr.responseJSON.error);
+                } else {
+                    $(".alert-danger").text("An error occurred.");
+                }
             }
         });
     });

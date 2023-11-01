@@ -31,10 +31,6 @@
   <script src="https://cdn.datatables.net/v/dt/jq-3.6.0/dt-1.13.4/rr-1.3.3/datatables.min.js"></script>
 
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-
-  <style>
-   
-  </style>
   {% block head %}
 
   {% endblock %}
@@ -92,7 +88,7 @@
         <li class="nav-item word-topic"><a class="nav-link title" href="{% url 'timetables' %}">{% trans "Grade" %}</a>
         </li>
         <li class="nav-item word-topic"><a class="nav-link title"
-            href="{% url 'professors_list' %}">{% trans "Professor" %}</a></li>
+            href="{% url 'professors_list_index' %}">{% trans "Professor" %}</a></li>
         <li class="nav-item word-topic"><a class="nav-link title" href="{% url 'show_logs' %}">{% trans "Registro" %}</a>
         </li>
         <li class="nav-item word-topic"><a class="nav-link title"
@@ -166,7 +162,7 @@
             <div class="modal-line"><a class="nav-link title" href="{% url 'timetables' %}"><i
                   class="bi bi-layout-text-window-reverse"></i>
                 <!--<i class="bi bi-grid-3x3"></i> <i class="bi bi-table"></i>--> {% trans "Grade" %}</a></div>
-            <div class="modal-line"><a class="nav-link title" href="{% url 'professors_list' %}"><i
+            <div class="modal-line"><a class="nav-link title" href="{% url 'professors_list_index' %}"><i
                   class="fas fa-chalkboard-teacher"></i> {% trans "Professor" %}</a></div>
             <div class="modal-line"><a class="nav-link title" href="{% url 'show_logs' %}"><i 
                   class="bi bi-list-task"></i> {% trans "Registro" %}</a></div>
@@ -240,7 +236,7 @@
           <h4 class="mt-lg-0 mt-sm-4">{% trans "Links" %}</h4>
           <!-- <a href="" class="mr-2 footer-link"><span>{% trans "Sobre"%}</span></a> -->
           <a href="{% url 'contact' %}" class="mr-2 footer-link"><span>{% trans "Contato" %}</span></a>
-          <a href="{% url 'about' %}" class="mr-2 footer-link"><span>{% trans "Sobre" %}</span></a>
+<a href="{% url 'about' %}" class="mr-2 footer-link"><span>{% trans "Sobre" %}</span></a>
           <a href="{% url 'privacy_policy' %}" class="mr-2 footer-link"><span>{% trans "Política de Privacidade" %}</span></a>
           <a href="{% url 'terms_and_conditions' %}" class="mr-2 footer-link"><span>{% trans "Termos e Condições de Uso" %}</span></a>
           <div class="row">

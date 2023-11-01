@@ -5,11 +5,12 @@ from .views import attribution_configuration, attribution_configuration_confirm,
     class_create, class_delete, classes_list, classes_list_saved, create_timetable, edit_timetable, show_timetable, \
     home, \
     professors_list, timetables, update_save, blocks_list, block_detail, course_update_save, course_delete, \
-    course_create, queue_create, queue_show, add_new_professor, register
+    course_create, queue_create, queue_show, add_new_professor, register, professors_list_index
 
 urlpatterns = [
     path("", home, name="home_staff"),
-    path("professores/", professors_list, name="professors_list"),
+    path("professores/", professors_list_index, name="professors_list_index"),
+    path("professores/lista/", professors_list, name="professors_list"),
     path("professor-adiciondo/", add_new_professor, name="add_new_professor"),
     path("alteracoes-salvas/", update_save, name="update_save"),
     path("turmas/", classes_list, name="classes_list"),

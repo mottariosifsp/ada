@@ -331,22 +331,57 @@ def save_deadline(data):
         blockk=data['user_block'],
     )
 
+@login_required
+@user_passes_test(is_staff)
+def professors_list_index(request):
+    print(Course_preference.objects.filter(priority=enum.Priority.primary.name))
+    blockks = request.user.blocks.all()
+    blockks_images = []
+
+    for blockk in blockks:
+        blockk_images = {
+            "block": blockk,
+            "image": None
+        }
+        if blockk.registration_block_id == "CNA.151515":
+            blockk_images["image"] = "https://media.discordapp.net/attachments/1081682716531118151/1117328326533595207/OIG.png?width=473&height=473"
+        elif blockk.registration_block_id == "HUM.141414":
+            blockk_images["image"] = "https://media.discordapp.net/attachments/1081682716531118151/1117321570101248030/OIG.png?width=473&height=473"
+        elif blockk.registration_block_id == "LNG.161616":
+            blockk_images["image"] = "https://media.discordapp.net/attachments/1081682716531118151/1117321528380489789/OIG.png?width=473&height=473"
+        elif blockk.registration_block_id == "MAT.131313":
+            blockk_images["image"] = "https://media.discordapp.net/attachments/1081682716531118151/1116866399952961586/dan-cristian-padure-h3kuhYUCE9A-unsplash.jpg?width=710&height=473"
+        elif blockk.registration_block_id == "TEC.121212":
+            blockk_images["image"] = "https://media.discordapp.net/attachments/1081682716531118151/1116866399671951441/roonz-nl-2xEQDxB0ss4-unsplash.jpg?width=842&height=473"
+        elif blockk.registration_block_id == "776292":
+            blockk_images["image"] = "https://media.discordapp.net/attachments/1081682716531118151/1117348338254233680/image.png"
+        blockks_images.append(blockk_images)
+    data = {
+        'blockks': blockks_images
+    }
+    return render(request, 'staff/professor/professors_list_index.html', data)
 # professor views
 @login_required
 @user_passes_test(is_staff)
 def professors_list(request):
-    professors = get_user_model().objects.filter(is_professor=True)
-    degrees = AcademicDegree.objects.all()
-    blockks = Blockk.objects.all()
-    professors_inactive = User.objects.filter(is_professor=True, is_active=False).count
-    courses = Course.objects.all()
-    data = {
-        'professors': professors,
-        'degrees': degrees,
-        'blockks': blockks,
-        'professors_inactive': professors_inactive,
-        'courses': courses
-    }
+    if request.method == 'GET':
+        blockk = Blockk.objects.get(registration_block_id=request.GET.get('blockk'))
+        
+        professors = get_user_model().objects.filter(is_professor=True, blocks=blockk)
+        degrees = AcademicDegree.objects.all()
+        blockks = Blockk.objects.all()
+        professors_inactive = User.objects.filter(is_professor=True, is_active=False, blocks=blockk
+        ).count
+        courses = Course.objects.filter(blockk=blockk)
+        proficiencies = Proficiency.objects.filter(is_competent=False, user__in=professors, course__in=courses)
+        data = {
+            'professors': professors,
+            'degrees': degrees,
+            'blockks': blockks,
+            'professors_inactive': professors_inactive,
+            'courses': courses,
+            'blocked_courses': proficiencies
+        }
 
     return render(request, 'staff/professor/professors_list.html', data)
 
@@ -458,9 +493,8 @@ def update_save(request):
         date_institute = request.POST.get('date_institute')
         job = request.POST.get('job')
         academic_degrees_json = request.POST.get('academic_degrees')
-        blocked_courses = request.POST.getlist('blocked_courses[]')
+        blocked_courses_json = request.POST.get('blocked_courses')
 
-        print(blocked_courses)
         blocks_json = request.POST.get('blocks')
         is_professor = request.POST.get('is_professor') == 'true'
         is_staff = request.POST.get('is_staff')  == 'true'
@@ -495,13 +529,19 @@ def update_save(request):
             return JsonResponse({"error": error}, status=400) 
         
         blocks = json.loads(blocks_json)
+        if len(blocks) == 0:
+            error = "O professor deve estar vinculado a pelo menos um bloco"
+            return JsonResponse({"error": error}, status=400)
+        user.blocks.clear()
         for block in blocks:
             block_obj = Blockk.objects.get(name_block=block)
             user.blocks.add(block_obj)
         user.save()
 
         history = user.history
+        blocked_courses = json.loads(blocked_courses_json)
         print(blocked_courses)
+        Proficiency.objects.filter(user=user, is_competent=False).update(is_competent=True)
         if blocked_courses:
             for blocked_course_id in blocked_courses:
                 course = Course.objects.get(registration_course_id=blocked_course_id)
@@ -601,15 +641,14 @@ def classes_list_saved(request):
 @user_passes_test(is_staff)
 def class_create(request):
     if request.method == 'POST':
-        print("funcionou o if")
         registration_class_id = request.POST.get('registration_class_id')
         period = request.POST.get('period')
         semester = request.POST.get('semester')
         area_id = request.POST.get('area')
 
         area = get_object_or_404(Area, id=area_id)
-
         classs = Classs.objects.create(registration_class_id=registration_class_id, period=period, semester=semester, area=area)
+        
         classs.save()
 
         return JsonResponse({'message': 'Turma criada com sucesso.'})
@@ -670,6 +709,9 @@ def course_create(request):
 
         area = Area.objects.get(id=area_id)
         blockk = Blockk.objects.get(id=block_id)
+
+        if Course.objects.filter(registration_course_id=registration_course_id).exists():
+            return JsonResponse({'error': 'Já existe uma disciplina com esse código de registro.'}, status=400)
         if blockk in user_blocks:
 
             course = Course.objects.create(registration_course_id=registration_course_id, name_course=name_course, acronym=acronym, area=area, blockk=blockk)
@@ -689,7 +731,8 @@ def course_update_save(request):
 
         course = Course.objects.get(id=course_id)
         blockk = course.blockk
-
+        if Course.objects.filter(registration_course_id=registration_course_id).exists():
+            return JsonResponse({'error': 'Já existe uma disciplina com esse código de registro.'}, status=400)
         if blockk in request.user.blocks.all():
             course.update_course(registration_course_id=registration_course_id, name_course=name_course, acronym=acronym)
 
@@ -936,7 +979,11 @@ def save_timetable(course, classs, day_combo):
         Timetable_user.objects.create(timetable=timetable, user=None)
         
     
-def save_combo_day(day, timeslots, course, classs):
+def save_combo_day(day, timeslots, current_course, area, classs):
+    try:
+        course = Course.objects.get(registration_course_id=current_course, area=area)
+    except Course.DoesNotExist:
+        print(f"Curso não existe: {current_course}")
     day_combos = Day_combo.objects.filter(day=day)
     day_combo_valid = Day_combo.objects.none()
 
@@ -970,7 +1017,8 @@ def timetable_combo_saver(timetable, classs):
                     save_combo_day(
                         number_to_day_enum(day_week_number),
                         timeslots, 
-                        Course.objects.get(registration_course_id=current_course,area=classs.area),
+                        current_course,
+                        classs.area,
                         classs
                         )
                     combo_number_timeslot.clear()
@@ -982,7 +1030,8 @@ def timetable_combo_saver(timetable, classs):
                     save_combo_day(
                         number_to_day_enum(day_week_number),
                         timeslots, 
-                        Course.objects.get(registration_course_id=current_course,area=classs.area), 
+                        current_course,
+                        classs.area,
                         classs
                         )
                     combo_number_timeslot.clear()
@@ -994,7 +1043,8 @@ def timetable_combo_saver(timetable, classs):
                     save_combo_day(
                         number_to_day_enum(day_week_number),
                         timeslots, 
-                        Course.objects.get(registration_course_id=current_course,area=classs.area), 
+                        current_course,
+                        classs.area,
                         classs
                         )
                     combo_number_timeslot.clear()
@@ -1005,7 +1055,8 @@ def timetable_combo_saver(timetable, classs):
                     save_combo_day(
                         number_to_day_enum(day_week_number),
                         timeslots, 
-                        Course.objects.get(registration_course_id=current_course,area=classs.area), 
+                        current_course,
+                        classs.area,
                         classs
                         )
                     combo_number_timeslot.clear()  
@@ -1019,7 +1070,8 @@ def timetable_combo_saver(timetable, classs):
                     save_combo_day(
                         number_to_day_enum(day_week_number),
                         timeslots, 
-                        Course.objects.get(registration_course_id=current_course,area=classs.area), 
+                        current_course,
+                        classs.area,
                         classs
                         )
                     combo_number_timeslot.clear()
@@ -1029,11 +1081,12 @@ def timetable_combo_saver(timetable, classs):
                 print(f'salvado {current_course} no dia {number_to_day_enum(day_week_number)}, nos horários {combo_number_timeslot}')
                 timeslots = positions_to_timeslots(combo_number_timeslot)
                 save_combo_day(
-                    number_to_day_enum(day_week_number),
-                    timeslots, 
-                    Course.objects.get(registration_course_id=current_course,area=classs.area), 
-                    classs
-                    )
+                        number_to_day_enum(day_week_number),
+                        timeslots, 
+                        current_course,
+                        classs.area,
+                        classs
+                        )
                 current_course = None
                 combo_number_timeslot.clear()
 
