@@ -129,6 +129,8 @@
                     </button>
                 </div>
                 <div class="modal-body">
+                    <div class="alert alert-danger mt-3" id="error-message-form-edit" role="alert"></div>
+
                     <form>
                         <input type="hidden" class="form-control" id="id">
                         <div class="form-group">
@@ -153,6 +155,7 @@
                         </select>
                     </form>
                 </div>
+                
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">{% trans "Fechar" %}</button>
                     <button type="button" class="btn btn-primary" data-area-id="{{ area.id  }}"
@@ -174,6 +177,8 @@
                     </button>
                 </div>
                 <div class="modal-body">
+                    <div class="alert alert-danger mt-3" id="error-message-form-edit" role="alert"></div>
+
                     <form>
                         <input type="hidden" class="form-control" id="id">
                         <div class="form-group">
