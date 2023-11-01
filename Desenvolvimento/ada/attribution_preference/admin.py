@@ -2,7 +2,7 @@ from django.contrib import admin
 from .models import Attribution_preference
 from .models import Preference_schedule
 from .models import Course_preference
-
+# gource
 class Attribution_preference_admin(admin.ModelAdmin):
     list_display = ('user',)
 

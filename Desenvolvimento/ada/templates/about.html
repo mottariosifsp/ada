@@ -1,0 +1,101 @@
+{% extends "professor/base.html" %}
+{% load i18n %}
+{% load static %}
+{% block head %}
+
+    <title>{% trans "Sobre" %}</title>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+{% endblock %}
+
+
+{% block body %}
+    <style>
+        body {
+            background-color: #366b76 !important;
+        }
+
+        .page-situation {
+            display: none !important;
+        }
+
+        nav.navbar-nav {
+            background: none !important;
+            background-color: #366b76 !important;
+        }
+
+        h4 {
+            margin-top: 20px;
+        }
+
+        p {
+            font-size: 16px;
+            margin-top: 10px;
+            text-align: justify;
+        }
+
+
+        h3 {
+            color: white;
+        }
+
+        .gallery img {
+            width: 100%;
+        }
+
+    </style>
+
+    <div>
+        {% get_current_language as LANGUAGE_CODE %}
+            {% get_available_languages as LANGUAGES %}
+            {% get_language_info_list for LANGUAGES as languages %}
+
+
+            {% if LANGUAGE_CODE == "en" %}
+                <div><img class="w-100" src="{% static 'images/about/about-en.png' %}"></div>
+            {% else %}
+                <div><img class="w-100" src="{% static 'images/about/about-pt.png' %}"></div>
+            {% endif %}
+
+            <h3>{% trans "Equipe" %}</h3>
+
+            <div class="gallery">
+                {% if LANGUAGE_CODE == "en" %}
+                <img  src="{% static 'images/about/about-josineudo-en.png' %}">
+            {% else %}
+                <img  src="{% static 'images/about/about-josineudo-pt.png' %}">
+            {% endif %}
+            {% if LANGUAGE_CODE == "en" %}
+                <img  src="{% static 'images/about/about-gustavo-en.png' %}">
+            {% else %}
+                <img  src="{% static 'images/about/about-gustavo-pt.png' %}">
+            {% endif %}
+            {% if LANGUAGE_CODE == "en" %}
+                <img  src="{% static 'images/about/about-josineudo-en.png' %}">
+            {% else %}
+                <img src="{% static 'images/about/about-josineudo-pt.png' %}">
+            {% endif %}
+            {% if LANGUAGE_CODE == "en" %}
+                <img  src="{% static 'images/about/about-josineudo-en.png' %}">
+            {% else %}
+                <img  src="{% static 'images/about/about-josineudo-pt.png' %}">
+            {% endif %}
+            {% if LANGUAGE_CODE == "en" %}
+                <img  src="{% static 'images/about/about-josineudo-en.png' %}">
+            {% else %}
+                <img  src="{% static 'images/about/about-josineudo-pt.png' %}">
+            {% endif %}
+            {% if LANGUAGE_CODE == "en" %}
+                <img  src="{% static 'images/about/about-paulo-en.png' %}">
+            {% else %}
+                <img  src="{% static 'images/about/about-paulo-pt.png' %}">
+            {% endif %}
+
+            </div>
+    </div>
+
+{% endblock %}
+
+{% block endbody %}
+
+
+{% endblock %}

@@ -36,12 +36,6 @@
                     <h1>{% trans blockk.name_block %}</h1>
                     {% if blockk in user_blocks %}
                     <div class="d-flex ml-auto mr-3">
-
-                        <a href="{% url 'queue_create' %}?blockk={{ blockk.registration_block_id }}" class="mr-3">
-                            <button type="button"
-                                class="btn btn-success float-right createCourseBtn ml-3">{% trans "Criar Fila" %}</button>
-                        </a>
-
                         <a href="{% url 'queue_show' %}?blockk={{ blockk.registration_block_id }}"><button type="button"
                                 class="btn btn-success float-right createCourseBtn"> {% trans "Ver Fila" %}
                             </button></a>

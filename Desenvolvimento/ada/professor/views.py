@@ -4,7 +4,7 @@ from django.contrib.auth.decorators import user_passes_test
 from django.contrib.auth.decorators import login_required
 from django.core import serializers
 from django.contrib.auth import get_user_model
-
+# gource
 from django.utils.decorators import method_decorator
 from timetable.models import Timeslot, Timetable_user, Timetable
 from attribution_preference.models import Attribution_preference
@@ -191,6 +191,10 @@ def privacy_policy(request):
 @login_required
 def terms_and_conditions (request):
     return render(request, 'terms_and_conditions.html')
+
+@login_required
+def about (request):
+    return render(request, 'about.html')
 
 @login_required
 def profile(request):

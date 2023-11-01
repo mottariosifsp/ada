@@ -1,7 +1,7 @@
 from django.db import models
 from django.utils.translation import gettext_lazy as _
 from common.validator.validator import convert_to_uppercase, validate_acronym_length
-
+# gource
 
 class Course(models.Model):
     registration_course_id = models.CharField(

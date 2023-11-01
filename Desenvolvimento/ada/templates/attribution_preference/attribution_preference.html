@@ -27,7 +27,7 @@
                 <div id="work-regime">
                     <div class="float-right message-info-not-started"><i class="far fa-check-circle"></i>
                         {% trans 'FINALIZADA'%}</div>
-                    <h4 class="card-title mt-2">{% trans "Status" %}</h4>
+                    <h4 class="card-title mt-2"><b>{% trans "Status" %}</b></h4>
                 </div>
             </div>
         </div>
@@ -39,7 +39,7 @@
                 <div id="work-regime">
                     <div class="float-right message-info-not-configured"><i class="fas fa-times-circle"></i>
                         {% trans 'NÃO CONFIGURADO'%}</div>
-                    <h4 class="card-title mt-2">{% trans "Status" %}</h4>
+                    <h4 class="card-title mt-2"><b>{% trans "Status" %}</b></h4>
                     <hr class="my-0">
                     <div class="mt-4">
                         <p>{% trans 'Não foi configurado nenhum período de envio de FPAs' %}.
@@ -56,7 +56,7 @@
                 <div id="work-regime">
                     <div class="float-right message-info-done"><i class="fas fa-check-circle"></i>
                         {% trans 'PRÓXIMA ETAPA: ATRIBUIÇÃO'%}</div>
-                    <h4 class="card-title mt-2">{% trans "Status" %}</h4>
+                    <h4 class="card-title mt-2"><b>{% trans "Status" %}</b></h4>
                     <hr class="my-0">
                     <div class="mt-4">
                         <p>{% trans 'O envio de FPAs já finalizou, veja seu FPA e outros em seu perfil' %}.
@@ -73,7 +73,7 @@
                 <div id="work-regime">
                     <div class="float-right message-info-done"><i class="fas fa-check-circle"></i>
                         {% trans 'ATRIBUIÇÃO CONCLUÍDA'%}</div>
-                    <h4 class="card-title mt-2">{% trans "Status" %}</h4>
+                    <h4 class="card-title mt-2"><b>{% trans "Status" %}</b></h4>
                     <hr class="my-0">
                     <div class="mt-4">
                         <p>{% trans 'O envio de FPAs já finalizou, veja seu FPA e outros em seu perfil' %}.
@@ -91,7 +91,7 @@
                     {% if status_fpa == 'configured' %}
                     <div class="float-right message-info-not-started"><i class="fas fa-cog"></i>
                         {% trans 'CONFIGURADO'%}</div>
-                    <h4 class="card-title">{% trans "Status" %}</h4>
+                    <h4 class="card-title"><b>{% trans "Status" %}</b></h4>
                     <hr class="my-0">
                     <div class="mt-4 ml-2">
                         <p><b>{% trans "Início" %}:</b> {% trans start_day %} {% trans "às" %} {{start_time}}</p>
@@ -100,7 +100,7 @@
                     {% elif status_fpa == 'started' and courses_done == 'False' %}
                     <div class="float-right message-info-not-done"><i class="fas fa-clock"></i>
                         {% trans 'AGUARDANDO ENVIO'%}</div>
-                    <h4 class="card-title">{% trans "Status" %}</h4>
+                    <h4 class="card-title"><b>{% trans "Status" %}</b></h4>
                     <hr class="my-0">
                     <div class="mt-4 ml-2">
                         <p><b>{% trans "Início" %}:</b> {% trans start_day %} {% trans "às" %} {{start_time}}</p>
@@ -109,7 +109,7 @@
                     {% else %}
                     <div class="float-right message-info-done"><i class="far fa-check-circle"></i> {% trans 'ENVIADO'%}
                     </div>
-                    <h4 class="card-title">{% trans "Status" %}</h4>
+                    <h4 class="card-title"><b>{% trans "Status" %}</b></h4>
                     <hr class="my-0">
                     <div class="mt-4 ml-2">
                         <p><b>{% trans "Início" %}:</b> {% trans start_day %} {% trans "às" %} {{start_time}}</p>
@@ -125,7 +125,7 @@
             <div class="card-body">
                 <h4 class="card-title">{% trans "Tempo Restante" %}</h4>
                 <hr class="my-0">
-                <div class="text-center">
+                <div class="text-center days-count">
                     <span id="cel-day">{{ context.days }}</span> <span class="cel">{% trans "dias" %}</span>
                     <span id="cel-hour">{{ context.hours }}</span> <span class="cel">{% trans "horas" %}</span>
                     <span id="cel-minute">{{ context.minutes }}</span> <span class="cel">{% trans "minutos" %}</span>

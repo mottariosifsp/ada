@@ -1,6 +1,6 @@
 from django.contrib import admin
 from .models import Day_combo, Timetable, Timeslot, Timetable_user
-
+# gource
 class Timetable_admin(admin.ModelAdmin):
     list_display = ('course', 'classs', 'day_combos', )
     search_fields = ('day_combos',)

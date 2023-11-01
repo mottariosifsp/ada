@@ -17,5 +17,7 @@ def is_blank(values):
             return True
         if value == '-':
             return True
+
+# gource
         
         

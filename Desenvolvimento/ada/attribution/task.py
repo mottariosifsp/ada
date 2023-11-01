@@ -7,7 +7,7 @@ import redis
 from area.models import Blockk
 from user.models import User
 from attribution import views
-
+# gource
 # from attribution.views import professor_to_end_queue
 
 app = Celery('tasks', broker='redis://localhost:6379')

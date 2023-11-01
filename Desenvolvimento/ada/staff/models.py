@@ -2,7 +2,7 @@ from django.db import models
 from django.dispatch import receiver
 from django.utils.translation import gettext_lazy as _
 from django.core.exceptions import ValidationError
-
+# gource
 from common.validator.validator import convert_to_uppercase
 
 class Deadline(models.Model):

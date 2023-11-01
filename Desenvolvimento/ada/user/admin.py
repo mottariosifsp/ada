@@ -1,7 +1,7 @@
 from django.contrib import admin
 from .models import Proficiency, User, AcademicDegree, History
 # Register your models here.
-
+# gource
 class User_admin(admin.ModelAdmin):
     # readonly_fields = ('password',)
     list_display = ('registration_id', 'first_name', 'email',)

@@ -24,7 +24,7 @@ from timetable.models import Timetable, Timeslot, Timetable_user, Day_combo
 from datetime import time
 from attribution_preference.models import Course_preference, Attribution_preference
 from django.utils import timezone
-
+# gource
 User = get_user_model()
 
 

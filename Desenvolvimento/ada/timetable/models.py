@@ -4,7 +4,7 @@ from common.processors import sort_by_time
 from enums import enum
 from django.utils.translation import gettext_lazy as _
 from common.validator.validator import validate_incongruity_time, validate_interrupted_time
-
+# gource
 
 class Timetable(models.Model):
     course = models.ForeignKey(

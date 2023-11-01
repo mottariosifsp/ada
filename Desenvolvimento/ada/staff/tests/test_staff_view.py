@@ -1,5 +1,5 @@
 import pytest
-import json
+import json # gource
 from datetime import datetime, timedelta
 from user.models import User, History, AcademicDegree
 from django.contrib.auth import get_user_model

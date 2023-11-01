@@ -1,5 +1,5 @@
 from django.shortcuts import render
-
+# gource
 from .models import Attribution_preference, Preference_schedule, Course_preference
 from django.shortcuts import get_object_or_404
 from course.models import Course
@@ -24,6 +24,7 @@ def attribution_preference(request):
     # disponibility
     user_regime = request.POST.get('user_regime')
     user_timeslots = request.POST.getlist('user_timeslots')
+    year_id = request.POST.getlist('year_id')
     json_data = [json.loads(item) for item in user_timeslots]
 
     timeslots = []
@@ -53,7 +54,9 @@ def attribution_preference(request):
         if timeslots:
             save_disponiility_preference(timeslots, user_regime, request.user)
         elif timetable:
-            save_courses_preference(timetable, request.user)       
+            save_courses_preference(timetable, request.user)
+        elif year_id:
+            copy_fpa(year_id[0], request.user)
  
         return render(request, 'attribution_preference/courses_attribution_preference.html')
         
@@ -185,6 +188,16 @@ def disponibility_attribution_preference(request):
     if Course_preference.objects.filter(attribution_preference__user=user, attribution_preference__year=id_show).exists():
         Course_preference.objects.filter(attribution_preference__user=user, attribution_preference__year=id_show).delete()
 
+    history_fpa = False
+    if Attribution_preference.objects.filter(user=user).exclude(year=id_show).exists():
+        history_fpa = True
+
+    array_id_years = []
+    if history_fpa:
+        for attribution_preference in Attribution_preference.objects.filter(user=user).exclude(year=id_show):
+            array_id_years.append(attribution_preference.year)
+
+
     shift = {
         'morning': [],
         'morning_classes': 0,
@@ -305,7 +318,9 @@ def disponibility_attribution_preference(request):
         'max_quantity_cells': max_quantity_cells,
         'quantity_cells_3_hours': quantity_cells_3_hours,
         'user_timeslot_table': user_timeslot_table,
-        'user_regime': user_regime_choosed
+        'user_regime': user_regime_choosed,
+        'history_fpa': history_fpa,
+        'array_id_years': array_id_years
     }    
 
     return render(request, 'attribution_preference/disponibility_attribution_preference.html', data)
@@ -930,6 +945,37 @@ def save_disponiility_preference(user_timeslots, user_regime, user):
             day=day_object
         )
 
+@transaction.atomic
+def copy_fpa(year_id, user):
+    if Attribution_preference.objects.filter(user=user,year=year_id).exists():
+        attribution_preference = Attribution_preference.objects.filter(user=user,year=year_id).first()
+
+        try:
+            attribution_deadlines = Deadline.objects.filter(name='STARTFPADEADLINE')
+
+            if attribution_deadlines.exists():
+                now = datetime.datetime.today()
+                status = None
+
+                for attribution_deadline in attribution_deadlines:
+                    if now >= attribution_deadline.deadline_start and now <= attribution_deadline.deadline_end:
+                        
+                        year = attribution_deadline.year
+                        break
+        except Deadline.DoesNotExist:
+            Exception('Deadline does not exist')
+
+        
+        id_show = year
+
+        print(year_id)
+
+        attribution_preference_copy = Attribution_preference.objects.create(user=user,year=id_show,name_job=attribution_preference.name_job)
+        for preference_schedule in Preference_schedule.objects.filter(attribution_preference=attribution_preference):
+            Preference_schedule.objects.create(attribution_preference=attribution_preference_copy,timeslot=preference_schedule.timeslot,day=preference_schedule.day)
+
+        for course_preference in Course_preference.objects.filter(attribution_preference=attribution_preference):
+            Course_preference.objects.create(attribution_preference=attribution_preference_copy,timetable=course_preference.timetable,priority=course_preference.priority,blockk=course_preference.blockk)
 
 @transaction.atomic
 def save_courses_preference(work_courses, user):

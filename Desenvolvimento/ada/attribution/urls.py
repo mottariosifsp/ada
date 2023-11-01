@@ -1,7 +1,7 @@
 from django.urls import path
 from attribution.views import attribution, attribution_detail, email_test, manual_attribution, manual_attribution_confirm, \
     manual_attribution_timesup, attribution_class_list
-
+# gource
 app_name = 'attribution'
 
 urlpatterns = [
