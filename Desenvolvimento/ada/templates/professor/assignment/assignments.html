@@ -29,24 +29,26 @@
     </ol>
 </nav>
 
-    <div class="row">
-
-        {% for block in blockks %}
-            <div class="col-lg-6 mb-1 mb-lg-4 block-card">
-                <a href="{% url 'assignments_classs_list' name_block=block.block.name_block %}" class="blockk-link">
-                    <div class="hover hover-5 text-white rounded">
-                        <img src="{{ block.image }}" alt="">
-                        <div class="hover-overlay"></div>
-                        <div class="hover-5-content">
-                            <h3 class="hover-5-title text-uppercase font-weight-light mb-0">
-                                <strong
-                                        class="font-weight-bold text-white">{% trans block.block.name_block %}</strong><br><span>{% trans "Ver atribuições" %}</span>
-                            </h3>
-                        </div>
+<div class="card">
+    <div class="card-body">
+            <div class="row">
+                {% for block in blockks %}
+                    <div class="col-lg-6 mb-1 mb-lg-4 block-card">
+                        <a href="{% url 'assignments_classs_list' name_block=block.block.name_block %}" class="blockk-link">
+                            <div class="hover hover-5 text-white rounded">
+                                <img src="{{ block.image }}" alt="">
+                                <div class="hover-overlay"></div>
+                                <div class="hover-5-content">
+                                    <h3 class="hover-5-title text-uppercase font-weight-light mb-0">
+                                        <strong
+                                                class="font-weight-bold text-white">{% trans block.block.name_block %}</strong><br><span>{% trans "Ver atribuições" %}</span>
+                                    </h3>
+                                </div>
+                            </div>
+                        </a>
                     </div>
-                </a>
+                {% endfor %}
             </div>
-        {% endfor %}
+        </div>
     </div>
-
 {% endblock %}

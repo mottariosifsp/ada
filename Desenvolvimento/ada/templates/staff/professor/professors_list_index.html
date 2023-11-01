@@ -32,20 +32,24 @@
 <div class="">
   <h3 class="font-weight-bold mb-0">{% trans "Escolha um bloco para acessar a lista" %}</h3>
   <p class="font-italic text-muted mb-4">{% trans "Adicione ou edite professores do seu bloco" %}.</p>
-  <div class="row">
-    <!-- DEMO 5 Item-->
-    {% for block in blockks %}
-    <div class="col-lg-6 mb-1 mb-lg-4 block-card" data-block-name="{{ block.block.name_block }}"
-      onclick="redirect('{{ block.block.registration_block_id }}')">
-      <div class="hover hover-5 text-white rounded"><img src="{{block.image}}" alt="">
-        <div class="hover-overlay"></div>
-        <div class="hover-5-content">
-          <h3 class="hover-5-title text-uppercase font-weight-light mb-0"><strong
-            class="font-weight-bold text-white">{% trans block.block.name_block %}</strong><br><span>{% trans "Acessar" %}</span></h3>
+  <div class="card">
+    <div class="card-body">
+      <div class="row">
+        <!-- DEMO 5 Item-->
+        {% for block in blockks %}
+        <div class="col-lg-6 mb-1 mb-lg-4 block-card" data-block-name="{{ block.block.name_block }}"
+          onclick="redirect('{{ block.block.registration_block_id }}')">
+          <div class="hover hover-5 text-white rounded"><img src="{{block.image}}" alt="">
+            <div class="hover-overlay"></div>
+            <div class="hover-5-content">
+              <h3 class="hover-5-title text-uppercase font-weight-light mb-0"><strong
+                class="font-weight-bold text-white">{% trans block.block.name_block %}</strong><br><span>{% trans "Acessar" %}</span></h3>
+            </div>
+          </div>
         </div>
+        {% endfor %}
       </div>
     </div>
-    {% endfor %}
   </div>
 </div>
 {% endblock %}

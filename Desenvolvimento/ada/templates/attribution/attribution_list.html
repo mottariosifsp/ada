@@ -37,7 +37,7 @@
         <td>{{ blockk.registration_block_id }}</td>
         <td>{% trans blockk.name_block %}</td>
         <td>{% trans blockk.acronym %}</td>
-        <td><a href="{% url 'block_detail' blockk.registration_block_id %}"><button type="button"
+        <td class="text-center"><a href="{% url 'block_detail' blockk.registration_block_id %}"><button type="button"
               class="btn btn-primary editProfessorBtn"><i class="bi bi-eye"></i></button></a></td>
       </tr>
       {% endfor %}
