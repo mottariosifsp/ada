@@ -22,12 +22,14 @@
 {% block body %}
 {{ block.super }}
 
-<h1 class="title-page mt-4">{% trans "Professores" %}</h1>
+<h1 class="title-page mt-4">{% trans "Professores" %} do bloco {{ current_blockk }}</h1>
+<h2 class="title-page"> </h2>
 <hr>
 <nav>
     <ol class="breadcrumb">
         <li class="breadcrumb-item"><a href="{% url 'home_staff' %}"><i class="bi bi-house-door"></i></a></li>
-        <li class="breadcrumb-item active" aria-current="page">{% trans "Professores" %}</li>
+        <li class="breadcrumb-item active" aria-current="page" ><a href="{% url 'professors_list_index' %}">{% trans "Professores" %}</a></li>
+        <li class="breadcrumb-item active" aria-current="page">{{ current_blockk }}</li>
     </ol>
 </nav>
 

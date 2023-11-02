@@ -67,6 +67,7 @@ $(document).ready(function() {
     $('#saveUpdateBtn').click(function() {
         var courseId = $('#editCourseModal').data('course-id');
         var registration_course_id = $('#registration_course_id_update').val();
+        var old_registration_course_id = $('#registration_course_id_update').data('old-registration-course-id');
         var name_course = $('#name_course_update').val();
         var acronym = $('#acronym_update').val();
 
@@ -75,6 +76,7 @@ $(document).ready(function() {
             registration_course_id: registration_course_id,
             name_course: name_course,
             acronym: acronym,
+            old_registration_course_id: old_registration_course_id
         };
 
 
@@ -104,6 +106,7 @@ $(document).ready(function() {
 
     function populateModal(courseData) {
         $('#editCourseModal #registration_course_id_update').val(courseData.registration_course_id);
+        $('#editCourseModal #registration_course_id_update').data('old-registration-course-id', courseData.registration_course_id);
         $('#editCourseModal #name_course_update').val(courseData.name_course);
         $('#editCourseModal #acronym_update').val(courseData.acronym);
     }

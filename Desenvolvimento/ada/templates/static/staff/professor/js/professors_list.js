@@ -99,7 +99,8 @@ $(document).ready(function () {
         let blocked_course_deleted = $(this).closest("li").find(".blocked-course-name").text();
         let blocked_course_id_deleted = $(this).closest("li").find(".blocked-course-name").attr("course-id");
         addOptionBlockedCourses(blocked_course_deleted, blocked_course_id_deleted);
-        allBlockedCourses.pop(blocked_course_id_deleted);
+        index = allBlockedCourses.indexOf(blocked_course_id_deleted);
+        allBlockedCourses.splice(index, 1);
         console.log(allBlockedCourses);
 
     });
@@ -149,7 +150,10 @@ $(document).ready(function () {
         $(this).closest("li").remove();
         let block_deleted = $(this).closest("li").find(".block-name").text();
         addOption(block_deleted);
-        allblocks.pop(block_deleted);
+        console.log("Bloco deletado: ",block_deleted);
+        index = allblocks.indexOf(block_deleted);
+        allblocks.splice(index, 1);
+        console.log(allblocks);
     });
 
     function addOption(name_blockk){
@@ -218,7 +222,10 @@ $(document).ready(function () {
     $(document).on("click", ".btn-remove-academic-degree", function () {
         $(this).closest("li").remove();
         let degree_deleted = $(this).closest("li").find(".academic-degree-name").text();
-        allacademicDegrees.pop(degree_deleted);
+        console.log("Diploma deletado: ",degree_deleted);
+        index = allacademicDegrees.indexOf(degree_deleted);
+        allacademicDegrees.splice(index, 1);
+
     });
 
     // Limpa os campos do modal quando ele é fechado

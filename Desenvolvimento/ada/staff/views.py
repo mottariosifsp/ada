@@ -375,6 +375,7 @@ def professors_list(request):
         courses = Course.objects.filter(blockk=blockk)
         proficiencies = Proficiency.objects.filter(is_competent=False, user__in=professors, course__in=courses)
         data = {
+            'current_blockk': blockk,
             'professors': professors,
             'degrees': degrees,
             'blockks': blockks,
@@ -623,13 +624,19 @@ def classes_list_saved(request):
         period = request.POST.get('period')
         semester = request.POST.get('semester')
         area = request.POST.get('area')
-        print(registration_class_id)
+
+        if old_registration_class_id != registration_class_id:
+            if Classs.objects.filter(registration_class_id=registration_class_id).exists():
+                return JsonResponse({'error': 'Já existe uma turma com esse código de registro.'}, status=400)
+
         classs = Classs.objects.filter(registration_class_id=old_registration_class_id).all()
-        print(classs)
+        
         if classs is not None:
             classs.update(registration_class_id=registration_class_id, period=period, semester=semester, area=area)
-            print("funcionou o history")
+            
         else:
+            if Classs.objects.filter(registration_class_id=registration_class_id).exists():
+                return JsonResponse({'error': 'Já existe uma turma com esse código de registro.'}, status=400)
             classs = Classs.objects.create(registration_class_id=registration_class_id, period=period,
                                            semester=semester, area=area)
             classs.save()
@@ -647,6 +654,10 @@ def class_create(request):
         area_id = request.POST.get('area')
 
         area = get_object_or_404(Area, id=area_id)
+
+        if Classs.objects.filter(registration_class_id=registration_class_id).exists():
+            return JsonResponse({'error': 'Já existe uma turma com esse código de registro.'}, status=400)        
+
         classs = Classs.objects.create(registration_class_id=registration_class_id, period=period, semester=semester, area=area)
         
         classs.save()
@@ -728,10 +739,11 @@ def course_update_save(request):
         registration_course_id = request.POST.get('registration_course_id')
         name_course = request.POST.get('name_course')
         acronym = request.POST.get('acronym')
+        old_registration_course_id = request.POST.get('old_registration_course_id')
 
         course = Course.objects.get(id=course_id)
         blockk = course.blockk
-        if Course.objects.filter(registration_course_id=registration_course_id).exists():
+        if Course.objects.filter(registration_course_id=registration_course_id).exists() and registration_course_id != old_registration_course_id:
             return JsonResponse({'error': 'Já existe uma disciplina com esse código de registro.'}, status=400)
         if blockk in request.user.blocks.all():
             course.update_course(registration_course_id=registration_course_id, name_course=name_course, acronym=acronym)

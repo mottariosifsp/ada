@@ -1,5 +1,7 @@
 
 $(document).ready(function() {
+    $(".alert-danger").hide();
+
     let table = new DataTable('#classes_list', {
         responsive: true,
         "paging": false,
@@ -15,6 +17,7 @@ $(document).ready(function() {
     });
     
     $('#saveCreateBtn').click(function() {
+        $(".alert-danger").hide();
         var registration_class_id = $('#registration_class_id_create').val();
         var period = $('#period_create').val();
         var semester = $('#semester_create').val();
@@ -41,9 +44,13 @@ $(document).ready(function() {
                 location.reload();
                 console.log(response);
                 $('#createClassModal').modal('hide');
-            },
-            error: function(xhr, status, error) {
-                console.log(error);
+            }, error: function (xhr, status, error) {
+                $(".alert-danger").show();
+                if (xhr.responseJSON && xhr.responseJSON.error) {
+                    $(".alert-danger").text(xhr.responseJSON.error);
+                } else {
+                    $(".alert-danger").text("An error occurred.");
+                }
             }
         });
     });
@@ -53,6 +60,8 @@ $(document).ready(function() {
     // Editar turma
 
     $('.editClassBtn').click(function() {
+        $(".alert-danger").hide();
+
         var row = $(this).closest('tr');
         var rowData = table.row(row).data(); // Obtenha os dados da linha usando DataTables
 
@@ -74,6 +83,7 @@ $(document).ready(function() {
     function populateModal(classData) {
         classEditing = classData.registration_class_id;
         $('#editClassModal').find('#registration_class_id_edit').val(classData.registration_class_id);
+        $('#editClassModal').find('#registration_class_id_edit').data('old-registration-class-id', classData.registration_class_id);
         $('#editClassModal').find('#period_edit').val(classData.period);
         $('#editClassModal').find('#semester_edit').val(classData.semester);
 
@@ -96,12 +106,13 @@ $(document).ready(function() {
 
     $('#saveUpdateClassBtn').click(function() {
         var registration_class_id = $('#registration_class_id_edit').val();
+        var old_registration_class_id = $('#registration_class_id_edit').data('old-registration-class-id');
         var period = $('#period_edit').val();
         var semester = $('#semester_edit').val();
         var area = $('#area_edit').val();
         
         var data = {
-            old_registration_class_id: classEditing,
+            old_registration_class_id: old_registration_class_id,
             registration_class_id: registration_class_id,
             period: period,
             semester: semester,
@@ -123,9 +134,13 @@ $(document).ready(function() {
                 location.reload();
                 console.log(response);
                 $('#editClassModal').modal('hide');
-            },
-            error: function(xhr, status, error) {
-                console.log(error);
+            }, error: function (xhr, status, error) {
+                $(".alert-danger").show();
+                if (xhr.responseJSON && xhr.responseJSON.error) {
+                    $(".alert-danger").text(xhr.responseJSON.error);
+                } else {
+                    $(".alert-danger").text("An error occurred.");
+                }
             }
         });
         console.log("funcionou o ajax")
