@@ -3,9 +3,9 @@
 {% load static %}
 
 {% block head %}
-<title>{% trans "Configurar Atribuição" %}</title>
+<title>{% trans "Lista de professores" %}</title>
 <link rel="stylesheet" href="{% static 'staff/attribution/css/attribution_configuration_index.css' %}">
-<script src="{% static 'staff/attribution/js/attribution_configuration_index.js' %}" data-lang={{ LANGUAGE_CODE }}>
+<script src="{% static 'staff/professor/js/professor_list_index.js' %}" data-lang={{ LANGUAGE_CODE }}>
 </script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fomantic-ui/2.9.2/semantic.min.css" />
 <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/dataTables.semanticui.min.css" />
@@ -20,18 +20,17 @@
 <script src="https://cdn.datatables.net/select/1.7.0/js/dataTables.select.min.js"></script>
 {% endblock %}
 {% block body %}
-<h1 class="title-page mt-4">{% trans "Configurar Atribuição" %}</h1>
+<h1 class="title-page mt-4">{% trans "Lista de professores" %}</h1>
 <hr>
 <nav>
   <ol class="breadcrumb">
     <li class="breadcrumb-item"><a href="{% url 'home_staff' %}"><i class="bi bi-house-door"></i></a></li>
-    <li class="breadcrumb-item active" aria-current="page">{% trans "Configurar Atribuição" %}</li>
-    <li class="breadcrumb-item active">{% trans "Seus Blocos" %}</li>
+    <li class="breadcrumb-item active">{% trans "Lista de professores" %}</li>
   </ol>
 </nav>
 <div class="">
-  <h3 class="font-weight-bold mb-0">{% trans "Escolha um bloco para configurar" %}</h3>
-  <p class="font-italic text-muted mb-4">{% trans "Crie ou edite as filas e os prazos dos seus blocos" %}.</p>
+  <h3 class="font-weight-bold mb-0">{% trans "Escolha um bloco para acessar a lista" %}</h3>
+  <p class="font-italic text-muted mb-4">{% trans "Adicione ou edite professores do seu bloco" %}.</p>
   <div class="card">
     <div class="card-body">
       <div class="row">
@@ -43,7 +42,7 @@
             <div class="hover-overlay"></div>
             <div class="hover-5-content">
               <h3 class="hover-5-title text-uppercase font-weight-light mb-0"><strong
-                class="font-weight-bold text-white">{% trans block.block.name_block %}</strong><br><span>{% trans "Configurar" %}</span></h3>
+                class="font-weight-bold text-white">{% trans block.block.name_block %}</strong><br><span>{% trans "Acessar" %}</span></h3>
             </div>
           </div>
         </div>

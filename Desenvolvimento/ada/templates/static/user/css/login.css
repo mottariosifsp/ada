@@ -64,6 +64,14 @@ input {
 .btn-language {
     border: 1px solid #3F927E;
     color: white;
+    margin-left: 0 !important;
+}
+
+.btn-logout{
+    padding: 10px 20px;
+    margin-right: 0 !important;
+    border: 1px solid #c04444;
+    color: white;
 }
 
 button[type="submit"] {

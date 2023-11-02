@@ -55,6 +55,72 @@ $(document).ready(function () {
     
 
     var allblocks = [];
+    var allBlockedCourses = [];
+
+    // Adiciona disciplinas bloqueadas
+
+    $('#blockedCourseInput').on('input', function() {
+        var inputVal = $(this).val();
+        var option = $('datalist#blockedCourses option[value="' + inputVal + '"]').first();
+    
+        if (option.length > 0) {
+          var courseId = option.attr('course-id');
+          $(this).attr('course-id', courseId);
+        } else {
+          $(this).removeAttr('course-id');
+        }
+      });
+
+    $(".addBlockedCourseBtn").on("click", function () {
+        var parent = $(this).closest(".d-flex");
+        if(parent.find(".blockedCourseInput").val() === "" || parent.find(".blockedCourseInput").val === undefined) {
+            return;
+        }
+        blocked_course_name = parent.find(".blockedCourseInput").val();
+        blocked_course_id = parent.find(".blockedCourseInput").attr("course-id");        
+
+        addBlockedCourseToList(blocked_course_name, blocked_course_id);
+        $(".blockedCourseInput").val("");
+    });
+
+    function addBlockedCourseToList(blocked_course_name, blocked_course_id) {
+        $(".currentBlockedCourses").append(
+            "<li class='list-group-item d-flex align-items-center'><span class='blocked-course-name' course-id='"+blocked_course_id+"'>" +
+            blocked_course_name + "</span><button type='button' class='btn btn-danger deleteClassBtn btn-remove-blocked-course ml-auto'><i class='bi bi-trash'></i></button></li>"
+        );
+        removeOptionBlockedCourses(blocked_course_name);
+        allBlockedCourses.push(blocked_course_id);
+        console.log(allBlockedCourses);
+
+    }
+
+    $(document).on("click", ".btn-remove-blocked-course", function () {
+        $(this).closest("li").remove();
+        let blocked_course_deleted = $(this).closest("li").find(".blocked-course-name").text();
+        let blocked_course_id_deleted = $(this).closest("li").find(".blocked-course-name").attr("course-id");
+        addOptionBlockedCourses(blocked_course_deleted, blocked_course_id_deleted);
+        index = allBlockedCourses.indexOf(blocked_course_id_deleted);
+        allBlockedCourses.splice(index, 1);
+        console.log(allBlockedCourses);
+
+    });
+
+    function addOptionBlockedCourses(name_course, id_course){
+        $(".blockedCoursesDataList option").each(function(){
+            if($(this).val() == name_course){
+                $(this).attr("disabled", false);
+            }
+        });
+    }
+
+    function removeOptionBlockedCourses(name_course){
+        $(".blockedCoursesDataList option").each(function(){
+            if($(this).val() == name_course){
+                // $(this).remove();
+                $(this).attr("disabled", true);
+            }
+        });
+    } 
 
     // Adiciona um diploma à lista de diplomas do professor
 
@@ -64,6 +130,7 @@ $(document).ready(function () {
             return;
         }
         block_name = parent.find(".blockInput").val();
+        
         addBlockToList(block_name);
 
         $(".blockInput").val("");
@@ -83,7 +150,10 @@ $(document).ready(function () {
         $(this).closest("li").remove();
         let block_deleted = $(this).closest("li").find(".block-name").text();
         addOption(block_deleted);
-        allblocks.pop(block_deleted);
+        console.log("Bloco deletado: ",block_deleted);
+        index = allblocks.indexOf(block_deleted);
+        allblocks.splice(index, 1);
+        console.log(allblocks);
     });
 
     function addOption(name_blockk){
@@ -109,11 +179,14 @@ $(document).ready(function () {
     });
     $('#editProfessorModal').on('hidden.bs.modal', function () {
         $(".currentBlocksList").empty();
+        $(".currentBlockedCourses").empty();
         $(".blockInput").val("");
+
         for (let i = 0; i < allblocks.length; i++) {
             addOption(allblocks[i]);
         }
         allblocks = [];
+        allBlockedCourses = [];
     });
 
     var allacademicDegrees = [];
@@ -149,7 +222,10 @@ $(document).ready(function () {
     $(document).on("click", ".btn-remove-academic-degree", function () {
         $(this).closest("li").remove();
         let degree_deleted = $(this).closest("li").find(".academic-degree-name").text();
-        allacademicDegrees.pop(degree_deleted);
+        console.log("Diploma deletado: ",degree_deleted);
+        index = allacademicDegrees.indexOf(degree_deleted);
+        allacademicDegrees.splice(index, 1);
+
     });
 
     // Limpa os campos do modal quando ele é fechado
@@ -282,6 +358,7 @@ $(document).ready(function () {
 
     $('.btn-warning').click(function () {
         var row = $(this).closest('tr');
+        $(".alert-danger").hide();
         // $('#blockedCourses option:selected').removeAttr('selected');
         $('#courseDropdown option').prop('selected', false);
         var professorData = {
@@ -300,6 +377,7 @@ $(document).ready(function () {
             job: row.find('td:eq(12)').text(),
             blocks: [],
             academic_degrees: [],
+            blockedCourses: [],
             is_professor: false,
             is_staff: false,
             is_fgfcc: false
@@ -322,22 +400,33 @@ $(document).ready(function () {
             };
             professorData.academic_degrees.push(degree);
         });
+        row.find('td:eq(15)').find('span').each(function () {
+            var courseId = $(this).attr('course-id');
+            var courseName = $(this).attr('course-name');
+            var course = {
+                courseid: courseId, coursename: courseName
+            };
+            if (courseId !== undefined && courseId.trim() !== "" &&
+                courseName !== undefined && courseName.trim() !== "") {
+                professorData.blockedCourses.push(course);
+            }
+        });
 
-        row.find('td:eq(15)').find('i').each(function () {
+        row.find('td:eq(16)').find('i').each(function () {
             var isProfessor = $(this).attr('is') === 'true';
 
             if (isProfessor) {
                 professorData.is_professor = true;
             }
         });
-        row.find('td:eq(16)').find('i').each(function () {
+        row.find('td:eq(17)').find('i').each(function () {
             var isStaff = $(this).attr('is') === 'true';
 
             if (isStaff) {
                 professorData.is_staff = true;
             }
         });	
-        row.find('td:eq(17)').find('i').each(function () {
+        row.find('td:eq(18)').find('i').each(function () {
             var isFGFCC = $(this).attr('is') === 'true';
 
             if (isFGFCC) {
@@ -408,6 +497,11 @@ $(document).ready(function () {
             console.log(professorData.academic_degrees[i].name);
         }
 
+        for (var i = 0; i < professorData.blockedCourses.length; i++) {
+            var course = professorData.blockedCourses[i];
+            addBlockedCourseToList(course.coursename, course.courseid);
+        }
+
         if (professorData.is_professor) {
             $('#editProfessorModal').find('#isProfessor').prop('checked', true);
         } else {
@@ -442,14 +536,7 @@ $(document).ready(function () {
 
 
         var select = document.getElementById("courseDropdown");
-        var blockedCourses = [];
         
-        for (var i = 0; i < select.options.length; i++) {
-            var option = select.options[i];
-            if (option.selected) {
-                blockedCourses.push(option.value);
-            }
-        }
 
         var first_name = $('#first_name').val();
         var last_name = $('#last_name').val();
@@ -469,7 +556,7 @@ $(document).ready(function () {
         var is_professor = $('#isProfessor').is(':checked');
         var is_staff = $('#isStaff').is(':checked');
         var is_fgfcc = $('#isFGFCC').is(':checked');
-        var blocked_courses = blockedCourses;
+        var blocked_courses = JSON.stringify(allBlockedCourses);
 
         var data = {
             first_name: first_name,
@@ -505,12 +592,11 @@ $(document).ready(function () {
                 $(".alert-danger").hide();
             }, error: function (xhr, status, error) {
                 $("#error-message-form-edit").show();
-                if (lang == 'pt-br' || lang == '') {
+                if (xhr.responseJSON && xhr.responseJSON.error) {
                     $("#error-message-form-edit").text(xhr.responseJSON.error);
                 } else {
                     $("#error-message-form-edit").text("An error occurred.");
                 }
-                
             }
         });
         academic_degrees = [];

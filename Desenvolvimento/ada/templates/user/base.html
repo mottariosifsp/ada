@@ -56,41 +56,59 @@
     </nav>
     {% else %}
     <nav class="navbar navbar-expand-lg fixed-top">
-      <div class="d-flex justify-content-between align-items-center w-100">
-        <div class="nav-brand mr-auto mt-3">
-          <a class="logo" href="{% url 'home' %}">
-            <img class="ada-logo" src="{% static 'images/logo_bg.png' %}" alt="logo ADA">
+    <div class="d-flex justify-content-between align-items-center w-100">
+      <div class="nav-brand mr-auto mt-3">
+        <a class="logo" href="{% url 'home' %}">
+          <img class="ada-logo" src="{% static 'images/logo_bg.png' %}" alt="logo ADA">
+        </a>
+      </div>
+
+      <div class="d-flex align-items-center">
+        <div class="nav-link">
+          <a class="btn btn-logout mr-2" href="{% url 'logout' %}">
+            <i class="fa fa-sign-out"></i> Sair
           </a>
         </div>
-      </div>
-      <div class="nav-item dropdown language-icon-notlogged top-right justify-content-end">
-        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownLangLogin" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          {% get_current_language as LANGUAGE_CODE %}
-          <button class="btn-home btn-language" readonly>{% if LANGUAGE_CODE == 'en' %}EN{% else %}PT{% endif %}</button>
-        </a>
-        <div class="dropdown-menu dropdown-menu-right dropdown-login" aria-labelledby="navbarDropdownLangLogin">
-          {% get_current_language as LANGUAGE_CODE %}
-          {% get_available_languages as LANGUAGES %}
-          {% get_language_info_list for LANGUAGES as languages %}
+        
+        <div class="nav-item dropdown language-icon-notlogged">
 
-          {% for lang in LANGUAGES %}
-            {% if lang.0 == LANGUAGE_CODE %}
-              {% if LANGUAGE_CODE == "en" %}
-                <a class="dropdown-item active" href="/{{ lang.0 }}{{ request.path_info|slice:'3:' }}">{{ lang.1 }}</a>
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownLangLogin" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            {% get_current_language as LANGUAGE_CODE %}
+            <button class="btn-home btn-language" readonly>{% if LANGUAGE_CODE == 'en' %}EN{% else %}PT{% endif %}</button>
+          </a>
+          
+          <div class="dropdown-menu dropdown-menu-right dropdown-login" aria-labelledby="navbarDropdownLangLogin">
+            
+        
+            
+            {% get_current_language as LANGUAGE_CODE %}
+            {% get_available_languages as LANGUAGES %}
+            {% get_language_info_list for LANGUAGES as languages %}
+            
+            {% for lang in LANGUAGES %}
+              {% if lang.0 == LANGUAGE_CODE %}
+                {% if LANGUAGE_CODE == "en" %}
+                  <a class="dropdown-item active" href="/{{ lang.0 }}{{ request.path_info|slice:'3:' }}">{{ lang.1 }}</a>
+                {% else %}
+                  <a class="dropdown-item active" href="/{{ lang.0 }}{{ request.path_info|slice:'6:' }}">{{ lang.1 }}</a>
+                {% endif %}
               {% else %}
-                <a class="dropdown-item active" href="/{{ lang.0 }}{{ request.path_info|slice:'6:' }}">{{ lang.1 }}</a>
+                {% if LANGUAGE_CODE == "en" %}
+                  <a class="dropdown-item" href="/{{ lang.0 }}{{ request.path_info|slice:'3:' }}">{{ lang.1 }}</a>
+                {% else %}
+                  <a class="dropdown-item" href="/{{ lang.0 }}{{ request.path_info|slice:'6:' }}">{{ lang.1 }}</a>
+                {% endif %}
               {% endif %}
-            {% else %}
-              {% if LANGUAGE_CODE == "en" %}
-                <a class="dropdown-item" href="/{{ lang.0 }}{{ request.path_info|slice:'3:' }}">{{ lang.1 }}</a>
-              {% else %}
-                <a class="dropdown-item" href="/{{ lang.0 }}{{ request.path_info|slice:'6:' }}">{{ lang.1 }}</a>
-              {% endif %}
-            {% endif %}
-          {% endfor %}
+            {% endfor %}
+            
+          </div>
+          
         </div>
+
       </div>
-    </nav>
+    </div>
+  </nav>
+
     {% endif %}
 
       <div class="container base">

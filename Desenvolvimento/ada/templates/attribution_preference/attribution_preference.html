@@ -7,6 +7,17 @@
 <link rel="stylesheet" href="{% static 'attribution_preference/css/courses.css' %}">
 <title>{% trans "FPA" %}</title>
 <script src="{% static 'attribution_preference/js/index.js' %}" seconds='{{context.seconds}}' disponilibity_done='{{disponilibity_done}}' data-lang={{LANGUAGE_CODE}}></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fomantic-ui/2.9.2/semantic.min.css" />
+<link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/dataTables.semanticui.min.css" />
+<link rel="stylesheet"
+    href="https://datatables.net/release-datatables/extensions/FixedColumns/css/fixedColumns.bootstrap4.css" />
+<link rel="stylesheet" href="https://cdn.datatables.net/select/1.7.0/css/select.dataTables.min.css">
+<link rel="stylesheet" href="https://datatables.net/release-datatables/media/css/dataTables.bootstrap4.css" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.2/moment.min.js"></script>
+<script src="{% static 'staff/logs/js/logs.js' %}" data-lang="{{' LANGUAGE_CODE '}}"></script>
+<script type="text/javascript" src="https://cdn.datatables.net/fixedcolumns/3.2.1/js/dataTables.fixedColumns.min.js">    
+</script>
+<script src="https://cdn.datatables.net/select/1.7.0/js/dataTables.select.min.js"></script>
 {% endblock %}
 
 {% block body %}
@@ -27,7 +38,7 @@
                 <div id="work-regime">
                     <div class="float-right message-info-not-started"><i class="far fa-check-circle"></i>
                         {% trans 'FINALIZADA'%}</div>
-                    <h4 class="card-title mt-2">{% trans "Status" %}</h4>
+                    <h4 class="card-title mt-2"><b>{% trans "Status" %}</b></h4>
                 </div>
             </div>
         </div>
@@ -39,7 +50,7 @@
                 <div id="work-regime">
                     <div class="float-right message-info-not-configured"><i class="fas fa-times-circle"></i>
                         {% trans 'NÃO CONFIGURADO'%}</div>
-                    <h4 class="card-title mt-2">{% trans "Status" %}</h4>
+                    <h4 class="card-title mt-2"><b>{% trans "Status" %}</b></h4>
                     <hr class="my-0">
                     <div class="mt-4">
                         <p>{% trans 'Não foi configurado nenhum período de envio de FPAs' %}.
@@ -56,7 +67,7 @@
                 <div id="work-regime">
                     <div class="float-right message-info-done"><i class="fas fa-check-circle"></i>
                         {% trans 'PRÓXIMA ETAPA: ATRIBUIÇÃO'%}</div>
-                    <h4 class="card-title mt-2">{% trans "Status" %}</h4>
+                    <h4 class="card-title mt-2"><b>{% trans "Status" %}</b></h4>
                     <hr class="my-0">
                     <div class="mt-4">
                         <p>{% trans 'O envio de FPAs já finalizou, veja seu FPA e outros em seu perfil' %}.
@@ -73,7 +84,7 @@
                 <div id="work-regime">
                     <div class="float-right message-info-done"><i class="fas fa-check-circle"></i>
                         {% trans 'ATRIBUIÇÃO CONCLUÍDA'%}</div>
-                    <h4 class="card-title mt-2">{% trans "Status" %}</h4>
+                    <h4 class="card-title mt-2"><b>{% trans "Status" %}</b></h4>
                     <hr class="my-0">
                     <div class="mt-4">
                         <p>{% trans 'O envio de FPAs já finalizou, veja seu FPA e outros em seu perfil' %}.
@@ -91,7 +102,7 @@
                     {% if status_fpa == 'configured' %}
                     <div class="float-right message-info-not-started"><i class="fas fa-cog"></i>
                         {% trans 'CONFIGURADO'%}</div>
-                    <h4 class="card-title">{% trans "Status" %}</h4>
+                    <h4 class="card-title"><b>{% trans "Status" %}</b></h4>
                     <hr class="my-0">
                     <div class="mt-4 ml-2">
                         <p><b>{% trans "Início" %}:</b> {% trans start_day %} {% trans "às" %} {{start_time}}</p>
@@ -100,7 +111,7 @@
                     {% elif status_fpa == 'started' and courses_done == 'False' %}
                     <div class="float-right message-info-not-done"><i class="fas fa-clock"></i>
                         {% trans 'AGUARDANDO ENVIO'%}</div>
-                    <h4 class="card-title">{% trans "Status" %}</h4>
+                    <h4 class="card-title"><b>{% trans "Status" %}</b></h4>
                     <hr class="my-0">
                     <div class="mt-4 ml-2">
                         <p><b>{% trans "Início" %}:</b> {% trans start_day %} {% trans "às" %} {{start_time}}</p>
@@ -109,7 +120,7 @@
                     {% else %}
                     <div class="float-right message-info-done"><i class="far fa-check-circle"></i> {% trans 'ENVIADO'%}
                     </div>
-                    <h4 class="card-title">{% trans "Status" %}</h4>
+                    <h4 class="card-title"><b>{% trans "Status" %}</b></h4>
                     <hr class="my-0">
                     <div class="mt-4 ml-2">
                         <p><b>{% trans "Início" %}:</b> {% trans start_day %} {% trans "às" %} {{start_time}}</p>

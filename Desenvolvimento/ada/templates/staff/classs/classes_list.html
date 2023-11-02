@@ -40,7 +40,7 @@
 <div class="card">
     <div class="card-body">
         <div class="tabela">
-            <table class="table display editable table-bordered table-hover" id="classes_list">
+            <table class="table table-striped display editable table-bordered table-hover" id="classes_list">
                 <thead class="thead-dark">
                     <tr>
                         <th scope="col">{% trans "Registro" %}</th>
@@ -90,6 +90,7 @@
             </div>
             <div class="modal-body">
                 <form>
+                    <div class="alert alert-danger mt-3" id="error-message-form-edit" role="alert"></div>
                     <input type="hidden" class="form-control" id="id">
                     <div class="form-group">
                         <label for="registration_class_id_create">{% trans "Registro" %}</label>
@@ -139,6 +140,7 @@
                 </button>
             </div>
             <div class="modal-body">
+                <div class="alert alert-danger mt-3" id="error-message-form-edit" role="alert"></div>
                 <form>
                     <div class="form-group">
                         <label for="registration_class_id_edit">{% trans "Registro" %}</label>

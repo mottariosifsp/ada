@@ -36,12 +36,6 @@
                     <h1>{% trans blockk.name_block %}</h1>
                     {% if blockk in user_blocks %}
                     <div class="d-flex ml-auto mr-3">
-
-                        <a href="{% url 'queue_create' %}?blockk={{ blockk.registration_block_id }}" class="mr-3">
-                            <button type="button"
-                                class="btn btn-success float-right createCourseBtn ml-3">{% trans "Criar Fila" %}</button>
-                        </a>
-
                         <a href="{% url 'queue_show' %}?blockk={{ blockk.registration_block_id }}"><button type="button"
                                 class="btn btn-success float-right createCourseBtn"> {% trans "Ver Fila" %}
                             </button></a>
@@ -80,7 +74,7 @@
     <div class="card">
         <div class="card-body">
             <div class="tabela">
-                <table class="table table-hover table-bordered display editable" id="blocks_list">
+                <table class="table table-hover table-striped table-bordered display editable" id="blocks_list">
                     <thead class="thead-dark">
                         <tr>
                             <th scope="col">{% trans "Registro" %}</th>
@@ -100,7 +94,7 @@
                             <td>{% trans course.name_course %}</td>
                             <td>{% trans course.acronym %}</td>
                             {% if blockk in user_blocks %}
-                            <td>
+                            <td class="text-center">
                                 <button type="button" data-toggle="modal" data-target="#editCourseModal"
                                     data-course-id="{{ course.id }}" data-counter="{{ counter }}"
                                     class="btn btn-warning editCourseBtn"><i class="bi bi-pencil"></i></button>
@@ -129,6 +123,8 @@
                     </button>
                 </div>
                 <div class="modal-body">
+                    <div class="alert alert-danger mt-3" id="error-message-form-edit" role="alert"></div>
+
                     <form>
                         <input type="hidden" class="form-control" id="id">
                         <div class="form-group">
@@ -153,6 +149,7 @@
                         </select>
                     </form>
                 </div>
+                
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">{% trans "Fechar" %}</button>
                     <button type="button" class="btn btn-primary" data-area-id="{{ area.id  }}"
@@ -174,6 +171,8 @@
                     </button>
                 </div>
                 <div class="modal-body">
+                    <div class="alert alert-danger mt-3" id="error-message-form-edit" role="alert"></div>
+
                     <form>
                         <input type="hidden" class="form-control" id="id">
                         <div class="form-group">
