@@ -15,6 +15,11 @@
   background-color: #3F927E;
 }
 
+.days-count {
+  margin-top: 19px;
+  padding: 13px;
+}
+
 .checkbox input[type="checkbox"].unchecked {
   background-color: initial !important;
 }
