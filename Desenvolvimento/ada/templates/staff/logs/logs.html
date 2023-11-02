@@ -4,7 +4,7 @@
 
 {% block head %}
 {{ block.super }}
-<title>{% trans "Professores" %}</title>
+<title>{% trans "Registros" %}</title>
 <link rel="stylesheet" href="{% static 'staff/logs/css/logs.css' %}" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fomantic-ui/2.9.2/semantic.min.css" />
 <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/dataTables.semanticui.min.css" />
@@ -34,7 +34,7 @@
 <div class="card">
     <div class="card-body">
         <div class="tabela">
-            <table class="table table-bordered table-hover editable" id="logs_list">
+            <table class="table table-striped table-bordered editable" id="logs_list">
                 <thead class="thead-dark">
                     <tr>
                         <th><input type="checkbox" id="selectAllButton" class="text-center" style="margin-left:12px; margin-top: 6px;"></input></th>
