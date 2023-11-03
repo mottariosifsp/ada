@@ -12,7 +12,7 @@ class Classs(models.Model):
             (s.name, s.value) for s in enum.Period], max_length=45)
     semester = models.IntegerField(_('semester'))
     area = models.ForeignKey('area.Area', on_delete=models.CASCADE, null=True)
-
+    students = models.IntegerField(_('students'), default=0)
     class Meta:
         verbose_name = _('classs')
         verbose_name_plural = _('classes')
