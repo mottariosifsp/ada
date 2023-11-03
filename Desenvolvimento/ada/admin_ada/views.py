@@ -83,13 +83,13 @@ def save_deadline(data):
             blockk=blockk_obj,
         )
 
-        # for user in User.objects.all():
-        #     for course in Course.objects.all():
-        #         Proficiency.objects.get_or_create(
-        #             user=user,
-        #             is_competent=True,
-        #             course=course,
-        #         )
+        for user in User.objects.all():
+            for course in Course.objects.all():
+                Proficiency.objects.get_or_create(
+                    user=user,
+                    is_competent=True,
+                    course=course,
+                )
 
         # fpa = Attribution_preference.objects.filter(year=data['year'])
 
