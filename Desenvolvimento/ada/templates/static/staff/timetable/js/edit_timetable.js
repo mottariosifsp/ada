@@ -71,9 +71,6 @@ $(document).ready(function () {
   
 
   $('.course-input').on('input', function() {
-
-    
-
     var course = $(this).val();
     var list_name = $(this).attr('list');
     var selectedOption = $('#'+list_name+' option').filter(function() {
