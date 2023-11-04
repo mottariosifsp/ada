@@ -1,4 +1,5 @@
 var lang = document.currentScript.getAttribute("data-lang");
+var user_blockks = document.currentScript.getAttribute("user-blockks");
 $(".alert-danger").hide();
 
 $(document).ready(function () { 
@@ -137,11 +138,18 @@ $(document).ready(function () {
         console.log(allblocks);
     });
 
-    function addBlockToList(block_name) {   
-        $(".currentBlocksList").append(
-            "<li class='list-group-item d-flex align-items-center'><span class='block-name'>" +
-            block_name + "</span><button type='button' class='btn btn-danger deleteClassBtn btn-remove-block ml-auto'><i class='bi bi-trash'></i></button></li>"
-        );
+    function addBlockToList(block_name) {  
+        if(user_blockks.includes(block_name)){
+            $(".currentBlocksList").append(
+                "<li class='list-group-item d-flex align-items-center'><span class='block-name'>" +
+                block_name + "</span><button type='button' class='btn btn-danger deleteClassBtn btn-remove-block ml-auto'><i class='bi bi-trash'></i></button></li>"
+            );
+        }else{
+            $(".currentBlocksList").append(
+                "<li class='list-group-item d-flex align-items-center'><span class='block-name'>" +
+                block_name
+            );
+        }
         removeOption(block_name);
         allblocks.push(block_name);
     }
@@ -183,7 +191,9 @@ $(document).ready(function () {
         $(".blockInput").val("");
 
         for (let i = 0; i < allblocks.length; i++) {
-            addOption(allblocks[i]);
+            if(user_blockks.includes(allblocks[i])){
+                addOption(allblocks[i]);
+            }
         }
         allblocks = [];
         allBlockedCourses = [];

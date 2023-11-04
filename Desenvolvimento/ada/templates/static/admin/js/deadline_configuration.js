@@ -22,6 +22,10 @@ $("document").ready(function () {
     $(".feature3").hide();
     $("#error-message-form").hide();
     $("#submit-button").click(function (event) {
+
+
+        
+
         event.preventDefault(); // Impede o envio padrão do formulário
         $("#error-message-form").hide();
         $(".feature3").hide();
@@ -92,6 +96,8 @@ $("document").ready(function () {
 
     });
 });
+
+
 
 function error_message(message) {
     $("#error-message-form").text(message);

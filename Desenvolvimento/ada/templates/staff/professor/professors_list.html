@@ -268,7 +268,7 @@
                                         class="flex-grow-1 form-control blockInput" autocomplete="off"
                                         style="text-align: center;">
                                     <datalist id="blocks" class="blocks-datalist">
-                                        {% for block in blockks %}
+                                        {% for block in user_blockks %}
                                         <option class="dropdown-item-class" value="{{block.name_block}}">
                                         </option>
                                         {% endfor %}
@@ -433,7 +433,7 @@
                                         class="flex-grow-1 form-control blockInput" autocomplete="off"
                                         style="text-align: center;">
                                     <datalist id="blocks" class="blocks-datalist">
-                                        {% for block in blockks %}
+                                        {% for block in user_blockks %}
                                         <option class="dropdown-item-class"
                                             value="{{ block.name_block }}">
                                         </option>
@@ -553,6 +553,6 @@
 </div>
 
 
-<script src="{% static 'staff/professor/js/professors_list.js' %}" data-lang='{{LANGUAGE_CODE}}'></script>
+<script src="{% static 'staff/professor/js/professors_list.js' %}" data-lang='{{LANGUAGE_CODE}}' user-blockks='{{user_blockks}}'></script>
 
 {% endblock %}
