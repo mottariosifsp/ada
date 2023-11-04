@@ -312,18 +312,13 @@ def assignments(request):
 @login_required
 def assignments_classs_list(request, name_block):
     blockk = Blockk.objects.get(name_block=name_block)
-
-    areas_associadas = Area.objects.filter(blocks=blockk)
-
-    # timetable_data = []
+    associated_areas = Area.objects.filter(blocks=blockk)
     all_classes = []
-    # timetables_professor = []
-    counter = 0
 
-    for area in areas_associadas:
-        classes_da_area = Classs.objects.filter(area=area)
+    for area in associated_areas:
+        area_classes = Classs.objects.filter(area=area)
 
-        for classe in classes_da_area:
+        for classe in area_classes:
             all_classes.append({
                 "id": classe.id,
                 "registration_class_id": classe.registration_class_id,
@@ -332,20 +327,14 @@ def assignments_classs_list(request, name_block):
                 "registration_area_id": classe.area.registration_area_id,
             })
 
-
-            print("oi", all_classes[counter])
-            counter += 1
-
     all_classes = json.dumps(all_classes)
 
     years = []
     for year in Timetable_user.objects.values_list('year', flat=True).distinct():
-        # print("ano", year)
         years.append(year)
-        # print("ano 2", year)
 
     data = {
-        'areas': areas_associadas,
+        'areas': associated_areas,
         'json_data': all_classes,
         'years': years,
     }
