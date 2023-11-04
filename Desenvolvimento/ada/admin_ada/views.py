@@ -34,7 +34,7 @@ def deadline_configuration_confirm(request):
         overwrite = request.POST.get('overwrite')
         print(year)
         if overwrite == 'false':
-            if year == Deadline.objects.all().first().year:
+            if Deadline.objects.filter(year=year).exists():
                 return JsonResponse({'error': 'Já houve uma atribuição para esse semetre neste ano.'}, status=400)
 
         data = {
@@ -55,6 +55,19 @@ def deadline_configuration_confirm(request):
 
 @transaction.atomic
 def save_deadline(data):
+    counter = 0
+    for user in User.objects.all():
+        counter += 1
+        print(f'Proficiência {counter}/{User.objects.all().count()}', end='\r')
+        blockks = user.blocks.all()
+        for blockk in blockks:
+            for course in Course.objects.filter(blockk=blockk):
+                Proficiency.objects.get_or_create(
+                    user=user,
+                    is_competent=True,
+                    course=course
+                )
+
     if data['overwrite'] == 'true':
         Timetable_user.objects.filter(year=data['year']).update(user=None)
     else:
@@ -83,14 +96,7 @@ def save_deadline(data):
             deadline_end=data['endAssignmentDeadline'],
             blockk=blockk_obj,
         )
-
-        for user in User.objects.all():
-            for course in Course.objects.all():
-                Proficiency.objects.get_or_create(
-                    user=user,
-                    is_competent=True,
-                    course=course,
-                )
+       
 
         # fpa = Attribution_preference.objects.filter(year=data['year'])
 

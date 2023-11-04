@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Deadline, Criteria, Alert
+from .models import Deadline, Criteria, Alert, Application_logs
 # gource
 class Deadline_admin(admin.ModelAdmin):
     list_display = ('name','deadline_start','deadline_end')
@@ -17,8 +17,14 @@ class Alert_admin(admin.ModelAdmin):
     list_display = ('name_alert','created_by','title','description')
     search_fields = ('name_alert',)
 
-admin.site.register(Alert, Alert_admin)
+class Application_logs_admin(admin.ModelAdmin):
+    list_display = ('log_time','log_description')
+    search_fields = ('log_description',)
 
+ 
+
+admin.site.register(Alert, Alert_admin)
+admin.site.register(Application_logs, Application_logs_admin)
 # class Classes_admin(admin.ModelAdmin):
 #     list_display = ('registration_class_id', 'period', 'semester', 'area')
 #     search_fields = ('registration_class_id', 'period', 'semester')
