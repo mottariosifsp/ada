@@ -33,7 +33,7 @@ def deadline_configuration_confirm(request):
         endAssignmentDeadline = datetime.strptime(request.POST.get('endAssignmentDeadline'), date_format)
         overwrite = request.POST.get('overwrite')
         if overwrite == 'false':
-            if year == Deadline.objects.all().first().year:
+            if Deadline.objects.filter(year=year).exists():
                 return JsonResponse({'error': 'Já houve uma atribuição para esse semetre neste ano.'}, status=400)
 
         data = {
