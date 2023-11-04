@@ -241,16 +241,13 @@ def profile(request):
 
     return render(request, 'professor/profile.html', data)
 
-
 @login_required
 def show_assignment(request):
     year = request.GET.get('year')
     classs = Classs.objects.get(registration_class_id=request.GET.get('registration_class_id'))
     timetables = Timetable.objects.filter(classs=classs).all()
-    timeslots_all = Timeslot.objects.all()
-    timetables_user = Timetable_user.objects.filter(timetable__in=timetables,year=year).all()  # vai buscar apenas da atribuição final definitiva
-
-    timetables_professor = []
+    timetables_user = Timetable_user.objects.filter(timetable__in=timetables,year=year).all()  # Vai buscar apenas da atribuição final definitiva
+    timetables_professor_json = [] # Utilizado para juntar todos os timetables do professor em json
 
     for timetable_user in timetables_user:
         day_combos = timetable_user.timetable.day_combo.all()
@@ -274,16 +271,15 @@ def show_assignment(request):
                     "professor": professor,
                     "class_area": timetable_user.timetable.classs.registration_class_id
                 }
-                timetables_professor.append(timetable_professor)
                 # print("Timetable professorr",timetables_professor ) #Ok, só pega o professor D
-                timetables_professor_json = json.dumps(timetables_professor, ensure_ascii=False).encode(
+                timetables_professor_json = json.dumps(timetable_professor, ensure_ascii=False).encode(
                     'utf8').decode()  # junção de todos
 
-                data = {
-                    'timeslots': timeslots_all,
-                    'timetables_professor': timetables_professor_json,
-                    'classs': classs
-                }
+    data = {
+        'timeslots': Timeslot.objects.all(),
+        'timetables_professor': timetables_professor_json,
+        'classs': classs
+    }
 
     return render(request, 'professor/assignment/show_assignment.html', data)
 @login_required
@@ -319,9 +315,10 @@ def assignments_classs_list(request, name_block):
 
     areas_associadas = Area.objects.filter(blocks=blockk)
 
-    timetable_data = []
+    # timetable_data = []
     all_classes = []
-    timetables_professor = []
+    # timetables_professor = []
+    counter = 0
 
     for area in areas_associadas:
         classes_da_area = Classs.objects.filter(area=area)
@@ -335,11 +332,17 @@ def assignments_classs_list(request, name_block):
                 "registration_area_id": classe.area.registration_area_id,
             })
 
+
+            print("oi", all_classes[counter])
+            counter += 1
+
     all_classes = json.dumps(all_classes)
 
     years = []
     for year in Timetable_user.objects.values_list('year', flat=True).distinct():
+        # print("ano", year)
         years.append(year)
+        # print("ano 2", year)
 
     data = {
         'areas': areas_associadas,
