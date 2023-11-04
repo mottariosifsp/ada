@@ -873,6 +873,9 @@ def edit_timetable(request):
         timetable_complete = []
 
         for timetable in timetables:
+            has_blockk = False
+            if timetable.course.blockk in user_blockks:
+                has_blockk = True
             day_combos = timetable.day_combo.all()
             for day_combo in day_combos:
                 day = day_to_number(day_combo.day)
@@ -886,6 +889,7 @@ def edit_timetable(request):
                         "course": timetable.course.name_course,
                         "acronym": timetable.course.acronym,
                         "id": timetable.course.registration_course_id,
+                        "has_blockk": has_blockk
                     }
                     timetable_complete.append(timetable_professor)
 
