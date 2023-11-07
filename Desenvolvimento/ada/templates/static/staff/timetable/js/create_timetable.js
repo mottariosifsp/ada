@@ -3,6 +3,47 @@ window.addEventListener('pageshow', function(event) {
 });
 
 $(document).ready(function() {
+  var error_input;
+  $("#error-alert").hide();
+  $('.course-input').on('focus', function() {
+    var course = $(this).val();
+    var list_name = $(this).attr('list');
+    var selectedOption = $('#'+list_name+' option').filter(function() {
+      return $(this).val() === course;
+    });
+    if(selectedOption.attr('course-id') != undefined){
+      $(this).attr('course-id', selectedOption.attr('course-id'));
+      $(this).css('border-color', '#80bdff');
+      $(this).css('background-color', 'rgb(0, 0, 255,0.05)');
+      // $('.form-control').on('blur', function() {
+      //   $(this).css('border-color', '#80bdff');
+      //   $(this).css('background-color', 'rgb(0, 0, 255,0.5)');
+      // });
+      $(this).removeAttr('error');
+      $(this).css('border-color', '#80bdff');
+      $(this).css('background-color', 'rgb(0, 0, 255,0.05)');
+    }else{
+      $(this).removeAttr('error');
+      $(this).attr('course-id', course);
+      $(this).css('background-color', 'rgb(255, 0, 0,0.0)');
+      if(course == ""){
+        $(this).removeAttr('error');
+        $(this).css('border', '1px solid #ced4da');
+        $(this).css('background-color', 'rgb(255, 0, 0,0.0)');
+      }else{
+        $(this).attr('error','true');
+        $(this).css('border', '1px solid rgb(255, 0, 0,0.8)');
+        $(this).css('background-color', 'rgb(255, 0, 0,0.1)');
+      }
+    }
+    
+    error_input = $('[error="true"]');
+    if(error_input.length > 0){
+      $('#error-alert').show();
+    }else{
+      $('#error-alert').hide();
+    }
+  });
 
   $('.course-input').on('input', function() {
     var course = $(this).val();
@@ -12,20 +53,36 @@ $(document).ready(function() {
     });
     if(selectedOption.attr('course-id') != undefined){
       $(this).attr('course-id', selectedOption.attr('course-id'));
-      $('.form-control').on('focus', function() {
-        $(this).css('border-color', '#80bdff');
-      });
-      // $('.form-control').on('blur', function() {
-      //   $(this).css('border-color', '#ced4da');
+      // $('.form-control').on('focus', function() {
+      //   $(this).css('border-color', '#80bdff');
+      //   $(this).css('background-color', 'rgb(0, 0, 255,0.05)');
       // });
-      $(this).css('border', '1px solid #ced4da');
+      // $('.form-control').on('blur', function() {
+      //   $(this).css('border-color', '#80bdff');
+      //   $(this).css('background-color', 'rgb(0, 0, 255,0.5)');
+      // });
+      $(this).removeAttr('error');
+      $(this).css('border-color', '#80bdff');
+      $(this).css('background-color', 'rgb(0, 0, 255,0.05)');
     }else{
+      $(this).removeAttr('error');
       $(this).attr('course-id', course);
+      $(this).css('background-color', 'rgb(255, 0, 0,0.0)');
       if(course == ""){
+        $(this).removeAttr('error');
         $(this).css('border', '1px solid #ced4da');
+        $(this).css('background-color', 'rgb(255, 0, 0,0.0)');
       }else{
-        $(this).css('border', '1px solid rgb(255, 0, 0,0.3)');
+        $(this).attr('error','true');
+        $(this).css('border', '1px solid rgb(255, 0, 0,0.8)');
+        $(this).css('background-color', 'rgb(255, 0, 0,0.1)');
       }
+    }
+    error_input = $('[error="true"]');
+    if(error_input.length > 0){
+      $('#error-alert').show();
+    }else{
+      $('#error-alert').hide();
     }
   });
 

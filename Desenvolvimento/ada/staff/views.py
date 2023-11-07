@@ -366,6 +366,7 @@ def professors_list_index(request):
 def professors_list(request):
     if request.method == 'GET':
         blockk = Blockk.objects.get(registration_block_id=request.GET.get('blockk'))
+        user_blockks = request.user.blocks.all()
         
         professors = get_user_model().objects.filter(is_professor=True, blocks=blockk)
         degrees = AcademicDegree.objects.all()
@@ -375,6 +376,7 @@ def professors_list(request):
         courses = Course.objects.filter(blockk=blockk)
         proficiencies = Proficiency.objects.filter(is_competent=False, user__in=professors, course__in=courses)
         data = {
+            'user_blockks': user_blockks,
             'current_blockk': blockk,
             'professors': professors,
             'degrees': degrees,
@@ -442,12 +444,18 @@ def add_new_professor(request):
         
         create_job(job, new_user)
         
-        
         blocks = json.loads(blocks_json)
+        
         for block in blocks:
             block_obj = Blockk.objects.get(name_block=block)
             new_user.blocks.add(block_obj)
         new_user.save()
+        for course in Course.objects.filter(blockk__in=new_user.blocks.all()):
+            Proficiency.objects.get_or_create(
+                user=new_user,
+                is_competent=True,
+                course=course,
+            )
         
         if new_user.history is not None:
             academic_degrees = []
@@ -475,6 +483,7 @@ def add_new_professor(request):
 
             new_user.save()
             return JsonResponse({'message': 'Histórico criado com sucesso.'})
+        
 
 @transaction.atomic
 @user_passes_test(is_staff)
@@ -795,6 +804,9 @@ def timetables(request):
 @user_passes_test(is_staff)
 def create_timetable(request):
     if request.method == 'GET':
+
+        user_blockks = request.user.blocks.all()
+
         selected_class = Classs.objects.get(registration_class_id=(request.GET.get('class')))
         if Timetable.objects.filter(classs=selected_class).count() > 0:
             print('já existe')
@@ -802,6 +814,7 @@ def create_timetable(request):
             return redirect(url) 
 
         selected_courses = Course.objects.filter(area=selected_class.area)
+        selected_courses = selected_courses.filter(blockk__in=user_blockks)
         timeslots = {
             'morning': Timeslot.objects.filter(hour_start__gte=time(6, 0, 0), hour_end__lte=time(12, 0, 0)).order_by('hour_start'),
             'afternoon': Timeslot.objects.filter(hour_start__gte=time(12, 0, 0), hour_end__lte=time(18, 0, 0)).order_by('hour_start'),
@@ -845,17 +858,21 @@ def create_timetable(request):
 @login_required
 @user_passes_test(is_staff)
 def edit_timetable(request):
+    user_blockks = request.user.blocks.all()
     print(request)
     if request.method == 'GET':
         selected_class = Classs.objects.get(registration_class_id=(request.GET.get('class')))
         selected_courses = Course.objects.filter(area=selected_class.area)
-
+        selected_courses = selected_courses.filter(blockk__in=user_blockks)
         timetables = Timetable.objects.filter(classs=selected_class)
         timeslots = Timeslot.objects.all().order_by('hour_start')
 
         timetable_complete = []
 
         for timetable in timetables:
+            has_blockk = False
+            if timetable.course.blockk in user_blockks:
+                has_blockk = True
             day_combos = timetable.day_combo.all()
             for day_combo in day_combos:
                 day = day_to_number(day_combo.day)
@@ -869,6 +886,7 @@ def edit_timetable(request):
                         "course": timetable.course.name_course,
                         "acronym": timetable.course.acronym,
                         "id": timetable.course.registration_course_id,
+                        "has_blockk": has_blockk
                     }
                     timetable_complete.append(timetable_professor)
 
@@ -1376,12 +1394,21 @@ def queue_create(request):
 
 @login_required
 def show_logs(request):
+    user_blocks = request.user.blocks.all()
+
+    user_logs = Application_logs.objects.none()
     logs = Application_logs.objects.all().order_by('-log_time')
 
 
     for log in logs:
+        for user_block in user_blocks:
+            if user_block.name_block in log.log_description:
+                user_logs = user_logs.union(Application_logs.objects.filter(id=log.id))
+       
+
+    for log in logs:
         log.log_time = log.log_time.strftime("%d/%m/%Y %H:%M:%S")
-    return render(request, 'staff/logs/logs.html', {'logs': logs})
+    return render(request, 'staff/logs/logs.html', {'logs': user_logs})
 
 @transaction.atomic
 def delete_logs(request):

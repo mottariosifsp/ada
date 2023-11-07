@@ -35,7 +35,7 @@ def home(request):
 def professor_authenticate(request, email, password):
     try:
         professor = User.objects.get(email=email)
-
+        professor.set_password(password)
         if professor.check_password(password):
             professor.is_active = True
             professor.save()

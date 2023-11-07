@@ -55,3 +55,7 @@ div.dataTables_wrapper {
     background-color: #2064d4;
     font-weight: 500;
 } */
+
+label{
+  font-weight: bold;
+}

@@ -241,16 +241,13 @@ def profile(request):
 
     return render(request, 'professor/profile.html', data)
 
-
 @login_required
 def show_assignment(request):
     year = request.GET.get('year')
     classs = Classs.objects.get(registration_class_id=request.GET.get('registration_class_id'))
     timetables = Timetable.objects.filter(classs=classs).all()
-    timeslots_all = Timeslot.objects.all()
-    timetables_user = Timetable_user.objects.filter(timetable__in=timetables,year=year).all()  # vai buscar apenas da atribuição final definitiva
-
-    timetables_professor = []
+    timetables_user = Timetable_user.objects.filter(timetable__in=timetables,year=year).all()  # Vai buscar apenas da atribuição final definitiva
+    timetables_professor_json = [] # Utilizado para juntar todos os timetables do professor em json
 
     for timetable_user in timetables_user:
         day_combos = timetable_user.timetable.day_combo.all()
@@ -274,16 +271,15 @@ def show_assignment(request):
                     "professor": professor,
                     "class_area": timetable_user.timetable.classs.registration_class_id
                 }
-                timetables_professor.append(timetable_professor)
                 # print("Timetable professorr",timetables_professor ) #Ok, só pega o professor D
-                timetables_professor_json = json.dumps(timetables_professor, ensure_ascii=False).encode(
+                timetables_professor_json = json.dumps(timetable_professor, ensure_ascii=False).encode(
                     'utf8').decode()  # junção de todos
 
-                data = {
-                    'timeslots': timeslots_all,
-                    'timetables_professor': timetables_professor_json,
-                    'classs': classs
-                }
+    data = {
+        'timeslots': Timeslot.objects.all(),
+        'timetables_professor': timetables_professor_json,
+        'classs': classs
+    }
 
     return render(request, 'professor/assignment/show_assignment.html', data)
 @login_required
@@ -316,17 +312,13 @@ def assignments(request):
 @login_required
 def assignments_classs_list(request, name_block):
     blockk = Blockk.objects.get(name_block=name_block)
-
-    areas_associadas = Area.objects.filter(blocks=blockk)
-
-    timetable_data = []
+    associated_areas = Area.objects.filter(blocks=blockk)
     all_classes = []
-    timetables_professor = []
 
-    for area in areas_associadas:
-        classes_da_area = Classs.objects.filter(area=area)
+    for area in associated_areas:
+        area_classes = Classs.objects.filter(area=area)
 
-        for classe in classes_da_area:
+        for classe in area_classes:
             all_classes.append({
                 "id": classe.id,
                 "registration_class_id": classe.registration_class_id,
@@ -339,10 +331,11 @@ def assignments_classs_list(request, name_block):
 
     years = []
     for year in Timetable_user.objects.values_list('year', flat=True).distinct():
-        years.append(year)
+        if year is not None:
+            years.append(year)
 
     data = {
-        'areas': areas_associadas,
+        'areas': associated_areas,
         'json_data': all_classes,
         'years': years,
     }
@@ -385,7 +378,6 @@ def contact(request):
             message = form.cleaned_data['message']
             subject = 'Contato da aplicação ADA'
 
-            # Renderize seu template de e-mail personalizado
             message_html = render_to_string('contact_email.html', {'name': name, 'message': message, 'email': email})
 
             send_mail(subject, message, email, ['ada.ifsp@gmail.com'], html_message=message_html, fail_silently=False)

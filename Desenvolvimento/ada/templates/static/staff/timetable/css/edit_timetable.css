@@ -21,10 +21,10 @@ input[name="course"]:hover::-webkit-calendar-picker-indicator {
     cursor: pointer;
 }
 
-.form-control:focus{
+{% comment %} .form-control:focus{
     border-color: #80bdff;
     box-shadow: 0 0 0 0.0rem rgba(0,123,255,.25);
-}
+} {% endcomment %}
 
 td{
     width: calc((100% - 7.7rem) / 6) !important;  /* 6 columns excluding the first column */

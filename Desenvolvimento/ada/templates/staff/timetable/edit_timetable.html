@@ -24,6 +24,9 @@
 <div class="card">
   <div class="card-body">
     <div class="container">
+      <div class="alert alert-danger" id="error-alert" role="alert">
+        <b>Os campos devem ser preenchidos, de forma correta e em letra maiúscula. Corrija-os para prosseguir.</b>
+      </div>
       <form id="course_select">
         {% csrf_token %}
         <button type="button" class="collapsible"><span class="ml-1 icon-minimize" style="float: left;"><i
