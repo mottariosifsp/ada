@@ -331,7 +331,8 @@ def assignments_classs_list(request, name_block):
 
     years = []
     for year in Timetable_user.objects.values_list('year', flat=True).distinct():
-        years.append(year)
+        if year is not None:
+            years.append(year)
 
     data = {
         'areas': associated_areas,
@@ -377,7 +378,6 @@ def contact(request):
             message = form.cleaned_data['message']
             subject = 'Contato da aplicação ADA'
 
-            # Renderize seu template de e-mail personalizado
             message_html = render_to_string('contact_email.html', {'name': name, 'message': message, 'email': email})
 
             send_mail(subject, message, email, ['ada.ifsp@gmail.com'], html_message=message_html, fail_silently=False)
