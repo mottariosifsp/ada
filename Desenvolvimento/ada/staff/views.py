@@ -444,14 +444,13 @@ def add_new_professor(request):
         
         create_job(job, new_user)
         
-        
         blocks = json.loads(blocks_json)
+        
         for block in blocks:
             block_obj = Blockk.objects.get(name_block=block)
             new_user.blocks.add(block_obj)
         new_user.save()
-
-        for course in Course.objects.filter(blockk__in=blocks):
+        for course in Course.objects.filter(blockk__in=new_user.blocks.all()):
             Proficiency.objects.get_or_create(
                 user=new_user,
                 is_competent=True,
@@ -485,8 +484,6 @@ def add_new_professor(request):
             new_user.save()
             return JsonResponse({'message': 'Histórico criado com sucesso.'})
         
-            
-
 
 @transaction.atomic
 @user_passes_test(is_staff)
