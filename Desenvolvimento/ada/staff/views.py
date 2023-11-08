@@ -31,19 +31,26 @@ from common.date_utils import day_to_number
 from django.core.mail import send_mail, EmailMessage
 import os
 
+import random
+import string
+
 @login_required
 def register(request):
     professors_inactive = User.objects.filter(is_professor=True, is_active=False)
     if request.method == 'POST':
 
         for professor in professors_inactive:
-            send_email(professor)
+            send_confirmation_email(professor)
 
         return redirect('register')
     return render(request, 'staff/professor/register.html', {'professors': professors_inactive})
 
+def generate_strong_password(length=8):
+    characters = string.ascii_letters + string.digits + string.punctuation
+    password = ''.join(random.choice(characters) for _ in range(length))
+    return password
 
-def send_email(professor):
+def send_confirmation_email(professor):
     subject = 'Ação requerida: Finalize seu cadastro'
 
     nome = professor.first_name
@@ -729,6 +736,8 @@ def course_create(request):
 
         area = Area.objects.get(id=area_id)
         blockk = Blockk.objects.get(id=block_id)
+        
+        registration_course_id = registration_course_id.strip() 
 
         if Course.objects.filter(registration_course_id=registration_course_id).exists():
             return JsonResponse({'error': 'Já existe uma disciplina com esse código de registro.'}, status=400)
