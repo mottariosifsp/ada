@@ -14,15 +14,23 @@ $(document).ready(function() {
 
     $('.createClassBtn').click(function() {
         $('#createClassModal').modal('show');
+        $(".alert-danger").hide();
     });
     
     $('#saveCreateBtn').click(function() {
         $(".alert-danger").hide();
+
         var registration_class_id = $('#registration_class_id_create').val();
         var period = $('#period_create').val();
         var semester = $('#semester_create').val();
         var area = $('#area_create').val();
-    
+        
+        if(isEmpty(registration_class_id, period, semester, area)){
+            $(".alert-danger").show();
+            $(".alert-danger").text("Todos os campos devem ser preenchidos.");
+            return;
+        }
+
         var data = {
             registration_class_id: registration_class_id,
             period: period,
@@ -111,6 +119,12 @@ $(document).ready(function() {
         var semester = $('#semester_edit').val();
         var area = $('#area_edit').val();
         
+        if(isEmpty(registration_class_id, period, semester, area)){
+            $(".alert-danger").show();
+            $(".alert-danger").text("Todos os campos devem ser preenchidos.");
+            return;
+        }
+
         var data = {
             old_registration_class_id: old_registration_class_id,
             registration_class_id: registration_class_id,
@@ -213,4 +227,16 @@ function getCookie(name) {
       }
     }
     return cookieValue;
+}
+
+function isEmpty(...str) {
+
+    for(let i = 0; i < str.length; i++) {
+        str[i] = str[i].replace(/\s/g, '');
+        if (!str[i] || 0 === str[i].length) {
+            return true;
+        }
+    }
+
+    return (!str || 0 === str.length);
 }
