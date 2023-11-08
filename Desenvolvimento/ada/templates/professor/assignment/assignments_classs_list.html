@@ -30,26 +30,30 @@
         </ol>
     </nav>
 
+
     <div class="year-container">
         {% for year in years %}
-        <div class="year" year="{{ year }}">
-            {{ year }}
-        </div>
+            {% if year %}
+                <div class="year" year="{{ year }}">
+                    {{ year }}
+                </div>
+            {% endif %}
         {% endfor %}
     </div>
 
-    <div class="area-container" >
+    {% if years %}
+    <div class="area-container">
         {% for area in areas %}
             <div class="area" data-registration_area_id="{{ area.registration_area_id }}">
-                {% comment %} {% blocktrans with area=area.name_area %}{{ area }}{% endblocktrans %} {% endcomment %}
                 {% trans area.name_area %}
             </div>
         {% endfor %}
     </div>
+    {% endif %}
 
-    <div id="classs-container" class="hidden">
-        <div class="classs"></div>
-    </div>
+<div id="classs-container" class="hidden">
+    <div class="classs"></div>
+</div>
 
 <script src="{% static 'professor/assignment/js/assignments_classs_list.js' %}" jsonData='{{ json_data|escapejs }}'></script>
 <script src="{% static 'common/table_window/js/table_window.js' %}"></script>

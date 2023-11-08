@@ -444,14 +444,13 @@ def add_new_professor(request):
         
         create_job(job, new_user)
         
-        
         blocks = json.loads(blocks_json)
+        
         for block in blocks:
             block_obj = Blockk.objects.get(name_block=block)
             new_user.blocks.add(block_obj)
         new_user.save()
-
-        for course in Course.objects.filter(blockk__in=blocks):
+        for course in Course.objects.filter(blockk__in=new_user.blocks.all()):
             Proficiency.objects.get_or_create(
                 user=new_user,
                 is_competent=True,
@@ -485,8 +484,6 @@ def add_new_professor(request):
             new_user.save()
             return JsonResponse({'message': 'Histórico criado com sucesso.'})
         
-            
-
 
 @transaction.atomic
 @user_passes_test(is_staff)
@@ -873,6 +870,9 @@ def edit_timetable(request):
         timetable_complete = []
 
         for timetable in timetables:
+            has_blockk = False
+            if timetable.course.blockk in user_blockks:
+                has_blockk = True
             day_combos = timetable.day_combo.all()
             for day_combo in day_combos:
                 day = day_to_number(day_combo.day)
@@ -886,6 +886,7 @@ def edit_timetable(request):
                         "course": timetable.course.name_course,
                         "acronym": timetable.course.acronym,
                         "id": timetable.course.registration_course_id,
+                        "has_blockk": has_blockk
                     }
                     timetable_complete.append(timetable_professor)
 
