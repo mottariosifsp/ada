@@ -35,11 +35,11 @@
                 <div class="row ml-1">
                     <h1>{% trans blockk.name_block %}</h1>
                     {% if blockk in user_blocks %}
-                    <div class="d-flex ml-auto mr-3">
+                    {% comment %} <div class="d-flex ml-auto mr-3">
                         <a href="{% url 'queue_show' %}?blockk={{ blockk.registration_block_id }}"><button type="button"
                                 class="btn btn-success float-right createCourseBtn"> {% trans "Ver Fila" %}
                             </button></a>
-                    </div>
+                    </div> {% endcomment %}
                     {% endif %}
                 </div>
                 <div class="card">
